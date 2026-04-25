@@ -131,7 +131,7 @@ export function Navbar() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-  <div className="lg:hidden border-b border-teal-light/[0.08] px-6 pb-6" style={{background: 'rgba(5,14,20,0.98)', backdropFilter: 'blur(20px)'}}>
+  <div className="lg:hidden border-b border-teal-light/[0.08] px-6 pb-6" style={{background: '#050E14', position: 'fixed', top: '76px', left: 0, right: 0, zIndex: 9999, maxHeight: 'calc(100vh - 76px)', overflowY: 'auto'}}>
           <div className="gold-line mb-4" />
           {NAV_ITEMS.map(item => (
             <div key={item.href}>
