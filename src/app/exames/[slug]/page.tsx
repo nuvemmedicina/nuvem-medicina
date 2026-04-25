@@ -22,22 +22,22 @@ const EXAM_DETAIL: Record<string, {
     preparo:    ['Jejum de 6 horas antes do exame', 'Suspender medicamentos que afetam motilidade (consultar médico)', 'Usar roupa confortável', 'Comparecer com o pedido médico'],
     espRel:     ['motilidade-digestiva', 'gastroenterologia'],
   },
-  phmetria: {
+  'phmetria-impedanciometria': {
     indicacoes: ['Suspeita de DRGE refratária ao tratamento', 'Sintomas atípicos de refluxo (tosse, rouquidão)', 'Avaliação pré e pós-operatória antirrefluxo', 'Refluxo não ácido suspeito', 'Correlação de sintomas com eventos de refluxo'],
     preparo:    ['Suspender IBPs por 7 dias (orientação médica)', 'Suspender antiácidos por 24 horas', 'Jejum de 4 horas antes da instalação do cateter', 'Manter atividade normal durante o monitoramento'],
     espRel:     ['motilidade-digestiva', 'gastroenterologia'],
   },
-  respiratorio: {
+  'testes-respiratorios': {
     indicacoes: ['Suspeita de SIBO, IMO ou LIBO', 'Intolerância à lactose ou frutose', 'Diagnóstico de infecção por H. pylori', 'Síndrome do intestino irritável para investigação', 'Após antibioticoterapia para confirmação de erradicação'],
     preparo:    ['Jejum de 12 horas antes do exame', 'Dieta específica no dia anterior (sem fibras fermentáveis)', 'Não usar antibióticos nas 4 semanas anteriores', 'Não fumar 1 hora antes', 'Não praticar exercícios intensos 1 hora antes'],
     espRel:     ['gastroenterologia', 'pediatria'],
   },
-  halimetria: {
+  'halimetria-sialometria': {
     indicacoes: ['Halitose persistente sem causa oral identificada', 'Avaliação objetiva antes e após tratamento', 'Suspeita de halitose de origem digestiva ou sistêmica', 'Rastreamento de xerostomia associada'],
     preparo:    ['Não comer nas 3 horas anteriores', 'Não escovar dentes 2 horas antes', 'Não usar enxaguante bucal no dia', 'Não fumar 2 horas antes', 'Hidratação normal permitida'],
     espRel:     ['halitose'],
   },
-  pelvico: {
+  'avaliacao-pelvica': {
     indicacoes: ['Incontinência urinária ou fecal', 'Disfunção do assoalho pélvico', 'Constipação obstrutiva', 'Dor pélvica crônica', 'Pré e pós-operatório pélvico', 'Complementar à manometria anorretal'],
     preparo:    ['Usar roupa confortável', 'Não é necessário jejum', 'Comparecer com exames anteriores se houver', 'Informar uso de medicamentos'],
     espRel:     ['fisioterapia-pelvica'],
@@ -56,6 +56,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!exame) return {}
   return { title: exame.title, description: exame.desc[0] }
 }
+
 export default async function ExameSlugPage({ params }: Props) {
   const { slug } = await params
   const exame  = EXAMES.find(e => e.id === slug)
