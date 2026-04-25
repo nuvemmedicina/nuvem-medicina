@@ -37,7 +37,7 @@ export function Navbar() {
     <nav
       ref={navRef}
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-400',
+        'fixed top-0 left-0 right-0 z-[100] transition-all duration-400',
         scrolled
           ? 'bg-ink/88 backdrop-blur-xl border-b border-teal-light/[0.08]'
           : 'bg-transparent',
@@ -131,13 +131,25 @@ export function Navbar() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-  <div className="lg:hidden border-b border-teal-light/[0.08] px-6 pb-6" style={{background: '#050E14', position: 'fixed', top: '76px', left: 0, right: 0, zIndex: 9999, maxHeight: 'calc(100vh - 76px)', overflowY: 'auto'}}>
+        <div
+          className="lg:hidden px-6 pb-6 border-b border-teal-light/[0.08]"
+          style={{
+            background: '#050E14',
+            position: 'fixed',
+            top: '76px',
+            left: 0,
+            right: 0,
+            bottom: 0,
+            overflowY: 'auto',
+            zIndex: 99,
+          }}
+        >
           <div className="gold-line mb-4" />
           {NAV_ITEMS.map(item => (
             <div key={item.href}>
               <Link
                 href={item.href}
-                className="block py-3 text-[0.85rem] text-muted hover:text-white transition-colors border-b border-teal-light/[0.05]"
+                className="block py-3.5 text-[0.9rem] font-medium text-white border-b border-teal-light/[0.08] hover:text-gold transition-colors"
                 onClick={() => setMobileOpen(false)}
               >
                 {item.label}
@@ -148,7 +160,7 @@ export function Navbar() {
                     <Link
                       key={child.href}
                       href={child.href}
-                      className="block py-2 text-[0.75rem] text-faint hover:text-teal-light transition-colors"
+                      className="block py-2.5 text-[0.82rem] text-muted hover:text-teal-light transition-colors"
                       onClick={() => setMobileOpen(false)}
                     >
                       {child.label}
@@ -158,8 +170,8 @@ export function Navbar() {
               )}
             </div>
           ))}
-          <div className="mt-4 flex flex-col gap-3">
-            <a href="tel:3125373131" className="text-[0.8rem] text-muted text-center">
+          <div className="mt-6 flex flex-col gap-3 pb-8">
+            <a href="tel:3125373131" className="text-[0.85rem] text-muted text-center py-2">
               (31) 2537-3131
             </a>
             <Link href="/agendar" className="btn-gold justify-center" onClick={() => setMobileOpen(false)}>
