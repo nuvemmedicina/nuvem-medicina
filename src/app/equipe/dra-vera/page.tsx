@@ -172,12 +172,11 @@ export default function DraVeraPage() {
                   Instagram
                 </a>
               </div>
-              <div className="pt-2 border-t border-teal-light/[0.08]">
-                <div className="flex items-center gap-3">
-                  <IsoSeal className="w-10 h-10 shrink-0" />
-                  <p className="text-[0.72rem] text-faint leading-relaxed">
-                    Clínica certificada <span className="text-gold font-medium">ISO 9001</span> — padrão internacional de qualidade
-                  </p>
+              <div className="flex items-center gap-3 pt-2 border-t border-teal-light/[0.08]">
+                <IsoSeal size={40} />
+                <div>
+                  <p className="text-[0.72rem] font-semibold text-white">ISO 9001</p>
+                  <p className="text-[0.65rem] text-faint">Diretora Técnica</p>
                 </div>
               </div>
             </div>
