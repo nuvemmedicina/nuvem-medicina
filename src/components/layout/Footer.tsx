@@ -1,5 +1,5 @@
 import Link            from 'next/link'
-import { Instagram, Youtube, MessageCircle } from 'lucide-react'
+import { Instagram, Youtube, MessageCircle, Linkedin } from 'lucide-react'
 import { LogoBranco }  from '@/components/icons/LogoBranco'
 import { IsoSeal }     from '@/components/icons/IsoSeal'
 import { CONTATO }     from '@/lib/data'
@@ -69,9 +69,10 @@ export function Footer() {
 
             <div className="flex gap-2.5">
               {[
-                { href: CONTATO.instagram, Icon: Instagram, label: 'Instagram' },
-                { href: CONTATO.youtube,   Icon: Youtube,   label: 'YouTube' },
-                { href: CONTATO.whatsappUrl, Icon: MessageCircle, label: 'WhatsApp' },
+                { href: 'https://www.instagram.com/nuvemmedicina/', Icon: Instagram,     label: 'Instagram' },
+                { href: 'https://www.youtube.com/@NuvemMedicina',   Icon: Youtube,       label: 'YouTube' },
+                { href: 'https://www.linkedin.com/company/nuvem-medicina/', Icon: Linkedin, label: 'LinkedIn' },
+                { href: CONTATO.whatsappUrl,                         Icon: MessageCircle, label: 'WhatsApp' },
               ].map(({ href, Icon, label }) => (
                 <a
                   key={label}
