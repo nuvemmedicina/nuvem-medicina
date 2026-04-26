@@ -121,12 +121,7 @@ export default function EquipePage() {
               className={`bg-deep border border-teal-light/[0.08] rounded-xl p-6 hover:border-teal-light/25 hover:-translate-y-0.5 transition-all reveal reveal-d${i % 3}`}>
               <div className="flex items-center gap-4 mb-4">
                 <div className="w-12 h-12 rounded-full overflow-hidden border border-teal-light/20 shrink-0 relative">
-                  <Image
-                    src={m.foto}
-                    alt={m.nome}
-                    fill
-                    className="object-cover object-top"
-                  />
+                  <Image src={m.foto} alt={m.nome} fill className="object-cover object-top" />
                 </div>
                 <div>
                   <h3 className="text-[0.92rem] font-semibold text-white leading-tight">{m.nome}</h3>
