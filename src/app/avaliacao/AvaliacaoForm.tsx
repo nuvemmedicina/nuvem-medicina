@@ -239,7 +239,7 @@ export function AvaliacaoForm() {
             Que tal deixar também uma avaliação no Google? Ajuda muito! 🌟
           </p>
           <a
-            href="https://g.page/r/NuvemMedicina/review"
+            href="https://share.google/b7FR17p6wrkEOZ5JR"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-gold text-ink text-[0.8rem] font-semibold px-5 py-2.5 rounded-xl hover:-translate-y-0.5 transition-all"
