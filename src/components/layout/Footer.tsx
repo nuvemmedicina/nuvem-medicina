@@ -118,10 +118,30 @@ export function Footer() {
             <p className="text-[0.7rem] text-faint">
               {CONTATO.endereco} – {CONTATO.bairro} · {CONTATO.cep}
             </p>
+            <a href="/politica-de-privacidade" className="text-[0.7rem] text-faint hover:text-teal-light transition-colors">
+              Política de Privacidade
+            </a>
+            <a href="/direitos-do-paciente" className="text-[0.7rem] text-faint hover:text-teal-light transition-colors">
+              Direitos do Paciente
+            </a>
           </div>
-          <p className="text-[0.65rem] text-teal-light/15 max-w-md leading-relaxed">
-            As informações neste site têm caráter informativo e educacional, em conformidade com as normas do Conselho Federal de Medicina (Res. CFM nº 1.974/2011). Não substituem consulta médica profissional.
-          </p>
+          <div className="flex flex-col items-end gap-2">
+            <p className="text-[0.65rem] text-teal-light/15 max-w-md leading-relaxed text-right">
+              As informações neste site têm caráter informativo e educacional, em conformidade com as normas do Conselho Federal de Medicina (Res. CFM nº 1.974/2011). Não substituem consulta médica profissional.
+            </p>
+            <a
+              href="https://anawebdesign.com.br"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-[0.68rem] text-faint hover:text-teal-light transition-colors group"
+            >
+              Desenvolvido por
+              <span className="font-semibold text-teal-light/60 group-hover:text-teal-light transition-colors">
+                Ana Webdesign
+              </span>
+              <span className="text-teal-light/30 group-hover:text-gold transition-colors">↗</span>
+            </a>
+          </div>
         </div>
       </div>
     </footer>
