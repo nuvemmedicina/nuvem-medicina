@@ -101,3 +101,89 @@ export default function DireitosPacientePage() {
                 </div>
                 <div className="flex-1">
                   <h3 className="text-[1rem] font-semibold text-white">{d.titulo}</h3>
+                  {d.lei && (
+                    <span className="text-[0.68rem] font-medium text-faint">
+                      {(d as any).linkLei ? <Link href={(d as any).linkLei} className="hover:text-teal-light transition-colors">{d.lei} ↗</Link> : d.lei}
+                    </span>
+                  )}
+                </div>
+              </div>
+              <div className="px-8 pb-6 grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
+                {d.itens.map((item) => (
+                  <div key={item.titulo} className="flex items-start gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full mt-2 shrink-0" style={{ background: d.cor === 'gold' ? '#C9A84C' : '#CBE4E6' }} />
+                    <div>
+                      <p className="text-[0.85rem] font-semibold text-white mb-1">{item.titulo}</p>
+                      <p className="text-[0.8rem] font-light text-muted leading-[1.7]">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </SectionWrapper>
+
+      <SectionWrapper dark>
+        <div className="text-center mb-12">
+          <p className="sec-tag justify-center reveal">Seus Deveres</p>
+          <h2 className="sec-title reveal reveal-d1">Para um cuidado <em>completo</em></h2>
+          <p className="text-[0.88rem] text-muted mt-3 max-w-lg mx-auto reveal reveal-d2">A colaboração do paciente é fundamental para garantir a qualidade e a precisão do atendimento.</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-4xl mx-auto">
+          {DEVERES.map((d, i) => (
+            <div key={d.num} className={`bg-ink border border-teal-light/[0.08] rounded-xl p-7 hover:border-teal-light/25 transition-all reveal reveal-d${i % 3}`}>
+              <span className="font-serif text-[3rem] font-light text-teal-light/10 leading-none block mb-4">{d.num}</span>
+              <h3 className="text-[0.92rem] font-semibold text-white mb-3">{d.titulo}</h3>
+              <p className="text-[0.8rem] font-light text-muted leading-[1.75]">{d.desc}</p>
+            </div>
+          ))}
+        </div>
+      </SectionWrapper>
+
+      <SectionWrapper>
+        <div className="max-w-2xl mx-auto text-center">
+          <span className="text-4xl block mb-6">💬</span>
+          <p className="sec-tag justify-center reveal">Queremos te ouvir</p>
+          <h2 className="sec-title reveal reveal-d1 mb-4">Algo não foi como <em>esperado?</em></h2>
+          <p className="text-[0.88rem] font-light text-muted leading-[1.85] mb-8 reveal reveal-d2">
+            Se você sente que algum destes direitos não foi respeitado, ou tem sugestões para melhorarmos nossa experiência, entre em contato. Sua opinião é parte essencial do nosso Sistema de Gestão da Qualidade ISO 9001.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8 reveal reveal-d3">
+            <a href={CONTATO.whatsappUrl} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 bg-deep border border-teal-light/[0.08] rounded-xl p-5 hover:border-gold/30 transition-all">
+              <span className="text-2xl">📱</span>
+              <span className="text-[0.82rem] font-semibold text-white">{CONTATO.whatsapp}</span>
+              <span className="text-[0.7rem] text-faint">WhatsApp</span>
+            </a>
+            <a href={`tel:${CONTATO.telefone.replace(/\D/g,'')}`} className="flex flex-col items-center gap-2 bg-deep border border-teal-light/[0.08] rounded-xl p-5 hover:border-gold/30 transition-all">
+              <span className="text-2xl">📞</span>
+              <span className="text-[0.82rem] font-semibold text-white">{CONTATO.telefone}</span>
+              <span className="text-[0.7rem] text-faint">Telefone</span>
+            </a>
+            <a href={`mailto:${CONTATO.email}`} className="flex flex-col items-center gap-2 bg-deep border border-teal-light/[0.08] rounded-xl p-5 hover:border-gold/30 transition-all">
+              <span className="text-2xl">✉️</span>
+              <span className="text-[0.82rem] font-semibold text-white truncate w-full text-center">{CONTATO.email}</span>
+              <span className="text-[0.7rem] text-faint">E-mail</span>
+            </a>
+          </div>
+          <div className="bg-deep border border-teal-light/[0.08] rounded-xl p-6 text-left reveal reveal-d4">
+            <p className="text-[0.68rem] font-bold uppercase tracking-[.1em] text-faint mb-4">Responsáveis Técnicos</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <Link href="/equipe/dra-vera" className="text-[0.85rem] font-semibold text-white hover:text-gold transition-colors">Dra. Vera Ângelo</Link>
+                <p className="text-[0.72rem] text-faint mt-0.5">CRM 22284 MG · RQE 10411 · RQE 22736</p>
+                <p className="text-[0.72rem] text-muted mt-0.5">Diretora Técnica</p>
+              </div>
+              <div>
+                <Link href="/equipe/dra-eliane" className="text-[0.85rem] font-semibold text-white hover:text-gold transition-colors">Dra. Eliane Basques Moura</Link>
+                <p className="text-[0.72rem] text-faint mt-0.5">CRM 27601 MG · RQE 9324</p>
+                <p className="text-[0.72rem] text-muted mt-0.5">Diretora Técnica Substituta</p>
+              </div>
+            </div>
+            <p className="text-[0.7rem] text-faint mt-4 pt-4 border-t border-teal-light/[0.06]">Inscrita sob CRM n° 0020532-MG · CNPJ 42.678.705/0001-02</p>
+          </div>
+        </div>
+      </SectionWrapper>
+    </>
+  )
+}
