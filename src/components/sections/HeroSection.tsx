@@ -81,7 +81,7 @@ export function HeroSection() {
               className="flex flex-col sm:flex-row gap-0 pt-8 border-t border-teal-light/[0.08] opacity-0 animate-[fadeUp_.9s_.75s_var(--ease-out)_forwards]"
             >
               {[
-                { num: '1.991', label: 'Avaliações Google', sub: '★★★★★', gold: true },
+                { num: '2.000', label: 'Avaliações Google', sub: '★★★★★', gold: true },
                 { num: 'ISO 9001', label: 'Gestão Certificada', sub: 'Única no segmento', gold: false },
                 { num: '6', label: 'Especialidades', sub: 'Equipe integrada', gold: false },
               ].map((s, i) => (
