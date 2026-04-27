@@ -18,7 +18,7 @@ export function DepoimentosSection() {
               ))}
             </div>
             <div className="text-[0.75rem] text-muted">
-              Baseado em <strong className="text-white">1.991 avaliações</strong> no Google
+              Baseado em <strong className="text-white">2.000 avaliações</strong> no Google
             </div>
           </div>
         </div>
