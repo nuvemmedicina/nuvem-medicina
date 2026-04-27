@@ -198,7 +198,7 @@ export const CONTATO = {
   endereco:    'Rua Ceará, 600 – Sala 101',
   bairro:      'Santa Efigênia, Belo Horizonte – MG',
   cep:         'CEP 30150-310',
-  horario:     'Segunda a Sexta · 7h30 às 17h30',
+  horario:     'Segunda a Sexta · 7h às 17h30',
   maps:        'https://goo.gl/maps/BELYyu7yUHd41gdc8',
   instagram:   'https://instagram.com/nuvemmedicina',
   youtube:     'https://www.youtube.com/@NuvemMedicina',
