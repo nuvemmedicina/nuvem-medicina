@@ -9,7 +9,7 @@ export function DepoimentosSection() {
         <div className="flex flex-col lg:flex-row lg:justify-between lg:items-end gap-6 mb-14">
           <div>
             <p className="sec-tag reveal">Depoimentos</p>
-            <h2 className="sec-title reveal reveal-d1">O que dizem nossos <em>pacientes</em></h2>
+            <h2 className="sec-title reveal reveal-d1">O que dizem nossos <em>pacientes e alunos</em></h2>
           </div>
           <div className="reveal reveal-d1 text-right">
             <div className="flex gap-1 justify-end mb-1.5">

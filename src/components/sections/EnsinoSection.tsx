@@ -6,19 +6,19 @@ const STEPS = [
     num: '1', label: 'Fase 01', highlight: false,
     title: 'Atualização Teórica',
     desc: 'Protocolos baseados em evidências — novas diretrizes para H. pylori, SIBO, IMO e distúrbios funcionais digestivos com especialistas da clínica.',
-    price: '~R$ 450,00 · Presencial ou online',
+    
   },
   {
     num: '2', label: 'Fase 02', highlight: false,
     title: 'Simulação Interdisciplinar',
     desc: 'Discussão de casos reais da Clínica NU.V.E.M, integrando gastroenterologia, cirurgia pediátrica e fisioterapia em cenários clínicos complexos.',
-    price: 'Casos reais · Equipe especializada',
+    
   },
   {
     num: '3', label: 'Fase 03 — Premium', highlight: true,
     title: 'Imersão Hands-On',
     desc: 'Treinamento prático presencial com equipamentos de ponta na NU.V.E.M. Domínio da execução técnica e certificação ISO 9001 incluída.',
-    price: 'R$ 2.200 – R$ 5.000 · Certificação inclusa',
+   
   },
 ]
 
@@ -73,7 +73,6 @@ export function EnsinoSection() {
               </span>
               <h3 className="text-[0.95rem] font-semibold text-white mb-2.5">{step.title}</h3>
               <p className="text-[0.78rem] font-light text-muted leading-[1.75] mb-4">{step.desc}</p>
-              <div className="text-[0.8rem] font-medium text-gold">{step.price}</div>
             </div>
           ))}
         </div>

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { HeroSection }          from '@/components/sections/HeroSection'
-import { NumbersBar }           from '@/components/sections/NumbersBar'
+
 import { EspecialidadesSection } from '@/components/sections/EspecialidadesSection'
 import { ExamesSection }         from '@/components/sections/ExamesSection'
 import { IsoSection }            from '@/components/sections/IsoSection'
@@ -16,7 +16,7 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
-      <NumbersBar />
+     
       <EspecialidadesSection />
       <ExamesSection />
       <IsoSection />
