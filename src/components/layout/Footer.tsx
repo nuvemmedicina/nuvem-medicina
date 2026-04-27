@@ -119,12 +119,13 @@ export function Footer() {
             <p className="text-[0.7rem] text-faint">
               {CONTATO.endereco} – {CONTATO.bairro} · {CONTATO.cep}
             </p>
-            <a href="/politica-de-privacidade" className="text-[0.7rem] text-faint hover:text-teal-light transition-colors">
-              Política de Privacidade
-            </a>
-            <a href="/direitos-do-paciente" className="text-[0.7rem] text-faint hover:text-teal-light transition-colors">
-              Direitos do Paciente
-            </a>
+<a href="/politica-de-privacidade" className="text-[0.7rem] text-faint hover:text-teal-light transition-colors">
+  Política de Privacidade
+</a>
+<span className="text-faint text-[0.7rem]">·</span>
+<a href="/direitos-do-paciente" className="text-[0.7rem] text-faint hover:text-teal-light transition-colors">
+  Direitos do Paciente
+</a>
           </div>
           <div className="flex flex-col items-end gap-2">
             <p className="text-[0.65rem] text-teal-light/15 max-w-md leading-relaxed text-right">
