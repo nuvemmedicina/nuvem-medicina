@@ -13,13 +13,13 @@ const config: Config = {
         serif: ['var(--font-cormorant)', 'serif'],
       },
       colors: {
-        ink:   '#1d485e',
-        deep:  '#D7EAEA',
-        navy:  '#004060',
+        ink:   '#050E14',
+        deep:  '#071520',
+        navy:  '#00293A',
         teal: {
           DEFAULT: '#00465F',
           mid:     '#0A5E7E',
-          light:   '#D7EAEA',
+          light:   '#CBE4E6',
         },
         gold: {
           DEFAULT: '#C9A84C',
@@ -31,7 +31,7 @@ const config: Config = {
       },
       backgroundImage: {
         'hero-gradient':
-          'radial-gradient(ellipse 80% 60% at 70% 40%, rgba(0,80,110,.55) 0%, transparent 65%), radial-gradient(ellipse 50% 50% at 20% 80%, rgba(201,168,76,.06) 0%, transparent 60%), linear-gradient(170deg, #003555 0%, #002A45 60%, #001E35 100%)',
+          'radial-gradient(ellipse 80% 60% at 70% 40%, rgba(0,70,95,.55) 0%, transparent 65%), radial-gradient(ellipse 50% 50% at 20% 80%, rgba(201,168,76,.06) 0%, transparent 60%), linear-gradient(170deg, #071520 0%, #050E14 60%, #030A0F 100%)',
         'gold-gradient':
           'linear-gradient(135deg, #C9A84C 0%, #E2C06A 100%)',
       },
