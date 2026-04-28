@@ -14,12 +14,12 @@ const config: Config = {
       },
       colors: {
         ink:   '#002A45',
-        deep:  '#0A4A6E',
+        deep:  '#D7EAEA',
         navy:  '#004060',
         teal: {
           DEFAULT: '#00465F',
           mid:     '#0A5E7E',
-          light:   '#CBE4E6',
+          light:   '#D7EAEA',
         },
         gold: {
           DEFAULT: '#C9A84C',
