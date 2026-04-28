@@ -14,7 +14,7 @@ const config: Config = {
       },
       colors: {
         ink:   '#002A45',
-        deep:  '#003555',
+        deep:  '#0A4A6E',
         navy:  '#004060',
         teal: {
           DEFAULT: '#00465F',
