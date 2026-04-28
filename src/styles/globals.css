@@ -121,7 +121,7 @@
   .text-muted  { color: rgba(203,228,230,0.55); }
   .text-faint  { color: rgba(203,228,230,0.25); }
   .bg-sky-dim  { background: rgba(203,228,230,0.15); }
-  .bg-sky-faint { background: rgba(203,228,230,0.06); }
+  ..bg-sky-faint { background: rgba(29,72,94,0.5); }
   .bg-gold-dim  { background: rgba(201,168,76,0.18); }
   .border-gold-line { border-color: rgba(201,168,76,0.35); }
 
