@@ -13,7 +13,7 @@ const config: Config = {
         serif: ['var(--font-cormorant)', 'serif'],
       },
       colors: {
-        ink:   '#002A45',
+        ink:   '#1d485e',
         deep:  '#D7EAEA',
         navy:  '#004060',
         teal: {
