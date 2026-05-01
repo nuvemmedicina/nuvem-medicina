@@ -18,12 +18,14 @@ export type NuveteTopico = {
 }
 
 export const NUVETE_TOPICOS: NuveteTopico[] = [
-  { id: 'preparo',    emoji: '📋', label: 'Preparo para exames' },
-  { id: 'agendar',   emoji: '📅', label: 'Quero agendar' },
-  { id: 'exames',    emoji: '🔬', label: 'Nossos exames' },
-  { id: 'convenios', emoji: '💳', label: 'Convênios aceitos' },
+  { id: 'preparo',      emoji: '📋', label: 'Preparo para exames' },
+  { id: 'agendar',     emoji: '📅', label: 'Quero agendar' },
+  { id: 'exames',      emoji: '🔬', label: 'Nossos exames' },
+  { id: 'especialidades', emoji: '🩺', label: 'Especialidades' },
+  { id: 'equipe',      emoji: '👩‍⚕️', label: 'Nossa equipe' },
+  { id: 'convenios',   emoji: '💳', label: 'Convênios aceitos' },
   { id: 'localizacao', emoji: '📍', label: 'Como chegar' },
-  { id: 'ensino',    emoji: '🎓', label: 'Cursos e treinamentos' },
+  { id: 'ensino',      emoji: '🎓', label: 'Cursos e treinamentos' },
 ]
 
 // ─── Preparos detalhados por exame ────────────────────────────────────────────
@@ -158,8 +160,111 @@ export type NuveteResposta = {
 }
 
 export const NUVETE_RESPOSTAS: NuveteResposta[] = [
+
+  // ── Médicas ──────────────────────────────────────────────────────────────────
   {
-    gatilhos: ['agendar', 'marcar', 'consulta', 'appointment', 'horário', 'vaga'],
+    gatilhos: ['dra vera', 'vera ângelo', 'vera angelo', 'dr vera', 'diretora técnica', 'fundadora', 'vera'],
+    resposta: '👩‍⚕️ **Dra. Vera Ângelo**\nGastroenterologista · Sócia Fundadora da NU.V.E.M\n\n🎓 Mestre e Doutora em Patologia pela UFMG\n📜 Título de Especialista pela Federação Brasileira de Gastroenterologia\n📚 Professora convidada do Hospital Israelita Albert Einstein\n✍️ Autora de 3 livros pela Editora Rubio\n🔬 Referência nacional em testes respiratórios e motilidade digestiva\n\n**CRM-MG 22284 · RQE 10411 · RQE 22736**',
+    botoes: [
+      { label: '👩‍⚕️ Ver perfil completo', acao: 'link:/equipe/dra-vera' },
+      { label: '📅 Agendar com a Dra. Vera', acao: 'whatsapp' },
+    ],
+  },
+  {
+    gatilhos: ['dra eliane', 'eliane', 'basques', 'cirurgia pediátrica', 'diretora substituta'],
+    resposta: '👩‍⚕️ **Dra. Eliane Basques Moura**\nCirurgiã Pediátrica · Diretora Técnica Substituta\n\nEspecialista em cirurgia pediátrica com ampla experiência no atendimento de crianças e adolescentes, integrando a equipe multidisciplinar da NU.V.E.M com o olhar clínico voltado ao paciente pediátrico.\n\n**CRM-MG 27601 · RQE 9324**',
+    botoes: [
+      { label: '👩‍⚕️ Ver perfil completo', acao: 'link:/equipe/dra-eliane' },
+      { label: '📅 Agendar consulta', acao: 'whatsapp' },
+    ],
+  },
+  {
+    gatilhos: ['equipe', 'médicos', 'medicos', 'especialistas', 'quem atende', 'profissionais'],
+    resposta: '👩‍⚕️ **Nossa Equipe Multidisciplinar:**\n\n- **Dra. Vera Ângelo** — Gastroenterologista, fundadora e referência em motilidade digestiva\n- **Dra. Eliane Basques Moura** — Cirurgiã Pediátrica\n- Fisioterapeutas pélvicos especializados\n- Nefrologista\n- Pediatra\n- Especialistas em halitose\n\nTodos os profissionais atuam de forma integrada sob gestão ISO 9001 💙',
+    botoes: [
+      { label: '👥 Conhecer toda a equipe', acao: 'link:/equipe' },
+      { label: '📅 Agendar consulta', acao: 'whatsapp' },
+    ],
+  },
+
+  // ── Especialidades ───────────────────────────────────────────────────────────
+  {
+    gatilhos: ['especialidade', 'especialidades', 'o que vocês tratam', 'o que voces tratam', 'que doenças', 'que doencas'],
+    resposta: '🩺 **Especialidades da NU.V.E.M:**\n\n🔹 **Gastroenterologia** — doenças do aparelho digestivo\n🔹 **Fisioterapia Pélvica** — assoalho pélvico e constipação\n🔹 **Halitose** — diagnóstico e tratamento do mau hálito\n🔹 **Pediatria** — saúde digestiva infantil\n🔹 **Nefrologia** — saúde renal\n🔹 **Motilidade Digestiva** — exames funcionais avançados\n\nQuer saber mais sobre alguma especialidade específica?',
+    botoes: [
+      { label: '🩺 Ver todas as especialidades', acao: 'link:/especialidades' },
+      { label: '📅 Agendar consulta', acao: 'whatsapp' },
+    ],
+  },
+  {
+    gatilhos: ['gastroenterologia', 'gastro', 'digestivo', 'intestino', 'estômago', 'estomago', 'cólon', 'colon', 'gastrite', 'colite', 'crohn', 'celiaca', 'celíaca'],
+    resposta: '🔹 **Gastroenterologia**\n\nA NU.V.E.M é especializada em doenças do aparelho digestivo, com foco em diagnóstico de precisão:\n\n- Doença do refluxo (DRGE)\n- Acalasia e distúrbios motores esofágicos\n- Síndrome do intestino irritável (SII)\n- Doença de Crohn e retocolite\n- Doença celíaca\n- Gastrite e H. pylori\n- SIBO e disbiose intestinal\n- Constipação crônica\n- Doenças funcionais digestivas',
+    botoes: [
+      { label: '🩺 Saiba mais', acao: 'link:/especialidades/gastroenterologia' },
+      { label: '📅 Agendar consulta', acao: 'whatsapp' },
+    ],
+  },
+  {
+    gatilhos: ['fisioterapia pélvica', 'pelvico', 'pélvico', 'assoalho pélvico', 'assoalho pelvico', 'incontinência', 'incontinencia', 'bexiga', 'constipação', 'constipacao'],
+    resposta: '🔹 **Fisioterapia Pélvica**\n\nEspecialidade que cuida do assoalho pélvico, indicada para:\n\n- Incontinência urinária ou fecal\n- Constipação funcional\n- Disfunções do assoalho pélvico\n- Dor pélvica crônica\n- Preparação e recuperação pós-parto\n- Prolapso de órgãos pélvicos\n\nRealizamos avaliação com biofeedback e eletromiografia (EMG) de superfície.',
+    botoes: [
+      { label: '🩺 Saiba mais', acao: 'link:/especialidades/fisioterapia-pelvica' },
+      { label: '📅 Agendar avaliação', acao: 'whatsapp' },
+    ],
+  },
+  {
+    gatilhos: ['pediatria', 'criança', 'crianca', 'bebê', 'bebe', 'infantil', 'filho', 'pediatra'],
+    resposta: '🔹 **Pediatria**\n\nAtendemos crianças e adolescentes com queixas digestivas e funcionais:\n\n- Constipação infantil\n- Dor abdominal recorrente\n- Refluxo em crianças\n- Problemas alimentares\n- Avaliação do crescimento e saúde intestinal\n\nA Dra. Eliane Basques Moura, cirurgiã pediátrica, integra nossa equipe para os casos cirúrgicos.',
+    botoes: [
+      { label: '🩺 Saiba mais', acao: 'link:/especialidades/pediatria' },
+      { label: '📅 Agendar consulta pediátrica', acao: 'whatsapp' },
+    ],
+  },
+  {
+    gatilhos: ['nefrologia', 'rim', 'rins', 'renal', 'nefro'],
+    resposta: '🔹 **Nefrologia**\n\nA NU.V.E.M conta com nefrologista para cuidar da saúde renal de forma integrada com o acompanhamento digestivo:\n\n- Doença renal crônica\n- Pedras nos rins (nefrolitíase)\n- Hipertensão de causa renal\n- Alterações em exames de urina e sangue',
+    botoes: [
+      { label: '🩺 Saiba mais', acao: 'link:/especialidades/nefrologia' },
+      { label: '📅 Agendar consulta', acao: 'whatsapp' },
+    ],
+  },
+  {
+    gatilhos: ['motilidade', 'motilidade digestiva', 'funcional', 'doenças funcionais'],
+    resposta: '🔹 **Motilidade Digestiva**\n\nAvaliação dos movimentos e da função do aparelho digestivo com exames de alta precisão:\n\n- Manometria Esofágica de Alta Resolução\n- Manometria Anorretal\n- pHmetria e Impedanciopletismografia\n- Testes Respiratórios (H₂, CH₄, H₂S)\n\nSomos referência nacional nessa área, com a Dra. Vera Ângelo à frente das pesquisas.',
+    botoes: [
+      { label: '🩺 Saiba mais', acao: 'link:/especialidades/motilidade-digestiva' },
+      { label: '📅 Agendar exame', acao: 'whatsapp' },
+    ],
+  },
+
+  // ── Exames ───────────────────────────────────────────────────────────────────
+  {
+    gatilhos: ['exames', 'que exames', 'quais exames', 'exame disponível', 'exame disponivel'],
+    resposta: '🔬 **Exames disponíveis na NU.V.E.M:**\n\n- 🫁 Manometria Esofágica de Alta Resolução\n- 🩺 Manometria Anorretal\n- ⏱️ pHmetria Esofágica 24h\n- 💨 Testes Respiratórios (Lactose, Frutose, SIBO, H. pylori)\n- 💬 Halimetria e Sialometria\n- 🧘 Avaliação Pélvica (Biofeedback/EMG)\n\nQuer saber o preparo para algum exame?',
+    botoes: [
+      { label: '🔬 Ver todos os exames', acao: 'link:/exames' },
+      { label: '📋 Ver preparos', acao: 'link:/exames/preparos' },
+      { label: '📅 Agendar exame', acao: 'whatsapp' },
+    ],
+  },
+  {
+    gatilhos: ['laudo', 'resultado', 'quando fica pronto', 'prazo'],
+    resposta: '📄 **Prazos dos laudos na NU.V.E.M:**\n\n- Manometria: até 3 dias úteis\n- pHmetria: alguns dias após a devolução do equipamento\n- Testes Respiratórios: até 3 dias úteis\n- Halimetria e Sialometria: até 2 dias úteis\n\nTodos os laudos seguem o padrão ISO 9001 — estruturados, detalhados e entregues no prazo. 💙',
+    botoes: [
+      { label: '📅 Agendar exame', acao: 'whatsapp' },
+    ],
+  },
+  {
+    gatilhos: ['encaminhamento', 'pedido médico', 'pedido medico', 'precisa de pedido', 'precisa de encaminhamento'],
+    resposta: '📋 **Pedido médico:**\n\nPara a maioria dos **exames**, é necessário um pedido médico.\n\nPara **consultas**, não é necessário encaminhamento — você pode agendar diretamente conosco!\n\nEm dúvida sobre seu caso? Nossa equipe te orienta pelo WhatsApp. 💙',
+    botoes: [
+      { label: '📱 Falar pelo WhatsApp', acao: 'whatsapp' },
+    ],
+  },
+
+  // ── Respostas gerais ─────────────────────────────────────────────────────────
+  {
+    gatilhos: ['agendar', 'marcar', 'consulta', 'appointment', 'vaga'],
     resposta: 'Para agendar uma consulta na NU.V.E.M, você pode:\n\n📱 **WhatsApp:** (31) 99726-1029\n📞 **Telefone:** (31) 2537-3131\n🌐 **Online:** pelo nosso formulário de agendamento\n\nAtendemos de segunda a sexta, das 7h30 às 17h30.',
     botoes: [
       { label: '📱 Abrir WhatsApp', acao: 'whatsapp' },

@@ -108,6 +108,29 @@ export function NuveteChat() {
       })
       return
     }
+    if (topico.id === 'especialidades') {
+      addMsg({
+        role: 'nuvete',
+        text: '🩺 **Nossas especialidades:**\n\n🔹 Gastroenterologia\n🔹 Fisioterapia Pélvica\n🔹 Halitose\n🔹 Pediatria\n🔹 Nefrologia\n🔹 Motilidade Digestiva\n\nQual especialidade você gostaria de conhecer melhor?',
+        botoes: [
+          { label: '🩺 Ver todas', acao: 'link:/especialidades' },
+          { label: '📅 Agendar consulta', acao: 'whatsapp' },
+        ],
+      })
+      return
+    }
+    if (topico.id === 'equipe') {
+      addMsg({
+        role: 'nuvete',
+        text: '👩‍⚕️ **Nossa equipe:**\n\n- **Dra. Vera Ângelo** — Gastroenterologista, Mestre e Doutora pela UFMG, fundadora da NU.V.E.M e referência em motilidade digestiva\n- **Dra. Eliane Basques Moura** — Cirurgiã Pediátrica, Diretora Técnica Substituta\n- Fisioterapeutas pélvicos, nefrologista, pediatra e especialistas em halitose\n\nGostaria de saber mais sobre alguma médica?',
+        botoes: [
+          { label: '👩‍⚕️ Dra. Vera Ângelo', acao: 'link:/equipe/dra-vera' },
+          { label: '👩‍⚕️ Dra. Eliane', acao: 'link:/equipe/dra-eliane' },
+          { label: '👥 Toda a equipe', acao: 'link:/equipe' },
+        ],
+      })
+      return
+    }
     sendToAI(topico.label)
   }, [addMsg])
 
