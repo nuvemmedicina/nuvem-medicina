@@ -51,7 +51,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[280px_1fr_1fr_1fr] gap-10 mb-12">
 
           {/* Brand */}
-          <div>
+          <div className="text-center md:text-left">
             <Link href="/" className="inline-block mb-5" aria-label="NU.V.E.M Medicina — Página inicial">
               <LogoBranco className="h-9 w-auto opacity-85 hover:opacity-100 transition-opacity" />
             </Link>
@@ -61,7 +61,7 @@ export function Footer() {
             </p>
 
             {/* ISO Seal */}
-            <div className="flex items-center gap-3 mb-5">
+            <div className="flex items-center gap-3 mb-5 justify-center md:justify-start">
               <IsoSeal size={48} />
               <div>
                 <p className="text-[0.78rem] font-semibold text-white leading-tight">Certificação ISO 9001</p>
@@ -69,7 +69,7 @@ export function Footer() {
               </div>
             </div>
 
-            <div className="flex gap-2.5">
+            <div className="flex gap-2.5 justify-center md:justify-start">
               {[
                 { href: 'https://www.instagram.com/nuvemmedicina/', Icon: Instagram,     label: 'Instagram' },
                 { href: 'https://www.youtube.com/@NuvemMedicina',   Icon: Youtube,       label: 'YouTube' },
@@ -92,7 +92,7 @@ export function Footer() {
 
           {/* Columns */}
           {FOOTER_COLS.map(col => (
-            <div key={col.title}>
+            <div key={col.title} className="text-center md:text-left">
               <h4 className="text-[0.72rem] font-bold tracking-[.1em] uppercase text-white/55 mb-4 pb-2.5 border-b border-white/10">
                 {col.title}
               </h4>
@@ -114,14 +114,14 @@ export function Footer() {
 
         {/* Bottom */}
         <div className="pt-6 border-t border-white/10 flex flex-col md:flex-row md:justify-between gap-4">
-          <div className="space-y-1">
+          <div className="space-y-1 text-center md:text-left">
             <p className="text-[0.72rem] text-white/35">
               © {new Date().getFullYear()} NU.V.E.M Medicina · CNPJ {CONTATO.cnpj} · {CONTATO.crmClinica}
             </p>
             <p className="text-[0.72rem] text-white/35">
               {CONTATO.endereco} – {CONTATO.bairro} · {CONTATO.cep}
             </p>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 justify-center md:justify-start">
               <a href="/politica-de-privacidade" className="text-[0.72rem] text-white/35 hover:text-teal-light transition-colors">
                 Política de Privacidade
               </a>
@@ -131,8 +131,8 @@ export function Footer() {
               </a>
             </div>
           </div>
-          <div className="flex flex-col items-end gap-2">
-            <p className="text-[0.65rem] text-white/20 max-w-md leading-relaxed text-right">
+          <div className="flex flex-col items-center md:items-end gap-2">
+            <p className="text-[0.65rem] text-white/20 max-w-md leading-relaxed text-center md:text-right">
               As informações neste site têm caráter informativo e educacional, em conformidade com as normas do Conselho Federal de Medicina (Res. CFM nº 1.974/2011). Não substituem consulta médica profissional.
             </p>
             <a
