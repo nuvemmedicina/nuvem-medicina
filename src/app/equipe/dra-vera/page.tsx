@@ -185,7 +185,7 @@ export default function DraVeraPage() {
           {/* Right */}
           <div className="lg:col-span-2 space-y-8">
             <div className="reveal reveal-d1">
-              <p className="text-[0.72rem] font-bold uppercase tracking-[.1em] text-faint mb-4">Sobre a Dra. Vera</p>
+              <p className="text-[0.72rem] font-bold uppercase tracking-[.1em] text-steel/45 mb-4">Sobre a Dra. Vera</p>
               <div className="space-y-4 text-[1rem] font-light text-steel/65 leading-[1.85]">
                 <p>
                   A Dra. Vera Ângelo é Mestre e Doutora em Patologia pela Universidade Federal de
@@ -212,7 +212,7 @@ export default function DraVeraPage() {
             </div>
 
             <div className="reveal reveal-d2">
-              <p className="text-[0.72rem] font-bold uppercase tracking-[.1em] text-faint mb-3">Áreas de atuação</p>
+              <p className="text-[0.72rem] font-bold uppercase tracking-[.1em] text-steel/45 mb-3">Áreas de atuação</p>
               <div className="flex flex-wrap gap-2">
                 {AREAS.map(area => (
                   <span key={area}

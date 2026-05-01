@@ -35,42 +35,42 @@ export default function PrivacidadePage() {
 
       <SectionWrapper>
         <div className="max-w-3xl mx-auto">
-          <div className="bg-deep border border-teal-light/[0.08] rounded-xl px-6 py-4 mb-10 flex items-center gap-3">
-            <span className="text-gold text-lg">📋</span>
+          <div className="bg-cloud border border-teal/10 rounded-xl px-6 py-4 mb-10 flex items-center gap-3">
+            <span className="text-teal text-lg">📋</span>
             <div>
-              <p className="text-[0.82rem] font-semibold text-white">Última atualização</p>
-              <p className="text-[0.75rem] text-muted">Abril de 2026 · NU.V.E.M Medicina · CNPJ 42.678.705/0001-02</p>
+              <p className="text-[0.82rem] font-semibold text-steel">Última atualização</p>
+              <p className="text-[0.75rem] text-steel/55">Abril de 2026 · NU.V.E.M Medicina · CNPJ 42.678.705/0001-02</p>
             </div>
           </div>
 
-          <p className="text-[0.9rem] font-light text-muted leading-[1.9] mb-10">
+          <p className="text-[0.9rem] font-light text-steel/65 leading-[1.9] mb-10">
             A NU.V.E.M Medicina respeita e valoriza a privacidade dos seus pacientes, visitantes e usuários. Esta Política de Privacidade descreve como coletamos, utilizamos, armazenamos e protegemos suas informações pessoais, em conformidade com a{' '}
-            <strong className="text-white font-medium">Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018)</strong>{' '}
+            <strong className="text-steel font-medium">Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018)</strong>{' '}
             e demais normas aplicáveis.
           </p>
 
           <div className="space-y-10">
             {SECTIONS.map((sec) => (
               <div key={sec.titulo}>
-                <h2 className="text-[1rem] font-semibold text-white mb-4 pb-3 border-b border-teal-light/[0.08]">{sec.titulo}</h2>
+                <h2 className="text-[1rem] font-semibold text-steel mb-4 pb-3 border-b border-teal/10">{sec.titulo}</h2>
                 <div className="space-y-3">
                   {sec.texto.map((p, i) => (
-                    <p key={i} className={`text-[0.86rem] font-light leading-[1.85] ${p.startsWith('•') ? 'text-muted pl-4' : 'text-muted'}`}>{p}</p>
+                    <p key={i} className={`text-[0.86rem] font-light leading-[1.85] ${p.startsWith('•') ? 'text-steel/65 pl-4' : 'text-steel/65'}`}>{p}</p>
                   ))}
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="mt-12 bg-gold-dim border border-gold-line rounded-xl p-6 flex items-start gap-4">
+          <div className="mt-12 border border-teal/15 rounded-xl p-6 flex items-start gap-4" style={{ background: 'rgba(203,228,230,0.18)' }}>
             <span className="text-2xl mt-0.5">⚖️</span>
             <div>
-              <h3 className="text-[0.9rem] font-semibold text-white mb-2">Seus direitos são garantidos pela LGPD</h3>
-              <p className="text-[0.82rem] text-muted leading-relaxed">
+              <h3 className="text-[0.9rem] font-semibold text-steel mb-2">Seus direitos são garantidos pela LGPD</h3>
+              <p className="text-[0.82rem] text-steel/65 leading-relaxed">
                 Você tem o direito de acessar, corrigir, eliminar e portar seus dados a qualquer momento. Entre em contato pelo{' '}
-                <a href="mailto:contato@nuvemmedicina.com.br" className="text-gold hover:underline">contato@nuvemmedicina.com.br</a>{' '}
+                <a href="mailto:contato@nuvemmedicina.com.br" className="text-teal hover:underline">contato@nuvemmedicina.com.br</a>{' '}
                 ou pelo{' '}
-                <a href="tel:3125373131" className="text-gold hover:underline">(31) 2537-3131</a>.
+                <a href="tel:3125373131" className="text-teal hover:underline">(31) 2537-3131</a>.
               </p>
             </div>
           </div>

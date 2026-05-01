@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/Ana Paula/AppData/Roaming/Claude/local-agent-mode-sessions/skills-plugin/f6a757c6-7078-4c37-93fd-472b19dcd055/bc8db14c-e16c-4307-a109-e0ef498f6a50/skills/pptx/**)",
+      "Bash(python scripts/extract_text.py \"C:\\\\Users\\\\Ana Paula\\\\Downloads\\\\NUVEM_Medicina_Apresentacao_2026.pptx\")",
+      "Bash(py --version)",
+      "Bash(where python *)",
+      "Bash(findstr /i nuvem)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(gh pr create --title 'feat: tema claro \\(Dra. Vera\\), split manometria e botões PDF' --body ' *)",
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "mcp__Claude_in_Chrome__browser_batch",
+      "Bash(npm run *)",
+      "Bash(gh pr *)",
+      "mcp__Claude_in_Chrome__navigate",
+      "mcp__Claude_in_Chrome__find",
+      "Bash(gh run *)",
+      "Bash(gh api *)"
+    ]
+  }
+}

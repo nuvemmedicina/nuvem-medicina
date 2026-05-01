@@ -113,18 +113,10 @@
   /* ── Section tags ── */
   .sec-tag {
     @apply inline-flex items-center gap-2 text-teal text-[0.75rem] font-bold tracking-[.15em] uppercase mb-4;
-    &::before {
-      content: '';
-      @apply block w-5 h-px bg-teal;
-    }
   }
 
   .sec-tag-dark {
     @apply inline-flex items-center gap-2 text-gold text-[0.75rem] font-bold tracking-[.15em] uppercase mb-4;
-    &::before {
-      content: '';
-      @apply block w-5 h-px bg-gold;
-    }
   }
 
   /* ── Section titles ── */
