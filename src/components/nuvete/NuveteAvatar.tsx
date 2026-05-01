@@ -16,9 +16,6 @@ export function NuveteAvatar({ size = 40, pulse = false, className }: AvatarProp
         className="object-cover object-top rounded-full"
         sizes={`${size}px`}
       />
-      {pulse && (
-        <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-400 border-2 border-deep" />
-      )}
     </div>
   )
 }
