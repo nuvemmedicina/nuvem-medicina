@@ -71,7 +71,7 @@ export default function EquipePage() {
         <div className="text-center mb-12">
           <p className="sec-tag justify-center reveal">Liderança</p>
           <h2 className="sec-title reveal reveal-d1">Sócias <em>Fundadoras</em></h2>
-          <p className="text-[0.88rem] text-muted mt-3 reveal reveal-d2 max-w-xl mx-auto">
+          <p className="text-[0.97rem] text-muted mt-3 reveal reveal-d2 max-w-xl mx-auto">
             As médicas que fundaram a NU.V.E.M e definem o padrão de excelência da clínica.
           </p>
         </div>
@@ -91,16 +91,16 @@ export default function EquipePage() {
                 </div>
               </div>
               <div className="p-7">
-                <h3 className="text-[1.1rem] font-semibold text-white mb-1">{s.nome}</h3>
-                <p className="text-[0.85rem] text-gold mb-1">{s.esp}</p>
+                <h3 className="text-[1.1rem] font-semibold text-steel mb-1">{s.nome}</h3>
+                <p className="text-[0.93rem] text-gold mb-1">{s.esp}</p>
                 <p className="text-[0.72rem] text-faint mb-4">{s.crm}</p>
-                <p className="text-[0.82rem] font-light text-muted leading-[1.75] mb-5">{s.bio}</p>
+                <p className="text-[0.9rem] font-light text-muted leading-[1.75] mb-5">{s.bio}</p>
                 <div className="flex flex-wrap gap-1.5 mb-5">
                   {s.areas.map(a => (
                     <span key={a} className="text-[0.68rem] font-medium px-2.5 py-1 rounded-full bg-gold-dim border border-gold/20 text-gold/80">{a}</span>
                   ))}
                 </div>
-                <span className="inline-flex items-center gap-1.5 text-[0.8rem] font-medium text-gold group-hover:gap-2.5 transition-all">
+                <span className="inline-flex items-center gap-1.5 text-[0.9rem] font-medium text-gold group-hover:gap-2.5 transition-all">
                   Ver perfil completo <ArrowRight className="w-3.5 h-3.5" />
                 </span>
               </div>
@@ -118,19 +118,19 @@ export default function EquipePage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {EQUIPE.map((m, i) => (
             <div key={m.nome}
-              className={`bg-deep border border-teal-light/[0.08] rounded-xl p-6 hover:border-teal-light/25 hover:-translate-y-0.5 transition-all reveal reveal-d${i % 3}`}>
+              className={`bg-white border border-teal/10 rounded-2xl shadow-sm p-6 hover:border-teal/25 hover:-translate-y-0.5 transition-all reveal reveal-d${i % 3}`}>
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 rounded-full overflow-hidden border border-teal-light/20 shrink-0 relative">
+                <div className="w-12 h-12 rounded-full overflow-hidden border border-teal/10 shrink-0 relative">
                   <Image src={m.foto} alt={m.nome} fill className="object-cover object-top" />
                 </div>
                 <div>
-                  <h3 className="text-[0.92rem] font-semibold text-white leading-tight">{m.nome}</h3>
+                  <h3 className="text-[0.92rem] font-semibold text-steel leading-tight">{m.nome}</h3>
                   <p className="text-[0.78rem] text-gold mt-0.5">{m.esp}</p>
                 </div>
               </div>
               <div className="flex flex-wrap gap-1.5">
                 {m.areas.map(a => (
-                  <span key={a} className="text-[0.65rem] font-medium px-2 py-1 rounded-full bg-teal-light/[0.06] border border-teal-light/10 text-faint">{a}</span>
+                  <span key={a} className="text-[0.65rem] font-medium px-2 py-1 rounded-full bg-teal/8 border border-teal/10 text-faint">{a}</span>
                 ))}
               </div>
             </div>
@@ -143,7 +143,7 @@ export default function EquipePage() {
         <div className="text-center mb-10">
           <p className="sec-tag justify-center reveal">Ecossistema NU.V.E.M</p>
           <h2 className="sec-title reveal reveal-d1">Parceiros <em>Estratégicos</em></h2>
-          <p className="text-[0.85rem] text-muted mt-3 reveal reveal-d2 max-w-lg mx-auto">
+          <p className="text-[0.93rem] text-muted mt-3 reveal reveal-d2 max-w-lg mx-auto">
             Profissionais e empresas que contribuíram para construir e estruturar a NU.V.E.M.
           </p>
         </div>
@@ -151,7 +151,7 @@ export default function EquipePage() {
           {PARCEIROS.map((p, i) => (
             <div key={p.nome} className={`bg-ink border border-teal-light/[0.08] rounded-xl p-5 reveal reveal-d${i % 3}`}>
               <span className="block w-5 h-px bg-gold mb-3" />
-              <h3 className="text-[0.88rem] font-semibold text-white mb-1">{p.nome}</h3>
+              <h3 className="text-[0.97rem] font-semibold text-steel mb-1">{p.nome}</h3>
               <p className="text-[0.75rem] text-muted">{p.papel}</p>
             </div>
           ))}

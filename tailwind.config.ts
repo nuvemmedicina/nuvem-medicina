@@ -13,9 +13,13 @@ const config: Config = {
         serif: ['var(--font-cormorant)', 'serif'],
       },
       colors: {
-        ink:   '#050E14',
-        deep:  '#071520',
-        navy:  '#00293A',
+        // ── Light theme surfaces ──────────────────────────────────────────
+        white:  '#FFFFFF',
+        cloud:  '#FCFCFC',
+        mist:   '#CBE4E6',
+        steel:  '#363636',
+
+        // ── Brand ─────────────────────────────────────────────────────────
         teal: {
           DEFAULT: '#00465F',
           mid:     '#0A5E7E',
@@ -26,12 +30,15 @@ const config: Config = {
           light:   '#E2C06A',
           dark:    '#A67C2E',
         },
-        muted:  'rgba(203,228,230,0.55)',
-        faint:  'rgba(203,228,230,0.25)',
+
+        // ── Dark surfaces (footer, dark CTA blocks) ────────────────────
+        ink:   '#050E14',
+        deep:  '#071520',
+        navy:  '#00293A',
       },
       backgroundImage: {
         'hero-gradient':
-          'radial-gradient(ellipse 80% 60% at 70% 40%, rgba(0,70,95,.55) 0%, transparent 65%), radial-gradient(ellipse 50% 50% at 20% 80%, rgba(201,168,76,.06) 0%, transparent 60%), linear-gradient(170deg, #071520 0%, #050E14 60%, #030A0F 100%)',
+          'radial-gradient(ellipse 80% 60% at 65% 35%, rgba(203,228,230,.45) 0%, transparent 65%), linear-gradient(170deg, #FFFFFF 0%, #FCFCFC 100%)',
         'gold-gradient':
           'linear-gradient(135deg, #C9A84C 0%, #E2C06A 100%)',
       },

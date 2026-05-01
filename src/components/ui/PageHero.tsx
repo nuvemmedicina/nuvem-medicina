@@ -12,34 +12,35 @@ export function PageHero({ tag, title, desc, className, children }: PageHeroProp
   return (
     <div
       className={cn(
-        'relative pt-[76px] pb-20 overflow-hidden',
+        'relative pt-[76px] pb-20 overflow-hidden bg-white',
         className,
       )}
-      style={{
-        background:
-          'radial-gradient(ellipse 80% 60% at 60% 40%, rgba(0,70,95,.4) 0%, transparent 65%), linear-gradient(170deg, #071520 0%, #050E14 100%)',
-      }}
     >
+      {/* Mist orb top right */}
+      <div
+        className="absolute -top-[20%] right-[-5%] w-[500px] h-[500px] rounded-full pointer-events-none"
+        style={{ background: 'radial-gradient(circle, rgba(203,228,230,.50) 0%, transparent 65%)' }}
+      />
+
       {/* Grid overlay */}
       <div className="absolute inset-0 hero-grid-bg pointer-events-none" />
 
-      {/* Gold accent line */}
+      {/* Teal accent line */}
       <div
-        className="absolute top-0 bottom-0 w-px opacity-30 pointer-events-none"
+        className="absolute top-0 bottom-0 w-px opacity-20 pointer-events-none"
         style={{
           right: '25%',
-          background:
-            'linear-gradient(to bottom, transparent, rgba(201,168,76,.35) 30%, rgba(201,168,76,.35) 70%, transparent)',
+          background: 'linear-gradient(to bottom, transparent, rgba(0,70,95,.30) 30%, rgba(0,70,95,.30) 70%, transparent)',
         }}
       />
 
       <div className="relative z-10 max-w-[1240px] mx-auto px-8 pt-16">
         <p className="sec-tag">{tag}</p>
-        <h1 className="sec-title max-w-3xl" style={{ fontSize: 'clamp(2.4rem, 4vw, 3.6rem)' }}>
+        <h1 className="sec-title max-w-3xl" style={{ fontSize: 'clamp(2.6rem, 4vw, 3.8rem)' }}>
           {title}
         </h1>
         {desc && (
-          <p className="text-[0.9rem] font-light text-muted leading-[1.85] max-w-xl mt-4">
+          <p className="text-[1rem] font-light text-steel/60 leading-[1.85] max-w-xl mt-4">
             {desc}
           </p>
         )}

@@ -28,7 +28,7 @@ export default function SobrePage() {
         desc="O ecossistema completo de excelência em saúde digestiva — onde tecnologia de ponta, cuidado humanizado e gestão certificada se unem em um único lugar."
       />
 
-      {/* Missão / Visão / Valores */}
+      {/* Missão / Origem */}
       <SectionWrapper dark>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div>
@@ -36,7 +36,7 @@ export default function SobrePage() {
             <h2 className="sec-title reveal reveal-d1">
               Um novo clima de <em>saúde</em> para você
             </h2>
-            <div className="space-y-5 mt-6 text-[0.88rem] font-light text-muted leading-[1.85]">
+            <div className="space-y-5 mt-6 text-[0.98rem] font-light text-steel/65 leading-[1.85]">
               <p className="reveal reveal-d2">
                 A NU.V.E.M Medicina nasceu com uma missão clara: oferecer à população de Belo Horizonte
                 e região um atendimento em gastroenterologia verdadeiramente especializado, que une
@@ -64,12 +64,12 @@ export default function SobrePage() {
               { val: '6+', label: 'Anos de história', sub: 'Em constante crescimento', gold: false },
               { val: '6', label: 'Especialidades', sub: 'Equipe integrada', gold: false },
             ].map(s => (
-              <div key={s.label} className="bg-ink border border-teal-light/[0.08] rounded-xl p-6 text-center">
-                <span className={`font-serif font-light text-[2.8rem] leading-none block mb-2 ${s.gold ? 'text-gold' : 'text-white'}`}>
+              <div key={s.label} className="bg-white border border-teal/12 rounded-2xl p-6 text-center shadow-sm">
+                <span className={`font-serif font-light text-[2.8rem] leading-none block mb-2 ${s.gold ? 'text-gold' : 'text-teal'}`}>
                   {s.val}
                 </span>
-                <div className="text-[0.72rem] font-semibold uppercase tracking-[.08em] text-muted">{s.label}</div>
-                <div className="text-[0.7rem] text-faint mt-1">{s.sub}</div>
+                <div className="text-[0.75rem] font-semibold uppercase tracking-[.08em] text-steel/55">{s.label}</div>
+                <div className="text-[0.72rem] text-steel/35 mt-1">{s.sub}</div>
               </div>
             ))}
           </div>
@@ -82,19 +82,19 @@ export default function SobrePage() {
           <p className="sec-tag justify-center reveal">Nossos Pilares</p>
           <h2 className="sec-title reveal reveal-d1">O que nos torna <em>únicos</em></h2>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-teal-light/[0.06] rounded-2xl overflow-hidden">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-teal/8 rounded-2xl overflow-hidden">
           {PILARES.map((p, i) => (
-            <div key={p.num} className={`bg-deep p-8 hover:bg-[#0A1A24] transition-colors reveal reveal-d${i % 3}`}>
-              <span className="font-serif text-[3rem] font-light text-teal-light/[0.08] leading-none block mb-4">{p.num}</span>
-              <h3 className="text-[0.95rem] font-semibold text-white mb-3">{p.title}</h3>
-              <p className="text-[0.82rem] font-light text-muted leading-[1.75]">{p.desc}</p>
+            <div key={p.num} className={`bg-white p-8 hover:bg-teal/5 transition-colors reveal reveal-d${i % 3}`}>
+              <span className="font-serif text-[3rem] font-light text-teal/10 leading-none block mb-4">{p.num}</span>
+              <h3 className="text-[1rem] font-semibold text-steel mb-3">{p.title}</h3>
+              <p className="text-[0.9rem] font-light text-steel/60 leading-[1.75]">{p.desc}</p>
             </div>
           ))}
         </div>
       </SectionWrapper>
 
       {/* Responsáveis Técnicos */}
-      <SectionWrapper dark>
+      <SectionWrapper mist>
         <div className="text-center mb-12">
           <p className="sec-tag justify-center reveal">Responsabilidade Técnica</p>
           <h2 className="sec-title reveal reveal-d1">Responsáveis <em>Técnicos</em></h2>
@@ -104,18 +104,18 @@ export default function SobrePage() {
             { nome: CONTATO.diretora.nome, cargo: 'Diretora Técnica', crm: CONTATO.diretora.crm, rqe: CONTATO.diretora.rqe, esp: 'Gastroenterologista' },
             { nome: 'Dra. Eliane Basques Moura', cargo: 'Diretora Técnica Substituta', crm: 'CRM-MG 27601', rqe: 'RQE 9324', esp: 'Cirurgia Pediátrica' },
           ].map(m => (
-            <div key={m.nome} className="bg-ink border border-teal-light/[0.08] rounded-xl p-7 reveal">
-              <div className="w-14 h-14 rounded-full bg-teal flex items-center justify-center text-lg font-semibold text-teal-light mb-4">
+            <div key={m.nome} className="bg-white border border-teal/12 rounded-2xl p-7 reveal shadow-sm">
+              <div className="w-14 h-14 rounded-full bg-teal flex items-center justify-center text-lg font-semibold text-white mb-4">
                 {m.nome.split(' ').slice(1, 3).map(w => w[0]).join('')}
               </div>
-              <span className="text-[0.65rem] font-bold uppercase tracking-[.12em] text-gold bg-gold-dim border border-gold-line px-2.5 py-1 rounded-full">{m.cargo}</span>
-              <h3 className="text-[1rem] font-semibold text-white mt-3 mb-1">{m.nome}</h3>
-              <p className="text-[0.8rem] text-gold mb-2">{m.esp}</p>
-              <p className="text-[0.72rem] text-faint">{m.crm} · {m.rqe}</p>
+              <span className="text-[0.68rem] font-bold uppercase tracking-[.12em] text-gold bg-gold/10 border border-gold/25 px-2.5 py-1 rounded-full">{m.cargo}</span>
+              <h3 className="text-[1.05rem] font-semibold text-steel mt-3 mb-1">{m.nome}</h3>
+              <p className="text-[0.85rem] text-teal mb-2">{m.esp}</p>
+              <p className="text-[0.75rem] text-steel/40">{m.crm} · {m.rqe}</p>
             </div>
           ))}
         </div>
-        <p className="text-center text-[0.75rem] text-faint mt-6">
+        <p className="text-center text-[0.78rem] text-steel/40 mt-6">
           Inscrito sob CRM n° 0020532-MG · CNPJ {CONTATO.cnpj}
         </p>
       </SectionWrapper>

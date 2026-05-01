@@ -5,8 +5,8 @@ import { useEffect, useRef, useState } from 'react'
 import { Menu, X, Calendar } from 'lucide-react'
 import { NAV_ITEMS } from '@/lib/data'
 import { cn } from '@/lib/utils'
+import { LogoTeal } from '@/components/icons/LogoTeal'
 import { LogoBranco } from '@/components/icons/LogoBranco'
-import { IconeBranco } from '@/components/icons/IconeBranco'
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -35,14 +35,15 @@ export function Navbar() {
         ref={navRef}
         className={cn(
           'fixed top-0 left-0 right-0 z-[200] transition-all duration-400',
-          scrolled ? 'bg-[#050E14] border-b border-white/10' : 'bg-transparent'
+          scrolled
+            ? 'bg-white/95 backdrop-blur-sm border-b border-teal/10 shadow-sm'
+            : 'bg-white/80 backdrop-blur-sm border-b border-teal/5',
         )}
       >
         <div className="max-w-[1240px] mx-auto px-8 h-[76px] flex items-center justify-between">
 
           <Link href="/" className="flex items-center gap-3 shrink-0" aria-label="NU.V.E.M Medicina">
-            <IconeBranco className="h-7 w-auto lg:hidden opacity-90" />
-            <LogoBranco className="hidden lg:block h-8 w-auto opacity-90" />
+            <LogoTeal className="h-8 w-auto opacity-95" />
           </Link>
 
           <div className="hidden lg:flex items-center gap-1">
@@ -50,7 +51,7 @@ export function Navbar() {
               <div key={item.href} className="relative">
                 {item.children ? (
                   <button
-                    className={cn('nav-link flex items-center gap-1', activeDropdown === item.href && 'text-white')}
+                    className={cn('nav-link flex items-center gap-1', activeDropdown === item.href && 'text-teal')}
                     onMouseEnter={() => setActiveDropdown(item.href)}
                     onMouseLeave={() => setActiveDropdown(null)}
                     onClick={() => setActiveDropdown(activeDropdown === item.href ? null : item.href)}
@@ -65,19 +66,19 @@ export function Navbar() {
                 )}
                 {item.children && activeDropdown === item.href && (
                   <div
-                    className="absolute top-full left-0 pt-2 min-w-[220px]"
+                    className="absolute top-full left-0 pt-2 min-w-[240px]"
                     onMouseEnter={() => setActiveDropdown(item.href)}
                     onMouseLeave={() => setActiveDropdown(null)}
                   >
-                    <div className="bg-deep border border-teal-light/10 rounded-xl shadow-2xl overflow-hidden">
-                      <div className="h-px gold-line" />
+                    <div className="bg-white border border-teal/12 rounded-2xl shadow-xl overflow-hidden">
+                      <div className="h-px teal-line" />
                       {item.children.map(child => (
                         <Link
                           key={child.href}
                           href={child.href}
-                          className="flex items-center gap-2 px-4 py-3 text-[0.78rem] text-muted hover:text-white hover:bg-teal-light/5 transition-colors"
+                          className="flex items-center gap-2.5 px-4 py-3.5 text-[0.82rem] text-steel/65 hover:text-teal hover:bg-teal/5 transition-colors"
                         >
-                          <span className="w-1 h-1 rounded-full bg-gold/50 shrink-0" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-teal/35 shrink-0" />
                           {child.label}
                         </Link>
                       ))}
@@ -89,7 +90,7 @@ export function Navbar() {
           </div>
 
           <div className="hidden lg:flex items-center gap-4">
-            <a href="tel:3125373131" className="text-[0.78rem] text-muted hover:text-gold transition-colors">
+            <a href="tel:3125373131" className="text-[0.82rem] text-steel/55 hover:text-teal transition-colors">
               (31) 2537-3131
             </a>
             <Link href="/agendar" className="btn-nav-cta">
@@ -99,7 +100,7 @@ export function Navbar() {
           </div>
 
           <button
-            className="lg:hidden text-white p-2 relative z-[300]"
+            className="lg:hidden text-steel p-2 relative z-[300]"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Menu"
           >
@@ -109,14 +110,14 @@ export function Navbar() {
       </nav>
 
       {mobileOpen && (
-        <div style={{position:'fixed',inset:0,background:'#050E14',zIndex:150,overflowY:'auto',paddingTop:'76px'}}>
+        <div style={{ position:'fixed', inset:0, background:'#00465F', zIndex:150, overflowY:'auto', paddingTop:'76px' }}>
           <div className="px-6 pt-4 pb-10">
-            <div className="h-px bg-gradient-to-r from-transparent via-yellow-500/50 to-transparent mb-4" />
+            <div className="h-px bg-gradient-to-r from-transparent via-white/30 to-transparent mb-4" />
             {NAV_ITEMS.map(item => (
               <div key={item.href}>
                 <Link
                   href={item.href}
-                  className="block py-4 text-[1rem] font-semibold text-white border-b border-white/10 hover:text-yellow-400 transition-colors"
+                  className="block py-4 text-[1.05rem] font-semibold text-white border-b border-white/10 hover:text-teal-light transition-colors"
                   onClick={() => setMobileOpen(false)}
                 >
                   {item.label}
@@ -127,7 +128,7 @@ export function Navbar() {
                       <Link
                         key={child.href}
                         href={child.href}
-                        className="block py-3 text-[0.85rem] text-white/60 hover:text-white transition-colors"
+                        className="block py-3 text-[0.9rem] text-white/60 hover:text-white transition-colors"
                         onClick={() => setMobileOpen(false)}
                       >
                         {child.label}
@@ -138,7 +139,7 @@ export function Navbar() {
               </div>
             ))}
             <div className="mt-6 flex flex-col gap-3">
-              <a href="tel:3125373131" className="text-center text-white/60 py-2">
+              <a href="tel:3125373131" className="text-center text-white/60 py-2 text-[1rem]">
                 (31) 2537-3131
               </a>
               <Link href="/agendar" className="btn-gold justify-center" onClick={() => setMobileOpen(false)}>

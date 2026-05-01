@@ -144,8 +144,8 @@ export default function DraVeraPage() {
 
             <div className="bg-ink border border-teal-light/[0.08] rounded-xl p-6 space-y-4">
               <div>
-                <h2 className="text-[1.1rem] font-semibold text-white">Dra. Vera Ângelo</h2>
-                <p className="text-[0.82rem] text-gold mt-1">Gastroenterologista</p>
+                <h2 className="text-[1.1rem] font-semibold text-steel">Dra. Vera Ângelo</h2>
+                <p className="text-[0.9rem] text-gold mt-1">Gastroenterologista</p>
               </div>
               <div className="space-y-2 text-[0.78rem] text-muted">
                 <div className="flex items-center gap-2">
@@ -166,7 +166,7 @@ export default function DraVeraPage() {
                 <a
                   href="https://www.instagram.com/veraangelo/"
                   target="_blank" rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-deep border border-teal-light/[0.08] text-[0.75rem] text-muted hover:border-gold/30 hover:text-gold transition-all"
+                  className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-cloud border border-teal/10 text-[0.75rem] text-muted hover:border-gold/30 hover:text-gold transition-all"
                 >
                   <Instagram className="w-3.5 h-3.5" />
                   Instagram
@@ -175,7 +175,7 @@ export default function DraVeraPage() {
               <div className="flex items-center gap-3 pt-2 border-t border-teal-light/[0.08]">
                 <IsoSeal size={40} />
                 <div>
-                  <p className="text-[0.72rem] font-semibold text-white">ISO 9001</p>
+                  <p className="text-[0.72rem] font-semibold text-steel">ISO 9001</p>
                   <p className="text-[0.65rem] text-faint">Diretora Técnica</p>
                 </div>
               </div>
@@ -186,7 +186,7 @@ export default function DraVeraPage() {
           <div className="lg:col-span-2 space-y-8">
             <div className="reveal reveal-d1">
               <p className="text-[0.72rem] font-bold uppercase tracking-[.1em] text-faint mb-4">Sobre a Dra. Vera</p>
-              <div className="space-y-4 text-[0.9rem] font-light text-muted leading-[1.85]">
+              <div className="space-y-4 text-[1rem] font-light text-muted leading-[1.85]">
                 <p>
                   A Dra. Vera Ângelo é Mestre e Doutora em Patologia pela Universidade Federal de
                   Minas Gerais (UFMG) e Gastroenterologista com Título de Especialista pela
@@ -216,7 +216,7 @@ export default function DraVeraPage() {
               <div className="flex flex-wrap gap-2">
                 {AREAS.map(area => (
                   <span key={area}
-                    className="text-[0.72rem] font-medium px-3 py-1.5 rounded-full bg-teal-light/[0.06] border border-teal-light/10 text-muted hover:border-gold/30 hover:text-white transition-all">
+                    className="text-[0.72rem] font-medium px-3 py-1.5 rounded-full bg-teal/8 border border-teal/10 text-muted hover:border-gold/30 hover:text-steel transition-all">
                     {area}
                   </span>
                 ))}
@@ -245,13 +245,13 @@ export default function DraVeraPage() {
         <div className="space-y-4 max-w-3xl mx-auto">
           {FORMACAO.map((f, i) => (
             <div key={f.titulo}
-              className={`flex items-start gap-5 bg-deep border border-teal-light/[0.08] rounded-xl p-6 hover:border-gold/25 transition-all reveal reveal-d${i % 3}`}>
+              className={`flex items-start gap-5 bg-white border border-teal/10 rounded-2xl shadow-sm p-6 hover:border-gold/25 transition-all reveal reveal-d${i % 3}`}>
               <div className="w-11 h-11 rounded-lg bg-gold-dim border border-gold/25 flex items-center justify-center text-gold shrink-0">
                 <f.icon className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="text-[0.95rem] font-semibold text-white mb-1">{f.titulo}</h3>
-                <p className="text-[0.82rem] text-gold mb-1">{f.inst}</p>
+                <h3 className="text-[0.95rem] font-semibold text-steel mb-1">{f.titulo}</h3>
+                <p className="text-[0.9rem] text-gold mb-1">{f.inst}</p>
                 <p className="text-[0.78rem] text-faint leading-relaxed">{f.detalhe}</p>
               </div>
             </div>
@@ -273,9 +273,9 @@ export default function DraVeraPage() {
                   Cargo Principal
                 </span>
               )}
-              <h3 className="text-[0.95rem] font-semibold text-white mb-1">{e.cargo}</h3>
-              <p className="text-[0.82rem] text-gold mb-3">{e.local}</p>
-              <p className="text-[0.82rem] font-light text-muted leading-[1.75]">{e.desc}</p>
+              <h3 className="text-[0.95rem] font-semibold text-steel mb-1">{e.cargo}</h3>
+              <p className="text-[0.9rem] text-gold mb-3">{e.local}</p>
+              <p className="text-[0.9rem] font-light text-muted leading-[1.75]">{e.desc}</p>
             </div>
           ))}
         </div>
@@ -285,14 +285,14 @@ export default function DraVeraPage() {
         <div className="text-center mb-12">
           <p className="sec-tag justify-center reveal">Publicações</p>
           <h2 className="sec-title reveal reveal-d1">Livros e <em>Contribuições Literárias</em></h2>
-          <p className="text-[0.88rem] text-muted mt-3 reveal reveal-d2">
+          <p className="text-[0.97rem] text-muted mt-3 reveal reveal-d2">
             Autora de obras de referência pela Editora Rubio, utilizadas em programas de formação em todo o Brasil.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {LIVROS.map((livro, i) => (
             <div key={livro.titulo}
-              className={`relative bg-deep border rounded-2xl p-7 hover:-translate-y-1 transition-all reveal reveal-d${i} flex flex-col ${livro.destaque ? 'border-gold/25' : 'border-teal-light/[0.08]'}`}>
+              className={`relative bg-white border rounded-2xl shadow-sm p-7 hover:-translate-y-1 transition-all reveal reveal-d${i} flex flex-col ${livro.destaque ? 'border-gold/25' : 'border-teal/10'}`}>
               <div className="w-12 h-12 rounded-xl bg-gold-dim border border-gold/25 flex items-center justify-center text-gold mb-5">
                 <BookOpen className="w-5 h-5" />
               </div>
@@ -304,9 +304,9 @@ export default function DraVeraPage() {
               {!livro.destaque && (
                 <span className="text-[0.7rem] text-faint mb-3 block">{livro.ano}</span>
               )}
-              <h3 className="text-[0.92rem] font-semibold text-white mb-2 leading-snug flex-1">{livro.titulo}</h3>
+              <h3 className="text-[0.92rem] font-semibold text-steel mb-2 leading-snug flex-1">{livro.titulo}</h3>
               <p className="text-[0.75rem] text-gold mb-3">{livro.editora}</p>
-              <p className="text-[0.8rem] font-light text-muted leading-[1.7]">{livro.desc}</p>
+              <p className="text-[0.9rem] font-light text-muted leading-[1.7]">{livro.desc}</p>
             </div>
           ))}
         </div>
@@ -316,10 +316,10 @@ export default function DraVeraPage() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 max-w-3xl mx-auto">
           <div>
             <p className="sec-tag reveal">Nossa Equipe</p>
-            <h3 className="text-[1.3rem] font-serif font-light text-white mt-1 reveal reveal-d1">
+            <h3 className="text-[1.3rem] font-serif font-light text-steel mt-1 reveal reveal-d1">
               Conheça também a <em className="text-gold italic">Dra. Eliane</em>
             </h3>
-            <p className="text-[0.85rem] text-muted mt-2 reveal reveal-d2">
+            <p className="text-[0.93rem] text-muted mt-2 reveal reveal-d2">
               Diretora Técnica Substituta · Cirurgiã Pediátrica · CRM-MG 27601
             </p>
           </div>

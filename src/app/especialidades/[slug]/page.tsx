@@ -8,7 +8,7 @@ import { SectionWrapper } from '@/components/ui/SectionWrapper'
 import { CtaBanner }      from '@/components/ui/CtaBanner'
 import { ESPECIALIDADES, EXAMES } from '@/lib/data'
 
-// Static data per speciality — extend as needed
+// Static data per speciality
 const DETAIL: Record<string, {
   heroDesc: string
   intro:    string[]
@@ -27,7 +27,7 @@ const DETAIL: Record<string, {
       { title: 'Intolerâncias Alimentares',   body: 'Lactose, frutose e outras intolerâncias identificadas por testes respiratórios — sem biópsia ou coleta de sangue.' },
       { title: 'Helicobacter pylori',         body: 'Diagnóstico preciso por teste respiratório (não endoscópico) e manejo terapêutico com acompanhamento pós-tratamento.' },
     ],
-    exames: ['respiratorio', 'manometria', 'phmetria'],
+    exames: ['testes-respiratorios', 'manometria-esofagica', 'phmetria-impedanciometria'],
   },
   'fisioterapia-pelvica': {
     heroDesc: 'Reabilitação especializada do assoalho pélvico — incontinência, disfunções pélvicas e distúrbios digestivos funcionais tratados com biofeedback e protocolos individualizados.',
@@ -41,7 +41,7 @@ const DETAIL: Record<string, {
       { title: 'Constipação Obstrutiva',          body: 'Disfunção evacuatória tratada com biofeedback anorretal integrado à avaliação gastroenterológica da manometria anorretal.' },
       { title: 'Integração GI + Pélvico',         body: 'Abordagem única na NU.V.E.M que combina gastroenterologia e fisioterapia pélvica para resultados superiores em casos complexos.' },
     ],
-    exames: ['pelvico', 'manometria'],
+    exames: ['avaliacao-pelvica', 'manometria-anorretal'],
   },
   halitose: {
     heroDesc: 'Diagnóstico multidisciplinar completo da halitose — investigamos causas digestivas, orais e sistêmicas com halimetria e sialometria de alta precisão.',
@@ -55,7 +55,7 @@ const DETAIL: Record<string, {
       { title: 'Halitose Digestiva', body: 'Investigação de SIBO, gastroparesia e refluxo como causas de mau hálito de origem gastrointestinal.' },
       { title: 'Protocolo Integrado', body: 'Plano terapêutico personalizado que combina tratamento da causa raiz com estratégias de manutenção a longo prazo.' },
     ],
-    exames: ['halimetria', 'respiratorio'],
+    exames: ['halimetria-sialometria', 'testes-respiratorios'],
   },
   pediatria: {
     heroDesc: 'Cuidado integral da saúde digestiva infantil — prevenção, diagnóstico e tratamento com abordagem acolhedora e integrada à família.',
@@ -69,7 +69,7 @@ const DETAIL: Record<string, {
       { title: 'H. pylori em Crianças', body: 'Investigação e tratamento da infecção por H. pylori com métodos não invasivos adaptados à pediatria.' },
       { title: 'Integração Cirúrgica', body: 'Casos que necessitam de avaliação cirúrgica são conduzidos em conjunto com a Dra. Eliane Basques Moura (Cirurgia Pediátrica).' },
     ],
-    exames: ['respiratorio'],
+    exames: ['testes-respiratorios'],
   },
   nefrologia: {
     heroDesc: 'Diagnóstico e tratamento especializado de doenças renais — prevenção, acompanhamento e cuidado integral com suporte multidisciplinar.',
@@ -92,12 +92,12 @@ const DETAIL: Record<string, {
       'Nossos laudos detalhados permitem diagnóstico definitivo de acalasia, refluxo refratário, disfagia e outros distúrbios que frequentemente passam despercebidos em investigações convencionais.',
     ],
     topics: [
-      { title: 'Acalasia e Distúrbios Motores', body: 'Diagnóstico definitivo por manometria de alta resolução com classificação completa pela Classificação de Chicago.' },
+      { title: 'Acalasia e Distúrbios Motores', body: 'Diagnóstico definitivo por manometria esofágica de alta resolução com classificação completa pela Classificação de Chicago.' },
       { title: 'Refluxo Gastroesofágico Refratário', body: 'Investigação avançada por pHmetria e impedânciometria para casos que não respondem ao tratamento convencional.' },
       { title: 'Disfagia',               body: 'Avaliação completa da deglutição com manometria para identificar a causa funcional ou obstrutiva da disfagia.' },
       { title: 'Constipação Crônica',    body: 'Manometria anorretal para diferenciação entre constipação de trânsito lento e disfunção defecatória.' },
     ],
-    exames: ['manometria', 'phmetria'],
+    exames: ['manometria-esofagica', 'manometria-anorretal', 'phmetria-impedanciometria'],
   },
 }
 
@@ -116,6 +116,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: DETAIL[esp.slug]?.heroDesc ?? esp.desc,
   }
 }
+
 export default async function EspecialidadeSlugPage({ params }: Props) {
   const { slug } = await params
   const esp    = ESPECIALIDADES.find(e => e.slug === slug)
@@ -137,23 +138,27 @@ export default async function EspecialidadeSlugPage({ params }: Props) {
         ]} />
       </PageHero>
 
-      <SectionWrapper dark>
+      <SectionWrapper mist>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+
           {/* Main content */}
           <div className="lg:col-span-2">
-            <div className="space-y-4 text-[0.88rem] font-light text-muted leading-[1.85] mb-10">
+            <div className="space-y-4 text-[0.98rem] font-light text-steel/65 leading-[1.85] mb-10">
               {detail.intro.map((p, i) => <p key={i}>{p}</p>)}
             </div>
 
-            <h2 className="font-serif font-light text-white text-[1.5rem] mb-6">
-              O que tratamos em <em className="italic text-gold" style={{fontStyle:'italic'}}>{esp.title}</em>
+            <h2 className="font-serif font-light text-steel text-[1.6rem] mb-6">
+              O que tratamos em <em className="italic text-teal" style={{ fontStyle: 'italic' }}>{esp.title}</em>
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {detail.topics.map((t, i) => (
-                <div key={t.title} className={`bg-ink border border-teal-light/[0.08] rounded-xl p-6 hover:border-teal-light/25 transition-all reveal reveal-d${i % 2}`}>
-                  <span className="block w-5 h-px bg-gold mb-3" />
-                  <h3 className="text-[0.9rem] font-semibold text-white mb-2">{t.title}</h3>
-                  <p className="text-[0.8rem] font-light text-muted leading-[1.7]">{t.body}</p>
+                <div
+                  key={t.title}
+                  className={`bg-white border border-teal/10 rounded-2xl p-6 hover:border-teal/22 hover:-translate-y-0.5 transition-all reveal reveal-d${i % 2} shadow-sm`}
+                >
+                  <span className="block w-5 h-px bg-teal mb-3" />
+                  <h3 className="text-[0.95rem] font-semibold text-steel mb-2">{t.title}</h3>
+                  <p className="text-[0.88rem] font-light text-steel/60 leading-[1.72]">{t.body}</p>
                 </div>
               ))}
             </div>
@@ -161,12 +166,13 @@ export default async function EspecialidadeSlugPage({ params }: Props) {
 
           {/* Sidebar */}
           <div className="space-y-5">
+
             {/* Tags */}
-            <div className="bg-ink border border-teal-light/[0.08] rounded-xl p-6">
-              <h3 className="text-[0.72rem] font-bold uppercase tracking-[.1em] text-faint mb-4">Áreas de atuação</h3>
+            <div className="bg-white border border-teal/10 rounded-2xl p-6 shadow-sm">
+              <h3 className="text-[0.75rem] font-bold uppercase tracking-[.1em] text-steel/40 mb-4">Áreas de atuação</h3>
               <div className="flex flex-wrap gap-2">
                 {esp.tags.map(tag => (
-                  <span key={tag} className="text-[0.72rem] font-medium px-3 py-1.5 rounded-full bg-teal-light/[0.06] border border-teal-light/10 text-muted">
+                  <span key={tag} className="text-[0.78rem] font-medium px-3 py-1.5 rounded-full bg-teal/8 border border-teal/15 text-teal">
                     {tag}
                   </span>
                 ))}
@@ -175,17 +181,17 @@ export default async function EspecialidadeSlugPage({ params }: Props) {
 
             {/* Related exams */}
             {relExames.length > 0 && (
-              <div className="bg-ink border border-teal-light/[0.08] rounded-xl p-6">
-                <h3 className="text-[0.72rem] font-bold uppercase tracking-[.1em] text-faint mb-4">Exames relacionados</h3>
+              <div className="bg-white border border-teal/10 rounded-2xl p-6 shadow-sm">
+                <h3 className="text-[0.75rem] font-bold uppercase tracking-[.1em] text-steel/40 mb-4">Exames relacionados</h3>
                 <div className="space-y-2">
                   {relExames.map(e => (
                     <Link
                       key={e.id}
                       href={`/exames/${e.id}`}
-                      className="flex items-center justify-between p-3 rounded-lg bg-deep border border-teal-light/[0.07] hover:border-gold/25 transition-all group"
+                      className="flex items-center justify-between p-3.5 rounded-xl bg-cloud border border-teal/8 hover:border-teal/22 hover:bg-teal/5 transition-all group"
                     >
-                      <span className="text-[0.8rem] text-muted group-hover:text-white transition-colors">{e.title}</span>
-                      <ArrowRight className="w-3.5 h-3.5 text-faint group-hover:text-gold transition-colors" />
+                      <span className="text-[0.88rem] text-steel/60 group-hover:text-teal transition-colors">{e.title}</span>
+                      <ArrowRight className="w-3.5 h-3.5 text-steel/30 group-hover:text-teal transition-colors" />
                     </Link>
                   ))}
                 </div>
@@ -193,10 +199,10 @@ export default async function EspecialidadeSlugPage({ params }: Props) {
             )}
 
             {/* CTA box */}
-            <div className="bg-gold-dim border border-gold-line rounded-xl p-6">
-              <h3 className="text-[0.9rem] font-semibold text-white mb-2">Agendar consulta</h3>
-              <p className="text-[0.78rem] text-muted mb-4 leading-relaxed">Atendimento especializado em {esp.title} com equipe certificada ISO 9001.</p>
-              <Link href="/agendar" className="btn-gold w-full justify-center text-[0.8rem]">
+            <div className="bg-teal rounded-2xl p-6">
+              <h3 className="text-[0.95rem] font-semibold text-white mb-2">Agendar consulta</h3>
+              <p className="text-[0.85rem] text-white/70 mb-4 leading-relaxed">Atendimento especializado em {esp.title} com equipe certificada ISO 9001.</p>
+              <Link href="/agendar" className="btn-gold w-full justify-center">
                 Agendar agora
               </Link>
             </div>

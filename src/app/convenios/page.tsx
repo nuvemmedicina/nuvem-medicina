@@ -28,15 +28,15 @@ export default function ConveniosPage() {
         <div className="max-w-3xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 mb-12">
             {CONVENIOS.map((c, i) => (
-              <div key={c} className={`bg-deep border border-teal-light/[0.08] rounded-xl p-4 text-center text-[0.85rem] font-medium text-muted hover:border-teal-light/25 hover:text-white transition-all reveal reveal-d${i % 3}`}>
+              <div key={c} className={`bg-white border border-teal/10 rounded-2xl shadow-sm p-4 text-center text-[0.93rem] font-medium text-muted hover:border-teal/25 hover:text-steel transition-all reveal reveal-d${i % 3}`}>
                 {c}
               </div>
             ))}
           </div>
 
           <div className="bg-gold-dim border border-gold-line rounded-xl p-6 text-center">
-            <h3 className="text-[0.9rem] font-semibold text-white mb-2">Não encontrou seu plano?</h3>
-            <p className="text-[0.82rem] text-muted mb-4">
+            <h3 className="text-[1rem] font-semibold text-steel mb-2">Não encontrou seu plano?</h3>
+            <p className="text-[0.9rem] text-muted mb-4">
               Entre em contato para verificar a cobertura do seu convênio ou as condições para atendimento particular.
             </p>
             <Link href="/contato" className="btn-gold inline-flex">
