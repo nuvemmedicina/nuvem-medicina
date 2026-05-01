@@ -4,11 +4,12 @@ interface SectionWrapperProps {
   children:   React.ReactNode
   className?: string
   id?:        string
-  dark?:      boolean  // uses cloud bg instead of white
-  mist?:      boolean  // uses mist/teal-light tint
+  dark?:      boolean  // bg-cloud (cinza quase branco)
+  mist?:      boolean  // teal-light suave
+  grid?:      boolean  // habilita sobreposição de grid — use apenas em blocos-chave
 }
 
-export function SectionWrapper({ children, className, id, dark, mist }: SectionWrapperProps) {
+export function SectionWrapper({ children, className, id, dark, mist, grid }: SectionWrapperProps) {
   return (
     <section
       id={id}
@@ -21,8 +22,8 @@ export function SectionWrapper({ children, className, id, dark, mist }: SectionW
       )}
       style={mist ? { background: 'rgba(203,228,230,0.15)' } : undefined}
     >
-      {/* Grid overlay */}
-      <div className="absolute inset-0 hero-grid-bg pointer-events-none" />
+      {/* Grid overlay — apenas quando solicitado */}
+      {grid && <div className="absolute inset-0 hero-grid-bg pointer-events-none opacity-60" />}
 
       <div className="relative z-10 max-w-[1240px] mx-auto px-8">
         {children}

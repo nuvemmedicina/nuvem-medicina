@@ -44,10 +44,8 @@ const FOOTER_COLS = [
 export function Footer() {
   return (
     <footer className="border-t border-teal/8 relative overflow-hidden" style={{ background: '#00465F' }}>
-      {/* Dark grid */}
-      <div className="absolute inset-0 dark-grid-bg pointer-events-none" />
 
-      <div className="relative z-10 max-w-[1240px] mx-auto px-8 pt-16 pb-8">
+      <div className="max-w-[1240px] mx-auto px-8 pt-16 pb-8">
 
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[280px_1fr_1fr_1fr] gap-10 mb-12">

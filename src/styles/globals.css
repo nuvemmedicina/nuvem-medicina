@@ -48,17 +48,21 @@
 
   /* ── Buttons ── */
   .btn-gold {
-    @apply inline-flex items-center gap-2 bg-gold text-white font-semibold text-base px-8 py-4 rounded-xl transition-all;
+    @apply inline-flex items-center gap-2 text-white font-semibold text-base px-8 py-4 rounded-xl transition-all;
+    background: linear-gradient(135deg, #00465F 0%, #0e7fa5 100%);
     &:hover {
       @apply -translate-y-0.5;
-      box-shadow: 0 14px 40px rgba(var(--gold), .38);
+      background: linear-gradient(135deg, #003d53 0%, #0a6b8a 100%);
+      box-shadow: 0 14px 40px rgba(var(--teal), .35);
     }
   }
 
   .btn-teal {
-    @apply inline-flex items-center gap-2 bg-teal text-white font-semibold text-base px-8 py-4 rounded-xl transition-all;
+    @apply inline-flex items-center gap-2 text-white font-semibold text-base px-8 py-4 rounded-xl transition-all;
+    background: linear-gradient(135deg, #00465F 0%, #0e7fa5 100%);
     &:hover {
-      @apply -translate-y-0.5 bg-teal-mid;
+      @apply -translate-y-0.5;
+      background: linear-gradient(135deg, #003d53 0%, #0a6b8a 100%);
       box-shadow: 0 14px 40px rgba(var(--teal), .28);
     }
   }
@@ -86,10 +90,11 @@
   }
 
   .btn-nav-cta {
-    @apply inline-flex items-center gap-2 bg-gold text-white font-semibold text-[0.85rem] px-5 py-2.5 rounded-lg transition-all;
+    @apply inline-flex items-center gap-2 text-white font-semibold text-[0.85rem] px-5 py-2.5 rounded-lg transition-all;
+    background: linear-gradient(135deg, #00465F 0%, #0e7fa5 100%);
     &:hover {
       @apply -translate-y-px;
-      box-shadow: 0 6px 24px rgba(var(--gold), .38);
+      box-shadow: 0 6px 24px rgba(var(--teal), .38);
     }
   }
 

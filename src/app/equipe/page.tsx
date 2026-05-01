@@ -78,29 +78,29 @@ export default function EquipePage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {SOCIAS.map((s, i) => (
             <Link key={s.slug} href={`/equipe/${s.slug}`}
-              className={`group block bg-ink border border-gold/20 rounded-2xl overflow-hidden hover:border-gold/50 hover:-translate-y-1 transition-all reveal reveal-d${i}`}>
-              <div className="relative h-72 w-full" style={{background:'linear-gradient(135deg,#071520,#00293A)'}}>
+              className={`group block bg-white border border-teal/12 rounded-2xl overflow-hidden hover:border-teal/30 hover:-translate-y-1 hover:shadow-md transition-all reveal reveal-d${i}`}>
+              <div className="relative h-72 w-full" style={{background:'linear-gradient(135deg,#003040,#00465F)'}}>
                 <Image src={s.foto} alt={s.nome} fill
                   className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#00465F]/80 via-transparent to-transparent" />
                 <div className="absolute top-4 left-4">
-                  <span className="text-[0.65rem] font-bold tracking-[.12em] uppercase text-gold bg-ink/80 border border-gold/40 px-3 py-1 rounded-full backdrop-blur-sm">
+                  <span className="text-[0.65rem] font-bold tracking-[.12em] uppercase text-teal bg-white/90 border border-teal/20 px-3 py-1 rounded-full backdrop-blur-sm">
                     Sócia Fundadora
                   </span>
                 </div>
               </div>
               <div className="p-7">
                 <h3 className="text-[1.1rem] font-semibold text-steel mb-1">{s.nome}</h3>
-                <p className="text-[0.93rem] text-gold mb-1">{s.esp}</p>
-                <p className="text-[0.72rem] text-faint mb-4">{s.crm}</p>
-                <p className="text-[0.9rem] font-light text-muted leading-[1.75] mb-5">{s.bio}</p>
+                <p className="text-[0.93rem] text-teal mb-1">{s.esp}</p>
+                <p className="text-[0.72rem] text-steel/40 mb-4">{s.crm}</p>
+                <p className="text-[0.9rem] font-light text-steel/60 leading-[1.75] mb-5">{s.bio}</p>
                 <div className="flex flex-wrap gap-1.5 mb-5">
                   {s.areas.map(a => (
-                    <span key={a} className="text-[0.68rem] font-medium px-2.5 py-1 rounded-full bg-gold-dim border border-gold/20 text-gold/80">{a}</span>
+                    <span key={a} className="text-[0.68rem] font-medium px-2.5 py-1 rounded-full bg-teal/8 border border-teal/15 text-teal/80">{a}</span>
                   ))}
                 </div>
-                <span className="inline-flex items-center gap-1.5 text-[0.9rem] font-medium text-gold group-hover:gap-2.5 transition-all">
+                <span className="inline-flex items-center gap-1.5 text-[0.9rem] font-medium text-teal group-hover:gap-2.5 transition-all">
                   Ver perfil completo <ArrowRight className="w-3.5 h-3.5" />
                 </span>
               </div>
@@ -125,7 +125,7 @@ export default function EquipePage() {
                 </div>
                 <div>
                   <h3 className="text-[0.92rem] font-semibold text-steel leading-tight">{m.nome}</h3>
-                  <p className="text-[0.78rem] text-gold mt-0.5">{m.esp}</p>
+                  <p className="text-[0.78rem] text-teal mt-0.5">{m.esp}</p>
                 </div>
               </div>
               <div className="flex flex-wrap gap-1.5">
@@ -149,10 +149,10 @@ export default function EquipePage() {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
           {PARCEIROS.map((p, i) => (
-            <div key={p.nome} className={`bg-ink border border-teal-light/[0.08] rounded-xl p-5 reveal reveal-d${i % 3}`}>
-              <span className="block w-5 h-px bg-gold mb-3" />
+            <div key={p.nome} className={`bg-white border border-teal/10 rounded-xl p-5 shadow-sm hover:border-teal/22 transition-all reveal reveal-d${i % 3}`}>
+              <span className="block w-5 h-px bg-teal mb-3" />
               <h3 className="text-[0.97rem] font-semibold text-steel mb-1">{p.nome}</h3>
-              <p className="text-[0.75rem] text-muted">{p.papel}</p>
+              <p className="text-[0.75rem] text-steel/55">{p.papel}</p>
             </div>
           ))}
         </div>
