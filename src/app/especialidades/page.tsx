@@ -32,26 +32,26 @@ export default function EspecialidadesPage() {
               <Link
                 key={esp.slug}
                 href={`/especialidades/${esp.slug}`}
-                className={`group block bg-deep border border-teal-light/[0.08] rounded-2xl p-8 hover:border-teal-light/25 hover:-translate-y-1 transition-all reveal reveal-d${i % 3}`}
+                className={`group block bg-white border border-teal/10 rounded-2xl p-8 hover:border-teal/25 hover:-translate-y-1 hover:shadow-md shadow-sm transition-all reveal reveal-d${i % 3}`}
               >
                 <div className="flex items-start justify-between mb-5">
-                  <div className="w-12 h-12 rounded-[10px] border border-teal-light/10 flex items-center justify-center text-teal-light group-hover:border-gold/35 group-hover:bg-gold-dim group-hover:text-gold transition-all">
+                  <div className="w-12 h-12 rounded-[10px] bg-teal/8 border border-teal/15 flex items-center justify-center text-teal group-hover:bg-teal group-hover:text-white group-hover:border-teal transition-all">
                     <Icon className="w-[22px] h-[22px]" />
                   </div>
-                  <span className="font-serif text-[3rem] font-light text-teal-light/[0.07] leading-none group-hover:text-gold/15 transition-colors">
+                  <span className="font-serif text-[3rem] font-light text-teal/10 leading-none group-hover:text-teal/20 transition-colors">
                     {esp.num}
                   </span>
                 </div>
-                <h2 className="text-[1rem] font-semibold text-white mb-2.5">{esp.title}</h2>
-                <p className="text-[0.82rem] font-light text-muted leading-[1.75] mb-5">{esp.desc}</p>
+                <h2 className="text-[1rem] font-semibold text-steel mb-2.5">{esp.title}</h2>
+                <p className="text-[0.82rem] font-light text-steel/60 leading-[1.75] mb-5">{esp.desc}</p>
                 <div className="flex flex-wrap gap-1.5 mb-5">
                   {esp.tags.map(tag => (
-                    <span key={tag} className="text-[0.65rem] font-medium px-2.5 py-1 rounded-full bg-teal-light/[0.06] border border-teal-light/10 text-faint">
+                    <span key={tag} className="text-[0.65rem] font-medium px-2.5 py-1 rounded-full bg-teal/6 border border-teal/12 text-steel/50">
                       {tag}
                     </span>
                   ))}
                 </div>
-                <span className="inline-flex items-center gap-1.5 text-[0.78rem] font-medium text-gold border-b border-gold/30 pb-px group-hover:gap-2.5 transition-all">
+                <span className="inline-flex items-center gap-1.5 text-[0.78rem] font-medium text-teal border-b border-teal/25 pb-px group-hover:gap-2.5 transition-all">
                   Saiba mais <ArrowRight className="w-3.5 h-3.5" />
                 </span>
               </Link>

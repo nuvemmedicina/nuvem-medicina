@@ -71,7 +71,7 @@ export default function EquipePage() {
         <div className="text-center mb-12">
           <p className="sec-tag justify-center reveal">Liderança</p>
           <h2 className="sec-title reveal reveal-d1">Sócias <em>Fundadoras</em></h2>
-          <p className="text-[0.97rem] text-muted mt-3 reveal reveal-d2 max-w-xl mx-auto">
+          <p className="text-[0.97rem] text-steel/65 mt-3 reveal reveal-d2 max-w-xl mx-auto">
             As médicas que fundaram a NU.V.E.M e definem o padrão de excelência da clínica.
           </p>
         </div>
@@ -130,7 +130,7 @@ export default function EquipePage() {
               </div>
               <div className="flex flex-wrap gap-1.5">
                 {m.areas.map(a => (
-                  <span key={a} className="text-[0.65rem] font-medium px-2 py-1 rounded-full bg-teal/8 border border-teal/10 text-faint">{a}</span>
+                  <span key={a} className="text-[0.65rem] font-medium px-2 py-1 rounded-full bg-teal/8 border border-teal/10 text-steel/50">{a}</span>
                 ))}
               </div>
             </div>
@@ -143,7 +143,7 @@ export default function EquipePage() {
         <div className="text-center mb-10">
           <p className="sec-tag justify-center reveal">Ecossistema NU.V.E.M</p>
           <h2 className="sec-title reveal reveal-d1">Parceiros <em>Estratégicos</em></h2>
-          <p className="text-[0.93rem] text-muted mt-3 reveal reveal-d2 max-w-lg mx-auto">
+          <p className="text-[0.93rem] text-steel/65 mt-3 reveal reveal-d2 max-w-lg mx-auto">
             Profissionais e empresas que contribuíram para construir e estruturar a NU.V.E.M.
           </p>
         </div>
