@@ -9,6 +9,12 @@
   --ease-out:        cubic-bezier(.16, 1, .3, 1);
   --ease:            cubic-bezier(.25, .46, .45, .94);
 
+  /* Cores base para rgba() nos componentes */
+  --teal:       0, 70, 95;
+  --teal-light: 203, 228, 230;
+  --steel:      54, 54, 54;
+  --gold:       201, 168, 76;
+
   /* Gold conic for seal */
   --gold-conic: conic-gradient(
     #C9A84C 0deg,  #E2C06A 40deg, #C9A84C 80deg,
@@ -22,7 +28,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    font-size: 17px; /* larger base for elderly readability */
+    font-size: 17px;
   }
 
   body {
@@ -34,7 +40,7 @@
   ::-webkit-scrollbar-track  { @apply bg-cloud; }
   ::-webkit-scrollbar-thumb  { @apply bg-teal rounded-sm; }
 
-  ::selection { @apply bg-teal/15 text-teal; }
+  ::selection { background: rgba(var(--teal), 0.15); color: #00465F; }
 }
 
 /* ── Components ───────────────────────────────────────────────────────────── */
@@ -42,34 +48,40 @@
 
   /* ── Buttons ── */
   .btn-gold {
-    @apply inline-flex items-center gap-2 bg-gold text-white font-semibold text-[1rem] px-8 py-4 rounded-xl transition-all;
+    @apply inline-flex items-center gap-2 bg-gold text-white font-semibold text-base px-8 py-4 rounded-xl transition-all;
     &:hover {
       @apply -translate-y-0.5;
-      box-shadow: 0 14px 40px rgba(201,168,76,.38);
+      box-shadow: 0 14px 40px rgba(var(--gold), .38);
     }
   }
 
   .btn-teal {
-    @apply inline-flex items-center gap-2 bg-teal text-white font-semibold text-[1rem] px-8 py-4 rounded-xl transition-all;
+    @apply inline-flex items-center gap-2 bg-teal text-white font-semibold text-base px-8 py-4 rounded-xl transition-all;
     &:hover {
       @apply -translate-y-0.5 bg-teal-mid;
-      box-shadow: 0 14px 40px rgba(0,70,95,.28);
+      box-shadow: 0 14px 40px rgba(var(--teal), .28);
     }
   }
 
-  /* Ghost on light backgrounds */
+  /* Ghost — fundos claros */
   .btn-ghost {
-    @apply inline-flex items-center gap-2 border-2 border-teal/30 text-teal font-medium text-[1rem] px-8 py-[14px] rounded-xl transition-all;
+    @apply inline-flex items-center gap-2 border-2 text-teal font-medium text-base px-8 py-[14px] rounded-xl transition-all;
+    border-color: rgba(var(--teal), 0.30);
     &:hover {
-      @apply border-teal/60 bg-teal/5;
+      border-color: rgba(var(--teal), 0.60);
+      background: rgba(var(--teal), 0.05);
     }
   }
 
-  /* Ghost on dark backgrounds (dark sections) */
+  /* Ghost — fundos escuros */
   .btn-ghost-dark {
-    @apply inline-flex items-center gap-2 border border-teal-light/30 text-teal-light/80 font-medium text-[1rem] px-8 py-[14px] rounded-xl transition-all;
+    @apply inline-flex items-center gap-2 border font-medium text-base px-8 py-[14px] rounded-xl transition-all;
+    border-color: rgba(var(--teal-light), 0.30);
+    color: rgba(var(--teal-light), 0.80);
     &:hover {
-      @apply border-teal-light/55 text-white bg-teal-light/10;
+      @apply text-white;
+      border-color: rgba(var(--teal-light), 0.55);
+      background: rgba(var(--teal-light), 0.10);
     }
   }
 
@@ -77,13 +89,23 @@
     @apply inline-flex items-center gap-2 bg-gold text-white font-semibold text-[0.85rem] px-5 py-2.5 rounded-lg transition-all;
     &:hover {
       @apply -translate-y-px;
-      box-shadow: 0 6px 24px rgba(201,168,76,.38);
+      box-shadow: 0 6px 24px rgba(var(--gold), .38);
+    }
+  }
+
+  /* Download button */
+  .btn-download {
+    @apply inline-flex items-center gap-2 text-teal font-semibold text-[0.95rem] px-6 py-3 rounded-xl border transition-all;
+    background: rgba(var(--teal), 0.08);
+    border-color: rgba(var(--teal), 0.20);
+    &:hover {
+      @apply bg-teal text-white -translate-y-0.5;
+      border-color: #00465F;
+      box-shadow: 0 10px 30px rgba(var(--teal), .22);
     }
   }
 
   /* ── Section tags ── */
-
-  /* Light bg version */
   .sec-tag {
     @apply inline-flex items-center gap-2 text-teal text-[0.75rem] font-bold tracking-[.15em] uppercase mb-4;
     &::before {
@@ -92,7 +114,6 @@
     }
   }
 
-  /* Dark bg version */
   .sec-tag-dark {
     @apply inline-flex items-center gap-2 text-gold text-[0.75rem] font-bold tracking-[.15em] uppercase mb-4;
     &::before {
@@ -102,15 +123,12 @@
   }
 
   /* ── Section titles ── */
-
-  /* Light bg — teal em */
   .sec-title {
     @apply font-serif font-light text-steel leading-tight tracking-tight;
     font-size: clamp(2.2rem, 3.5vw, 3.2rem);
     em { @apply italic text-teal not-italic; font-style: italic; }
   }
 
-  /* Dark bg — gold em */
   .sec-title-dark {
     @apply font-serif font-light text-white leading-tight tracking-tight;
     font-size: clamp(2.2rem, 3.5vw, 3.2rem);
@@ -120,32 +138,34 @@
   /* ── Dividers ── */
   .gold-line {
     @apply w-full h-px;
-    background: linear-gradient(90deg, transparent, rgba(201,168,76,.40), transparent);
+    background: linear-gradient(90deg, transparent, rgba(var(--gold), .40), transparent);
   }
 
   .teal-line {
     @apply w-full h-px;
-    background: linear-gradient(90deg, transparent, rgba(0,70,95,.18), transparent);
+    background: linear-gradient(90deg, transparent, rgba(var(--teal), .18), transparent);
   }
 
   /* ── Cards ── */
   .card-light {
-    @apply bg-white border border-teal/12 rounded-2xl shadow-sm;
+    @apply bg-white rounded-2xl shadow-sm;
+    border: 1px solid rgba(var(--teal), 0.12);
   }
 
   .card-mist {
-    @apply bg-teal-light/25 border border-teal/12 rounded-2xl;
-  }
-
-  /* Card for dark section surfaces */
-  .card-on-dark {
-    @apply bg-white/10 border border-white/12 rounded-2xl;
+    @apply rounded-2xl;
+    background: rgba(var(--teal-light), 0.25);
+    border: 1px solid rgba(var(--teal), 0.12);
   }
 
   /* ── Nav links (light navbar) ── */
   .nav-link {
-    @apply text-steel/65 text-[0.85rem] font-medium px-3.5 py-2 rounded-md transition-all;
-    &:hover { @apply text-teal bg-teal/5; }
+    @apply text-[0.85rem] font-medium px-3.5 py-2 rounded-md transition-all;
+    color: rgba(var(--steel), 0.65);
+    &:hover {
+      @apply text-teal;
+      background: rgba(var(--teal), 0.05);
+    }
     &.active { @apply text-teal; }
   }
 
@@ -163,48 +183,40 @@
   /* ── ISO seal conic ── */
   .seal-conic {
     background: var(--gold-conic);
-    box-shadow: 0 0 60px rgba(201,168,76,.2);
+    box-shadow: 0 0 60px rgba(var(--gold), .2);
   }
 }
 
 /* ── Utilities ────────────────────────────────────────────────────────────── */
 @layer utilities {
 
-  /* Text helpers — light backgrounds */
-  .text-muted  { color: rgba(0,70,95,0.65); }
-  .text-faint  { color: rgba(54,54,54,0.42); }
+  /* Text helpers — fundos claros */
+  .text-muted  { color: rgba(var(--teal),  0.65); }
+  .text-faint  { color: rgba(var(--steel), 0.42); }
 
-  /* Text helpers — dark backgrounds */
-  .text-muted-dark  { color: rgba(203,228,230,0.65); }
-  .text-faint-dark  { color: rgba(203,228,230,0.30); }
+  /* Text helpers — fundos escuros */
+  .text-muted-dark  { color: rgba(var(--teal-light), 0.65); }
+  .text-faint-dark  { color: rgba(var(--teal-light), 0.30); }
 
   /* Background helpers */
-  .bg-sky-dim    { background: rgba(203,228,230,0.28); }
-  .bg-sky-faint  { background: rgba(203,228,230,0.12); }
-  .bg-gold-dim   { background: rgba(201,168,76,0.12); }
-  .border-gold-line { border-color: rgba(201,168,76,0.38); }
+  .bg-sky-dim    { background: rgba(var(--teal-light), 0.28); }
+  .bg-sky-faint  { background: rgba(var(--teal-light), 0.12); }
+  .bg-gold-dim   { background: rgba(var(--gold), 0.12); }
+  .border-gold-line { border-color: rgba(var(--gold), 0.38); }
 
-  /* ── Light section grid (the "tech" checkered look on white/mist bg) ── */
+  /* ── Grid "tech" — fundo claro ── */
   .hero-grid-bg {
     background-image:
-      linear-gradient(rgba(0,70,95,.055) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,70,95,.055) 1px, transparent 1px);
+      linear-gradient(rgba(var(--teal), .055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(var(--teal), .055) 1px, transparent 1px);
     background-size: 40px 40px;
   }
 
-  /* Denser grid for hero */
-  .hero-grid-dense {
-    background-image:
-      linear-gradient(rgba(0,70,95,.045) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,70,95,.045) 1px, transparent 1px);
-    background-size: 32px 32px;
-  }
-
-  /* Grid for dark sections */
+  /* ── Grid — fundo escuro ── */
   .dark-grid-bg {
     background-image:
-      linear-gradient(rgba(203,228,230,.055) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(203,228,230,.055) 1px, transparent 1px);
+      linear-gradient(rgba(var(--teal-light), .055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(var(--teal-light), .055) 1px, transparent 1px);
     background-size: 40px 40px;
   }
 
@@ -212,14 +224,5 @@
   .stat-number {
     @apply font-serif font-light text-teal leading-none;
     font-size: clamp(2.4rem, 4vw, 3rem);
-  }
-
-  /* Download button variant */
-  .btn-download {
-    @apply inline-flex items-center gap-2 bg-teal/8 border border-teal/20 text-teal font-semibold text-[0.95rem] px-6 py-3 rounded-xl transition-all;
-    &:hover {
-      @apply bg-teal text-white border-teal -translate-y-0.5;
-      box-shadow: 0 10px 30px rgba(0,70,95,.22);
-    }
   }
 }
