@@ -27,17 +27,17 @@ export default function ParceirosPage() {
               { title: 'Telemedicina Colaborativa', desc: 'Disponível para discussão de casos complexos com colegas médicos mediante solicitação prévia.' },
               { title: 'Formação Conjunta', desc: 'Parceiros do NU.V.E.M Ensino têm acesso a condições especiais nos programas de treinamento hands-on.' },
             ].map((item, i) => (
-              <div key={item.title} className={`bg-deep border border-teal-light/[0.08] rounded-xl p-7 reveal reveal-d${i % 2}`}>
-                <span className="block w-5 h-px bg-gold mb-4" />
-                <h3 className="text-[0.92rem] font-semibold text-white mb-2">{item.title}</h3>
-                <p className="text-[0.82rem] font-light text-muted leading-[1.75]">{item.desc}</p>
+              <div key={item.title} className={`bg-white border border-teal/10 rounded-xl p-7 shadow-sm hover:border-teal/22 hover:-translate-y-0.5 transition-all reveal reveal-d${i % 2}`}>
+                <span className="block w-5 h-px bg-teal mb-4" />
+                <h3 className="text-[0.92rem] font-semibold text-steel mb-2">{item.title}</h3>
+                <p className="text-[0.82rem] font-light text-steel/60 leading-[1.75]">{item.desc}</p>
               </div>
             ))}
           </div>
 
-          <div className="bg-gold-dim border border-gold-line rounded-xl p-8 text-center">
-            <h3 className="text-[1rem] font-semibold text-white mb-3">Quer ser parceiro da NU.V.E.M?</h3>
-            <p className="text-[0.82rem] text-muted mb-5 max-w-sm mx-auto">
+          <div className="border border-teal/15 rounded-xl p-8 text-center" style={{ background: 'rgba(203,228,230,0.18)' }}>
+            <h3 className="text-[1rem] font-semibold text-steel mb-3">Quer ser parceiro da NU.V.E.M?</h3>
+            <p className="text-[0.82rem] text-steel/60 mb-5 max-w-sm mx-auto">
               Entre em contato para estabelecer parceria formal de encaminhamentos e receba materiais informativos sobre nossos serviços.
             </p>
             <Link href="/contato" className="btn-gold inline-flex">
