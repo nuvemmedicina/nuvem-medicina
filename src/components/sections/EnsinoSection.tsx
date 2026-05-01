@@ -27,11 +27,9 @@ const MULT = [
 
 export function EnsinoSection() {
   return (
-    <section className="py-28 bg-cloud border-t border-teal/8 relative overflow-hidden" id="ensino">
-      {/* Grid overlay */}
-      <div className="absolute inset-0 hero-grid-bg pointer-events-none" />
+    <section className="py-28 bg-cloud border-t border-teal/8 overflow-hidden" id="ensino">
 
-      <div className="relative z-10 max-w-[1240px] mx-auto px-8">
+      <div className="max-w-[1240px] mx-auto px-8">
 
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:justify-between lg:items-end gap-6 mb-14">

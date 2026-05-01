@@ -29,7 +29,7 @@ export default function SobrePage() {
       />
 
       {/* Missão / Origem */}
-      <SectionWrapper dark>
+      <SectionWrapper dark grid>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div>
             <p className="sec-tag reveal">Nossa Origem</p>
@@ -94,7 +94,7 @@ export default function SobrePage() {
       </SectionWrapper>
 
       {/* Responsáveis Técnicos */}
-      <SectionWrapper mist>
+      <SectionWrapper mist grid>
         <div className="text-center mb-12">
           <p className="sec-tag justify-center reveal">Responsabilidade Técnica</p>
           <h2 className="sec-title reveal reveal-d1">Responsáveis <em>Técnicos</em></h2>

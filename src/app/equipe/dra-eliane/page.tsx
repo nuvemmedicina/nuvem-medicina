@@ -87,7 +87,7 @@ export default function DraElianePage() {
         desc="Cirurgiã Pediátrica · Especialista em Manometria Anorretal · Sócia Fundadora da NU.V.E.M Medicina"
       />
 
-      <SectionWrapper dark>
+      <SectionWrapper dark grid>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
 
           {/* Left */}
@@ -210,7 +210,7 @@ export default function DraElianePage() {
         </div>
       </SectionWrapper>
 
-      <SectionWrapper dark>
+      <SectionWrapper dark grid>
         <div className="text-center mb-12">
           <p className="sec-tag justify-center reveal">Trajetória Profissional</p>
           <h2 className="sec-title reveal reveal-d1">Experiência e <em>Atuação</em></h2>

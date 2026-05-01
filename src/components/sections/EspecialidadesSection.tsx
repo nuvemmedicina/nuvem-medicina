@@ -9,8 +9,6 @@ const ICON_MAP: Record<string, React.ElementType> = {
 export function EspecialidadesSection() {
   return (
     <section className="section bg-cloud py-28 relative overflow-hidden" id="especialidades">
-      {/* Grid overlay */}
-      <div className="absolute inset-0 hero-grid-bg pointer-events-none" />
 
       <div className="relative z-10 max-w-[1240px] mx-auto px-8">
 

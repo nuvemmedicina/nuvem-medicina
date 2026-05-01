@@ -20,7 +20,7 @@ export default function ExamesPage() {
         desc="Infraestrutura diagnóstica de última geração operada por especialistas com treinamento e certificação ISO 9001 — os resultados mais confiáveis do segmento."
       />
 
-      <SectionWrapper mist>
+      <SectionWrapper mist grid>
         <div className="space-y-5">
           {EXAMES.map((exame, i) => {
             const pdfUrl = EXAM_PDFS[exame.id]

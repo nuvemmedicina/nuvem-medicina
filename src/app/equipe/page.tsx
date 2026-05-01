@@ -67,7 +67,7 @@ export default function EquipePage() {
       />
 
       {/* Sócias Fundadoras */}
-      <SectionWrapper dark>
+      <SectionWrapper dark grid>
         <div className="text-center mb-12">
           <p className="sec-tag justify-center reveal">Liderança</p>
           <h2 className="sec-title reveal reveal-d1">Sócias <em>Fundadoras</em></h2>
@@ -139,7 +139,7 @@ export default function EquipePage() {
       </SectionWrapper>
 
       {/* Parceiros */}
-      <SectionWrapper dark>
+      <SectionWrapper dark grid>
         <div className="text-center mb-10">
           <p className="sec-tag justify-center reveal">Ecossistema NU.V.E.M</p>
           <h2 className="sec-title reveal reveal-d1">Parceiros <em>Estratégicos</em></h2>

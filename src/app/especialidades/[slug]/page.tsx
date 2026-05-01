@@ -138,7 +138,7 @@ export default async function EspecialidadeSlugPage({ params }: Props) {
         ]} />
       </PageHero>
 
-      <SectionWrapper mist>
+      <SectionWrapper mist grid>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
 
           {/* Main content */}
