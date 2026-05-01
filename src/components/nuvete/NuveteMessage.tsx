@@ -8,17 +8,15 @@ import type { Msg }     from './NuveteChat'
 function renderMarkdown(text: string) {
   const lines = text.split('\n')
   return lines.map((line, i) => {
-    // Bold: **text**
     const parts = line.split(/\*\*(.*?)\*\*/g)
     const rendered = parts.map((part, j) =>
-      j % 2 === 1 ? <strong key={j} className="font-semibold text-white">{part}</strong> : part
+      j % 2 === 1 ? <strong key={j} className="font-semibold text-steel">{part}</strong> : part
     )
-    // List item
     if (line.startsWith('- ')) {
       return (
         <li key={i} className="flex gap-2 items-start">
-          <span className="w-1.5 h-1.5 rounded-full bg-gold mt-[7px] shrink-0" />
-          <span>{parts.map((part, j) => j % 2 === 1 ? <strong key={j} className="font-semibold text-white">{part}</strong> : part.replace(/^- /, ''))}</span>
+          <span className="w-1.5 h-1.5 rounded-full bg-teal mt-[7px] shrink-0" />
+          <span>{parts.map((part, j) => j % 2 === 1 ? <strong key={j} className="font-semibold text-steel">{part}</strong> : part.replace(/^- /, ''))}</span>
         </li>
       )
     }
@@ -52,7 +50,7 @@ export function NuveteMessage({ msg, onAcao }: Props) {
         {/* Bubble */}
         <div
           className={cn(
-            'bg-ink border border-teal-light/10 rounded-2xl rounded-bl-sm px-4 py-3 text-[0.8rem] text-muted',
+            'bg-cloud border border-teal/10 rounded-2xl rounded-bl-sm px-4 py-3 text-[0.8rem] text-steel/70',
             msg.typing && 'min-w-[60px]',
           )}
         >
@@ -81,7 +79,7 @@ export function NuveteMessage({ msg, onAcao }: Props) {
               <button
                 key={i}
                 onClick={() => onAcao(btn.acao)}
-                className="text-[0.7rem] font-medium px-2.5 py-1.5 rounded-full bg-teal-light/[0.06] border border-teal-light/15 text-muted hover:border-gold/40 hover:text-gold transition-all"
+                className="text-[0.7rem] font-medium px-2.5 py-1.5 rounded-full bg-white border border-teal/15 text-teal/75 hover:border-teal/40 hover:text-teal transition-all"
               >
                 {btn.label}
               </button>

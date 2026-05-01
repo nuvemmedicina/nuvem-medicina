@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link    from 'next/link'
+import Image   from 'next/image'
 import { PageHero }      from '@/components/ui/PageHero'
 import { SectionWrapper } from '@/components/ui/SectionWrapper'
 import { CtaBanner }     from '@/components/ui/CtaBanner'
@@ -101,18 +102,24 @@ export default function SobrePage() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
           {[
-            { nome: CONTATO.diretora.nome, cargo: 'Diretora Técnica', crm: CONTATO.diretora.crm, rqe: CONTATO.diretora.rqe, esp: 'Gastroenterologista' },
-            { nome: 'Dra. Eliane Basques Moura', cargo: 'Diretora Técnica Substituta', crm: 'CRM-MG 27601', rqe: 'RQE 9324', esp: 'Cirurgia Pediátrica' },
+            { nome: CONTATO.diretora.nome, cargo: 'Diretora Técnica',          crm: CONTATO.diretora.crm, rqe: CONTATO.diretora.rqe, esp: 'Gastroenterologista',                foto: '/images/dra-vera.jpg',   href: '/equipe/dra-vera' },
+            { nome: 'Dra. Eliane Basques Moura', cargo: 'Diretora Técnica Substituta', crm: 'CRM-MG 27601',           rqe: 'RQE 9324',               esp: 'Cirurgia Pediátrica', foto: '/images/dra-eliane.jpg', href: '/equipe/dra-eliane' },
           ].map(m => (
-            <div key={m.nome} className="bg-white border border-teal/12 rounded-2xl p-7 reveal shadow-sm">
-              <div className="w-14 h-14 rounded-full bg-teal flex items-center justify-center text-lg font-semibold text-white mb-4">
-                {m.nome.split(' ').slice(1, 3).map(w => w[0]).join('')}
+            <Link key={m.nome} href={m.href} className="group bg-white border border-teal/12 rounded-2xl overflow-hidden reveal shadow-sm hover:border-teal/28 hover:-translate-y-0.5 hover:shadow-md transition-all block">
+              {/* Foto */}
+              <div className="relative h-52 w-full" style={{ background: 'linear-gradient(135deg,#003040,#00465F)' }}>
+                <Image src={m.foto} alt={m.nome} fill
+                  className="object-cover object-top group-hover:scale-105 transition-transform duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#00465F]/60 via-transparent to-transparent" />
               </div>
-              <span className="text-[0.68rem] font-bold uppercase tracking-[.12em] text-gold bg-gold/10 border border-gold/25 px-2.5 py-1 rounded-full">{m.cargo}</span>
-              <h3 className="text-[1.05rem] font-semibold text-steel mt-3 mb-1">{m.nome}</h3>
-              <p className="text-[0.85rem] text-teal mb-2">{m.esp}</p>
-              <p className="text-[0.75rem] text-steel/40">{m.crm} · {m.rqe}</p>
-            </div>
+              {/* Info */}
+              <div className="p-6">
+                <span className="text-[0.68rem] font-bold uppercase tracking-[.12em] text-teal bg-teal/8 border border-teal/20 px-2.5 py-1 rounded-full">{m.cargo}</span>
+                <h3 className="text-[1.05rem] font-semibold text-steel mt-3 mb-1">{m.nome}</h3>
+                <p className="text-[0.85rem] text-teal mb-2">{m.esp}</p>
+                <p className="text-[0.75rem] text-steel/40">{m.crm} · {m.rqe}</p>
+              </div>
+            </Link>
           ))}
         </div>
         <p className="text-center text-[0.78rem] text-steel/40 mt-6">
