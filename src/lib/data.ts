@@ -29,12 +29,13 @@ export const NAV_ITEMS: NavItem[] = [
     label: 'Exames',
     href: '/exames',
     children: [
-      { label: 'Manometria de Alta Resolução', href: '/exames/manometria' },
-      { label: 'pHmetria e Impedânciometria',  href: '/exames/phmetria-impedanciometria' },
-      { label: 'Testes Respiratórios',         href: '/exames/testes-respiratorios' },
-      { label: 'Halimetria e Sialometria',      href: '/exames/halimetria-sialometria' },
-      { label: 'Avaliação Pélvica',            href: '/exames/avaliacao-pelvica' },
-      { label: 'Preparos para Exames',         href: '/exames/preparos' },
+      { label: 'Manometria Esofágica',      href: '/exames/manometria-esofagica' },
+      { label: 'Manometria Anorretal',      href: '/exames/manometria-anorretal' },
+      { label: 'pHmetria e Impedânciometria', href: '/exames/phmetria-impedanciometria' },
+      { label: 'Testes Respiratórios',      href: '/exames/testes-respiratorios' },
+      { label: 'Halimetria e Sialometria',  href: '/exames/halimetria-sialometria' },
+      { label: 'Avaliação Pélvica',         href: '/exames/avaliacao-pelvica' },
+      { label: 'Preparos para Exames',      href: '/exames/preparos' },
     ],
   },
   { label: 'ISO 9001', href: '/gestao-da-qualidade' },
@@ -88,25 +89,50 @@ export const ESPECIALIDADES: Especialidade[] = [
   },
 ]
 
+// ─── PDF por exame ────────────────────────────────────────────────────────────
+export const EXAM_PDFS: Record<string, string> = {
+  'manometria-esofagica':      '/pdfs/preparo-manometria-esofagica.pdf',
+  'manometria-anorretal':      '/pdfs/preparo-manometria-anorretal.pdf',
+  'phmetria-impedanciometria': '/pdfs/preparo-phmetria-impedanciometria.pdf',
+  'testes-respiratorios':      '/pdfs/preparo-teste-respiratorio-sibo-imo.pdf',
+  'halimetria-sialometria':    '/pdfs/preparo-halimetria-sialometria.pdf',
+  'avaliacao-pelvica':         '/pdfs/preparo-avaliacao-pelvica.pdf',
+}
+
 // ─── Exames ───────────────────────────────────────────────────────────────────
 export const EXAMES: Exame[] = [
   {
-    id: 'manometria', num: '01',
-    title: 'Manometria de Alta Resolução',
-    subtitle: 'Esofágica e Anorretal',
+    id: 'manometria-esofagica', num: '01',
+    title: 'Manometria Esofágica',
+    subtitle: 'Alta Resolução — Esôfago',
     tag: 'Alta Resolução',
     desc: [
-      'Avalia com precisão a motilidade do esôfago e a função dos esfíncteres, sendo essencial no diagnóstico de acalasia, disfagia, refluxo e constipação refratária.',
-      'Equipamentos de última geração com mapeamento completo da pressão esofágica e laudos emitidos por especialistas certificados ISO 9001.',
+      'Avalia com precisão a motilidade do esôfago e a função do esfíncter esofágico inferior, sendo essencial no diagnóstico de acalasia, disfagia e refluxo gastroesofágico.',
+      'Equipamentos de última geração com mapeamento completo da pressão esofágica em alta resolução. Laudos emitidos por especialistas certificados ISO 9001.',
     ],
     info: [
-      { icon: 'Clock',   text: 'Duração: 30–60 minutos por exame' },
+      { icon: 'Clock',   text: 'Duração: 30–45 minutos' },
       { icon: 'Shield',  text: 'Certificação ISO 9001 — padrão internacional' },
       { icon: 'Check',   text: 'Preparo específico · sem sedação' },
     ],
   },
   {
-    id: 'phmetria-impedanciometria', num: '02',
+    id: 'manometria-anorretal', num: '02',
+    title: 'Manometria Anorretal',
+    subtitle: 'Alta Resolução — Canal Anal',
+    tag: 'Alta Resolução',
+    desc: [
+      'Avalia a função dos esfíncteres do canal anal e reto, sendo fundamental no diagnóstico de incontinência fecal, constipação crônica e distúrbios do assoalho pélvico.',
+      'Protocolo completo com biofeedback integrado. Equipamentos de última geração com laudos certificados ISO 9001.',
+    ],
+    info: [
+      { icon: 'Clock',   text: 'Duração: 30–45 minutos' },
+      { icon: 'Shield',  text: 'Certificação ISO 9001 — padrão internacional' },
+      { icon: 'Check',   text: 'Preparo com enema · sem sedação' },
+    ],
+  },
+  {
+    id: 'phmetria-impedanciometria', num: '03',
     title: 'pHmetria e Impedânciometria',
     subtitle: 'Monitoramento 24h',
     tag: 'Monitoramento 24h',
@@ -120,7 +146,7 @@ export const EXAMES: Exame[] = [
     ],
   },
   {
-    id: 'testes-respiratorios', num: '03',
+    id: 'testes-respiratorios', num: '04',
     title: 'Testes Respiratórios',
     subtitle: 'H₂ · CH₄ · H₂S · H. pylori',
     tag: 'Não Invasivo',
@@ -134,7 +160,7 @@ export const EXAMES: Exame[] = [
     ],
   },
   {
-    id: 'halimetria-sialometria', num: '04',
+    id: 'halimetria-sialometria', num: '05',
     title: 'Halimetria e Sialometria',
     subtitle: 'Diagnóstico de Halitose',
     tag: 'Diagnóstico Preciso',
@@ -147,7 +173,7 @@ export const EXAMES: Exame[] = [
     ],
   },
   {
-    id: 'avaliacao-pelvica', num: '05',
+    id: 'avaliacao-pelvica', num: '06',
     title: 'Avaliação Pélvica',
     subtitle: 'Biofeedback e Eletromiografia',
     tag: 'Especialidade Integrada',

@@ -59,7 +59,7 @@ export default function GestaoQualidadePage() {
             <h2 className="sec-title mt-2 mb-5">
               O padrão <em>internacional</em> de excelência
             </h2>
-            <div className="space-y-4 text-[0.88rem] font-light text-muted leading-[1.85]">
+            <div className="space-y-4 text-[0.97rem] font-light text-muted leading-[1.85]">
               <p>
                 A ISO 9001 é a norma internacional mais reconhecida para sistemas de gestão da qualidade,
                 publicada pela International Organization for Standardization (ISO). Ela estabelece
@@ -72,7 +72,7 @@ export default function GestaoQualidadePage() {
                 documentados, auditados externamente e em constante melhoria.
               </p>
               <p>
-                <strong className="text-white font-medium">Somos a única clínica do segmento
+                <strong className="text-steel font-medium">Somos a única clínica do segmento
                 de gastroenterologia e diagnóstico digestivo em Belo Horizonte</strong> a possuir
                 esta certificação, o que representa um diferencial concreto de segurança e
                 confiança para nossos pacientes e parceiros.
@@ -81,7 +81,7 @@ export default function GestaoQualidadePage() {
 
             {/* Credential */}
             <div className="mt-8 border-l-2 border-gold bg-gold-dim rounded-r-lg px-5 py-4">
-              <strong className="block text-[0.82rem] font-semibold text-white mb-1">
+              <strong className="block text-[0.9rem] font-semibold text-steel mb-1">
                 NUVEM MEDICINA · {CONTATO.crmClinica}
               </strong>
               <span className="text-[0.72rem] text-muted">
@@ -100,12 +100,12 @@ export default function GestaoQualidadePage() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {PRINCIPIOS.map(({ Icon, title, desc }, i) => (
-            <div key={title} className={`bg-deep border border-teal-light/[0.08] rounded-xl p-7 hover:border-gold/25 transition-all reveal reveal-d${i % 3}`}>
+            <div key={title} className={`bg-white border border-teal/10 rounded-2xl shadow-sm p-7 hover:border-gold/25 transition-all reveal reveal-d${i % 3}`}>
               <div className="w-11 h-11 rounded-lg bg-gold-dim border border-gold/25 flex items-center justify-center text-gold mb-5">
                 <Icon className="w-5 h-5" />
               </div>
-              <h3 className="text-[0.92rem] font-semibold text-white mb-2.5">{title}</h3>
-              <p className="text-[0.8rem] font-light text-muted leading-[1.75]">{desc}</p>
+              <h3 className="text-[0.92rem] font-semibold text-steel mb-2.5">{title}</h3>
+              <p className="text-[0.9rem] font-light text-muted leading-[1.75]">{desc}</p>
             </div>
           ))}
         </div>
@@ -119,7 +119,7 @@ export default function GestaoQualidadePage() {
             <h2 className="sec-title reveal reveal-d1">
               Benefícios <em>concretos</em> da certificação
             </h2>
-            <p className="text-[0.88rem] font-light text-muted leading-[1.85] mt-5 reveal reveal-d2">
+            <p className="text-[0.97rem] font-light text-muted leading-[1.85] mt-5 reveal reveal-d2">
               Quando você escolhe a NU.V.E.M Medicina, não está apenas escolhendo um médico —
               está escolhendo um sistema completo de qualidade que garante consistência,
               segurança e melhoria em cada visita.
@@ -127,7 +127,7 @@ export default function GestaoQualidadePage() {
           </div>
           <div className="space-y-3 reveal reveal-d2">
             {BENEFICIOS.map((b, i) => (
-              <div key={b} className={`flex items-start gap-3 text-[0.83rem] text-muted reveal reveal-d${Math.min(i, 4)}`}>
+              <div key={b} className={`flex items-start gap-3 text-[0.92rem] text-muted reveal reveal-d${Math.min(i, 4)}`}>
                 <span className="w-[18px] h-px bg-gold shrink-0 mt-3" />
                 {b}
               </div>
@@ -141,7 +141,7 @@ export default function GestaoQualidadePage() {
         <div className="max-w-3xl mx-auto text-center">
           <p className="sec-tag justify-center reveal">Biossegurança</p>
           <h2 className="sec-title reveal reveal-d1">Procedimentos Operacionais <em>Padrão</em></h2>
-          <p className="text-[0.88rem] font-light text-muted leading-[1.85] mt-5 mb-8 reveal reveal-d2">
+          <p className="text-[0.97rem] font-light text-muted leading-[1.85] mt-5 mb-8 reveal reveal-d2">
             Todos os procedimentos de biossegurança da NU.V.E.M seguem os Procedimentos
             Operacionais Padrão (POPs) documentados e aprovados conforme a ISO 9001.
             Equipamentos são higienizados, esterilizados e rastreados entre cada uso,
@@ -149,7 +149,7 @@ export default function GestaoQualidadePage() {
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 reveal reveal-d3">
             {['Higienização certificada', 'Rastreabilidade de equipamentos', 'Treinamento contínuo da equipe'].map(item => (
-              <div key={item} className="bg-deep border border-teal-light/[0.08] rounded-xl p-5 text-[0.82rem] text-muted">
+              <div key={item} className="bg-white border border-teal/10 rounded-2xl shadow-sm p-5 text-[0.9rem] text-muted">
                 <span className="block w-5 h-px bg-gold mb-3" />
                 {item}
               </div>

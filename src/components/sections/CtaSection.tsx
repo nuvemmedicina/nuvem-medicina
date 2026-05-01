@@ -6,27 +6,32 @@ const waMsg = encodeURIComponent('Olá! Gostaria de agendar uma consulta na NU.V
 export function CtaSection() {
   return (
     <section
-      className="py-28 text-center relative overflow-hidden border-t border-teal-light/[0.06]"
+      className="py-28 text-center relative overflow-hidden border-t border-teal/8"
       id="agendar"
-      style={{ background: 'linear-gradient(160deg, #00293A 0%, #030A0F 100%)' }}
+      style={{ background: '#363636' }}
     >
+      {/* Dark grid overlay */}
+      <div className="absolute inset-0 dark-grid-bg pointer-events-none" />
+
       {/* Radial glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none"
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none"
         style={{ background: 'radial-gradient(circle, rgba(0,70,95,.35) 0%, transparent 70%)' }}
       />
 
       <div className="relative z-10 max-w-[1240px] mx-auto px-8">
         <div className="reveal">
-          <p className="inline-block text-[0.7rem] font-bold tracking-[.16em] uppercase text-gold mb-5">
+          <p className="inline-block text-[0.75rem] font-bold tracking-[.16em] uppercase text-gold mb-5">
             Agendar Consulta
           </p>
-          <h2 className="font-serif font-light text-white leading-tight mb-4"
-            style={{ fontSize: 'clamp(2rem, 4vw, 3.4rem)' }}
+          <h2
+            className="font-serif font-light text-white leading-tight mb-4"
+            style={{ fontSize: 'clamp(2.2rem, 4vw, 3.6rem)' }}
           >
             Cuide da sua saúde digestiva<br />
             com quem entende <em className="italic text-gold" style={{ fontStyle: 'italic' }}>de verdade</em>
           </h2>
-          <p className="text-[0.9rem] font-light text-muted max-w-[500px] mx-auto mb-11 leading-[1.85]">
+          <p className="text-[0.98rem] font-light text-white/60 max-w-[520px] mx-auto mb-11 leading-[1.85]">
             Entre em contato para agendar sua consulta ou solicitar informações sobre nossos programas de ensino.
           </p>
 
@@ -41,7 +46,7 @@ export function CtaSection() {
               </svg>
               Falar no WhatsApp
             </a>
-            <a href={`tel:${CONTATO.telefone.replace(/\D/g, '')}`} className="btn-ghost">
+            <a href={`tel:${CONTATO.telefone.replace(/\D/g, '')}`} className="btn-ghost-dark">
               <Phone className="w-4 h-4" />
               {CONTATO.telefone}
             </a>
@@ -52,7 +57,7 @@ export function CtaSection() {
               { Icon: MapPin, text: `${CONTATO.endereco} · ${CONTATO.bairro}` },
               { Icon: Clock,  text: CONTATO.horario },
             ].map(({ Icon, text }) => (
-              <div key={text} className="flex items-center gap-2.5 text-[0.82rem] text-muted">
+              <div key={text} className="flex items-center gap-2.5 text-[0.9rem] text-white/55">
                 <Icon className="w-4 h-4 text-gold shrink-0" />
                 {text}
               </div>

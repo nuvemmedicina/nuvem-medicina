@@ -87,13 +87,13 @@ export default function DraElianePage() {
         desc="Cirurgiã Pediátrica · Especialista em Manometria Anorretal · Sócia Fundadora da NU.V.E.M Medicina"
       />
 
-      <SectionWrapper dark>
+      <SectionWrapper dark grid>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
 
           {/* Left */}
           <div className="space-y-5 reveal">
             <div className="relative">
-              <div className="w-full aspect-square max-w-[280px] mx-auto rounded-2xl overflow-hidden border-2 border-gold/30">
+              <div className="w-full aspect-square max-w-[280px] mx-auto rounded-2xl overflow-hidden border-2 border-teal/20">
                 <Image
                   src="/images/dra-eliane.jpg"
                   alt="Dra. Eliane Basques Moura"
@@ -105,34 +105,34 @@ export default function DraElianePage() {
               <div className="absolute bottom-0 left-0 right-0 max-w-[280px] mx-auto h-1 gold-line rounded-b-2xl" />
             </div>
 
-            <div className="bg-ink border border-teal-light/[0.08] rounded-xl p-6 space-y-4">
+            <div className="bg-white border border-teal/10 rounded-xl p-6 space-y-4 shadow-sm">
               <div>
-                <h2 className="text-[1.1rem] font-semibold text-white">Dra. Eliane Basques</h2>
-                <p className="text-[0.82rem] text-gold mt-1">Cirurgiã Pediátrica · Manometria Anorretal</p>
+                <h2 className="text-[1.1rem] font-semibold text-steel">Dra. Eliane Basques</h2>
+                <p className="text-[0.9rem] text-teal mt-1">Cirurgiã Pediátrica · Manometria Anorretal</p>
               </div>
-              <div className="space-y-2 text-[0.78rem] text-muted">
+              <div className="space-y-2 text-[0.78rem] text-steel/60">
                 <div className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-gold/60 shrink-0" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-teal/50 shrink-0" />
                   CRM-MG 27601
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-gold/60 shrink-0" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-teal/50 shrink-0" />
                   RQE 9324
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-gold/60 shrink-0" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-teal/50 shrink-0" />
                   Sócia Fundadora · NU.V.E.M
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-gold/60 shrink-0" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-teal/50 shrink-0" />
                   Diretora Técnica Substituta
                 </div>
               </div>
-              <div className="flex items-center gap-3 pt-2 border-t border-teal-light/[0.08]">
+              <div className="flex items-center gap-3 pt-2 border-t border-teal/10">
                 <IsoSeal size={40} />
                 <div>
-                  <p className="text-[0.72rem] font-semibold text-white">ISO 9001</p>
-                  <p className="text-[0.65rem] text-faint">Diretora Técnica Substituta</p>
+                  <p className="text-[0.72rem] font-semibold text-steel">ISO 9001</p>
+                  <p className="text-[0.65rem] text-steel/40">Diretora Técnica Substituta</p>
                 </div>
               </div>
             </div>
@@ -145,7 +145,7 @@ export default function DraElianePage() {
               <h2 className="sec-title mt-2 mb-5">
                 Expertise única em <em>manometria anorretal</em>
               </h2>
-              <div className="space-y-4 text-[0.88rem] font-light text-muted leading-[1.85]">
+              <div className="space-y-4 text-[0.97rem] font-light text-steel/60 leading-[1.85]">
                 <p>
                   A Dra. Eliane Basques Moura é cirurgiã pediátrica e especialista em manometria
                   anorretal, com formação sólida pelo Hospital das Clínicas da UFMG e Título de
@@ -167,11 +167,11 @@ export default function DraElianePage() {
             </div>
 
             <div className="reveal reveal-d2">
-              <p className="text-[0.72rem] font-bold uppercase tracking-[.1em] text-faint mb-3">Áreas de atuação</p>
+              <p className="text-[0.72rem] font-bold uppercase tracking-[.1em] text-steel/45 mb-3">Áreas de atuação</p>
               <div className="flex flex-wrap gap-2">
                 {AREAS.map(area => (
                   <span key={area}
-                    className="text-[0.72rem] font-medium px-3 py-1.5 rounded-full bg-teal-light/[0.06] border border-teal-light/10 text-muted hover:border-gold/30 hover:text-white transition-all">
+                    className="text-[0.72rem] font-medium px-3 py-1.5 rounded-full bg-teal/8 border border-teal/10 text-steel/60 hover:border-teal/30 hover:text-teal transition-all">
                     {area}
                   </span>
                 ))}
@@ -196,21 +196,21 @@ export default function DraElianePage() {
         <div className="space-y-4 max-w-3xl mx-auto">
           {FORMACAO.map((f, i) => (
             <div key={f.titulo}
-              className={`flex items-start gap-5 bg-deep border border-teal-light/[0.08] rounded-xl p-6 hover:border-gold/25 transition-all reveal reveal-d${i % 3}`}>
-              <div className="w-11 h-11 rounded-lg bg-gold-dim border border-gold/25 flex items-center justify-center text-gold shrink-0">
+              className={`flex items-start gap-5 bg-white border border-teal/10 rounded-2xl shadow-sm p-6 hover:border-teal/25 transition-all reveal reveal-d${i % 3}`}>
+              <div className="w-11 h-11 rounded-lg bg-teal/8 border border-teal/20 flex items-center justify-center text-teal shrink-0">
                 <f.icon className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="text-[0.95rem] font-semibold text-white mb-1">{f.titulo}</h3>
-                <p className="text-[0.82rem] text-gold mb-1">{f.inst}</p>
-                <p className="text-[0.78rem] text-faint leading-relaxed">{f.detalhe}</p>
+                <h3 className="text-[0.95rem] font-semibold text-steel mb-1">{f.titulo}</h3>
+                <p className="text-[0.9rem] text-teal mb-1">{f.inst}</p>
+                <p className="text-[0.78rem] text-steel/45 leading-relaxed">{f.detalhe}</p>
               </div>
             </div>
           ))}
         </div>
       </SectionWrapper>
 
-      <SectionWrapper dark>
+      <SectionWrapper dark grid>
         <div className="text-center mb-12">
           <p className="sec-tag justify-center reveal">Trajetória Profissional</p>
           <h2 className="sec-title reveal reveal-d1">Experiência e <em>Atuação</em></h2>
@@ -218,15 +218,15 @@ export default function DraElianePage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-4xl mx-auto">
           {EXPERIENCIA.map((e, i) => (
             <div key={e.cargo}
-              className={`bg-ink border rounded-xl p-7 hover:-translate-y-0.5 transition-all reveal reveal-d${i % 2} ${e.destaque ? 'border-gold/25 md:col-span-2' : 'border-teal-light/[0.08]'}`}>
+              className={`bg-white border rounded-xl p-7 shadow-sm hover:-translate-y-0.5 transition-all reveal reveal-d${i % 2} ${e.destaque ? 'border-teal/20 md:col-span-2' : 'border-teal/10'}`}>
               {e.destaque && (
-                <span className="inline-block text-[0.65rem] font-bold tracking-[.12em] uppercase text-gold bg-gold-dim border border-gold-line px-2.5 py-0.5 rounded-full mb-3">
+                <span className="inline-block text-[0.65rem] font-bold tracking-[.12em] uppercase text-teal bg-teal/8 border border-teal/20 px-2.5 py-0.5 rounded-full mb-3">
                   Cargo Principal
                 </span>
               )}
-              <h3 className="text-[0.95rem] font-semibold text-white mb-1">{e.cargo}</h3>
-              <p className="text-[0.82rem] text-gold mb-3">{e.local}</p>
-              <p className="text-[0.82rem] font-light text-muted leading-[1.75]">{e.desc}</p>
+              <h3 className="text-[0.95rem] font-semibold text-steel mb-1">{e.cargo}</h3>
+              <p className="text-[0.9rem] text-teal mb-3">{e.local}</p>
+              <p className="text-[0.9rem] font-light text-steel/60 leading-[1.75]">{e.desc}</p>
             </div>
           ))}
         </div>
@@ -236,10 +236,10 @@ export default function DraElianePage() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 max-w-3xl mx-auto">
           <div>
             <p className="sec-tag reveal">Nossa Equipe</p>
-            <h3 className="text-[1.3rem] font-serif font-light text-white mt-1 reveal reveal-d1">
-              Conheça também a <em className="text-gold italic">Dra. Vera Ângelo</em>
+            <h3 className="text-[1.3rem] font-serif font-light text-steel mt-1 reveal reveal-d1">
+              Conheça também a <em className="text-teal italic">Dra. Vera Ângelo</em>
             </h3>
-            <p className="text-[0.85rem] text-muted mt-2 reveal reveal-d2">
+            <p className="text-[0.93rem] text-steel/60 mt-2 reveal reveal-d2">
               Diretora Técnica · Gastroenterologista · Doutora pela UFMG
             </p>
           </div>

@@ -37,10 +37,10 @@ export function AgendarForm() {
   }
 
   const inputCls = (key: string) =>
-    `w-full bg-ink border rounded-lg px-4 py-3 text-[0.85rem] text-white placeholder-faint outline-none transition-all ${
+    `w-full bg-white border rounded-lg px-4 py-3 text-[0.93rem] text-steel placeholder-faint outline-none transition-all ${
       errors[key]
         ? 'border-red-500/60 focus:border-red-400'
-        : 'border-teal-light/15 focus:border-teal-light/40 focus:bg-deep'
+        : 'border-teal/15 focus:border-teal/40 focus:bg-cloud'
     }`
 
   if (sent) return (
@@ -50,8 +50,8 @@ export function AgendarForm() {
           <polyline points="20 6 9 17 4 12"/>
         </svg>
       </div>
-      <h3 className="text-white font-semibold mb-2">Solicitação enviada!</h3>
-      <p className="text-[0.82rem] text-muted">Abrindo WhatsApp para confirmar o agendamento…</p>
+      <h3 className="text-steel font-semibold mb-2">Solicitação enviada!</h3>
+      <p className="text-[0.9rem] text-muted">Abrindo WhatsApp para confirmar o agendamento…</p>
     </div>
   )
 
@@ -108,7 +108,7 @@ export function AgendarForm() {
         />
       </div>
 
-      <div className="flex items-start gap-2 p-3 bg-teal-light/[0.03] border border-teal-light/[0.07] rounded-lg text-[0.72rem] text-faint">
+      <div className="flex items-start gap-2 p-3 bg-teal/5 border border-teal/10 rounded-lg text-[0.72rem] text-faint">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4 text-teal-mid shrink-0 mt-0.5">
           <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
         </svg>
