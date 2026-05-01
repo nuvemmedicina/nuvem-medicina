@@ -184,9 +184,9 @@ export function NuveteChat() {
             <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-gold text-ink text-[0.6rem] font-bold flex items-center justify-center shadow-lg">{unread}</span>
           )}
         </div>
-        <div className="bg-deep border border-teal-light/20 rounded-xl px-3.5 py-2 shadow-xl hidden sm:block">
-          <p className="text-[0.72rem] font-semibold text-white">Nuvete</p>
-          <p className="text-[0.65rem] text-muted">Posso te ajudar 💙</p>
+        <div className="bg-white border border-teal/15 rounded-xl px-3.5 py-2 shadow-xl hidden sm:block">
+          <p className="text-[0.72rem] font-semibold text-steel">Nuvete</p>
+          <p className="text-[0.65rem] text-steel/50">Posso te ajudar 💙</p>
         </div>
       </button>
 
@@ -195,20 +195,20 @@ export function NuveteChat() {
           open ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-90 translate-y-4 pointer-events-none')}
         style={{ maxHeight: 'calc(100vh - 7rem)' }}
       >
-        <div className="flex flex-col bg-deep border border-teal-light/10 rounded-2xl overflow-hidden shadow-2xl" style={{ maxHeight: 'inherit' }}>
-          <div className="flex items-center gap-3 px-4 py-3 border-b border-teal-light/[0.08] shrink-0"
-            style={{ background: 'linear-gradient(135deg, #071520, #00293A)' }}>
+        <div className="flex flex-col bg-white border border-teal/12 rounded-2xl overflow-hidden shadow-2xl" style={{ maxHeight: 'inherit' }}>
+          <div className="flex items-center gap-3 px-4 py-3 border-b border-teal/10 shrink-0"
+            style={{ background: 'linear-gradient(135deg, #00465F, #0e7fa5)' }}>
             <NuveteAvatar size={40} />
             <div className="flex-1 min-w-0">
               <p className="text-[0.88rem] font-semibold text-white">Nuvete</p>
-              <p className="text-[0.68rem] text-muted">Assistente da NU.V.E.M Medicina</p>
+              <p className="text-[0.68rem] text-white/65">Assistente da NU.V.E.M Medicina</p>
             </div>
             <div className="flex items-center gap-1.5 mr-2">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="text-[0.65rem] text-muted">Online</span>
+              <span className="text-[0.65rem] text-white/65">Online</span>
             </div>
             <button onClick={() => setOpen(false)}
-              className="w-7 h-7 rounded-lg flex items-center justify-center text-faint hover:text-white hover:bg-teal-light/10 transition-colors">
+              className="w-7 h-7 rounded-lg flex items-center justify-center text-white/50 hover:text-white hover:bg-white/15 transition-colors">
               <X className="w-4 h-4" />
             </button>
           </div>
@@ -218,7 +218,7 @@ export function NuveteChat() {
               <div className="flex flex-wrap gap-1.5 pb-1">
                 {NUVETE_TOPICOS.map(t => (
                   <button key={t.id} onClick={() => handleTopico(t)}
-                    className="text-[0.7rem] font-medium px-2.5 py-1.5 rounded-full bg-teal-light/[0.06] border border-teal-light/15 text-muted hover:border-gold/40 hover:text-gold transition-all">
+                    className="text-[0.7rem] font-medium px-2.5 py-1.5 rounded-full bg-cloud border border-teal/15 text-teal/70 hover:border-teal/35 hover:text-teal transition-all">
                     {t.emoji} {t.label}
                   </button>
                 ))}
@@ -228,20 +228,23 @@ export function NuveteChat() {
             <div ref={bottomRef} />
           </div>
 
-          <div className="px-4 py-1.5 border-t border-teal-light/[0.06] shrink-0">
-            <p className="text-[0.6rem] text-faint text-center">Assistente virtual — não realiza diagnósticos médicos</p>
+          <div className="px-4 py-1.5 border-t border-teal/8 shrink-0">
+            <p className="text-[0.6rem] text-steel/35 text-center">Assistente virtual — não realiza diagnósticos médicos</p>
           </div>
 
           <div className="px-3 pb-3 shrink-0">
-            <div className="flex items-center gap-2 bg-ink border border-teal-light/15 rounded-xl px-3 py-2 focus-within:border-teal-light/35 transition-colors">
+            <div className="flex items-center gap-2 bg-cloud border border-teal/15 rounded-xl px-3 py-2 focus-within:border-teal/35 transition-colors">
               <input ref={inputRef} type="text" value={input}
                 onChange={e => setInput(e.target.value)}
                 onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSend() } }}
                 placeholder="Escreva sua dúvida..." disabled={loading}
-                className="flex-1 bg-transparent text-[0.82rem] text-white placeholder:text-faint outline-none min-w-0" />
+                className="flex-1 bg-transparent text-[0.82rem] text-steel placeholder:text-steel/40 outline-none min-w-0" />
               <button onClick={handleSend} disabled={!input.trim() || loading}
                 className={cn('w-7 h-7 rounded-lg flex items-center justify-center transition-all shrink-0',
-                  input.trim() && !loading ? 'bg-gold text-ink hover:scale-110' : 'bg-teal-light/10 text-faint cursor-not-allowed')}>
+                  input.trim() && !loading
+                    ? 'text-white hover:scale-110'
+                    : 'bg-teal/10 text-steel/30 cursor-not-allowed')}
+                style={input.trim() && !loading ? { background: 'linear-gradient(135deg,#00465F,#0e7fa5)' } : undefined}>
                 {loading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Send className="w-3.5 h-3.5" />}
               </button>
             </div>
