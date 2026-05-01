@@ -107,7 +107,7 @@ export function HeroSection() {
 
           {/* ── RIGHT PANEL ──────────────────────── */}
           <div className="opacity-0 animate-[fadeUp_.9s_.5s_var(--ease-out)_forwards]">
-            <div className="relative bg-teal-light/20 border border-teal/12 rounded-[20px] p-9 overflow-hidden">
+            <div className="relative border border-teal/15 rounded-[20px] p-9 overflow-hidden" style={{ background: 'rgba(203,228,230,0.42)' }}>
               {/* Top teal line */}
               <div className="absolute top-0 left-0 right-0 h-[3px] rounded-t-[20px]" style={{ background: 'linear-gradient(90deg, transparent, rgba(0,70,95,.3), transparent)' }} />
 
@@ -178,11 +178,6 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-9 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-steel/30 text-[0.68rem] tracking-[.12em] uppercase opacity-0 animate-[fadeUp_1s_1.5s_both]">
-        <span>Explorar</span>
-        <div className="w-px h-12 animate-scroll-bar" style={{ background: 'linear-gradient(to bottom, #00465F, transparent)' }} />
-      </div>
     </section>
   )
 }
