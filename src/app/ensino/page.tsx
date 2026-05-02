@@ -37,7 +37,7 @@ const INSTRUTORES = [
     crm:   'CRM-MG 22284 · RQE 10411 · RQE 22736',
     foto:  '/images/dra-vera.jpg',
     role:  'Fundadora e Diretora Técnica',
-    bio:   'Mestre e Doutora pela UFMG. Professora convidada do Hospital Israelita Albert Einstein. Autora de 3 livros pela Editora Rubio. Referência nacional em testes respiratórios e motilidade digestiva.',
+    bio:   'Mestre e Doutora pela UFMG. Professora convidada do Hospital Israelita Albert Einstein. Autora de diversas obras pela Editora Rubio. Referência nacional em testes respiratórios e motilidade digestiva.',
     href:  '/equipe/dra-vera',
   },
   {

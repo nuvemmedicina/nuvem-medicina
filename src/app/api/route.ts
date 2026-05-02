@@ -37,7 +37,7 @@ DRA. VERA ÂNGELO — Sócia Fundadora e Diretora Técnica
 - Mestre e Doutora em Patologia pela UFMG
 - Título de Especialista pela Federação Brasileira de Gastroenterologia
 - Professora convidada do Hospital Israelita Albert Einstein (pós-graduação em Doenças Funcionais e Manometria)
-- Autora de 3 livros pela Editora Rubio — obras de referência sobre motilidade digestiva e testes respiratórios
+- Autora de diversas obras pela Editora Rubio, com destaque para os três lançamentos mais recentes sobre motilidade digestiva e testes respiratórios
 - Sócia Titular do GEDIIB e da Sociedade Brasileira de Motilidade Digestiva
 - Referência nacional em testes respiratórios, SIBO e motilidade digestiva
 - Criadora do ecossistema NU.V.E.M (assistência + ensino)

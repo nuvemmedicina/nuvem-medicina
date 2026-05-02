@@ -20,7 +20,7 @@ const SOCIAS = [
     foto:  '/images/dra-vera.jpg',
     slug:  'dra-vera',
     areas: ['SIBO / IMO', 'Testes Respiratórios', 'Motilidade Digestiva', 'DGBI'],
-    bio:   'Mestre e Doutora pela UFMG. Professora convidada do Hospital Israelita Albert Einstein. Autora de 3 livros pela Editora Rubio. Referência nacional em testes respiratórios e motilidade digestiva.',
+    bio:   'Mestre e Doutora pela UFMG. Professora convidada do Hospital Israelita Albert Einstein. Autora de diversas obras pela Editora Rubio. Referência nacional em testes respiratórios e motilidade digestiva.',
   },
   {
     nome:  'Dra. Eliane Basques',
