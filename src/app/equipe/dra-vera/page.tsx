@@ -199,9 +199,9 @@ export default function DraVeraPage() {
                   Fundadora da NU.V.E.M Medicina, criou um ecossistema único que integra
                   assistência clínica de excelência com formação profissional avançada.
                   Professora convidada do Hospital Israelita Albert Einstein no programa de
-                  pós-graduação em Doenças Funcionais e Manometria, é autora de três livros
-                  pela Editora Rubio, obras de referência utilizadas em programas de
-                  formação em todo o Brasil.
+                  pós-graduação em Doenças Funcionais e Manometria, é autora de diversas obras
+                  pela Editora Rubio, sendo os três lançamentos mais recentes destaques em
+                  programas de formação em todo o Brasil.
                 </p>
                 <p>
                   Sócia Titular do GEDIIB e da Sociedade Brasileira de Motilidade Digestiva,

@@ -164,7 +164,7 @@ export const NUVETE_RESPOSTAS: NuveteResposta[] = [
   // ── Médicas ──────────────────────────────────────────────────────────────────
   {
     gatilhos: ['dra vera', 'vera ângelo', 'vera angelo', 'dr vera', 'diretora técnica', 'fundadora', 'vera'],
-    resposta: '👩‍⚕️ **Dra. Vera Ângelo**\nGastroenterologista · Sócia Fundadora da NU.V.E.M\n\n🎓 Mestre e Doutora em Patologia pela UFMG\n📜 Título de Especialista pela Federação Brasileira de Gastroenterologia\n📚 Professora convidada do Hospital Israelita Albert Einstein\n✍️ Autora de 3 livros pela Editora Rubio\n🔬 Referência nacional em testes respiratórios e motilidade digestiva\n\n**CRM-MG 22284 · RQE 10411 · RQE 22736**',
+    resposta: '👩‍⚕️ **Dra. Vera Ângelo**\nGastroenterologista · Sócia Fundadora da NU.V.E.M\n\n🎓 Mestre e Doutora em Patologia pela UFMG\n📜 Título de Especialista pela Federação Brasileira de Gastroenterologia\n📚 Professora convidada do Hospital Israelita Albert Einstein\n✍️ Autora de diversas obras pela Editora Rubio\n🔬 Referência nacional em testes respiratórios e motilidade digestiva\n\n**CRM-MG 22284 · RQE 10411 · RQE 22736**',
     botoes: [
       { label: '👩‍⚕️ Ver perfil completo', acao: 'link:/equipe/dra-vera' },
       { label: '📅 Agendar com a Dra. Vera', acao: 'whatsapp' },
