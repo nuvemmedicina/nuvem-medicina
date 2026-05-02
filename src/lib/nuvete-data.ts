@@ -161,7 +161,7 @@ export type NuveteResposta = {
 
 export const NUVETE_RESPOSTAS: NuveteResposta[] = [
 
-  // ── Médicas ──────────────────────────────────────────────────────────────────
+  // ── Médicas e equipe ─────────────────────────────────────────────────────────
   {
     gatilhos: ['dra vera', 'vera ângelo', 'vera angelo', 'dr vera', 'diretora técnica', 'fundadora', 'vera'],
     resposta: '👩‍⚕️ **Dra. Vera Ângelo**\nGastroenterologista · Sócia Fundadora da NU.V.E.M\n\n🎓 Mestre e Doutora em Patologia pela UFMG\n📜 Título de Especialista pela Federação Brasileira de Gastroenterologia\n📚 Professora convidada do Hospital Israelita Albert Einstein\n✍️ Autora de diversas obras pela Editora Rubio\n🔬 Referência nacional em testes respiratórios e motilidade digestiva\n\n**CRM-MG 22284 · RQE 10411 · RQE 22736**',
@@ -179,8 +179,64 @@ export const NUVETE_RESPOSTAS: NuveteResposta[] = [
     ],
   },
   {
+    gatilhos: ['felipe', 'dr. felipe', 'dr felipe', 'felipe nelson'],
+    resposta: '👨‍⚕️ **Dr. Felipe Nelson**\nGastroenterologia e Motilidade Digestiva\n\nEspecialista em manometria esofágica, pHmetria e diagnóstico do refluxo. Integra a equipe da NU.V.E.M com foco nos exames funcionais do aparelho digestivo superior.',
+    botoes: [
+      { label: '👥 Ver toda a equipe', acao: 'link:/equipe' },
+      { label: '📅 Agendar consulta', acao: 'whatsapp' },
+    ],
+  },
+  {
+    gatilhos: ['anna karoline', 'anna', 'karoline', 'fisioterapeuta'],
+    resposta: '👩‍⚕️ **Dra. Anna Karoline**\nFisioterapia Pélvica\n\nEspecialista em assoalho pélvico, biofeedback eletromiográfico e tratamento de incontinência. Realiza avaliações completas com equipamentos de EMG de superfície.',
+    botoes: [
+      { label: '🩺 Saiba mais sobre Fisioterapia Pélvica', acao: 'link:/especialidades/fisioterapia-pelvica' },
+      { label: '📅 Agendar avaliação', acao: 'whatsapp' },
+    ],
+  },
+  {
+    gatilhos: ['claudia utsch', 'claudia', 'danielle martins', 'danielle', 'larissa veiga', 'larissa'],
+    resposta: '👩‍⚕️ **Equipe de Gastroenterologia:**\n\n- **Dra. Claudia Utsch** — Gastroenterologia Clínica\n- **Dra. Danielle Martins** — Gastroenterologia e DGBI\n- **Dra. Larissa Veiga Raña** — Gastroenterologia Clínica\n\nAtuam em conjunto com a Dra. Vera Ângelo no atendimento de doenças digestivas.',
+    botoes: [
+      { label: '👥 Ver perfis completos', acao: 'link:/equipe' },
+      { label: '📅 Agendar consulta', acao: 'whatsapp' },
+    ],
+  },
+  {
+    gatilhos: ['camilla mendes', 'camilla', 'thiago guimarães', 'thiago guimaraes', 'thiago', 'clínica médica', 'clinica medica', 'hematologia'],
+    resposta: '👩‍⚕️ **Clínica Médica e Hematologia:**\n\n- **Dra. Camilla Mendes** — Clínica Médica e Medicina Interna\n- **Dr. Thiago Guimarães** — Clínica Médica e Hematologia\n\nAtuam no acompanhamento clínico integrado dos pacientes da NU.V.E.M.',
+    botoes: [
+      { label: '👥 Ver toda a equipe', acao: 'link:/equipe' },
+      { label: '📅 Agendar consulta', acao: 'whatsapp' },
+    ],
+  },
+  {
+    gatilhos: ['luiza auarek', 'luiza', 'nefrologista'],
+    resposta: '👩‍⚕️ **Dra. Luiza Auarek**\nNefrologia\n\nNefrologista responsável pelo cuidado da saúde renal integrado ao acompanhamento digestivo. Atende casos de doença renal crônica, nefrolitíase, hipertensão renal e alterações em exames.',
+    botoes: [
+      { label: '🩺 Saiba mais sobre Nefrologia', acao: 'link:/especialidades/nefrologia' },
+      { label: '📅 Agendar consulta', acao: 'whatsapp' },
+    ],
+  },
+  {
+    gatilhos: ['mariana fernandes', 'mariana'],
+    resposta: '👩‍⚕️ **Dra. Mariana Fernandes**\nPediatria\n\nPediatra especializada em saúde digestiva infantil. Atende crianças e adolescentes com constipação, dor abdominal recorrente, refluxo e problemas alimentares.',
+    botoes: [
+      { label: '🩺 Saiba mais sobre Pediatria', acao: 'link:/especialidades/pediatria' },
+      { label: '📅 Agendar consulta pediátrica', acao: 'whatsapp' },
+    ],
+  },
+  {
+    gatilhos: ['adrianna buzatti', 'adrianna', 'raissa dalat', 'raissa', 'cirurgiã pediátrica', 'cirurgia pediatrica'],
+    resposta: '👩‍⚕️ **Cirurgia Pediátrica:**\n\n- **Dra. Adrianna Buzatti Viana** — Cirurgia Pediátrica, casos complexos\n- **Dra. Raissa Dalat** — Cirurgia Pediátrica\n- **Dra. Eliane Basques Moura** — Diretora Técnica Substituta, especialista em manometria anorretal\n\nA equipe de cirurgia pediátrica atua de forma integrada com gastroenterologia e fisioterapia.',
+    botoes: [
+      { label: '👥 Ver toda a equipe', acao: 'link:/equipe' },
+      { label: '📅 Agendar consulta', acao: 'whatsapp' },
+    ],
+  },
+  {
     gatilhos: ['equipe', 'médicos', 'medicos', 'especialistas', 'quem atende', 'profissionais'],
-    resposta: '👩‍⚕️ **Nossa Equipe Multidisciplinar:**\n\n- **Dra. Vera Ângelo**, Gastroenterologista, fundadora e referência em motilidade digestiva\n- **Dra. Eliane Basques Moura**, Cirurgiã Pediátrica\n- Fisioterapeutas pélvicos especializados\n- Nefrologista\n- Pediatra\n- Especialistas em halitose\n\nTodos os profissionais atuam de forma integrada sob gestão ISO 9001 💙',
+    resposta: '👩‍⚕️ **Nossa Equipe Multidisciplinar:**\n\n**Sócias Fundadoras:**\n- Dra. Vera Ângelo — Gastroenterologia e Motilidade\n- Dra. Eliane Basques Moura — Cirurgia Pediátrica\n\n**Especialistas:**\n- Dr. Felipe Nelson — Gastroenterologia e Motilidade\n- Dra. Anna Karoline — Fisioterapia Pélvica\n- Dra. Claudia Utsch — Gastroenterologia\n- Dra. Danielle Martins — Gastroenterologia\n- Dra. Camilla Mendes — Clínica Médica\n- Dr. Thiago Guimarães — Clínica Médica e Hematologia\n- Dra. Luiza Auarek — Nefrologia\n- Dra. Mariana Fernandes — Pediatria\n- Dra. Adrianna Buzatti Viana — Cirurgia Pediátrica\n- Dra. Raissa Dalat — Cirurgia Pediátrica\n- Dra. Larissa Veiga Raña — Gastroenterologia\n\nTodos atuam de forma integrada sob gestão ISO 9001 💙',
     botoes: [
       { label: '👥 Conhecer toda a equipe', acao: 'link:/equipe' },
       { label: '📅 Agendar consulta', acao: 'whatsapp' },
@@ -288,6 +344,16 @@ export const NUVETE_RESPOSTAS: NuveteResposta[] = [
   {
     gatilhos: ['horário', 'horario', 'funciona', 'aberto', 'atende'],
     resposta: '🕐 **Horário de Atendimento:**\nSegunda a Sexta: 7h30 às 17h30\n\n📞 (31) 2537-3131\n📱 (31) 99726-1029',
+  },
+  {
+    gatilhos: ['teste respiratório', 'teste respiratorio', 'preparo respiratório', 'preparo respiratorio', 'exame respiratório', 'exame respiratorio'],
+    resposta: '💨 **Testes Respiratórios na NU.V.E.M:**\n\nRealizamos os seguintes testes, todos não invasivos e sem coleta de sangue:\n\n- 🔬 **SIBO** (H₂/CH₄/H₂S) — supercrescimento bacteriano\n- 🦠 ***H. pylori*** (UREA) — diagnóstico da bactéria\n- 💨 **Lactose** — intolerância à lactose\n- 💨 **Frutose** — intolerância à frutose\n\nPara qual exame você gostaria de ver o preparo?',
+    botoes: [
+      { label: '🔬 Preparo SIBO', acao: 'preparo:respiratorio-sibo' },
+      { label: '🦠 Preparo H. pylori', acao: 'preparo:respiratorio-hpylori' },
+      { label: '💨 Preparo Lactose/Frutose', acao: 'preparo:respiratorio-lactose' },
+      { label: '📅 Agendar exame', acao: 'whatsapp' },
+    ],
   },
   {
     gatilhos: ['sibo', 'supercrescimento', 'imo', 'libo'],
