@@ -157,7 +157,7 @@ export function NuveteChat() {
         .map(m => ({ role: m.role === 'user' ? 'user' : 'assistant', content: m.text }))
       history.push({ role: 'user', content: text })
 
-      const res = await fetch('/api/nuvete', {
+      const res = await fetch('/api', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ messages: history }),
@@ -197,7 +197,7 @@ export function NuveteChat() {
     <>
       <button
         onClick={() => setOpen(o => !o)}
-        className={cn('fixed bottom-7 left-7 z-50 flex items-center gap-2.5 transition-all duration-300',
+        className={cn('fixed bottom-7 left-7 z-[300] flex items-center gap-2.5 transition-all duration-300',
           open ? 'opacity-0 pointer-events-none scale-75' : 'opacity-100 scale-100')}
         aria-label="Abrir chat com a Nuvete"
       >
@@ -214,9 +214,9 @@ export function NuveteChat() {
       </button>
 
       <div
-        className={cn('fixed bottom-7 left-7 z-50 w-[370px] max-w-[calc(100vw-2rem)] transition-all duration-300 origin-bottom-left',
+        className={cn('fixed bottom-7 left-7 z-[300] w-[370px] max-w-[calc(100vw-2rem)] transition-all duration-300 origin-bottom-left',
           open ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-90 translate-y-4 pointer-events-none')}
-        style={{ maxHeight: 'calc(100vh - 7rem)' }}
+        style={{ maxHeight: 'calc(100dvh - 6rem)' }}
       >
         <div className="flex flex-col bg-white border border-teal/12 rounded-2xl overflow-hidden shadow-2xl" style={{ maxHeight: 'inherit' }}>
           <div className="flex items-center gap-3 px-4 py-3 border-b border-teal/10 shrink-0"

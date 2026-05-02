@@ -150,7 +150,7 @@ export default function GestaoQualidadePage() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 reveal reveal-d3">
             {['Higienização certificada', 'Rastreabilidade de equipamentos', 'Treinamento contínuo da equipe'].map(item => (
               <div key={item} className="bg-white border border-teal/10 rounded-2xl shadow-sm p-5 text-[0.9rem] text-steel/60">
-                <span className="block w-5 h-px bg-teal mb-3" />
+                <span className="block w-5 h-px bg-teal mb-3 mx-auto" />
                 {item}
               </div>
             ))}
