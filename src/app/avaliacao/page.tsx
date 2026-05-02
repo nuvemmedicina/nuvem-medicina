@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { AvaliacaoForm } from './AvaliacaoForm'
 import { IsoSeal }      from '@/components/icons/IsoSeal'
-import Image            from 'next/image'
 
 export const metadata: Metadata = {
   title:       'Avalie sua Experiência · NU.V.E.M Medicina',
@@ -14,13 +13,6 @@ export default function AvaliacaoPage() {
     <div className="min-h-screen bg-cloud flex flex-col">
       {/* Top gradient bar */}
       <div className="h-1 w-full" style={{ background: 'linear-gradient(90deg, #00465F, #0e7fa5)' }} />
-
-      {/* Header */}
-      <header className="flex justify-center pt-8 pb-6">
-        <a href="/" aria-label="NU.V.E.M Medicina — Página inicial">
-          <Image src="/images/logo.svg" alt="NU.V.E.M Medicina" width={140} height={40} className="h-10 w-auto" />
-        </a>
-      </header>
 
       {/* Main */}
       <main className="flex-1 flex items-center justify-center px-4 pb-16">
