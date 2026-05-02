@@ -19,7 +19,7 @@ const SOCIAS = [
     cargo: 'Sócia Fundadora · Diretora Técnica',
     foto:  '/images/dra-vera.jpg',
     slug:  'dra-vera',
-    areas: ['SIBO / IMO', 'Testes Respiratórios', 'Motilidade Digestiva', 'Doenças Funcionais'],
+    areas: ['SIBO / IMO', 'Testes Respiratórios', 'Motilidade Digestiva', 'DGBI'],
     bio:   'Mestre e Doutora pela UFMG. Professora convidada do Hospital Israelita Albert Einstein. Autora de 3 livros pela Editora Rubio. Referência nacional em testes respiratórios e motilidade digestiva.',
   },
   {
@@ -39,7 +39,7 @@ const EQUIPE = [
   { nome: 'Dra. Adrianna Buzatti Viana', esp: 'Cirurgia Pediátrica',            foto: '/images/adrianna-buzatti-viana.jpg', areas: ['Cirurgia Pediátrica', 'Casos Complexos'] },
   { nome: 'Dra. Claudia Utsch',          esp: 'Gastroenterologia',              foto: '/images/claudia-utsch.jpg',          areas: ['Gastroenterologia Clínica', 'Doenças Digestivas'] },
   { nome: 'Dra. Camilla Mendes',         esp: 'Clínica Médica',                 foto: '/images/camilla-mendes.jpg',         areas: ['Clínica Médica', 'Medicina Interna'] },
-  { nome: 'Dra. Danielle Martins',       esp: 'Gastroenterologia',              foto: '/images/danielle-martins.jpg',       areas: ['Gastroenterologia', 'Doenças Funcionais'] },
+  { nome: 'Dra. Danielle Martins',       esp: 'Gastroenterologia',              foto: '/images/danielle-martins.jpg',       areas: ['Gastroenterologia', 'DGBI'] },
   { nome: 'Dr. Felipe Nelson',           esp: 'Gastroenterologia e Motilidade', foto: '/images/felipe-nelson.jpg',          areas: ['Manometria', 'pHmetria', 'Refluxo'] },
   { nome: 'Dra. Larissa Veiga Raña',    esp: 'Gastroenterologia',              foto: '/images/larissa-veiga-rana.jpg',     areas: ['Gastroenterologia Clínica'] },
   { nome: 'Dra. Luiza Auarek',          esp: 'Nefrologia',                     foto: '/images/luiza-auarek.jpg',           areas: ['Nefrologia', 'Interface GI-Renal'] },
@@ -63,7 +63,7 @@ export default function EquipePage() {
       <PageHero
         tag="Nossa Equipe"
         title={<>Especialistas unidos pelo <em>cuidado</em></>}
-        desc="Uma equipe multidisciplinar de excelência — gastroenterologistas, fisioterapeuta pélvica, cirurgiãs, nefrologista, pediatra e clínicos, unidos pelo padrão ISO 9001."
+        desc="Uma equipe multidisciplinar de excelência: gastroenterologistas, fisioterapeuta pélvica, cirurgiãs, nefrologista, pediatra e clínicos, unidos pelo padrão ISO 9001."
       />
 
       {/* Sócias Fundadoras */}

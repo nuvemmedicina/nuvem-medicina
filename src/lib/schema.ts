@@ -159,7 +159,7 @@ export const directorSchema = {
   knowsAbout: [
     'Testes Respiratórios SIBO',
     'Manometria de Alta Resolução',
-    'Doenças Funcionais Digestivas',
+    'DGBI – Distúrbio da Interação Cérebro-Intestino',
     'H. pylori',
     'Intolerâncias Alimentares',
   ],

@@ -23,7 +23,7 @@ export default function ParceirosPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
             {[
               { title: 'Encaminhamentos', desc: 'Recebemos pacientes encaminhados por médicos de qualquer especialidade. Laudos detalhados e comunicação clara com o médico solicitante.' },
-              { title: 'Laudos ISO 9001', desc: 'Nossos laudos seguem padrão ISO 9001 — estruturados, rastreáveis e entregues dentro do prazo acordado.' },
+              { title: 'Laudos ISO 9001', desc: 'Nossos laudos seguem padrão ISO 9001: estruturados, rastreáveis e entregues dentro do prazo acordado.' },
               { title: 'Telemedicina Colaborativa', desc: 'Disponível para discussão de casos complexos com colegas médicos mediante solicitação prévia.' },
               { title: 'Formação Conjunta', desc: 'Parceiros do NU.V.E.M Ensino têm acesso a condições especiais nos programas de treinamento hands-on.' },
             ].map((item, i) => (

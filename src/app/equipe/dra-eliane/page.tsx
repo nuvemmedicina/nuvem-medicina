@@ -61,7 +61,7 @@ const EXPERIENCIA = [
   {
     cargo:    'Colaboradora em Casos Interdisciplinares',
     local:    'NU.V.E.M Medicina',
-    desc:     'Integração única entre cirurgia pediátrica e gastroenterologia — oferecendo à NU.V.E.M uma perspectiva cirúrgica nos casos que demandam abordagem multidisciplinar complexa.',
+    desc:     'Integração única entre cirurgia pediátrica e gastroenterologia, oferecendo à NU.V.E.M uma perspectiva cirúrgica nos casos que demandam abordagem multidisciplinar complexa.',
     destaque: false,
   },
 ]
@@ -153,7 +153,7 @@ export default function DraElianePage() {
                 </p>
                 <p>
                   Cofundadora da NU.V.E.M Medicina e Diretora Técnica Substituta, a Dra. Eliane
-                  traz para a clínica uma combinação rara — a visão cirúrgica pediátrica aliada
+                  traz para a clínica uma combinação rara: a visão cirúrgica pediátrica aliada
                   à expertise em avaliação funcional do assoalho pélvico. Essa integração permite
                   abordar casos complexos de incontinência fecal, constipação obstrutiva e
                   disfunções defecatórias com uma perspectiva completa e diferenciada.

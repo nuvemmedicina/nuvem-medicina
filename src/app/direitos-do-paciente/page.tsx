@@ -15,7 +15,7 @@ const DIREITOS = [
     titulo: 'Atendimento Humanizado e Identificação',
     cor: 'teal',
     itens: [
-      { titulo: 'Identidade', desc: 'Você tem o direito de ser identificado pelo seu nome e sobrenome — nunca pelo nome da sua patologia, número de prontuário ou qualquer outra forma impessoal.' },
+      { titulo: 'Identidade', desc: 'Você tem o direito de ser identificado pelo seu nome e sobrenome, nunca pelo nome da sua patologia, número de prontuário ou qualquer outra forma impessoal.' },
       { titulo: 'Respeito', desc: 'Receber atendimento livre de preconceitos de origem, raça, gênero, idade, orientação sexual ou qualquer outra forma de discriminação.' },
       { titulo: 'Dignidade', desc: 'Ter preservada sua privacidade e integridade física durante qualquer consulta, exame ou procedimento realizado na clínica.' },
     ],
@@ -37,7 +37,7 @@ const DIREITOS = [
     titulo: 'Informação e Consentimento',
     cor: 'teal',
     itens: [
-      { titulo: 'Clareza', desc: 'Receber informações claras, objetivas e compreensíveis sobre diagnósticos, exames e tratamentos — incluindo riscos, benefícios e alternativas disponíveis.' },
+      { titulo: 'Clareza', desc: 'Receber informações claras, objetivas e compreensíveis sobre diagnósticos, exames e tratamentos, incluindo riscos, benefícios e alternativas disponíveis.' },
       { titulo: 'Consentimento livre e esclarecido', desc: 'Dar ou negar seu consentimento livre e esclarecido antes de qualquer procedimento ou exame, sem pressão ou coerção.' },
       { titulo: 'Acesso ao prontuário', desc: 'Ter acesso ao seu prontuário médico de acordo com as normas do Conselho Federal de Medicina e da LGPD.' },
       { titulo: 'Segunda opinião', desc: 'Buscar uma segunda opinião médica sem que isso prejudique seu atendimento ou relacionamento com a clínica.' },
@@ -49,17 +49,17 @@ const DIREITOS = [
     titulo: 'Privacidade e Dados (LGPD)',
     cor: 'teal',
     itens: [
-      { titulo: 'Sigilo médico', desc: 'Seus dados de saúde são protegidos pela Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018). Garantimos que suas informações sensíveis sejam utilizadas estritamente para o seu cuidado médico.' },
+      { titulo: 'Sigilo médico', desc: 'Seus dados de saúde são protegidos pela Lei Geral de Proteção de Dados (LGPD, Lei nº 13.709/2018). Garantimos que suas informações sensíveis sejam utilizadas estritamente para o seu cuidado médico.' },
       { titulo: 'Não compartilhamento', desc: 'Suas informações nunca serão compartilhadas com terceiros sem sua autorização expressa, exceto quando exigido por lei ou órgão regulador.' },
       { titulo: 'Seus direitos de dados', desc: 'Você pode acessar, corrigir ou solicitar a eliminação dos seus dados a qualquer momento. Consulte nossa Política de Privacidade para detalhes.' },
     ],
-    lei: 'LGPD — Lei nº 13.709/2018',
+    lei: 'LGPD, Lei nº 13.709/2018',
     linkLei: '/politica-de-privacidade',
   },
 ]
 
 const DEVERES = [
-  { num: '01', titulo: 'Informação verídica', desc: 'Fornecer informações precisas e completas sobre seu histórico de saúde, uso de medicamentos e alergias — isso é essencial para um diagnóstico seguro.' },
+  { num: '01', titulo: 'Informação verídica', desc: 'Fornecer informações precisas e completas sobre seu histórico de saúde, uso de medicamentos e alergias, informação essencial para um diagnóstico seguro.' },
   { num: '02', titulo: 'Comprometimento com o preparo', desc: 'Seguir rigorosamente as recomendações de preparo para exames e as orientações médicas pós-atendimento. O preparo correto garante a precisão do diagnóstico.' },
   { num: '03', titulo: 'Respeito mútuo', desc: 'Tratar com cortesia e respeito todos os profissionais, colaboradores e demais pacientes da clínica. O respeito é a base de um ambiente seguro e acolhedor.' },
   { num: '04', titulo: 'Pontualidade', desc: 'Comparecer aos horários agendados ou avisar com antecedência mínima de 24 horas em caso de cancelamento, permitindo que outra pessoa seja atendida.' },

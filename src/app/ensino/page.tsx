@@ -5,6 +5,7 @@ import { ExternalLink, ArrowRight } from 'lucide-react'
 import { PageHero }       from '@/components/ui/PageHero'
 import { SectionWrapper } from '@/components/ui/SectionWrapper'
 import { CtaBanner }      from '@/components/ui/CtaBanner'
+import { renderRich } from '@/lib/rich'
 
 export const metadata: Metadata = {
   title:       'NU.V.E.M Ensino · Formação Médica Especializada',
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
 const TRILHAS = [
   {
     num: 'I', title: 'Gastroenterologia & Motilidade',
-    desc: 'SIBO, IMO, LIBO, SIFO e H. pylori — domínio completo dos testes respiratórios, manometria esofágica e pHmetria avançada.',
+    desc: 'SIBO, IMO, LIBO, SIFO e H. pylori. Domínio completo dos testes respiratórios, manometria esofágica e pHmetria avançada.',
     publico: ['Gastroenterologistas', 'Clínicos Gerais', 'Médicos de Família'],
   },
   {
@@ -24,7 +25,7 @@ const TRILHAS = [
   },
   {
     num: 'III', title: 'Diagnóstico de Patologias Orais',
-    desc: 'Halitose, halimetria e sialometria — protocolo diagnóstico multidisciplinar completo e estratégias terapêuticas integradas.',
+    desc: 'Halitose, halimetria e sialometria. Protocolo diagnóstico multidisciplinar completo e estratégias terapêuticas integradas.',
     publico: ['Gastroenterologistas', 'Odontólogos', 'Clínicos Gerais'],
   },
 ]
@@ -68,7 +69,7 @@ export default function EnsinoPage() {
             <div className="space-y-4 mt-6 text-[0.97rem] font-light text-steel/65 leading-[1.85] reveal reveal-d2">
               <p>
                 O NU.V.E.M Ensino é o braço educacional do ecossistema NU.V.E.M. Utilizamos os
-                casos reais da própria clínica como matéria-prima do aprendizado — uma metodologia
+                casos reais da própria clínica como matéria-prima do aprendizado, uma metodologia
                 que garante aplicabilidade imediata e domínio técnico real.
               </p>
               <p>
@@ -78,7 +79,7 @@ export default function EnsinoPage() {
               </p>
               <p>
                 A formação culmina em <strong className="text-steel font-medium">certificação validada
-                pelo sistema ISO 9001</strong> — o mesmo padrão que certifica os processos clínicos
+                pelo sistema ISO 9001</strong>, o mesmo padrão que certifica os processos clínicos
                 da clínica, conferindo credibilidade e rastreabilidade ao seu desenvolvimento profissional.
               </p>
             </div>
@@ -109,9 +110,9 @@ export default function EnsinoPage() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-teal/8 rounded-2xl overflow-hidden">
           {[
-            { n:'1', label:'Fase 01', title:'Atualização Teórica',        desc:'Protocolos baseados em evidências científicas atuais — novas diretrizes para H. pylori, SIBO, IMO e distúrbios funcionais digestivos.', price:'~R$ 450,00 · Presencial ou online', hl:false },
+            { n:'1', label:'Fase 01', title:'Atualização Teórica',        desc:'Protocolos baseados em evidências científicas atuais, com novas diretrizes para H. pylori, SIBO, IMO e distúrbios funcionais digestivos.', price:'~R$ 450,00 · Presencial ou online', hl:false },
             { n:'2', label:'Fase 02', title:'Simulação Interdisciplinar', desc:'Discussão de casos reais da Clínica NU.V.E.M, integrando gastroenterologia, cirurgia pediátrica e fisioterapia em cenários clínicos complexos.', price:'Casos reais · Equipe especializada', hl:false },
-            { n:'3', label:'Fase 03 — Premium', title:'Imersão Hands-On', desc:'Treinamento prático presencial com equipamentos de ponta na NU.V.E.M. Domínio da execução técnica e certificação ISO 9001 incluída.', price:'R$ 2.200 – R$ 5.000 · Certificação inclusa', hl:true },
+            { n:'3', label:'Fase 03: Premium', title:'Imersão Hands-On', desc:'Treinamento prático presencial com equipamentos de ponta na NU.V.E.M. Domínio da execução técnica e certificação ISO 9001 incluída.', price:'R$ 2.200 – R$ 5.000 · Certificação inclusa', hl:true },
           ].map(step => (
             <div key={step.n} className={`relative p-9 overflow-hidden reveal ${
               step.hl
@@ -126,7 +127,7 @@ export default function EnsinoPage() {
                 {step.label}
               </span>
               <h3 className={`text-[0.95rem] font-semibold mb-2.5 ${step.hl ? 'text-white' : 'text-steel'}`}>{step.title}</h3>
-              <p className={`text-[0.78rem] font-light leading-[1.75] mb-4 ${step.hl ? 'text-white/75' : 'text-steel/60'}`}>{step.desc}</p>
+              <p className={`text-[0.78rem] font-light leading-[1.75] mb-4 ${step.hl ? 'text-white/75' : 'text-steel/60'}`}>{renderRich(step.desc)}</p>
               <div className={`text-[0.9rem] font-medium ${step.hl ? 'text-teal-light' : 'text-teal'}`}>{step.price}</div>
             </div>
           ))}

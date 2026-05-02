@@ -44,7 +44,7 @@ export function PageHero({ tag, title, desc, className, children }: PageHeroProp
             {desc}
           </p>
         )}
-        {children}
+        {children && <div className="mt-8">{children}</div>}
       </div>
     </div>
   )
