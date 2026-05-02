@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image             from 'next/image'
 import { PageHero }      from '@/components/ui/PageHero'
 import { SectionWrapper } from '@/components/ui/SectionWrapper'
 import { CtaBanner }     from '@/components/ui/CtaBanner'
@@ -156,6 +157,49 @@ export default function GestaoQualidadePage() {
             ))}
           </div>
         </div>
+      </SectionWrapper>
+
+      {/* Certificados */}
+      <SectionWrapper dark grid>
+        <div className="text-center mb-12">
+          <p className="sec-tag justify-center reveal">Documentação Oficial</p>
+          <h2 className="sec-title reveal reveal-d1">Certificados <em>ISO 9001</em></h2>
+          <p className="text-[0.93rem] text-steel/65 mt-3 reveal reveal-d2 max-w-lg mx-auto">
+            Certificações emitidas por organismo certificador independente, validando o sistema de gestão da qualidade da NU.V.E.M Medicina.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          {[
+            { src: '/images/2023-certificado-iso-9001-nuvem-medicina.svg', label: 'Certificado ISO 9001 · 2023' },
+            { src: '/images/certificado-iso-9001-nuvem-medicina.svg',      label: 'Certificado ISO 9001 · Atual' },
+          ].map((cert, i) => (
+            <div key={cert.src} className={`bg-white border border-teal/12 rounded-2xl overflow-hidden shadow-sm hover:shadow-md hover:border-teal/25 transition-all reveal reveal-d${i}`}>
+              <div className="relative w-full" style={{ aspectRatio: '1 / 1.414' }}>
+                <Image
+                  src={cert.src}
+                  alt={cert.label}
+                  fill
+                  className="object-contain p-4"
+                  unoptimized
+                />
+              </div>
+              <div className="px-5 py-3 border-t border-teal/8 flex items-center justify-between">
+                <span className="text-[0.72rem] font-semibold uppercase tracking-[.1em] text-steel/55">{cert.label}</span>
+                <a
+                  href={cert.src}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[0.72rem] font-medium text-teal hover:underline"
+                >
+                  Abrir ↗
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </SectionWrapper>
+
+      <SectionWrapper>
         <CtaBanner
           title="Conheça o padrão ISO 9001 na prática"
           desc="Agende sua consulta e experimente o atendimento com qualidade internacionalmente certificada."
