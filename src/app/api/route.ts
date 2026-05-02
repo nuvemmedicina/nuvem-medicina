@@ -48,10 +48,17 @@ DRA. ELIANE BASQUES MOURA — Diretora Técnica Substituta
 - Integra a equipe multidisciplinar da NU.V.E.M
 
 EQUIPE MULTIDISCIPLINAR:
-- Fisioterapeutas pélvicos especializados em assoalho pélvico e biofeedback
-- Nefrologista para saúde renal integrada
-- Pediatra para saúde digestiva infantil
-- Especialistas em halitose (abordagem multidisciplinar gastro + odonto)
+- Dr. Felipe Nelson — Gastroenterologia e Motilidade Digestiva (manometria, pHmetria, refluxo)
+- Dra. Anna Karoline — Fisioterapia Pélvica (biofeedback EMG, assoalho pélvico, incontinência)
+- Dra. Adrianna Buzatti Viana — Cirurgia Pediátrica (casos complexos)
+- Dra. Claudia Utsch — Gastroenterologia Clínica
+- Dra. Camilla Mendes — Clínica Médica e Medicina Interna
+- Dra. Danielle Martins — Gastroenterologia e DGBI
+- Dra. Larissa Veiga Raña — Gastroenterologia Clínica
+- Dra. Luiza Auarek — Nefrologia (interface GI-Renal)
+- Dra. Mariana Fernandes — Pediatria (saúde digestiva infantil)
+- Dra. Raissa Dalat — Cirurgia Pediátrica
+- Dr. Thiago Guimarães — Clínica Médica e Hematologia
 
 ═══════════════════════════════════════
 ESPECIALIDADES
