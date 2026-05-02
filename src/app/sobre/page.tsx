@@ -107,7 +107,7 @@ export default function SobrePage() {
           ].map(m => (
             <Link key={m.nome} href={m.href} className="group bg-white border border-teal/12 rounded-2xl overflow-hidden reveal shadow-sm hover:border-teal/28 hover:-translate-y-0.5 hover:shadow-md transition-all block">
               {/* Foto */}
-              <div className="relative h-52 w-full" style={{ background: 'linear-gradient(135deg,#003040,#00465F)' }}>
+              <div className="relative h-52 w-full overflow-hidden" style={{ background: 'linear-gradient(135deg,#003040,#00465F)' }}>
                 <Image src={m.foto} alt={m.nome} fill
                   className="object-cover object-top group-hover:scale-105 transition-transform duration-500" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#00465F]/60 via-transparent to-transparent" />

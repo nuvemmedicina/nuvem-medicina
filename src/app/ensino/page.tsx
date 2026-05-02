@@ -172,7 +172,7 @@ export default function EnsinoPage() {
           {INSTRUTORES.map((inst, i) => (
             <Link key={inst.nome} href={inst.href}
               className={`group block bg-white border border-teal/12 rounded-2xl overflow-hidden hover:border-teal/28 hover:-translate-y-1 hover:shadow-md transition-all reveal reveal-d${i}`}>
-              <div className="relative h-56 w-full" style={{ background: 'linear-gradient(135deg,#003040,#00465F)' }}>
+              <div className="relative h-56 w-full overflow-hidden" style={{ background: 'linear-gradient(135deg,#003040,#00465F)' }}>
                 <Image src={inst.foto} alt={inst.nome} fill
                   className="object-cover object-top group-hover:scale-105 transition-transform duration-500" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#00465F]/70 via-transparent to-transparent" />
