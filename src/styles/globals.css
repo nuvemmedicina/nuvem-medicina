@@ -204,16 +204,16 @@
   /* ── Grid "tech" — fundo claro ── */
   .hero-grid-bg {
     background-image:
-      linear-gradient(rgba(var(--teal), .055) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(var(--teal), .055) 1px, transparent 1px);
+      linear-gradient(rgba(var(--teal), .038) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(var(--teal), .038) 1px, transparent 1px);
     background-size: 40px 40px;
   }
 
   /* ── Grid — fundo escuro ── */
   .dark-grid-bg {
     background-image:
-      linear-gradient(rgba(var(--teal-light), .055) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(var(--teal-light), .055) 1px, transparent 1px);
+      linear-gradient(rgba(var(--teal-light), .038) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(var(--teal-light), .038) 1px, transparent 1px);
     background-size: 40px 40px;
   }
 
