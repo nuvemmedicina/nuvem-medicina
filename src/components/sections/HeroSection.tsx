@@ -67,7 +67,7 @@ export function HeroSection() {
             </p>
 
             <p className="text-[1.05rem] font-light text-steel/65 leading-[1.82] max-w-[480px] mb-11 opacity-0 animate-[fadeUp_.9s_.55s_var(--ease-out)_forwards]">
-              O ecossistema completo de medicina especializada — diagnóstico de alta precisão,
+              O ecossistema completo de medicina especializada: diagnóstico de alta precisão,
               equipe multidisciplinar e formação profissional baseada em casos reais.{' '}
               <strong className="text-teal font-semibold">Única clínica do segmento com gestão ISO 9001.</strong>
             </p>

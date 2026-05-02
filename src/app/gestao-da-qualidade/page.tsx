@@ -16,7 +16,7 @@ const PRINCIPIOS = [
   { Icon: Shield,     title: 'Liderança e Comprometimento', desc: 'A alta direção lidera pelo exemplo, garantindo que a cultura da qualidade permeie cada membro da equipe.' },
   { Icon: RefreshCw,  title: 'Melhoria Contínua',         desc: 'Indicadores são medidos mensalmente. Não conformidades são registradas, analisadas e eliminadas sistematicamente.' },
   { Icon: FileText,   title: 'Tomada de Decisão Baseada em Dados', desc: 'Decisões clínicas e gerenciais são fundamentadas em evidências, dados de desempenho e auditorias periódicas.' },
-  { Icon: BarChart3,  title: 'Gestão de Processos',       desc: 'Cada processo — do agendamento ao diagnóstico — é mapeado, padronizado e continuamente monitorado.' },
+  { Icon: BarChart3,  title: 'Gestão de Processos',       desc: 'Cada processo, do agendamento ao diagnóstico, é mapeado, padronizado e continuamente monitorado.' },
   { Icon: CheckCircle, title: 'Rastreabilidade Total',    desc: 'Exames, prontuários e certificações são rastreáveis e auditáveis a qualquer momento, garantindo segurança e conformidade.' },
 ]
 
@@ -36,8 +36,8 @@ export default function GestaoQualidadePage() {
     <>
       <PageHero
         tag="Gestão da Qualidade"
-        title={<>Certificação <em>ISO 9001</em><br />— o padrão que nos define</>}
-        desc="Somos a única clínica do segmento em Belo Horizonte com gestão certificada pela norma ISO 9001 — o padrão internacional de excelência em qualidade."
+        title={<>Certificação <em>ISO 9001</em>,<br />o padrão que nos define</>}
+        desc="Somos a única clínica do segmento em Belo Horizonte com gestão certificada pela norma ISO 9001, o padrão internacional de excelência em qualidade."
       />
 
       {/* O que é ISO 9001 */}
@@ -67,8 +67,8 @@ export default function GestaoQualidadePage() {
                 serviços que atendam consistentemente às necessidades dos clientes.
               </p>
               <p>
-                Para a NU.V.E.M Medicina, ser certificada pela ISO 9001 significa que cada processo —
-                desde o agendamento da consulta até a entrega do laudo — segue protocolos rigorosos,
+                Para a NU.V.E.M Medicina, ser certificada pela ISO 9001 significa que cada processo,
+                desde o agendamento da consulta até a entrega do laudo, segue protocolos rigorosos,
                 documentados, auditados externamente e em constante melhoria.
               </p>
               <p>
@@ -120,8 +120,8 @@ export default function GestaoQualidadePage() {
               Benefícios <em>concretos</em> da certificação
             </h2>
             <p className="text-[0.97rem] font-light text-steel/65 leading-[1.85] mt-5 reveal reveal-d2">
-              Quando você escolhe a NU.V.E.M Medicina, não está apenas escolhendo um médico —
-              está escolhendo um sistema completo de qualidade que garante consistência,
+              Quando você escolhe a NU.V.E.M Medicina, não está apenas escolhendo um médico. Está
+              escolhendo um sistema completo de qualidade que garante consistência,
               segurança e melhoria em cada visita.
             </p>
           </div>

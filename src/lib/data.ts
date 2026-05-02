@@ -48,8 +48,8 @@ export const ESPECIALIDADES: Especialidade[] = [
   {
     num: '01', slug: 'gastroenterologia',
     title: 'Gastroenterologia',
-    desc: 'Equilíbrio intestinal pleno — de sintomas comuns até patologias complexas como SIBO, IMO e doenças funcionais digestivas.',
-    tags: ['Doenças Funcionais', 'SIBO / IMO', 'Motilidade'],
+    desc: 'Equilíbrio intestinal pleno, de sintomas comuns até patologias complexas como SIBO, IMO e DGBI – Distúrbio da Interação Cérebro-Intestino.',
+    tags: ['DGBI', 'SIBO / IMO', 'Motilidade'],
     icon: 'Activity',
   },
   {
@@ -62,7 +62,7 @@ export const ESPECIALIDADES: Especialidade[] = [
   {
     num: '03', slug: 'halitose',
     title: 'Halitose',
-    desc: 'Diagnóstico multidisciplinar completo — investigamos causas digestivas, orais e sistêmicas com halimetria de precisão.',
+    desc: 'Diagnóstico multidisciplinar completo. Investigamos causas digestivas, orais e sistêmicas com halimetria de precisão.',
     tags: ['Halimetria', 'Sialometria', 'Diagnóstico Integrado'],
     icon: 'Shield',
   },
@@ -104,7 +104,7 @@ export const EXAMES: Exame[] = [
   {
     id: 'manometria-esofagica', num: '01',
     title: 'Manometria Esofágica',
-    subtitle: 'Alta Resolução — Esôfago',
+    subtitle: 'Alta Resolução · Esôfago',
     tag: 'Alta Resolução',
     desc: [
       'Avalia com precisão a motilidade do esôfago e a função do esfíncter esofágico inferior, sendo essencial no diagnóstico de acalasia, disfagia e refluxo gastroesofágico.',
@@ -112,14 +112,14 @@ export const EXAMES: Exame[] = [
     ],
     info: [
       { icon: 'Clock',   text: 'Duração: 30–45 minutos' },
-      { icon: 'Shield',  text: 'Certificação ISO 9001 — padrão internacional' },
+      { icon: 'Shield',  text: 'Certificação ISO 9001, padrão internacional' },
       { icon: 'Check',   text: 'Preparo específico · sem sedação' },
     ],
   },
   {
     id: 'manometria-anorretal', num: '02',
     title: 'Manometria Anorretal',
-    subtitle: 'Alta Resolução — Canal Anal',
+    subtitle: 'Alta Resolução · Canal Anal',
     tag: 'Alta Resolução',
     desc: [
       'Avalia a função dos esfíncteres do canal anal e reto, sendo fundamental no diagnóstico de incontinência fecal, constipação crônica e distúrbios do assoalho pélvico.',
@@ -127,7 +127,7 @@ export const EXAMES: Exame[] = [
     ],
     info: [
       { icon: 'Clock',   text: 'Duração: 30–45 minutos' },
-      { icon: 'Shield',  text: 'Certificação ISO 9001 — padrão internacional' },
+      { icon: 'Shield',  text: 'Certificação ISO 9001, padrão internacional' },
       { icon: 'Check',   text: 'Preparo com enema · sem sedação' },
     ],
   },
@@ -138,7 +138,7 @@ export const EXAMES: Exame[] = [
     tag: 'Monitoramento 24h',
     desc: [
       'Monitoramento ambulatorial que registra episódios de refluxo ácido e não-ácido ao longo de 24 horas, correlacionando sintomas com eventos de refluxo em atividade normal.',
-      'A impedânciometria detecta refluxo independente do pH — essencial nos casos de refluxo refratário ao tratamento convencional.',
+      'A impedânciometria detecta refluxo independente do pH, sendo essencial nos casos de refluxo refratário ao tratamento convencional.',
     ],
     info: [
       { icon: 'Clock',  text: 'Monitoramento ambulatorial de 24 horas' },
@@ -151,8 +151,8 @@ export const EXAMES: Exame[] = [
     subtitle: 'H₂ · CH₄ · H₂S · H. pylori',
     tag: 'Não Invasivo',
     desc: [
-      'Diagnóstico de SIBO, IMO, intolerâncias alimentares e H. pylori por análise do ar exalado — sem coleta de sangue, sem desconforto, com alta especificidade diagnóstica.',
-      'Protocolo NU.V.E.M detecta H₂, CH₄ e H₂S em um único exame — SIBO, LIBO, SIFO e infecção por H. pylori com cobertura completa.',
+      'Diagnóstico de SIBO, IMO, intolerâncias alimentares e H. pylori por análise do ar exalado. Sem coleta de sangue, sem desconforto e com alta especificidade diagnóstica.',
+      'Protocolo NU.V.E.M detecta H₂, CH₄ e H₂S em um único exame, com cobertura de SIBO, LIBO, SIFO e infecção por H. pylori.',
     ],
     info: [
       { icon: 'Check',  text: 'Sem coleta de sangue · sem sedação' },
@@ -166,7 +166,7 @@ export const EXAMES: Exame[] = [
     tag: 'Diagnóstico Preciso',
     desc: [
       'A halimetria quantifica objetivamente compostos sulfurados voláteis causadores da halitose, com diagnóstico diferencial entre causas orais, digestivas e sistêmicas.',
-      'A sialometria avalia o fluxo salivar — essencial na investigação de xerostomia e suas relações com halitose e doenças sistêmicas.',
+      'A sialometria avalia o fluxo salivar, sendo essencial na investigação de xerostomia e suas relações com halitose e doenças sistêmicas.',
     ],
     info: [
       { icon: 'Shield', text: 'Protocolo multidisciplinar exclusivo NU.V.E.M' },
@@ -178,7 +178,7 @@ export const EXAMES: Exame[] = [
     subtitle: 'Biofeedback e Eletromiografia',
     tag: 'Especialidade Integrada',
     desc: [
-      'Avaliação funcional completa do assoalho pélvico com biofeedback eletromiográfico — diagnóstico e reabilitação de disfunções pélvicas, incontinência e constipação obstrutiva.',
+      'Avaliação funcional completa do assoalho pélvico com biofeedback eletromiográfico para diagnóstico e reabilitação de disfunções pélvicas, incontinência e constipação obstrutiva.',
     ],
     info: [
       { icon: 'Check', text: 'Integração GI + Fisioterapia Pélvica' },

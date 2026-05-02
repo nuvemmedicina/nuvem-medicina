@@ -1,11 +1,12 @@
 import Link from 'next/link'
 import { ExternalLink } from 'lucide-react'
+import { renderRich } from '@/lib/rich'
 
 const STEPS = [
   {
     num: '1', label: 'Fase 01', highlight: false,
     title: 'Atualização Teórica',
-    desc: 'Protocolos baseados em evidências — novas diretrizes para H. pylori, SIBO, IMO e distúrbios funcionais digestivos com especialistas da clínica.',
+    desc: 'Protocolos baseados em evidências, com novas diretrizes para H. pylori, SIBO, IMO e distúrbios funcionais digestivos com especialistas da clínica.',
   },
   {
     num: '2', label: 'Fase 02', highlight: false,
@@ -13,7 +14,7 @@ const STEPS = [
     desc: 'Discussão de casos reais da Clínica NU.V.E.M, integrando gastroenterologia, cirurgia pediátrica e fisioterapia em cenários clínicos complexos.',
   },
   {
-    num: '3', label: 'Fase 03 — Premium', highlight: true,
+    num: '3', label: 'Fase 03: Premium', highlight: true,
     title: 'Imersão Hands-On',
     desc: 'Treinamento prático presencial com equipamentos de ponta na NU.V.E.M. Domínio da execução técnica e certificação ISO 9001 incluída.',
   },
@@ -22,7 +23,7 @@ const STEPS = [
 const MULT = [
   { num: 'I',   title: 'Validação Clínica Diária',    desc: 'Casos reais da clínica moldam os treinamentos e a produção de conteúdo científico atualizado.' },
   { num: 'II',  title: 'Treinamento de Elite',         desc: 'Especialistas repassam expertise prática e domínio técnico para médicos, fisioterapeutas e alunos.' },
-  { num: 'III', title: 'Elevação da Prática Médica',   desc: 'Alunos levam a excelência para seus consultórios — o Efeito Multiplicador NU.V.E.M em ação.' },
+  { num: 'III', title: 'Elevação da Prática Médica',   desc: 'Alunos levam a excelência para seus consultórios. O Efeito Multiplicador NU.V.E.M em ação.' },
 ]
 
 export function EnsinoSection() {
@@ -71,7 +72,7 @@ export function EnsinoSection() {
                 {step.label}
               </span>
               <h3 className={`text-[1rem] font-semibold mb-2.5 ${step.highlight ? 'text-white' : 'text-steel'}`}>{step.title}</h3>
-              <p className={`text-[0.85rem] font-light leading-[1.75] mb-4 ${step.highlight ? 'text-white/75' : 'text-steel/60'}`}>{step.desc}</p>
+              <p className={`text-[0.85rem] font-light leading-[1.75] mb-4 ${step.highlight ? 'text-white/75' : 'text-steel/60'}`}>{renderRich(step.desc)}</p>
             </div>
           ))}
         </div>

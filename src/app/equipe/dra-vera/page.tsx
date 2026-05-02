@@ -6,6 +6,7 @@ import { PageHero }       from '@/components/ui/PageHero'
 import { SectionWrapper } from '@/components/ui/SectionWrapper'
 import { CtaBanner }      from '@/components/ui/CtaBanner'
 import { IsoSeal }        from '@/components/icons/IsoSeal'
+import { renderRich } from '@/lib/rich'
 
 export const metadata: Metadata = {
   title:       'Dra. Vera Ângelo · Gastroenterologista',
@@ -34,7 +35,7 @@ const FORMACAO = [
   {
     icon: Award,
     titulo: 'Residência Médica em Gastroenterologia',
-    inst:   'Hospital Felício Rocho — Belo Horizonte',
+    inst:   'Hospital Felício Rocho · Belo Horizonte',
     detalhe: 'Formação especializada em gastroenterologia no hospital de referência em BH',
   },
   {
@@ -49,11 +50,11 @@ const EXPERIENCIA = [
   {
     cargo:  'Diretora e Responsável Técnica',
     local:  'NU.V.E.M Medicina e Ensino',
-    desc:   'Fundadora e líder do ecossistema NU.V.E.M — clínica e centro de formação profissional em gastroenterologia e motilidade digestiva, certificado ISO 9001.',
+    desc:   'Fundadora e líder do ecossistema NU.V.E.M: clínica e centro de formação profissional em gastroenterologia e motilidade digestiva, certificado ISO 9001.',
     destaque: true,
   },
   {
-    cargo:  'Professora Convidada — Pós-Graduação',
+    cargo:  'Professora Convidada · Pós-Graduação',
     local:  'Hospital Israelita Albert Einstein',
     desc:   'Docente do programa de pós-graduação em Doenças Funcionais e Manometria de um dos principais hospitais do Brasil.',
     destaque: false,
@@ -61,11 +62,11 @@ const EXPERIENCIA = [
   {
     cargo:  'Tutora de Treinamentos Especializados',
     local:  'NU.V.E.M Ensino',
-    desc:   'Responsável por treinamentos hands-on em doenças funcionais, testes respiratórios (SIBO, H. pylori, intolerâncias) e manometria de alta resolução para profissionais de saúde de todo o Brasil.',
+    desc:   'Responsável por treinamentos hands-on em DGBI – Distúrbio da Interação Cérebro-Intestino, testes respiratórios (SIBO, H. pylori, intolerâncias) e manometria de alta resolução para profissionais de saúde de todo o Brasil.',
     destaque: false,
   },
   {
-    cargo:  'Sócia Titular — GEDIIB',
+    cargo:  'Sócia Titular · GEDIIB',
     local:  'Grupo de Estudos da Doença Inflamatória Intestinal no Brasil',
     desc:   'Membro ativo do grupo de estudos de referência nacional em doenças inflamatórias intestinais.',
     destaque: false,
@@ -97,7 +98,7 @@ const LIVROS = [
     titulo:   'Manual Prático do Teste Respiratório do Hidrogênio Expirado',
     ano:      '2019',
     editora:  'Editora Rubio',
-    desc:     'Manual de referência para diagnóstico de SIBO, intolerâncias alimentares e H. pylori por testes respiratórios — utilizado como base em treinamentos em todo o Brasil.',
+    desc:     'Manual de referência para diagnóstico de SIBO, intolerâncias alimentares e H. pylori por testes respiratórios, utilizado como base em treinamentos em todo o Brasil.',
     destaque: false,
   },
 ]
@@ -106,7 +107,7 @@ const AREAS = [
   'Gastroenterologia Clínica',
   'Motilidade Digestiva',
   'Testes Respiratórios (SIBO/IMO/H. pylori)',
-  'Doenças Funcionais Digestivas',
+  'DGBI – Distúrbio da Interação Cérebro-Intestino',
   'Manometria de Alta Resolução',
   'pHmetria e Impedânciometria',
   'Intolerâncias Alimentares',
@@ -158,7 +159,7 @@ export default function DraVeraPage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-teal/50 shrink-0" />
-                  Diretora Técnica — NU.V.E.M
+                  Diretora Técnica · NU.V.E.M
                 </div>
               </div>
               <div className="pt-2 border-t border-teal/10">
@@ -191,7 +192,7 @@ export default function DraVeraPage() {
                   A Dra. Vera Ângelo é Mestre e Doutora em Patologia pela Universidade Federal de
                   Minas Gerais (UFMG) e Gastroenterologista com Título de Especialista pela
                   Federação Brasileira de Gastroenterologia. Com formação sólida e trajetória
-                  dedicada às doenças funcionais digestivas, tornou-se uma das principais
+                  dedicada ao DGBI – Distúrbio da Interação Cérebro-Intestino, tornou-se uma das principais
                   referências nacionais em testes respiratórios e motilidade digestiva.
                 </p>
                 <p>
@@ -199,7 +200,7 @@ export default function DraVeraPage() {
                   assistência clínica de excelência com formação profissional avançada.
                   Professora convidada do Hospital Israelita Albert Einstein no programa de
                   pós-graduação em Doenças Funcionais e Manometria, é autora de três livros
-                  pela Editora Rubio — obras de referência utilizadas em programas de
+                  pela Editora Rubio, obras de referência utilizadas em programas de
                   formação em todo o Brasil.
                 </p>
                 <p>
@@ -306,7 +307,7 @@ export default function DraVeraPage() {
               )}
               <h3 className="text-[0.92rem] font-semibold text-steel mb-2 leading-snug flex-1">{livro.titulo}</h3>
               <p className="text-[0.75rem] text-teal mb-3">{livro.editora}</p>
-              <p className="text-[0.9rem] font-light text-steel/60 leading-[1.7]">{livro.desc}</p>
+              <p className="text-[0.9rem] font-light text-steel/60 leading-[1.7]">{renderRich(livro.desc)}</p>
             </div>
           ))}
         </div>

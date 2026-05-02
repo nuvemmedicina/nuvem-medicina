@@ -67,7 +67,7 @@ Tratamento de doenças do aparelho digestivo:
 - Gastrite e H. pylori
 - SIBO (supercrescimento bacteriano intestinal) e disbiose
 - Constipação crônica
-- Doenças funcionais digestivas
+- DGBI – Distúrbio da Interação Cérebro-Intestino (antigo "doenças funcionais digestivas")
 
 2. MOTILIDADE DIGESTIVA
 Avaliação funcional do aparelho digestivo:

@@ -40,8 +40,8 @@ export function IsoSection() {
               no segmento em BH
             </h2>
             <p className="text-[0.98rem] font-light leading-[1.85] mt-4 mb-8 reveal reveal-d2 text-muted-dark">
-              A ISO 9001 é o padrão internacional de excelência em gestão. Cada processo —
-              do agendamento ao diagnóstico — segue protocolos rigorosos de qualidade,
+              A ISO 9001 é o padrão internacional de excelência em gestão. Cada processo,
+              do agendamento ao diagnóstico, segue protocolos rigorosos de qualidade,
               rastreabilidade e melhoria contínua.
             </p>
 

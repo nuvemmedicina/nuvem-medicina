@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 const PILARES = [
   { num: '01', title: 'Diagnóstico de Precisão', desc: 'Equipamentos de última geração operados por especialistas certificados, garantindo resultados confiáveis e laudos detalhados.' },
-  { num: '02', title: 'Gestão ISO 9001',          desc: 'Únicos no segmento em BH com certificação internacional de qualidade — cada processo é padronizado, auditado e continuamente melhorado.' },
+  { num: '02', title: 'Gestão ISO 9001',          desc: 'Únicos no segmento em BH com certificação internacional de qualidade. Cada processo é padronizado, auditado e continuamente melhorado.' },
   { num: '03', title: 'Equipe Multidisciplinar',  desc: 'Gastroenterologistas, fisioterapeutas pélvicos, nefrologista, pediatra e especialistas em halitose trabalhando de forma integrada.' },
   { num: '04', title: 'Cuidado Humanizado',        desc: 'Escuta ativa, respeito ao tempo do paciente e comunicação clara em cada etapa do atendimento.' },
   { num: '05', title: 'Ensino Médico de Elite',    desc: 'Centro de formação profissional com metodologia hands-on baseada nos casos reais da própria clínica.' },
@@ -26,7 +26,7 @@ export default function SobrePage() {
       <PageHero
         tag="A Clínica"
         title={<>Sobre a <em>NU.V.E.M</em> Medicina</>}
-        desc="O ecossistema completo de excelência em saúde digestiva — onde tecnologia de ponta, cuidado humanizado e gestão certificada se unem em um único lugar."
+        desc="O ecossistema completo de excelência em saúde digestiva, onde tecnologia de ponta, cuidado humanizado e gestão certificada se unem em um único lugar."
       />
 
       {/* Missão / Origem */}
@@ -45,13 +45,13 @@ export default function SobrePage() {
               </p>
               <p className="reveal reveal-d3">
                 Localizada no coração do bairro Santa Efigênia, a clínica tornou-se referência
-                em diagnósticos avançados — manometria de alta resolução, testes respiratórios
-                para SIBO e H. pylori, pHmetria, halimetria e muito mais — sob gestão certificada
+                em diagnósticos avançados: manometria de alta resolução, testes respiratórios
+                para SIBO e <em><strong>H. pylori</strong></em>, pHmetria, halimetria e muito mais, sob gestão certificada
                 pela norma ISO 9001, única no segmento em Belo Horizonte.
               </p>
               <p className="reveal reveal-d4">
                 Mais do que uma clínica, a NU.V.E.M é um ecossistema: o braço assistencial
-                (NU.V.E.M Medicina) e o braço educacional (NU.V.E.M Ensino) se alimentam mutuamente —
+                (NU.V.E.M Medicina) e o braço educacional (NU.V.E.M Ensino) se alimentam mutuamente:
                 os casos reais moldam o ensino e o ensino eleva o padrão do atendimento.
               </p>
             </div>

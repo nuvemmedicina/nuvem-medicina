@@ -7,6 +7,7 @@ import { Breadcrumb }     from '@/components/ui/Breadcrumb'
 import { SectionWrapper } from '@/components/ui/SectionWrapper'
 import { CtaBanner }      from '@/components/ui/CtaBanner'
 import { ESPECIALIDADES, EXAMES } from '@/lib/data'
+import { renderRich } from '@/lib/rich'
 
 // Static data per speciality
 const DETAIL: Record<string, {
@@ -16,21 +17,21 @@ const DETAIL: Record<string, {
   exames:   string[]
 }> = {
   gastroenterologia: {
-    heroDesc: 'Especialidade focada no equilíbrio intestinal pleno — tratamos desde sintomas comuns até patologias complexas como SIBO, IMO, disbiose e doenças funcionais digestivas.',
+    heroDesc: 'Especialidade focada no equilíbrio intestinal pleno, tratamos desde sintomas comuns até patologias complexas como SIBO, IMO, disbiose e DGBI – Distúrbio da Interação Cérebro-Intestino.',
     intro: [
-      'A gastroenterologia da NU.V.E.M abrange o diagnóstico e tratamento completo das doenças do aparelho digestivo, com foco especial em doenças funcionais, disbiose intestinal e distúrbios de motilidade.',
+      'A gastroenterologia da NU.V.E.M abrange o diagnóstico e tratamento completo das doenças do aparelho digestivo, com foco especial em DGBI – Distúrbio da Interação Cérebro-Intestino, disbiose intestinal e distúrbios de motilidade.',
       'Nossa abordagem integra avaliação clínica detalhada, exames de alta precisão como testes respiratórios e manometria, e protocolos terapêuticos baseados nas evidências científicas mais recentes.',
     ],
     topics: [
-      { title: 'SIBO e IMO',                  body: 'Supercrescimento bacteriano no intestino delgado e supercrescimento de metanogênicos — diagnosticados pelos testes respiratórios com precisão.' },
-      { title: 'Doenças Funcionais',          body: 'Síndrome do intestino irritável, dispepsia funcional e constipação funcional investigadas com metodologia completa e personalizada.' },
-      { title: 'Intolerâncias Alimentares',   body: 'Lactose, frutose e outras intolerâncias identificadas por testes respiratórios — sem biópsia ou coleta de sangue.' },
+      { title: 'SIBO e IMO',                  body: 'Supercrescimento bacteriano no intestino delgado e supercrescimento de metanogênicos, diagnosticados pelos testes respiratórios com precisão.' },
+      { title: 'DGBI – Distúrbio da Interação Cérebro-Intestino', body: 'Síndrome do intestino irritável, dispepsia funcional e constipação funcional investigadas com metodologia completa e personalizada, seguindo as diretrizes Roma V.' },
+      { title: 'Intolerâncias Alimentares',   body: 'Lactose, frutose e outras intolerâncias identificadas por testes respiratórios, sem biópsia ou coleta de sangue.' },
       { title: 'Helicobacter pylori',         body: 'Diagnóstico preciso por teste respiratório (não endoscópico) e manejo terapêutico com acompanhamento pós-tratamento.' },
     ],
     exames: ['testes-respiratorios', 'manometria-esofagica', 'phmetria-impedanciometria'],
   },
   'fisioterapia-pelvica': {
-    heroDesc: 'Reabilitação especializada do assoalho pélvico — incontinência, disfunções pélvicas e distúrbios digestivos funcionais tratados com biofeedback e protocolos individualizados.',
+    heroDesc: 'Reabilitação especializada do assoalho pélvico: incontinência, disfunções pélvicas e distúrbios digestivos funcionais tratados com biofeedback e protocolos individualizados.',
     intro: [
       'A fisioterapia pélvica da NU.V.E.M é integrada ao tratamento gastroenterológico, reconhecendo que o assoalho pélvico desempenha papel fundamental na fisiologia digestiva e urinária.',
       'Utilizamos biofeedback eletromiográfico, eletroestimulação e técnicas manuais para reabilitar pacientes com disfunções complexas de forma não invasiva e humanizada.',
@@ -44,21 +45,21 @@ const DETAIL: Record<string, {
     exames: ['avaliacao-pelvica', 'manometria-anorretal'],
   },
   halitose: {
-    heroDesc: 'Diagnóstico multidisciplinar completo da halitose — investigamos causas digestivas, orais e sistêmicas com halimetria e sialometria de alta precisão.',
+    heroDesc: 'Diagnóstico multidisciplinar completo da halitose. Investigamos causas digestivas, orais e sistêmicas com halimetria e sialometria de alta precisão.',
     intro: [
-      'A halitose é uma condição complexa que exige abordagem multidisciplinar. Na NU.V.E.M, investigamos todas as origens possíveis — digestivas, orais, nasofaríngeas e sistêmicas.',
+      'A halitose é uma condição complexa que exige abordagem multidisciplinar. Na NU.V.E.M, investigamos todas as origens possíveis: digestivas, orais, nasofaríngeas e sistêmicas.',
       'Nossa abordagem combina halimetria quantitativa, sialometria, avaliação gastroenterológica e, quando necessário, parceria com odontologia e otorrinolaringologia.',
     ],
     topics: [
-      { title: 'Halimetria',  body: 'Quantificação objetiva de compostos sulfurados voláteis (CSV) no ar exalado — diagnóstico preciso e rastreamento da resposta terapêutica.' },
-      { title: 'Sialometria', body: 'Medição do fluxo salivar em repouso e estimulado — essencial no diagnóstico de xerostomia e suas relações com halitose.' },
+      { title: 'Halimetria',  body: 'Quantificação objetiva de compostos sulfurados voláteis (CSV) no ar exalado, para diagnóstico preciso e rastreamento da resposta terapêutica.' },
+      { title: 'Sialometria', body: 'Medição do fluxo salivar em repouso e estimulado, essencial no diagnóstico de xerostomia e suas relações com halitose.' },
       { title: 'Halitose Digestiva', body: 'Investigação de SIBO, gastroparesia e refluxo como causas de mau hálito de origem gastrointestinal.' },
       { title: 'Protocolo Integrado', body: 'Plano terapêutico personalizado que combina tratamento da causa raiz com estratégias de manutenção a longo prazo.' },
     ],
     exames: ['halimetria-sialometria', 'testes-respiratorios'],
   },
   pediatria: {
-    heroDesc: 'Cuidado integral da saúde digestiva infantil — prevenção, diagnóstico e tratamento com abordagem acolhedora e integrada à família.',
+    heroDesc: 'Cuidado integral da saúde digestiva infantil. Prevenção, diagnóstico e tratamento com abordagem acolhedora e integrada à família.',
     intro: [
       'A pediatria da NU.V.E.M oferece atenção especializada à saúde digestiva de crianças e adolescentes, com ambiente acolhedor e equipe treinada para o atendimento pediátrico.',
       'Trabalhamos em estreita colaboração com gastroenterologistas e cirurgião pediátrica para oferecer a melhor conduta em casos complexos.',
@@ -72,7 +73,7 @@ const DETAIL: Record<string, {
     exames: ['testes-respiratorios'],
   },
   nefrologia: {
-    heroDesc: 'Diagnóstico e tratamento especializado de doenças renais — prevenção, acompanhamento e cuidado integral com suporte multidisciplinar.',
+    heroDesc: 'Diagnóstico e tratamento especializado de doenças renais, com prevenção, acompanhamento e cuidado integral com suporte multidisciplinar.',
     intro: [
       'O serviço de nefrologia da NU.V.E.M oferece diagnóstico precoce e acompanhamento de doenças renais, com foco em prevenção e qualidade de vida a longo prazo.',
       'A integração com gastroenterologia permite abordagem conjunta de condições que envolvem rim e trato digestivo.',
@@ -81,7 +82,7 @@ const DETAIL: Record<string, {
       { title: 'Doença Renal Crônica', body: 'Acompanhamento clínico e orientação para retardo da progressão da DRC com estratégias baseadas em evidências.' },
       { title: 'Litíase Renal',        body: 'Investigação de cálculos renais recorrentes com avaliação metabólica completa e orientação dietética personalizada.' },
       { title: 'Infecções Urinárias',  body: 'Manejo de ITU recorrente com investigação de fatores predisponentes e tratamento direcionado.' },
-      { title: 'Integração GI-Renal',  body: 'Interface entre doenças digestivas e renais — oxalúria entérica, disbiose e saúde renal abordados conjuntamente.' },
+      { title: 'Integração GI-Renal',  body: 'Interface entre doenças digestivas e renais: oxalúria entérica, disbiose e saúde renal abordados conjuntamente.' },
     ],
     exames: [],
   },
@@ -158,7 +159,7 @@ export default async function EspecialidadeSlugPage({ params }: Props) {
                 >
                   <span className="block w-5 h-px bg-teal mb-3" />
                   <h3 className="text-[0.95rem] font-semibold text-steel mb-2">{t.title}</h3>
-                  <p className="text-[0.88rem] font-light text-steel/60 leading-[1.72]">{t.body}</p>
+                  <p className="text-[0.88rem] font-light text-steel/60 leading-[1.72]">{renderRich(t.body)}</p>
                 </div>
               ))}
             </div>

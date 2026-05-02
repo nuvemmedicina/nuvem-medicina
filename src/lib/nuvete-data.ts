@@ -47,7 +47,7 @@ export const PREPAROS_EXAMES: PreparoExame[] = [
     itens: [
       'Jejum de 6 horas antes do exame',
       'Suspender medicamentos que afetam motilidade (somente com orientação do seu médico)',
-      'Usar roupas confortáveis — não precisa de roupa hospitalar',
+      'Usar roupas confortáveis (não precisa de roupa hospitalar)',
       'Trazer o pedido médico e exames anteriores',
     ],
     aviso: 'Caso use omeprazol ou similar, consulte seu médico antes de suspender.',
@@ -70,7 +70,7 @@ export const PREPAROS_EXAMES: PreparoExame[] = [
     emoji:   '⏱️',
     duracao: '24 horas de monitoramento',
     itens: [
-      'Suspender inibidores de bomba de prótons (IBP) por 7 dias — SOMENTE com autorização do médico solicitante',
+      'Suspender inibidores de bomba de prótons (IBP) por 7 dias. SOMENTE com autorização do médico solicitante.',
       'Suspender antiácidos e procinéticos 48 horas antes',
       'Jejum de 4 horas antes da instalação do cateter',
       'Manter atividade normal durante as 24 horas',
@@ -81,7 +81,7 @@ export const PREPAROS_EXAMES: PreparoExame[] = [
   },
   {
     id:      'respiratorio-lactose',
-    nome:    'Teste Respiratório — Lactose / Frutose',
+    nome:    'Teste Respiratório: Lactose / Frutose',
     emoji:   '💨',
     duracao: '2–3 horas',
     itens: [
@@ -96,7 +96,7 @@ export const PREPAROS_EXAMES: PreparoExame[] = [
   },
   {
     id:      'respiratorio-hpylori',
-    nome:    'Teste Respiratório — H. pylori (UREA)',
+    nome:    'Teste Respiratório: *H. pylori* (UREA)',
     emoji:   '🦠',
     duracao: '30–40 min',
     itens: [
@@ -109,12 +109,12 @@ export const PREPAROS_EXAMES: PreparoExame[] = [
   },
   {
     id:      'respiratorio-sibo',
-    nome:    'Teste Respiratório — SIBO (H₂/CH₄/H₂S)',
+    nome:    'Teste Respiratório: SIBO (H₂/CH₄/H₂S)',
     emoji:   '🔬',
     duracao: '3 horas',
     itens: [
       'Jejum de 12 horas (somente água)',
-      'Dia anterior — dieta especial restritiva: arroz branco, frango grelhado, carne bovina, ovos, peixe, azeite, sal. EVITAR todo o restante.',
+      'Dia anterior: dieta especial restritiva: arroz branco, frango grelhado, carne bovina, ovos, peixe, azeite, sal. EVITAR todo o restante.',
       'Não usar antibióticos nas 4 semanas anteriores',
       'Não usar probióticos/prebióticos nas 2 semanas anteriores',
       'Não usar laxativos nas 24 horas anteriores',
@@ -180,7 +180,7 @@ export const NUVETE_RESPOSTAS: NuveteResposta[] = [
   },
   {
     gatilhos: ['equipe', 'médicos', 'medicos', 'especialistas', 'quem atende', 'profissionais'],
-    resposta: '👩‍⚕️ **Nossa Equipe Multidisciplinar:**\n\n- **Dra. Vera Ângelo** — Gastroenterologista, fundadora e referência em motilidade digestiva\n- **Dra. Eliane Basques Moura** — Cirurgiã Pediátrica\n- Fisioterapeutas pélvicos especializados\n- Nefrologista\n- Pediatra\n- Especialistas em halitose\n\nTodos os profissionais atuam de forma integrada sob gestão ISO 9001 💙',
+    resposta: '👩‍⚕️ **Nossa Equipe Multidisciplinar:**\n\n- **Dra. Vera Ângelo**, Gastroenterologista, fundadora e referência em motilidade digestiva\n- **Dra. Eliane Basques Moura**, Cirurgiã Pediátrica\n- Fisioterapeutas pélvicos especializados\n- Nefrologista\n- Pediatra\n- Especialistas em halitose\n\nTodos os profissionais atuam de forma integrada sob gestão ISO 9001 💙',
     botoes: [
       { label: '👥 Conhecer toda a equipe', acao: 'link:/equipe' },
       { label: '📅 Agendar consulta', acao: 'whatsapp' },
@@ -190,7 +190,7 @@ export const NUVETE_RESPOSTAS: NuveteResposta[] = [
   // ── Especialidades ───────────────────────────────────────────────────────────
   {
     gatilhos: ['especialidade', 'especialidades', 'o que vocês tratam', 'o que voces tratam', 'que doenças', 'que doencas'],
-    resposta: '🩺 **Especialidades da NU.V.E.M:**\n\n🔹 **Gastroenterologia** — doenças do aparelho digestivo\n🔹 **Fisioterapia Pélvica** — assoalho pélvico e constipação\n🔹 **Halitose** — diagnóstico e tratamento do mau hálito\n🔹 **Pediatria** — saúde digestiva infantil\n🔹 **Nefrologia** — saúde renal\n🔹 **Motilidade Digestiva** — exames funcionais avançados\n\nQuer saber mais sobre alguma especialidade específica?',
+    resposta: '🩺 **Especialidades da NU.V.E.M:**\n\n🔹 **Gastroenterologia**: doenças do aparelho digestivo\n🔹 **Fisioterapia Pélvica**: assoalho pélvico e constipação\n🔹 **Halitose**: diagnóstico e tratamento do mau hálito\n🔹 **Pediatria**: saúde digestiva infantil\n🔹 **Nefrologia**: saúde renal\n🔹 **Motilidade Digestiva**: exames funcionais avançados\n\nQuer saber mais sobre alguma especialidade específica?',
     botoes: [
       { label: '🩺 Ver todas as especialidades', acao: 'link:/especialidades' },
       { label: '📅 Agendar consulta', acao: 'whatsapp' },
@@ -198,7 +198,7 @@ export const NUVETE_RESPOSTAS: NuveteResposta[] = [
   },
   {
     gatilhos: ['gastroenterologia', 'gastro', 'digestivo', 'intestino', 'estômago', 'estomago', 'cólon', 'colon', 'gastrite', 'colite', 'crohn', 'celiaca', 'celíaca'],
-    resposta: '🔹 **Gastroenterologia**\n\nA NU.V.E.M é especializada em doenças do aparelho digestivo, com foco em diagnóstico de precisão:\n\n- Doença do refluxo (DRGE)\n- Acalasia e distúrbios motores esofágicos\n- Síndrome do intestino irritável (SII)\n- Doença de Crohn e retocolite\n- Doença celíaca\n- Gastrite e H. pylori\n- SIBO e disbiose intestinal\n- Constipação crônica\n- Doenças funcionais digestivas',
+    resposta: '🔹 **Gastroenterologia**\n\nA NU.V.E.M é especializada em doenças do aparelho digestivo, com foco em diagnóstico de precisão:\n\n- Doença do refluxo (DRGE)\n- Acalasia e distúrbios motores esofágicos\n- Síndrome do intestino irritável (SII)\n- Doença de Crohn e retocolite\n- Doença celíaca\n- Gastrite e *H. pylori*\n- SIBO e disbiose intestinal\n- Constipação crônica\n- Doenças funcionais digestivas',
     botoes: [
       { label: '🩺 Saiba mais', acao: 'link:/especialidades/gastroenterologia' },
       { label: '📅 Agendar consulta', acao: 'whatsapp' },
@@ -229,7 +229,7 @@ export const NUVETE_RESPOSTAS: NuveteResposta[] = [
     ],
   },
   {
-    gatilhos: ['motilidade', 'motilidade digestiva', 'funcional', 'doenças funcionais'],
+    gatilhos: ['motilidade', 'motilidade digestiva', 'funcional', 'doenças funcionais', 'dgbi', 'distúrbio cérebro-intestino', 'disturbio cerebro-intestino', 'interação cérebro-intestino'],
     resposta: '🔹 **Motilidade Digestiva**\n\nAvaliação dos movimentos e da função do aparelho digestivo com exames de alta precisão:\n\n- Manometria Esofágica de Alta Resolução\n- Manometria Anorretal\n- pHmetria e Impedanciopletismografia\n- Testes Respiratórios (H₂, CH₄, H₂S)\n\nSomos referência nacional nessa área, com a Dra. Vera Ângelo à frente das pesquisas.',
     botoes: [
       { label: '🩺 Saiba mais', acao: 'link:/especialidades/motilidade-digestiva' },
@@ -240,7 +240,7 @@ export const NUVETE_RESPOSTAS: NuveteResposta[] = [
   // ── Exames ───────────────────────────────────────────────────────────────────
   {
     gatilhos: ['exames', 'que exames', 'quais exames', 'exame disponível', 'exame disponivel'],
-    resposta: '🔬 **Exames disponíveis na NU.V.E.M:**\n\n- 🫁 Manometria Esofágica de Alta Resolução\n- 🩺 Manometria Anorretal\n- ⏱️ pHmetria Esofágica 24h\n- 💨 Testes Respiratórios (Lactose, Frutose, SIBO, H. pylori)\n- 💬 Halimetria e Sialometria\n- 🧘 Avaliação Pélvica (Biofeedback/EMG)\n\nQuer saber o preparo para algum exame?',
+    resposta: '🔬 **Exames disponíveis na NU.V.E.M:**\n\n- 🫁 Manometria Esofágica de Alta Resolução\n- 🩺 Manometria Anorretal\n- ⏱️ pHmetria Esofágica 24h\n- 💨 Testes Respiratórios (Lactose, Frutose, SIBO, *H. pylori*)\n- 💬 Halimetria e Sialometria\n- 🧘 Avaliação Pélvica (Biofeedback/EMG)\n\nQuer saber o preparo para algum exame?',
     botoes: [
       { label: '🔬 Ver todos os exames', acao: 'link:/exames' },
       { label: '📋 Ver preparos', acao: 'link:/exames/preparos' },
@@ -249,14 +249,14 @@ export const NUVETE_RESPOSTAS: NuveteResposta[] = [
   },
   {
     gatilhos: ['laudo', 'resultado', 'quando fica pronto', 'prazo'],
-    resposta: '📄 **Prazos dos laudos na NU.V.E.M:**\n\n- Manometria: até 3 dias úteis\n- pHmetria: alguns dias após a devolução do equipamento\n- Testes Respiratórios: até 3 dias úteis\n- Halimetria e Sialometria: até 2 dias úteis\n\nTodos os laudos seguem o padrão ISO 9001 — estruturados, detalhados e entregues no prazo. 💙',
+    resposta: '📄 **Prazos dos laudos na NU.V.E.M:**\n\n- Manometria: até 3 dias úteis\n- pHmetria: alguns dias após a devolução do equipamento\n- Testes Respiratórios: até 3 dias úteis\n- Halimetria e Sialometria: até 2 dias úteis\n\nTodos os laudos seguem o padrão ISO 9001. Estruturados, detalhados e entregues no prazo. 💙',
     botoes: [
       { label: '📅 Agendar exame', acao: 'whatsapp' },
     ],
   },
   {
     gatilhos: ['encaminhamento', 'pedido médico', 'pedido medico', 'precisa de pedido', 'precisa de encaminhamento'],
-    resposta: '📋 **Pedido médico:**\n\nPara a maioria dos **exames**, é necessário um pedido médico.\n\nPara **consultas**, não é necessário encaminhamento — você pode agendar diretamente conosco!\n\nEm dúvida sobre seu caso? Nossa equipe te orienta pelo WhatsApp. 💙',
+    resposta: '📋 **Pedido médico:**\n\nPara a maioria dos **exames**, é necessário um pedido médico.\n\nPara **consultas**, não é necessário encaminhamento. Você pode agendar diretamente conosco!\n\nEm dúvida sobre seu caso? Nossa equipe te orienta pelo WhatsApp. 💙',
     botoes: [
       { label: '📱 Falar pelo WhatsApp', acao: 'whatsapp' },
     ],
@@ -291,7 +291,7 @@ export const NUVETE_RESPOSTAS: NuveteResposta[] = [
   },
   {
     gatilhos: ['sibo', 'supercrescimento', 'imo', 'libo'],
-    resposta: 'A NU.V.E.M é referência em diagnóstico de SIBO (supercrescimento bacteriano intestinal) e IMO (supercrescimento de metanogênicos).\n\nUtilizamos testes respiratórios com H₂, CH₄ e H₂S — o protocolo mais completo disponível, sem coleta de sangue.\n\nGostaria de saber sobre o preparo para o teste respiratório?',
+    resposta: 'A NU.V.E.M é referência em diagnóstico de SIBO (supercrescimento bacteriano intestinal) e IMO (supercrescimento de metanogênicos).\n\nUtilizamos testes respiratórios com H₂, CH₄ e H₂S, o protocolo mais completo disponível, sem coleta de sangue.\n\nGostaria de saber sobre o preparo para o teste respiratório?',
     botoes: [
       { label: '📋 Ver preparo SIBO', acao: 'preparo:respiratorio-sibo' },
       { label: '📅 Agendar exame', acao: 'whatsapp' },
@@ -307,14 +307,14 @@ export const NUVETE_RESPOSTAS: NuveteResposta[] = [
   },
   {
     gatilhos: ['iso', '9001', 'certificação', 'certificado', 'qualidade'],
-    resposta: 'A NU.V.E.M é a **única clínica do segmento em Belo Horizonte** com certificação ISO 9001.\n\nIsso significa que cada processo — do agendamento ao diagnóstico — é padronizado, auditado e continuamente melhorado conforme padrões internacionais de qualidade.',
+    resposta: 'A NU.V.E.M é a **única clínica do segmento em Belo Horizonte** com certificação ISO 9001.\n\nIsso significa que cada processo, do agendamento ao diagnóstico, é padronizado, auditado e continuamente melhorado conforme padrões internacionais de qualidade.',
     botoes: [
       { label: '🏆 Saiba mais sobre a ISO 9001', acao: 'link:/gestao-da-qualidade' },
     ],
   },
   {
     gatilhos: ['h pylori', 'pylori', 'helicobacter'],
-    resposta: 'O diagnóstico de H. pylori na NU.V.E.M é feito pelo **teste respiratório com ureia marcada** — não invasivo, sem endoscopia e altamente preciso.\n\nGostaria de saber como se preparar para o exame?',
+    resposta: 'O diagnóstico de *H. pylori* na NU.V.E.M é feito pelo **teste respiratório com ureia marcada**: não invasivo, sem endoscopia e altamente preciso.\n\nGostaria de saber como se preparar para o exame?',
     botoes: [
       { label: '📋 Preparo H. pylori', acao: 'preparo:respiratorio-hpylori' },
       { label: '📅 Agendar', acao: 'whatsapp' },
@@ -322,7 +322,7 @@ export const NUVETE_RESPOSTAS: NuveteResposta[] = [
   },
   {
     gatilhos: ['halitose', 'mau hálito', 'mau halito', 'hálito'],
-    resposta: 'A NU.V.E.M tem um programa completo para diagnóstico e tratamento da halitose, com:\n\n🔬 Halimetria — quantificação objetiva dos compostos causadores\n💧 Sialometria — avaliação do fluxo salivar\n👥 Abordagem multidisciplinar (gastro + odonto)\n\nGostaria de saber o preparo para a halimetria?',
+    resposta: 'A NU.V.E.M tem um programa completo para diagnóstico e tratamento da halitose, com:\n\n🔬 Halimetria: quantificação objetiva dos compostos causadores\n💧 Sialometria: avaliação do fluxo salivar\n👥 Abordagem multidisciplinar (gastro + odonto)\n\nGostaria de saber o preparo para a halimetria?',
     botoes: [
       { label: '📋 Preparo halimetria', acao: 'preparo:halimetria' },
     ],
@@ -337,7 +337,7 @@ export const NUVETE_RESPOSTAS: NuveteResposta[] = [
   },
   {
     gatilhos: ['phmetria', 'ph', 'refluxo', 'azia', 'drge'],
-    resposta: 'A pHmetria monitora o refluxo esofágico por 24 horas em ambiente ambulatorial — você faz suas atividades normais enquanto o exame registra os episódios de refluxo.\n\nGostaria de ver o preparo?',
+    resposta: 'A pHmetria monitora o refluxo esofágico por 24 horas em ambiente ambulatorial. Você faz suas atividades normais enquanto o exame registra os episódios de refluxo.\n\nGostaria de ver o preparo?',
     botoes: [
       { label: '📋 Preparo pHmetria', acao: 'preparo:phmetria' },
     ],
@@ -356,7 +356,7 @@ export const NUVETE_FAQ = [
   },
   {
     pergunta: 'Preciso de encaminhamento médico para os exames?',
-    resposta: 'Para a maioria dos exames, sim — um pedido médico é necessário. Para consultas, não é preciso encaminhamento. Nossa equipe pode orientar caso a caso.',
+    resposta: 'Para a maioria dos exames, sim. Um pedido médico é necessário. Para consultas, não é preciso encaminhamento. Nossa equipe pode orientar caso a caso.',
   },
   {
     pergunta: 'Os resultados ficam prontos no mesmo dia?',
