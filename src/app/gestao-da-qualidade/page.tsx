@@ -183,8 +183,7 @@ export default function GestaoQualidadePage() {
                   unoptimized
                 />
               </div>
-              <div className="px-5 py-3 border-t border-teal/8 flex items-center justify-between">
-                <span className="text-[0.72rem] font-semibold uppercase tracking-[.1em] text-steel/55">{cert.label}</span>
+              <div className="px-5 py-3 border-t border-teal/8 flex justify-end">
                 <a
                   href={cert.src}
                   target="_blank"
