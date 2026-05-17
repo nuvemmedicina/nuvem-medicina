@@ -20,7 +20,8 @@
     "next-sanity": "^12.4.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "sanity": "^5.25.1"
+    "sanity": "^5.25.1",
+    "styled-components": "^6.4.1"
   },
   "devDependencies": {
     "@types/node": "^20.14.10",
