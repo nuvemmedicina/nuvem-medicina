@@ -79,20 +79,22 @@ export default async function BlogPage() {
                     </div>
                   )}
 
-                  <div className="p-7">
-                    <div className="flex items-center gap-3 mb-3">
-                      {cat && (
-                        <span className="text-[0.65rem] font-semibold uppercase tracking-[.1em] text-teal bg-teal/8 border border-teal/15 px-2.5 py-0.5 rounded-full">
-                          {cat}
-                        </span>
-                      )}
-                      {post.publishedAt && (
-                        <span className="text-[0.68rem] text-steel/40">{formatDate(post.publishedAt)}</span>
-                      )}
-                    </div>
-                    <h2 className="text-[0.92rem] font-semibold text-steel leading-snug mb-3 group-hover:text-teal transition-colors">
+                  <div className="p-6">
+                    {/* Category */}
+                    {cat && (
+                      <span className="inline-block text-[0.6rem] font-bold uppercase tracking-[.12em] text-teal bg-teal/8 border border-teal/20 px-2.5 py-0.5 rounded-full mb-3">
+                        {cat}
+                      </span>
+                    )}
+                    {/* Title */}
+                    <h2 className="text-[0.93rem] font-semibold text-steel leading-snug mb-2 group-hover:text-teal transition-colors">
                       {post.title}
                     </h2>
+                    {/* Date */}
+                    {post.publishedAt && (
+                      <p className="text-[0.65rem] text-steel/35 mb-3">{formatDate(post.publishedAt)}</p>
+                    )}
+                    {/* Excerpt */}
                     {post.excerpt && (
                       <p className="text-[0.78rem] font-light text-steel/60 leading-[1.7] mb-5 line-clamp-3">{post.excerpt}</p>
                     )}
