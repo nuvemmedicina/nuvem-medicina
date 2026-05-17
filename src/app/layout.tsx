@@ -1,11 +1,7 @@
 import type { Metadata } from 'next'
 import { Poppins, Cormorant_Garamond } from 'next/font/google'
 import '@/styles/globals.css'
-import { Navbar }      from '@/components/layout/Navbar'
-import { Footer }      from '@/components/layout/Footer'
-import { WaFloat }     from '@/components/ui/WaFloat'
-import { RevealInit }  from '@/components/ui/RevealInit'
-import { NuveteChat }  from '@/components/nuvete/NuveteChat'
+import { SiteShell }  from '@/components/layout/SiteShell'
 import { JsonLd }      from '@/components/ui/JsonLd'
 import {
   organizationSchema,
@@ -102,12 +98,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="pt-BR" className={`${poppins.variable} ${cormorant.variable}`}>
       <body>
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-        <WaFloat />
-        <NuveteChat />
-        <RevealInit />
+        <SiteShell>{children}</SiteShell>
         {/* Global structured data for all pages */}
         <JsonLd data={[organizationSchema, websiteSchema, ratingSchema, localBusinessSchema, directorSchema]} />
       </body>
