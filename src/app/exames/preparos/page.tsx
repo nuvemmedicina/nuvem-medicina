@@ -14,7 +14,7 @@ const PREPAROS = [
   {
     exame:   'Manometria Esofágica',
     slug:    'manometria-esofagica',
-    pdfUrl:  '/pdfs/preparo-manometria-esofagica.pdf',
+    pdfUrl:  '/pdfs/preparo-manometria-esofagica-v1.pdf',
     itens: [
       'Jejum de 6 horas antes do exame',
       'Suspender medicamentos que afetam motilidade esofágica (com orientação médica)',
@@ -25,7 +25,7 @@ const PREPAROS = [
   {
     exame:   'Manometria Anorretal',
     slug:    'manometria-anorretal',
-    pdfUrl:  '/pdfs/preparo-manometria-anorretal.pdf',
+    pdfUrl:  '/pdfs/preparo-manometria-anorretal-v1.pdf',
     itens: [
       'Realizar enema de limpeza (Minilax® ou similar) 1–2 horas antes do exame',
       'Não é necessário jejum',
@@ -37,7 +37,7 @@ const PREPAROS = [
   {
     exame:   'pHmetria e Impedânciometria',
     slug:    'phmetria-impedanciometria',
-    pdfUrl:  '/pdfs/preparo-phmetria-impedanciometria.pdf',
+    pdfUrl:  '/pdfs/preparo-phmetria-impedanciometria-v1.pdf',
     itens: [
       'Suspender IBPs por 7 dias (apenas com orientação do médico solicitante)',
       'Suspender antiácidos 24 horas antes',
@@ -49,8 +49,8 @@ const PREPAROS = [
   {
     exame:   'Testes Respiratórios',
     slug:    'testes-respiratorios',
-    pdfUrl:  '/pdfs/preparo-teste-respiratorio-sibo-imo.pdf',
-    pdfExtra: { label: 'Preparo H. pylori', url: '/pdfs/preparo-teste-respiratorio-hpylori.pdf' },
+    pdfUrl:  '/pdfs/preparo-teste-respiratorio-sibo-imo-v1.pdf',
+    pdfExtra: { label: 'Preparo H. pylori', url: '/pdfs/preparo-teste-respiratorio-hpylori-v1.pdf' },
     itens: [
       'Jejum de 12 horas antes do exame (somente água é permitida)',
       'Dieta específica no dia anterior: sem grãos, leguminosas, vegetais crucíferos, frutas com alto teor de fibras ou açúcares fermentáveis',
@@ -64,7 +64,7 @@ const PREPAROS = [
   {
     exame:   'Halimetria e Sialometria',
     slug:    'halimetria-sialometria',
-    pdfUrl:  '/pdfs/preparo-halimetria-sialometria.pdf',
+    pdfUrl:  '/pdfs/preparo-halimetria-sialometria-v1.pdf',
     itens: [
       'Não comer nas 3 horas anteriores ao exame',
       'Não escovar dentes nas 2 horas anteriores',
@@ -77,7 +77,7 @@ const PREPAROS = [
   {
     exame:   'Avaliação Pélvica',
     slug:    'avaliacao-pelvica',
-    pdfUrl:  '/pdfs/preparo-avaliacao-pelvica.pdf',
+    pdfUrl:  '/pdfs/preparo-avaliacao-pelvica-v1.pdf',
     itens: [
       'Não é necessário jejum',
       'Usar roupa confortável e de fácil remoção',

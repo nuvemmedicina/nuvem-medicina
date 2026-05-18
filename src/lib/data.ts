@@ -91,12 +91,12 @@ export const ESPECIALIDADES: Especialidade[] = [
 
 // ─── PDF por exame ────────────────────────────────────────────────────────────
 export const EXAM_PDFS: Record<string, string> = {
-  'manometria-esofagica':      '/pdfs/preparo-manometria-esofagica.pdf',
-  'manometria-anorretal':      '/pdfs/preparo-manometria-anorretal.pdf',
-  'phmetria-impedanciometria': '/pdfs/preparo-phmetria-impedanciometria.pdf',
-  'testes-respiratorios':      '/pdfs/preparo-teste-respiratorio-sibo-imo.pdf',
-  'halimetria-sialometria':    '/pdfs/preparo-halimetria-sialometria.pdf',
-  'avaliacao-pelvica':         '/pdfs/preparo-avaliacao-pelvica.pdf',
+  'manometria-esofagica':      '/pdfs/preparo-manometria-esofagica-v1.pdf',
+  'manometria-anorretal':      '/pdfs/preparo-manometria-anorretal-v1.pdf',
+  'phmetria-impedanciometria': '/pdfs/preparo-phmetria-impedanciometria-v1.pdf',
+  'testes-respiratorios':      '/pdfs/preparo-teste-respiratorio-sibo-imo-v1.pdf',
+  'halimetria-sialometria':    '/pdfs/preparo-halimetria-sialometria-v1.pdf',
+  'avaliacao-pelvica':         '/pdfs/preparo-avaliacao-pelvica-v1.pdf',
 }
 
 // ─── Exames ───────────────────────────────────────────────────────────────────
