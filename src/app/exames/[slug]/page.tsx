@@ -150,8 +150,8 @@ const RESP_VIDEOS = [
 ]
 
 const RESP_PHOTOS = [
-  { src: '/images/teste-respiratorio-1.jpg', alt: 'Realização do teste respiratório com equipamento HealthGo AIR na NU.V.E.M Medicina' },
-  { src: '/images/teste-respiratorio-2.jpg', alt: 'Teste respiratório no espaço NU.V.E.M Ensino em Belo Horizonte' },
+  { src: '/images/teste-respiratorio-1.webp', alt: 'Realização do teste respiratório com equipamento HealthGo AIR na NU.V.E.M Medicina' },
+  { src: '/images/teste-respiratorio-2.webp', alt: 'Teste respiratório no espaço NU.V.E.M Ensino em Belo Horizonte' },
 ]
 
 // ─────────────────────────────────────────────────────────────────────────────
