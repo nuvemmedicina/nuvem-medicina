@@ -128,12 +128,12 @@ const RESP_PDFS = [
   {
     label: 'Preparo — H₂ · CH₄ · H₂S',
     sub:   'SIBO, IMO, LIBO e intolerâncias',
-    href:  '/pdfs/preparo-teste-respiratorio-sibo-imo.pdf',
+    href:  '/pdfs/preparo-teste-respiratorio-sibo-imo-v1.pdf',
   },
   {
     label: 'Preparo — H. pylori',
     sub:   'Diagnóstico e controle de erradicação',
-    href:  '/pdfs/preparo-teste-respiratorio-hpylori.pdf',
+    href:  '/pdfs/preparo-teste-respiratorio-hpylori-v1.pdf',
   },
 ]
 
