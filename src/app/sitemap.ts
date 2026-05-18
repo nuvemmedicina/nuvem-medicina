@@ -17,7 +17,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/agendar`,                     priority: 0.95, changeFrequency: 'monthly' as const },
     { url: `${BASE}/contato`,                     priority: 0.7,  changeFrequency: 'monthly' as const },
     { url: `${BASE}/convenios`,                   priority: 0.7,  changeFrequency: 'monthly' as const },
-    { url: `${BASE}/parceiros`,                   priority: 0.6,  changeFrequency: 'monthly' as const },
   ]
 
   const especialidadePages = ESPECIALIDADES.map(esp => ({
