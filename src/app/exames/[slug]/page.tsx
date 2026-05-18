@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound }      from 'next/navigation'
-import Link from 'next/link'
+import Link   from 'next/link'
+import Image  from 'next/image'
 import { Clock, Shield, Check, ArrowRight, Download } from 'lucide-react'
 import { PageHero }       from '@/components/ui/PageHero'
 import { Breadcrumb }     from '@/components/ui/Breadcrumb'
@@ -70,17 +71,19 @@ const EXAM_DETAIL: Record<string, {
   },
   'testes-respiratorios': {
     indicacoes: [
-      'Suspeita de SIBO, IMO ou LIBO',
+      'Suspeita de SIBO (supercrescimento bacteriano no intestino delgado)',
+      'Suspeita de IMO (supercrescimento de metanogênicos) ou LIBO',
       'Intolerância à lactose ou frutose',
       'Diagnóstico de infecção por H. pylori',
-      'Síndrome do intestino irritável para investigação',
-      'Após antibioticoterapia para confirmação de erradicação',
+      'Síndrome do intestino irritável para investigação etiológica',
+      'Confirmação de erradicação após antibioticoterapia',
+      'Investigação de gases intestinais (H₂, CH₄, H₂S)',
     ],
     preparo: [
       'Jejum de 12 horas antes do exame',
       'Dieta específica no dia anterior (sem fibras fermentáveis)',
       'Não usar antibióticos nas 4 semanas anteriores',
-      'Não fumar 1 hora antes',
+      'Não fumar 1 hora antes do exame',
       'Não praticar exercícios intensos 1 hora antes',
     ],
     espRel: ['gastroenterologia', 'pediatria'],
@@ -120,6 +123,39 @@ const EXAM_DETAIL: Record<string, {
   },
 }
 
+// ─── Respiratory test extra content ──────────────────────────────────────────
+const RESP_PDFS = [
+  {
+    label: 'Preparo — H₂ · CH₄ · H₂S',
+    sub:   'SIBO, IMO, LIBO e intolerâncias',
+    href:  '/pdfs/preparo-teste-respiratorio-sibo-imo.pdf',
+  },
+  {
+    label: 'Preparo — H. pylori',
+    sub:   'Diagnóstico e controle de erradicação',
+    href:  '/pdfs/preparo-teste-respiratorio-hpylori.pdf',
+  },
+]
+
+const RESP_VIDEOS = [
+  {
+    title:  'Teste Respiratório com HealthGo AIR',
+    embed:  'https://www.youtube.com/embed/k2hAIvNGD6I',
+  },
+  {
+    title:  'Teste Respiratório — NU.V.E.M Ensino',
+    embed:  'https://www.youtube.com/embed/t6pcq9TjFCU',
+    short:  true,
+  },
+]
+
+const RESP_PHOTOS = [
+  { src: '/images/teste-respiratorio-1.jpg', alt: 'Realização do teste respiratório com equipamento HealthGo AIR na NU.V.E.M Medicina' },
+  { src: '/images/teste-respiratorio-2.jpg', alt: 'Teste respiratório no espaço NU.V.E.M Ensino em Belo Horizonte' },
+]
+
+// ─────────────────────────────────────────────────────────────────────────────
+
 interface Props { params: Promise<{ slug: string }> }
 
 export async function generateStaticParams() {
@@ -141,6 +177,7 @@ export default async function ExameSlugPage({ params }: Props) {
 
   const espRel = ESPECIALIDADES.filter(e => detail.espRel.includes(e.slug))
   const pdfUrl = EXAM_PDFS[slug]
+  const isResp = slug === 'testes-respiratorios'
 
   return (
     <>
@@ -154,7 +191,7 @@ export default async function ExameSlugPage({ params }: Props) {
       <SectionWrapper mist>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
 
-          {/* Main */}
+          {/* ── Main ──────────────────────────────────────────────────── */}
           <div className="lg:col-span-2 space-y-10">
 
             {/* Tag + desc */}
@@ -169,7 +206,48 @@ export default async function ExameSlugPage({ params }: Props) {
               </div>
             </div>
 
-            {/* Indicações */}
+            {/* ── Fotos (somente testes respiratórios) ────────────────── */}
+            {isResp && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {RESP_PHOTOS.map(photo => (
+                  <div key={photo.src} className="relative rounded-2xl overflow-hidden shadow-md" style={{ aspectRatio: '1/1' }}>
+                    <Image
+                      src={photo.src}
+                      alt={photo.alt}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* ── Vídeos (somente testes respiratórios) ───────────────── */}
+            {isResp && (
+              <div>
+                <h2 className="font-serif font-light text-steel text-[1.5rem] mb-5">
+                  Veja como é o <em className="italic text-teal">exame</em>
+                </h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  {RESP_VIDEOS.map(v => (
+                    <div key={v.embed} className="rounded-2xl overflow-hidden shadow-md bg-steel/5 border border-teal/10">
+                      <div className="relative w-full" style={{ aspectRatio: v.short ? '9/16' : '16/9' }}>
+                        <iframe
+                          src={v.embed}
+                          title={v.title}
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                          className="absolute inset-0 w-full h-full"
+                        />
+                      </div>
+                      <p className="text-[0.78rem] text-steel/50 px-4 py-3 text-center">{v.title}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* ── Indicações ──────────────────────────────────────────── */}
             <div>
               <h2 className="font-serif font-light text-steel text-[1.5rem] mb-5">
                 Indicações do <em className="italic text-teal" style={{ fontStyle: 'italic' }}>exame</em>
@@ -184,41 +262,86 @@ export default async function ExameSlugPage({ params }: Props) {
               </div>
             </div>
 
-            {/* Preparo */}
+            {/* ── Preparo ─────────────────────────────────────────────── */}
             <div>
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5">
-                <h2 className="font-serif font-light text-steel text-[1.5rem]">
-                  Como se <em className="italic text-teal" style={{ fontStyle: 'italic' }}>preparar</em>
-                </h2>
-                {pdfUrl && (
-                  <a
-                    href={pdfUrl}
-                    download
-                    className="inline-flex items-center gap-2 text-[0.88rem] font-semibold text-teal bg-teal/8 border border-teal/20 px-4 py-2.5 rounded-xl hover:bg-teal hover:text-white hover:border-teal transition-all shrink-0"
-                  >
-                    <Download className="w-4 h-4" />
-                    Baixar Preparo em PDF
-                  </a>
-                )}
-              </div>
-
-              <div className="bg-white border border-teal/10 rounded-2xl overflow-hidden shadow-sm">
-                {detail.preparo.map((p, i) => (
-                  <div
-                    key={p}
-                    className={`flex items-start gap-4 p-5 text-[0.9rem] text-steel/65 ${i < detail.preparo.length - 1 ? 'border-b border-teal/8' : ''}`}
-                  >
-                    <span className="w-7 h-7 rounded-full bg-teal/10 text-teal text-[0.72rem] font-semibold flex items-center justify-center shrink-0 border border-teal/18">
-                      {i + 1}
-                    </span>
-                    {p}
+              {isResp ? (
+                /* Dois cards de preparo para testes respiratórios */
+                <>
+                  <h2 className="font-serif font-light text-steel text-[1.5rem] mb-6">
+                    Preparos para <em className="italic text-teal">o exame</em>
+                  </h2>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-6">
+                    {RESP_PDFS.map(pdf => (
+                      <div key={pdf.href} className="bg-white border border-teal/12 rounded-2xl p-6 shadow-sm flex flex-col gap-3 hover:border-teal/28 transition-colors">
+                        <div>
+                          <p className="text-[0.82rem] font-bold text-steel mb-0.5">{pdf.label}</p>
+                          <p className="text-[0.75rem] text-steel/45 leading-snug">{pdf.sub}</p>
+                        </div>
+                        <a
+                          href={pdf.href}
+                          download
+                          className="mt-auto inline-flex items-center justify-center gap-2 text-[0.85rem] font-semibold text-teal bg-teal/8 border border-teal/22 px-4 py-2.5 rounded-xl hover:bg-teal hover:text-white hover:border-teal transition-all"
+                        >
+                          <Download className="w-4 h-4" />
+                          Baixar PDF
+                        </a>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
+
+                  {/* Lista de preparo geral */}
+                  <p className="text-[0.82rem] font-semibold uppercase tracking-[.08em] text-steel/40 mb-3">Orientações gerais</p>
+                  <div className="bg-white border border-teal/10 rounded-2xl overflow-hidden shadow-sm">
+                    {detail.preparo.map((p, i) => (
+                      <div
+                        key={p}
+                        className={`flex items-start gap-4 p-5 text-[0.9rem] text-steel/65 ${i < detail.preparo.length - 1 ? 'border-b border-teal/8' : ''}`}
+                      >
+                        <span className="w-7 h-7 rounded-full bg-teal/10 text-teal text-[0.72rem] font-semibold flex items-center justify-center shrink-0 border border-teal/18">
+                          {i + 1}
+                        </span>
+                        {p}
+                      </div>
+                    ))}
+                  </div>
+                </>
+              ) : (
+                /* Preparo padrão para outros exames */
+                <>
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5">
+                    <h2 className="font-serif font-light text-steel text-[1.5rem]">
+                      Como se <em className="italic text-teal" style={{ fontStyle: 'italic' }}>preparar</em>
+                    </h2>
+                    {pdfUrl && (
+                      <a
+                        href={pdfUrl}
+                        download
+                        className="inline-flex items-center gap-2 text-[0.88rem] font-semibold text-teal bg-teal/8 border border-teal/20 px-4 py-2.5 rounded-xl hover:bg-teal hover:text-white hover:border-teal transition-all shrink-0"
+                      >
+                        <Download className="w-4 h-4" />
+                        Baixar Preparo em PDF
+                      </a>
+                    )}
+                  </div>
+                  <div className="bg-white border border-teal/10 rounded-2xl overflow-hidden shadow-sm">
+                    {detail.preparo.map((p, i) => (
+                      <div
+                        key={p}
+                        className={`flex items-start gap-4 p-5 text-[0.9rem] text-steel/65 ${i < detail.preparo.length - 1 ? 'border-b border-teal/8' : ''}`}
+                      >
+                        <span className="w-7 h-7 rounded-full bg-teal/10 text-teal text-[0.72rem] font-semibold flex items-center justify-center shrink-0 border border-teal/18">
+                          {i + 1}
+                        </span>
+                        {p}
+                      </div>
+                    ))}
+                  </div>
+                </>
+              )}
             </div>
           </div>
 
-          {/* Sidebar */}
+          {/* ── Sidebar ───────────────────────────────────────────────── */}
           <div className="space-y-5">
 
             {/* Info chips */}
@@ -235,8 +358,23 @@ export default async function ExameSlugPage({ params }: Props) {
               })}
             </div>
 
-            {/* PDF Download */}
-            {pdfUrl && (
+            {/* PDF Download — dois botões para testes resp., um para outros */}
+            {isResp ? (
+              <div className="bg-teal/8 border border-teal/18 rounded-2xl p-5 space-y-3">
+                <h3 className="text-[0.78rem] font-bold uppercase tracking-[.08em] text-teal mb-1">Preparos do Exame</h3>
+                {RESP_PDFS.map(pdf => (
+                  <a
+                    key={pdf.href}
+                    href={pdf.href}
+                    download
+                    className="flex items-center gap-3 w-full bg-white border border-teal/20 rounded-xl px-4 py-3 text-[0.82rem] font-semibold text-teal hover:bg-teal hover:text-white hover:border-teal transition-all"
+                  >
+                    <Download className="w-4 h-4 shrink-0" />
+                    <span className="leading-snug">{pdf.label}</span>
+                  </a>
+                ))}
+              </div>
+            ) : pdfUrl ? (
               <div className="bg-teal/8 border border-teal/18 rounded-2xl p-5">
                 <h3 className="text-[0.78rem] font-bold uppercase tracking-[.08em] text-teal mb-3">Preparo do Exame</h3>
                 <p className="text-[0.82rem] text-steel/60 mb-4 leading-relaxed">
@@ -251,7 +389,7 @@ export default async function ExameSlugPage({ params }: Props) {
                   Baixar Preparo em PDF
                 </a>
               </div>
-            )}
+            ) : null}
 
             {/* ISO badge */}
             <div className="bg-gold/8 border border-gold/22 rounded-2xl p-5 flex items-center gap-3">
