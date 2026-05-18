@@ -149,9 +149,39 @@ const RESP_VIDEOS = [
   },
 ]
 
-const RESP_PHOTOS = [
-  { src: '/images/teste-respiratorio-1.webp', alt: 'Realização do teste respiratório com equipamento HealthGo AIR na NU.V.E.M Medicina' },
-  { src: '/images/teste-respiratorio-2.webp', alt: 'Teste respiratório no espaço NU.V.E.M Ensino em Belo Horizonte' },
+const RESP_TECNOLOGIAS = [
+  {
+    src:    '/images/teste-respiratorio-1.webp',
+    alt:    'Equipamento HealthGo AIR em uso na NU.V.E.M Medicina',
+    badge:  'Aprovado ANVISA',
+    name:   'HealthGo AIR',
+    sub:    'Tecnologia brasileira de última geração',
+    desc:   'O primeiro equipamento nacional para diagnóstico funcional do trato gastrointestinal por teste respiratório. Detecta simultaneamente H₂, CH₄ e H₂S, diferenciando quadros de SIBO, IMO e outras disbioses com precisão superior aos aparelhos tradicionais.',
+    specs:  [
+      { label: 'Gases medidos',   value: 'H₂ · CH₄ · H₂S' },
+      { label: 'Pacientes',       value: 'Até 5 simultâneos' },
+      { label: 'Coleta',          value: 'A cada 2 minutos' },
+      { label: 'Laudo',           value: 'Geração automática' },
+      { label: 'Tecnologia',      value: 'Autolimpante' },
+    ],
+    imgLeft: true,
+  },
+  {
+    src:    '/images/teste-respiratorio-2.webp',
+    alt:    'Teste respiratório com equipamento Dynamed Easy H2 no NU.V.E.M Ensino',
+    badge:  'Aprovado ANVISA',
+    name:   'Dynamed Easy H2',
+    sub:    'Diagnóstico não invasivo portátil',
+    desc:   'Equipamento portátil para teste respiratório de H₂ em ar expirado. Indicado no diagnóstico de intolerância à lactose e frutose, malabsorção de carboidratos e supercrescimento bacteriano. Resultado instantâneo em menos de 60 segundos, com exibição em display LCD.',
+    specs:  [
+      { label: 'Gás medido',   value: 'H₂ (1–500 PPM)' },
+      { label: 'Resposta',     value: '< 60 segundos' },
+      { label: 'Portabilidade', value: '120g · pilhas AA' },
+      { label: 'Conectividade', value: 'Standalone ou PC' },
+      { label: 'Sensor',       value: '> 18 meses de vida' },
+    ],
+    imgLeft: false,
+  },
 ]
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -251,17 +281,48 @@ export default async function ExameSlugPage({ params }: Props) {
               </div>
             </div>
 
-            {/* ── Fotos (somente testes respiratórios) ────────────────── */}
+            {/* ── Tecnologias (somente testes respiratórios) ──────────── */}
             {isResp && (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {RESP_PHOTOS.map(photo => (
-                  <div key={photo.src} className="relative rounded-2xl overflow-hidden shadow-md" style={{ aspectRatio: '1/1' }}>
-                    <Image
-                      src={photo.src}
-                      alt={photo.alt}
-                      fill
-                      className="object-cover"
-                    />
+              <div className="space-y-6">
+                <h2 className="font-serif font-light text-steel text-[1.5rem]">
+                  Nossas <em className="italic text-teal">tecnologias</em>
+                </h2>
+                {RESP_TECNOLOGIAS.map((tec) => (
+                  <div
+                    key={tec.name}
+                    className={`flex flex-col ${tec.imgLeft ? 'sm:flex-row' : 'sm:flex-row-reverse'} gap-0 bg-white border border-teal/10 rounded-2xl overflow-hidden shadow-sm hover:shadow-md hover:border-teal/22 transition-all`}
+                  >
+                    {/* Foto */}
+                    <div className="relative sm:w-[42%] shrink-0" style={{ minHeight: '260px' }}>
+                      <Image
+                        src={tec.src}
+                        alt={tec.alt}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+
+                    {/* Conteúdo */}
+                    <div className="flex-1 p-6 flex flex-col justify-between gap-4">
+                      <div>
+                        <span className="inline-block text-[0.6rem] font-bold uppercase tracking-[.12em] text-teal bg-teal/8 border border-teal/20 px-2.5 py-0.5 rounded-full mb-3">
+                          {tec.badge}
+                        </span>
+                        <h3 className="text-[1.05rem] font-semibold text-steel mb-0.5">{tec.name}</h3>
+                        <p className="text-[0.72rem] font-medium text-teal/70 uppercase tracking-[.08em] mb-3">{tec.sub}</p>
+                        <p className="text-[0.85rem] font-light text-steel/60 leading-relaxed">{tec.desc}</p>
+                      </div>
+
+                      {/* Specs */}
+                      <div className="grid grid-cols-2 gap-2">
+                        {tec.specs.map(s => (
+                          <div key={s.label} className="bg-cloud border border-teal/8 rounded-xl px-3 py-2">
+                            <p className="text-[0.6rem] font-bold uppercase tracking-[.1em] text-steel/35 mb-0.5">{s.label}</p>
+                            <p className="text-[0.78rem] font-semibold text-steel/75">{s.value}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>
