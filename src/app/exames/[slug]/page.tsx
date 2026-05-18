@@ -289,6 +289,116 @@ export default async function ExameSlugPage({ params }: Props) {
                     ))}
                   </div>
 
+                  {/* ── Dieta do dia anterior ─────────────────────────── */}
+                  <div className="rounded-2xl overflow-hidden border border-teal/15 shadow-sm">
+                    {/* Header */}
+                    <div className="px-6 py-4 flex items-center gap-3" style={{ background: 'linear-gradient(135deg, #002535, #00465F)' }}>
+                      <span className="text-2xl">🥗</span>
+                      <div>
+                        <p className="text-white font-semibold text-[0.95rem]">Dieta obrigatória — dia anterior ao exame</p>
+                        <p className="text-white/55 text-[0.75rem]">O preparo alimentar é essencial para a precisão do diagnóstico</p>
+                      </div>
+                    </div>
+
+                    <div className="bg-white p-5 space-y-5">
+                      {/* Permitido × Proibido */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        {/* Permitido */}
+                        <div className="rounded-xl bg-teal/5 border border-teal/15 p-4">
+                          <p className="text-[0.7rem] font-bold uppercase tracking-[.1em] text-teal mb-3 flex items-center gap-1.5">
+                            <span className="w-4 h-4 rounded-full bg-teal text-white text-[0.6rem] flex items-center justify-center">✓</span>
+                            Permitido
+                          </p>
+                          <ul className="space-y-1.5">
+                            {[
+                              'Arroz branco · macarrão sem molho',
+                              'Frango, peixe ou carne grelhada',
+                              'Ovo cozido ou mexido (sem leite)',
+                              'Azeite, sal e limão como tempero',
+                              'Morango, abacate e limão (puros)',
+                              'Água · chá de camomila',
+                            ].map(item => (
+                              <li key={item} className="text-[0.8rem] text-steel/65 flex items-start gap-2">
+                                <span className="text-teal mt-0.5 shrink-0">·</span>{item}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        {/* Proibido */}
+                        <div className="rounded-xl bg-red-50 border border-red-100 p-4">
+                          <p className="text-[0.7rem] font-bold uppercase tracking-[.1em] text-red-500 mb-3 flex items-center gap-1.5">
+                            <span className="w-4 h-4 rounded-full bg-red-500 text-white text-[0.6rem] flex items-center justify-center">✕</span>
+                            Proibido
+                          </p>
+                          <ul className="space-y-1.5">
+                            {[
+                              'Leite, queijos e laticínios',
+                              'Feijão, lentilha, grão-de-bico, milho',
+                              'Repolho, brócolis, couve, cebola, alho',
+                              'Açúcar, mel, sorvete, adoçantes',
+                              'Café, álcool, refrigerante e chás*',
+                              'Frutas (exceto as permitidas)',
+                            ].map(item => (
+                              <li key={item} className="text-[0.8rem] text-steel/65 flex items-start gap-2">
+                                <span className="text-red-400 mt-0.5 shrink-0">·</span>{item}
+                              </li>
+                            ))}
+                          </ul>
+                          <p className="text-[0.65rem] text-steel/35 mt-2">*Exceto chá de camomila</p>
+                        </div>
+                      </div>
+
+                      {/* Jejum e horários */}
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        {[
+                          { icon: '🚫', label: 'Sólidos', value: 'Jejum de 12h antes' },
+                          { icon: '💧', label: 'Líquidos', value: 'Água até meia-noite' },
+                          { icon: '🕛', label: 'Após meia-noite', value: 'Jejum total' },
+                        ].map(item => (
+                          <div key={item.label} className="flex items-center gap-3 bg-cloud border border-teal/10 rounded-xl px-4 py-3">
+                            <span className="text-xl shrink-0">{item.icon}</span>
+                            <div>
+                              <p className="text-[0.62rem] font-bold uppercase tracking-[.08em] text-steel/35">{item.label}</p>
+                              <p className="text-[0.8rem] font-semibold text-steel/75">{item.value}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Suspensão de medicamentos */}
+                      <div>
+                        <p className="text-[0.7rem] font-bold uppercase tracking-[.1em] text-steel/40 mb-2">Suspensão de medicamentos</p>
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                          {[
+                            { prazo: '4 semanas', med: 'Antibióticos' },
+                            { prazo: '3 semanas', med: 'Análogos GLP-1' },
+                            { prazo: '2 semanas', med: 'Probióticos' },
+                            { prazo: '5–7 dias',  med: 'Laxativos' },
+                          ].map(m => (
+                            <div key={m.med} className="bg-gold/8 border border-gold/20 rounded-xl px-3 py-2.5 text-center">
+                              <p className="text-[0.72rem] font-bold text-gold">{m.prazo}</p>
+                              <p className="text-[0.72rem] text-steel/55">{m.med}</p>
+                            </div>
+                          ))}
+                        </div>
+                        <p className="text-[0.7rem] text-steel/40 mt-2">⚠️ IBPs, medicações contínuas e probióticos orientados pelo médico devem ser mantidos.</p>
+                      </div>
+
+                      {/* No dia */}
+                      <div className="flex flex-wrap gap-2 pt-1 border-t border-teal/8">
+                        {[
+                          '🚭 Não fumar',
+                          '🦷 Enxaguante sem álcool',
+                          '🍬 Sem chicletes ou balas',
+                          '🏃 Sem exercícios intensos',
+                        ].map(item => (
+                          <span key={item} className="text-[0.75rem] text-steel/60 bg-cloud border border-teal/10 px-3 py-1.5 rounded-full">{item}</span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
                   {/* Lista de preparo geral */}
                   <p className="text-[0.82rem] font-semibold uppercase tracking-[.08em] text-steel/40 mb-3">Orientações gerais</p>
                   <div className="bg-white border border-teal/10 rounded-2xl overflow-hidden shadow-sm">
