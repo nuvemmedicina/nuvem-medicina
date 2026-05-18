@@ -181,12 +181,57 @@ export default async function ExameSlugPage({ params }: Props) {
 
   return (
     <>
-      <PageHero tag="Exames" title={<em>{exame.title}</em>} desc={exame.subtitle}>
-        <Breadcrumb crumbs={[
-          { label: 'Exames', href: '/exames' },
-          { label: exame.title },
-        ]} />
-      </PageHero>
+      {/* ── Hero ──────────────────────────────────────────────────────── */}
+      {isResp ? (
+        /* Hero split: texto à esq, vídeo HealthGo à dir */
+        <div className="relative pt-[76px] pb-20 overflow-hidden bg-white">
+          <div className="absolute -top-[20%] right-[-5%] w-[500px] h-[500px] rounded-full pointer-events-none"
+            style={{ background: 'radial-gradient(circle, rgba(203,228,230,.50) 0%, transparent 65%)' }} />
+          <div className="absolute inset-0 hero-grid-bg pointer-events-none" />
+          <div className="absolute top-0 bottom-0 w-px opacity-20 pointer-events-none"
+            style={{ right: '25%', background: 'linear-gradient(to bottom, transparent, rgba(0,70,95,.30) 30%, rgba(0,70,95,.30) 70%, transparent)' }} />
+
+          <div className="relative z-10 max-w-[1240px] mx-auto px-8 pt-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+              {/* Texto */}
+              <div>
+                <p className="sec-tag">Exames</p>
+                <h1 className="sec-title" style={{ fontSize: 'clamp(2.4rem, 4vw, 3.6rem)' }}>
+                  <em>{exame.title}</em>
+                </h1>
+                <p className="text-[1rem] font-light text-steel/60 leading-[1.85] max-w-xl mt-4">
+                  {exame.subtitle}
+                </p>
+                <div className="mt-8">
+                  <Breadcrumb crumbs={[
+                    { label: 'Exames', href: '/exames' },
+                    { label: exame.title },
+                  ]} />
+                </div>
+              </div>
+              {/* Vídeo HealthGo */}
+              <div className="rounded-2xl overflow-hidden shadow-xl border border-teal/10">
+                <div className="relative w-full" style={{ aspectRatio: '16/9' }}>
+                  <iframe
+                    src={RESP_VIDEOS[0].embed}
+                    title={RESP_VIDEOS[0].title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="absolute inset-0 w-full h-full"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <PageHero tag="Exames" title={<em>{exame.title}</em>} desc={exame.subtitle}>
+          <Breadcrumb crumbs={[
+            { label: 'Exames', href: '/exames' },
+            { label: exame.title },
+          ]} />
+        </PageHero>
+      )}
 
       <SectionWrapper mist>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
@@ -219,31 +264,6 @@ export default async function ExameSlugPage({ params }: Props) {
                     />
                   </div>
                 ))}
-              </div>
-            )}
-
-            {/* ── Vídeos (somente testes respiratórios) ───────────────── */}
-            {isResp && (
-              <div>
-                <h2 className="font-serif font-light text-steel text-[1.5rem] mb-5">
-                  Veja como é o <em className="italic text-teal">exame</em>
-                </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  {RESP_VIDEOS.map(v => (
-                    <div key={v.embed} className="rounded-2xl overflow-hidden shadow-md bg-steel/5 border border-teal/10">
-                      <div className="relative w-full" style={{ aspectRatio: v.short ? '9/16' : '16/9' }}>
-                        <iframe
-                          src={v.embed}
-                          title={v.title}
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowFullScreen
-                          className="absolute inset-0 w-full h-full"
-                        />
-                      </div>
-                      <p className="text-[0.78rem] text-steel/50 px-4 py-3 text-center">{v.title}</p>
-                    </div>
-                  ))}
-                </div>
               </div>
             )}
 
@@ -418,6 +438,21 @@ export default async function ExameSlugPage({ params }: Props) {
             <Link href="/agendar" className="btn-gold w-full justify-center">
               Agendar este Exame
             </Link>
+
+            {/* Vídeo NU.V.E.M Ensino — somente testes respiratórios */}
+            {isResp && (
+              <div className="rounded-2xl overflow-hidden shadow-md border border-teal/10">
+                <div className="relative w-full" style={{ aspectRatio: '9/16' }}>
+                  <iframe
+                    src={RESP_VIDEOS[1].embed}
+                    title={RESP_VIDEOS[1].title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="absolute inset-0 w-full h-full"
+                  />
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </SectionWrapper>
