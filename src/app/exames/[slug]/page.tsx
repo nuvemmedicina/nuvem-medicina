@@ -399,21 +399,6 @@ export default async function ExameSlugPage({ params }: Props) {
                     </div>
                   </div>
 
-                  {/* Lista de preparo geral */}
-                  <p className="text-[0.82rem] font-semibold uppercase tracking-[.08em] text-steel/40 mb-3">Orientações gerais</p>
-                  <div className="bg-white border border-teal/10 rounded-2xl overflow-hidden shadow-sm">
-                    {detail.preparo.map((p, i) => (
-                      <div
-                        key={p}
-                        className={`flex items-start gap-4 p-5 text-[0.9rem] text-steel/65 ${i < detail.preparo.length - 1 ? 'border-b border-teal/8' : ''}`}
-                      >
-                        <span className="w-7 h-7 rounded-full bg-teal/10 text-teal text-[0.72rem] font-semibold flex items-center justify-center shrink-0 border border-teal/18">
-                          {i + 1}
-                        </span>
-                        {p}
-                      </div>
-                    ))}
-                  </div>
                 </>
               ) : (
                 /* Preparo padrão para outros exames */
