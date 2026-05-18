@@ -60,7 +60,7 @@ export default function SobrePage() {
           {/* Stats panel */}
           <div className="grid grid-cols-2 gap-4 reveal reveal-d2">
             {[
-              { val: '1.991', label: 'Avaliações Google', sub: '★★★★★', gold: true },
+              { val: '+2.000', label: 'Avaliações Google', sub: '★★★★★', gold: true },
               { val: 'ISO 9001', label: 'Certificação', sub: 'Única no segmento', gold: true },
               { val: '6+', label: 'Anos de história', sub: 'Em constante crescimento', gold: false },
               { val: '6', label: 'Especialidades', sub: 'Equipe integrada', gold: false },
