@@ -9,14 +9,24 @@ import { SectionWrapper } from '@/components/ui/SectionWrapper'
 import { CtaBanner }      from '@/components/ui/CtaBanner'
 import { IsoSeal }        from '@/components/icons/IsoSeal'
 import { EXAMES, ESPECIALIDADES, EXAM_PDFS } from '@/lib/data'
+import { PhotoCarousel } from '@/components/ui/PhotoCarousel'
 
 const ICON_MAP: Record<string, React.ElementType> = { Clock, Shield, Check }
 
+interface PreparoCard {
+  icon:   string
+  title:  string
+  body:   string
+  badge?: string
+}
+
 // Extended detail per exam
 const EXAM_DETAIL: Record<string, {
-  indicacoes: string[]
-  preparo:    string[]
-  espRel:     string[]
+  indicacoes:    string[]
+  preparo:       string[]
+  preparoCards?: PreparoCard[]
+  photos?:       { src: string; alt: string }[]
+  espRel:        string[]
 }> = {
   'manometria-esofagica': {
     indicacoes: [
@@ -32,6 +42,12 @@ const EXAM_DETAIL: Record<string, {
       'Suspender medicamentos que afetam motilidade esofágica (consultar médico)',
       'Usar roupa confortável',
       'Comparecer com o pedido médico e exames anteriores',
+    ],
+    preparoCards: [
+      { icon: '🍽️', badge: '6h antes',     title: 'Jejum',           body: 'Jejum absoluto de 6 horas antes do exame — sólidos e líquidos.' },
+      { icon: '💊', title: 'Medicamentos',  body: 'Suspender medicamentos que afetam a motilidade esofágica conforme orientação do seu médico.' },
+      { icon: '👕', title: 'Vestimenta',    body: 'Use roupa confortável com decote que facilite o acesso ao pescoço para a passagem do cateter.' },
+      { icon: '📋', title: 'Documentos',    body: 'Traga o pedido médico e exames anteriores (endoscopia, manometria prévia, etc.).' },
     ],
     espRel: ['motilidade-digestiva', 'gastroenterologia'],
   },
@@ -51,6 +67,13 @@ const EXAM_DETAIL: Record<string, {
       'Comparecer com o pedido médico e exames anteriores',
       'Informar à equipe o uso de qualquer medicamento',
     ],
+    preparoCards: [
+      { icon: '🚿', badge: '1–2h antes',   title: 'Enema de Limpeza', body: 'Realizar enema (Minilax® ou similar) 1 a 2 horas antes do exame para limpeza do canal anal.' },
+      { icon: '🍽️', title: 'Sem Jejum',    body: 'Não é necessário jejum. Você pode se alimentar normalmente antes do exame.' },
+      { icon: '👕', title: 'Vestimenta',    body: 'Use roupa confortável e calça que possa ser abaixada com facilidade.' },
+      { icon: '📋', title: 'Documentos',    body: 'Traga o pedido médico e exames anteriores disponíveis (ultrassom pélvico, manometria prévia).' },
+      { icon: '💊', title: 'Medicamentos',  body: 'Informe à equipe todos os medicamentos em uso, incluindo laxativos e fitoterápicos.' },
+    ],
     espRel: ['motilidade-digestiva', 'fisioterapia-pelvica'],
   },
   'phmetria-impedanciometria': {
@@ -66,6 +89,18 @@ const EXAM_DETAIL: Record<string, {
       'Suspender antiácidos por 24 horas',
       'Jejum de 4 horas antes da instalação do cateter',
       'Manter atividade normal durante o monitoramento',
+    ],
+    preparoCards: [
+      { icon: '💊', badge: '7 dias antes',  title: 'Protetores Gástricos', body: 'Suspender IBPs (Omeprazol, Pantoprazol, Esomeprazol) somente com orientação do médico solicitante.' },
+      { icon: '💊', badge: '24h antes',     title: 'Antiácidos',           body: 'Suspender antiácidos simples (Leite de Magnésia, Gaviscon, Luftal) 24 horas antes da instalação do cateter.' },
+      { icon: '🍽️', badge: '4h antes',     title: 'Jejum',                body: 'Jejum de 4 horas antes da colocação do cateter. Após a instalação, alimente-se normalmente.' },
+      { icon: '👕', title: 'Vestimenta',    body: 'Use blusa de botão frontal — o gravador portátil ficará preso ao seu corpo durante as 24 horas de monitoramento.' },
+      { icon: '🏠', title: 'Rotina Normal', body: 'Mantenha sua rotina habitual de trabalho e atividades domésticas durante todo o exame.' },
+      { icon: '📝', title: 'Diário do Exame', body: 'Registre sintomas, horários das refeições e posições no diário fornecido pela clínica — é essencial para o laudo.' },
+    ],
+    photos: [
+      { src: '/images/phmetria-1.webp', alt: 'Equipamentos AL-3 e AL-4 ZpH para pHmetria e impedânciometria' },
+      { src: '/images/phmetria-2.webp', alt: 'Paciente utilizando o gravador portátil durante o monitoramento de 24h' },
     ],
     espRel: ['motilidade-digestiva', 'gastroenterologia'],
   },
@@ -102,6 +137,13 @@ const EXAM_DETAIL: Record<string, {
       'Não fumar 2 horas antes',
       'Hidratação normal permitida',
     ],
+    preparoCards: [
+      { icon: '🍽️', badge: '3h antes',  title: 'Alimentação',          body: 'Não comer nas 3 horas anteriores ao exame. Refeições alteram a composição do ar expirado.' },
+      { icon: '🦷', badge: '2h antes',  title: 'Higiene Oral',          body: 'Não escovar os dentes nas 2 horas anteriores. Não usar enxaguante, spray ou qualquer produto bucal no dia.' },
+      { icon: '🚭', badge: '2h antes',  title: 'Sem Fumar',             body: 'Não fumar nas 2 horas anteriores ao exame. O cigarro interfere diretamente na medição dos gases.' },
+      { icon: '🌸', title: 'Sem Perfume', body: 'Não usar perfume ou desodorante com fragrância forte no dia — podem interferir na leitura do halímetro.' },
+      { icon: '💧', title: 'Hidratação',  body: 'Beber água normalmente é permitido e recomendado para a sialometria.' },
+    ],
     espRel: ['halitose'],
   },
   'avaliacao-pelvica': {
@@ -118,6 +160,13 @@ const EXAM_DETAIL: Record<string, {
       'Não é necessário jejum',
       'Comparecer com exames anteriores se houver',
       'Informar uso de medicamentos',
+    ],
+    preparoCards: [
+      { icon: '🍽️', title: 'Sem Jejum',        body: 'Não é necessário jejum. Pode se alimentar normalmente antes do exame.' },
+      { icon: '👕', title: 'Vestimenta',        body: 'Use roupa confortável e de fácil remoção para facilitar a avaliação.' },
+      { icon: '🚿', title: 'Higiene',           body: 'Realize higiene íntima normal no dia do exame. Não é necessário nenhum preparo especial.' },
+      { icon: '📋', title: 'Exames Anteriores', body: 'Traga exames anteriores se houver (manometria anorretal, ultrassom pélvico, urodinâmica).' },
+      { icon: '💊', title: 'Medicamentos',      body: 'Informe à equipe o uso de qualquer medicamento, especialmente os que afetam a musculatura.' },
     ],
     espRel: ['fisioterapia-pelvica'],
   },
@@ -266,6 +315,16 @@ export default async function ExameSlugPage({ params }: Props) {
                 ))}
               </div>
             </div>
+
+            {/* ── Fotos / Carrossel ───────────────────────────────────── */}
+            {detail.photos && detail.photos.length > 0 && (
+              <div>
+                <h2 className="font-serif font-light text-steel text-[1.5rem] mb-5">
+                  O exame na <em className="italic text-teal">prática</em>
+                </h2>
+                <PhotoCarousel images={detail.photos} />
+              </div>
+            )}
 
             {/* ── Tecnologias (somente testes respiratórios) ──────────── */}
             {isResp && (
@@ -471,19 +530,46 @@ export default async function ExameSlugPage({ params }: Props) {
                       </a>
                     )}
                   </div>
-                  <div className="bg-white border border-teal/10 rounded-2xl overflow-hidden shadow-sm">
-                    {detail.preparo.map((p, i) => (
-                      <div
-                        key={p}
-                        className={`flex items-start gap-4 p-5 text-[0.9rem] text-steel/65 ${i < detail.preparo.length - 1 ? 'border-b border-teal/8' : ''}`}
-                      >
-                        <span className="w-7 h-7 rounded-full bg-teal/10 text-teal text-[0.72rem] font-semibold flex items-center justify-center shrink-0 border border-teal/18">
-                          {i + 1}
-                        </span>
-                        {p}
-                      </div>
-                    ))}
-                  </div>
+
+                  {detail.preparoCards ? (
+                    /* Cards com ícones */
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {detail.preparoCards.map((card) => (
+                        <div
+                          key={card.title}
+                          className="bg-white border border-teal/10 rounded-2xl p-5 shadow-sm hover:border-teal/22 hover:shadow-md transition-all flex gap-4 items-start"
+                        >
+                          <div className="w-11 h-11 rounded-xl bg-teal/8 border border-teal/15 flex items-center justify-center shrink-0 text-[1.25rem] leading-none">
+                            {card.icon}
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            {card.badge && (
+                              <span className="inline-block text-[0.6rem] font-bold uppercase tracking-[.1em] text-teal bg-teal/8 border border-teal/20 px-2 py-0.5 rounded-full mb-1.5">
+                                {card.badge}
+                              </span>
+                            )}
+                            <p className="text-[0.88rem] font-semibold text-steel mb-1">{card.title}</p>
+                            <p className="text-[0.82rem] font-light text-steel/60 leading-relaxed">{card.body}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    /* Lista numerada (fallback) */
+                    <div className="bg-white border border-teal/10 rounded-2xl overflow-hidden shadow-sm">
+                      {detail.preparo.map((p, i) => (
+                        <div
+                          key={p}
+                          className={`flex items-start gap-4 p-5 text-[0.9rem] text-steel/65 ${i < detail.preparo.length - 1 ? 'border-b border-teal/8' : ''}`}
+                        >
+                          <span className="w-7 h-7 rounded-full bg-teal/10 text-teal text-[0.72rem] font-semibold flex items-center justify-center shrink-0 border border-teal/18">
+                            {i + 1}
+                          </span>
+                          {p}
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </>
               )}
             </div>
