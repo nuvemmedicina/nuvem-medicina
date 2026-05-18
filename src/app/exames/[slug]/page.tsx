@@ -128,12 +128,12 @@ const RESP_PDFS = [
   {
     label: 'Preparo — H₂ · CH₄ · H₂S',
     sub:   'SIBO, IMO, LIBO e intolerâncias',
-    href:  '/pdfs/preparo-teste-respiratorio-sibo-imo.pdf',
+    href:  '/pdfs/preparo-teste-respiratorio-sibo-imo-v1.pdf',
   },
   {
     label: 'Preparo — H. pylori',
     sub:   'Diagnóstico e controle de erradicação',
-    href:  '/pdfs/preparo-teste-respiratorio-hpylori.pdf',
+    href:  '/pdfs/preparo-teste-respiratorio-hpylori-v1.pdf',
   },
 ]
 
@@ -149,9 +149,39 @@ const RESP_VIDEOS = [
   },
 ]
 
-const RESP_PHOTOS = [
-  { src: '/images/teste-respiratorio-1.webp', alt: 'Realização do teste respiratório com equipamento HealthGo AIR na NU.V.E.M Medicina' },
-  { src: '/images/teste-respiratorio-2.webp', alt: 'Teste respiratório no espaço NU.V.E.M Ensino em Belo Horizonte' },
+const RESP_TECNOLOGIAS = [
+  {
+    src:    '/images/teste-respiratorio-1.webp',
+    alt:    'Equipamento HealthGo AIR em uso na NU.V.E.M Medicina',
+    badge:  'Aprovado ANVISA',
+    name:   'HealthGo AIR',
+    sub:    'Tecnologia brasileira de última geração',
+    desc:   'O primeiro equipamento nacional para diagnóstico funcional do trato gastrointestinal por teste respiratório. Detecta simultaneamente H₂, CH₄ e H₂S, diferenciando quadros de SIBO, IMO e outras disbioses com precisão superior aos aparelhos tradicionais.',
+    specs:  [
+      { label: 'Gases medidos',   value: 'H₂ · CH₄ · H₂S' },
+      { label: 'Pacientes',       value: 'Até 5 simultâneos' },
+      { label: 'Coleta',          value: 'A cada 2 minutos' },
+      { label: 'Laudo',           value: 'Geração automática' },
+      { label: 'Tecnologia',      value: 'Autolimpante' },
+    ],
+    imgLeft: true,
+  },
+  {
+    src:    '/images/teste-respiratorio-2.webp',
+    alt:    'Teste respiratório com equipamento Dynamed Easy H2 no NU.V.E.M Ensino',
+    badge:  'Aprovado ANVISA',
+    name:   'Dynamed Easy H2',
+    sub:    'Diagnóstico não invasivo portátil',
+    desc:   'Equipamento portátil para teste respiratório de H₂ em ar expirado. Indicado no diagnóstico de intolerância à lactose e frutose, malabsorção de carboidratos e supercrescimento bacteriano. Resultado instantâneo em menos de 60 segundos, com exibição em display LCD.',
+    specs:  [
+      { label: 'Gás medido',   value: 'H₂ (1–500 PPM)' },
+      { label: 'Resposta',     value: '< 60 segundos' },
+      { label: 'Portabilidade', value: '120g · pilhas AA' },
+      { label: 'Conectividade', value: 'Standalone ou PC' },
+      { label: 'Sensor',       value: '> 18 meses de vida' },
+    ],
+    imgLeft: false,
+  },
 ]
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -181,12 +211,57 @@ export default async function ExameSlugPage({ params }: Props) {
 
   return (
     <>
-      <PageHero tag="Exames" title={<em>{exame.title}</em>} desc={exame.subtitle}>
-        <Breadcrumb crumbs={[
-          { label: 'Exames', href: '/exames' },
-          { label: exame.title },
-        ]} />
-      </PageHero>
+      {/* ── Hero ──────────────────────────────────────────────────────── */}
+      {isResp ? (
+        /* Hero split: texto à esq, vídeo HealthGo à dir */
+        <div className="relative pt-[76px] pb-20 overflow-hidden bg-white">
+          <div className="absolute -top-[20%] right-[-5%] w-[500px] h-[500px] rounded-full pointer-events-none"
+            style={{ background: 'radial-gradient(circle, rgba(203,228,230,.50) 0%, transparent 65%)' }} />
+          <div className="absolute inset-0 hero-grid-bg pointer-events-none" />
+          <div className="absolute top-0 bottom-0 w-px opacity-20 pointer-events-none"
+            style={{ right: '25%', background: 'linear-gradient(to bottom, transparent, rgba(0,70,95,.30) 30%, rgba(0,70,95,.30) 70%, transparent)' }} />
+
+          <div className="relative z-10 max-w-[1240px] mx-auto px-8 pt-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+              {/* Texto */}
+              <div>
+                <p className="sec-tag">Exames</p>
+                <h1 className="sec-title" style={{ fontSize: 'clamp(2.4rem, 4vw, 3.6rem)' }}>
+                  <em>{exame.title}</em>
+                </h1>
+                <p className="text-[1rem] font-light text-steel/60 leading-[1.85] max-w-xl mt-4">
+                  {exame.subtitle}
+                </p>
+                <div className="mt-8">
+                  <Breadcrumb crumbs={[
+                    { label: 'Exames', href: '/exames' },
+                    { label: exame.title },
+                  ]} />
+                </div>
+              </div>
+              {/* Vídeo HealthGo */}
+              <div className="rounded-2xl overflow-hidden shadow-xl border border-teal/10">
+                <div className="relative w-full" style={{ aspectRatio: '16/9' }}>
+                  <iframe
+                    src={RESP_VIDEOS[0].embed}
+                    title={RESP_VIDEOS[0].title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="absolute inset-0 w-full h-full"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <PageHero tag="Exames" title={<em>{exame.title}</em>} desc={exame.subtitle}>
+          <Breadcrumb crumbs={[
+            { label: 'Exames', href: '/exames' },
+            { label: exame.title },
+          ]} />
+        </PageHero>
+      )}
 
       <SectionWrapper mist>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
@@ -206,44 +281,50 @@ export default async function ExameSlugPage({ params }: Props) {
               </div>
             </div>
 
-            {/* ── Fotos (somente testes respiratórios) ────────────────── */}
+            {/* ── Tecnologias (somente testes respiratórios) ──────────── */}
             {isResp && (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {RESP_PHOTOS.map(photo => (
-                  <div key={photo.src} className="relative rounded-2xl overflow-hidden shadow-md" style={{ aspectRatio: '1/1' }}>
-                    <Image
-                      src={photo.src}
-                      alt={photo.alt}
-                      fill
-                      className="object-cover"
-                    />
+              <div className="space-y-6">
+                <h2 className="font-serif font-light text-steel text-[1.5rem]">
+                  Nossas <em className="italic text-teal">tecnologias</em>
+                </h2>
+                {RESP_TECNOLOGIAS.map((tec) => (
+                  <div
+                    key={tec.name}
+                    className={`flex flex-col ${tec.imgLeft ? 'sm:flex-row' : 'sm:flex-row-reverse'} gap-0 bg-white border border-teal/10 rounded-2xl overflow-hidden shadow-sm hover:shadow-md hover:border-teal/22 transition-all`}
+                  >
+                    {/* Foto */}
+                    <div className="relative sm:w-[42%] shrink-0" style={{ minHeight: '260px' }}>
+                      <Image
+                        src={tec.src}
+                        alt={tec.alt}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+
+                    {/* Conteúdo */}
+                    <div className="flex-1 p-6 flex flex-col justify-between gap-4">
+                      <div>
+                        <span className="inline-block text-[0.6rem] font-bold uppercase tracking-[.12em] text-teal bg-teal/8 border border-teal/20 px-2.5 py-0.5 rounded-full mb-3">
+                          {tec.badge}
+                        </span>
+                        <h3 className="text-[1.05rem] font-semibold text-steel mb-0.5">{tec.name}</h3>
+                        <p className="text-[0.72rem] font-medium text-teal/70 uppercase tracking-[.08em] mb-3">{tec.sub}</p>
+                        <p className="text-[0.85rem] font-light text-steel/60 leading-relaxed">{tec.desc}</p>
+                      </div>
+
+                      {/* Specs */}
+                      <div className="grid grid-cols-2 gap-2">
+                        {tec.specs.map(s => (
+                          <div key={s.label} className="bg-cloud border border-teal/8 rounded-xl px-3 py-2">
+                            <p className="text-[0.6rem] font-bold uppercase tracking-[.1em] text-steel/35 mb-0.5">{s.label}</p>
+                            <p className="text-[0.78rem] font-semibold text-steel/75">{s.value}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 ))}
-              </div>
-            )}
-
-            {/* ── Vídeos (somente testes respiratórios) ───────────────── */}
-            {isResp && (
-              <div>
-                <h2 className="font-serif font-light text-steel text-[1.5rem] mb-5">
-                  Veja como é o <em className="italic text-teal">exame</em>
-                </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  {RESP_VIDEOS.map(v => (
-                    <div key={v.embed} className="rounded-2xl overflow-hidden shadow-md bg-steel/5 border border-teal/10">
-                      <div className="relative w-full" style={{ aspectRatio: v.short ? '9/16' : '16/9' }}>
-                        <iframe
-                          src={v.embed}
-                          title={v.title}
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowFullScreen
-                          className="absolute inset-0 w-full h-full"
-                        />
-                      </div>
-                      <p className="text-[0.78rem] text-steel/50 px-4 py-3 text-center">{v.title}</p>
-                    </div>
-                  ))}
-                </div>
               </div>
             )}
 
@@ -418,6 +499,21 @@ export default async function ExameSlugPage({ params }: Props) {
             <Link href="/agendar" className="btn-gold w-full justify-center">
               Agendar este Exame
             </Link>
+
+            {/* Vídeo NU.V.E.M Ensino — somente testes respiratórios */}
+            {isResp && (
+              <div className="rounded-2xl overflow-hidden shadow-md border border-teal/10">
+                <div className="relative w-full" style={{ aspectRatio: '9/16' }}>
+                  <iframe
+                    src={RESP_VIDEOS[1].embed}
+                    title={RESP_VIDEOS[1].title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="absolute inset-0 w-full h-full"
+                  />
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </SectionWrapper>
