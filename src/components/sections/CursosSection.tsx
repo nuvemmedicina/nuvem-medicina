@@ -3,7 +3,7 @@
 // Usada na home e na página /ensino.
 
 import Image from 'next/image'
-import { ExternalLink, CalendarDays, Monitor, MapPin, UserRound } from 'lucide-react'
+import { ExternalLink, CalendarDays, Monitor, MapPin } from 'lucide-react'
 import { CURSOS, type Curso } from '@/lib/cursos'
 
 const MODALIDADE_ICON = {
@@ -78,13 +78,7 @@ function CursoCard({ curso, index }: { curso: Curso; index: number }) {
         <p className="text-[0.85rem] font-light text-steel/60 leading-[1.72] flex-1">
           {curso.descricao}
         </p>
-        {curso.instrutor && (
-          <div className="mt-4 pt-4 border-t border-teal/8 flex items-center gap-2 text-[0.78rem] text-steel/50">
-            <UserRound className="w-3.5 h-3.5 text-teal/60 shrink-0" />
-            {curso.instrutor}
-          </div>
-        )}
-        <div className="mt-4 flex items-center gap-1.5 text-[0.85rem] font-semibold text-teal group-hover:gap-2.5 transition-all">
+        <div className="mt-5 flex items-center gap-1.5 text-[0.85rem] font-semibold text-teal group-hover:gap-2.5 transition-all">
           Inscrever-se <ExternalLink className="w-3.5 h-3.5" />
         </div>
       </div>
