@@ -48,11 +48,11 @@ const EXAM_DETAIL: Record<string, {
     ],
     preparoCards: [
       // ── Suspensão de Medicamentos ──────────────────────────
-      { section: 'Suspensão de Medicamentos', icon: '💊', badge: '48h antes',        title: 'Procinéticos',           body: 'Suspender Bromoprida e Domperidona. Se houver dor torácica, suspender também Dilacoron, Isordil, Cardizem e Diltiazem — consulte seu médico.' },
+      { section: 'Suspensão de Medicamentos', icon: '💊', badge: '48h antes',        title: 'Procinéticos',           body: 'Suspender Bromoprida e Domperidona. Se houver dor torácica, suspender também Dilacoron, Isordil, Cardizem e Diltiazem; consulte seu médico.' },
       { section: 'Suspensão de Medicamentos', icon: '✅', badge: 'Véspera até 22h',   title: 'Medicamentos Permitidos', body: 'IBPs (Omeprazol, Pantoprazol, Lansoprazol), antiácidos simples, Sucrafilm e Lufta Gastro Pro podem ser usados normalmente.', variant: 'permitted' },
       { section: 'Suspensão de Medicamentos', icon: '⚠️',                             title: 'Uso Contínuo',           body: 'Medicamentos para hipertensão, diabetes, coração e pulmão podem ser tomados normalmente com o mínimo de água possível.', variant: 'warning' },
       // ── Preparação para o Jejum ────────────────────────────
-      { section: 'Preparação para o Jejum',   icon: '🍽️', badge: 'A partir das 22h', title: 'Jejum Absoluto',         body: 'Jejum absoluto a partir das 22h da noite anterior ao exame — inclusive água.' },
+      { section: 'Preparação para o Jejum',   icon: '🍽️', badge: 'A partir das 22h', title: 'Jejum Absoluto',         body: 'Jejum absoluto a partir das 22h da noite anterior ao exame, inclusive água.' },
       { section: 'Preparação para o Jejum',   icon: '🩺',                             title: 'Casos Especiais',        body: 'Para crianças, idosos e diabéticos, o tempo de jejum será avaliado individualmente no agendamento.' },
       // ── No Dia do Exame ────────────────────────────────────
       { section: 'No Dia do Exame',           icon: '🆔',                             title: 'Documentação',           body: 'Traga documento com foto, pedido médico original e carteirinha do convênio.' },
@@ -60,7 +60,7 @@ const EXAM_DETAIL: Record<string, {
       { section: 'No Dia do Exame',           icon: '👕',                             title: 'Vestimenta',             body: 'Use roupas confortáveis com abertura frontal. Evite camisas de gola alta.' },
       { section: 'No Dia do Exame',           icon: '⏰',                             title: 'Horário',                body: 'Chegue com 15 minutos de antecedência para os trâmites de cadastro e recepção.' },
     ],
-    video: { embed: 'https://www.youtube.com/embed/0CS9j6SrcXU', title: 'Manometria Esofágica — NU.V.E.M Medicina', short: true },
+    video: { embed: 'https://www.youtube.com/embed/0CS9j6SrcXU', title: 'Manometria Esofágica | NU.V.E.M Medicina', short: true },
     espRel: ['motilidade-digestiva', 'gastroenterologia'],
   },
   'manometria-anorretal': {
@@ -106,9 +106,9 @@ const EXAM_DETAIL: Record<string, {
       { icon: '💊', badge: '7 dias antes',  title: 'Protetores Gástricos', body: 'Suspender IBPs (Omeprazol, Pantoprazol, Esomeprazol) somente com orientação do médico solicitante.' },
       { icon: '💊', badge: '24h antes',     title: 'Antiácidos',           body: 'Suspender antiácidos simples (Leite de Magnésia, Gaviscon, Luftal) 24 horas antes da instalação do cateter.' },
       { icon: '🍽️', badge: '4h antes',     title: 'Jejum',                body: 'Jejum de 4 horas antes da colocação do cateter. Após a instalação, alimente-se normalmente.' },
-      { icon: '👕', title: 'Vestimenta',    body: 'Use blusa de botão frontal — o gravador portátil ficará preso ao seu corpo durante as 24 horas de monitoramento.' },
+      { icon: '👕', title: 'Vestimenta',    body: 'Use blusa de botão frontal: o gravador portátil ficará preso ao seu corpo durante as 24 horas de monitoramento.' },
       { icon: '🏠', title: 'Rotina Normal', body: 'Mantenha sua rotina habitual de trabalho e atividades domésticas durante todo o exame.' },
-      { icon: '📝', title: 'Diário do Exame', body: 'Registre sintomas, horários das refeições e posições no diário fornecido pela clínica — é essencial para o laudo.' },
+      { icon: '📝', title: 'Diário do Exame', body: 'Registre sintomas, horários das refeições e posições no diário fornecido pela clínica: é essencial para o laudo.' },
     ],
     photos: [
       { src: '/images/phmetria-1.webp', alt: 'Equipamentos AL-3 e AL-4 ZpH para pHmetria e impedânciometria' },
@@ -153,7 +153,7 @@ const EXAM_DETAIL: Record<string, {
       { icon: '🍽️', badge: '3h antes',  title: 'Alimentação',          body: 'Não comer nas 3 horas anteriores ao exame. Refeições alteram a composição do ar expirado.' },
       { icon: '🦷', badge: '2h antes',  title: 'Higiene Oral',          body: 'Não escovar os dentes nas 2 horas anteriores. Não usar enxaguante, spray ou qualquer produto bucal no dia.' },
       { icon: '🚭', badge: '2h antes',  title: 'Sem Fumar',             body: 'Não fumar nas 2 horas anteriores ao exame. O cigarro interfere diretamente na medição dos gases.' },
-      { icon: '🌸', title: 'Sem Perfume', body: 'Não usar perfume ou desodorante com fragrância forte no dia — podem interferir na leitura do halímetro.' },
+      { icon: '🌸', title: 'Sem Perfume', body: 'Não usar perfume ou desodorante com fragrância forte no dia, pois podem interferir na leitura do halímetro.' },
       { icon: '💧', title: 'Hidratação',  body: 'Beber água normalmente é permitido e recomendado para a sialometria.' },
     ],
     espRel: ['halitose'],
@@ -187,12 +187,12 @@ const EXAM_DETAIL: Record<string, {
 // ─── Respiratory test extra content ──────────────────────────────────────────
 const RESP_PDFS = [
   {
-    label: 'Preparo — H₂ · CH₄ · H₂S',
+    label: 'Preparo: H₂ · CH₄ · H₂S',
     sub:   'SIBO, IMO, LIBO e intolerâncias',
     href:  '/pdfs/preparo-teste-respiratorio-sibo-imo-v1.pdf',
   },
   {
-    label: 'Preparo — H. pylori',
+    label: 'Preparo: H. pylori',
     sub:   'Diagnóstico e controle de erradicação',
     href:  '/pdfs/preparo-teste-respiratorio-hpylori-v1.pdf',
   },
@@ -204,7 +204,7 @@ const RESP_VIDEOS = [
     embed:  'https://www.youtube.com/embed/k2hAIvNGD6I',
   },
   {
-    title:  'Teste Respiratório — NU.V.E.M Ensino',
+    title:  'Teste Respiratório | NU.V.E.M Ensino',
     embed:  'https://www.youtube.com/embed/t6pcq9TjFCU',
     short:  true,
   },
@@ -419,7 +419,7 @@ export default async function ExameSlugPage({ params }: Props) {
                     <div className="px-6 py-4 flex items-center gap-3" style={{ background: 'linear-gradient(135deg, #002535, #00465F)' }}>
                       <span className="text-2xl">🥗</span>
                       <div>
-                        <p className="text-white font-semibold text-[0.95rem]">Dieta obrigatória — dia anterior ao exame</p>
+                        <p className="text-white font-semibold text-[0.95rem]">Dieta obrigatória: dia anterior ao exame</p>
                         <p className="text-white/55 text-[0.75rem]">O preparo alimentar é essencial para a precisão do diagnóstico</p>
                       </div>
                     </div>

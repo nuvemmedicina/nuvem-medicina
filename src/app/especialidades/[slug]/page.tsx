@@ -40,7 +40,7 @@ const DETAIL: Record<string, DetailData> = {
     heroDesc: 'Especialidade focada no equilíbrio intestinal pleno, tratamos desde sintomas comuns até patologias complexas como SIBO, IMO, disbiose e DGBI – Distúrbio da Interação Cérebro-Intestino.',
     intro: [
       'A gastroenterologia da NU.V.E.M abrange o diagnóstico e tratamento completo das doenças do aparelho digestivo, com foco especial em DGBI – Distúrbio da Interação Cérebro-Intestino, disbiose intestinal e distúrbios de motilidade.',
-      'Nossa abordagem integra avaliação clínica detalhada, exames de alta precisão como testes respiratórios e manometria, e protocolos terapêuticos baseados nas diretrizes Roma V — a mais recente e reconhecida classificação internacional para distúrbios funcionais digestivos.',
+      'Nossa abordagem integra avaliação clínica detalhada, exames de alta precisão como testes respiratórios e manometria, e protocolos terapêuticos baseados nas diretrizes Roma V, a mais recente e reconhecida classificação internacional para distúrbios funcionais digestivos.',
     ],
     sintomas: [
       'Inchaço e distensão abdominal persistente',
@@ -62,11 +62,11 @@ const DETAIL: Record<string, DetailData> = {
       { title: 'Doenças Inflamatórias e Funcionais', body: 'Investigação completa de doença de Crohn, retocolite ulcerativa e outras condições inflamatórias, com acompanhamento longitudinal.' },
     ],
     diferenciais: [
-      'Testes respiratórios realizados na própria clínica — resultado e interpretação no mesmo dia',
+      'Testes respiratórios realizados na própria clínica: resultado e interpretação no mesmo dia',
       'Laudos baseados nas diretrizes Roma V, referência mundial para DGBI',
       'Equipe integrada de gastroenterologia, fisioterapia pélvica e motilidade digestiva',
       'Certificação ISO 9001 garantindo rastreabilidade e padronização de todos os procedimentos',
-      'Dra. Vera Ângelo: professora convidada do Hospital Israelita Albert Einstein',
+      'Dra. Vera Ângelo, professora convidada do Hospital Israelita Albert Einstein',
     ],
     paraMedicos: {
       intro: 'A NU.V.E.M é centro de referência em diagnóstico funcional digestivo em Belo Horizonte. Recebemos encaminhamentos para investigação de SIBO/IMO, intolerâncias alimentares, H. pylori não endoscópico e DGBI. Nossa equipe emite laudos detalhados e mantém comunicação com o médico solicitante nos casos que exigem condutas compartilhadas.',
@@ -106,7 +106,7 @@ const DETAIL: Record<string, DetailData> = {
     topics: [
       { title: 'Incontinência Urinária e Fecal', body: 'Reabilitação muscular por biofeedback eletromiográfico e treinamento vesical com resultados comprovados em casos de leve a moderada complexidade, reduzindo ou eliminando o uso de absorventes.' },
       { title: 'Disfunção do Assoalho Pélvico', body: 'Hipertonia, hipotonia e assimetria do assoalho pélvico avaliadas com biofeedback e tratadas com protocolos individualizados, integrando técnicas manuais e eletroterapia.' },
-      { title: 'Constipação Obstrutiva', body: 'Disfunção evacuatória tratada com biofeedback anorretal integrado à avaliação gastroenterológica da manometria anorretal — diagnóstico e reabilitação no mesmo espaço clínico.' },
+      { title: 'Constipação Obstrutiva', body: 'Disfunção evacuatória tratada com biofeedback anorretal integrado à avaliação gastroenterológica da manometria anorretal: diagnóstico e reabilitação no mesmo espaço clínico.' },
       { title: 'Reabilitação Pós-Parto e Pós-Cirúrgica', body: 'Recuperação funcional do assoalho pélvico após parto normal, cesariana ou cirurgias pélvicas, com protocolos específicos para cada fase do pós-operatório.' },
       { title: 'Dor Pélvica Crônica', body: 'Abordagem multidisciplinar de síndromes dolorosas pélvicas, vaginismo e vulvodinia, em conjunto com ginecologistas e urologistas.' },
       { title: 'Integração GI + Pélvico', body: 'Abordagem única na NU.V.E.M que combina gastroenterologia e fisioterapia pélvica para resultados superiores em casos de constipação com componente funcional.' },
@@ -116,7 +116,7 @@ const DETAIL: Record<string, DetailData> = {
       'Biofeedback eletromiográfico de última geração com registro gráfico de evolução',
       'Protocolos individualizados com reavaliação periódica documentada',
       'Integração direta com gastroenterologia para casos de constipação obstrutiva',
-      'Certificação ISO 9001 — cada sessão registrada e rastreável',
+      'Certificação ISO 9001: cada sessão registrada e rastreável',
     ],
     paraMedicos: {
       intro: 'Indicada para pacientes com disfunções do assoalho pélvico, incontinência urinária ou fecal, constipação com componente obstrutivo e dor pélvica crônica. Recebemos encaminhamentos de ginecologistas, urologistas, gastroenterologistas e cirurgiões colorretais.',
@@ -139,7 +139,7 @@ const DETAIL: Record<string, DetailData> = {
     heroDesc: 'Diagnóstico multidisciplinar completo da halitose. Investigamos causas digestivas, orais e sistêmicas com halimetria e sialometria de alta precisão.',
     intro: [
       'A halitose é uma condição complexa que exige abordagem multidisciplinar. Na NU.V.E.M, investigamos todas as origens possíveis: digestivas, orais, nasofaríngeas e sistêmicas, com protocolo diagnóstico completo e personalizado.',
-      'Nossa abordagem combina halimetria quantitativa objetiva, sialometria, avaliação gastroenterológica completa e, quando necessário, parceria com odontologia e otorrinolaringologia — tudo no mesmo atendimento integrado.',
+      'Nossa abordagem combina halimetria quantitativa objetiva, sialometria, avaliação gastroenterológica completa e, quando necessário, parceria com odontologia e otorrinolaringologia, tudo no mesmo atendimento integrado.',
     ],
     sintomas: [
       'Mau hálito persistente mesmo após higiene bucal rigorosa',
@@ -153,7 +153,7 @@ const DETAIL: Record<string, DetailData> = {
     ],
     topics: [
       { title: 'Halimetria Quantitativa', body: 'Quantificação objetiva de compostos sulfurados voláteis (CSV) no ar exalado com aparelho Halimeter® calibrado, para diagnóstico preciso e monitoramento da resposta ao tratamento.' },
-      { title: 'Sialometria', body: 'Medição do fluxo salivar em repouso e estimulado — essencial no diagnóstico de xerostomia e suas relações diretas com a halitose de origem oral.' },
+      { title: 'Sialometria', body: 'Medição do fluxo salivar em repouso e estimulado, essencial no diagnóstico de xerostomia e suas relações diretas com a halitose de origem oral.' },
       { title: 'Halitose Digestiva', body: 'Investigação aprofundada de SIBO, gastroparesia, refluxo gastroesofágico e disbiose como causas de mau hálito de origem gastrointestinal, frequentemente subdiagnosticadas.' },
       { title: 'Protocolo Diagnóstico Integrado', body: 'Avaliação simultânea de todas as possíveis origens: oral, digestiva, nasofaríngea e sistêmica, com sequenciamento diagnóstico eficiente e preciso.' },
       { title: 'Plano Terapêutico Individualizado', body: 'Tratamento direcionado à causa identificada, combinando abordagem digestiva, orientações de higiene oral e encaminhamento para especialistas quando necessário.' },
@@ -161,10 +161,10 @@ const DETAIL: Record<string, DetailData> = {
     ],
     diferenciais: [
       'Único protocolo multidisciplinar completo para halitose em Belo Horizonte',
-      'Halimetria quantitativa objetiva — resultado em ppb (partes por bilhão) de CSV',
+      'Halimetria quantitativa objetiva: resultado em ppb (partes por bilhão) de CSV',
       'Investigação simultânea de origem oral, digestiva e sistêmica na mesma consulta',
       'Plano terapêutico individualizado com acompanhamento evolutivo documentado',
-      'Certificação ISO 9001 — resultados rastreáveis e comparáveis entre consultas',
+      'Certificação ISO 9001: resultados rastreáveis e comparáveis entre consultas',
     ],
     paraMedicos: {
       intro: 'Recebemos encaminhamentos de gastroenterologistas, otorrinolaringologistas, cirurgiões-dentistas e clínicos gerais para investigação diagnóstica completa de halitose. O protocolo NU.V.E.M inclui halimetria, sialometria, triagem digestiva e planejamento terapêutico integrado.',
@@ -187,7 +187,7 @@ const DETAIL: Record<string, DetailData> = {
     heroDesc: 'Cuidado integral da saúde digestiva infantil. Prevenção, diagnóstico e tratamento com abordagem acolhedora, integrada à família e suporte cirúrgico pediátrico.',
     intro: [
       'A pediatria da NU.V.E.M oferece atenção especializada à saúde digestiva de crianças e adolescentes, com ambiente acolhedor projetado para reduzir a ansiedade infantil e facilitar o vínculo com a família.',
-      'Trabalhamos em estreita colaboração com gastroenterologistas, cirurgiãs pediátricas e fisioterapeuta pélvica para oferecer a conduta mais completa em casos complexos — desde constipação infantil até investigação de APLV e H. pylori.',
+      'Trabalhamos em estreita colaboração com gastroenterologistas, cirurgiãs pediátricas e fisioterapeuta pélvica para oferecer a conduta mais completa em casos complexos, desde constipação infantil até investigação de APLV e H. pylori.',
     ],
     sintomas: [
       'Constipação crônica em crianças (menos de 3 evacuações por semana)',
@@ -202,7 +202,7 @@ const DETAIL: Record<string, DetailData> = {
     topics: [
       { title: 'Saúde Digestiva Infantil', body: 'Constipação, refluxo, cólicas persistentes e distúrbios funcionais avaliados com abordagem gentil, baseada em evidências pediátricas atualizadas e com total envolvimento da família no tratamento.' },
       { title: 'Intolerâncias Alimentares Pediátricas', body: 'Diagnóstico de intolerância à lactose, frutose e proteína do leite de vaca (APLV) com protocolos de testes respiratórios e dieta de exclusão adaptados à faixa etária.' },
-      { title: 'H. pylori em Crianças', body: 'Investigação e confirmação de erradicação por teste respiratório não invasivo — evitando procedimentos invasivos desnecessários em crianças.' },
+      { title: 'H. pylori em Crianças', body: 'Investigação e confirmação de erradicação por teste respiratório não invasivo, evitando procedimentos invasivos desnecessários em crianças.' },
       { title: 'Constipação Crônica Infantil', body: 'Avaliação completa de constipação refratária ao tratamento clínico, integrando abordagem clínica, dietética e, quando necessário, manometria anorretal pediátrica.' },
       { title: 'Integração Cirúrgica Pediátrica', body: 'Casos que necessitam de avaliação cirúrgica são conduzidos em conjunto com as cirurgiãs pediátricas da NU.V.E.M (Dra. Eliane Basques e Dra. Adrianna Buzatti), integrando diagnóstico e conduta sem necessidade de múltiplos encaminhamentos.' },
       { title: 'Acompanhamento Longitudinal', body: 'Seguimento continuado do crescimento e desenvolvimento digestivo, com orientações para a família em cada consulta e adequação do plano terapêutico conforme a evolução.' },
@@ -210,9 +210,9 @@ const DETAIL: Record<string, DetailData> = {
     diferenciais: [
       'Ambiente acolhedor especialmente pensado para atendimento infantil',
       'Equipe com pediatra especialista em gastroenterologia pediátrica',
-      'Cirurgiãs pediátricas integradas — avaliação cirúrgica sem encaminhamento externo',
+      'Cirurgiãs pediátricas integradas: avaliação cirúrgica sem encaminhamento externo',
       'Testes respiratórios adaptados para crianças (SIBO, lactose, frutose, H. pylori)',
-      'Certificação ISO 9001 — protocolos pediátricos padronizados e seguros',
+      'Certificação ISO 9001: protocolos pediátricos padronizados e seguros',
     ],
     paraMedicos: {
       intro: 'Recebemos encaminhamentos de pediatras e clínicos gerais para investigação de distúrbios digestivos na infância. Nossa equipe inclui gastroenterologista especializada em pediatria e cirurgiãs pediátricas para os casos que necessitem de avaliação complementar ou conduta cirúrgica.',
@@ -236,7 +236,7 @@ const DETAIL: Record<string, DetailData> = {
     heroDesc: 'Diagnóstico e tratamento especializado de doenças renais, com diferencial único: a integração com gastroenterologia para investigação da interface GI-Renal e manejo de causas digestivas de progressão renal.',
     intro: [
       'O serviço de nefrologia da NU.V.E.M oferece diagnóstico precoce e acompanhamento de doenças renais com um diferencial clínico importante: a integração com a gastroenterologia no mesmo espaço, permitindo investigar causas digestivas frequentemente negligenciadas na progressão de doenças renais.',
-      'A conexão entre intestino e rim é cientificamente estabelecida. Condições como oxalúria entérica, disbiose intestinal e absorção anormal de oxalatos têm impacto direto na saúde renal — e na NU.V.E.M investigamos essa interface de forma completa.',
+      'A conexão entre intestino e rim é cientificamente estabelecida. Condições como oxalúria entérica, disbiose intestinal e absorção anormal de oxalatos têm impacto direto na saúde renal; na NU.V.E.M investigamos essa interface de forma completa.',
     ],
     sintomas: [
       'Edema (inchaço) nos pés, tornozelos ou pálpebras',
@@ -250,8 +250,8 @@ const DETAIL: Record<string, DetailData> = {
     ],
     topics: [
       { title: 'Doença Renal Crônica (DRC)', body: 'Acompanhamento clínico especializado com estratégias baseadas em evidências para retardo da progressão da DRC, preservação da função renal e melhora da qualidade de vida a longo prazo.' },
-      { title: 'Litíase Renal Recorrente', body: 'Investigação metabólica completa de cálculos renais de repetição, incluindo avaliação da oxalúria entérica — causa pouco investigada relacionada à absorção intestinal anormal de oxalatos.' },
-      { title: 'Interface GI-Renal', body: 'Investigação da relação entre disbiose intestinal, oxalúria entérica, síndrome do intestino permeável e progressão de doenças renais — abordagem integrativa única disponível na NU.V.E.M.' },
+      { title: 'Litíase Renal Recorrente', body: 'Investigação metabólica completa de cálculos renais de repetição, incluindo avaliação da oxalúria entérica, causa pouco investigada relacionada à absorção intestinal anormal de oxalatos.' },
+      { title: 'Interface GI-Renal', body: 'Investigação da relação entre disbiose intestinal, oxalúria entérica, síndrome do intestino permeável e progressão de doenças renais: abordagem integrativa única disponível na NU.V.E.M.' },
       { title: 'Infecções Urinárias de Repetição', body: 'Manejo de ITU recorrente com investigação de fatores predisponentes, perfil microbiológico e tratamento direcionado para reduzir recorrências.' },
       { title: 'Hipertensão Renovascular', body: 'Avaliação e acompanhamento da hipertensão de causa renal, com investigação complementar e manejo integrado com equipe de clínica médica.' },
       { title: 'Prevenção e Rastreamento', body: 'Avaliação renal preventiva em pacientes de risco (diabéticos, hipertensos, histórico familiar), com exames complementares e orientação dietética personalizada para proteção renal.' },
@@ -259,12 +259,12 @@ const DETAIL: Record<string, DetailData> = {
     diferenciais: [
       'Única clínica em BH com nefrologia integrada à gastroenterologia no mesmo espaço',
       'Investigação de oxalúria entérica e disbiose como causas de litíase renal recorrente',
-      'Abordagem da interface GI-Renal — impacto da microbiota na saúde renal',
+      'Abordagem da interface GI-Renal: impacto da microbiota na saúde renal',
       'Suporte multidisciplinar completo sem necessidade de múltiplos encaminhamentos',
-      'Certificação ISO 9001 — rastreabilidade de todos os exames e condutas',
+      'Certificação ISO 9001: rastreabilidade de todos os exames e condutas',
     ],
     paraMedicos: {
-      intro: 'A NU.V.E.M oferece avaliação nefrológica com diferencial diagnóstico: a integração com gastroenterologia permite investigar causas intestinais de progressão da DRC, litíase recorrente por oxalúria entérica e o impacto da disbiose intestinal na saúde renal — abordagem que a nefrologia isolada frequentemente não contempla.',
+      intro: 'A NU.V.E.M oferece avaliação nefrológica com diferencial diagnóstico: a integração com gastroenterologia permite investigar causas intestinais de progressão da DRC, litíase recorrente por oxalúria entérica e o impacto da disbiose intestinal na saúde renal, abordagem que a nefrologia isolada frequentemente não contempla.',
       bullets: [
         'Investigação metabólica completa em casos de litíase renal recorrente',
         'Avaliação conjunta GI-Renal com testes respiratórios e análise de permeabilidade intestinal',
@@ -281,10 +281,10 @@ const DETAIL: Record<string, DetailData> = {
 
   // ── Motilidade Digestiva ───────────────────────────────────────────────────
   'motilidade-digestiva': {
-    heroDesc: 'Avaliação avançada dos distúrbios esofágicos e intestinais com manometria de alta resolução, pHmetria e impedânciometria integradas — um dos centros mais especializados de BH.',
+    heroDesc: 'Avaliação avançada dos distúrbios esofágicos e intestinais com manometria de alta resolução, pHmetria e impedânciometria integradas, um dos centros mais especializados de BH.',
     intro: [
       'A avaliação de motilidade digestiva é uma das especialidades mais avançadas e raras disponíveis em Belo Horizonte. A NU.V.E.M utiliza equipamentos de última geração para mapear com precisão os distúrbios do esôfago e do trato gastrointestinal.',
-      'Nossos laudos detalhados seguem a Classificação de Chicago v4.0 — o padrão internacional de referência para distúrbios motores esofágicos — e permitem diagnóstico definitivo de condições que frequentemente passam despercebidas em investigações convencionais.',
+      'Nossos laudos detalhados seguem a Classificação de Chicago v4.0, o padrão internacional de referência para distúrbios motores esofágicos, e permitem diagnóstico definitivo de condições que frequentemente passam despercebidas em investigações convencionais.',
     ],
     sintomas: [
       'Dificuldade para engolir (disfagia) sólidos ou líquidos',
@@ -297,19 +297,19 @@ const DETAIL: Record<string, DetailData> = {
       'Incontinência fecal ou dificuldade de evacuar',
     ],
     topics: [
-      { title: 'Acalasia e Distúrbios Motores Esofágicos', body: 'Diagnóstico definitivo por manometria esofágica de alta resolução (HRM) com classificação completa pela Classificação de Chicago v4.0 — determinante para decisão terapêutica (dilatação, POEM ou cirurgia).' },
+      { title: 'Acalasia e Distúrbios Motores Esofágicos', body: 'Diagnóstico definitivo por manometria esofágica de alta resolução (HRM) com classificação completa pela Classificação de Chicago v4.0, determinante para decisão terapêutica (dilatação, POEM ou cirurgia).' },
       { title: 'Refluxo Gastroesofágico Refratário', body: 'Investigação avançada por pHmetria e impedânciometria para casos que não respondem ao tratamento convencional, com diferenciação entre refluxo ácido, não ácido e alcalino.' },
-      { title: 'Disfagia', body: 'Avaliação completa da deglutição com manometria de alta resolução para identificação precisa da causa funcional ou obstrutiva — essencial antes de qualquer procedimento intervencionista.' },
-      { title: 'Disfunção Defecatória', body: 'Manometria anorretal de alta resolução para diferenciação entre constipação de trânsito lento, dissinergia do assoalho pélvico e outros distúrbios defecatórios, com implicações terapêuticas distintas.' },
+      { title: 'Disfagia', body: 'Avaliação completa da deglutição com manometria de alta resolução para identificação precisa da causa funcional ou obstrutiva, essencial antes de qualquer procedimento intervencionista.' },
+      { title: 'Disfunção Defecatória', body: 'Manometria anorretal de alta resolução para diferenciação entre constipação de trânsito lento, dissinergia do assoalho pélvico e outros distúrbios defecatórios; implicações terapêuticas distintas para cada caso.' },
       { title: 'Esôfago de Barrett e Vigilância', body: 'Investigação funcional complementar à endoscopia em pacientes com esôfago de Barrett, avaliando pressão do esfíncter esofágico inferior e padrão de refluxo.' },
       { title: 'Avaliação Pré e Pós-Operatória', body: 'Estudo de motilidade esofágica obrigatório antes de cirurgia anti-refluxo (fundoplicatura) e essencial para avaliação de resultados pós-operatórios insatisfatórios.' },
     ],
     diferenciais: [
-      'Manometria de alta resolução (HRM) com análise Chicago Classification v4.0 — padrão internacional',
+      'Manometria de alta resolução (HRM) com análise Chicago Classification v4.0, padrão internacional',
       'Um dos poucos centros em BH com pHmetria + impedânciometria combinada',
-      'Dr. Felipe Nelson: especialista em motilidade com foco em manometria e pHmetria',
+      'Dr. Felipe Nelson, especialista em motilidade com foco em manometria e pHmetria',
       'Laudos com traçados completos e recomendações terapêuticas individualizadas',
-      'Certificação ISO 9001 — padronização e rastreabilidade de todos os exames',
+      'Certificação ISO 9001: padronização e rastreabilidade de todos os exames',
     ],
     paraMedicos: {
       intro: 'Indicada para investigação de disfagia, dor torácica não cardíaca, DRGE refratária, acalasia e distúrbios defecatórios. Nossos laudos seguem a Classificação de Chicago v4.0 e o protocolo DeMeester para pHmetria, fornecendo base técnica sólida para a decisão terapêutica.',

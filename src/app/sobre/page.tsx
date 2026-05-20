@@ -8,7 +8,7 @@ import { CONTATO }       from '@/lib/data'
 
 export const metadata: Metadata = {
   title:       'Sobre a Clínica',
-  description: 'Conheça a NU.V.E.M Medicina — história, missão, valores e o diferencial ISO 9001 que nos torna únicos em Belo Horizonte.',
+  description: 'Conheça a NU.V.E.M Medicina: história, missão, valores e o diferencial ISO 9001 que nos torna únicos em Belo Horizonte.',
 }
 
 const PILARES = [

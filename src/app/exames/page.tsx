@@ -17,7 +17,7 @@ export default function ExamesPage() {
       <PageHero
         tag="Exames e Diagnósticos"
         title={<>Precisão técnica <em>certificada</em></>}
-        desc="Infraestrutura diagnóstica de última geração operada por especialistas com treinamento e certificação ISO 9001 — os resultados mais confiáveis do segmento."
+        desc="Infraestrutura diagnóstica de última geração operada por especialistas com treinamento e certificação ISO 9001: os resultados mais confiáveis do segmento."
       />
 
       <SectionWrapper mist grid>
