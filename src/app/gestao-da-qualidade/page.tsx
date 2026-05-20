@@ -9,7 +9,7 @@ import { CheckCircle, Shield, FileText, BarChart3, RefreshCw, Users } from 'luci
 
 export const metadata: Metadata = {
   title:       'Gestão da Qualidade · ISO 9001',
-  description: 'Conheça o sistema de gestão da qualidade ISO 9001 da NU.V.E.M Medicina — única clínica do segmento certificada em Belo Horizonte.',
+  description: 'Conheça o sistema de gestão da qualidade ISO 9001 da NU.V.E.M Medicina, única clínica do segmento certificada em Belo Horizonte.',
 }
 
 const PRINCIPIOS = [
