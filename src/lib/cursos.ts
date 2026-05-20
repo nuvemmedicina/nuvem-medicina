@@ -12,6 +12,7 @@ export interface Curso {
   tipo:        'Curso' | 'Palestra' | 'Workshop' | 'Congresso' | 'Live'
   modalidade:  'Online' | 'Presencial' | 'Híbrido'
   data?:       string      // ex: "junho 2025" ou "14/06/2025" — omitir se não definida
+  instrutor?:  string      // nome do instrutor principal
   descricao:   string
   imagem:      string
   href:        string      // URL externa de inscrição
@@ -37,7 +38,8 @@ export const CURSOS: Curso[] = [
     parceiro:   'NU.V.E.M Ensino',
     tipo:       'Curso',
     modalidade: 'Presencial',
-    descricao:  'Formação avançada em motilidade digestiva: manometria esofágica de alta resolução (HRM), pHmetria e impedânciometria. Com Dra. Vera Ângelo e Dra. Eliane Basques, referências nacionais na área.',
+    instrutor:  'Dr. Felipe Nelson',
+    descricao:  'Domine os principais exames de motilidade digestiva: manometria de alta resolução, pHmetria e impedância em ambiente clínico supervisionado.',
     imagem:     '/images/felipe-nelson.jpg',
     href:       'https://www.nuvemensino.com.br/cursos/manometria-phmetria-impedancia',
     destaque:   false,
