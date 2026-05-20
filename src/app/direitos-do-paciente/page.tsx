@@ -6,7 +6,7 @@ import { CONTATO }        from '@/lib/data'
 
 export const metadata: Metadata = {
   title:       'Direitos e Deveres do Paciente',
-  description: 'Conheça seus direitos e deveres como paciente da NU.V.E.M Medicina — atendimento humanizado, privacidade, consentimento e muito mais.',
+  description: 'Conheça seus direitos e deveres como paciente da NU.V.E.M Medicina: atendimento humanizado, privacidade, consentimento e muito mais.',
 }
 
 const DIREITOS = [

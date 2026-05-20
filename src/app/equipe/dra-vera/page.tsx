@@ -10,7 +10,7 @@ import { renderRich } from '@/lib/rich'
 
 export const metadata: Metadata = {
   title:       'Dra. Vera Ângelo · Gastroenterologista',
-  description: 'Dra. Vera Ângelo — Mestre e Doutora pela UFMG, especialista em gastroenterologia, motilidade digestiva e testes respiratórios. Diretora Técnica da NU.V.E.M Medicina.',
+  description: 'Dra. Vera Ângelo, Mestre e Doutora pela UFMG, especialista em gastroenterologia, motilidade digestiva e testes respiratórios. Diretora Técnica da NU.V.E.M Medicina.',
 }
 
 const FORMACAO = [

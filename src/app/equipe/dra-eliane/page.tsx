@@ -9,7 +9,7 @@ import { IsoSeal }        from '@/components/icons/IsoSeal'
 
 export const metadata: Metadata = {
   title:       'Dra. Eliane Basques · Manometria Anorretal',
-  description: 'Dra. Eliane Basques Moura — Cirurgiã Pediátrica e especialista em Manometria Anorretal. Sócia Fundadora e Diretora Técnica Substituta da NU.V.E.M Medicina.',
+  description: 'Dra. Eliane Basques Moura, Cirurgiã Pediátrica e especialista em Manometria Anorretal. Sócia Fundadora e Diretora Técnica Substituta da NU.V.E.M Medicina.',
 }
 
 const FORMACAO = [
