@@ -10,7 +10,6 @@ export const NAV_ITEMS: NavItem[] = [
       { label: 'Equipe',                  href: '/equipe' },
       { label: 'Gestão da Qualidade',     href: '/gestao-da-qualidade' },
       { label: 'Infraestrutura',          href: '/infraestrutura' },
-      { label: 'Profissionais Parceiros', href: '/parceiros' },
     ],
   },
   {
