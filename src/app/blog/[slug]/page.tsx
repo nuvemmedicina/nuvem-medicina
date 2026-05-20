@@ -50,6 +50,15 @@ const ptComponents = {
     downloadBlock: ({ value }: any) => <DownloadBlock value={value} />,
     statBlock:     ({ value }: any) => <StatBlock value={value} />,
   },
+  block: {
+    blockquote: ({ children }: any) => (
+      <blockquote className="not-italic border-l-4 border-teal/50 rounded-r-xl py-4 px-6 my-8" style={{ background: 'rgba(0,70,95,0.05)' }}>
+        <p className="italic text-steel/75 font-light leading-relaxed text-[1rem] before:content-['“'] after:content-['”'] before:text-teal/40 after:text-teal/40 before:mr-0.5 after:ml-0.5 m-0">
+          {children}
+        </p>
+      </blockquote>
+    ),
+  },
 }
 
 export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
