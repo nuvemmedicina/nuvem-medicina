@@ -539,16 +539,24 @@ export default async function EspecialidadeSlugPage({ params }: Props) {
             )}
 
             {/* ISO badge */}
-            <div className="bg-cloud border border-teal/10 rounded-2xl p-5 text-center shadow-sm">
-              <div className="text-[0.65rem] font-bold tracking-[.12em] uppercase text-teal/60 mb-1">Certificação</div>
-              <div className="font-serif text-[1.5rem] font-light text-steel mb-1">ISO 9001</div>
+            <Link href="/gestao-da-qualidade" className="group block bg-cloud border border-teal/10 hover:border-teal/25 rounded-2xl p-5 text-center shadow-sm transition-all">
+              <div className="text-[0.65rem] font-bold tracking-[.12em] uppercase text-teal/60 mb-3">Certificação</div>
+              <div className="flex justify-center mb-3">
+                <Image
+                  src="/images/iso-9001.svg"
+                  alt="Certificação ISO 9001"
+                  width={90}
+                  height={90}
+                  className="opacity-85 group-hover:opacity-100 transition-opacity"
+                />
+              </div>
               <p className="text-[0.75rem] text-steel/50 leading-relaxed">
                 Todos os procedimentos desta especialidade seguem o padrão ISO 9001 de qualidade e rastreabilidade.
               </p>
-              <Link href="/gestao-da-qualidade" className="text-[0.75rem] text-teal hover:text-teal/70 transition-colors mt-2 inline-flex items-center gap-1">
+              <span className="text-[0.75rem] text-teal group-hover:text-teal/70 transition-colors mt-2 inline-flex items-center gap-1">
                 Saiba mais <ArrowRight className="w-3 h-3" />
-              </Link>
-            </div>
+              </span>
+            </Link>
 
             {/* CTA */}
             <div className="bg-teal rounded-2xl p-6">
