@@ -20,6 +20,29 @@ export interface Curso {
 
 export const CURSOS: Curso[] = [
   {
+    id:         'testes-respiratorios-h2-ch4-h2s',
+    titulo:     'Testes Respiratórios H₂/CH₄/H₂S na Prática Clínica',
+    parceiro:   'NU.V.E.M Ensino',
+    tipo:       'Curso',
+    modalidade: 'Presencial',
+    data:       'Junho 2025',
+    descricao:  'Imersão prática completa em testes respiratórios para diagnóstico de SIBO, IMO, intolerâncias alimentares e H. pylori. Treinamento hands-on com equipamentos de última geração na NU.V.E.M.',
+    imagem:     '/images/teste-respiratorio-1.webp',
+    href:       'https://www.nuvemensino.com.br/cursos/testes-respiratorios-h2-ch4-h2s-junho',
+    destaque:   true,
+  },
+  {
+    id:         'manometria-phmetria-impedancia',
+    titulo:     'Manometria, pHmetria e Impedânciometria',
+    parceiro:   'NU.V.E.M Ensino',
+    tipo:       'Curso',
+    modalidade: 'Presencial',
+    descricao:  'Formação avançada em motilidade digestiva: manometria esofágica de alta resolução (HRM), pHmetria e impedânciometria. Com Dra. Vera Ângelo e Dra. Eliane Basques — referências nacionais na área.',
+    imagem:     '/images/vera-eliane.jpg',
+    href:       'https://www.nuvemensino.com.br/cursos/manometria-phmetria-impedancia',
+    destaque:   false,
+  },
+  {
     id:         'microbiota-gastroenterologista',
     titulo:     'Microbiota na Prática do Gastroenterologista',
     parceiro:   'Ganep Educação',
@@ -28,6 +51,6 @@ export const CURSOS: Curso[] = [
     descricao:  'Curso completo sobre o papel da microbiota intestinal na prática clínica do gastroenterologista. Com Dra. Vera Ângelo e Dr. Dan Waitzberg — referências nacionais em nutrição clínica e gastroenterologia.',
     imagem:     '/images/dra-vera-dr-dan-l-waiztberg.jpg',
     href:       'https://ganepeducacao.com.br/produto/microbiota-na-pratica-do-gastroenterologista/',
-    destaque:   true,
+    destaque:   false,
   },
 ]
