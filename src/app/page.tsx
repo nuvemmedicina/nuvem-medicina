@@ -5,6 +5,7 @@ import { EspecialidadesSection } from '@/components/sections/EspecialidadesSecti
 import { ExamesSection }         from '@/components/sections/ExamesSection'
 import { IsoSection }            from '@/components/sections/IsoSection'
 import { EnsinoSection }         from '@/components/sections/EnsinoSection'
+import { CursosSection }         from '@/components/sections/CursosSection'
 import { DepoimentosSection }    from '@/components/sections/DepoimentosSection'
 import { CtaSection }            from '@/components/sections/CtaSection'
 
@@ -21,6 +22,7 @@ export default function HomePage() {
       <ExamesSection />
       <IsoSection />
       <EnsinoSection />
+      <CursosSection limit={3} />
       <DepoimentosSection />
       <CtaSection />
     </>
