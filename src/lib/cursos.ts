@@ -38,7 +38,7 @@ export const CURSOS: Curso[] = [
     parceiro:   'NU.V.E.M Ensino',
     tipo:       'Curso',
     modalidade: 'Presencial',
-    descricao:  'Com Dr. Felipe Nelson: domine os principais exames de motilidade digestiva: manometria de alta resolução, pHmetria e impedância em ambiente clínico supervisionado.',
+    descricao:  'Especialize-se nos principais exames de motilidade digestiva. Aprenda Manometria de Alta Resolução, pHmetria e Impedância em ambiente clínico supervisionado com o Dr. Felipe Nelson.',
     imagem:     '/images/felipe-nelson.jpg',
     href:       'https://www.nuvemensino.com.br/cursos/manometria-phmetria-impedancia',
     destaque:   false,
