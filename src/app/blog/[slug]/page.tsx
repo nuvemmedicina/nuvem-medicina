@@ -4,10 +4,14 @@ import Image             from 'next/image'
 import { notFound }      from 'next/navigation'
 import { ArrowLeft }     from 'lucide-react'
 import { PortableText }  from '@portabletext/react'
-import { SectionWrapper } from '@/components/ui/SectionWrapper'
-import { CtaBanner }     from '@/components/ui/CtaBanner'
+import { SectionWrapper }  from '@/components/ui/SectionWrapper'
+import { CtaBanner }       from '@/components/ui/CtaBanner'
+import { CalloutBlock }    from '@/components/blog/CalloutBlock'
+import { FaqItem }         from '@/components/blog/FaqItem'
+import { DownloadBlock }   from '@/components/blog/DownloadBlock'
+import { StatBlock }       from '@/components/blog/StatBlock'
 import { getPostBySlug, getAllPosts } from '@/lib/sanity/queries'
-import { urlFor }        from '@/lib/sanity/image'
+import { urlFor }          from '@/lib/sanity/image'
 
 export const revalidate = 60
 
@@ -41,6 +45,10 @@ const ptComponents = {
         {value.caption && <figcaption className="text-center text-[0.78rem] text-steel/50 mt-2">{value.caption}</figcaption>}
       </figure>
     ),
+    calloutBlock:  ({ value }: any) => <CalloutBlock value={value} />,
+    faqItem:       ({ value }: any) => <FaqItem value={value} />,
+    downloadBlock: ({ value }: any) => <DownloadBlock value={value} />,
+    statBlock:     ({ value }: any) => <StatBlock value={value} />,
   },
 }
 
