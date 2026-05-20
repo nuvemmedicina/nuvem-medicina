@@ -5,6 +5,7 @@ import { ExternalLink, ArrowRight } from 'lucide-react'
 import { PageHero }       from '@/components/ui/PageHero'
 import { SectionWrapper } from '@/components/ui/SectionWrapper'
 import { CtaBanner }      from '@/components/ui/CtaBanner'
+import { CursosSection }  from '@/components/sections/CursosSection'
 import { renderRich } from '@/lib/rich'
 
 export const metadata: Metadata = {
@@ -251,6 +252,9 @@ export default function EnsinoPage() {
           ))}
         </div>
       </SectionWrapper>
+
+      {/* Cursos e Palestras */}
+      <CursosSection />
 
       {/* CTA to external */}
       <SectionWrapper dark grid>
