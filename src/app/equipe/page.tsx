@@ -48,6 +48,13 @@ const EQUIPE = [
   { nome: 'Dr. Thiago Guimarães',       esp: 'Clínica Médica e Hematologia',   foto: '/images/thiago-guimaraes.jpg',       areas: ['Clínica Médica', 'Hematologia'] },
 ]
 
+const TECNICA = [
+  { nome: 'Elisangela Duarte', cargo: 'Gerente',                  foto: '/images/elisangela.jpg' },
+  { nome: 'Larissa Simão',     cargo: 'Técnica de Enfermagem',    foto: '/images/larissa.jpg'    },
+  { nome: 'Camila Marques',    cargo: 'Técnica de Enfermagem',    foto: '/images/camila.jpg'     },
+  { nome: 'Nazinha',           cargo: 'Recepcionista',            foto: '/images/nazinha.jpg'    },
+]
+
 const PARCEIROS = [
   { nome: 'Viabile Projetos Arquitetônicos', papel: 'Projeto Arquitetônico' },
   { nome: 'Carmem Santiago',                 papel: 'Criação da Marca e Papelaria' },
@@ -133,6 +140,31 @@ export default function EquipePage() {
                   <span key={a} className="text-[0.65rem] font-medium px-2 py-1 rounded-full bg-teal/8 border border-teal/10 text-steel/50">{a}</span>
                 ))}
               </div>
+            </div>
+          ))}
+        </div>
+      </SectionWrapper>
+
+      {/* Equipe Técnica */}
+      <SectionWrapper>
+        <div className="text-center mb-12">
+          <p className="sec-tag justify-center reveal">Equipe Técnica</p>
+          <h2 className="sec-title reveal reveal-d1">Quem cuida de <em>você</em></h2>
+          <p className="text-[0.97rem] font-light text-steel/60 max-w-lg mx-auto mt-3 reveal reveal-d2">
+            Profissionais dedicados que garantem o acolhimento e a excelência operacional da NU.V.E.M.
+          </p>
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-5 max-w-3xl mx-auto">
+          {TECNICA.map((m, i) => (
+            <div
+              key={m.nome}
+              className={`group flex flex-col items-center text-center reveal reveal-d${i % 4}`}
+            >
+              <div className="relative w-24 h-24 rounded-full overflow-hidden border-2 border-teal/15 shadow-sm group-hover:border-teal/40 group-hover:shadow-md transition-all duration-300 mb-4">
+                <Image src={m.foto} alt={m.nome} fill className="object-cover object-top" />
+              </div>
+              <h3 className="text-[0.9rem] font-semibold text-steel leading-tight mb-1">{m.nome}</h3>
+              <span className="text-[0.68rem] font-bold tracking-[.1em] uppercase text-teal/60">{m.cargo}</span>
             </div>
           ))}
         </div>
