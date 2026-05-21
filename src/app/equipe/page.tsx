@@ -120,7 +120,7 @@ export default function EquipePage() {
       <SectionWrapper>
         <div className="text-center mb-12">
           <p className="sec-tag justify-center reveal">Equipe Multidisciplinar</p>
-          <h2 className="sec-title reveal reveal-d1">Profissionais <em>Especialistas</em></h2>
+          <h2 className="sec-title reveal reveal-d1">Profissionais <em>Parceiros</em></h2>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {EQUIPE.map((m, i) => (
