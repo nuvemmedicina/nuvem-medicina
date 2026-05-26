@@ -6,7 +6,7 @@ export type Post = {
   slug:        { current: string }
   publishedAt: string
   excerpt:     string
-  coverImage?: { asset: { _ref: string } }
+  coverImage?: { asset: { _ref: string }; credit?: string }
   author?:     { name: string; bio?: string; image?: { asset: { _ref: string } } }
   categories?: { title: string; color?: string }[]
   body:        // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -25,7 +25,7 @@ export async function getAllPosts(): Promise<Post[]> {
 export async function getPostBySlug(slug: string): Promise<Post | null> {
   return client.fetch(
     `*[_type == "post" && slug.current == $slug][0] {
-      _id, title, slug, publishedAt, excerpt, coverImage, author->, categories[]->, body, readingTime
+      _id, title, slug, publishedAt, excerpt, coverImage { ..., credit }, author->, categories[]->, body, readingTime
     }`,
     { slug }
   )

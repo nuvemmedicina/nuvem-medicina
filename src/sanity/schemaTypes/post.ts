@@ -30,7 +30,8 @@ export const postType = defineType({
       type:  'image',
       options: { hotspot: true },
       fields: [
-        defineField({ name: 'alt', title: 'Texto alternativo', type: 'string' }),
+        defineField({ name: 'alt',    title: 'Texto alternativo', type: 'string' }),
+        defineField({ name: 'credit', title: 'Fonte da imagem',   type: 'string', description: 'Ex: Adobe Stock, Shutterstock, nome do fotógrafo' }),
       ],
     }),
     defineField({
