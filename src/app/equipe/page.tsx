@@ -35,17 +35,17 @@ const SOCIAS = [
 ]
 
 const EQUIPE = [
-  { nome: 'Dra. Anna Karoline',          esp: 'Fisioterapia Pélvica',           foto: '/images/anna-karoline.jpg',          areas: ['Biofeedback EMG', 'Assoalho Pélvico', 'Incontinência'] },
-  { nome: 'Dra. Adrianna Buzatti Viana', esp: 'Cirurgia Pediátrica',            foto: '/images/adrianna-buzatti-viana.jpg', areas: ['Cirurgia Pediátrica', 'Casos Complexos'] },
-  { nome: 'Dra. Claudia Utsch',          esp: 'Gastroenterologia',              foto: '/images/claudia-utsch.jpg',          areas: ['Gastroenterologia Clínica', 'Doenças Digestivas'] },
-  { nome: 'Dra. Camilla Mendes',         esp: 'Clínica Médica',                 foto: '/images/camilla-mendes.jpg',         areas: ['Clínica Médica', 'Medicina Interna'] },
-  { nome: 'Dra. Danielle Martins',       esp: 'Gastroenterologia',              foto: '/images/danielle-martins.jpg',       areas: ['Gastroenterologia', 'DGBI'] },
-  { nome: 'Dr. Felipe Nelson',           esp: 'Gastroenterologia e Motilidade', foto: '/images/felipe-nelson.jpg',          areas: ['Manometria', 'pHmetria', 'Refluxo'] },
-  { nome: 'Dra. Larissa Veiga Raña',    esp: 'Gastroenterologia',              foto: '/images/larissa-veiga-rana.jpg',     areas: ['Gastroenterologia Clínica'] },
-  { nome: 'Dra. Luiza Auarek',          esp: 'Nefrologia',                     foto: '/images/luiza-auarek.jpg',           areas: ['Nefrologia', 'Interface GI-Renal'] },
-  { nome: 'Dra. Mariana Fernandes',      esp: 'Pediatria',                      foto: '/images/mariana-fernandes.jpg',      areas: ['Saúde Digestiva Infantil', 'Pediatria'] },
-  { nome: 'Dra. Raissa Dalat',          esp: 'Cirurgia Pediátrica',            foto: '/images/raissa-dalat.jpg',           areas: ['Cirurgia Pediátrica'] },
-  { nome: 'Dr. Thiago Guimarães',       esp: 'Clínica Médica e Hematologia',   foto: '/images/thiago-guimaraes.jpg',       areas: ['Clínica Médica', 'Hematologia'] },
+  { nome: 'Dra. Anna Karoline',          esp: 'Fisioterapia Pélvica',           reg: 'Crefito 4/270579-F',                        foto: '/images/anna-karoline.jpg',          areas: ['Biofeedback EMG', 'Assoalho Pélvico', 'Incontinência'] },
+  { nome: 'Dra. Adrianna Buzatti Viana', esp: 'Cirurgia Pediátrica',            reg: 'CRMMG 71689 · RQE 44101 · RQE 59942',       foto: '/images/adrianna-buzatti-viana.jpg', areas: ['Cirurgia Pediátrica', 'Casos Complexos'] },
+  { nome: 'Dra. Claudia Utsch',          esp: 'Gastroenterologia',              reg: 'CRM 47651-MG · RQE 51470 · 51471',           foto: '/images/claudia-utsch.jpg',          areas: ['Gastroenterologia Clínica', 'Doenças Digestivas'] },
+  { nome: 'Dra. Camilla Mendes',         esp: 'Clínica Médica',                 reg: 'CRM 61518',                                  foto: '/images/camilla-mendes.jpg',         areas: ['Clínica Médica', 'Medicina Interna'] },
+  { nome: 'Dra. Danielle Martins',       esp: 'Gastroenterologia e Motilidade', reg: 'CRM 72935',                                  foto: '/images/danielle-martins.jpg',       areas: ['Gastroenterologia', 'DGBI'] },
+  { nome: 'Dr. Felipe Nelson',           esp: 'Gastroenterologia e Motilidade', reg: 'CRM 72612 · RQE 57543',                      foto: '/images/felipe-nelson.jpg',          areas: ['Manometria', 'pHmetria', 'Refluxo'] },
+  { nome: 'Dra. Larissa Veiga Raña',    esp: 'Nefrologia',                     reg: 'CRMMG 73632 · RQE 65001',                    foto: '/images/larissa-veiga-rana.jpg',     areas: ['Nefrologia', 'Doenças Renais'] },
+  { nome: 'Dra. Luiza Auarek',          esp: 'Nefrologia',                     reg: 'CRM 81521 · RQE 62607 · RQE 54226',          foto: '/images/luiza-auarek.jpg',           areas: ['Nefrologia', 'Interface GI-Renal'] },
+  { nome: 'Dra. Mariana Fernandes',      esp: 'Pediatria',                      reg: 'CRM 65936',                                  foto: '/images/mariana-fernandes.jpg',      areas: ['Saúde Digestiva Infantil', 'Pediatria'] },
+  { nome: 'Dra. Raissa Dalat',          esp: 'Cirurgia Pediátrica',            reg: 'CRMMG 78824 · RQE 61983',                    foto: '/images/raissa-dalat.jpg',           areas: ['Cirurgia Pediátrica'] },
+  { nome: 'Dr. Thiago Guimarães',       esp: 'Clínica Médica e Hematologia',   reg: 'RQE 50.163',                                 foto: '/images/thiago-guimaraes.jpg',       areas: ['Clínica Médica', 'Hematologia'] },
 ]
 
 const TECNICA = [
@@ -135,7 +135,8 @@ export default function EquipePage() {
               {/* Conteúdo */}
               <div className="p-5">
                 <h3 className="text-[0.95rem] font-semibold text-steel leading-tight mb-0.5">{m.nome}</h3>
-                <p className="text-[0.8rem] text-teal mb-3">{m.esp}</p>
+                <p className="text-[0.8rem] text-teal mb-1">{m.esp}</p>
+                <p className="text-[0.7rem] text-steel/40 mb-3">{m.reg}</p>
                 <div className="flex flex-wrap gap-1.5">
                   {m.areas.map(a => (
                     <span key={a} className="text-[0.65rem] font-medium px-2 py-1 rounded-full bg-teal/8 border border-teal/10 text-steel/50">{a}</span>
