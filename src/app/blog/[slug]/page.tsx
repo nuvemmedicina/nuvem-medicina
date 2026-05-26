@@ -84,7 +84,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
               ))}
             </div>
           )}
-          <h1 className="font-serif font-light text-white text-[2rem] md:text-[2.6rem] leading-tight mb-4">{post.title}</h1>
+          <h1 className="font-serif font-semibold text-white text-[2rem] md:text-[2.6rem] leading-tight mb-4">{post.title}</h1>
           {post.excerpt && <p className="text-[0.97rem] text-white/65 leading-relaxed mb-6">{post.excerpt}</p>}
           <div className="flex items-center gap-4 text-[0.78rem] text-white/50">
             {post.author && <span>Por {post.author.name}</span>}
@@ -106,7 +106,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
       {/* Body */}
       <SectionWrapper>
         <div className="max-w-3xl mx-auto">
-          <div className="prose prose-lg prose-headings:font-serif prose-headings:font-light prose-headings:text-steel prose-p:text-steel/70 prose-p:leading-relaxed prose-a:text-teal prose-strong:text-steel prose-li:text-steel/70 max-w-none">
+          <div className="prose prose-lg prose-headings:font-serif prose-headings:font-semibold prose-headings:text-steel prose-p:text-steel/70 prose-p:leading-relaxed prose-a:text-teal prose-strong:text-steel prose-li:text-steel/70 max-w-none">
             {post.body && <PortableText value={post.body} components={ptComponents} />}
           </div>
 
