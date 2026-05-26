@@ -125,20 +125,22 @@ export default function EquipePage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {EQUIPE.map((m, i) => (
             <div key={m.nome}
-              className={`bg-white border border-teal/10 rounded-2xl shadow-sm p-6 hover:border-teal/25 hover:-translate-y-0.5 transition-all reveal reveal-d${i % 3}`}>
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 rounded-full overflow-hidden border border-teal/10 shrink-0 relative">
-                  <Image src={m.foto} alt={m.nome} fill className="object-cover object-top" />
-                </div>
-                <div>
-                  <h3 className="text-[0.92rem] font-semibold text-steel leading-tight">{m.nome}</h3>
-                  <p className="text-[0.78rem] text-teal mt-0.5">{m.esp}</p>
-                </div>
+              className={`group bg-white border border-teal/10 rounded-2xl overflow-hidden shadow-sm hover:border-teal/28 hover:-translate-y-1 hover:shadow-lg transition-all reveal reveal-d${i % 3}`}>
+              {/* Foto */}
+              <div className="relative h-60 w-full overflow-hidden" style={{ background: 'linear-gradient(135deg,#003040,#00465F)' }}>
+                <Image src={m.foto} alt={m.nome} fill
+                  className="object-cover object-top group-hover:scale-105 transition-transform duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#001a27]/60 via-transparent to-transparent" />
               </div>
-              <div className="flex flex-wrap gap-1.5">
-                {m.areas.map(a => (
-                  <span key={a} className="text-[0.65rem] font-medium px-2 py-1 rounded-full bg-teal/8 border border-teal/10 text-steel/50">{a}</span>
-                ))}
+              {/* Conteúdo */}
+              <div className="p-5">
+                <h3 className="text-[0.95rem] font-semibold text-steel leading-tight mb-0.5">{m.nome}</h3>
+                <p className="text-[0.8rem] text-teal mb-3">{m.esp}</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {m.areas.map(a => (
+                    <span key={a} className="text-[0.65rem] font-medium px-2 py-1 rounded-full bg-teal/8 border border-teal/10 text-steel/50">{a}</span>
+                  ))}
+                </div>
               </div>
             </div>
           ))}
