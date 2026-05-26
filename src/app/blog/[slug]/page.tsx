@@ -24,10 +24,28 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params
   const post = await getPostBySlug(slug)
   if (!post) return {}
+  const ogImage = post.coverImage
+    ? urlFor(post.coverImage).width(1200).height(630).url()
+    : undefined
   return {
-    title:       `${post.title} · NU.V.E.M Medicina`,
+    title:       post.title,
     description: post.excerpt,
-    openGraph:   post.coverImage ? { images: [urlFor(post.coverImage).width(1200).height(630).url()] } : {},
+    openGraph: {
+      title:       post.title,
+      description: post.excerpt,
+      type:        'article',
+      siteName:    'NU.V.E.M Medicina',
+      locale:      'pt_BR',
+      ...(ogImage && {
+        images: [{ url: ogImage, width: 1200, height: 630, alt: post.title }],
+      }),
+    },
+    twitter: {
+      card:        'summary_large_image',
+      title:       post.title,
+      description: post.excerpt,
+      ...(ogImage && { images: [ogImage] }),
+    },
   }
 }
 

@@ -41,7 +41,7 @@ const EQUIPE = [
   { nome: 'Dra. Camilla Mendes',         esp: 'Clínica Médica',                 reg: 'CRM 61518',                                  foto: '/images/camilla-mendes.jpg',         areas: ['Clínica Médica', 'Medicina Interna'] },
   { nome: 'Dra. Danielle Martins',       esp: 'Gastroenterologia e Motilidade', reg: 'CRM 72935',                                  foto: '/images/danielle-martins.jpg',       areas: ['Gastroenterologia', 'DGBI'] },
   { nome: 'Dr. Felipe Nelson',           esp: 'Gastroenterologia e Motilidade', reg: 'CRM 72612 · RQE 57543',                      foto: '/images/felipe-nelson.jpg',          areas: ['Manometria', 'pHmetria', 'Refluxo'] },
-  { nome: 'Dra. Larissa Veiga Raña',    esp: 'Nefrologia',                     reg: 'CRMMG 73632 · RQE 65001',                    foto: '/images/larissa-veiga-rana.jpg',     areas: ['Nefrologia', 'Doenças Renais'] },
+  { nome: 'Dra. Larissa Veiga Raña',    esp: 'Gastroenterologia',              reg: 'CRMMG 73632 · RQE 65001',              foto: '/images/larissa-veiga-rana.jpg',     areas: ['Gastroenterologia Clínica'] },
   { nome: 'Dra. Luiza Auarek',          esp: 'Nefrologia',                     reg: 'CRM 81521 · RQE 62607 · RQE 54226',          foto: '/images/luiza-auarek.jpg',           areas: ['Nefrologia', 'Interface GI-Renal'] },
   { nome: 'Dra. Mariana Fernandes',      esp: 'Pediatria',                      reg: 'CRM 65936',                                  foto: '/images/mariana-fernandes.jpg',      areas: ['Saúde Digestiva Infantil', 'Pediatria'] },
   { nome: 'Dra. Raissa Dalat',          esp: 'Cirurgia Pediátrica',            reg: 'CRMMG 78824 · RQE 61983',                    foto: '/images/raissa-dalat.jpg',           areas: ['Cirurgia Pediátrica'] },
@@ -49,17 +49,10 @@ const EQUIPE = [
 ]
 
 const TECNICA = [
-  { nome: 'Elisangela Duarte', cargo: 'Gerente',                  foto: '/images/elisangela.jpg' },
-  { nome: 'Larissa Simão',     cargo: 'Técnica de Enfermagem',    foto: '/images/larissa.jpg'    },
-  { nome: 'Camila Marques',    cargo: 'Técnica de Enfermagem',    foto: '/images/camila.jpg'     },
-  { nome: 'Nazinha',           cargo: 'Recepcionista',            foto: '/images/nazinha.jpg'    },
-]
-
-const TECNICA = [
-  { nome: 'Elisangela Duarte', cargo: 'Gerente',                  foto: '/images/elisangela.jpg' },
-  { nome: 'Larissa Simão',     cargo: 'Técnica de Enfermagem',    foto: '/images/larissa.jpg'    },
-  { nome: 'Camila Marques',    cargo: 'Técnica de Enfermagem',    foto: '/images/camila.jpg'     },
-  { nome: 'Nazinha',           cargo: 'Recepcionista',            foto: '/images/nazinha.jpg'    },
+  { nome: 'Elisangela Duarte', cargo: 'Gerente',               foto: '/images/elisangela.jpg' },
+  { nome: 'Larissa Simão',     cargo: 'Técnica de Enfermagem', foto: '/images/larissa.jpg'    },
+  { nome: 'Camila Marques',    cargo: 'Técnica de Enfermagem', foto: '/images/camila.jpg'     },
+  { nome: 'Nazinha',           cargo: 'Recepcionista',         foto: '/images/nazinha.jpg'    },
 ]
 
 const PARCEIROS = [
@@ -150,31 +143,6 @@ export default function EquipePage() {
                   ))}
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-      </SectionWrapper>
-
-      {/* Equipe Técnica */}
-      <SectionWrapper>
-        <div className="text-center mb-12">
-          <p className="sec-tag justify-center reveal">Equipe Técnica</p>
-          <h2 className="sec-title reveal reveal-d1">Quem cuida de <em>você</em></h2>
-          <p className="text-[0.97rem] font-light text-steel/60 max-w-lg mx-auto mt-3 reveal reveal-d2">
-            Profissionais dedicados que garantem o acolhimento e a excelência operacional da NU.V.E.M.
-          </p>
-        </div>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-5 max-w-3xl mx-auto">
-          {TECNICA.map((m, i) => (
-            <div
-              key={m.nome}
-              className={`group flex flex-col items-center text-center reveal reveal-d${i % 4}`}
-            >
-              <div className="relative w-24 h-24 rounded-full overflow-hidden border-2 border-teal/15 shadow-sm group-hover:border-teal/40 group-hover:shadow-md transition-all duration-300 mb-4">
-                <Image src={m.foto} alt={m.nome} fill className="object-cover object-top" />
-              </div>
-              <h3 className="text-[0.9rem] font-semibold text-steel leading-tight mb-1">{m.nome}</h3>
-              <span className="text-[0.68rem] font-bold tracking-[.1em] uppercase text-teal/60">{m.cargo}</span>
             </div>
           ))}
         </div>
