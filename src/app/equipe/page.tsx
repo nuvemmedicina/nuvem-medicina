@@ -41,7 +41,7 @@ const EQUIPE = [
   { nome: 'Dra. Camilla Mendes',         esp: 'Clínica Médica',                 reg: 'CRM 61518',                                  foto: '/images/camilla-mendes.jpg',         areas: ['Clínica Médica', 'Medicina Interna'] },
   { nome: 'Dra. Danielle Martins',       esp: 'Gastroenterologia e Motilidade', reg: 'CRM 72935',                                  foto: '/images/danielle-martins.jpg',       areas: ['Gastroenterologia', 'DGBI'] },
   { nome: 'Dr. Felipe Nelson',           esp: 'Gastroenterologia e Motilidade', reg: 'CRM 72612 · RQE 57543',                      foto: '/images/felipe-nelson.jpg',          areas: ['Manometria', 'pHmetria', 'Refluxo'] },
-  { nome: 'Dra. Larissa Veiga Raña',    esp: 'Nefrologia',                     reg: 'CRMMG 73632 · RQE 65001',                    foto: '/images/larissa-veiga-rana.jpg',     areas: ['Nefrologia', 'Doenças Renais'] },
+  { nome: 'Dra. Larissa Veiga Raña',    esp: 'Gastroenterologia',              reg: 'CRMMG 73632 · RQE 65001',                    foto: '/images/larissa-veiga-rana.jpg',     areas: ['Gastroenterologia Clínica'] },
   { nome: 'Dra. Luiza Auarek',          esp: 'Nefrologia',                     reg: 'CRM 81521 · RQE 62607 · RQE 54226',          foto: '/images/luiza-auarek.jpg',           areas: ['Nefrologia', 'Interface GI-Renal'] },
   { nome: 'Dra. Mariana Fernandes',      esp: 'Pediatria',                      reg: 'CRM 65936',                                  foto: '/images/mariana-fernandes.jpg',      areas: ['Saúde Digestiva Infantil', 'Pediatria'] },
   { nome: 'Dra. Raissa Dalat',          esp: 'Cirurgia Pediátrica',            reg: 'CRMMG 78824 · RQE 61983',                    foto: '/images/raissa-dalat.jpg',           areas: ['Cirurgia Pediátrica'] },
