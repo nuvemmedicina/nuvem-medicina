@@ -24,10 +24,28 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params
   const post = await getPostBySlug(slug)
   if (!post) return {}
+  const ogImage = post.coverImage
+    ? urlFor(post.coverImage).width(1200).height(630).url()
+    : undefined
   return {
-    title:       `${post.title} · NU.V.E.M Medicina`,
+    title:       post.title,
     description: post.excerpt,
-    openGraph:   post.coverImage ? { images: [urlFor(post.coverImage).width(1200).height(630).url()] } : {},
+    openGraph: {
+      title:       post.title,
+      description: post.excerpt,
+      type:        'article',
+      siteName:    'NU.V.E.M Medicina',
+      locale:      'pt_BR',
+      ...(ogImage && {
+        images: [{ url: ogImage, width: 1200, height: 630, alt: post.title }],
+      }),
+    },
+    twitter: {
+      card:        'summary_large_image',
+      title:       post.title,
+      description: post.excerpt,
+      ...(ogImage && { images: [ogImage] }),
+    },
   }
 }
 
@@ -100,6 +118,11 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           <div className="relative w-full rounded-2xl overflow-hidden shadow-xl" style={{ aspectRatio: '16/9' }}>
             <Image src={urlFor(post.coverImage).width(1200).height(675).url()} alt={post.title} fill className="object-cover" />
           </div>
+          {post.coverImage.credit && (
+            <p className="text-[0.7rem] text-steel/40 mt-1.5 text-right">
+              Imagem: {post.coverImage.credit}
+            </p>
+          )}
         </div>
       )}
 
