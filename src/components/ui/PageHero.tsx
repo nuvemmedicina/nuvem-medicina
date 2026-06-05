@@ -1,14 +1,16 @@
 import { cn } from '@/lib/utils'
 
 interface PageHeroProps {
-  tag:      string
-  title:    React.ReactNode
-  desc?:    string
+  tag:        string
+  title:      React.ReactNode
+  desc?:      string
   className?: string
-  children?: React.ReactNode
+  children?:  React.ReactNode
+  bgImage?:   string  // URL da imagem de fundo opcional
+  bgOpacity?: number  // opacidade (padrão 0.12)
 }
 
-export function PageHero({ tag, title, desc, className, children }: PageHeroProps) {
+export function PageHero({ tag, title, desc, className, children, bgImage, bgOpacity = 0.12 }: PageHeroProps) {
   return (
     <div
       className={cn(
@@ -16,6 +18,19 @@ export function PageHero({ tag, title, desc, className, children }: PageHeroProp
         className,
       )}
     >
+      {/* Imagem de fundo opcional */}
+      {bgImage && (
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: `url(${bgImage})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center right',
+            opacity: bgOpacity,
+          }}
+        />
+      )}
+
       {/* Mist orb top right */}
       <div
         className="absolute -top-[20%] right-[-5%] w-[500px] h-[500px] rounded-full pointer-events-none"

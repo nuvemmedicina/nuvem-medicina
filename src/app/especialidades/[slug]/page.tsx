@@ -361,6 +361,8 @@ export default async function EspecialidadeSlugPage({ params }: Props) {
         tag="Especialidade"
         title={<em>{esp.title}</em>}
         desc={detail.heroDesc}
+        bgImage={slug === 'gastroenterologia' ? '/images/sistema-digestivo.webp' : undefined}
+        bgOpacity={0.12}
       >
         <Breadcrumb crumbs={[
           { label: 'Especialidades', href: '/especialidades' },
