@@ -10,6 +10,17 @@ export function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-white">
 
+      {/* Fundo hero — imagem com baixa opacidade */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: 'url(/images/fundo-hero.jpeg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center right',
+          opacity: 0.07,
+        }}
+      />
+
       {/* Light grid background — the "tech" checkered look */}
       <div className="absolute inset-0 hero-grid-bg pointer-events-none" />
 
