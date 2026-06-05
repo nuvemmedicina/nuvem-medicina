@@ -16,8 +16,8 @@ export function HeroSection() {
         style={{
           backgroundImage: 'url(/images/sistema-digestivo-2.webp)',
           backgroundSize: 'cover',
-          backgroundPosition: 'center right',
-          opacity: 0.12,
+          backgroundPosition: 'center left',
+          opacity: 0.22,
         }}
       />
 
