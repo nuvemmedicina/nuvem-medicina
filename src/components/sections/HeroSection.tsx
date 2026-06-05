@@ -15,8 +15,9 @@ export function HeroSection() {
         className="absolute inset-0 pointer-events-none"
         style={{
           backgroundImage: 'url(/images/sistema-digestivo-2.webp)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center left',
+          backgroundSize: 'auto 90%',
+          backgroundPosition: 'left center',
+          backgroundRepeat: 'no-repeat',
           opacity: 0.22,
         }}
       />
