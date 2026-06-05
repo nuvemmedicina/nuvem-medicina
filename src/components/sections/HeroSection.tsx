@@ -14,10 +14,10 @@ export function HeroSection() {
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          backgroundImage: 'url(/images/fundo-hero.jpeg)',
+          backgroundImage: 'url(/images/sistema-digestivo.webp)',
           backgroundSize: 'cover',
           backgroundPosition: 'center right',
-          opacity: 0.07,
+          opacity: 0.15,
         }}
       />
 
