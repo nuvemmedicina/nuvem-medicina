@@ -84,25 +84,6 @@ export function HeroSection() {
               </Link>
             </div>
 
-            {/* Stats */}
-            <div className="flex flex-col sm:flex-row gap-0 pt-8 border-t border-teal/10 opacity-0 animate-[fadeUp_.9s_.75s_var(--ease-out)_forwards]">
-              {[
-                { num: '2.000', label: 'Avaliações Google', sub: '★★★★★', gold: true },
-                { num: 'ISO 9001', label: 'Gestão Certificada', sub: 'Única no segmento', gold: false },
-                { num: '6',    label: 'Especialidades', sub: 'Equipe integrada', gold: false },
-              ].map((s, i) => (
-                <div
-                  key={s.label}
-                  className={`flex-1 ${i > 0 ? 'sm:pl-8 sm:border-l border-teal/10' : ''} ${i > 0 ? 'mt-6 sm:mt-0' : ''}`}
-                >
-                  <span className={`font-serif font-light text-[2.8rem] leading-none block mb-1 ${s.gold ? 'text-gold' : 'text-teal'}`}>
-                    {s.num}
-                  </span>
-                  <div className="text-[0.75rem] font-medium tracking-[.08em] uppercase text-steel/50">{s.label}</div>
-                  <div className="text-[0.72rem] text-steel/35 mt-0.5">{s.sub}</div>
-                </div>
-              ))}
-            </div>
           </div>
 
           {/* ── RIGHT PANEL ──────────────────────── */}
