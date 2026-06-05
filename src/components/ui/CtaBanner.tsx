@@ -45,7 +45,7 @@ export function CtaBanner({
           </a>
           {linkEnsino && (
             <a
-              href="https://cursos.nuvemensino.com.br"
+              href="https://www.nuvemensino.com.br/"
               target="_blank" rel="noopener noreferrer"
               className="btn-ghost-dark"
             >

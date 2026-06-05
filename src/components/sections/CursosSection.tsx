@@ -119,7 +119,7 @@ export function CursosSection({ limit, dark = false }: Props) {
           </div>
           {!limit && (
             <a
-              href="https://cursos.nuvemensino.com.br"
+              href="https://www.nuvemensino.com.br/"
               target="_blank"
               rel="noopener noreferrer"
               className={`shrink-0 reveal reveal-d2 inline-flex items-center gap-2 text-[0.88rem] font-semibold border-b-2 pb-0.5 hover:gap-3 transition-all ${
@@ -145,6 +145,24 @@ export function CursosSection({ limit, dark = false }: Props) {
             <CursoCard key={curso.id} curso={curso} index={i} />
           ))}
         </div>
+
+        {/* Botão "Ver todos" — só aparece quando há limite (home) */}
+        {limit && (
+          <div className="text-center mt-10 reveal reveal-d3">
+            <a
+              href="https://www.nuvemensino.com.br/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl font-semibold text-[0.9rem] shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 ${
+                dark
+                  ? 'bg-white text-steel hover:bg-teal hover:text-white'
+                  : 'bg-teal text-white hover:bg-teal/90'
+              }`}
+            >
+              Ver todos os cursos <ExternalLink className="w-4 h-4" />
+            </a>
+          </div>
+        )}
 
       </div>
     </section>

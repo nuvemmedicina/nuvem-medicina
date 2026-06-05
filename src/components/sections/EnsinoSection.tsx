@@ -49,7 +49,7 @@ export function EnsinoSection() {
             </p>
           </div>
           <a
-            href="https://cursos.nuvemensino.com.br"
+            href="https://www.nuvemensino.com.br/"
             target="_blank" rel="noopener noreferrer"
             className="reveal reveal-d2 inline-flex items-center gap-2 text-teal text-[0.88rem] font-semibold border-b-2 border-teal/25 pb-0.5 hover:border-teal hover:gap-3.5 transition-all shrink-0"
           >
