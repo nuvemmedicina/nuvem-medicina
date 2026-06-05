@@ -265,7 +265,7 @@ export default function EnsinoPage() {
             Confira a agenda de cursos, inscrições e materiais disponíveis na plataforma exclusiva do NU.V.E.M Ensino.
           </p>
           <div className="flex flex-wrap gap-4 justify-center reveal reveal-d3">
-            <a href="https://cursos.nuvemensino.com.br" target="_blank" rel="noopener noreferrer" className="btn-gold">
+            <a href="https://www.nuvemensino.com.br/" target="_blank" rel="noopener noreferrer" className="btn-gold">
               <ExternalLink className="w-4 h-4" />
               Acessar Portal de Cursos
             </a>
