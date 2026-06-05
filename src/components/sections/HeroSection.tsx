@@ -14,7 +14,7 @@ export function HeroSection() {
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          backgroundImage: 'url(/images/sistema-digestivo-2.webp)',
+          backgroundImage: 'url(/images/sistema-digestivo-3.webp)',
           backgroundSize: 'auto 90%',
           backgroundPosition: 'left center',
           backgroundRepeat: 'no-repeat',
