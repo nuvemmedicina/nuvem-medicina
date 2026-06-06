@@ -51,7 +51,7 @@ export const CURSOS: Curso[] = [
     modalidade: 'Online',
     descricao:  'Curso completo sobre o papel da microbiota intestinal na prática clínica do gastroenterologista. Com Dra. Vera Ângelo e Dr. Dan Waitzberg, referências nacionais em nutrição clínica e gastroenterologia.',
     imagem:     '/images/dra-vera-dr-dan-l-waiztberg.jpg',
-    href:       'https://ganepeducacao.com.br/produto/microbiota-na-pratica-do-gastroenterologista/',
+    href:       'https://www.nuvemensino.com.br/cursos/microbiota-na-pratica-do-gastroenterologista',
     destaque:   false,
   },
 ]
