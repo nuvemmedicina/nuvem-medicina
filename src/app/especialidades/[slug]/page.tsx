@@ -3,6 +3,7 @@ import { notFound }      from 'next/navigation'
 import Link    from 'next/link'
 import Image   from 'next/image'
 import { ArrowRight, CheckCircle2, Stethoscope } from 'lucide-react'
+import { IsoSeal } from '@/components/icons/IsoSeal'
 import { PageHero }       from '@/components/ui/PageHero'
 import { Breadcrumb }     from '@/components/ui/Breadcrumb'
 import { SectionWrapper } from '@/components/ui/SectionWrapper'
@@ -539,15 +540,16 @@ export default async function EspecialidadeSlugPage({ params }: Props) {
             )}
 
             {/* ISO badge */}
-            <div className="bg-cloud border border-teal/10 rounded-2xl p-5 text-center shadow-sm">
-              <div className="text-[0.65rem] font-bold tracking-[.12em] uppercase text-teal/60 mb-1">Certificação</div>
-              <div className="font-serif text-[1.5rem] font-light text-steel mb-1">ISO 9001</div>
-              <p className="text-[0.75rem] text-steel/50 leading-relaxed">
-                Todos os procedimentos desta especialidade seguem o padrão ISO 9001 de qualidade e rastreabilidade.
-              </p>
-              <Link href="/gestao-da-qualidade" className="text-[0.75rem] text-teal hover:text-teal/70 transition-colors mt-2 inline-flex items-center gap-1">
-                Saiba mais <ArrowRight className="w-3 h-3" />
-              </Link>
+            <div className="bg-gold/8 border border-gold/22 rounded-2xl p-5 flex items-center gap-3">
+              <IsoSeal size={44} className="shrink-0" />
+              <div>
+                <p className="text-[0.82rem] text-steel/65 leading-snug">
+                  Especialidade realizada com protocolo <strong className="text-steel font-semibold">certificado ISO 9001</strong>
+                </p>
+                <Link href="/gestao-da-qualidade" className="text-[0.72rem] text-teal hover:text-teal/70 transition-colors mt-1 inline-flex items-center gap-1">
+                  Saiba mais <ArrowRight className="w-3 h-3" />
+                </Link>
+              </div>
             </div>
 
             {/* CTA */}
