@@ -100,10 +100,8 @@ export async function DepoimentosSection() {
   const usingGoogle  = !!googleData && googleData.reviews.length > 0
   const mapsUrl      = googleData?.mapsUrl ?? CONTATO.maps
 
-  // Completa com estáticos se a API retornar menos de 6
-  const googleReviews = googleData?.reviews ?? []
-  const needed        = Math.max(0, 6 - googleReviews.length)
-  const staticFill    = DEPOIMENTOS.slice(0, needed)
+  // Limita a 3 avaliações reais do Google
+  const googleReviews = (googleData?.reviews ?? []).slice(0, 3)
 
   return (
     <section className="py-28 bg-white border-t border-teal/8 relative overflow-hidden" id="depoimentos">
@@ -143,14 +141,9 @@ export async function DepoimentosSection() {
         {/* Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {usingGoogle
-            ? <>
-                {googleReviews.map((review, i) => (
-                  <GoogleReviewCard key={`g-${i}`} review={review} index={i} />
-                ))}
-                {staticFill.map((dep, i) => (
-                  <StaticCard key={dep.id} dep={dep} index={googleReviews.length + i} />
-                ))}
-              </>
+            ? googleReviews.map((review, i) => (
+                <GoogleReviewCard key={`g-${i}`} review={review} index={i} />
+              ))
             : DEPOIMENTOS.map((dep, i) => (
                 <StaticCard key={dep.id} dep={dep} index={i} />
               ))
