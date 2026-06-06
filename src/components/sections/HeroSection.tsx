@@ -53,7 +53,7 @@ export function HeroSection() {
 
       {/* Content */}
       <div className="relative z-10 w-full max-w-[1240px] mx-auto px-8 pt-[120px] pb-20">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_440px] gap-16 lg:gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_480px] gap-16 lg:gap-20 items-center">
 
           {/* ── LEFT ─────────────────────────────── */}
           <div>
