@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
 import { Poppins, Cormorant_Garamond } from 'next/font/google'
 import '@/styles/globals.css'
-import { SiteShell }  from '@/components/layout/SiteShell'
-import { JsonLd }      from '@/components/ui/JsonLd'
+import { SiteShell }        from '@/components/layout/SiteShell'
+import { JsonLd }            from '@/components/ui/JsonLd'
+import { GoogleAnalytics }   from '@/components/ui/GoogleAnalytics'
 import {
   organizationSchema,
   websiteSchema,
@@ -101,6 +102,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SiteShell>{children}</SiteShell>
         {/* Global structured data for all pages */}
         <JsonLd data={[organizationSchema, websiteSchema, ratingSchema, localBusinessSchema, directorSchema]} />
+        {/* Google Analytics GA4 */}
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <GoogleAnalytics measurementId={process.env.NEXT_PUBLIC_GA_ID} />
+        )}
       </body>
     </html>
   )
