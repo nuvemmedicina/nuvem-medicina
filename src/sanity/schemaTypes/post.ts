@@ -67,7 +67,7 @@ export const postType = defineType({
       of: [
         {
           type:  'object',
-          name:  'reference',
+          name:  'citationItem',
           title: 'Referência',
           fields: [
             defineField({
