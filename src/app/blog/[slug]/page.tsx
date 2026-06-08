@@ -6,10 +6,11 @@ import { ArrowLeft }     from 'lucide-react'
 import { PortableText }  from '@portabletext/react'
 import { SectionWrapper }  from '@/components/ui/SectionWrapper'
 import { CtaBanner }       from '@/components/ui/CtaBanner'
-import { CalloutBlock }    from '@/components/blog/CalloutBlock'
-import { FaqItem }         from '@/components/blog/FaqItem'
-import { DownloadBlock }   from '@/components/blog/DownloadBlock'
-import { StatBlock }       from '@/components/blog/StatBlock'
+import { CalloutBlock }         from '@/components/blog/CalloutBlock'
+import { FaqItem }              from '@/components/blog/FaqItem'
+import { DownloadBlock }        from '@/components/blog/DownloadBlock'
+import { StatBlock }            from '@/components/blog/StatBlock'
+import { ReferencesAccordion }  from '@/components/blog/ReferencesAccordion'
 import { getPostBySlug, getAllPosts } from '@/lib/sanity/queries'
 import { urlFor }          from '@/lib/sanity/image'
 
@@ -136,6 +137,11 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           <div className="prose prose-lg prose-headings:font-serif prose-headings:font-semibold prose-headings:text-steel prose-p:text-steel/70 prose-p:leading-relaxed prose-a:text-teal prose-strong:text-steel prose-li:text-steel/70 max-w-none">
             {post.body && <PortableText value={post.body} components={ptComponents} />}
           </div>
+
+          {/* Referências bibliográficas */}
+          {post.references && post.references.length > 0 && (
+            <ReferencesAccordion references={post.references} />
+          )}
 
           {/* Author card */}
           {post.author && (
