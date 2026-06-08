@@ -35,7 +35,7 @@ const FOOTER_COLS = [
       { label: 'Equipe',                  href: '/equipe' },
       { label: 'Gestão da Qualidade',     href: '/gestao-da-qualidade' },
       { label: 'NU.V.E.M Ensino',         href: '/ensino' },
-      { label: 'Convênios',               href: '/convenios' },
+      { label: 'Convênios',               href: '/convenios-medicos' },
       { label: 'Blog',                    href: '/blog' },
     ],
   },

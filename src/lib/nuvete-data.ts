@@ -331,7 +331,7 @@ export const NUVETE_RESPOSTAS: NuveteResposta[] = [
     gatilhos: ['convenio', 'convênio', 'plano', 'saúde', 'unimed', 'bradesco', 'sulamerica', 'amil'],
     resposta: 'Trabalhamos com os principais convênios: Unimed BH, Bradesco Saúde, SulAmérica, Amil, NotreDame e outros.\n\nTambém aceitamos particular com emissão de recibo para reembolso.\n\nQuer que eu consulte um plano específico?',
     botoes: [
-      { label: '💳 Ver convênios completo', acao: 'link:/convenios' },
+      { label: '💳 Ver convênios completo', acao: 'link:/convenios-medicos' },
     ],
   },
   {
