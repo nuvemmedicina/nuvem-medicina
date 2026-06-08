@@ -60,6 +60,42 @@ export const postType = defineType({
       type:  'number',
     }),
     defineField({
+      name:        'references',
+      title:       'Referências Bibliográficas',
+      type:        'array',
+      description: 'Lista de referências citadas no artigo. Aparece como seção dobrável ao final do post.',
+      of: [
+        {
+          type:  'object',
+          name:  'reference',
+          title: 'Referência',
+          fields: [
+            defineField({
+              name:       'citation',
+              title:      'Citação',
+              type:       'text',
+              rows:       2,
+              description: 'Ex: SOUZA, M. et al. Título do artigo. Revista. 2024;10(2):100–110.',
+              validation:  Rule => Rule.required(),
+            }),
+            defineField({
+              name:        'url',
+              title:       'Link (DOI ou URL)',
+              type:        'url',
+              description: 'Opcional — Ex: https://doi.org/10.1000/xyz123',
+            }),
+          ],
+          preview: {
+            select: { title: 'citation' },
+            prepare({ title }: { title?: string }) {
+              return { title: title ?? 'Referência sem texto' }
+            },
+          },
+        },
+      ],
+    }),
+
+    defineField({
       name:  'body',
       title: 'Conteúdo',
       type:  'array',
