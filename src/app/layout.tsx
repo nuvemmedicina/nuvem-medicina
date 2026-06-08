@@ -102,10 +102,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SiteShell>{children}</SiteShell>
         {/* Global structured data for all pages */}
         <JsonLd data={[organizationSchema, websiteSchema, ratingSchema, localBusinessSchema, directorSchema]} />
-        {/* Google Analytics GA4 */}
-        {process.env.NEXT_PUBLIC_GA_ID && (
-          <GoogleAnalytics measurementId={process.env.NEXT_PUBLIC_GA_ID} />
-        )}
+        {/* Google Analytics GA4 — Measurement ID é público por natureza */}
+        <GoogleAnalytics measurementId="G-J90YW71NMZ" />
       </body>
     </html>
   )
