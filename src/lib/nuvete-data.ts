@@ -166,7 +166,7 @@ export const NUVETE_RESPOSTAS: NuveteResposta[] = [
     gatilhos: ['dra vera', 'vera ângelo', 'vera angelo', 'dr vera', 'diretora técnica', 'fundadora', 'vera'],
     resposta: '👩‍⚕️ **Dra. Vera Ângelo**\nGastroenterologista · Sócia Fundadora da NU.V.E.M\n\n🎓 Mestre e Doutora em Patologia pela UFMG\n📜 Título de Especialista pela Federação Brasileira de Gastroenterologia\n📚 Professora convidada do Hospital Israelita Albert Einstein\n✍️ Autora de diversas obras pela Editora Rubio\n🔬 Referência nacional em testes respiratórios e motilidade digestiva\n\n**CRM-MG 22284 · RQE 10411 · RQE 22736**',
     botoes: [
-      { label: '👩‍⚕️ Ver perfil completo', acao: 'link:/equipe/dra-vera' },
+      { label: '👩‍⚕️ Ver perfil completo', acao: 'link:/dra-vera-angelo' },
       { label: '📅 Agendar com a Dra. Vera', acao: 'whatsapp' },
     ],
   },
@@ -174,7 +174,7 @@ export const NUVETE_RESPOSTAS: NuveteResposta[] = [
     gatilhos: ['dra eliane', 'eliane', 'basques', 'cirurgia pediátrica', 'diretora substituta'],
     resposta: '👩‍⚕️ **Dra. Eliane Basques Moura**\nCirurgiã Pediátrica · Diretora Técnica Substituta\n\nEspecialista em cirurgia pediátrica com ampla experiência no atendimento de crianças e adolescentes, integrando a equipe multidisciplinar da NU.V.E.M com o olhar clínico voltado ao paciente pediátrico.\n\n**CRM-MG 27601 · RQE 9324**',
     botoes: [
-      { label: '👩‍⚕️ Ver perfil completo', acao: 'link:/equipe/dra-eliane' },
+      { label: '👩‍⚕️ Ver perfil completo', acao: 'link:/dra-eliane-basques' },
       { label: '📅 Agendar consulta', acao: 'whatsapp' },
     ],
   },
