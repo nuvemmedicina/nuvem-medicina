@@ -57,9 +57,13 @@ const ptComponents = {
   types: {
     image: ({ value }: any) => (
       <figure className="my-8">
-        <div className="relative w-full rounded-xl overflow-hidden" style={{ aspectRatio: '16/9' }}>
-          <Image src={urlFor(value).width(1200).url()} alt={value.alt ?? ''} fill className="object-cover" />
-        </div>
+        <Image
+          src={urlFor(value).width(1200).url()}
+          alt={value.alt ?? ''}
+          width={1200}
+          height={900}
+          className="w-full h-auto rounded-xl"
+        />
         {value.caption && <figcaption className="text-center text-[0.78rem] text-steel/50 mt-2">{value.caption}</figcaption>}
       </figure>
     ),
