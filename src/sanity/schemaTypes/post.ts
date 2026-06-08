@@ -93,7 +93,6 @@ export const postType = defineType({
           },
         },
       ],
-      options: { collapsible: true, collapsed: true },
     }),
 
     defineField({
