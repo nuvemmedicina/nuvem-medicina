@@ -56,17 +56,17 @@ export const metadata: Metadata = {
     title:       'NU.V.E.M Medicina — Gastroenterologia e Diagnóstico Avançado em BH',
     description: 'Clínica especializada com ISO 9001. Manometria, testes respiratórios, pHmetria e fisioterapia pélvica em Belo Horizonte.',
     images: [{
-      url:    '/images/og-image.jpg',
+      url:    '/images/vera-eliane.jpg',
       width:  1200,
       height: 630,
-      alt:    'NU.V.E.M Medicina — Excelência em Saúde Digestiva',
+      alt:    'Dra. Vera Ângelo e Dra. Eliane Basques — Fundadoras da NU.V.E.M Medicina',
     }],
   },
   twitter: {
     card:        'summary_large_image',
     title:       'NU.V.E.M Medicina — Gastroenterologia com ISO 9001 em BH',
     description: 'Clínica especializada com certificação ISO 9001. SIBO, H. pylori, manometria, fisioterapia pélvica.',
-    images:      ['/images/og-image.jpg'],
+    images:      ['/images/vera-eliane.jpg'],
   },
   robots: {
     index:          true,
