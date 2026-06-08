@@ -98,12 +98,26 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR" className={`${poppins.variable} ${cormorant.variable}`}>
+      <head>
+        {/* Google Analytics GA4 */}
+        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-J90YW71NMZ" />
+        <script
+          id="gtag-init"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-J90YW71NMZ');
+            `,
+          }}
+        />
+      </head>
       <body>
         <SiteShell>{children}</SiteShell>
         {/* Global structured data for all pages */}
         <JsonLd data={[organizationSchema, websiteSchema, ratingSchema, localBusinessSchema, directorSchema]} />
-        {/* Google Analytics GA4 — Measurement ID é público por natureza */}
-        <GoogleAnalytics measurementId="G-J90YW71NMZ" />
       </body>
     </html>
   )
