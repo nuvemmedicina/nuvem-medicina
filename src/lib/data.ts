@@ -9,7 +9,7 @@ export const NAV_ITEMS: NavItem[] = [
       { label: 'Sobre a Clínica',         href: '/sobre' },
       { label: 'Equipe',                  href: '/equipe' },
       { label: 'Gestão da Qualidade',     href: '/gestao-da-qualidade' },
-      { label: 'Infraestrutura',          href: '/infraestrutura' },
+      // { label: 'Infraestrutura',       href: '/infraestrutura' }, // em breve — aguardando novas fotos
     ],
   },
   {
