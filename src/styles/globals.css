@@ -157,7 +157,7 @@
 
   /* ── Nav links (light navbar) ── */
   .nav-link {
-    @apply text-[0.85rem] font-medium px-3.5 py-2 rounded-md transition-all;
+    @apply text-[0.78rem] font-medium px-3.5 py-2 rounded-md transition-all;
     color: rgba(var(--steel), 0.65);
     &:hover {
       @apply text-teal;
