@@ -113,6 +113,7 @@ export const postType = defineType({
         { type: 'faqItem' },
         { type: 'downloadBlock' },
         { type: 'statBlock' },
+        { type: 'spotifyBlock' },
       ],
     }),
   ],

@@ -72,6 +72,24 @@ const ptComponents = {
     faqItem:       ({ value }: any) => <FaqItem value={value} />,
     downloadBlock: ({ value }: any) => <DownloadBlock value={value} />,
     statBlock:     ({ value }: any) => <StatBlock value={value} />,
+    spotifyBlock:  ({ value }: any) => value?.episodeId ? (
+      <figure className="my-8">
+        <iframe
+          src={`https://open.spotify.com/embed/episode/${value.episodeId}?utm_source=generator`}
+          width="100%"
+          height="352"
+          frameBorder="0"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"
+          style={{ borderRadius: '12px' }}
+        />
+        {value.title && (
+          <figcaption className="text-center text-[0.78rem] text-steel/50 mt-2">
+            🎙️ {value.title}
+          </figcaption>
+        )}
+      </figure>
+    ) : null,
   },
   block: {
     blockquote: ({ children }: any) => (

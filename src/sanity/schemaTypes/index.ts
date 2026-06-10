@@ -5,6 +5,7 @@ import { calloutBlockType }  from './calloutBlock'
 import { faqItemType }       from './faqItem'
 import { downloadBlockType } from './downloadBlock'
 import { statBlockType }     from './statBlock'
+import { spotifyBlockType } from './spotifyBlock'
 
 export const schemaTypes = [
   postType,
@@ -14,4 +15,5 @@ export const schemaTypes = [
   faqItemType,
   downloadBlockType,
   statBlockType,
+  spotifyBlockType,
 ]
