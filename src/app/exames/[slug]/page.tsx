@@ -257,7 +257,27 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const exame = EXAMES.find(e => e.id === slug)
   if (!exame) return {}
-  return { title: exame.title, description: exame.desc[0] }
+  const desc = exame.desc[0]
+  return {
+    title:       exame.title,
+    description: desc,
+    openGraph: {
+      title:       `${exame.title} | NU.V.E.M Medicina`,
+      description: desc,
+      images: [{
+        url:    '/images/nuvem-medicina-bh.jpg',
+        width:  1200,
+        height: 630,
+        alt:    `Consultório NU.V.E.M Medicina — ${exame.title}`,
+      }],
+    },
+    twitter: {
+      card:        'summary_large_image',
+      title:       `${exame.title} | NU.V.E.M Medicina`,
+      description: desc,
+      images:      ['/images/nuvem-medicina-bh.jpg'],
+    },
+  }
 }
 
 export default async function ExameSlugPage({ params }: Props) {

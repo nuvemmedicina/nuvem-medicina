@@ -342,9 +342,26 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const esp = ESPECIALIDADES.find(e => e.slug === slug)
   if (!esp) return {}
+  const desc = DETAIL[esp.slug]?.heroDesc ?? esp.desc
   return {
     title:       esp.title,
-    description: DETAIL[esp.slug]?.heroDesc ?? esp.desc,
+    description: desc,
+    openGraph: {
+      title:       `${esp.title} | NU.V.E.M Medicina`,
+      description: desc,
+      images: [{
+        url:    '/images/nuvem-medicina-bh.jpg',
+        width:  1200,
+        height: 630,
+        alt:    `Consultório NU.V.E.M Medicina — ${esp.title}`,
+      }],
+    },
+    twitter: {
+      card:        'summary_large_image',
+      title:       `${esp.title} | NU.V.E.M Medicina`,
+      description: desc,
+      images:      ['/images/nuvem-medicina-bh.jpg'],
+    },
   }
 }
 
