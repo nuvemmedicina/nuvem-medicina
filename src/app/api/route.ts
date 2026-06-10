@@ -1,8 +1,35 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { getAllPosts }               from '@/lib/sanity/queries'
+
+async function buildBlogSection(): Promise<string> {
+  try {
+    const posts = await getAllPosts()
+    if (!posts.length) return ''
+
+    const lines = posts.map(p => {
+      const cats = p.categories?.map(c => c.title).join(', ') ?? ''
+      const url  = `https://nuvemmedicina.com.br/blog/${p.slug.current}`
+      const line = `• "${p.title}"${cats ? ` [${cats}]` : ''} → ${url}`
+      return p.excerpt ? `${line}\n  Resumo: ${p.excerpt}` : line
+    }).join('\n\n')
+
+    return `\n═══════════════════════════════════════
+ARTIGOS DO BLOG (base de conhecimento atualizada)
+═══════════════════════════════════════
+Quando a pergunta do usuário for relacionada a algum desses temas, SEMPRE mencione o artigo relevante e inclua o link completo. Use o formato: "Temos um artigo sobre isso 📖: [título](URL)".
+
+${lines}
+═══════════════════════════════════════`
+  } catch {
+    return ''
+  }
+}
 
 export async function POST(req: NextRequest) {
   try {
     const { messages } = await req.json()
+
+    const blogSection = await buildBlogSection()
 
     const systemPrompt = `Você é a Nuvete 💙, assistente virtual carinhosa e especializada da NU.V.E.M Medicina — clínica de gastroenterologia em Belo Horizonte, certificada ISO 9001.
 
@@ -166,7 +193,7 @@ Centro de formação médica especializada:
 - Trilhas: Gastroenterologia & Motilidade | Saúde Pélvica | Halitose
 - Informações: cursos@nuvemensino.com.br
 
-IMPORTANTE: Para dúvidas clínicas pessoais (diagnóstico, tratamento, medicamentos), sempre oriente a consultar o médico. Você pode informar e acolher, mas nunca diagnosticar.`
+IMPORTANTE: Para dúvidas clínicas pessoais (diagnóstico, tratamento, medicamentos), sempre oriente a consultar o médico. Você pode informar e acolher, mas nunca diagnosticar.${blogSection}`
 
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
