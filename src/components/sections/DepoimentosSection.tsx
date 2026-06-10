@@ -100,8 +100,8 @@ export async function DepoimentosSection() {
   const usingGoogle  = !!googleData && googleData.reviews.length > 0
   const mapsUrl      = googleData?.mapsUrl ?? CONTATO.maps
 
-  // Limita a 3 avaliações reais do Google
-  const googleReviews = (googleData?.reviews ?? []).slice(0, 3)
+  // Mostra até 6 avaliações com texto (API retorna no máximo 5)
+  const googleReviews = (googleData?.reviews ?? []).slice(0, 6)
 
   return (
     <section className="py-28 bg-white border-t border-teal/8 relative overflow-hidden" id="depoimentos">

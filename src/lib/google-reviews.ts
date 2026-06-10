@@ -54,11 +54,11 @@ export async function fetchGoogleReviews(): Promise<GooglePlaceData | null> {
 
   const fields = 'rating,user_ratings_total,url,reviews'
   const endpoint = `https://maps.googleapis.com/maps/api/place/details/json`
-  const url = `${endpoint}?place_id=${placeId}&fields=${fields}&language=pt-BR&reviews_sort=most_relevant&key=${apiKey}`
+  const url = `${endpoint}?place_id=${placeId}&fields=${fields}&language=pt-BR&reviews_sort=newest&key=${apiKey}`
 
   try {
     const res = await fetch(url, {
-      next: { revalidate: 21600 }, // cache 6 horas
+      next: { revalidate: 3600 }, // cache 1 hora
     })
 
     if (!res.ok) {
