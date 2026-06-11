@@ -11,6 +11,16 @@ import { renderRich } from '@/lib/rich'
 export const metadata: Metadata = {
   title:       'Dra. Vera Ângelo · Gastroenterologista',
   description: 'Dra. Vera Ângelo — Mestre e Doutora pela UFMG, especialista em gastroenterologia, motilidade digestiva e testes respiratórios. Diretora Técnica da NU.V.E.M Medicina.',
+  openGraph: {
+    title:       'Dra. Vera Ângelo · Gastroenterologista',
+    description: 'Dra. Vera Ângelo — Mestre e Doutora pela UFMG, especialista em gastroenterologia, motilidade digestiva e testes respiratórios. Diretora Técnica da NU.V.E.M Medicina.',
+    images: [{ url: '/images/dra-vera.jpg', width: 900, height: 900, alt: 'Dra. Vera Ângelo' }],
+  },
+  twitter: {
+    card:   'summary_large_image',
+    title:  'Dra. Vera Ângelo · Gastroenterologista',
+    images: ['/images/dra-vera.jpg'],
+  },
 }
 
 const FORMACAO = [

@@ -10,6 +10,16 @@ import { IsoSeal }        from '@/components/icons/IsoSeal'
 export const metadata: Metadata = {
   title:       'Dra. Eliane Basques · Manometria Anorretal',
   description: 'Dra. Eliane Basques Moura — Cirurgiã Pediátrica e especialista em Manometria Anorretal. Sócia Fundadora e Diretora Técnica Substituta da NU.V.E.M Medicina.',
+  openGraph: {
+    title:       'Dra. Eliane Basques · Manometria Anorretal',
+    description: 'Dra. Eliane Basques Moura — Cirurgiã Pediátrica e especialista em Manometria Anorretal. Sócia Fundadora e Diretora Técnica Substituta da NU.V.E.M Medicina.',
+    images: [{ url: '/images/dra-eliane.jpg', width: 900, height: 900, alt: 'Dra. Eliane Basques' }],
+  },
+  twitter: {
+    card:   'summary_large_image',
+    title:  'Dra. Eliane Basques · Manometria Anorretal',
+    images: ['/images/dra-eliane.jpg'],
+  },
 }
 
 const FORMACAO = [
