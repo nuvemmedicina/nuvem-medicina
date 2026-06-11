@@ -38,7 +38,7 @@ const INSTRUTORES = [
     foto:  '/images/dra-vera.jpg',
     role:  'Fundadora e Diretora Técnica',
     bio:   'Mestre e Doutora pela UFMG. Professora convidada do Hospital Israelita Albert Einstein. Autora de diversas obras pela Editora Rubio. Referência nacional em testes respiratórios e motilidade digestiva.',
-    href:  '/equipe/dra-vera',
+    href:  '/dra-vera-angelo',
   },
   {
     nome:  'Dra. Eliane Basques',
@@ -47,7 +47,7 @@ const INSTRUTORES = [
     foto:  '/images/dra-eliane.jpg',
     role:  'Diretora Técnica Substituta',
     bio:   'Cirurgiã pediátrica e especialista em manometria anorretal. Cofundadora da NU.V.E.M, traz a visão cirúrgica integrada ao ensino de diagnóstico funcional avançado.',
-    href:  '/equipe/dra-eliane',
+    href:  '/dra-eliane-basques',
   },
 ]
 

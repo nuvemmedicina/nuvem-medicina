@@ -1,6 +1,12 @@
 import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [
+      { source: '/equipe/dra-vera',   destination: '/dra-vera-angelo',    permanent: true },
+      { source: '/equipe/dra-eliane', destination: '/dra-eliane-basques', permanent: true },
+    ]
+  },
   images: {
     remotePatterns: [
       { protocol: 'https', hostname: 'nuvemmedicina.com.br' },
