@@ -35,7 +35,7 @@ const FOOTER_COLS = [
       { label: 'Equipe',                  href: '/equipe' },
       { label: 'Gestão da Qualidade',     href: '/gestao-da-qualidade' },
       { label: 'NU.V.E.M Ensino',         href: '/ensino' },
-      { label: 'Convênios',               href: '/convenios' },
+      { label: 'Convênios',               href: '/convenios-medicos' },
       { label: 'Blog',                    href: '/blog' },
     ],
   },
@@ -51,7 +51,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[280px_1fr_1fr_1fr] gap-10 mb-12">
 
           {/* Brand */}
-          <div className="text-center md:text-left">
+          <div className="text-left">
             <Link href="/" className="inline-block mb-5" aria-label="NU.V.E.M Medicina — Página inicial">
               <LogoBranco className="h-9 w-auto opacity-85 hover:opacity-100 transition-opacity" />
             </Link>
@@ -61,7 +61,7 @@ export function Footer() {
             </p>
 
             {/* ISO Seal */}
-            <div className="flex items-center gap-3 mb-5 justify-center md:justify-start">
+            <div className="flex items-center gap-3 mb-5 justify-start">
               <IsoSeal size={48} />
               <div>
                 <p className="text-[0.78rem] font-semibold text-white leading-tight">Certificação ISO 9001</p>
@@ -69,7 +69,7 @@ export function Footer() {
               </div>
             </div>
 
-            <div className="flex gap-2.5 justify-center md:justify-start">
+            <div className="flex gap-2.5 justify-start">
               {[
                 { href: 'https://www.instagram.com/nuvemmedicina/', Icon: Instagram,     label: 'Instagram' },
                 { href: 'https://www.youtube.com/@NuvemMedicina',   Icon: Youtube,       label: 'YouTube' },
@@ -92,7 +92,7 @@ export function Footer() {
 
           {/* Columns */}
           {FOOTER_COLS.map(col => (
-            <div key={col.title} className="text-center md:text-left">
+            <div key={col.title} className="text-left">
               <h4 className="text-[0.72rem] font-bold tracking-[.1em] uppercase text-white/55 mb-4 pb-2.5 border-b border-white/10">
                 {col.title}
               </h4>
@@ -114,14 +114,14 @@ export function Footer() {
 
         {/* Bottom */}
         <div className="pt-6 border-t border-white/10 flex flex-col md:flex-row md:justify-between gap-4">
-          <div className="space-y-1 text-center md:text-left">
+          <div className="space-y-1 text-left">
             <p className="text-[0.72rem] text-white/35">
               © {new Date().getFullYear()} NU.V.E.M Medicina · CNPJ {CONTATO.cnpj} · {CONTATO.crmClinica}
             </p>
             <p className="text-[0.72rem] text-white/35">
               {CONTATO.endereco} – {CONTATO.bairro} · {CONTATO.cep}
             </p>
-            <div className="flex items-center gap-4 justify-center md:justify-start">
+            <div className="flex items-center gap-4 justify-start">
               <a href="/politica-de-privacidade" className="text-[0.72rem] text-white/35 hover:text-teal-light transition-colors">
                 Política de Privacidade
               </a>

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link    from 'next/link'
 import Image   from 'next/image'
+import { Microscope, ShieldCheck, Users, Heart, GraduationCap, TrendingUp } from 'lucide-react'
 import { PageHero }      from '@/components/ui/PageHero'
 import { SectionWrapper } from '@/components/ui/SectionWrapper'
 import { CtaBanner }     from '@/components/ui/CtaBanner'
@@ -8,16 +9,16 @@ import { CONTATO }       from '@/lib/data'
 
 export const metadata: Metadata = {
   title:       'Sobre a Clínica',
-  description: 'Conheça a NU.V.E.M Medicina — história, missão, valores e o diferencial ISO 9001 que nos torna únicos em Belo Horizonte.',
+  description: 'Conheça a NU.V.E.M Medicina: história, missão, valores e o diferencial ISO 9001 que nos torna únicos em Belo Horizonte.',
 }
 
 const PILARES = [
-  { num: '01', title: 'Diagnóstico de Precisão', desc: 'Equipamentos de última geração operados por especialistas certificados, garantindo resultados confiáveis e laudos detalhados.' },
-  { num: '02', title: 'Gestão ISO 9001',          desc: 'Únicos no segmento em BH com certificação internacional de qualidade. Cada processo é padronizado, auditado e continuamente melhorado.' },
-  { num: '03', title: 'Equipe Multidisciplinar',  desc: 'Gastroenterologistas, fisioterapeutas pélvicos, nefrologista, pediatra e especialistas em halitose trabalhando de forma integrada.' },
-  { num: '04', title: 'Cuidado Humanizado',        desc: 'Escuta ativa, respeito ao tempo do paciente e comunicação clara em cada etapa do atendimento.' },
-  { num: '05', title: 'Ensino Médico de Elite',    desc: 'Centro de formação profissional com metodologia hands-on baseada nos casos reais da própria clínica.' },
-  { num: '06', title: 'Melhoria Contínua',         desc: 'Indicadores de qualidade monitorados mensalmente e ações de melhoria implementadas de forma sistemática e documentada.' },
+  { num: '01', Icon: Microscope,   title: 'Diagnóstico de Precisão', desc: 'Equipamentos de última geração operados por especialistas certificados, garantindo resultados confiáveis e laudos detalhados.' },
+  { num: '02', Icon: ShieldCheck,  title: 'Gestão ISO 9001',          desc: 'Únicos no segmento em BH com certificação internacional de qualidade. Cada processo é padronizado, auditado e continuamente melhorado.' },
+  { num: '03', Icon: Users,        title: 'Equipe Multidisciplinar',  desc: 'Gastroenterologistas, fisioterapeutas pélvicos, nefrologista, pediatra e especialistas em halitose trabalhando de forma integrada.' },
+  { num: '04', Icon: Heart,        title: 'Cuidado Humanizado',        desc: 'Escuta ativa, respeito ao tempo do paciente e comunicação clara em cada etapa do atendimento.' },
+  { num: '05', Icon: GraduationCap,title: 'Ensino Médico de Elite',    desc: 'Centro de formação profissional com metodologia hands-on baseada nos casos reais da própria clínica.' },
+  { num: '06', Icon: TrendingUp,   title: 'Melhoria Contínua',         desc: 'Indicadores de qualidade monitorados mensalmente e ações de melhoria implementadas de forma sistemática e documentada.' },
 ]
 
 export default function SobrePage() {
@@ -78,21 +79,42 @@ export default function SobrePage() {
       </SectionWrapper>
 
       {/* Pilares */}
-      <SectionWrapper>
-        <div className="text-center mb-14">
-          <p className="sec-tag justify-center reveal">Nossos Pilares</p>
-          <h2 className="sec-title reveal reveal-d1">O que nos torna <em>únicos</em></h2>
+      <section className="py-24 relative overflow-hidden" style={{ background: '#d7e7e7' }}>
+        {/* Subtle grid overlay */}
+        <div className="absolute inset-0 hero-grid-bg pointer-events-none opacity-30" />
+
+        <div className="relative z-10 max-w-[1240px] mx-auto px-8">
+          <div className="text-center mb-14">
+            <p className="sec-tag justify-center reveal">Nossos Pilares</p>
+            <h2 className="sec-title reveal reveal-d1">O que nos torna <em>únicos</em></h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {PILARES.map((p, i) => (
+              <div
+                key={p.num}
+                className={`group relative bg-white rounded-2xl p-8 shadow-sm border border-white/80 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden reveal reveal-d${i % 3}`}
+              >
+                {/* Accent bar top */}
+                <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-teal/60 to-teal/20 rounded-t-2xl group-hover:from-teal group-hover:to-teal/50 transition-all duration-300" />
+
+                {/* Number decorativo */}
+                <span className="absolute top-4 right-6 font-serif text-[4rem] font-light leading-none select-none text-teal/8 group-hover:text-teal/14 transition-colors duration-300">
+                  {p.num}
+                </span>
+
+                {/* Ícone */}
+                <div className="w-11 h-11 rounded-xl bg-teal/10 border border-teal/20 flex items-center justify-center text-teal mb-5 group-hover:bg-teal group-hover:text-white transition-all duration-300">
+                  <p.Icon className="w-5 h-5" />
+                </div>
+
+                <h3 className="text-[1rem] font-semibold text-steel mb-3 leading-snug">{p.title}</h3>
+                <p className="text-[0.88rem] font-light text-steel/60 leading-[1.78]">{p.desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-teal/8 rounded-2xl overflow-hidden">
-          {PILARES.map((p, i) => (
-            <div key={p.num} className={`bg-white p-8 hover:bg-teal/5 transition-colors reveal reveal-d${i % 3}`}>
-              <span className="font-serif text-[3rem] font-light text-teal/10 leading-none block mb-4">{p.num}</span>
-              <h3 className="text-[1rem] font-semibold text-steel mb-3">{p.title}</h3>
-              <p className="text-[0.9rem] font-light text-steel/60 leading-[1.75]">{p.desc}</p>
-            </div>
-          ))}
-        </div>
-      </SectionWrapper>
+      </section>
 
       {/* Responsáveis Técnicos */}
       <SectionWrapper mist grid>

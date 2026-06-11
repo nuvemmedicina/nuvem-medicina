@@ -14,10 +14,12 @@ import { PhotoCarousel } from '@/components/ui/PhotoCarousel'
 const ICON_MAP: Record<string, React.ElementType> = { Clock, Shield, Check }
 
 interface PreparoCard {
-  icon:   string
-  title:  string
-  body:   string
-  badge?: string
+  icon:      string
+  title:     string
+  body:      string
+  badge?:    string
+  section?:  string
+  variant?:  'default' | 'warning' | 'permitted'
 }
 
 // Extended detail per exam
@@ -26,6 +28,7 @@ const EXAM_DETAIL: Record<string, {
   preparo:       string[]
   preparoCards?: PreparoCard[]
   photos?:       { src: string; alt: string }[]
+  video?:        { embed: string; title: string; short?: boolean }
   espRel:        string[]
 }> = {
   'manometria-esofagica': {
@@ -44,11 +47,20 @@ const EXAM_DETAIL: Record<string, {
       'Comparecer com o pedido médico e exames anteriores',
     ],
     preparoCards: [
-      { icon: '🍽️', badge: '6h antes',     title: 'Jejum',           body: 'Jejum absoluto de 6 horas antes do exame — sólidos e líquidos.' },
-      { icon: '💊', title: 'Medicamentos',  body: 'Suspender medicamentos que afetam a motilidade esofágica conforme orientação do seu médico.' },
-      { icon: '👕', title: 'Vestimenta',    body: 'Use roupa confortável com decote que facilite o acesso ao pescoço para a passagem do cateter.' },
-      { icon: '📋', title: 'Documentos',    body: 'Traga o pedido médico e exames anteriores (endoscopia, manometria prévia, etc.).' },
+      // ── Suspensão de Medicamentos ──────────────────────────
+      { section: 'Suspensão de Medicamentos', icon: '💊', badge: '48h antes',        title: 'Procinéticos',           body: 'Suspender Bromoprida e Domperidona. Se houver dor torácica, suspender também Dilacoron, Isordil, Cardizem e Diltiazem; consulte seu médico.' },
+      { section: 'Suspensão de Medicamentos', icon: '✅', badge: 'Véspera até 22h',   title: 'Medicamentos Permitidos', body: 'IBPs (Omeprazol, Pantoprazol, Lansoprazol), antiácidos simples, Sucrafilm e Lufta Gastro Pro podem ser usados normalmente.', variant: 'permitted' },
+      { section: 'Suspensão de Medicamentos', icon: '⚠️',                             title: 'Uso Contínuo',           body: 'Medicamentos para hipertensão, diabetes, coração e pulmão podem ser tomados normalmente com o mínimo de água possível.', variant: 'warning' },
+      // ── Preparação para o Jejum ────────────────────────────
+      { section: 'Preparação para o Jejum',   icon: '🍽️', badge: 'A partir das 22h', title: 'Jejum Absoluto',         body: 'Jejum absoluto a partir das 22h da noite anterior ao exame, inclusive água.' },
+      { section: 'Preparação para o Jejum',   icon: '🩺',                             title: 'Casos Especiais',        body: 'Para crianças, idosos e diabéticos, o tempo de jejum será avaliado individualmente no agendamento.' },
+      // ── No Dia do Exame ────────────────────────────────────
+      { section: 'No Dia do Exame',           icon: '🆔',                             title: 'Documentação',           body: 'Traga documento com foto, pedido médico original e carteirinha do convênio.' },
+      { section: 'No Dia do Exame',           icon: '📄',                             title: 'Exames Anteriores',      body: 'Leve resultado da última endoscopia digestiva ou Raio-X contrastado do esôfago, se possuir.' },
+      { section: 'No Dia do Exame',           icon: '👕',                             title: 'Vestimenta',             body: 'Use roupas confortáveis com abertura frontal. Evite camisas de gola alta.' },
+      { section: 'No Dia do Exame',           icon: '⏰',                             title: 'Horário',                body: 'Chegue com 15 minutos de antecedência para os trâmites de cadastro e recepção.' },
     ],
+    video: { embed: 'https://www.youtube.com/embed/0CS9j6SrcXU', title: 'Manometria Esofágica | NU.V.E.M Medicina', short: true },
     espRel: ['motilidade-digestiva', 'gastroenterologia'],
   },
   'manometria-anorretal': {
@@ -94,9 +106,9 @@ const EXAM_DETAIL: Record<string, {
       { icon: '💊', badge: '7 dias antes',  title: 'Protetores Gástricos', body: 'Suspender IBPs (Omeprazol, Pantoprazol, Esomeprazol) somente com orientação do médico solicitante.' },
       { icon: '💊', badge: '24h antes',     title: 'Antiácidos',           body: 'Suspender antiácidos simples (Leite de Magnésia, Gaviscon, Luftal) 24 horas antes da instalação do cateter.' },
       { icon: '🍽️', badge: '4h antes',     title: 'Jejum',                body: 'Jejum de 4 horas antes da colocação do cateter. Após a instalação, alimente-se normalmente.' },
-      { icon: '👕', title: 'Vestimenta',    body: 'Use blusa de botão frontal — o gravador portátil ficará preso ao seu corpo durante as 24 horas de monitoramento.' },
+      { icon: '👕', title: 'Vestimenta',    body: 'Use blusa de botão frontal: o gravador portátil ficará preso ao seu corpo durante as 24 horas de monitoramento.' },
       { icon: '🏠', title: 'Rotina Normal', body: 'Mantenha sua rotina habitual de trabalho e atividades domésticas durante todo o exame.' },
-      { icon: '📝', title: 'Diário do Exame', body: 'Registre sintomas, horários das refeições e posições no diário fornecido pela clínica — é essencial para o laudo.' },
+      { icon: '📝', title: 'Diário do Exame', body: 'Registre sintomas, horários das refeições e posições no diário fornecido pela clínica: é essencial para o laudo.' },
     ],
     photos: [
       { src: '/images/phmetria-1.webp', alt: 'Equipamentos AL-3 e AL-4 ZpH para pHmetria e impedânciometria' },
@@ -141,7 +153,7 @@ const EXAM_DETAIL: Record<string, {
       { icon: '🍽️', badge: '3h antes',  title: 'Alimentação',          body: 'Não comer nas 3 horas anteriores ao exame. Refeições alteram a composição do ar expirado.' },
       { icon: '🦷', badge: '2h antes',  title: 'Higiene Oral',          body: 'Não escovar os dentes nas 2 horas anteriores. Não usar enxaguante, spray ou qualquer produto bucal no dia.' },
       { icon: '🚭', badge: '2h antes',  title: 'Sem Fumar',             body: 'Não fumar nas 2 horas anteriores ao exame. O cigarro interfere diretamente na medição dos gases.' },
-      { icon: '🌸', title: 'Sem Perfume', body: 'Não usar perfume ou desodorante com fragrância forte no dia — podem interferir na leitura do halímetro.' },
+      { icon: '🌸', title: 'Sem Perfume', body: 'Não usar perfume ou desodorante com fragrância forte no dia, pois podem interferir na leitura do halímetro.' },
       { icon: '💧', title: 'Hidratação',  body: 'Beber água normalmente é permitido e recomendado para a sialometria.' },
     ],
     espRel: ['halitose'],
@@ -175,12 +187,12 @@ const EXAM_DETAIL: Record<string, {
 // ─── Respiratory test extra content ──────────────────────────────────────────
 const RESP_PDFS = [
   {
-    label: 'Preparo — H₂ · CH₄ · H₂S',
+    label: 'Preparo: H₂ · CH₄ · H₂S',
     sub:   'SIBO, IMO, LIBO e intolerâncias',
     href:  '/pdfs/preparo-teste-respiratorio-sibo-imo-v1.pdf',
   },
   {
-    label: 'Preparo — H. pylori',
+    label: 'Preparo: H. pylori',
     sub:   'Diagnóstico e controle de erradicação',
     href:  '/pdfs/preparo-teste-respiratorio-hpylori-v1.pdf',
   },
@@ -192,7 +204,7 @@ const RESP_VIDEOS = [
     embed:  'https://www.youtube.com/embed/k2hAIvNGD6I',
   },
   {
-    title:  'Teste Respiratório — NU.V.E.M Ensino',
+    title:  'Teste Respiratório | NU.V.E.M Ensino',
     embed:  'https://www.youtube.com/embed/t6pcq9TjFCU',
     short:  true,
   },
@@ -245,7 +257,27 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const exame = EXAMES.find(e => e.id === slug)
   if (!exame) return {}
-  return { title: exame.title, description: exame.desc[0] }
+  const desc = exame.desc[0]
+  return {
+    title:       exame.title,
+    description: desc,
+    openGraph: {
+      title:       `${exame.title} | NU.V.E.M Medicina`,
+      description: desc,
+      images: [{
+        url:    '/images/nuvem-medicina-bh.jpg',
+        width:  1200,
+        height: 630,
+        alt:    `Consultório NU.V.E.M Medicina — ${exame.title}`,
+      }],
+    },
+    twitter: {
+      card:        'summary_large_image',
+      title:       `${exame.title} | NU.V.E.M Medicina`,
+      description: desc,
+      images:      ['/images/nuvem-medicina-bh.jpg'],
+    },
+  }
 }
 
 export default async function ExameSlugPage({ params }: Props) {
@@ -407,7 +439,7 @@ export default async function ExameSlugPage({ params }: Props) {
                     <div className="px-6 py-4 flex items-center gap-3" style={{ background: 'linear-gradient(135deg, #002535, #00465F)' }}>
                       <span className="text-2xl">🥗</span>
                       <div>
-                        <p className="text-white font-semibold text-[0.95rem]">Dieta obrigatória — dia anterior ao exame</p>
+                        <p className="text-white font-semibold text-[0.95rem]">Dieta obrigatória: dia anterior ao exame</p>
                         <p className="text-white/55 text-[0.75rem]">O preparo alimentar é essencial para a precisão do diagnóstico</p>
                       </div>
                     </div>
@@ -532,27 +564,63 @@ export default async function ExameSlugPage({ params }: Props) {
                   </div>
 
                   {detail.preparoCards ? (
-                    /* Cards com ícones */
+                    /* Cards com ícones, badges e seções */
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      {detail.preparoCards.map((card) => (
-                        <div
-                          key={card.title}
-                          className="bg-white border border-teal/10 rounded-2xl p-5 shadow-sm hover:border-teal/22 hover:shadow-md transition-all flex gap-4 items-start"
-                        >
-                          <div className="w-11 h-11 rounded-xl bg-teal/8 border border-teal/15 flex items-center justify-center shrink-0 text-[1.25rem] leading-none">
-                            {card.icon}
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            {card.badge && (
-                              <span className="inline-block text-[0.6rem] font-bold uppercase tracking-[.1em] text-teal bg-teal/8 border border-teal/20 px-2 py-0.5 rounded-full mb-1.5">
-                                {card.badge}
-                              </span>
+                      {(() => {
+                        type Sec = { name?: string; cards: PreparoCard[] }
+                        const sections: Sec[] = []
+                        detail.preparoCards!.forEach(card => {
+                          const last = sections[sections.length - 1]
+                          if (!last || last.name !== card.section) sections.push({ name: card.section, cards: [card] })
+                          else last.cards.push(card)
+                        })
+                        return sections.map((sec, si) => (
+                          <div key={sec.name ?? si} className="contents">
+                            {sec.name && (
+                              <div className="col-span-full flex items-center gap-3 mt-2">
+                                <span className="h-px flex-1 bg-teal/12" />
+                                <p className="text-[0.67rem] font-bold uppercase tracking-[.12em] text-steel/35 whitespace-nowrap">{sec.name}</p>
+                                <span className="h-px flex-1 bg-teal/12" />
+                              </div>
                             )}
-                            <p className="text-[0.88rem] font-semibold text-steel mb-1">{card.title}</p>
-                            <p className="text-[0.82rem] font-light text-steel/60 leading-relaxed">{card.body}</p>
+                            {sec.cards.map(card => (
+                              <div
+                                key={card.title}
+                                className={`rounded-2xl p-5 shadow-sm hover:shadow-md transition-all flex gap-4 items-start ${
+                                  card.variant === 'warning'
+                                    ? 'bg-gold/6 border border-gold/20 hover:border-gold/35'
+                                    : card.variant === 'permitted'
+                                    ? 'bg-teal/5 border border-teal/15 hover:border-teal/28'
+                                    : 'bg-white border border-teal/10 hover:border-teal/22'
+                                }`}
+                              >
+                                <div className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 text-[1.25rem] leading-none ${
+                                  card.variant === 'warning'
+                                    ? 'bg-gold/10 border border-gold/20'
+                                    : card.variant === 'permitted'
+                                    ? 'bg-teal/10 border border-teal/20'
+                                    : 'bg-teal/8 border border-teal/15'
+                                }`}>
+                                  {card.icon}
+                                </div>
+                                <div className="flex-1 min-w-0">
+                                  {card.badge && (
+                                    <span className={`inline-block text-[0.6rem] font-bold uppercase tracking-[.1em] px-2 py-0.5 rounded-full mb-1.5 border ${
+                                      card.variant === 'warning'
+                                        ? 'text-gold bg-gold/10 border-gold/25'
+                                        : 'text-teal bg-teal/8 border-teal/20'
+                                    }`}>
+                                      {card.badge}
+                                    </span>
+                                  )}
+                                  <p className="text-[0.88rem] font-semibold text-steel mb-1">{card.title}</p>
+                                  <p className="text-[0.82rem] font-light text-steel/60 leading-relaxed">{card.body}</p>
+                                </div>
+                              </div>
+                            ))}
                           </div>
-                        </div>
-                      ))}
+                        ))
+                      })()}
                     </div>
                   ) : (
                     /* Lista numerada (fallback) */
@@ -660,6 +728,21 @@ export default async function ExameSlugPage({ params }: Props) {
                   <iframe src={RESP_VIDEOS[1].embed} title={RESP_VIDEOS[1].title}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen className="absolute inset-0 w-full h-full" />
+                </div>
+              </div>
+            )}
+
+            {/* Vídeo específico do exame */}
+            {!isResp && detail.video && (
+              <div className="rounded-2xl overflow-hidden shadow-md border border-teal/10">
+                <div className="relative w-full" style={{ aspectRatio: detail.video.short ? '9/16' : '16/9' }}>
+                  <iframe
+                    src={detail.video.embed}
+                    title={detail.video.title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="absolute inset-0 w-full h-full"
+                  />
                 </div>
               </div>
             )}

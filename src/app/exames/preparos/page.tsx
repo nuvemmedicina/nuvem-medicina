@@ -7,7 +7,7 @@ import { CtaBanner }      from '@/components/ui/CtaBanner'
 
 export const metadata: Metadata = {
   title:       'Preparos para Exames',
-  description: 'Guia completo de como se preparar para os exames da NU.V.E.M Medicina — manometria esofágica, manometria anorretal, pHmetria, testes respiratórios, halimetria e avaliação pélvica.',
+  description: 'Guia completo de como se preparar para os exames da NU.V.E.M Medicina: manometria esofágica, manometria anorretal, pHmetria, testes respiratórios, halimetria e avaliação pélvica.',
 }
 
 const PREPAROS = [

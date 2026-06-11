@@ -100,6 +100,9 @@ export async function DepoimentosSection() {
   const usingGoogle  = !!googleData && googleData.reviews.length > 0
   const mapsUrl      = googleData?.mapsUrl ?? CONTATO.maps
 
+  // Mostra até 6 avaliações com texto (API retorna no máximo 5)
+  const googleReviews = (googleData?.reviews ?? []).slice(0, 6)
+
   return (
     <section className="py-28 bg-white border-t border-teal/8 relative overflow-hidden" id="depoimentos">
       {/* Grid overlay */}
@@ -138,8 +141,8 @@ export async function DepoimentosSection() {
         {/* Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {usingGoogle
-            ? googleData!.reviews.map((review, i) => (
-                <GoogleReviewCard key={i} review={review} index={i} />
+            ? googleReviews.map((review, i) => (
+                <GoogleReviewCard key={`g-${i}`} review={review} index={i} />
               ))
             : DEPOIMENTOS.map((dep, i) => (
                 <StaticCard key={dep.id} dep={dep} index={i} />

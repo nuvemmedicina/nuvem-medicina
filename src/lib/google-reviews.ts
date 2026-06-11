@@ -58,7 +58,7 @@ export async function fetchGoogleReviews(): Promise<GooglePlaceData | null> {
 
   try {
     const res = await fetch(url, {
-      next: { revalidate: 21600 }, // cache 6 horas
+      next: { revalidate: 3600 }, // cache 1 hora
     })
 
     if (!res.ok) {
@@ -76,7 +76,7 @@ export async function fetchGoogleReviews(): Promise<GooglePlaceData | null> {
     const { rating, user_ratings_total, url: mapsUrl, reviews = [] } = data.result
 
     const filtered = reviews
-      .filter(r => r.text && r.text.trim().length > 15)
+      .filter(r => r.text && r.text.trim().length > 0)
       .map(r => ({
         authorName:   r.author_name,
         authorPhoto:  r.profile_photo_url,

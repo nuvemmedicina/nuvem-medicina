@@ -1,16 +1,15 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Instagram, BookOpen, Award, GraduationCap, Stethoscope, ArrowRight } from 'lucide-react'
+import { Instagram, Award, GraduationCap, Stethoscope, ArrowRight } from 'lucide-react'
 import { PageHero }       from '@/components/ui/PageHero'
 import { SectionWrapper } from '@/components/ui/SectionWrapper'
 import { CtaBanner }      from '@/components/ui/CtaBanner'
 import { IsoSeal }        from '@/components/icons/IsoSeal'
-import { renderRich } from '@/lib/rich'
 
 export const metadata: Metadata = {
   title:       'Dra. Vera Ângelo · Gastroenterologista',
-  description: 'Dra. Vera Ângelo — Mestre e Doutora pela UFMG, especialista em gastroenterologia, motilidade digestiva e testes respiratórios. Diretora Técnica da NU.V.E.M Medicina.',
+  description: 'Dra. Vera Ângelo, Mestre e Doutora pela UFMG, especialista em gastroenterologia, motilidade digestiva e testes respiratórios. Diretora Técnica da NU.V.E.M Medicina.',
 }
 
 const FORMACAO = [
@@ -81,24 +80,39 @@ const EXPERIENCIA = [
 
 const LIVROS = [
   {
-    titulo:   'Doenças Funcionais em Gastrenterologia',
+    titulo:   'Doenças Funcionais na Gastrenterologia',
+    papel:    'Organizadora',
     ano:      '2025',
     editora:  'Editora Rubio',
-    desc:     'Obra de referência abrangente sobre doenças funcionais do aparelho digestivo, com protocolos diagnósticos e terapêuticos atualizados.',
+    capa:     '/images/livro-doencas-funcionais-gastroenterologia.jpg',
+    href:     'https://rubio.com.br/livro/a61637/9786588340783/doencas-funcionais-na-gatroenterologia.html',
     destaque: true,
   },
   {
     titulo:   'Métodos Diagnósticos em Doenças Funcionais e Motilidade Digestiva',
+    papel:    'Coorganizadora',
     ano:      '2025',
     editora:  'Editora Rubio',
-    desc:     'Guia completo dos métodos diagnósticos aplicados às doenças funcionais e distúrbios de motilidade, com foco em aplicação clínica prática.',
+    capa:     '/images/livro-metodos-diagnosticos-motilidade.jpg',
+    href:     'https://rubio.com.br/livro/c58906/9786588340844/metodos-diagnosticos-em-doencas-funcionais-e-motilidade-digestiva-do-nucleo-de-fisiologia-gastrintes.html',
     destaque: true,
   },
   {
-    titulo:   'Manual Prático do Teste Respiratório do Hidrogênio Expirado',
-    ano:      '2019',
+    titulo:   'Perguntas e Respostas Comentadas de Gastrenterologia Clínica e Hepatologia',
+    papel:    'Organizadora',
+    ano:      '2025',
     editora:  'Editora Rubio',
-    desc:     'Manual de referência para diagnóstico de SIBO, intolerâncias alimentares e H. pylori por testes respiratórios, utilizado como base em treinamentos em todo o Brasil.',
+    capa:     '/images/livro-gastrenterologia-clinica-hepatologia.jpg',
+    href:     'https://rubio.com.br/livro/a62313/9786588340998/perguntas-e-respostas-comentadas-de-gastrenterologia-clinica-e-hepatologia.html',
+    destaque: true,
+  },
+  {
+    titulo:   'Testes Respiratórios em Gastrenterologia: Hidrogênio, Metano e Helicobacter pylori',
+    papel:    'Autora',
+    ano:      '2024',
+    editora:  'Editora Rubio',
+    capa:     '/images/livro-testes-respiratorios-gastrenterologia.jpg',
+    href:     'https://rubio.com.br/livro/a62312/9786588340974/testes-respiratorios-em-gastrenterologia-hidrogenio-metano-e-helicobacter-pylori.html',
     destaque: false,
   },
 ]
@@ -290,25 +304,42 @@ export default function DraVeraPage() {
             Autora de obras de referência pela Editora Rubio, utilizadas em programas de formação em todo o Brasil.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {LIVROS.map((livro, i) => (
-            <div key={livro.titulo}
-              className={`relative bg-white border rounded-2xl shadow-sm p-7 hover:-translate-y-1 transition-all reveal reveal-d${i} flex flex-col ${livro.destaque ? 'border-teal/20' : 'border-teal/10'}`}>
-              <div className="w-12 h-12 rounded-xl bg-teal/8 border border-teal/20 flex items-center justify-center text-teal mb-5">
-                <BookOpen className="w-5 h-5" />
+            <a
+              key={livro.titulo}
+              href={livro.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`group relative bg-white border rounded-2xl overflow-hidden shadow-sm hover:-translate-y-2 hover:shadow-xl transition-all duration-300 reveal reveal-d${i} flex flex-col ${livro.destaque ? 'border-teal/20' : 'border-teal/10'}`}
+            >
+              {/* Cover image */}
+              <div className="relative w-full aspect-[3/4] bg-gradient-to-br from-[#002a3d] to-[#00465F] overflow-hidden">
+                <Image
+                  src={livro.capa}
+                  alt={`Capa: ${livro.titulo}`}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                {livro.destaque && (
+                  <div className="absolute top-2 left-2">
+                    <span className="text-[0.55rem] font-bold tracking-[.1em] uppercase text-teal bg-white/90 border border-teal/20 px-2 py-0.5 rounded-full">
+                      Novo · {livro.ano}
+                    </span>
+                  </div>
+                )}
               </div>
-              {livro.destaque && (
-                <span className="inline-block text-[0.62rem] font-bold tracking-[.1em] uppercase text-teal bg-teal/8 border border-teal/20 px-2 py-0.5 rounded-full mb-3 w-fit">
-                  Novo · {livro.ano}
-                </span>
-              )}
-              {!livro.destaque && (
-                <span className="text-[0.7rem] text-steel/40 mb-3 block">{livro.ano}</span>
-              )}
-              <h3 className="text-[0.92rem] font-semibold text-steel mb-2 leading-snug flex-1">{livro.titulo}</h3>
-              <p className="text-[0.75rem] text-teal mb-3">{livro.editora}</p>
-              <p className="text-[0.9rem] font-light text-steel/60 leading-[1.7]">{renderRich(livro.desc)}</p>
-            </div>
+
+              {/* Info */}
+              <div className="p-4 flex flex-col flex-1">
+                <span className="text-[0.65rem] font-bold tracking-[.08em] uppercase text-teal/70 mb-1.5">{livro.papel}</span>
+                <h3 className="text-[0.82rem] font-semibold text-steel leading-snug mb-2 flex-1">{livro.titulo}</h3>
+                <div className="flex items-center justify-between mt-auto pt-2 border-t border-teal/8">
+                  <span className="text-[0.7rem] text-steel/45">{livro.editora} · {livro.ano}</span>
+                  <ArrowRight className="w-3.5 h-3.5 text-teal opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
+              </div>
+            </a>
           ))}
         </div>
       </SectionWrapper>

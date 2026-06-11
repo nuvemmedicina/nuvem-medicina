@@ -10,6 +10,18 @@ export function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-white">
 
+      {/* Fundo hero — imagem com baixa opacidade */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: 'url(/images/sistema-digestivo-3.webp)',
+          backgroundSize: 'auto 90%',
+          backgroundPosition: 'left center',
+          backgroundRepeat: 'no-repeat',
+          opacity: 0.22,
+        }}
+      />
+
       {/* Light grid background — the "tech" checkered look */}
       <div className="absolute inset-0 hero-grid-bg pointer-events-none" />
 
@@ -41,7 +53,7 @@ export function HeroSection() {
 
       {/* Content */}
       <div className="relative z-10 w-full max-w-[1240px] mx-auto px-8 pt-[120px] pb-20">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_440px] gap-16 lg:gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_480px] gap-16 lg:gap-20 items-center">
 
           {/* ── LEFT ─────────────────────────────── */}
           <div>
@@ -84,25 +96,6 @@ export function HeroSection() {
               </Link>
             </div>
 
-            {/* Stats */}
-            <div className="flex flex-col sm:flex-row gap-0 pt-8 border-t border-teal/10 opacity-0 animate-[fadeUp_.9s_.75s_var(--ease-out)_forwards]">
-              {[
-                { num: '2.000', label: 'Avaliações Google', sub: '★★★★★', gold: true },
-                { num: 'ISO 9001', label: 'Gestão Certificada', sub: 'Única no segmento', gold: false },
-                { num: '6',    label: 'Especialidades', sub: 'Equipe integrada', gold: false },
-              ].map((s, i) => (
-                <div
-                  key={s.label}
-                  className={`flex-1 ${i > 0 ? 'sm:pl-8 sm:border-l border-teal/10' : ''} ${i > 0 ? 'mt-6 sm:mt-0' : ''}`}
-                >
-                  <span className={`font-serif font-light text-[2.8rem] leading-none block mb-1 ${s.gold ? 'text-gold' : 'text-teal'}`}>
-                    {s.num}
-                  </span>
-                  <div className="text-[0.75rem] font-medium tracking-[.08em] uppercase text-steel/50">{s.label}</div>
-                  <div className="text-[0.72rem] text-steel/35 mt-0.5">{s.sub}</div>
-                </div>
-              ))}
-            </div>
           </div>
 
           {/* ── RIGHT PANEL ──────────────────────── */}

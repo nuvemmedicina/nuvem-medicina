@@ -5,6 +5,7 @@ import { ExternalLink, ArrowRight } from 'lucide-react'
 import { PageHero }       from '@/components/ui/PageHero'
 import { SectionWrapper } from '@/components/ui/SectionWrapper'
 import { CtaBanner }      from '@/components/ui/CtaBanner'
+import { CursosSection }  from '@/components/sections/CursosSection'
 import { renderRich } from '@/lib/rich'
 
 export const metadata: Metadata = {
@@ -108,27 +109,83 @@ export default function EnsinoPage() {
           <p className="sec-tag justify-center reveal">Metodologia</p>
           <h2 className="sec-title reveal reveal-d1">Do conceito à <em>execução</em></h2>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-teal/8 rounded-2xl overflow-hidden">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {[
-            { n:'1', label:'Fase 01', title:'Atualização Teórica',        desc:'Protocolos baseados em evidências científicas atuais, com novas diretrizes para H. pylori, SIBO, IMO e distúrbios funcionais digestivos.', price:'~R$ 450,00 · Presencial ou online', hl:false },
-            { n:'2', label:'Fase 02', title:'Simulação Interdisciplinar', desc:'Discussão de casos reais da Clínica NU.V.E.M, integrando gastroenterologia, cirurgia pediátrica e fisioterapia em cenários clínicos complexos.', price:'Casos reais · Equipe especializada', hl:false },
-            { n:'3', label:'Fase 03: Premium', title:'Imersão Hands-On', desc:'Treinamento prático presencial com equipamentos de ponta na NU.V.E.M. Domínio da execução técnica e certificação ISO 9001 incluída.', price:'R$ 2.200 – R$ 5.000 · Certificação inclusa', hl:true },
-          ].map(step => (
-            <div key={step.n} className={`relative p-9 overflow-hidden reveal ${
-              step.hl
-                ? 'bg-teal'
-                : 'bg-white hover:bg-teal/4 transition-colors'
-            }`}>
-              <span className="absolute top-4 right-5 font-serif text-[4rem] font-light leading-none select-none pointer-events-none"
-                style={{ color: step.hl ? 'rgba(255,255,255,0.12)' : 'rgba(0,70,95,0.06)' }}>
+            {
+              n: '1', label: 'Fase 01', title: 'Atualização Teórica',
+              desc: 'Protocolos baseados em evidências científicas atuais, com novas diretrizes para H. pylori, SIBO, IMO e distúrbios funcionais digestivos.',
+              hl: false, badge: null,
+            },
+            {
+              n: '2', label: 'Fase 02', title: 'Simulação Interdisciplinar',
+              desc: 'Discussão de casos reais da Clínica NU.V.E.M, integrando gastroenterologia, cirurgia pediátrica e fisioterapia em cenários clínicos complexos.',
+              hl: false, badge: null,
+            },
+            {
+              n: '3', label: 'Fase 03', title: 'Imersão Hands-On',
+              desc: 'Treinamento prático presencial com equipamentos de ponta na NU.V.E.M. Domínio da execução técnica e certificação ISO 9001 incluída.',
+              hl: true, badge: 'Premium',
+            },
+          ].map((step, i) => (
+            <div
+              key={step.n}
+              className={`relative rounded-2xl p-9 overflow-hidden group cursor-default transition-all duration-300 reveal reveal-d${i} ${
+                step.hl
+                  ? 'bg-gradient-to-br from-[#001f2e] via-[#002a3d] to-[#00465F] border border-white/8 shadow-xl hover:-translate-y-2 hover:shadow-2xl'
+                  : 'bg-white border border-teal/12 shadow-sm hover:-translate-y-2 hover:shadow-xl hover:border-teal/28'
+              }`}
+            >
+              {/* Grid texture overlay — só no card premium */}
+              {step.hl && (
+                <div className="absolute inset-0 hero-grid-bg opacity-25 pointer-events-none" />
+              )}
+
+              {/* Número decorativo — escala suave no hover */}
+              <span
+                className="absolute top-3 right-5 font-serif text-[5.5rem] font-light leading-none select-none pointer-events-none transition-all duration-500 group-hover:scale-110 group-hover:-translate-y-1"
+                style={{ color: step.hl ? 'rgba(255,255,255,0.07)' : 'rgba(0,70,95,0.06)' }}
+              >
                 {step.n}
               </span>
-              <span className={`text-[0.65rem] font-bold tracking-[.12em] uppercase block mb-4 ${step.hl ? 'text-teal-light' : 'text-teal'}`}>
-                {step.label}
-              </span>
-              <h3 className={`text-[0.95rem] font-semibold mb-2.5 ${step.hl ? 'text-white' : 'text-steel'}`}>{step.title}</h3>
-              <p className={`text-[0.78rem] font-light leading-[1.75] mb-4 ${step.hl ? 'text-white/75' : 'text-steel/60'}`}>{renderRich(step.desc)}</p>
-              <div className={`text-[0.9rem] font-medium ${step.hl ? 'text-teal-light' : 'text-teal'}`}>{step.price}</div>
+
+              {/* Conteúdo */}
+              <div className="relative z-10">
+                {/* Barra de acento superior */}
+                <div className={`w-9 h-[3px] rounded-full mb-7 transition-all duration-300 group-hover:w-14 ${step.hl ? 'bg-gold' : 'bg-teal'}`} />
+
+                {/* Label + badge Premium */}
+                <div className="flex items-center gap-2 mb-3">
+                  <span className={`text-[0.63rem] font-bold tracking-[.14em] uppercase ${step.hl ? 'text-white/45' : 'text-teal/55'}`}>
+                    {step.label}
+                  </span>
+                  {step.badge && (
+                    <span className="text-[0.58rem] font-bold tracking-[.1em] uppercase text-gold bg-gold/15 border border-gold/25 px-2 py-0.5 rounded-full">
+                      {step.badge}
+                    </span>
+                  )}
+                </div>
+
+                <h3 className={`text-[1.05rem] font-semibold mb-3 leading-snug ${step.hl ? 'text-white' : 'text-steel'}`}>
+                  {step.title}
+                </h3>
+                <p className={`text-[0.84rem] font-light leading-[1.82] ${step.hl ? 'text-white/60' : 'text-steel/55'}`}>
+                  {renderRich(step.desc)}
+                </p>
+
+                {/* Chip ISO — só no Premium */}
+                {step.hl && (
+                  <div className="mt-6">
+                    <span className="inline-flex items-center gap-1.5 text-[0.68rem] font-semibold text-gold bg-gold/12 border border-gold/22 px-3 py-1.5 rounded-full">
+                      ✦ Certificação ISO 9001 inclusa
+                    </span>
+                  </div>
+                )}
+
+                {/* Arrow — aparece suavemente no hover */}
+                <div className={`mt-5 flex items-center gap-1.5 text-[0.73rem] font-medium transition-all duration-300 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 ${step.hl ? 'text-gold' : 'text-teal'}`}>
+                  Saiba mais <ArrowRight className="w-3.5 h-3.5" />
+                </div>
+              </div>
             </div>
           ))}
         </div>
@@ -196,6 +253,9 @@ export default function EnsinoPage() {
         </div>
       </SectionWrapper>
 
+      {/* Cursos e Palestras */}
+      <CursosSection />
+
       {/* CTA to external */}
       <SectionWrapper dark grid>
         <div className="text-center">
@@ -205,7 +265,7 @@ export default function EnsinoPage() {
             Confira a agenda de cursos, inscrições e materiais disponíveis na plataforma exclusiva do NU.V.E.M Ensino.
           </p>
           <div className="flex flex-wrap gap-4 justify-center reveal reveal-d3">
-            <a href="https://cursos.nuvemensino.com.br" target="_blank" rel="noopener noreferrer" className="btn-gold">
+            <a href="https://www.nuvemensino.com.br/" target="_blank" rel="noopener noreferrer" className="btn-gold">
               <ExternalLink className="w-4 h-4" />
               Acessar Portal de Cursos
             </a>

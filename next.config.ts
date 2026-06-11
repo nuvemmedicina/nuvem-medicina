@@ -15,6 +15,13 @@ const nextConfig: NextConfig = {
       { protocol: 'https', hostname: 'lh3.googleusercontent.com' },
     ],
   },
+
+  async redirects() {
+    return [
+      // /convenios → /convenios-medicos (URL original do site antigo)
+      { source: '/convenios', destination: '/convenios-medicos', permanent: true },
+    ]
+  },
 }
 
 export default nextConfig

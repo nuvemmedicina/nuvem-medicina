@@ -8,7 +8,7 @@ import { CtaBanner }      from '@/components/ui/CtaBanner'
 
 export const metadata: Metadata = {
   title:       'Equipe · NU.V.E.M Medicina',
-  description: 'Conheça a equipe multidisciplinar da NU.V.E.M Medicina — gastroenterologistas, fisioterapeuta pélvica, cirurgiãs, nefrologista, pediatra e clínicos.',
+  description: 'Conheça a equipe multidisciplinar da NU.V.E.M Medicina: gastroenterologistas, fisioterapeuta pélvica, cirurgiãs, nefrologista, pediatra e clínicos.',
 }
 
 const SOCIAS = [
@@ -35,17 +35,24 @@ const SOCIAS = [
 ]
 
 const EQUIPE = [
-  { nome: 'Dra. Anna Karoline',          esp: 'Fisioterapia Pélvica',           foto: '/images/anna-karoline.jpg',          areas: ['Biofeedback EMG', 'Assoalho Pélvico', 'Incontinência'] },
-  { nome: 'Dra. Adrianna Buzatti Viana', esp: 'Cirurgia Pediátrica',            foto: '/images/adrianna-buzatti-viana.jpg', areas: ['Cirurgia Pediátrica', 'Casos Complexos'] },
-  { nome: 'Dra. Claudia Utsch',          esp: 'Gastroenterologia',              foto: '/images/claudia-utsch.jpg',          areas: ['Gastroenterologia Clínica', 'Doenças Digestivas'] },
-  { nome: 'Dra. Camilla Mendes',         esp: 'Clínica Médica',                 foto: '/images/camilla-mendes.jpg',         areas: ['Clínica Médica', 'Medicina Interna'] },
-  { nome: 'Dra. Danielle Martins',       esp: 'Gastroenterologia',              foto: '/images/danielle-martins.jpg',       areas: ['Gastroenterologia', 'DGBI'] },
-  { nome: 'Dr. Felipe Nelson',           esp: 'Gastroenterologia e Motilidade', foto: '/images/felipe-nelson.jpg',          areas: ['Manometria', 'pHmetria', 'Refluxo'] },
-  { nome: 'Dra. Larissa Veiga Raña',    esp: 'Gastroenterologia',              foto: '/images/larissa-veiga-rana.jpg',     areas: ['Gastroenterologia Clínica'] },
-  { nome: 'Dra. Luiza Auarek',          esp: 'Nefrologia',                     foto: '/images/luiza-auarek.jpg',           areas: ['Nefrologia', 'Interface GI-Renal'] },
-  { nome: 'Dra. Mariana Fernandes',      esp: 'Pediatria',                      foto: '/images/mariana-fernandes.jpg',      areas: ['Saúde Digestiva Infantil', 'Pediatria'] },
-  { nome: 'Dra. Raissa Dalat',          esp: 'Cirurgia Pediátrica',            foto: '/images/raissa-dalat.jpg',           areas: ['Cirurgia Pediátrica'] },
-  { nome: 'Dr. Thiago Guimarães',       esp: 'Clínica Médica e Hematologia',   foto: '/images/thiago-guimaraes.jpg',       areas: ['Clínica Médica', 'Hematologia'] },
+  { nome: 'Dra. Anna Karoline',          esp: 'Fisioterapia Pélvica',           reg: 'Crefito 4/270579-F',                  foto: '/images/anna-karoline.jpg',          areas: ['Biofeedback EMG', 'Assoalho Pélvico', 'Incontinência'] },
+  { nome: 'Dra. Adrianna Buzatti Viana', esp: 'Cirurgia Pediátrica',            reg: 'CRMMG 71689 · RQE 44101 · RQE 59942', foto: '/images/adrianna-buzatti-viana.jpg', areas: ['Cirurgia Pediátrica', 'Casos Complexos'] },
+  { nome: 'Dra. Claudia Utsch',          esp: 'Gastroenterologia',              reg: 'CRM 47651-MG · RQE 51470 · 51471',    foto: '/images/claudia-utsch.jpg',          areas: ['Gastroenterologia Clínica', 'Doenças Digestivas'] },
+  { nome: 'Dra. Camilla Mendes',         esp: 'Clínica Médica',                 reg: 'CRM 61518',                            foto: '/images/camilla-mendes.jpg',         areas: ['Clínica Médica', 'Medicina Interna'] },
+  { nome: 'Dra. Danielle Martins',       esp: 'Gastroenterologia e Motilidade', reg: 'CRM 72935',                            foto: '/images/danielle-martins.jpg',       areas: ['Gastroenterologia', 'DGBI'] },
+  { nome: 'Dr. Felipe Nelson',           esp: 'Gastroenterologia e Motilidade', reg: 'CRM 72612 · RQE 57543',                foto: '/images/felipe-nelson.jpg',          areas: ['Manometria', 'pHmetria', 'Refluxo'] },
+  { nome: 'Dra. Larissa Veiga Raña',    esp: 'Gastroenterologia',              reg: 'CRMMG 73632 · RQE 65001',              foto: '/images/larissa-veiga-rana.jpg',     areas: ['Gastroenterologia Clínica'] },
+  { nome: 'Dra. Luiza Auarek',          esp: 'Nefrologia',                     reg: 'CRM 81521 · RQE 62607 · RQE 54226',   foto: '/images/luiza-auarek.jpg',           areas: ['Nefrologia', 'Interface GI-Renal'] },
+  { nome: 'Dra. Mariana Fernandes',      esp: 'Pediatria',                      reg: 'CRM 65936',                            foto: '/images/mariana-fernandes.jpg',      areas: ['Saúde Digestiva Infantil', 'Pediatria'] },
+  { nome: 'Dra. Raissa Dalat',          esp: 'Cirurgia Pediátrica',            reg: 'CRMMG 78824 · RQE 61983',              foto: '/images/raissa-dalat.jpg',           areas: ['Cirurgia Pediátrica'] },
+  { nome: 'Dr. Thiago Guimarães',       esp: 'Clínica Médica e Hematologia',   reg: 'RQE 50.163',                           foto: '/images/thiago-guimaraes.jpg',       areas: ['Clínica Médica', 'Hematologia'] },
+]
+
+const TECNICA = [
+  { nome: 'Elisangela Duarte', cargo: 'Gerente',               foto: '/images/elisangela.jpg' },
+  { nome: 'Larissa Simão',     cargo: 'Técnica de Enfermagem', foto: '/images/larissa.jpg'    },
+  { nome: 'Camila Marques',    cargo: 'Técnica de Enfermagem', foto: '/images/camila.jpg'     },
+  { nome: 'Nazinha',           cargo: 'Recepcionista',         foto: '/images/nazinha.jpg'    },
 ]
 
 const PARCEIROS = [
@@ -113,26 +120,52 @@ export default function EquipePage() {
       <SectionWrapper>
         <div className="text-center mb-12">
           <p className="sec-tag justify-center reveal">Equipe Multidisciplinar</p>
-          <h2 className="sec-title reveal reveal-d1">Profissionais <em>Especialistas</em></h2>
+          <h2 className="sec-title reveal reveal-d1">Profissionais <em>Parceiros</em></h2>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {EQUIPE.map((m, i) => (
             <div key={m.nome}
-              className={`bg-white border border-teal/10 rounded-2xl shadow-sm p-6 hover:border-teal/25 hover:-translate-y-0.5 transition-all reveal reveal-d${i % 3}`}>
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 rounded-full overflow-hidden border border-teal/10 shrink-0 relative">
-                  <Image src={m.foto} alt={m.nome} fill className="object-cover object-top" />
-                </div>
-                <div>
-                  <h3 className="text-[0.92rem] font-semibold text-steel leading-tight">{m.nome}</h3>
-                  <p className="text-[0.78rem] text-teal mt-0.5">{m.esp}</p>
+              className={`group bg-white border border-teal/10 rounded-2xl overflow-hidden shadow-sm hover:border-teal/28 hover:-translate-y-1 hover:shadow-lg transition-all reveal reveal-d${i % 3}`}>
+              <div className="relative h-60 w-full overflow-hidden" style={{ background: 'linear-gradient(135deg,#003040,#00465F)' }}>
+                <Image src={m.foto} alt={m.nome} fill
+                  className="object-cover object-top group-hover:scale-105 transition-transform duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#001a27]/60 via-transparent to-transparent" />
+              </div>
+              <div className="p-5">
+                <h3 className="text-[0.95rem] font-semibold text-steel leading-tight mb-0.5">{m.nome}</h3>
+                <p className="text-[0.8rem] text-teal mb-1">{m.esp}</p>
+                <p className="text-[0.7rem] text-steel/40 mb-3">{m.reg}</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {m.areas.map(a => (
+                    <span key={a} className="text-[0.65rem] font-medium px-2 py-1 rounded-full bg-teal/8 border border-teal/10 text-steel/50">{a}</span>
+                  ))}
                 </div>
               </div>
-              <div className="flex flex-wrap gap-1.5">
-                {m.areas.map(a => (
-                  <span key={a} className="text-[0.65rem] font-medium px-2 py-1 rounded-full bg-teal/8 border border-teal/10 text-steel/50">{a}</span>
-                ))}
+            </div>
+          ))}
+        </div>
+      </SectionWrapper>
+
+      {/* Equipe Técnica */}
+      <SectionWrapper>
+        <div className="text-center mb-12">
+          <p className="sec-tag justify-center reveal">Equipe Técnica</p>
+          <h2 className="sec-title reveal reveal-d1">Quem cuida de <em>você</em></h2>
+          <p className="text-[0.97rem] font-light text-steel/60 max-w-lg mx-auto mt-3 reveal reveal-d2">
+            Profissionais dedicados que garantem o acolhimento e a excelência operacional da NU.V.E.M.
+          </p>
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-5 max-w-3xl mx-auto">
+          {TECNICA.map((m, i) => (
+            <div
+              key={m.nome}
+              className={`group flex flex-col items-center text-center reveal reveal-d${i % 4}`}
+            >
+              <div className="relative w-24 h-24 rounded-full overflow-hidden border-2 border-teal/15 shadow-sm group-hover:border-teal/40 group-hover:shadow-md transition-all duration-300 mb-4">
+                <Image src={m.foto} alt={m.nome} fill className="object-cover object-top" />
               </div>
+              <h3 className="text-[0.9rem] font-semibold text-steel leading-tight mb-1">{m.nome}</h3>
+              <span className="text-[0.68rem] font-bold tracking-[.1em] uppercase text-teal/60">{m.cargo}</span>
             </div>
           ))}
         </div>

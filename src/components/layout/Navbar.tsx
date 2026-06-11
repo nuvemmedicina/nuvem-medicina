@@ -43,7 +43,7 @@ export function Navbar() {
         <div className="max-w-[1240px] mx-auto px-8 h-[76px] flex items-center justify-between">
 
           <Link href="/" className="flex items-center gap-3 shrink-0" aria-label="NU.V.E.M Medicina">
-            <LogoTeal className="h-8 w-auto opacity-95" />
+            <LogoTeal className="h-10 w-auto opacity-95" />
           </Link>
 
           <div className="hidden lg:flex items-center gap-1">

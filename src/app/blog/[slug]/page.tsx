@@ -4,10 +4,15 @@ import Image             from 'next/image'
 import { notFound }      from 'next/navigation'
 import { ArrowLeft }     from 'lucide-react'
 import { PortableText }  from '@portabletext/react'
-import { SectionWrapper } from '@/components/ui/SectionWrapper'
-import { CtaBanner }     from '@/components/ui/CtaBanner'
+import { SectionWrapper }  from '@/components/ui/SectionWrapper'
+import { CtaBanner }       from '@/components/ui/CtaBanner'
+import { CalloutBlock }         from '@/components/blog/CalloutBlock'
+import { FaqItem }              from '@/components/blog/FaqItem'
+import { DownloadBlock }        from '@/components/blog/DownloadBlock'
+import { StatBlock }            from '@/components/blog/StatBlock'
+import { ReferencesAccordion }  from '@/components/blog/ReferencesAccordion'
 import { getPostBySlug, getAllPosts } from '@/lib/sanity/queries'
-import { urlFor }        from '@/lib/sanity/image'
+import { urlFor }          from '@/lib/sanity/image'
 
 export const revalidate = 60
 
@@ -20,10 +25,28 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params
   const post = await getPostBySlug(slug)
   if (!post) return {}
+  const ogImage = post.coverImage
+    ? urlFor(post.coverImage).width(1200).height(630).url()
+    : undefined
   return {
-    title:       `${post.title} · NU.V.E.M Medicina`,
+    title:       post.title,
     description: post.excerpt,
-    openGraph:   post.coverImage ? { images: [urlFor(post.coverImage).width(1200).height(630).url()] } : {},
+    openGraph: {
+      title:       post.title,
+      description: post.excerpt,
+      type:        'article',
+      siteName:    'NU.V.E.M Medicina',
+      locale:      'pt_BR',
+      ...(ogImage && {
+        images: [{ url: ogImage, width: 1200, height: 630, alt: post.title }],
+      }),
+    },
+    twitter: {
+      card:        'summary_large_image',
+      title:       post.title,
+      description: post.excerpt,
+      ...(ogImage && { images: [ogImage] }),
+    },
   }
 }
 
@@ -35,11 +58,46 @@ const ptComponents = {
   types: {
     image: ({ value }: any) => (
       <figure className="my-8">
-        <div className="relative w-full rounded-xl overflow-hidden" style={{ aspectRatio: '16/9' }}>
-          <Image src={urlFor(value).width(1200).url()} alt={value.alt ?? ''} fill className="object-cover" />
-        </div>
+        <Image
+          src={urlFor(value).width(1200).url()}
+          alt={value.alt ?? ''}
+          width={1200}
+          height={900}
+          className="w-full h-auto rounded-xl"
+        />
         {value.caption && <figcaption className="text-center text-[0.78rem] text-steel/50 mt-2">{value.caption}</figcaption>}
       </figure>
+    ),
+    calloutBlock:  ({ value }: any) => <CalloutBlock value={value} />,
+    faqItem:       ({ value }: any) => <FaqItem value={value} />,
+    downloadBlock: ({ value }: any) => <DownloadBlock value={value} />,
+    statBlock:     ({ value }: any) => <StatBlock value={value} />,
+    spotifyBlock:  ({ value }: any) => value?.episodeId ? (
+      <figure className="my-8">
+        <iframe
+          src={`https://open.spotify.com/embed/episode/${value.episodeId}?utm_source=generator`}
+          width="100%"
+          height="352"
+          frameBorder="0"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"
+          style={{ borderRadius: '12px' }}
+        />
+        {value.title && (
+          <figcaption className="text-center text-[0.78rem] text-steel/50 mt-2">
+            🎙️ {value.title}
+          </figcaption>
+        )}
+      </figure>
+    ) : null,
+  },
+  block: {
+    blockquote: ({ children }: any) => (
+      <blockquote className="not-italic border-l-4 border-teal/50 rounded-r-xl py-4 px-6 my-8" style={{ background: 'rgba(0,70,95,0.05)' }}>
+        <p className="italic text-steel/75 font-light leading-relaxed text-[1rem] before:content-['“'] after:content-['”'] before:text-teal/40 after:text-teal/40 before:mr-0.5 after:ml-0.5 m-0">
+          {children}
+        </p>
+      </blockquote>
     ),
   },
 }
@@ -67,7 +125,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
               ))}
             </div>
           )}
-          <h1 className="font-serif font-light text-white text-[2rem] md:text-[2.6rem] leading-tight mb-4">{post.title}</h1>
+          <h1 className="font-serif font-semibold text-white text-[2rem] md:text-[2.6rem] leading-tight mb-4">{post.title}</h1>
           {post.excerpt && <p className="text-[0.97rem] text-white/65 leading-relaxed mb-6">{post.excerpt}</p>}
           <div className="flex items-center gap-4 text-[0.78rem] text-white/50">
             {post.author && <span>Por {post.author.name}</span>}
@@ -83,15 +141,25 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           <div className="relative w-full rounded-2xl overflow-hidden shadow-xl" style={{ aspectRatio: '16/9' }}>
             <Image src={urlFor(post.coverImage).width(1200).height(675).url()} alt={post.title} fill className="object-cover" />
           </div>
+          {post.coverImage.credit && (
+            <p className="text-[0.7rem] text-steel/40 mt-1.5 text-right">
+              Imagem: {post.coverImage.credit}
+            </p>
+          )}
         </div>
       )}
 
       {/* Body */}
       <SectionWrapper>
         <div className="max-w-3xl mx-auto">
-          <div className="prose prose-lg prose-headings:font-serif prose-headings:font-light prose-headings:text-steel prose-p:text-steel/70 prose-p:leading-relaxed prose-a:text-teal prose-strong:text-steel prose-li:text-steel/70 max-w-none">
+          <div className="prose prose-lg prose-headings:font-serif prose-headings:font-semibold prose-headings:text-steel prose-p:text-steel/70 prose-p:leading-relaxed prose-a:text-teal prose-strong:text-steel prose-li:text-steel/70 max-w-none">
             {post.body && <PortableText value={post.body} components={ptComponents} />}
           </div>
+
+          {/* Referências bibliográficas */}
+          {post.references && post.references.length > 0 && (
+            <ReferencesAccordion references={post.references} />
+          )}
 
           {/* Author card */}
           {post.author && (

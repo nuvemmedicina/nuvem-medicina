@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
 import { Poppins, Cormorant_Garamond } from 'next/font/google'
 import '@/styles/globals.css'
-import { SiteShell }  from '@/components/layout/SiteShell'
-import { JsonLd }      from '@/components/ui/JsonLd'
+import { SiteShell }        from '@/components/layout/SiteShell'
+import { JsonLd }            from '@/components/ui/JsonLd'
+import { GoogleAnalytics }   from '@/components/ui/GoogleAnalytics'
 import {
   organizationSchema,
   websiteSchema,
@@ -55,17 +56,17 @@ export const metadata: Metadata = {
     title:       'NU.V.E.M Medicina — Gastroenterologia e Diagnóstico Avançado em BH',
     description: 'Clínica especializada com ISO 9001. Manometria, testes respiratórios, pHmetria e fisioterapia pélvica em Belo Horizonte.',
     images: [{
-      url:    '/images/og-image.jpg',
+      url:    '/images/vera-eliane.jpg',
       width:  1200,
       height: 630,
-      alt:    'NU.V.E.M Medicina — Excelência em Saúde Digestiva',
+      alt:    'Dra. Vera Ângelo e Dra. Eliane Basques — Fundadoras da NU.V.E.M Medicina',
     }],
   },
   twitter: {
     card:        'summary_large_image',
     title:       'NU.V.E.M Medicina — Gastroenterologia com ISO 9001 em BH',
     description: 'Clínica especializada com certificação ISO 9001. SIBO, H. pylori, manometria, fisioterapia pélvica.',
-    images:      ['/images/og-image.jpg'],
+    images:      ['/images/vera-eliane.jpg'],
   },
   robots: {
     index:          true,
@@ -97,6 +98,22 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR" className={`${poppins.variable} ${cormorant.variable}`}>
+      <head>
+        {/* Google Analytics GA4 */}
+        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-J90YW71NMZ" />
+        <script
+          id="gtag-init"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-J90YW71NMZ');
+            `,
+          }}
+        />
+      </head>
       <body>
         <SiteShell>{children}</SiteShell>
         {/* Global structured data for all pages */}

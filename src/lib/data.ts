@@ -9,8 +9,7 @@ export const NAV_ITEMS: NavItem[] = [
       { label: 'Sobre a Clínica',         href: '/sobre' },
       { label: 'Equipe',                  href: '/equipe' },
       { label: 'Gestão da Qualidade',     href: '/gestao-da-qualidade' },
-      { label: 'Infraestrutura',          href: '/infraestrutura' },
-      { label: 'Profissionais Parceiros', href: '/parceiros' },
+      // { label: 'Infraestrutura',       href: '/infraestrutura' }, // em breve — aguardando novas fotos
     ],
   },
   {
@@ -38,9 +37,10 @@ export const NAV_ITEMS: NavItem[] = [
       { label: 'Preparos para Exames',      href: '/exames/preparos' },
     ],
   },
-  { label: 'ISO 9001', href: '/gestao-da-qualidade' },
-  { label: 'Ensino',   href: '/ensino' },
-  { label: 'Blog',     href: '/blog' },
+  { label: 'ISO 9001',   href: '/gestao-da-qualidade' },
+  { label: 'Ensino',    href: '/ensino' },
+  { label: 'Convênios', href: '/convenios-medicos' },
+  { label: 'Blog',      href: '/blog' },
 ]
 
 // ─── Especialidades ───────────────────────────────────────────────────────────

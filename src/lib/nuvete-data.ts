@@ -196,7 +196,7 @@ export const NUVETE_RESPOSTAS: NuveteResposta[] = [
   },
   {
     gatilhos: ['claudia utsch', 'claudia', 'danielle martins', 'danielle', 'larissa veiga', 'larissa'],
-    resposta: '👩‍⚕️ **Equipe de Gastroenterologia:**\n\n- **Dra. Claudia Utsch** — Gastroenterologia Clínica\n- **Dra. Danielle Martins** — Gastroenterologia e DGBI\n- **Dra. Larissa Veiga Raña** — Gastroenterologia Clínica\n\nAtuam em conjunto com a Dra. Vera Ângelo no atendimento de doenças digestivas.',
+    resposta: '👩‍⚕️ **Equipe de Gastroenterologia:**\n\n- **Dra. Claudia Utsch**: Gastroenterologia Clínica\n- **Dra. Danielle Martins**: Gastroenterologia e DGBI\n- **Dra. Larissa Veiga Raña**: Gastroenterologia Clínica\n\nAtuam em conjunto com a Dra. Vera Ângelo no atendimento de doenças digestivas.',
     botoes: [
       { label: '👥 Ver perfis completos', acao: 'link:/equipe' },
       { label: '📅 Agendar consulta', acao: 'whatsapp' },
@@ -204,7 +204,7 @@ export const NUVETE_RESPOSTAS: NuveteResposta[] = [
   },
   {
     gatilhos: ['camilla mendes', 'camilla', 'thiago guimarães', 'thiago guimaraes', 'thiago', 'clínica médica', 'clinica medica', 'hematologia'],
-    resposta: '👩‍⚕️ **Clínica Médica e Hematologia:**\n\n- **Dra. Camilla Mendes** — Clínica Médica e Medicina Interna\n- **Dr. Thiago Guimarães** — Clínica Médica e Hematologia\n\nAtuam no acompanhamento clínico integrado dos pacientes da NU.V.E.M.',
+    resposta: '👩‍⚕️ **Clínica Médica e Hematologia:**\n\n- **Dra. Camilla Mendes**: Clínica Médica e Medicina Interna\n- **Dr. Thiago Guimarães**: Clínica Médica e Hematologia\n\nAtuam no acompanhamento clínico integrado dos pacientes da NU.V.E.M.',
     botoes: [
       { label: '👥 Ver toda a equipe', acao: 'link:/equipe' },
       { label: '📅 Agendar consulta', acao: 'whatsapp' },
@@ -228,7 +228,7 @@ export const NUVETE_RESPOSTAS: NuveteResposta[] = [
   },
   {
     gatilhos: ['adrianna buzatti', 'adrianna', 'raissa dalat', 'raissa', 'cirurgiã pediátrica', 'cirurgia pediatrica'],
-    resposta: '👩‍⚕️ **Cirurgia Pediátrica:**\n\n- **Dra. Adrianna Buzatti Viana** — Cirurgia Pediátrica, casos complexos\n- **Dra. Raissa Dalat** — Cirurgia Pediátrica\n- **Dra. Eliane Basques Moura** — Diretora Técnica Substituta, especialista em manometria anorretal\n\nA equipe de cirurgia pediátrica atua de forma integrada com gastroenterologia e fisioterapia.',
+    resposta: '👩‍⚕️ **Cirurgia Pediátrica:**\n\n- **Dra. Adrianna Buzatti Viana**: Cirurgia Pediátrica, casos complexos\n- **Dra. Raissa Dalat**: Cirurgia Pediátrica\n- **Dra. Eliane Basques Moura**: Diretora Técnica Substituta, especialista em manometria anorretal\n\nA equipe de cirurgia pediátrica atua de forma integrada com gastroenterologia e fisioterapia.',
     botoes: [
       { label: '👥 Ver toda a equipe', acao: 'link:/equipe' },
       { label: '📅 Agendar consulta', acao: 'whatsapp' },
@@ -236,7 +236,7 @@ export const NUVETE_RESPOSTAS: NuveteResposta[] = [
   },
   {
     gatilhos: ['equipe', 'médicos', 'medicos', 'especialistas', 'quem atende', 'profissionais'],
-    resposta: '👩‍⚕️ **Nossa Equipe Multidisciplinar:**\n\n**Sócias Fundadoras:**\n- Dra. Vera Ângelo — Gastroenterologia e Motilidade\n- Dra. Eliane Basques Moura — Cirurgia Pediátrica\n\n**Especialistas:**\n- Dr. Felipe Nelson — Gastroenterologia e Motilidade\n- Dra. Anna Karoline — Fisioterapia Pélvica\n- Dra. Claudia Utsch — Gastroenterologia\n- Dra. Danielle Martins — Gastroenterologia\n- Dra. Camilla Mendes — Clínica Médica\n- Dr. Thiago Guimarães — Clínica Médica e Hematologia\n- Dra. Luiza Auarek — Nefrologia\n- Dra. Mariana Fernandes — Pediatria\n- Dra. Adrianna Buzatti Viana — Cirurgia Pediátrica\n- Dra. Raissa Dalat — Cirurgia Pediátrica\n- Dra. Larissa Veiga Raña — Gastroenterologia\n\nTodos atuam de forma integrada sob gestão ISO 9001 💙',
+    resposta: '👩‍⚕️ **Nossa Equipe Multidisciplinar:**\n\n**Sócias Fundadoras:**\n- Dra. Vera Ângelo: Gastroenterologia e Motilidade\n- Dra. Eliane Basques Moura: Cirurgia Pediátrica\n\n**Especialistas:**\n- Dr. Felipe Nelson: Gastroenterologia e Motilidade\n- Dra. Anna Karoline: Fisioterapia Pélvica\n- Dra. Claudia Utsch: Gastroenterologia\n- Dra. Danielle Martins: Gastroenterologia\n- Dra. Camilla Mendes: Clínica Médica\n- Dr. Thiago Guimarães: Clínica Médica e Hematologia\n- Dra. Luiza Auarek: Nefrologia\n- Dra. Mariana Fernandes: Pediatria\n- Dra. Adrianna Buzatti Viana: Cirurgia Pediátrica\n- Dra. Raissa Dalat: Cirurgia Pediátrica\n- Dra. Larissa Veiga Raña: Gastroenterologia\n\nTodos atuam de forma integrada sob gestão ISO 9001 💙',
     botoes: [
       { label: '👥 Conhecer toda a equipe', acao: 'link:/equipe' },
       { label: '📅 Agendar consulta', acao: 'whatsapp' },
@@ -331,7 +331,7 @@ export const NUVETE_RESPOSTAS: NuveteResposta[] = [
     gatilhos: ['convenio', 'convênio', 'plano', 'saúde', 'unimed', 'bradesco', 'sulamerica', 'amil'],
     resposta: 'Trabalhamos com os principais convênios: Unimed BH, Bradesco Saúde, SulAmérica, Amil, NotreDame e outros.\n\nTambém aceitamos particular com emissão de recibo para reembolso.\n\nQuer que eu consulte um plano específico?',
     botoes: [
-      { label: '💳 Ver convênios completo', acao: 'link:/convenios' },
+      { label: '💳 Ver convênios completo', acao: 'link:/convenios-medicos' },
     ],
   },
   {
@@ -347,7 +347,7 @@ export const NUVETE_RESPOSTAS: NuveteResposta[] = [
   },
   {
     gatilhos: ['teste respiratório', 'teste respiratorio', 'preparo respiratório', 'preparo respiratorio', 'exame respiratório', 'exame respiratorio'],
-    resposta: '💨 **Testes Respiratórios na NU.V.E.M:**\n\nRealizamos os seguintes testes, todos não invasivos e sem coleta de sangue:\n\n- 🔬 **SIBO** (H₂/CH₄/H₂S) — supercrescimento bacteriano\n- 🦠 ***H. pylori*** (UREA) — diagnóstico da bactéria\n- 💨 **Lactose** — intolerância à lactose\n- 💨 **Frutose** — intolerância à frutose\n\nPara qual exame você gostaria de ver o preparo?',
+    resposta: '💨 **Testes Respiratórios na NU.V.E.M:**\n\nRealizamos os seguintes testes, todos não invasivos e sem coleta de sangue:\n\n- 🔬 **SIBO** (H₂/CH₄/H₂S): supercrescimento bacteriano\n- 🦠 ***H. pylori*** (UREA): diagnóstico da bactéria\n- 💨 **Lactose**: intolerância à lactose\n- 💨 **Frutose**: intolerância à frutose\n\nPara qual exame você gostaria de ver o preparo?',
     botoes: [
       { label: '🔬 Preparo SIBO', acao: 'preparo:respiratorio-sibo' },
       { label: '🦠 Preparo H. pylori', acao: 'preparo:respiratorio-hpylori' },

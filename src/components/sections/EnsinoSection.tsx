@@ -21,9 +21,15 @@ const STEPS = [
 ]
 
 const MULT = [
-  { num: 'I',   title: 'Validação Clínica Diária',    desc: 'Casos reais da clínica moldam os treinamentos e a produção de conteúdo científico atualizado.' },
-  { num: 'II',  title: 'Treinamento de Elite',         desc: 'Especialistas repassam expertise prática e domínio técnico para médicos, fisioterapeutas e alunos.' },
-  { num: 'III', title: 'Elevação da Prática Médica',   desc: 'Alunos levam a excelência para seus consultórios. O Efeito Multiplicador NU.V.E.M em ação.' },
+  { num: '4', label: 'Fase 04', highlight: false,
+    title: 'Validação Clínica Diária',
+    desc: 'Casos reais da clínica moldam os treinamentos e a produção de conteúdo científico atualizado.' },
+  { num: '5', label: 'Fase 05', highlight: false,
+    title: 'Treinamento de Elite',
+    desc: 'Especialistas repassam expertise prática e domínio técnico para médicos, fisioterapeutas e alunos.' },
+  { num: '6', label: 'Fase 06: Resultado', highlight: true,
+    title: 'Elevação da Prática Médica',
+    desc: 'Alunos levam a excelência para seus consultórios. O Efeito Multiplicador NU.V.E.M em ação.' },
 ]
 
 export function EnsinoSection() {
@@ -43,7 +49,7 @@ export function EnsinoSection() {
             </p>
           </div>
           <a
-            href="https://cursos.nuvemensino.com.br"
+            href="https://www.nuvemensino.com.br/"
             target="_blank" rel="noopener noreferrer"
             className="reveal reveal-d2 inline-flex items-center gap-2 text-teal text-[0.88rem] font-semibold border-b-2 border-teal/25 pb-0.5 hover:border-teal hover:gap-3.5 transition-all shrink-0"
           >
@@ -78,18 +84,37 @@ export function EnsinoSection() {
         </div>
 
         {/* Multiplicador */}
-        <div className="grid grid-cols-1 md:grid-cols-3 rounded-2xl overflow-hidden border border-teal/10 reveal">
-          {MULT.map((m, i) => (
-            <div
-              key={m.num}
-              className={`p-7 bg-white transition-all hover:bg-teal/4 relative group ${i < MULT.length - 1 ? 'border-b md:border-b-0 md:border-r border-teal/8' : ''}`}
-            >
-              <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-teal/25 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-              <div className="font-serif text-[2rem] font-light text-teal/40 mb-2">{m.num}</div>
-              <h4 className="text-[0.9rem] font-semibold text-steel mb-2">{m.title}</h4>
-              <p className="text-[0.82rem] font-light text-steel/55 leading-[1.7]">{m.desc}</p>
-            </div>
-          ))}
+        <div className="rounded-2xl overflow-hidden mt-3 reveal" style={{ background: '#d7e7e7' }}>
+          <div className="px-6 pt-5 pb-1">
+            <p className="text-[0.62rem] font-bold tracking-[.14em] uppercase text-teal/60">O Efeito Multiplicador</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-teal/10 p-px rounded-b-2xl">
+            {MULT.map(step => (
+              <div
+                key={step.num}
+                className={`relative p-9 overflow-hidden transition-all ${
+                  step.highlight
+                    ? 'bg-gradient-to-br from-[#001f2e] via-[#002a3d] to-[#00465F]'
+                    : 'bg-white hover:bg-teal/5'
+                }`}
+              >
+                {step.highlight && (
+                  <div className="absolute inset-0 hero-grid-bg opacity-20 pointer-events-none" />
+                )}
+                <span
+                  className="absolute top-4 right-5 font-serif text-[4rem] font-light leading-none pointer-events-none select-none"
+                  style={{ color: step.highlight ? 'rgba(255,255,255,0.08)' : 'rgba(0,70,95,0.06)' }}
+                >
+                  {step.num}
+                </span>
+                <span className={`text-[0.68rem] font-bold tracking-[.12em] uppercase block mb-4 ${step.highlight ? 'text-gold' : 'text-teal'}`}>
+                  {step.label}
+                </span>
+                <h3 className={`text-[1rem] font-semibold mb-2.5 ${step.highlight ? 'text-white' : 'text-steel'}`}>{step.title}</h3>
+                <p className={`text-[0.85rem] font-light leading-[1.75] ${step.highlight ? 'text-white/70' : 'text-steel/60'}`}>{step.desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
 
       </div>
