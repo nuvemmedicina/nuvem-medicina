@@ -170,12 +170,12 @@ export default function DireitosPacientePage() {
             <p className="text-[0.68rem] font-bold uppercase tracking-[.1em] text-steel/45 mb-4">Responsáveis Técnicos</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <Link href="/equipe/dra-vera" className="text-[0.85rem] font-semibold text-steel hover:text-teal transition-colors">Dra. Vera Ângelo</Link>
+                <Link href="/dra-vera-angelo" className="text-[0.85rem] font-semibold text-steel hover:text-teal transition-colors">Dra. Vera Ângelo</Link>
                 <p className="text-[0.72rem] text-steel/45 mt-0.5">CRM 22284 MG · RQE 10411 · RQE 22736</p>
                 <p className="text-[0.72rem] text-steel/60 mt-0.5">Diretora Técnica</p>
               </div>
               <div>
-                <Link href="/equipe/dra-eliane" className="text-[0.85rem] font-semibold text-steel hover:text-teal transition-colors">Dra. Eliane Basques Moura</Link>
+                <Link href="/dra-eliane-basques" className="text-[0.85rem] font-semibold text-steel hover:text-teal transition-colors">Dra. Eliane Basques Moura</Link>
                 <p className="text-[0.72rem] text-steel/45 mt-0.5">CRM 27601 MG · RQE 9324</p>
                 <p className="text-[0.72rem] text-steel/60 mt-0.5">Diretora Técnica Substituta</p>
               </div>

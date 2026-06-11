@@ -124,8 +124,8 @@ export default function SobrePage() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
           {[
-            { nome: CONTATO.diretora.nome, cargo: 'Diretora Técnica',          crm: CONTATO.diretora.crm, rqe: CONTATO.diretora.rqe, esp: 'Gastroenterologista',                foto: '/images/dra-vera.jpg',   href: '/equipe/dra-vera' },
-            { nome: 'Dra. Eliane Basques Moura', cargo: 'Diretora Técnica Substituta', crm: 'CRM-MG 27601',           rqe: 'RQE 9324',               esp: 'Cirurgia Pediátrica', foto: '/images/dra-eliane.jpg', href: '/equipe/dra-eliane' },
+            { nome: CONTATO.diretora.nome, cargo: 'Diretora Técnica',          crm: CONTATO.diretora.crm, rqe: CONTATO.diretora.rqe, esp: 'Gastroenterologista',                foto: '/images/dra-vera.jpg',   href: '/dra-vera-angelo' },
+            { nome: 'Dra. Eliane Basques Moura', cargo: 'Diretora Técnica Substituta', crm: 'CRM-MG 27601',           rqe: 'RQE 9324',               esp: 'Cirurgia Pediátrica', foto: '/images/dra-eliane.jpg', href: '/dra-eliane-basques' },
           ].map(m => (
             <Link key={m.nome} href={m.href} className="group bg-white border border-teal/12 rounded-2xl overflow-hidden reveal shadow-sm hover:border-teal/28 hover:-translate-y-0.5 hover:shadow-md transition-all block">
               {/* Foto */}
