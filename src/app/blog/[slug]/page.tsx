@@ -10,6 +10,7 @@ import { CalloutBlock }         from '@/components/blog/CalloutBlock'
 import { FaqItem }              from '@/components/blog/FaqItem'
 import { DownloadBlock }        from '@/components/blog/DownloadBlock'
 import { StatBlock }            from '@/components/blog/StatBlock'
+import { TableBlock }           from '@/components/blog/TableBlock'
 import { ReferencesAccordion }  from '@/components/blog/ReferencesAccordion'
 import { getPostBySlug, getAllPosts } from '@/lib/sanity/queries'
 import { urlFor }          from '@/lib/sanity/image'
@@ -72,6 +73,7 @@ const ptComponents = {
     faqItem:       ({ value }: any) => <FaqItem value={value} />,
     downloadBlock: ({ value }: any) => <DownloadBlock value={value} />,
     statBlock:     ({ value }: any) => <StatBlock value={value} />,
+    tableBlock:    ({ value }: any) => <TableBlock value={value} />,
     spotifyBlock:  ({ value }: any) => value?.episodeId ? (
       <figure className="my-8">
         <iframe
