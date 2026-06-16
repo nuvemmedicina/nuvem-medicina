@@ -10,6 +10,10 @@ import { CtaBanner }      from '@/components/ui/CtaBanner'
 import { IsoSeal }        from '@/components/icons/IsoSeal'
 import { EXAMES, ESPECIALIDADES, EXAM_PDFS } from '@/lib/data'
 import { PhotoCarousel } from '@/components/ui/PhotoCarousel'
+import { JsonLd } from '@/components/ui/JsonLd'
+import { examSchema, faqSchema, breadcrumbSchema } from '@/lib/schema'
+
+const BASE_URL = 'https://nuvemmedicina.com.br'
 
 const ICON_MAP: Record<string, React.ElementType> = { Clock, Shield, Check }
 
@@ -23,6 +27,8 @@ interface PreparoCard {
 }
 
 // Extended detail per exam
+interface Faq { pergunta: string; resposta: string }
+
 const EXAM_DETAIL: Record<string, {
   indicacoes:    string[]
   preparo:       string[]
@@ -30,6 +36,7 @@ const EXAM_DETAIL: Record<string, {
   photos?:       { src: string; alt: string }[]
   video?:        { embed: string; title: string; short?: boolean }
   espRel:        string[]
+  faqs:          Faq[]
 }> = {
   'manometria-esofagica': {
     indicacoes: [
@@ -39,6 +46,13 @@ const EXAM_DETAIL: Record<string, {
       'Avaliação pré e pós-operatória de cirurgia antirrefluxo',
       'Dor torácica de causa não cardíaca',
       'Suspeita de espasmo difuso do esôfago',
+    ],
+    faqs: [
+      { pergunta: 'O que é a manometria esofágica?', resposta: 'É um exame que mede a pressão e a coordenação dos movimentos musculares do esôfago durante a deglutição, avaliando se os músculos e o esfíncter esofágico inferior funcionam corretamente.' },
+      { pergunta: 'A manometria esofágica dói?', resposta: 'Não é um exame doloroso, mas pode causar desconforto leve durante a passagem do cateter fino pelo nariz até o esôfago. A maioria dos pacientes tolera bem o procedimento.' },
+      { pergunta: 'Quanto tempo dura o exame?', resposta: 'A manometria esofágica de alta resolução dura entre 30 e 45 minutos, incluindo o posicionamento do cateter e a realização das deglutições avaliadas.' },
+      { pergunta: 'Precisa de sedação ou anestesia?', resposta: 'Não. O exame é realizado sem sedação, em ambiente ambulatorial, com aplicação apenas de um gel anestésico local no nariz para maior conforto.' },
+      { pergunta: 'Quando o médico costuma solicitar esse exame?', resposta: 'É indicado em casos de dificuldade para engolir, suspeita de acalasia, refluxo persistente sem resposta ao tratamento, dor torácica sem causa cardíaca e antes de cirurgias antirrefluxo.' },
     ],
     preparo: [
       'Jejum de 6 horas antes do exame',
@@ -86,6 +100,13 @@ const EXAM_DETAIL: Record<string, {
       { icon: '📋', title: 'Documentos',    body: 'Traga o pedido médico e exames anteriores disponíveis (ultrassom pélvico, manometria prévia).' },
       { icon: '💊', title: 'Medicamentos',  body: 'Informe à equipe todos os medicamentos em uso, incluindo laxativos e fitoterápicos.' },
     ],
+    faqs: [
+      { pergunta: 'O que é a manometria anorretal?', resposta: 'É um exame que mede a força e a coordenação dos músculos do ânus e do reto, avaliando a função dos esfíncteres durante o repouso e a evacuação.' },
+      { pergunta: 'A manometria anorretal dói?', resposta: 'Não é dolorosa, apenas desconfortável durante a introdução de um cateter fino e flexível no canal anal. A maioria dos pacientes relata boa tolerância.' },
+      { pergunta: 'Quanto tempo dura o exame?', resposta: 'O exame dura entre 30 e 45 minutos, incluindo a avaliação da pressão de repouso, contração voluntária e esforço evacuatório.' },
+      { pergunta: 'Preciso fazer algum preparo especial?', resposta: 'Sim, recomenda-se um enema de limpeza 1 a 2 horas antes do exame. Não é necessário jejum.' },
+      { pergunta: 'Para que serve esse exame?', resposta: 'É usado para investigar incontinência fecal, constipação crônica refratária, distúrbios do assoalho pélvico e suspeita de doença de Hirschsprung.' },
+    ],
     espRel: ['motilidade-digestiva', 'fisioterapia-pelvica'],
   },
   'phmetria-impedanciometria': {
@@ -114,6 +135,12 @@ const EXAM_DETAIL: Record<string, {
       { src: '/images/phmetria-1.webp', alt: 'Equipamentos AL-3 e AL-4 ZpH para pHmetria e impedânciometria' },
       { src: '/images/phmetria-2.webp', alt: 'Paciente utilizando o gravador portátil durante o monitoramento de 24h' },
     ],
+    faqs: [
+      { pergunta: 'O que é a pHmetria e impedânciometria?', resposta: 'É um monitoramento ambulatorial de 24 horas que registra episódios de refluxo ácido e não ácido através de um cateter fino ou cápsula, correlacionando os eventos com os sintomas relatados pelo paciente.' },
+      { pergunta: 'É incômodo usar o aparelho por 24 horas?', resposta: 'Pode causar um leve desconforto na garganta nas primeiras horas, mas o gravador é portátil e permite manter as atividades normais do dia a dia durante todo o monitoramento.' },
+      { pergunta: 'Preciso ficar internado durante o exame?', resposta: 'Não. O exame é totalmente ambulatorial: o paciente volta para casa com o gravador portátil e retorna à clínica no dia seguinte para a retirada do equipamento.' },
+      { pergunta: 'Quando esse exame é indicado?', resposta: 'É indicado em casos de refluxo refratário ao tratamento, sintomas atípicos como tosse crônica e rouquidão, e na avaliação pré e pós-operatória de cirurgia antirrefluxo.' },
+    ],
     espRel: ['motilidade-digestiva', 'gastroenterologia'],
   },
   'testes-respiratorios': {
@@ -132,6 +159,13 @@ const EXAM_DETAIL: Record<string, {
       'Não usar antibióticos nas 4 semanas anteriores',
       'Não fumar 1 hora antes do exame',
       'Não praticar exercícios intensos 1 hora antes',
+    ],
+    faqs: [
+      { pergunta: 'O que é o teste respiratório?', resposta: 'É um exame não invasivo que mede a concentração de gases (hidrogênio, metano e gás sulfídrico) no ar exalado para diagnosticar SIBO, IMO, intolerâncias alimentares e infecção por H. pylori.' },
+      { pergunta: 'O teste respiratório dói?', resposta: 'Não. Não há agulhas, cortes ou desconforto: o paciente apenas sopra em um bocal a intervalos regulares durante o exame.' },
+      { pergunta: 'Quanto tempo dura o teste respiratório?', resposta: 'A duração varia entre 2 e 3 horas, dependendo do substrato utilizado (glicose, lactulose, lactose ou frutose) e da condição investigada.' },
+      { pergunta: 'Quais doenças o teste respiratório consegue detectar?', resposta: 'O exame detecta SIBO (supercrescimento bacteriano no intestino delgado), IMO, intolerância à lactose e frutose, e infecção por H. pylori, entre outras condições.' },
+      { pergunta: 'Preciso de algum preparo antes do exame?', resposta: 'Sim. É necessário jejum de 12 horas e uma dieta específica no dia anterior, sem alimentos fermentáveis. O guia completo de preparo está disponível em PDF para download.' },
     ],
     espRel: ['gastroenterologia', 'pediatria'],
   },
@@ -156,6 +190,13 @@ const EXAM_DETAIL: Record<string, {
       { icon: '🌸', title: 'Sem Perfume', body: 'Não usar perfume ou desodorante com fragrância forte no dia, pois podem interferir na leitura do halímetro.' },
       { icon: '💧', title: 'Hidratação',  body: 'Beber água normalmente é permitido e recomendado para a sialometria.' },
     ],
+    faqs: [
+      { pergunta: 'O que é a halimetria?', resposta: 'É um exame que mede objetivamente, em partes por bilhão, os compostos sulfurados voláteis presentes no ar exalado, principais responsáveis pelo mau hálito.' },
+      { pergunta: 'O que é a sialometria?', resposta: 'É a medição do fluxo salivar em repouso e estimulado, usada para identificar boca seca (xerostomia) como possível causa ou agravante da halitose.' },
+      { pergunta: 'Os exames de halimetria e sialometria doem?', resposta: 'Não. São exames simples, rápidos e indolores, realizados com um aparelho específico chamado halímetro.' },
+      { pergunta: 'Quanto tempo duram os exames?', resposta: 'A halimetria e a sialometria juntas duram cerca de 30 minutos.' },
+      { pergunta: 'A halitose sempre tem origem na boca?', resposta: 'Não. A halitose pode ter origem digestiva (refluxo, SIBO), nasofaríngea ou sistêmica. Por isso o protocolo da NU.V.E.M investiga todas as possíveis causas em conjunto.' },
+    ],
     espRel: ['halitose'],
   },
   'avaliacao-pelvica': {
@@ -179,6 +220,13 @@ const EXAM_DETAIL: Record<string, {
       { icon: '🚿', title: 'Higiene',           body: 'Realize higiene íntima normal no dia do exame. Não é necessário nenhum preparo especial.' },
       { icon: '📋', title: 'Exames Anteriores', body: 'Traga exames anteriores se houver (manometria anorretal, ultrassom pélvico, urodinâmica).' },
       { icon: '💊', title: 'Medicamentos',      body: 'Informe à equipe o uso de qualquer medicamento, especialmente os que afetam a musculatura.' },
+    ],
+    faqs: [
+      { pergunta: 'O que é a avaliação pélvica?', resposta: 'É um exame funcional do assoalho pélvico realizado com biofeedback eletromiográfico, que mede a atividade muscular durante o repouso, contração e esforço.' },
+      { pergunta: 'A avaliação pélvica dói?', resposta: 'Não. É um exame indolor e não invasivo, conduzido com sensores externos ou internos de baixa complexidade.' },
+      { pergunta: 'Quanto tempo dura o exame?', resposta: 'A avaliação pélvica completa dura entre 40 e 60 minutos.' },
+      { pergunta: 'Para quem é indicada essa avaliação?', resposta: 'É indicada para pacientes com incontinência urinária ou fecal, disfunção do assoalho pélvico, constipação obstrutiva e dor pélvica crônica.' },
+      { pergunta: 'Preciso de algum preparo especial?', resposta: 'Não. Basta usar roupas confortáveis; não é necessário jejum nem preparo intestinal.' },
     ],
     espRel: ['fisioterapia-pelvica'],
   },
@@ -292,6 +340,15 @@ export default async function ExameSlugPage({ params }: Props) {
 
   return (
     <>
+      <JsonLd data={[
+        examSchema(exame),
+        faqSchema(detail.faqs),
+        breadcrumbSchema([
+          { name: 'Home',   url: BASE_URL },
+          { name: 'Exames', url: `${BASE_URL}/exames` },
+          { name: exame.title, url: `${BASE_URL}/exames/${exame.id}` },
+        ]),
+      ]} />
       {isResp ? (
         <div className="relative pt-[76px] pb-20 overflow-hidden bg-white">
           <div className="absolute -top-[20%] right-[-5%] w-[500px] h-[500px] rounded-full pointer-events-none"
@@ -640,6 +697,24 @@ export default async function ExameSlugPage({ params }: Props) {
                   )}
                 </>
               )}
+            </div>
+
+            {/* ── Perguntas Frequentes ──────────────────────────────────── */}
+            <div>
+              <h2 className="font-serif font-light text-steel text-[1.5rem] mb-5">
+                Perguntas <em className="italic text-teal">frequentes</em>
+              </h2>
+              <div className="space-y-3">
+                {detail.faqs.map(faq => (
+                  <details key={faq.pergunta} className="group bg-white border border-teal/10 rounded-2xl px-5 py-4 shadow-sm open:border-teal/25">
+                    <summary className="flex items-center justify-between gap-4 cursor-pointer list-none text-[0.92rem] font-semibold text-steel">
+                      {faq.pergunta}
+                      <span className="text-teal text-[1.1rem] shrink-0 transition-transform group-open:rotate-45">+</span>
+                    </summary>
+                    <p className="text-[0.86rem] font-light text-steel/60 leading-[1.7] mt-3">{faq.resposta}</p>
+                  </details>
+                ))}
+              </div>
             </div>
           </div>
 
