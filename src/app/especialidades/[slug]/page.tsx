@@ -10,6 +10,10 @@ import { SectionWrapper } from '@/components/ui/SectionWrapper'
 import { CtaBanner }      from '@/components/ui/CtaBanner'
 import { ESPECIALIDADES, EXAMES } from '@/lib/data'
 import { renderRich } from '@/lib/rich'
+import { JsonLd } from '@/components/ui/JsonLd'
+import { especialidadeSchema, faqSchema, breadcrumbSchema } from '@/lib/schema'
+
+const BASE_URL = 'https://nuvemmedicina.com.br'
 
 // ─── Tipos ────────────────────────────────────────────────────────────────────
 
@@ -21,6 +25,8 @@ interface Especialista {
   href?: string
 }
 
+interface Faq { pergunta: string; resposta: string }
+
 interface DetailData {
   heroDesc:      string
   intro:         string[]
@@ -30,6 +36,7 @@ interface DetailData {
   paraMedicos:   { intro: string; bullets: string[] }
   especialistas: Especialista[]
   exames:        string[]
+  faqs:          Faq[]
 }
 
 // ─── Dados por especialidade ──────────────────────────────────────────────────
@@ -85,6 +92,12 @@ const DETAIL: Record<string, DetailData> = {
       { nome: 'Dra. Danielle Martins',esp: 'Gastroenterologia e DGBI',       crm: '',             foto: '/images/danielle-martins.jpg' },
     ],
     exames: ['testes-respiratorios', 'manometria-esofagica', 'phmetria-impedanciometria'],
+    faqs: [
+      { pergunta: 'O que trata um gastroenterologista na NU.V.E.M?', resposta: 'Tratamos doenças do aparelho digestivo com foco especial em SIBO, IMO, disbiose intestinal e DGBI – Distúrbio da Interação Cérebro-Intestino, seguindo as diretrizes Roma V.' },
+      { pergunta: 'Quando devo procurar um gastroenterologista?', resposta: 'Sintomas persistentes como inchaço abdominal, dor ou desconforto recorrente, alternância entre diarreia e constipação, gases excessivos e azia frequente são bons motivos para buscar avaliação.' },
+      { pergunta: 'Quais exames são feitos na consulta de gastroenterologia?', resposta: 'Conforme a indicação clínica, podem ser solicitados teste respiratório, manometria esofágica e pHmetria com impedânciometria, todos realizados na própria clínica.' },
+      { pergunta: 'SIBO e IMO têm cura?', resposta: 'O tratamento costuma envolver antibioticoterapia direcionada e ajustes na dieta, com bons resultados na maioria dos casos quando acompanhado adequadamente por um especialista.' },
+    ],
   },
 
   // ── Fisioterapia Pélvica ───────────────────────────────────────────────────
@@ -133,6 +146,12 @@ const DETAIL: Record<string, DetailData> = {
       { nome: 'Dra. Anna Karoline', esp: 'Fisioterapia Pélvica · Biofeedback EMG', crm: '', foto: '/images/anna-karoline.jpg' },
     ],
     exames: ['avaliacao-pelvica', 'manometria-anorretal'],
+    faqs: [
+      { pergunta: 'O que é fisioterapia pélvica?', resposta: 'É a reabilitação dos músculos do assoalho pélvico por meio de biofeedback eletromiográfico, eletroestimulação e técnicas manuais, indicada para disfunções urinárias, digestivas e dor pélvica.' },
+      { pergunta: 'A fisioterapia pélvica é indicada só para mulheres?', resposta: 'Não. Atendemos homens e mulheres com disfunções do assoalho pélvico, incontinência urinária ou fecal e constipação obstrutiva.' },
+      { pergunta: 'Quantas sessões são necessárias?', resposta: 'O número de sessões varia conforme o caso e é definido após a avaliação inicial com biofeedback, com reavaliações periódicas documentadas.' },
+      { pergunta: 'O tratamento é doloroso?', resposta: 'Não. É uma abordagem não invasiva e humanizada, baseada em evidências científicas atualizadas.' },
+    ],
   },
 
   // ── Halitose ───────────────────────────────────────────────────────────────
@@ -181,6 +200,12 @@ const DETAIL: Record<string, DetailData> = {
       { nome: 'Dra. Vera Ângelo', esp: 'Gastroenterologia · Diagnóstico de Halitose', crm: 'CRM-MG 22284', foto: '/images/dra-vera.jpg', href: '/equipe/dra-vera' },
     ],
     exames: ['halimetria-sialometria', 'testes-respiratorios'],
+    faqs: [
+      { pergunta: 'A halitose sempre tem origem na boca?', resposta: 'Não. A halitose pode ter causas digestivas, nasofaríngeas ou sistêmicas, por isso investigamos todas as possíveis origens em um único atendimento integrado.' },
+      { pergunta: 'Como é diagnosticada a causa da halitose?', resposta: 'Por meio de halimetria quantitativa, sialometria e avaliação gastroenterológica completa, com parceria com odontologia e otorrinolaringologia quando necessário.' },
+      { pergunta: 'Existe tratamento definitivo para halitose?', resposta: 'Depende da causa identificada. Tratando a origem — por exemplo, SIBO ou xerostomia — a melhora costuma ser significativa e duradoura.' },
+      { pergunta: 'O exame de halimetria é doloroso?', resposta: 'Não. É um exame simples, rápido e indolor, realizado com aparelho calibrado (Halimeter®).' },
+    ],
   },
 
   // ── Pediatria ──────────────────────────────────────────────────────────────
@@ -230,6 +255,12 @@ const DETAIL: Record<string, DetailData> = {
       { nome: 'Dra. Eliane Basques',       esp: 'Cirurgia Pediátrica · Manometria',     crm: 'CRM-MG 27601', foto: '/images/dra-eliane.jpg', href: '/equipe/dra-eliane' },
     ],
     exames: ['testes-respiratorios', 'manometria-anorretal'],
+    faqs: [
+      { pergunta: 'A partir de que idade posso levar meu filho?', resposta: 'Atendemos crianças desde a primeira infância até a adolescência, com ambiente e abordagem adaptados a cada faixa etária.' },
+      { pergunta: 'Os exames são adaptados para crianças?', resposta: 'Sim. Os testes respiratórios e demais exames seguem protocolos específicos para a faixa etária pediátrica, priorizando o conforto e reduzindo a ansiedade infantil.' },
+      { pergunta: 'Quando devo procurar a pediatria da NU.V.E.M?', resposta: 'Em casos de constipação persistente, dores abdominais recorrentes, suspeita de intolerância alimentar ou de refluxo gastroesofágico infantil.' },
+      { pergunta: 'Vocês fazem encaminhamento para cirurgia pediátrica?', resposta: 'Sim. Quando necessário, a avaliação cirúrgica é feita em conjunto com as cirurgiãs pediátricas da própria clínica, sem necessidade de encaminhamento externo.' },
+    ],
   },
 
   // ── Nefrologia ─────────────────────────────────────────────────────────────
@@ -278,6 +309,12 @@ const DETAIL: Record<string, DetailData> = {
       { nome: 'Dra. Luiza Auarek', esp: 'Nefrologia · Interface GI-Renal', crm: '', foto: '/images/luiza-auarek.jpg' },
     ],
     exames: [],
+    faqs: [
+      { pergunta: 'O que diferencia a nefrologia da NU.V.E.M?', resposta: 'A integração com a gastroenterologia no mesmo espaço, permitindo investigar causas digestivas de doenças renais, como a oxalúria entérica e a disbiose intestinal.' },
+      { pergunta: 'Quando devo procurar um nefrologista?', resposta: 'Em casos de inchaço nos pés ou pálpebras, urina espumosa, hipertensão de difícil controle, cálculos renais recorrentes ou infecções urinárias de repetição.' },
+      { pergunta: 'Cálculo renal de repetição tem relação com o intestino?', resposta: 'Sim. Em alguns casos, a absorção intestinal alterada de oxalato (oxalúria entérica) contribui diretamente para a formação recorrente de cálculos renais.' },
+      { pergunta: 'Vocês acompanham pacientes com doença renal crônica?', resposta: 'Sim, com estratégias baseadas em evidências para retardar a progressão da doença, preservar a função renal e melhorar a qualidade de vida a longo prazo.' },
+    ],
   },
 
   // ── Motilidade Digestiva ───────────────────────────────────────────────────
@@ -327,6 +364,12 @@ const DETAIL: Record<string, DetailData> = {
       { nome: 'Dr. Felipe Nelson',  esp: 'Gastroenterologia e Motilidade', crm: '', foto: '/images/felipe-nelson.jpg' },
     ],
     exames: ['manometria-esofagica', 'manometria-anorretal', 'phmetria-impedanciometria'],
+    faqs: [
+      { pergunta: 'O que avalia a motilidade digestiva?', resposta: 'Avalia o funcionamento muscular do esôfago e do intestino, identificando distúrbios como acalasia, disfagia e refluxo refratário ao tratamento convencional.' },
+      { pergunta: 'Quais exames fazem parte dessa avaliação?', resposta: 'Manometria esofágica e anorretal de alta resolução, pHmetria e impedânciometria, todos com laudos baseados na Classificação de Chicago v4.0.' },
+      { pergunta: 'Quando essa avaliação é indicada?', resposta: 'Em casos de disfagia, dor torácica sem causa cardíaca, refluxo refratário ao tratamento e antes de cirurgias antirrefluxo ou para investigar resultados pós-operatórios insatisfatórios.' },
+      { pergunta: 'Esses exames substituem a endoscopia?', resposta: 'Não. São exames complementares: a endoscopia avalia a estrutura do trato digestivo, enquanto a manometria e a pHmetria avaliam a função e a motilidade.' },
+    ],
   },
 }
 
@@ -375,6 +418,15 @@ export default async function EspecialidadeSlugPage({ params }: Props) {
 
   return (
     <>
+      <JsonLd data={[
+        especialidadeSchema(esp),
+        faqSchema(detail.faqs),
+        breadcrumbSchema([
+          { name: 'Home',           url: BASE_URL },
+          { name: 'Especialidades', url: `${BASE_URL}/especialidades` },
+          { name: esp.title,        url: `${BASE_URL}/especialidades/${esp.slug}` },
+        ]),
+      ]} />
       <PageHero
         tag="Especialidade"
         title={<em>{esp.title}</em>}
@@ -476,6 +528,24 @@ export default async function EspecialidadeSlugPage({ params }: Props) {
                 <Link href="/ensino" className="text-[0.85rem] font-medium text-teal hover:text-teal/70 transition-colors inline-flex items-center gap-1.5 py-2.5">
                   Conheça o NU.V.E.M Ensino <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
+              </div>
+            </div>
+
+            {/* Perguntas Frequentes */}
+            <div>
+              <h2 className="font-serif font-light text-steel text-[1.4rem] mb-5 reveal">
+                Perguntas <em className="italic text-teal">frequentes</em>
+              </h2>
+              <div className="space-y-3">
+                {detail.faqs.map(faq => (
+                  <details key={faq.pergunta} className="group bg-white border border-teal/10 rounded-2xl px-5 py-4 shadow-sm open:border-teal/25">
+                    <summary className="flex items-center justify-between gap-4 cursor-pointer list-none text-[0.92rem] font-semibold text-steel">
+                      {faq.pergunta}
+                      <span className="text-teal text-[1.1rem] shrink-0 transition-transform group-open:rotate-45">+</span>
+                    </summary>
+                    <p className="text-[0.86rem] font-light text-steel/60 leading-[1.7] mt-3">{faq.resposta}</p>
+                  </details>
+                ))}
               </div>
             </div>
 
