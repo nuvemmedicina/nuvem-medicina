@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { X } from 'lucide-react'
 
 const STORAGE_KEY = 'promo-popup-dici-2026'
-const DELAY_MS    = 4000
+const DELAY_MS    = 3000
 
 export function PromoPopup() {
   const [visible, setVisible] = useState(false)
