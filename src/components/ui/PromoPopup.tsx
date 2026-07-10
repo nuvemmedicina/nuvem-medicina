@@ -73,7 +73,6 @@ export function PromoPopup() {
         <div className="bg-white text-center px-6 py-5">
           <p className="font-black text-[1.8rem] leading-none tracking-tight text-[#002535] uppercase mb-1">Roma V</p>
           <p className="font-bold text-[0.85rem] uppercase tracking-wide text-[#002535] mb-4">O Novo Marco da Gastroenterologia</p>
-          <p className="text-[0.72rem] text-gray-400 mb-2">Faça sua inscrição gratuita:</p>
           <a
             href="https://www.nuvemensino.com.br/live"
             target="_blank"
