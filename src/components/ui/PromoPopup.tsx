@@ -75,7 +75,7 @@ export function PromoPopup() {
           <p className="font-bold text-[0.85rem] uppercase tracking-wide text-[#002535] mb-4">O Novo Marco da Gastroenterologia</p>
           <p className="text-[0.72rem] text-gray-400 mb-2">Faça sua inscrição gratuita:</p>
           <a
-            href="https://www.nuvemensino.com.br/cursos/dici-neurogastroenterologia-2026"
+            href="https://www.nuvemensino.com.br/live"
             target="_blank"
             rel="noopener noreferrer"
             onClick={close}
