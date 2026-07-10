@@ -58,7 +58,7 @@ export function PromoPopup() {
 
           {/* Foto da Dra. Vera */}
           <img
-            src="/images/dra-vera.jpg"
+            src="/images/dra-vera-angelo-1.jpeg"
             alt="Dra. Vera Ângelo"
             className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[90%] object-cover object-top"
           />
