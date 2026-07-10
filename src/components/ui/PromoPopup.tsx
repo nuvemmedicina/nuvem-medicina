@@ -3,8 +3,9 @@
 import { useEffect, useState } from 'react'
 import { X } from 'lucide-react'
 
-const STORAGE_KEY = 'promo-popup-dici-2026'
-const DELAY_MS    = 3000
+const STORAGE_KEY  = 'promo-popup-dici-2026'
+const DELAY_MS     = 3000
+const RESHOW_MS    = 2 * 60 * 1000 // 2 minutos
 
 export function PromoPopup() {
   const [visible, setVisible] = useState(false)
@@ -15,7 +16,12 @@ export function PromoPopup() {
     return () => clearTimeout(t)
   }, [])
 
-  function close() {
+  function dismiss() {
+    setVisible(false)
+    setTimeout(() => setVisible(true), RESHOW_MS)
+  }
+
+  function closeWithCta() {
     sessionStorage.setItem(STORAGE_KEY, '1')
     setVisible(false)
   }
@@ -26,7 +32,7 @@ export function PromoPopup() {
     <div
       className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
       style={{ background: 'rgba(0,20,35,0.65)', backdropFilter: 'blur(4px)' }}
-      onClick={close}
+      onClick={dismiss}
     >
       <div
         className="relative w-full max-w-sm rounded-2xl overflow-hidden shadow-2xl"
@@ -77,19 +83,19 @@ export function PromoPopup() {
             href="https://www.nuvemensino.com.br/live"
             target="_blank"
             rel="noopener noreferrer"
-            onClick={close}
+            onClick={closeWithCta}
             className="inline-block w-full bg-[#002535] hover:bg-[#00465F] transition-colors text-white font-semibold text-[0.85rem] py-3 rounded-xl"
           >
             Inscrever-se gratuitamente →
           </a>
-          <button onClick={close} className="mt-3 text-[0.72rem] text-gray-400 hover:text-gray-600 transition-colors">
+          <button onClick={dismiss} className="mt-3 text-[0.72rem] text-gray-400 hover:text-gray-600 transition-colors">
             Agora não
           </button>
         </div>
 
         {/* Botão fechar */}
         <button
-          onClick={close}
+          onClick={dismiss}
           className="absolute top-3 right-3 bg-black/30 hover:bg-black/50 text-white rounded-full p-1 transition-colors z-20"
           aria-label="Fechar"
         >
