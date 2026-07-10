@@ -3,9 +3,10 @@
 import { usePathname } from 'next/navigation'
 import { Navbar }     from '@/components/layout/Navbar'
 import { Footer }     from '@/components/layout/Footer'
-import { WaFloat }   from '@/components/ui/WaFloat'
-import { RevealInit } from '@/components/ui/RevealInit'
-import { NuveteChat } from '@/components/nuvete/NuveteChat'
+import { WaFloat }     from '@/components/ui/WaFloat'
+import { RevealInit }  from '@/components/ui/RevealInit'
+import { NuveteChat }  from '@/components/nuvete/NuveteChat'
+import { PromoPopup }  from '@/components/ui/PromoPopup'
 
 export function SiteShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
@@ -21,6 +22,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
       <WaFloat />
       <NuveteChat />
       <RevealInit />
+      <PromoPopup />
     </>
   )
 }
