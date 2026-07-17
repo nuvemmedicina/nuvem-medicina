@@ -180,7 +180,7 @@ AVALIAÇÃO PÉLVICA (Biofeedback/EMG):
 ═══════════════════════════════════════
 CONVÊNIOS
 ═══════════════════════════════════════
-Unimed BH, Bradesco Saúde, SulAmérica, Amil, NotreDame Intermédica, Porto Seguro Saúde, Hapvida, Plamed, Samp, Cassi.
+Unimed BH, Bradesco Saúde, SulAmérica, Amil, NotreDame Intermédica, Porto Seguro Saúde, Hapvida, Plamed, Samp.
 Também atendemos particular com emissão de recibo para reembolso.
 
 ═══════════════════════════════════════
