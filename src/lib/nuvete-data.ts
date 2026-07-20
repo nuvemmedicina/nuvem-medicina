@@ -179,8 +179,8 @@ export const NUVETE_RESPOSTAS: NuveteResposta[] = [
     ],
   },
   {
-    gatilhos: ['felipe', 'dr. felipe', 'dr felipe', 'felipe nelson'],
-    resposta: '👨‍⚕️ **Dr. Felipe Nelson**\nGastroenterologia e Motilidade Digestiva\n\nEspecialista em manometria esofágica, pHmetria e diagnóstico do refluxo. Integra a equipe da NU.V.E.M com foco nos exames funcionais do aparelho digestivo superior.',
+    gatilhos: ['gabriel', 'dr. gabriel', 'dr gabriel', 'gabriel fernandes', 'gabriel de souza'],
+    resposta: '👨‍⚕️ **Dr. Gabriel de Souza Fernandes Filho**\nGastroenterologia\n\nIntegra a equipe da NU.V.E.M com foco em gastroenterologia clínica.',
     botoes: [
       { label: '👥 Ver toda a equipe', acao: 'link:/equipe' },
       { label: '📅 Agendar consulta', acao: 'whatsapp' },
@@ -236,7 +236,7 @@ export const NUVETE_RESPOSTAS: NuveteResposta[] = [
   },
   {
     gatilhos: ['equipe', 'médicos', 'medicos', 'especialistas', 'quem atende', 'profissionais'],
-    resposta: '👩‍⚕️ **Nossa Equipe Multidisciplinar:**\n\n**Sócias Fundadoras:**\n- Dra. Vera Ângelo: Gastroenterologia e Motilidade\n- Dra. Eliane Basques Moura: Cirurgia Pediátrica\n\n**Especialistas:**\n- Dr. Felipe Nelson: Gastroenterologia e Motilidade\n- Dra. Anna Karoline: Fisioterapia Pélvica\n- Dra. Claudia Utsch: Gastroenterologia\n- Dra. Danielle Martins: Gastroenterologia\n- Dra. Camilla Mendes: Clínica Médica\n- Dr. Thiago Guimarães: Clínica Médica e Hematologia\n- Dra. Luiza Auarek: Nefrologia\n- Dra. Mariana Fernandes: Pediatria\n- Dra. Adrianna Buzatti Viana: Cirurgia Pediátrica\n- Dra. Raissa Dalat: Cirurgia Pediátrica\n- Dra. Larissa Veiga Raña: Gastroenterologia\n\nTodos atuam de forma integrada sob gestão ISO 9001 💙',
+    resposta: '👩‍⚕️ **Nossa Equipe Multidisciplinar:**\n\n**Sócias Fundadoras:**\n- Dra. Vera Ângelo: Gastroenterologia e Motilidade\n- Dra. Eliane Basques Moura: Cirurgia Pediátrica\n\n**Especialistas:**\n- Dr. Gabriel de Souza Fernandes Filho: Gastroenterologia\n- Dra. Anna Karoline: Fisioterapia Pélvica\n- Dra. Claudia Utsch: Gastroenterologia\n- Dra. Danielle Martins: Gastroenterologia\n- Dra. Camilla Mendes: Clínica Médica\n- Dr. Thiago Guimarães: Clínica Médica e Hematologia\n- Dra. Luiza Auarek: Nefrologia\n- Dra. Mariana Fernandes: Pediatria\n- Dra. Adrianna Buzatti Viana: Cirurgia Pediátrica\n- Dra. Raissa Dalat: Cirurgia Pediátrica\n- Dra. Larissa Veiga Raña: Gastroenterologia\n\nTodos atuam de forma integrada sob gestão ISO 9001 💙',
     botoes: [
       { label: '👥 Conhecer toda a equipe', acao: 'link:/equipe' },
       { label: '📅 Agendar consulta', acao: 'whatsapp' },

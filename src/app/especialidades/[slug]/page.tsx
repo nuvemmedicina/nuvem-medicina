@@ -345,7 +345,7 @@ const DETAIL: Record<string, DetailData> = {
     diferenciais: [
       'Manometria de alta resolução (HRM) com análise Chicago Classification v4.0, padrão internacional',
       'Um dos poucos centros em BH com pHmetria + impedânciometria combinada',
-      'Dr. Felipe Nelson, especialista em motilidade com foco em manometria e pHmetria',
+      'Dr. Gabriel de Souza Fernandes Filho, gastroenterologista especializado em motilidade digestiva',
       'Laudos com traçados completos e recomendações terapêuticas individualizadas',
       'Certificação ISO 9001: padronização e rastreabilidade de todos os exames',
     ],
@@ -361,7 +361,7 @@ const DETAIL: Record<string, DetailData> = {
     },
     especialistas: [
       { nome: 'Dra. Vera Ângelo',   esp: 'Gastroenterologia e Motilidade', crm: 'CRM-MG 22284', foto: '/images/dra-vera.jpg', href: '/equipe/dra-vera' },
-      { nome: 'Dr. Felipe Nelson',  esp: 'Gastroenterologia e Motilidade', crm: '', foto: '/images/felipe-nelson.jpg' },
+      { nome: 'Dr. Gabriel de Souza Fernandes Filho', esp: 'Gastroenterologia', crm: '', foto: '/images/dr-Gabriel-de-Souza-Fernandes-Filho.jpg' },
     ],
     exames: ['manometria-esofagica', 'manometria-anorretal', 'phmetria-impedanciometria'],
     faqs: [
