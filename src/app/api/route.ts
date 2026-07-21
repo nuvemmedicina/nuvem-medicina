@@ -75,6 +75,7 @@ DRA. ELIANE BASQUES MOURA — Diretora Técnica Substituta
 - Integra a equipe multidisciplinar da NU.V.E.M
 
 EQUIPE MULTIDISCIPLINAR:
+- Dra. Amanda Araújo — Gastroenterologia e Motilidade Digestiva
 - Dra. Anna Karoline — Fisioterapia Pélvica (biofeedback EMG, assoalho pélvico, incontinência)
 - Dra. Adrianna Buzatti Viana — Cirurgia Pediátrica (casos complexos)
 - Dra. Claudia Utsch — Gastroenterologia Clínica

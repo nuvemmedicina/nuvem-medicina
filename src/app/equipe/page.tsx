@@ -35,6 +35,7 @@ const SOCIAS = [
 ]
 
 const EQUIPE = [
+  { nome: 'Dra. Amanda Araújo',          esp: 'Gastroenterologia e Motilidade Digestiva', reg: '',                          foto: '/images/Amanda-Araujo.jpg',          areas: ['Gastroenterologia', 'Motilidade Digestiva'] },
   { nome: 'Dra. Anna Karoline',          esp: 'Fisioterapia Pélvica',           reg: 'Crefito 4/270579-F',                  foto: '/images/anna-karoline.jpg',          areas: ['Biofeedback EMG', 'Assoalho Pélvico', 'Incontinência'] },
   { nome: 'Dra. Adrianna Buzatti Viana', esp: 'Cirurgia Pediátrica',            reg: 'CRMMG 71689 · RQE 44101 · RQE 59942', foto: '/images/adrianna-buzatti-viana.jpg', areas: ['Cirurgia Pediátrica', 'Casos Complexos'] },
   { nome: 'Dra. Claudia Utsch',          esp: 'Gastroenterologia',              reg: 'CRM 47651-MG · RQE 51470 · 51471',    foto: '/images/claudia-utsch.jpg',          areas: ['Gastroenterologia Clínica', 'Doenças Digestivas'] },
