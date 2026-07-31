@@ -63,7 +63,7 @@ export function HeroCarousel() {
                   {/* Título */}
                   <h1
                     className="font-serif font-light leading-[1.08] tracking-tight text-steel mb-8"
-                    style={{ fontSize: 'clamp(2.3rem, 3.8vw, 3.7rem)' }}
+                    style={{ fontSize: 'clamp(2rem, 3.3vw, 3.2rem)' }}
                   >
                     {title}
                   </h1>
