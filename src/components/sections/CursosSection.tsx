@@ -13,11 +13,11 @@ const MODALIDADE_ICON = {
 }
 
 const TIPO_COLOR: Record<Curso['tipo'], string> = {
-  Curso:      'bg-teal/10 text-teal border-teal/20',
-  Palestra:   'bg-gold/10 text-[#8a6800] border-gold/30',
-  Workshop:   'bg-teal/10 text-teal border-teal/20',
-  Congresso:  'bg-steel/10 text-steel/70 border-steel/20',
-  Live:       'bg-rose-50 text-rose-600 border-rose-200',
+  Curso:      'bg-white/90 text-teal border-white/50',
+  Palestra:   'bg-white/90 text-[#8a6800] border-white/50',
+  Workshop:   'bg-white/90 text-teal border-white/50',
+  Congresso:  'bg-white/90 text-steel/70 border-white/50',
+  Live:       'bg-white/90 text-rose-600 border-white/50',
 }
 
 function CursoCard({ curso, index }: { curso: Curso; index: number }) {
