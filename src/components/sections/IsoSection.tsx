@@ -1,4 +1,5 @@
 // ── IsoSection ────────────────────────────────────────────────────────────────
+import { Activity, BookOpen, Shield } from 'lucide-react'
 import { CONTATO } from '@/lib/data'
 import { IsoSeal } from '@/components/icons/IsoSeal'
 
@@ -64,17 +65,63 @@ export function IsoSection() {
             </div>
           </div>
 
-          {/* Real ISO 9001 Seal */}
-          <div className="flex justify-center items-center reveal reveal-d2">
-            <div className="relative">
-              <div
-                className="absolute inset-0 rounded-full blur-[60px] opacity-20 pointer-events-none"
-                style={{ background: 'radial-gradient(circle, #C9A84C 0%, transparent 70%)' }}
-              />
-              <IsoSeal
-                size={280}
-                className="relative z-10 drop-shadow-2xl hover:scale-105 transition-transform duration-500"
-              />
+          {/* Diferenciais da Clínica */}
+          <div className="reveal reveal-d2">
+            <div className="relative border border-white/15 rounded-[20px] p-9 overflow-hidden" style={{ background: 'rgba(203,228,230,0.1)' }}>
+              {/* Top gold line */}
+              <div className="absolute top-0 left-0 right-0 h-[3px] rounded-t-[20px]" style={{ background: 'linear-gradient(90deg, transparent, rgba(201,168,76,.55), transparent)' }} />
+
+              <div className="relative z-10">
+                <p className="flex items-center gap-2 text-gold text-[0.72rem] font-bold tracking-[.14em] uppercase mb-5">
+                  <span className="w-4 h-px bg-gold" />
+                  Diferenciais da Clínica
+                </p>
+
+                {/* ISO Badge */}
+                <div className="flex items-center gap-3.5 p-4 bg-white border border-gold/25 rounded-xl mb-6 shadow-sm">
+                  <IsoSeal size={54} className="shrink-0" />
+                  <div>
+                    <strong className="block text-[0.88rem] font-semibold text-steel mb-0.5">Certificação ISO 9001</strong>
+                    <span className="text-[0.76rem] text-steel/55 leading-snug">
+                      Única clínica do segmento em BH<br />com gestão de qualidade certificada
+                    </span>
+                  </div>
+                </div>
+
+                {/* Feature list */}
+                <div className="flex flex-col gap-2.5">
+                  {[
+                    {
+                      Icon: Activity,
+                      title: 'Tecnologia Diagnóstica de Ponta',
+                      desc: 'Manometria AR, pHmetria, testes respiratórios H₂/CH₄/H₂S',
+                    },
+                    {
+                      Icon: Shield,
+                      title: 'Equipe Multidisciplinar',
+                      desc: 'Gastro, fisioterapia pélvica, nefrologia, pediatria',
+                    },
+                    {
+                      Icon: BookOpen,
+                      title: 'Centro de Ensino Médico',
+                      desc: 'Formação hands-on com certificação validada ISO 9001',
+                    },
+                  ].map(({ Icon, title, desc }) => (
+                    <div
+                      key={title}
+                      className="flex items-start gap-3 p-3.5 rounded-[12px] bg-white border border-teal/10 hover:border-teal/25 hover:-translate-y-0.5 transition-all cursor-default"
+                    >
+                      <div className="w-9 h-9 rounded-lg bg-teal/10 flex items-center justify-center text-teal shrink-0">
+                        <Icon className="w-[18px] h-[18px]" />
+                      </div>
+                      <div>
+                        <strong className="block text-[0.86rem] font-semibold text-steel mb-0.5">{title}</strong>
+                        <span className="text-[0.75rem] text-steel/55">{desc}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
 

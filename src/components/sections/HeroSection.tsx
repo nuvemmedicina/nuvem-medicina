@@ -1,5 +1,5 @@
 import Link            from 'next/link'
-import { Calendar, ArrowRight, Activity, BookOpen, Shield } from 'lucide-react'
+import { Calendar, ArrowRight } from 'lucide-react'
 import { CONTATO }     from '@/lib/data'
 import { LogoTeal }    from '@/components/icons/LogoTeal'
 import { IsoSeal }     from '@/components/icons/IsoSeal'
@@ -53,10 +53,7 @@ export function HeroSection() {
 
       {/* Content */}
       <div className="relative z-10 w-full max-w-[1240px] mx-auto px-8 pt-[120px] pb-20">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_480px] gap-16 lg:gap-20 items-center">
-
-          {/* ── LEFT ─────────────────────────────── */}
-          <div>
+        <div className="max-w-[720px]">
             {/* Eyebrow */}
             <p className="inline-flex items-center gap-2.5 text-teal text-[0.78rem] font-bold tracking-[.16em] uppercase mb-7 opacity-0 animate-[fadeUp_.8s_.2s_var(--ease-out)_forwards]">
               <span className="block w-7 h-px bg-teal" />
@@ -95,78 +92,6 @@ export function HeroSection() {
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
-
-          </div>
-
-          {/* ── RIGHT PANEL ──────────────────────── */}
-          <div className="opacity-0 animate-[fadeUp_.9s_.5s_var(--ease-out)_forwards]">
-            <div className="relative border border-teal/15 rounded-[20px] p-9 overflow-hidden" style={{ background: 'rgba(203,228,230,0.42)' }}>
-              {/* Top teal line */}
-              <div className="absolute top-0 left-0 right-0 h-[3px] rounded-t-[20px]" style={{ background: 'linear-gradient(90deg, transparent, rgba(0,70,95,.3), transparent)' }} />
-
-              {/* Grid inside panel */}
-              <div className="absolute inset-0 hero-grid-bg opacity-60 pointer-events-none" />
-
-              <div className="relative z-10">
-                <p className="flex items-center gap-2 text-teal text-[0.72rem] font-bold tracking-[.14em] uppercase mb-5">
-                  <span className="w-4 h-px bg-teal" />
-                  Diferenciais da Clínica
-                </p>
-
-                {/* ISO Badge */}
-                <div className="flex items-center gap-3.5 p-4 bg-white border border-gold/25 rounded-xl mb-6 shadow-sm">
-                  <IsoSeal size={54} priority className="shrink-0" />
-                  <div>
-                    <strong className="block text-[0.88rem] font-semibold text-steel mb-0.5">Certificação ISO 9001</strong>
-                    <span className="text-[0.76rem] text-steel/55 leading-snug">
-                      Única clínica do segmento em BH<br />com gestão de qualidade certificada
-                    </span>
-                  </div>
-                </div>
-
-                {/* Feature list */}
-                <div className="flex flex-col gap-2.5 mb-6">
-                  {[
-                    {
-                      Icon: Activity,
-                      title: 'Tecnologia Diagnóstica de Ponta',
-                      desc: 'Manometria AR, pHmetria, testes respiratórios H₂/CH₄/H₂S',
-                    },
-                    {
-                      Icon: Shield,
-                      title: 'Equipe Multidisciplinar',
-                      desc: 'Gastro, fisioterapia pélvica, nefrologia, pediatria',
-                    },
-                    {
-                      Icon: BookOpen,
-                      title: 'Centro de Ensino Médico',
-                      desc: 'Formação hands-on com certificação validada ISO 9001',
-                    },
-                  ].map(({ Icon, title, desc }) => (
-                    <div
-                      key={title}
-                      className="flex items-start gap-3 p-3.5 rounded-[12px] bg-white border border-teal/10 hover:border-teal/25 hover:-translate-y-0.5 transition-all cursor-default"
-                    >
-                      <div className="w-9 h-9 rounded-lg bg-teal/10 flex items-center justify-center text-teal shrink-0">
-                        <Icon className="w-[18px] h-[18px]" />
-                      </div>
-                      <div>
-                        <strong className="block text-[0.86rem] font-semibold text-steel mb-0.5">{title}</strong>
-                        <span className="text-[0.75rem] text-steel/55">{desc}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Credential */}
-                <div className="pt-4 border-t border-teal/10 text-[0.72rem] text-steel/40 leading-[1.75]">
-                  <strong className="text-steel/55 font-medium">{CONTATO.crmClinica} · NUVEM MEDICINA</strong><br />
-                  {CONTATO.diretora.nome} · {CONTATO.diretora.crm} · {CONTATO.diretora.rqe}<br />
-                  {CONTATO.endereco} · {CONTATO.bairro}
-                </div>
-              </div>
-            </div>
-          </div>
 
         </div>
       </div>
