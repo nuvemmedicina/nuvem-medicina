@@ -99,9 +99,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="pt-BR" className={`${poppins.variable} ${cormorant.variable}`}>
       <head>
-        {/* Google Analytics GA4 */}
+        {/* Google tag — container AW-345758268 (Google Ads) com o GA4 G-J90YW71NMZ
+            como destino. O container do GA4 sozinho não registra destino e não
+            envia hits; carregar o tag da conta é o que faz a coleta funcionar. */}
         {/* eslint-disable-next-line @next/next/no-sync-scripts */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-J90YW71NMZ" />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-345758268" />
         <script
           id="gtag-init"
           dangerouslySetInnerHTML={{
@@ -109,6 +111,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
+              gtag('config', 'AW-345758268');
               gtag('config', 'G-J90YW71NMZ');
             `,
           }}
