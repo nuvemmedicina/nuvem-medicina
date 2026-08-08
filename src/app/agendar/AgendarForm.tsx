@@ -1,7 +1,8 @@
 'use client'
 
-import { useState } from 'react'
-import { Send }     from 'lucide-react'
+import { useState }  from 'react'
+import { useRouter } from 'next/navigation'
+import { Send }      from 'lucide-react'
 import { CONTATO, ESPECIALIDADES, EXAMES } from '@/lib/data'
 import { formatWhatsAppMessage } from '@/lib/utils'
 
@@ -12,6 +13,7 @@ const SERVICOS = [
 ]
 
 export function AgendarForm() {
+  const router              = useRouter()
   const [form, setForm]     = useState({ nome: '', telefone: '', email: '', servico: '', mensagem: '' })
   const [sent, setSent]     = useState(false)
   const [errors, setErrors] = useState<Record<string, boolean>>({})
@@ -33,6 +35,8 @@ export function AgendarForm() {
     setSent(true)
     setTimeout(() => {
       window.open(`${CONTATO.whatsappUrl}?text=${msg}`, '_blank')
+      // Página de conversão — dispara o evento para o Google Ads / GA4
+      router.push('/obrigado')
     }, 800)
   }
 
