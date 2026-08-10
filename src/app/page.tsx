@@ -9,6 +9,7 @@ import { DepoimentosSection }    from '@/components/sections/DepoimentosSection'
 import { CtaSection }            from '@/components/sections/CtaSection'
 
 export const metadata: Metadata = {
+  alternates:  { canonical: '/' },
   title: 'NU.V.E.M Medicina — Excelência em Saúde Digestiva · Belo Horizonte',
 }
 

@@ -12,7 +12,7 @@ A NU.V.E.M Medicina é um ecossistema completo de saúde digestiva localizado no
 **Endereço:** Rua Ceará, 600 – Sala 101, Santa Efigênia, Belo Horizonte – MG, CEP 30150-310  
 **Telefone:** (31) 2537-3131  
 **WhatsApp:** (31) 99726-1029  
-**Site:** https://nuvemmedicina.com.br  
+**Site:** https://www.nuvemmedicina.com.br  
 **Instagram:** @NuvemMedicina | @NuvemEnsino  
 
 ## Especialidades Médicas
@@ -62,18 +62,18 @@ Centro de formação profissional para médicos, fisioterapeutas e especialistas
 
 ## Páginas do Site
 
-- [Início](https://nuvemmedicina.com.br)
-- [Sobre a Clínica](https://nuvemmedicina.com.br/sobre)
-- [Equipe](https://nuvemmedicina.com.br/equipe)
-- [Gestão da Qualidade ISO 9001](https://nuvemmedicina.com.br/gestao-da-qualidade)
-- [Especialidades](https://nuvemmedicina.com.br/especialidades)
-- [Exames e Diagnósticos](https://nuvemmedicina.com.br/exames)
-- [Preparos para Exames](https://nuvemmedicina.com.br/exames/preparos)
-- [NU.V.E.M Ensino](https://nuvemmedicina.com.br/ensino)
-- [Convênios](https://nuvemmedicina.com.br/convenios)
-- [Agendar Consulta](https://nuvemmedicina.com.br/agendar)
-- [Contato](https://nuvemmedicina.com.br/contato)
-- [Blog](https://nuvemmedicina.com.br/blog)
+- [Início](https://www.nuvemmedicina.com.br)
+- [Sobre a Clínica](https://www.nuvemmedicina.com.br/sobre)
+- [Equipe](https://www.nuvemmedicina.com.br/equipe)
+- [Gestão da Qualidade ISO 9001](https://www.nuvemmedicina.com.br/gestao-da-qualidade)
+- [Especialidades](https://www.nuvemmedicina.com.br/especialidades)
+- [Exames e Diagnósticos](https://www.nuvemmedicina.com.br/exames)
+- [Preparos para Exames](https://www.nuvemmedicina.com.br/exames/preparos)
+- [NU.V.E.M Ensino](https://www.nuvemmedicina.com.br/ensino)
+- [Convênios](https://www.nuvemmedicina.com.br/convenios-medicos)
+- [Agendar Consulta](https://www.nuvemmedicina.com.br/agendar)
+- [Contato](https://www.nuvemmedicina.com.br/contato)
+- [Blog](https://www.nuvemmedicina.com.br/blog)
 
 ## Informações para Agendamento
 

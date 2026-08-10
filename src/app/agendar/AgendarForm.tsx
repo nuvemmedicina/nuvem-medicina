@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { Send }      from 'lucide-react'
 import { CONTATO, ESPECIALIDADES, EXAMES } from '@/lib/data'
 import { formatWhatsAppMessage } from '@/lib/utils'
+import { pushEvent, origemPagina } from '@/lib/gtm'
 
 const SERVICOS = [
   { group: 'Consultas', options: ESPECIALIDADES.map(e => e.title) },
@@ -32,12 +33,26 @@ export function AgendarForm() {
     if (Object.keys(errs).length) { setErrors(errs); return }
 
     const msg = formatWhatsAppMessage(form.nome, form.telefone, form.servico, form.mensagem)
+
+    // O window.open precisa acontecer AINDA dentro do gesto do usuário.
+    // Dentro do setTimeout anterior, o Safari do iOS classificava a chamada
+    // como pop-up e bloqueava: o paciente via "Solicitação enviada!", o
+    // WhatsApp nunca abria e a conversão era registrada assim mesmo.
+    const janela = window.open(`${CONTATO.whatsappUrl}?text=${msg}`, '_blank')
+
+    // Só o serviço de interesse acompanha o evento. Nome, telefone, e-mail e
+    // a mensagem livre NÃO entram no dataLayer — ver src/lib/gtm.ts.
+    pushEvent({
+      event:             'envio_agendamento',
+      servico_interesse: form.servico || 'nao_informado',
+      origem_pagina:     origemPagina(),
+      // Permite medir quantos envios perdem o WhatsApp por bloqueio de pop-up.
+      whatsapp_abriu:    Boolean(janela),
+    })
+
     setSent(true)
-    setTimeout(() => {
-      window.open(`${CONTATO.whatsappUrl}?text=${msg}`, '_blank')
-      // Página de conversão — dispara o evento para o Google Ads / GA4
-      router.push('/obrigado')
-    }, 800)
+    // A conversão do Google Ads é disparada na página /obrigado.
+    setTimeout(() => router.push('/obrigado'), 800)
   }
 
   const inputCls = (key: string) =>

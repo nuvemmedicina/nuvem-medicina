@@ -3,6 +3,7 @@ import { PageHero }       from '@/components/ui/PageHero'
 import { SectionWrapper } from '@/components/ui/SectionWrapper'
 
 export const metadata: Metadata = {
+  alternates:  { canonical: '/politica-de-privacidade' },
   title:       'Política de Privacidade',
   description: 'Política de Privacidade da NU.V.E.M Medicina — como coletamos, usamos e protegemos seus dados pessoais conforme a LGPD.',
 }

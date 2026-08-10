@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getAllPosts }               from '@/lib/sanity/queries'
+import { SITE_URL }                  from '@/lib/site'
 
 async function buildBlogSection(): Promise<string> {
   try {
@@ -8,7 +9,7 @@ async function buildBlogSection(): Promise<string> {
 
     const lines = posts.map(p => {
       const cats = p.categories?.map(c => c.title).join(', ') ?? ''
-      const url  = `https://nuvemmedicina.com.br/blog/${p.slug.current}`
+      const url  = `${SITE_URL}/blog/${p.slug.current}`
       const line = `• "${p.title}"${cats ? ` [${cats}]` : ''} → ${url}`
       return p.excerpt ? `${line}\n  Resumo: ${p.excerpt}` : line
     }).join('\n\n')

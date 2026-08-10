@@ -12,8 +12,9 @@ import { ESPECIALIDADES, EXAMES } from '@/lib/data'
 import { renderRich } from '@/lib/rich'
 import { JsonLd } from '@/components/ui/JsonLd'
 import { especialidadeSchema, faqSchema, breadcrumbSchema } from '@/lib/schema'
+import { SITE_URL } from '@/lib/site'
 
-const BASE_URL = 'https://nuvemmedicina.com.br'
+const BASE_URL = SITE_URL
 
 // ─── Tipos ────────────────────────────────────────────────────────────────────
 
@@ -389,6 +390,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title:       esp.title,
     description: desc,
+    alternates:  { canonical: `/especialidades/${slug}` },
     openGraph: {
       title:       `${esp.title} | NU.V.E.M Medicina`,
       description: desc,

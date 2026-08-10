@@ -8,6 +8,7 @@ import { CONTATO }       from '@/lib/data'
 import { CheckCircle, Shield, FileText, BarChart3, RefreshCw, Users, ChevronDown } from 'lucide-react'
 
 export const metadata: Metadata = {
+  alternates:  { canonical: '/gestao-da-qualidade' },
   title:       'Gestão da Qualidade · ISO 9001',
   description: 'Conheça o sistema de gestão da qualidade ISO 9001 da NU.V.E.M Medicina, única clínica do segmento certificada em Belo Horizonte.',
 }

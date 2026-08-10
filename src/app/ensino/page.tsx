@@ -9,6 +9,7 @@ import { CursosSection }  from '@/components/sections/CursosSection'
 import { renderRich } from '@/lib/rich'
 
 export const metadata: Metadata = {
+  alternates:  { canonical: '/ensino' },
   title:       'NU.V.E.M Ensino · Formação Médica Especializada',
   description: 'Centro de formação profissional com metodologia hands-on, certificação ISO 9001 e treinamento baseado em casos reais da Clínica NU.V.E.M.',
 }

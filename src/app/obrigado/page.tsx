@@ -5,6 +5,7 @@ import { CONTATO } from '@/lib/data'
 import { ConversaoTag } from './ConversaoTag'
 
 export const metadata: Metadata = {
+  alternates:  { canonical: '/obrigado' },
   title:       'Solicitação Recebida',
   description: 'Recebemos sua solicitação de agendamento. Nossa equipe entrará em contato em até 24h.',
   // Página de conversão: não deve aparecer nos resultados de busca

@@ -12,8 +12,9 @@ import { EXAMES, ESPECIALIDADES, EXAM_PDFS } from '@/lib/data'
 import { PhotoCarousel } from '@/components/ui/PhotoCarousel'
 import { JsonLd } from '@/components/ui/JsonLd'
 import { examSchema, faqSchema, breadcrumbSchema } from '@/lib/schema'
+import { SITE_URL } from '@/lib/site'
 
-const BASE_URL = 'https://nuvemmedicina.com.br'
+const BASE_URL = SITE_URL
 
 const ICON_MAP: Record<string, React.ElementType> = { Clock, Shield, Check }
 
@@ -309,6 +310,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title:       exame.title,
     description: desc,
+    alternates:  { canonical: `/exames/${slug}` },
     openGraph: {
       title:       `${exame.title} | NU.V.E.M Medicina`,
       description: desc,

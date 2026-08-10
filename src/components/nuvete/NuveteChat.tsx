@@ -5,6 +5,7 @@ import { X, Send, Loader2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { NUVETE_TOPICOS, NUVETE_RESPOSTAS, PREPAROS_EXAMES } from '@/lib/nuvete-data'
 import { CONTATO } from '@/lib/data'
+import { pushEvent, origemPagina } from '@/lib/gtm'
 import { NuveteAvatar } from './NuveteAvatar'
 import { NuveteMessage } from './NuveteMessage'
 
@@ -29,6 +30,8 @@ export function NuveteChat() {
   const [unread,  setUnread]  = useState(1)
   const bottomRef = useRef<HTMLDivElement>(null)
   const inputRef  = useRef<HTMLInputElement>(null)
+  // Marca o evento de interação apenas uma vez por sessão de chat.
+  const interacaoRegistrada = useRef(false)
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -84,7 +87,24 @@ export function NuveteChat() {
     }
   }, [addMsg])
 
+  /**
+   * Marca que o paciente conversou com a Nuvete, uma vez por sessão.
+   *
+   * Fica aqui, e não dentro de sendToAI, porque vários tópicos respondem com
+   * texto pronto e retornam antes de chamar a IA — clicar nesses botões é
+   * interação igual, e ficaria sem registro.
+   *
+   * O CONTEÚDO da conversa nunca é enviado: pacientes descrevem sintomas na
+   * Nuvete, e isso é dado pessoal sensível de saúde sob a LGPD.
+   */
+  const registrarInteracao = useCallback(() => {
+    if (interacaoRegistrada.current) return
+    interacaoRegistrada.current = true
+    pushEvent({ event: 'interacao_nuvete', origem_pagina: origemPagina() })
+  }, [])
+
   const handleTopico = useCallback((topico: typeof NUVETE_TOPICOS[0]) => {
+    registrarInteracao()
     addMsg({ role: 'user', text: topico.label })
     if (topico.id === 'preparo') {
       addMsg({
@@ -132,7 +152,7 @@ export function NuveteChat() {
       return
     }
     sendToAI(topico.label)
-  }, [addMsg])
+  }, [addMsg, registrarInteracao])
 
   const sendToAI = useCallback(async (text: string) => {
     setLoading(true)
@@ -188,10 +208,11 @@ export function NuveteChat() {
   const handleSend = useCallback(async () => {
     const text = input.trim()
     if (!text || loading) return
+    registrarInteracao()
     setInput('')
     addMsg({ role: 'user', text })
     await sendToAI(text)
-  }, [input, loading, addMsg, sendToAI])
+  }, [input, loading, addMsg, sendToAI, registrarInteracao])
 
   return (
     <>

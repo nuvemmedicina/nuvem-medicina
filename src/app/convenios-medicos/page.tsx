@@ -5,6 +5,7 @@ import { SectionWrapper } from '@/components/ui/SectionWrapper'
 import { CtaBanner }      from '@/components/ui/CtaBanner'
 
 export const metadata: Metadata = {
+  alternates:  { canonical: '/convenios-medicos' },
   title:       'Convênios Médicos',
   description: 'Confira os planos de saúde e convênios aceitos na NU.V.E.M Medicina em Belo Horizonte.',
 }

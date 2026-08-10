@@ -8,6 +8,7 @@ import { CtaBanner }      from '@/components/ui/CtaBanner'
 import { IsoSeal }        from '@/components/icons/IsoSeal'
 
 export const metadata: Metadata = {
+  alternates:  { canonical: '/dra-eliane-basques' },
   title:       'Dra. Eliane Basques · Manometria Anorretal',
   description: 'Dra. Eliane Basques Moura, Cirurgiã Pediátrica e especialista em Manometria Anorretal. Sócia Fundadora e Diretora Técnica Substituta da NU.V.E.M Medicina.',
 }

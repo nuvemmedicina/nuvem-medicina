@@ -7,6 +7,7 @@ import { CtaBanner }      from '@/components/ui/CtaBanner'
 import { EXAMES, EXAM_PDFS } from '@/lib/data'
 
 export const metadata: Metadata = {
+  alternates:  { canonical: '/exames' },
   title:       'Exames e Diagnósticos',
   description: 'Manometria esofágica e anorretal de alta resolução, pHmetria, testes respiratórios, halimetria e avaliação pélvica em Belo Horizonte. Certificação ISO 9001.',
 }
