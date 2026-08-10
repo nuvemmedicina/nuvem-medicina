@@ -4,6 +4,7 @@ import { CONTATO }    from '@/lib/data'
 import { Phone, MapPin, Clock, Mail } from 'lucide-react'
 
 export const metadata: Metadata = {
+  alternates:  { canonical: '/agendar' },
   title: 'Agendar Consulta',
   description: 'Agende sua consulta na NU.V.E.M Medicina. Atendimento em gastroenterologia, fisioterapia pélvica, halitose e mais.',
 }

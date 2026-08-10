@@ -1,6 +1,5 @@
 import type { MetadataRoute } from 'next'
-
-const BASE = 'https://nuvemmedicina.com.br'
+import { SITE_URL as BASE } from '@/lib/site'
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -9,7 +8,11 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow:     '/',
-        disallow:  ['/api/', '/avaliacao/'],
+        // /studio é o painel do Sanity e não deve ser rastreado.
+        // /obrigado NÃO entra aqui de propósito: a página já declara noindex no
+        // próprio HTML, e bloqueá-la no robots impediria o Google de rastreá-la
+        // para ler esse noindex — ela continuaria indexável por links externos.
+        disallow:  ['/api/', '/avaliacao/', '/studio/'],
       },
       // ── AI crawlers — allow all public content for LLM indexing ──────────────
       // This helps ChatGPT, Perplexity, Claude, Gemini etc. index the clinic

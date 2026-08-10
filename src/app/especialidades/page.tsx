@@ -7,6 +7,7 @@ import { CtaBanner }      from '@/components/ui/CtaBanner'
 import { ESPECIALIDADES } from '@/lib/data'
 
 export const metadata: Metadata = {
+  alternates:  { canonical: '/especialidades' },
   title:       'Especialidades Médicas',
   description: 'Gastroenterologia, fisioterapia pélvica, halitose, pediatria, nefrologia e motilidade digestiva em Belo Horizonte. Equipe multidisciplinar ISO 9001.',
 }

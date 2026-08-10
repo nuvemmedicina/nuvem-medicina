@@ -3,6 +3,7 @@ import { AvaliacaoForm } from './AvaliacaoForm'
 import { IsoSeal }      from '@/components/icons/IsoSeal'
 
 export const metadata: Metadata = {
+  alternates:  { canonical: '/avaliacao' },
   title:       'Avalie sua Experiência · NU.V.E.M Medicina',
   description: 'Conte como foi sua experiência na NU.V.E.M Medicina. Sua opinião nos ajuda a continuar melhorando o atendimento.',
   robots:      { index: false }, // NPS page — don't index
@@ -48,7 +49,7 @@ export default function AvaliacaoPage() {
           {/* Footer note */}
           <p className="text-center text-[0.68rem] text-steel/40 mt-6 leading-relaxed px-4">
             Suas respostas são tratadas com confidencialidade conforme a LGPD.<br />
-            © {new Date().getFullYear()} NU.V.E.M Medicina · <a href="https://nuvemmedicina.com.br" className="hover:text-teal transition-colors">nuvemmedicina.com.br</a>
+            © {new Date().getFullYear()} NU.V.E.M Medicina · <a href="https://www.nuvemmedicina.com.br" className="hover:text-teal transition-colors">nuvemmedicina.com.br</a>
           </p>
         </div>
       </main>

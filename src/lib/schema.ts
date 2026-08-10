@@ -1,6 +1,7 @@
 import { CONTATO, ESPECIALIDADES, EXAMES } from '@/lib/data'
+import { SITE_URL } from '@/lib/site'
 
-const BASE_URL = 'https://nuvemmedicina.com.br'
+const BASE_URL = SITE_URL
 
 // ─── Organization ─────────────────────────────────────────────────────────────
 export const organizationSchema = {

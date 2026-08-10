@@ -8,6 +8,7 @@ import { CtaBanner }      from '@/components/ui/CtaBanner'
 import { IsoSeal }        from '@/components/icons/IsoSeal'
 
 export const metadata: Metadata = {
+  alternates:  { canonical: '/dra-vera-angelo' },
   title:       'Dra. Vera Ângelo · Gastroenterologista',
   description: 'Dra. Vera Ângelo, Mestre e Doutora pela UFMG, especialista em gastroenterologia, motilidade digestiva e testes respiratórios. Diretora Técnica da NU.V.E.M Medicina.',
 }

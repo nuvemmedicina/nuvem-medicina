@@ -7,6 +7,7 @@ import { getAllPosts }     from '@/lib/sanity/queries'
 export const revalidate = 60
 
 export const metadata: Metadata = {
+  alternates:  { canonical: '/blog' },
   title:       'Blog · Conteúdo Científico',
   description: 'Artigos e conteúdos sobre gastroenterologia, saúde digestiva, testes respiratórios, fisioterapia pélvica e ensino médico pela equipe NU.V.E.M.',
 }

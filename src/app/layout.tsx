@@ -3,7 +3,8 @@ import { Poppins, Cormorant_Garamond } from 'next/font/google'
 import '@/styles/globals.css'
 import { SiteShell }        from '@/components/layout/SiteShell'
 import { JsonLd }            from '@/components/ui/JsonLd'
-import { GoogleAnalytics }   from '@/components/ui/GoogleAnalytics'
+import { SITE_URL }          from '@/lib/site'
+import { GoogleTagManager, GoogleTagManagerNoScript } from '@/components/ui/GoogleTagManager'
 import {
   organizationSchema,
   websiteSchema,
@@ -28,6 +29,14 @@ const cormorant = Cormorant_Garamond({
   display:  'swap',
 })
 
+// ── IDs de medição ────────────────────────────────────────────────────────────
+// Os valores padrão são os que já estão em produção. As variáveis de ambiente
+// existem porque a conta do Google Ads 935-818-7344 é nova, e o ID de conversão
+// (AW-) NÃO é o mesmo número do ID de cliente — precisa ser conferido dentro da
+// conta antes de subir campanha, e trocá-lo não deve exigir deploy de código.
+const ADS_ID = process.env.NEXT_PUBLIC_ADS_ID ?? 'AW-345758268'
+const GA4_ID = process.env.NEXT_PUBLIC_GA_ID ?? 'G-J90YW71NMZ'
+
 // ── Metadata ──────────────────────────────────────────────────────────────────
 export const metadata: Metadata = {
   title: {
@@ -42,16 +51,18 @@ export const metadata: Metadata = {
     'nuvem medicina', 'Dra Vera Ângelo', 'H pylori teste respiratório', 'pHmetria esofágica',
     'SIBO tratamento belo horizonte', 'intolerância lactose teste', 'clínica gastro BH',
   ],
-  authors:      [{ name: 'NU.V.E.M Medicina', url: 'https://nuvemmedicina.com.br' }],
+  authors:      [{ name: 'NU.V.E.M Medicina', url: SITE_URL }],
   creator:      'NU.V.E.M Medicina',
   publisher:    'NU.V.E.M Medicina',
   category:     'health',
-  metadataBase:  new URL('https://nuvemmedicina.com.br'),
-  alternates:   { canonical: '/' },
+  metadataBase:  new URL(SITE_URL),
+  // Atenção: NÃO declarar `alternates.canonical` aqui. Metadados do layout são
+  // herdados por toda página que não os sobrescreve, e um canonical fixo faria
+  // o site inteiro se declarar duplicata da home. Cada página define o seu.
   openGraph: {
     type:        'website',
     locale:      'pt_BR',
-    url:         'https://nuvemmedicina.com.br',
+    url:         SITE_URL,
     siteName:    'NU.V.E.M Medicina',
     title:       'NU.V.E.M Medicina — Gastroenterologia e Diagnóstico Avançado em BH',
     description: 'Clínica especializada com ISO 9001. Manometria, testes respiratórios, pHmetria e fisioterapia pélvica em Belo Horizonte.',
@@ -85,7 +96,7 @@ export const metadata: Metadata = {
   },
   other: {
     // AI/LLM discovery hints
-    'llms-txt':        'https://nuvemmedicina.com.br/llms.txt',
+    'llms-txt':        `${SITE_URL}/llms.txt`,
     'ai-content-type': 'medical-clinic',
     'geo.region':      'BR-MG',
     'geo.placename':   'Belo Horizonte',
@@ -103,7 +114,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             como destino. O container do GA4 sozinho não registra destino e não
             envia hits; carregar o tag da conta é o que faz a coleta funcionar. */}
         {/* eslint-disable-next-line @next/next/no-sync-scripts */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-345758268" />
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${ADS_ID}`} />
         <script
           id="gtag-init"
           dangerouslySetInnerHTML={{
@@ -111,13 +122,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'AW-345758268');
-              gtag('config', 'G-J90YW71NMZ');
+              gtag('config', '${ADS_ID}');
+              gtag('config', '${GA4_ID}');
             `,
           }}
         />
+        {/* GTM — apenas os eventos de conversão. Ver comentário em
+            components/ui/GoogleTagManager.tsx sobre por que o gtag acima
+            permanece responsável pelo page_view. */}
+        <GoogleTagManager />
       </head>
       <body>
+        <GoogleTagManagerNoScript />
         <SiteShell>{children}</SiteShell>
         {/* Global structured data for all pages */}
         <JsonLd data={[organizationSchema, websiteSchema, ratingSchema, localBusinessSchema, directorSchema]} />

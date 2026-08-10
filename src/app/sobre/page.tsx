@@ -8,6 +8,7 @@ import { CtaBanner }     from '@/components/ui/CtaBanner'
 import { CONTATO }       from '@/lib/data'
 
 export const metadata: Metadata = {
+  alternates:  { canonical: '/sobre' },
   title:       'Sobre a Clínica',
   description: 'Conheça a NU.V.E.M Medicina: história, missão, valores e o diferencial ISO 9001 que nos torna únicos em Belo Horizonte.',
 }

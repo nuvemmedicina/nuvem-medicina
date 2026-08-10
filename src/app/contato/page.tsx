@@ -7,6 +7,7 @@ import { AgendarForm }    from '@/app/agendar/AgendarForm'
 import { CONTATO }        from '@/lib/data'
 
 export const metadata: Metadata = {
+  alternates:  { canonical: '/contato' },
   title:       'Contato e Localização',
   description: 'Entre em contato com a NU.V.E.M Medicina. Rua Ceará, 600 – Sala 101, Santa Efigênia, Belo Horizonte – MG.',
 }

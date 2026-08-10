@@ -7,6 +7,7 @@ import { SectionWrapper } from '@/components/ui/SectionWrapper'
 import { CtaBanner }      from '@/components/ui/CtaBanner'
 
 export const metadata: Metadata = {
+  alternates:  { canonical: '/equipe' },
   title:       'Equipe · NU.V.E.M Medicina',
   description: 'Conheça a equipe multidisciplinar da NU.V.E.M Medicina: gastroenterologistas, fisioterapeuta pélvica, cirurgiãs, nefrologista, pediatra e clínicos.',
 }
