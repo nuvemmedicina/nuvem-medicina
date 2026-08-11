@@ -29,14 +29,6 @@ const cormorant = Cormorant_Garamond({
   display:  'swap',
 })
 
-// ── IDs de medição ────────────────────────────────────────────────────────────
-// Os valores padrão são os que já estão em produção. As variáveis de ambiente
-// existem porque a conta do Google Ads 935-818-7344 é nova, e o ID de conversão
-// (AW-) NÃO é o mesmo número do ID de cliente — precisa ser conferido dentro da
-// conta antes de subir campanha, e trocá-lo não deve exigir deploy de código.
-const ADS_ID = process.env.NEXT_PUBLIC_ADS_ID ?? 'AW-345758268'
-const GA4_ID = process.env.NEXT_PUBLIC_GA_ID ?? 'G-J90YW71NMZ'
-
 // ── Metadata ──────────────────────────────────────────────────────────────────
 export const metadata: Metadata = {
   title: {
@@ -110,26 +102,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="pt-BR" className={`${poppins.variable} ${cormorant.variable}`}>
       <head>
-        {/* Google tag — container AW-345758268 (Google Ads) com o GA4 G-J90YW71NMZ
-            como destino. O container do GA4 sozinho não registra destino e não
-            envia hits; carregar o tag da conta é o que faz a coleta funcionar. */}
-        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
-        <script async src={`https://www.googletagmanager.com/gtag/js?id=${ADS_ID}`} />
-        <script
-          id="gtag-init"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${ADS_ID}');
-              gtag('config', '${GA4_ID}');
-            `,
-          }}
-        />
-        {/* GTM — apenas os eventos de conversão. Ver comentário em
-            components/ui/GoogleTagManager.tsx sobre por que o gtag acima
-            permanece responsável pelo page_view. */}
+        {/* Toda a medição passa pelo contêiner: as tags do Google do GA4
+            (G-J90YW71NMZ) e do Ads (AW-18362842181) disparam nele, no acionador
+            Initialization - All Pages, antes de qualquer evento.
+
+            NÃO reintroduza um bloco gtag aqui. Ele configuraria as mesmas
+            propriedades uma segunda vez e cada visita passaria a contar em dobro. */}
         <GoogleTagManager />
       </head>
       <body>

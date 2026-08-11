@@ -2,25 +2,22 @@ import Script from 'next/script'
 import { GTM_ID } from '@/lib/gtm'
 
 /**
- * Contêiner do Google Tag Manager.
+ * Contêiner do Google Tag Manager — única fonte de medição do site.
  *
- * DIVISÃO DE RESPONSABILIDADE — importante para não contar nada duas vezes.
+ * O contêiner GTM-N78Z3XT carrega, no acionador Initialization - All Pages:
+ *   · a tag do Google do GA4  (G-J90YW71NMZ), com send_page_view
+ *   · a tag do Google do Ads  (AW-18362842181)
+ *   · o Vinculador de conversões
+ * e, sobre elas, os sete eventos do relatório e as três conversões do Ads.
  *
- * O `layout.tsx` continua carregando o Google tag (gtag.js) da conta do Google
- * Ads, que já configura AW-345758268 e G-J90YW71NMZ. É ele quem envia o
- * `page_view`. O GTM entra apenas para os EVENTOS de conversão.
+ * NÃO adicione um bloco gtag ao layout. Ele configuraria as mesmas propriedades
+ * uma segunda vez, e cada visita passaria a contar em dobro — sem erro nenhum
+ * aparecer. Foi exatamente para evitar essa janela que a remoção do gtag e a
+ * definição de NEXT_PUBLIC_GTM_ID subiram no mesmo deploy.
  *
- * Enquanto essa divisão valer, o contêiner do GTM NÃO pode conter uma tag de
- * configuração do Google (Google Tag) apontando para G-J90YW71NMZ: haveria
- * duas configurações do GA4 na mesma página e todo pageview seria contado em
- * dobro. Use apenas tags do tipo "GA4 Event".
- *
- * Se um dia toda a coleta for migrada para dentro do GTM, o caminho é: criar a
- * tag de configuração no GTM, validar no DebugView, e só então remover o bloco
- * gtag do layout — nessa ordem, nunca simultaneamente.
- *
- * Sem `NEXT_PUBLIC_GTM_ID` definido, o componente não renderiza nada. Isso
- * mantém o site inalterado até o contêiner estar configurado e publicado.
+ * ATENÇÃO: sem `NEXT_PUBLIC_GTM_ID` o componente não renderiza nada — e, desde
+ * a migração, isso significa o site inteiro sem medição alguma. A variável
+ * precisa existir nos três ambientes da Vercel.
  */
 export function GoogleTagManager() {
   if (!GTM_ID) return null
