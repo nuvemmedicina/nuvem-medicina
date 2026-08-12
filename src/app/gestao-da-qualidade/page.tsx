@@ -431,7 +431,7 @@ export default function GestaoQualidadePage() {
                     { val: '0,02%', label: 'Índice de reclamações'   },
                   ].map(s => (
                     <div key={s.label} className="bg-teal/5 border border-teal/12 rounded-xl p-4 text-center">
-                      <span className="block font-serif font-semibold text-[1.4rem] text-teal mb-1">{s.val}</span>
+                      <span className="block font-serif font-medium text-[1.45rem] text-teal mb-1">{s.val}</span>
                       <span className="text-[0.72rem] text-steel/55">{s.label}</span>
                     </div>
                   ))}
