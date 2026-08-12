@@ -130,7 +130,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
               ))}
             </div>
           )}
-          <h1 className="font-serif font-semibold text-white text-[2rem] md:text-[2.6rem] leading-tight mb-4">{post.title}</h1>
+          <h1 className="font-serif font-medium text-white text-[1.95rem] md:text-[2.5rem] leading-tight mb-4">{post.title}</h1>
           {post.excerpt && <p className="text-[0.97rem] text-white/65 leading-relaxed mb-6">{post.excerpt}</p>}
           <div className="flex items-center gap-4 text-[0.78rem] text-white/50">
             {post.author && <span>Por {post.author.name}</span>}
@@ -157,7 +157,10 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
       {/* Body */}
       <SectionWrapper>
         <div className="max-w-3xl mx-auto">
-          <div className="prose prose-lg prose-headings:font-serif prose-headings:font-semibold prose-headings:text-steel prose-p:text-steel/70 prose-p:leading-relaxed prose-a:text-teal prose-strong:text-steel prose-li:text-steel/70 max-w-none">
+          {/* Títulos em Cormorant 500 — o peso 600 não é carregado pela fonte e o
+              navegador simulava um negrito artificial, pesado demais ao lado do
+              corpo em Poppins Light. */}
+          <div className="prose prose-lg prose-headings:font-serif prose-headings:font-medium prose-headings:text-steel prose-headings:leading-snug prose-h2:text-[1.65rem] md:prose-h2:text-[1.85rem] prose-h2:mt-11 prose-h2:mb-4 prose-h3:text-[1.4rem] md:prose-h3:text-[1.5rem] prose-h3:mt-9 prose-h3:mb-3 prose-h4:text-[1.3rem] md:prose-h4:text-[1.35rem] prose-p:text-steel/70 prose-p:leading-relaxed prose-a:text-teal prose-strong:text-steel prose-li:text-steel/70 max-w-none">
             {post.body && <PortableText value={post.body} components={ptComponents} />}
           </div>
 
