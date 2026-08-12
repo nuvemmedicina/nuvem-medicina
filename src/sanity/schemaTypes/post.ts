@@ -114,6 +114,7 @@ export const postType = defineType({
         { type: 'downloadBlock' },
         { type: 'statBlock' },
         { type: 'spotifyBlock' },
+        { type: 'youtubeBlock' },
         { type: 'tableBlock' },
       ],
     }),
