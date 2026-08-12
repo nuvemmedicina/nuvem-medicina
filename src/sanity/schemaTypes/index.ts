@@ -6,6 +6,7 @@ import { faqItemType }       from './faqItem'
 import { downloadBlockType } from './downloadBlock'
 import { statBlockType }     from './statBlock'
 import { spotifyBlockType } from './spotifyBlock'
+import { youtubeBlockType } from './youtubeBlock'
 import { tableBlock }       from './tableBlock'
 
 export const schemaTypes = [
@@ -17,5 +18,6 @@ export const schemaTypes = [
   downloadBlockType,
   statBlockType,
   spotifyBlockType,
+  youtubeBlockType,
   tableBlock,
 ]
