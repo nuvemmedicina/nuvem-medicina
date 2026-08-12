@@ -102,7 +102,7 @@ export function AvaliacaoForm() {
       <div className="space-y-5">
         {/* Score summary */}
         <div className={cn('flex items-center gap-3 p-3 rounded-xl border', colors.ring, colors.bg)}>
-          <span className={cn('text-2xl font-bold font-serif', colors.text)}>{score}</span>
+          <span className={cn('text-2xl font-medium font-serif', colors.text)}>{score}</span>
           <div>
             <p className={cn('text-[0.78rem] font-semibold', colors.text)}>{getNpsLabel(score)}</p>
             <button onClick={() => setStep('nps')} className="text-[0.68rem] text-steel/45 hover:text-steel/70 transition-colors underline">
