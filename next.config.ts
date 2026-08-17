@@ -50,6 +50,19 @@ const blogAntigos = [
   permanent:   true,
 }))
 
+/**
+ * Três URLs antigas do blog cujo slug não bate exatamente com o post atual,
+ * mas que são o mesmo artigo revisado — confirmado com a clínica em 18/08/2026.
+ * Diferente do bloco acima (mapeamento automático por slug idêntico), aqui o
+ * destino é escrito à mão, então cada linha carrega o antigo e o novo lado a
+ * lado por clareza.
+ */
+const blogRevisados = [
+  { source: '/sindrome-de-hiperemese-por-canabinoides', destination: '/blog/sindrome-de-hiperemese-por-canabinoides-como-diferenciar-do-vomito-ciclico' },
+  { source: '/esofagite-eosinofilica-guia-completo-da-federacao-brasileira-de-gastroenterologia', destination: '/blog/esofagite-eosinofilica-tratamento-com-ibps-e-diagnostico' },
+  { source: '/roma-atualizacao-sobre-inchaco-e-distensao-abdominal', destination: '/blog/inchaco-e-distensao-abdominal-abordagem-atualizada-roma-v' },
+].map(r => ({ ...r, permanent: true }))
+
 // URLs antigas dos exames e de artigos sobre eles, sem o prefixo /exames/ atual.
 const examesAntigos = [
   { source: '/manometria-esofagica',                                            destination: '/exames/manometria-esofagica' },
@@ -131,6 +144,7 @@ const nextConfig: NextConfig = {
 
       ...pdfsRenomeados,
       ...blogAntigos,
+      ...blogRevisados,
       ...examesAntigos,
       ...especialidadesAntigas,
       ...preparosAntigos,
