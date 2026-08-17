@@ -118,9 +118,14 @@ export function Footer() {
             <p className="text-[0.72rem] text-white/35">
               © {new Date().getFullYear()} NU.V.E.M Medicina · CNPJ {CONTATO.cnpj} · {CONTATO.crmClinica}
             </p>
-            <p className="text-[0.72rem] text-white/35">
+            <a
+              href={CONTATO.maps}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[0.72rem] text-white/35 hover:text-teal-light transition-colors"
+            >
               {CONTATO.endereco} – {CONTATO.bairro} · {CONTATO.cep}
-            </p>
+            </a>
             <div className="flex items-center gap-4 justify-start">
               <a href="/politica-de-privacidade" className="text-[0.72rem] text-white/35 hover:text-teal-light transition-colors">
                 Política de Privacidade

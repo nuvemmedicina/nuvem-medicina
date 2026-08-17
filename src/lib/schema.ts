@@ -46,9 +46,15 @@ export const organizationSchema = {
   openingHoursSpecification: [
     {
       '@type':     'OpeningHoursSpecification',
-      dayOfWeek:   ['Monday','Tuesday','Wednesday','Thursday','Friday'],
-      opens:       '07:30',
+      dayOfWeek:   ['Monday','Tuesday','Wednesday','Thursday'],
+      opens:       '07:00',
       closes:      '17:30',
+    },
+    {
+      '@type':     'OpeningHoursSpecification',
+      dayOfWeek:   ['Friday'],
+      opens:       '07:00',
+      closes:      '16:30',
     },
   ],
   sameAs: [
@@ -217,5 +223,5 @@ export const localBusinessSchema = {
     addressCountry:    'BR',
   },
   hasMap: 'https://goo.gl/maps/BELYyu7yUHd41gdc8',
-  openingHours: ['Mo-Fr 07:30-17:30'],
+  openingHours: ['Mo-Th 07:00-17:30', 'Fr 07:00-16:30'],
 }

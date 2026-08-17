@@ -329,7 +329,7 @@ export const NUVETE_RESPOSTAS: NuveteResposta[] = [
   // ── Respostas gerais ─────────────────────────────────────────────────────────
   {
     gatilhos: ['agendar', 'marcar', 'consulta', 'appointment', 'vaga'],
-    resposta: 'Para agendar uma consulta na NU.V.E.M, você pode:\n\n📱 **WhatsApp:** (31) 99726-1029\n📞 **Telefone:** (31) 2537-3131\n🌐 **Online:** pelo nosso formulário de agendamento\n\nAtendemos de segunda a sexta, das 7h30 às 17h30.',
+    resposta: 'Para agendar uma consulta na NU.V.E.M, você pode:\n\n📱 **WhatsApp:** (31) 99726-1029\n📞 **Telefone:** (31) 2537-3131\n🌐 **Online:** pelo nosso formulário de agendamento\n\nAtendemos de segunda a quinta, das 7h às 17h30, e sexta até 16h30.',
     botoes: [
       { label: '📱 Abrir WhatsApp', acao: 'whatsapp' },
       { label: '📋 Formulário online', acao: 'link:/agendar' },
@@ -351,7 +351,7 @@ export const NUVETE_RESPOSTAS: NuveteResposta[] = [
   },
   {
     gatilhos: ['horário', 'horario', 'funciona', 'aberto', 'atende'],
-    resposta: '🕐 **Horário de Atendimento:**\nSegunda a Sexta: 7h30 às 17h30\n\n📞 (31) 2537-3131\n📱 (31) 99726-1029',
+    resposta: '🕐 **Horário de Atendimento:**\nSegunda a quinta: 7h às 17h30\nSexta: 7h às 16h30\nSábado e domingo: fechado\n\n📞 (31) 2537-3131\n📱 (31) 99726-1029',
   },
   {
     gatilhos: ['teste respiratório', 'teste respiratorio', 'preparo respiratório', 'preparo respiratorio', 'exame respiratório', 'exame respiratorio'],
