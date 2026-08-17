@@ -23,6 +23,14 @@ export interface Exame {
   tag:      string
   desc:     string[]
   info:     { icon: string; text: string }[]
+  /**
+   * Título e descrição para <title> e meta description da página do exame.
+   * Escritos para intenção de busca (com a cidade), diferente de `title`/`desc`,
+   * que seguem em linguagem clínica para o corpo da página. Opcionais: sem eles,
+   * generateMetadata cai de volta em `title` e `desc[0]`.
+   */
+  seoTitle?:       string
+  seoDescription?: string
 }
 
 export interface Depoimento {
