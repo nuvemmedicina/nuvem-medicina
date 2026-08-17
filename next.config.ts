@@ -23,6 +23,89 @@ const pdfsRenomeados = [
   permanent:   true,
 }))
 
+/**
+ * URLs herdadas do site em WordPress anterior à migração para Next.js (abril de
+ * 2026). Levantadas em 17/08/2026 a partir do relatório "Não encontrado (404)"
+ * do Search Console — 123 URLs únicas, das 162 que o card de indexação mostrava
+ * (o restante eram variações de query string do mesmo path). O Google ainda as
+ * rastreia porque seguem linkadas de fora: posts antigos do Instagram com
+ * parâmetros fbclid/gclid, e a própria indexação residual do WordPress.
+ *
+ * Nove artigos batem exatamente com o slug de um post do blog atual — o mesmo
+ * texto, publicado de novo sem redirect na migração.
+ */
+const blogAntigos = [
+  'candidiase-de-repeticao-qual-a-relacao-com-o-intestino',
+  'efetividade-da-osteopatia-na-constipacao-refrataria-por-ptose-do-colon-transverso',
+  'esofagite-eosinofilica-tratamento-com-ibps-e-diagnostico',
+  'existe-relacao-entre-uso-de-inibidores-de-bomba-de-protons-ibps-e-demencia',
+  'incoordenacao-abdomino-anal-nas-desordens-da-evacuacao',
+  'intolerancia-a-histamina-fique-atento-a-esta-condicao-patologica',
+  'intolerancia-a-lactose-e-supercrescimento-bacteriano-do-intestino-delgado',
+  'microbioma-intestinal-e-longevidade',
+  'o-que-e-incontinencia-fecal',
+].map(slug => ({
+  source:      `/${slug}`,
+  destination: `/blog/${slug}`,
+  permanent:   true,
+}))
+
+// URLs antigas dos exames e de artigos sobre eles, sem o prefixo /exames/ atual.
+const examesAntigos = [
+  { source: '/manometria-esofagica',                                            destination: '/exames/manometria-esofagica' },
+  { source: '/manometria-anorretal',                                            destination: '/exames/manometria-anorretal' },
+  { source: '/para-que-serve-e-como-funciona-o-exame-de-manometria-anorretal',   destination: '/exames/manometria-anorretal' },
+  { source: '/halimetria',                                                      destination: '/exames/halimetria-sialometria' },
+  { source: '/halimetria-e-sialometria',                                        destination: '/exames/halimetria-sialometria' },
+  { source: '/ph-impedanciometria-esofagica',                                   destination: '/exames/phmetria-impedanciometria' },
+  { source: '/phimpedanciometria-esofagica',                                    destination: '/exames/phmetria-impedanciometria' },
+  { source: '/phmetria-esofagicas',                                             destination: '/exames/phmetria-impedanciometria' },
+  { source: '/impedancio-phmetria',                                             destination: '/exames/phmetria-impedanciometria' },
+  { source: '/teste-respiratorio-h-pylori',                                     destination: '/exames/testes-respiratorios' },
+  { source: '/teste-respiratorio-para-h-pylori',                                destination: '/exames/testes-respiratorios' },
+  { source: '/teste-respiratorio-de-hidrogenio-e-metano',                       destination: '/exames/testes-respiratorios' },
+  { source: '/teste-respiratorio-de-hidrogenio-expirado',                       destination: '/exames/testes-respiratorios' },
+  { source: '/exame-para-teste-respiratorio',                                   destination: '/exames/testes-respiratorios' },
+].map(r => ({ ...r, permanent: true }))
+
+// Idem para especialidades, sem o prefixo /especialidades/.
+const especialidadesAntigas = [
+  { source: '/gastroenterologia',            destination: '/especialidades/gastroenterologia' },
+  { source: '/nefrologia',                   destination: '/especialidades/nefrologia' },
+  { source: '/halitose',                     destination: '/especialidades/halitose' },
+  { source: '/fisioterapia-pelvica',         destination: '/especialidades/fisioterapia-pelvica' },
+  { source: '/pediatria-e-saude-da-familia', destination: '/especialidades/pediatria' },
+].map(r => ({ ...r, permanent: true }))
+
+// Páginas de preparo em formatos antigos (variações de grafia acumuladas ao
+// longo dos anos no WordPress). Todas convergem para o hub atual de preparos,
+// que lista o PDF de cada exame. /preparo-colonoscopia é a única sem exame
+// correspondente na clínica hoje — mesmo assim manda para o hub em vez de
+// deixar 404, para quem chegou buscando "preparo" ter onde continuar.
+const preparosAntigos = [
+  'preparo-colonoscopia',
+  'preparo-halimetria',
+  'preparo-halimetria-e-sialometria',
+  'preparo-impedancio-phmetria',
+  'preparo-impedanciophmetria-esofagica',
+  'preparo-manometria-anorretal',
+  'preparo-manometria-esofagica',
+  'preparo-para-criancas-phmetria-esofagica',
+  'preparo-para-teste-respiratorio-para-h-pylori',
+  'preparo-ph-impedanciometria-esofagica',
+  'preparo-phimpedanciometria-esofagica',
+  'preparo-phmetria-esofagica',
+  'preparo-teste-respiratorio-com-hidrogenio-e-metano',
+  'preparo-teste-respiratorio-com-hidrogenio-expirado',
+  'preparo-teste-respiratorio-h-pylori',
+  'preparo-teste-respiratorio-hidrogenio-metano',
+  'guia-de-preparo-teste-respiratorio-para-pesquisa-de-h-pylori',
+].map(slug => ({
+  source:      `/${slug}`,
+  destination: '/exames/preparos',
+  permanent:   true,
+}))
+
 const nextConfig: NextConfig = {
   async redirects() {
     return [
@@ -35,7 +118,31 @@ const nextConfig: NextConfig = {
       // Página removida em ca59088. /sobre é o destino mais próximo em conteúdo.
       { source: '/parceiros',                     destination: '/sobre',              permanent: true },
 
+      // Páginas institucionais do WordPress, em endereços diferentes dos atuais.
+      { source: '/atendimentos',                  destination: '/especialidades',     permanent: true },
+      { source: '/equipe-nuvem',                  destination: '/equipe',             permanent: true },
+      { source: '/agende-sua-consulta',           destination: '/agendar',            permanent: true },
+      { source: '/gestao-da-qualidade-iso-9001',  destination: '/gestao-da-qualidade', permanent: true },
+      { source: '/certificacao-iso-9001',         destination: '/gestao-da-qualidade', permanent: true },
+      { source: '/dra-eliane-basques-moura',      destination: '/dra-eliane-basques', permanent: true },
+      { source: '/profissionais-parceiros',       destination: '/sobre',              permanent: true },
+      { source: '/eleve-sua-carreira-na-saude-conheca-a-excelencia-dos-cursos-da-nuvem-ensino', destination: '/ensino', permanent: true },
+      { source: '/youtube',                       destination: 'https://www.youtube.com/@NuvemMedicina', permanent: true },
+
       ...pdfsRenomeados,
+      ...blogAntigos,
+      ...examesAntigos,
+      ...especialidadesAntigas,
+      ...preparosAntigos,
+
+      // Ruído estrutural do WordPress sem conteúdo por trás: paginação do blog,
+      // arquivos por categoria, por autor e por data. Sem página equivalente
+      // específica — manda para a listagem do blog, que é o destino mais
+      // próximo do que a pessoa procurava.
+      { source: '/page/:num*',     destination: '/blog', permanent: true },
+      { source: '/category/:path*', destination: '/blog', permanent: true },
+      { source: '/author/:path*',  destination: '/blog', permanent: true },
+      { source: '/:year(\\d{4})/:rest*', destination: '/blog', permanent: true },
     ]
   },
 
