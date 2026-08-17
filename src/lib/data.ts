@@ -106,6 +106,8 @@ export const EXAMES: Exame[] = [
     title: 'Manometria Esofágica',
     subtitle: 'Alta Resolução · Esôfago',
     tag: 'Alta Resolução',
+    seoTitle: 'Manometria Esofágica em BH',
+    seoDescription: 'Manometria esofágica de alta resolução em Belo Horizonte, sem sedação. Diagnóstico de acalasia, disfagia e refluxo. Certificação ISO 9001.',
     desc: [
       'Avalia com precisão a motilidade do esôfago e a função do esfíncter esofágico inferior, sendo essencial no diagnóstico de acalasia, disfagia e refluxo gastroesofágico.',
       'Equipamentos de última geração com mapeamento completo da pressão esofágica em alta resolução. Laudos emitidos por especialistas certificados ISO 9001.',
@@ -121,6 +123,8 @@ export const EXAMES: Exame[] = [
     title: 'Manometria Anorretal',
     subtitle: 'Alta Resolução · Canal Anal',
     tag: 'Alta Resolução',
+    seoTitle: 'Manometria Anorretal em BH',
+    seoDescription: 'Manometria anorretal em Belo Horizonte para incontinência fecal, constipação crônica e avaliação do assoalho pélvico. Certificação ISO 9001.',
     desc: [
       'Avalia a função dos esfíncteres do canal anal e reto, sendo fundamental no diagnóstico de incontinência fecal, constipação crônica e distúrbios do assoalho pélvico.',
       'Protocolo completo com biofeedback integrado. Equipamentos de última geração com laudos certificados ISO 9001.',
@@ -136,6 +140,8 @@ export const EXAMES: Exame[] = [
     title: 'pHmetria e Impedânciometria',
     subtitle: 'Monitoramento 24h',
     tag: 'Monitoramento 24h',
+    seoTitle: 'pHmetria e Impedânciometria em BH',
+    seoDescription: 'pHmetria esofágica de 24 horas e impedanciometria em Belo Horizonte. Diagnóstico de refluxo ácido e não ácido refratário ao tratamento.',
     desc: [
       'Monitoramento ambulatorial que registra episódios de refluxo ácido e não-ácido ao longo de 24 horas, correlacionando sintomas com eventos de refluxo em atividade normal.',
       'A impedânciometria detecta refluxo independente do pH, sendo essencial nos casos de refluxo refratário ao tratamento convencional.',
@@ -150,6 +156,8 @@ export const EXAMES: Exame[] = [
     title: 'Testes Respiratórios',
     subtitle: 'H₂ · CH₄ · H₂S · H. pylori',
     tag: 'Não Invasivo',
+    seoTitle: 'Testes Respiratórios: SIBO e H. Pylori em BH',
+    seoDescription: 'Testes respiratórios não invasivos em Belo Horizonte para SIBO, IMO, H. pylori e intolerâncias alimentares. Sem sedação, resultado em um único exame.',
     desc: [
       'Diagnóstico de SIBO, IMO, intolerâncias alimentares e H. pylori por análise do ar exalado. Sem coleta de sangue, sem desconforto e com alta especificidade diagnóstica.',
       'Protocolo NU.V.E.M detecta H₂, CH₄ e H₂S em um único exame, com cobertura de SIBO, LIBO, SIFO e infecção por H. pylori.',
@@ -164,6 +172,8 @@ export const EXAMES: Exame[] = [
     title: 'Halimetria e Sialometria',
     subtitle: 'Diagnóstico de Halitose',
     tag: 'Diagnóstico Preciso',
+    seoTitle: 'Halimetria: Diagnóstico de Halitose em BH',
+    seoDescription: 'Halimetria e sialometria em Belo Horizonte para diagnóstico preciso da halitose. Protocolo multidisciplinar exclusivo NU.V.E.M.',
     desc: [
       'A halimetria quantifica objetivamente compostos sulfurados voláteis causadores da halitose, com diagnóstico diferencial entre causas orais, digestivas e sistêmicas.',
       'A sialometria avalia o fluxo salivar, sendo essencial na investigação de xerostomia e suas relações com halitose e doenças sistêmicas.',
@@ -177,6 +187,8 @@ export const EXAMES: Exame[] = [
     title: 'Avaliação Pélvica',
     subtitle: 'Biofeedback e Eletromiografia',
     tag: 'Especialidade Integrada',
+    seoTitle: 'Avaliação Pélvica com Biofeedback em BH',
+    seoDescription: 'Avaliação do assoalho pélvico com biofeedback e eletromiografia em Belo Horizonte. Integração entre gastroenterologia e fisioterapia pélvica.',
     desc: [
       'Avaliação funcional completa do assoalho pélvico com biofeedback eletromiográfico para diagnóstico e reabilitação de disfunções pélvicas, incontinência e constipação obstrutiva.',
     ],

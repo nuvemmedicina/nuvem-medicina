@@ -306,13 +306,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const exame = EXAMES.find(e => e.id === slug)
   if (!exame) return {}
-  const desc = exame.desc[0]
+  // seoTitle/seoDescription são escritos para intenção de busca, com a cidade
+  // (ex.: "manometria esofágica bh") — diferente de title/desc, que seguem em
+  // linguagem clínica no corpo da página.
+  const title = exame.seoTitle       ?? exame.title
+  const desc  = exame.seoDescription ?? exame.desc[0]
   return {
-    title:       exame.title,
+    title,
     description: desc,
     alternates:  { canonical: `/exames/${slug}` },
     openGraph: {
-      title:       `${exame.title} | NU.V.E.M Medicina`,
+      title:       `${title} | NU.V.E.M Medicina`,
       description: desc,
       images: [{
         url:    '/images/nuvem-medicina-bh.jpg',
@@ -323,7 +327,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     twitter: {
       card:        'summary_large_image',
-      title:       `${exame.title} | NU.V.E.M Medicina`,
+      title:       `${title} | NU.V.E.M Medicina`,
       description: desc,
       images:      ['/images/nuvem-medicina-bh.jpg'],
     },
