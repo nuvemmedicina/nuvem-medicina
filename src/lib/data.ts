@@ -1,5 +1,14 @@
 import type { NavItem, Especialidade, Exame, Depoimento } from '@/types'
 
+/**
+ * Convênios em destaque para o teaser das páginas de exame — não é a lista
+ * completa (essa vive em /convenios-medicos). Existe porque Convênios Médicos
+ * está entre as três páginas mais visitadas do site depois da home: a dúvida
+ * sobre cobertura do plano surge antes da decisão de agendar, e hoje só é
+ * respondida se a pessoa sair da página de exame para procurar por conta própria.
+ */
+export const CONVENIOS_DESTAQUE = ['Unimed BH', 'Bradesco Saúde', 'Amil']
+
 // ─── Navigation ──────────────────────────────────────────────────────────────
 export const NAV_ITEMS: NavItem[] = [
   {

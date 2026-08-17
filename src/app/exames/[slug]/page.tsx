@@ -8,7 +8,7 @@ import { Breadcrumb }     from '@/components/ui/Breadcrumb'
 import { SectionWrapper } from '@/components/ui/SectionWrapper'
 import { CtaBanner }      from '@/components/ui/CtaBanner'
 import { IsoSeal }        from '@/components/icons/IsoSeal'
-import { EXAMES, ESPECIALIDADES, EXAM_PDFS } from '@/lib/data'
+import { EXAMES, ESPECIALIDADES, EXAM_PDFS, CONVENIOS_DESTAQUE } from '@/lib/data'
 import { PhotoCarousel } from '@/components/ui/PhotoCarousel'
 import { JsonLd } from '@/components/ui/JsonLd'
 import { examSchema, faqSchema, breadcrumbSchema } from '@/lib/schema'
@@ -739,6 +739,23 @@ export default async function ExameSlugPage({ params }: Props) {
                   </div>
                 )
               })}
+            </div>
+
+            {/* Convênios aceitos — Convênios Médicos é a 2ª página mais
+                visitada do site depois da home. A dúvida sobre cobertura
+                surge antes da decisão de agendar; responder aqui evita que
+                a pessoa saia da página de exame para procurar por conta própria. */}
+            <div className="bg-white border border-teal/10 rounded-2xl p-6 shadow-sm">
+              <h3 className="text-[0.75rem] font-bold uppercase tracking-[.1em] text-steel/40 mb-3">Convênios aceitos</h3>
+              <p className="text-[0.88rem] text-steel/65 leading-relaxed mb-4">
+                Atendemos {CONVENIOS_DESTAQUE.join(', ')} e outros. Também aceitamos particular com recibo para reembolso.
+              </p>
+              <Link
+                href="/convenios-medicos"
+                className="text-[0.85rem] font-medium text-teal hover:text-teal/70 transition-colors inline-flex items-center gap-1.5"
+              >
+                Ver convênios completos <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
             </div>
 
             {/* PDF Download — dois botões para testes resp., um para outros */}
