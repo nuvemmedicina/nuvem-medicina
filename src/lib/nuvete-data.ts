@@ -336,8 +336,8 @@ export const NUVETE_RESPOSTAS: NuveteResposta[] = [
     ],
   },
   {
-    gatilhos: ['convenio', 'convênio', 'plano', 'saúde', 'unimed', 'bradesco', 'sulamerica', 'amil'],
-    resposta: 'Trabalhamos com os principais convênios: Unimed BH, Bradesco Saúde, SulAmérica, Amil, NotreDame e outros.\n\nTambém aceitamos particular com emissão de recibo para reembolso.\n\nQuer que eu consulte um plano específico?',
+    gatilhos: ['convenio', 'convênio', 'plano', 'saúde', 'unimed', 'bradesco', 'amil'],
+    resposta: 'Trabalhamos com os principais convênios: Unimed BH, Bradesco Saúde, Amil, NotreDame e outros.\n\nTambém aceitamos particular com emissão de recibo para reembolso.\n\nQuer que eu consulte um plano específico?',
     botoes: [
       { label: '💳 Ver convênios completo', acao: 'link:/convenios-medicos' },
     ],
@@ -426,7 +426,7 @@ export const NUVETE_FAQ = [
   },
   {
     pergunta: 'A clínica aceita planos de saúde?',
-    resposta: 'Sim! Trabalhamos com Unimed BH, Bradesco Saúde, SulAmérica, Amil, NotreDame e outros. Também atendemos particular com recibo para reembolso.',
+    resposta: 'Sim! Trabalhamos com Unimed BH, Bradesco Saúde, Amil, NotreDame e outros. Também atendemos particular com recibo para reembolso.',
   },
   {
     pergunta: 'Preciso de encaminhamento médico para os exames?',
