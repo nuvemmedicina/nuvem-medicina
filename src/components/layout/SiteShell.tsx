@@ -6,6 +6,7 @@ import { Footer }     from '@/components/layout/Footer'
 import { WaFloat }     from '@/components/ui/WaFloat'
 import { RevealInit }  from '@/components/ui/RevealInit'
 import { NuveteChat }  from '@/components/nuvete/NuveteChat'
+import { ConsentBanner } from '@/components/ui/ConsentBanner'
 
 export function SiteShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
@@ -21,6 +22,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
       <WaFloat />
       <NuveteChat />
       <RevealInit />
+      <ConsentBanner />
     </>
   )
 }

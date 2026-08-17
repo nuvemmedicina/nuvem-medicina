@@ -5,6 +5,7 @@ import { SiteShell }        from '@/components/layout/SiteShell'
 import { JsonLd }            from '@/components/ui/JsonLd'
 import { SITE_URL }          from '@/lib/site'
 import { GoogleTagManager, GoogleTagManagerNoScript } from '@/components/ui/GoogleTagManager'
+import { ConsentDefault } from '@/components/ui/ConsentDefault'
 import {
   organizationSchema,
   websiteSchema,
@@ -102,6 +103,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="pt-BR" className={`${poppins.variable} ${cormorant.variable}`}>
       <head>
+        {/* Consent Mode v2 — precisa vir ANTES do GoogleTagManager. Define o
+            consentimento padrão como negado (ou aplica a escolha salva, se a
+            pessoa já decidiu antes) antes de qualquer tag do contêiner avaliar
+            se pode disparar. Ver src/components/ui/ConsentDefault.tsx. */}
+        <ConsentDefault />
+
         {/* Toda a medição passa pelo contêiner: as tags do Google do GA4
             (G-J90YW71NMZ) e do Ads (AW-18362842181) disparam nele, no acionador
             Initialization - All Pages, antes de qualquer evento.

@@ -2,6 +2,7 @@ import Link            from 'next/link'
 import { Instagram, Youtube, MessageCircle, Linkedin } from 'lucide-react'
 import { LogoBranco }  from '@/components/icons/LogoBranco'
 import { IsoSeal }     from '@/components/icons/IsoSeal'
+import { CookiePreferencesLink } from '@/components/ui/CookiePreferencesLink'
 import { CONTATO }     from '@/lib/data'
 
 const FOOTER_COLS = [
@@ -134,6 +135,8 @@ export function Footer() {
               <a href="/direitos-do-paciente" className="text-[0.72rem] text-white/35 hover:text-teal-light transition-colors">
                 Direitos do Paciente
               </a>
+              <span className="text-white/25 text-[0.72rem]">·</span>
+              <CookiePreferencesLink />
             </div>
           </div>
           <div className="flex flex-col items-center md:items-end gap-2">
