@@ -88,7 +88,7 @@ const DETAIL: Record<string, DetailData> = {
       ],
     },
     especialistas: [
-      { nome: 'Dra. Vera Ângelo',     esp: 'Gastroenterologia e Motilidade', crm: 'CRM-MG 22284', foto: '/images/dra-vera.jpg',       href: '/equipe/dra-vera' },
+      { nome: 'Dra. Vera Ângelo',     esp: 'Gastroenterologia e Motilidade', crm: 'CRM-MG 22284', foto: '/images/dra-vera.jpg',       href: '/dra-vera-angelo' },
       { nome: 'Dra. Claudia Utsch',   esp: 'Gastroenterologia',              crm: '',             foto: '/images/claudia-utsch.jpg' },
       { nome: 'Dra. Danielle Martins',esp: 'Gastroenterologia e DGBI',       crm: '',             foto: '/images/danielle-martins.jpg' },
     ],
@@ -198,7 +198,7 @@ const DETAIL: Record<string, DetailData> = {
       ],
     },
     especialistas: [
-      { nome: 'Dra. Vera Ângelo', esp: 'Gastroenterologia · Diagnóstico de Halitose', crm: 'CRM-MG 22284', foto: '/images/dra-vera.jpg', href: '/equipe/dra-vera' },
+      { nome: 'Dra. Vera Ângelo', esp: 'Gastroenterologia · Diagnóstico de Halitose', crm: 'CRM-MG 22284', foto: '/images/dra-vera.jpg', href: '/dra-vera-angelo' },
     ],
     exames: ['halimetria-sialometria', 'testes-respiratorios'],
     faqs: [
@@ -253,7 +253,7 @@ const DETAIL: Record<string, DetailData> = {
     },
     especialistas: [
       { nome: 'Dra. Mariana Fernandes',    esp: 'Pediatria · Saúde Digestiva Infantil', crm: '', foto: '/images/mariana-fernandes.jpg' },
-      { nome: 'Dra. Eliane Basques',       esp: 'Cirurgia Pediátrica · Manometria',     crm: 'CRM-MG 27601', foto: '/images/dra-eliane.jpg', href: '/equipe/dra-eliane' },
+      { nome: 'Dra. Eliane Basques',       esp: 'Cirurgia Pediátrica · Manometria',     crm: 'CRM-MG 27601', foto: '/images/dra-eliane.jpg', href: '/dra-eliane-basques' },
     ],
     exames: ['testes-respiratorios', 'manometria-anorretal'],
     faqs: [
@@ -361,7 +361,7 @@ const DETAIL: Record<string, DetailData> = {
       ],
     },
     especialistas: [
-      { nome: 'Dra. Vera Ângelo',   esp: 'Gastroenterologia e Motilidade', crm: 'CRM-MG 22284', foto: '/images/dra-vera.jpg', href: '/equipe/dra-vera' },
+      { nome: 'Dra. Vera Ângelo',   esp: 'Gastroenterologia e Motilidade', crm: 'CRM-MG 22284', foto: '/images/dra-vera.jpg', href: '/dra-vera-angelo' },
       { nome: 'Dr. Gabriel de Souza Fernandes Filho', esp: 'Gastroenterologia', crm: '', foto: '/images/dr-Gabriel-de-Souza-Fernandes-Filho.jpg' },
     ],
     exames: ['manometria-esofagica', 'manometria-anorretal', 'phmetria-impedanciometria'],
