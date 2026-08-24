@@ -19,7 +19,7 @@ const SOCIAS = [
     crm:   'CRM-MG 22284 · RQE 10411 · RQE 22736',
     cargo: 'Sócia Fundadora · Diretora Técnica',
     foto:  '/images/dra-vera.jpg',
-    slug:  'dra-vera',
+    href:  '/dra-vera-angelo',
     areas: ['SIBO / IMO', 'Testes Respiratórios', 'Motilidade Digestiva', 'DGBI'],
     bio:   'Mestre e Doutora pela UFMG. Professora convidada do Hospital Israelita Albert Einstein. Autora de diversas obras pela Editora Rubio. Referência nacional em testes respiratórios e motilidade digestiva.',
   },
@@ -29,7 +29,7 @@ const SOCIAS = [
     crm:   'CRM-MG 27601 · RQE 9324',
     cargo: 'Sócia Fundadora · Diretora Técnica Substituta',
     foto:  '/images/dra-eliane.jpg',
-    slug:  'dra-eliane',
+    href:  '/dra-eliane-basques',
     areas: ['Manometria Anorretal', 'Assoalho Pélvico', 'Cirurgia Pediátrica', 'Casos Interdisciplinares'],
     bio:   'Cirurgiã pediátrica com expertise em manometria anorretal e disfunções do assoalho pélvico. Cofundadora da NU.V.E.M, atua na interface entre gastroenterologia e cirurgia.',
   },
@@ -86,7 +86,7 @@ export default function EquipePage() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {SOCIAS.map((s, i) => (
-            <Link key={s.slug} href={`/equipe/${s.slug}`}
+            <Link key={s.href} href={s.href}
               className={`group block bg-white border border-teal/12 rounded-2xl overflow-hidden hover:border-teal/30 hover:-translate-y-1 hover:shadow-md transition-all reveal reveal-d${i}`}>
               <div className="relative h-72 w-full overflow-hidden" style={{background:'linear-gradient(135deg,#003040,#00465F)'}}>
                 <Image src={s.foto} alt={s.nome} fill

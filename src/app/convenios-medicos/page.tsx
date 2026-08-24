@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 }
 
 const CONVENIOS = [
-  'Unimed BH', 'Bradesco Saúde', 'SulAmérica', 'Amil', 'NotreDame Intermédica',
+  'Unimed BH', 'Bradesco Saúde', 'Amil',
   'Porto Seguro Saúde', 'Hapvida', 'Plamed', 'Samp',
   'Particular (com recibo)', 'Reembolso (verificar com plano)',
 ]
