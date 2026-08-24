@@ -7,7 +7,7 @@ import type { NavItem, Especialidade, Exame, Depoimento } from '@/types'
  * sobre cobertura do plano surge antes da decisão de agendar, e hoje só é
  * respondida se a pessoa sair da página de exame para procurar por conta própria.
  */
-export const CONVENIOS_DESTAQUE = ['Unimed BH', 'Bradesco Saúde', 'Amil']
+export const CONVENIOS_DESTAQUE = ['Unimed BH', 'Amil']
 
 // ─── Navigation ──────────────────────────────────────────────────────────────
 export const NAV_ITEMS: NavItem[] = [
