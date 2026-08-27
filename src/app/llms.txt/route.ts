@@ -1,4 +1,15 @@
-# NU.V.E.M Medicina
+import { getAllPosts } from '@/lib/sanity/queries'
+import { SITE_URL } from '@/lib/site'
+
+export const revalidate = 3600
+
+/**
+ * Conteúdo institucional fixo — igual ao antigo public/llms.txt, mantido aqui
+ * como texto porque não vem do Sanity. A seção de artigos do blog, mais
+ * abaixo, é a única parte gerada dinamicamente: sem isso, a lista de artigos
+ * saía de sincronia toda vez que um post novo era publicado.
+ */
+const CONTEUDO_INSTITUCIONAL = `# NU.V.E.M Medicina
 
 > Clínica especializada em gastroenterologia, diagnóstico avançado e ensino médico em Belo Horizonte, Minas Gerais, Brasil. Única clínica do segmento com Certificação ISO 9001.
 
@@ -6,14 +17,14 @@
 
 A NU.V.E.M Medicina é um ecossistema completo de saúde digestiva localizado no bairro Santa Efigênia, Belo Horizonte – MG. Integra clínica especializada (diagnóstico e cuidado) e centro de formação profissional (NU.V.E.M Ensino), sendo a única clínica do segmento de gastroenterologia na cidade certificada pela norma ISO 9001.
 
-**Responsável Técnica:** Dra. Vera Ângelo — Gastroenterologista | CRM-MG 22284 | RQE 10411 | RQE 22736  
-**CRM da Clínica:** CRM-MG 20532  
-**CNPJ:** 42.678.705/0001-02  
-**Endereço:** Rua Ceará, 600 – Sala 101, Santa Efigênia, Belo Horizonte – MG, CEP 30150-310  
-**Telefone:** (31) 2537-3131  
-**WhatsApp:** (31) 99726-1029  
-**Site:** https://www.nuvemmedicina.com.br  
-**Instagram:** @NuvemMedicina | @NuvemEnsino  
+**Responsável Técnica:** Dra. Vera Ângelo — Gastroenterologista | CRM-MG 22284 | RQE 10411 | RQE 22736
+**CRM da Clínica:** CRM-MG 20532
+**CNPJ:** 42.678.705/0001-02
+**Endereço:** Rua Ceará, 600 – Sala 101, Santa Efigênia, Belo Horizonte – MG, CEP 30150-310
+**Telefone:** (31) 2537-3131
+**WhatsApp:** (31) 99726-1029
+**Site:** https://www.nuvemmedicina.com.br
+**Instagram:** @NuvemMedicina | @NuvemEnsino
 
 ## Especialidades Médicas
 
@@ -73,9 +84,9 @@ Centro de formação profissional para médicos, fisioterapeutas e especialistas
 - [Convênios](https://www.nuvemmedicina.com.br/convenios-medicos)
 - [Agendar Consulta](https://www.nuvemmedicina.com.br/agendar)
 - [Contato](https://www.nuvemmedicina.com.br/contato)
-- [Blog](https://www.nuvemmedicina.com.br/blog)
+- [Blog](https://www.nuvemmedicina.com.br/blog)`
 
-## Informações para Agendamento
+const RODAPE = `## Informações para Agendamento
 
 - **WhatsApp:** https://wa.me/553197261029
 - **Telefone:** (31) 2537-3131
@@ -85,4 +96,31 @@ Centro de formação profissional para médicos, fisioterapeutas e especialistas
 
 ## Aviso Legal
 
-As informações neste site têm caráter informativo e educacional, em conformidade com as normas do Conselho Federal de Medicina (Res. CFM nº 1.974/2011). Não substituem consulta médica profissional.
+As informações neste site têm caráter informativo e educacional, em conformidade com as normas do Conselho Federal de Medicina (Res. CFM nº 1.974/2011). Não substituem consulta médica profissional.`
+
+function linhaDoArtigo(titulo: string, slug: string, descricao?: string) {
+  const desc = (descricao ?? '').trim().replace(/\s+/g, ' ')
+  const link = `[${titulo}](${SITE_URL}/blog/${slug})`
+  return desc ? `- ${link}: ${desc}` : `- ${link}`
+}
+
+export async function GET() {
+  let secaoArtigos = ''
+  try {
+    const posts = await getAllPosts()
+    if (posts.length > 0) {
+      const linhas = posts.map(p => linhaDoArtigo(p.title, p.slug.current, p.respostaDireta ?? p.excerpt))
+      secaoArtigos = `\n\n## Artigos do Blog\n\n${linhas.join('\n')}`
+    }
+  } catch {
+    // Sanity indisponível no momento da requisição: serve o restante do
+    // arquivo sem a lista de artigos em vez de derrubar a rota inteira.
+    secaoArtigos = ''
+  }
+
+  const corpo = `${CONTEUDO_INSTITUCIONAL}${secaoArtigos}\n\n${RODAPE}\n`
+
+  return new Response(corpo, {
+    headers: { 'Content-Type': 'text/plain; charset=utf-8' },
+  })
+}

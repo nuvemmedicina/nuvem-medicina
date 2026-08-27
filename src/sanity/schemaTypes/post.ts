@@ -1,4 +1,16 @@
 import { defineType, defineField } from 'sanity'
+import { EXAMES, ESPECIALIDADES } from '../../lib/data'
+
+// Listas geradas a partir de src/lib/data.ts — fonte única de verdade.
+// Exames e especialidades ainda não são documentos no Sanity (são páginas
+// estáticas do site), então este é um campo de texto com opções, não uma
+// referência. A validação abaixo impede gravar qualquer valor fora desta
+// lista, e scripts/validar-referencias-blog.mjs falha o build caso um
+// artigo já publicado aponte para um id que deixou de existir aqui.
+const EXAME_OPTIONS = EXAMES.map(e => ({ title: e.title, value: e.id }))
+const ESPECIALIDADE_OPTIONS = ESPECIALIDADES.map(e => ({ title: e.title, value: e.slug }))
+const EXAME_IDS = EXAME_OPTIONS.map(o => o.value)
+const ESPECIALIDADE_IDS = ESPECIALIDADE_OPTIONS.map(o => o.value)
 
 export const postType = defineType({
   name:  'post',
@@ -16,6 +28,7 @@ export const postType = defineType({
       title: 'URL do artigo',
       type:  'slug',
       options: { source: 'title', maxLength: 96 },
+      description: 'Atenção: se este artigo já foi publicado, NÃO clique em "Generate" para gerar o slug novamente a partir do título. Trocar a URL de um artigo publicado quebra o histórico de busca do Google e exige criar um redirecionamento 301.',
       validation: Rule => Rule.required(),
     }),
     defineField({
@@ -23,6 +36,20 @@ export const postType = defineType({
       title: 'Autor',
       type:  'reference',
       to:    [{ type: 'author' }],
+    }),
+    defineField({
+      name:        'perguntaPrincipal',
+      title:       'Pergunta principal',
+      type:        'string',
+      description: 'A pergunta escrita como o paciente digitaria no Google, ex.: "disbiose intestinal causa candidíase". Usada como título da seção de resposta direta, logo após o título do artigo.',
+    }),
+    defineField({
+      name:        'respostaDireta',
+      title:       'Resposta direta',
+      type:        'text',
+      rows:        3,
+      description: 'Responda a pergunta principal em até sessenta palavras, sem introdução nem contextualização histórica. Aparece em destaque logo abaixo do título, antes da imagem de capa.',
+      validation:  Rule => Rule.max(320),
     }),
     defineField({
       name:  'coverImage',
@@ -49,6 +76,32 @@ export const postType = defineType({
       of:    [{ type: 'reference', to: { type: 'category' } }],
     }),
     defineField({
+      name:       'exameRelacionado',
+      title:      'Exame relacionado',
+      type:       'string',
+      description: 'Exame que investiga o problema deste artigo. Define o destino da chamada ao final do texto. Se não houver exame relacionado, deixe em branco e preencha "Especialidade relacionada" — na falta dos dois, a chamada genérica de agendamento é exibida.',
+      options: { list: EXAME_OPTIONS },
+      validation: Rule => Rule.custom(value => {
+        if (!value) return true
+        return EXAME_IDS.includes(value as string)
+          ? true
+          : `"${value}" não corresponde a nenhum exame cadastrado em src/lib/data.ts`
+      }),
+    }),
+    defineField({
+      name:       'especialidadeRelacionada',
+      title:      'Especialidade relacionada',
+      type:       'string',
+      description: 'Usada como destino alternativo da chamada ao final do artigo quando não houver um exame específico relacionado.',
+      options: { list: ESPECIALIDADE_OPTIONS },
+      validation: Rule => Rule.custom(value => {
+        if (!value) return true
+        return ESPECIALIDADE_IDS.includes(value as string)
+          ? true
+          : `"${value}" não corresponde a nenhuma especialidade cadastrada em src/lib/data.ts`
+      }),
+    }),
+    defineField({
       name:        'publishedAt',
       title:       'Data de publicação',
       type:        'datetime',
@@ -58,6 +111,19 @@ export const postType = defineType({
       name:  'readingTime',
       title: 'Tempo de leitura (minutos)',
       type:  'number',
+    }),
+    defineField({
+      name:  'revisadoPor',
+      title: 'Revisado por',
+      type:  'reference',
+      to:    [{ type: 'author' }],
+      description: 'Quem fez a revisão técnica do conteúdo, quando diferente do autor que escreveu o artigo.',
+    }),
+    defineField({
+      name:        'dataRevisao',
+      title:       'Data da última revisão clínica',
+      type:        'date',
+      description: 'Data em que o conteúdo foi revisado tecnicamente pela última vez. Usada para atualizar a data de modificação do artigo nos metadados e no sitemap.',
     }),
     defineField({
       name:        'references',

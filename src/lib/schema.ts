@@ -173,6 +173,73 @@ export const directorSchema = {
   url: `${BASE_URL}/equipe`,
 }
 
+// ─── Article/MedicalWebPage schema factory ────────────────────────────────────
+interface PessoaParaSchema {
+  name:       string
+  slug?:      string
+  crm?:       string
+  rqe?:       string[]
+  titulacao?: string
+  image?:     string
+}
+
+interface PostParaSchema {
+  title:         string
+  slug:          string
+  description?:  string
+  datePublished?: string
+  dataRevisao?:  string
+  image?:        string
+  author?:       PessoaParaSchema
+  revisadoPor?:  PessoaParaSchema
+  citations?:    string[]
+}
+
+/**
+ * A Dra. Vera Ângelo já é emitida globalmente como Physician em directorSchema
+ * (ver mais abaixo). Quando o autor/revisor do artigo é ela, referenciamos a
+ * mesma entidade via @id em vez de duplicar um Person novo — é o padrão
+ * correto do schema.org para reaproveitar uma entidade já declarada na página.
+ */
+function pessoaOuReferencia(pessoa?: PessoaParaSchema) {
+  if (!pessoa) return undefined
+  if (pessoa.slug === 'dra-vera-angelo') return { '@id': `${BASE_URL}/#dra-vera-angelo` }
+
+  const identifier = []
+  if (pessoa.crm) identifier.push({ '@type': 'PropertyValue', name: 'CRM', value: pessoa.crm })
+  for (const rqe of pessoa.rqe ?? []) identifier.push({ '@type': 'PropertyValue', name: 'RQE', value: rqe })
+
+  return {
+    '@type': 'Physician',
+    name:    pessoa.name,
+    ...(identifier.length > 0 && { identifier }),
+    ...(pessoa.titulacao && { honorificSuffix: pessoa.titulacao }),
+    ...(pessoa.image && { image: pessoa.image }),
+  }
+}
+
+export function postSchema(post: PostParaSchema) {
+  const author = pessoaOuReferencia(post.author)
+  const reviewedBy = pessoaOuReferencia(post.revisadoPor)
+
+  return {
+    '@context': 'https://schema.org',
+    '@type':    ['MedicalWebPage', 'Article'],
+    '@id':      `${BASE_URL}/blog/${post.slug}#article`,
+    url:        `${BASE_URL}/blog/${post.slug}`,
+    headline:   post.title,
+    ...(post.description && { description: post.description }),
+    ...(post.datePublished && { datePublished: post.datePublished }),
+    dateModified: post.dataRevisao ?? post.datePublished,
+    ...(post.image && { image: post.image }),
+    isPartOf:  { '@id': `${BASE_URL}/#website` },
+    publisher: { '@id': `${BASE_URL}/#organization` },
+    ...(author && { author }),
+    ...(reviewedBy && { reviewedBy, lastReviewed: post.dataRevisao }),
+    ...(post.citations && post.citations.length > 0 && { citation: post.citations }),
+  }
+}
+
 // ─── FAQPage schema factory ────────────────────────────────────────────────────
 export function faqSchema(faqs: { pergunta: string; resposta: string }[]) {
   return {

@@ -54,7 +54,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url:             `${BASE}/blog/${post.slug.current}`,
       priority:        0.7,
       changeFrequency: 'monthly' as const,
-      lastModified:    post.publishedAt ? new Date(post.publishedAt) : agora,
+      lastModified:    post.dataRevisao ? new Date(post.dataRevisao)
+                      : post.publishedAt ? new Date(post.publishedAt)
+                      : agora,
     }))
   } catch {
     postPages = []
