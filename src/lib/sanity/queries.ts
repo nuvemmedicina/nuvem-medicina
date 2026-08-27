@@ -6,6 +6,16 @@ export type Reference = {
   url?:     string
 }
 
+export type Autor = {
+  name:  string
+  slug?: { current: string }
+  bio?:  string
+  crm?:  string
+  rqe?:  string[]
+  titulacao?: string
+  image?: { asset: { _ref: string } }
+}
+
 export type Post = {
   _id:         string
   title:       string
@@ -13,18 +23,24 @@ export type Post = {
   publishedAt: string
   excerpt:     string
   coverImage?: { asset: { _ref: string }; credit?: string }
-  author?:     { name: string; bio?: string; image?: { asset: { _ref: string } } }
+  author?:     Autor
   categories?: { title: string; color?: string }[]
   body:        // eslint-disable-next-line @typescript-eslint/no-explicit-any
                any[]
   readingTime?: number
   references?:  Reference[]
+  perguntaPrincipal?: string
+  respostaDireta?:    string
+  exameRelacionado?:  string
+  especialidadeRelacionada?: string
+  revisadoPor?: Autor
+  dataRevisao?: string
 }
 
 export async function getAllPosts(): Promise<Post[]> {
   return client.fetch(
     `*[_type == "post" && defined(slug.current)] | order(publishedAt desc) {
-      _id, title, slug, publishedAt, excerpt, coverImage, author->, categories[]->, readingTime
+      _id, title, slug, publishedAt, excerpt, coverImage, author->, categories[]->, readingTime, dataRevisao, respostaDireta
     }`
   )
 }
@@ -33,7 +49,9 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
   return client.fetch(
     `*[_type == "post" && slug.current == $slug][0] {
       _id, title, slug, publishedAt, excerpt, coverImage { ..., credit }, author->, categories[]->, body, readingTime,
-      references[] { _key, citation, url }
+      references[] { _key, citation, url },
+      perguntaPrincipal, respostaDireta, exameRelacionado, especialidadeRelacionada, dataRevisao,
+      revisadoPor->
     }`,
     { slug }
   )

@@ -5,7 +5,8 @@ import { notFound }      from 'next/navigation'
 import { ArrowLeft }     from 'lucide-react'
 import { PortableText }  from '@portabletext/react'
 import { SectionWrapper }  from '@/components/ui/SectionWrapper'
-import { CtaBanner }       from '@/components/ui/CtaBanner'
+import { Breadcrumb }      from '@/components/ui/Breadcrumb'
+import { JsonLd }          from '@/components/ui/JsonLd'
 import { CalloutBlock }         from '@/components/blog/CalloutBlock'
 import { FaqItem }              from '@/components/blog/FaqItem'
 import { DownloadBlock }        from '@/components/blog/DownloadBlock'
@@ -13,8 +14,13 @@ import { StatBlock }            from '@/components/blog/StatBlock'
 import { TableBlock }           from '@/components/blog/TableBlock'
 import { YouTubeBlock }         from '@/components/blog/YouTubeBlock'
 import { ReferencesAccordion }  from '@/components/blog/ReferencesAccordion'
+import { BlocoRespostaDireta }  from '@/components/blog/BlocoRespostaDireta'
+import { CartaoAutor }          from '@/components/blog/CartaoAutor'
+import { ChamadaExame }         from '@/components/blog/ChamadaExame'
 import { getPostBySlug, getAllPosts } from '@/lib/sanity/queries'
 import { urlFor }          from '@/lib/sanity/image'
+import { postSchema, faqSchema, breadcrumbSchema } from '@/lib/schema'
+import { SITE_URL } from '@/lib/site'
 
 export const revalidate = 60
 
@@ -30,16 +36,22 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const ogImage = post.coverImage
     ? urlFor(post.coverImage).width(1200).height(630).url()
     : undefined
+  // respostaDireta é escrita para responder a pergunta de busca de forma direta,
+  // então é a melhor description quando existe; excerpt continua sendo o recuo
+  // para os artigos que ainda não a têm preenchida.
+  const description = post.respostaDireta ?? post.excerpt
   return {
     title:       post.title,
-    description: post.excerpt,
+    description,
     alternates:  { canonical: `/blog/${slug}` },
     openGraph: {
       title:       post.title,
-      description: post.excerpt,
+      description,
       type:        'article',
       siteName:    'NU.V.E.M Medicina',
       locale:      'pt_BR',
+      publishedTime: post.publishedAt,
+      modifiedTime:  post.dataRevisao ?? post.publishedAt,
       ...(ogImage && {
         images: [{ url: ogImage, width: 1200, height: 630, alt: post.title }],
       }),
@@ -47,7 +59,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     twitter: {
       card:        'summary_large_image',
       title:       post.title,
-      description: post.excerpt,
+      description,
       ...(ogImage && { images: [ogImage] }),
     },
   }
@@ -57,7 +69,17 @@ function formatDate(dateStr: string) {
   return new Date(dateStr).toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })
 }
 
-const ptComponents = {
+/** Extrai os blocos faqItem do corpo do artigo, na ordem em que aparecem no texto. */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function extrairFaqs(body: any[] = []): { pergunta: string; resposta: string }[] {
+  return body
+    .filter(b => b._type === 'faqItem' && b.pergunta && b.resposta)
+    .map(b => ({ pergunta: b.pergunta, resposta: b.resposta }))
+}
+
+// Fábrica em vez de objeto estático: o bloco faqItem precisa do título do
+// artigo para o evento `abriu_faq` do dataLayer (ver src/components/blog/FaqItem.tsx).
+const buildPtComponents = (artigoTitle: string) => ({
   types: {
     image: ({ value }: any) => (
       <figure className="my-8">
@@ -72,7 +94,7 @@ const ptComponents = {
       </figure>
     ),
     calloutBlock:  ({ value }: any) => <CalloutBlock value={value} />,
-    faqItem:       ({ value }: any) => <FaqItem value={value} />,
+    faqItem:       ({ value }: any) => <FaqItem value={value} artigoTitle={artigoTitle} />,
     downloadBlock: ({ value }: any) => <DownloadBlock value={value} />,
     statBlock:     ({ value }: any) => <StatBlock value={value} />,
     tableBlock:    ({ value }: any) => <TableBlock value={value} />,
@@ -105,6 +127,18 @@ const ptComponents = {
       </blockquote>
     ),
   },
+})
+
+function pessoaParaSchema(autor?: NonNullable<Awaited<ReturnType<typeof getPostBySlug>>>['author']) {
+  if (!autor) return undefined
+  return {
+    name:       autor.name,
+    slug:       autor.slug?.current,
+    crm:        autor.crm,
+    rqe:        autor.rqe,
+    titulacao:  autor.titulacao,
+    image:      autor.image ? urlFor(autor.image).width(400).height(400).url() : undefined,
+  }
 }
 
 export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -112,8 +146,31 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   const post = await getPostBySlug(slug)
   if (!post) notFound()
 
+  const faqs = extrairFaqs(post.body)
+  const coverImageUrl = post.coverImage ? urlFor(post.coverImage).width(1200).height(675).url() : undefined
+
   return (
     <>
+      <JsonLd data={[
+        postSchema({
+          title:         post.title,
+          slug:          post.slug.current,
+          description:   post.respostaDireta ?? post.excerpt,
+          datePublished: post.publishedAt,
+          dataRevisao:   post.dataRevisao,
+          image:         coverImageUrl,
+          author:        pessoaParaSchema(post.author),
+          revisadoPor:   pessoaParaSchema(post.revisadoPor),
+          citations:     post.references?.map(r => r.citation),
+        }),
+        ...(faqs.length >= 2 ? [faqSchema(faqs)] : []),
+        breadcrumbSchema([
+          { name: 'Home', url: SITE_URL },
+          { name: 'Blog', url: `${SITE_URL}/blog` },
+          { name: post.title, url: `${SITE_URL}/blog/${post.slug.current}` },
+        ]),
+      ]} />
+
       {/* Hero */}
       <div className="relative pt-32 pb-16 overflow-hidden" style={{ background: 'linear-gradient(135deg, #002535, #00465F)' }}>
         <div className="absolute inset-0 dark-grid-bg pointer-events-none opacity-60" />
@@ -131,6 +188,13 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
             </div>
           )}
           <h1 className="font-serif font-medium text-white text-[1.95rem] md:text-[2.5rem] leading-tight mb-4">{post.title}</h1>
+
+          {post.respostaDireta && (
+            <div className="mb-6">
+              <BlocoRespostaDireta pergunta={post.perguntaPrincipal} resposta={post.respostaDireta} />
+            </div>
+          )}
+
           {post.excerpt && <p className="text-[0.97rem] text-white/65 leading-relaxed mb-6">{post.excerpt}</p>}
           <div className="flex items-center gap-4 text-[0.78rem] text-white/50">
             {post.author && <span>Por {post.author.name}</span>}
@@ -144,7 +208,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
       {post.coverImage && (
         <div className="max-w-3xl mx-auto px-6 -mt-8 relative z-10">
           <div className="relative w-full rounded-2xl overflow-hidden shadow-xl" style={{ aspectRatio: '16/9' }}>
-            <Image src={urlFor(post.coverImage).width(1200).height(675).url()} alt={post.title} fill className="object-cover" />
+            <Image src={coverImageUrl!} alt={post.title} fill className="object-cover" />
           </div>
           {post.coverImage.credit && (
             <p className="text-[0.7rem] text-steel/40 mt-1.5 text-right">
@@ -157,11 +221,13 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
       {/* Body */}
       <SectionWrapper>
         <div className="max-w-3xl mx-auto">
+          <Breadcrumb crumbs={[{ label: 'Blog', href: '/blog' }, { label: post.title }]} />
+
           {/* Títulos em Cormorant 500 — o peso 600 não é carregado pela fonte e o
               navegador simulava um negrito artificial, pesado demais ao lado do
               corpo em Poppins Light. */}
           <div className="prose prose-lg prose-headings:font-serif prose-headings:font-medium prose-headings:text-steel prose-headings:leading-snug prose-h2:text-[1.65rem] md:prose-h2:text-[1.85rem] prose-h2:mt-11 prose-h2:mb-4 prose-h3:text-[1.4rem] md:prose-h3:text-[1.5rem] prose-h3:mt-9 prose-h3:mb-3 prose-h4:text-[1.3rem] md:prose-h4:text-[1.35rem] prose-p:text-steel/70 prose-p:leading-relaxed prose-a:text-teal prose-strong:text-steel prose-li:text-steel/70 max-w-none">
-            {post.body && <PortableText value={post.body} components={ptComponents} />}
+            {post.body && <PortableText value={post.body} components={buildPtComponents(post.title)} />}
           </div>
 
           {/* Referências bibliográficas */}
@@ -171,26 +237,18 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
           {/* Author card */}
           {post.author && (
-            <div className="mt-12 pt-8 border-t border-teal/10 flex items-start gap-4">
-              {post.author.image && (
-                <div className="w-14 h-14 rounded-full overflow-hidden shrink-0 relative border border-teal/15">
-                  <Image src={urlFor(post.author.image).width(112).height(112).url()} alt={post.author.name} fill className="object-cover" />
-                </div>
-              )}
-              <div>
-                <p className="text-[0.72rem] font-bold uppercase tracking-[.1em] text-teal mb-0.5">Autor</p>
-                <p className="text-[0.97rem] font-semibold text-steel">{post.author.name}</p>
-                {post.author.bio && <p className="text-[0.82rem] text-steel/55 mt-1 leading-relaxed">{post.author.bio}</p>}
-              </div>
-            </div>
+            <CartaoAutor autor={post.author} revisadoPor={post.revisadoPor} dataRevisao={post.dataRevisao} />
           )}
         </div>
       </SectionWrapper>
 
       <SectionWrapper dark grid>
-        <CtaBanner
-          title="Gostou do conteúdo?"
-          desc="Agende uma consulta com nossa equipe especializada e cuide da sua saúde digestiva."
+        <ChamadaExame
+          exameRelacionado={post.exameRelacionado}
+          especialidadeRelacionada={post.especialidadeRelacionada}
+          artigoTitle={post.title}
+          fallbackTitle="Gostou do conteúdo?"
+          fallbackDesc="Agende uma consulta com nossa equipe especializada e cuide da sua saúde digestiva."
         />
       </SectionWrapper>
     </>
