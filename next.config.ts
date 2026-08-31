@@ -128,6 +128,9 @@ const nextConfig: NextConfig = {
       { source: '/atendimentos-e-especialidades', destination: '/especialidades',     permanent: true },
       { source: '/preparos-para-exames',          destination: '/exames/preparos',    permanent: true },
 
+      // Endereço curto que as pessoas tentam adivinhar para a página de links da bio.
+      { source: '/bio',                           destination: '/links',              permanent: true },
+
       // Página removida em ca59088. /sobre é o destino mais próximo em conteúdo.
       { source: '/parceiros',                     destination: '/sobre',              permanent: true },
 

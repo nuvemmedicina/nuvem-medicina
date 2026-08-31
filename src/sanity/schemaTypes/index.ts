@@ -8,6 +8,8 @@ import { statBlockType }     from './statBlock'
 import { spotifyBlockType } from './spotifyBlock'
 import { youtubeBlockType } from './youtubeBlock'
 import { tableBlock }       from './tableBlock'
+import { linkDestinoType }  from './linkDestino'
+import { linkBioType }      from './linkBio'
 
 export const schemaTypes = [
   postType,
@@ -20,4 +22,6 @@ export const schemaTypes = [
   spotifyBlockType,
   youtubeBlockType,
   tableBlock,
+  linkDestinoType,
+  linkBioType,
 ]

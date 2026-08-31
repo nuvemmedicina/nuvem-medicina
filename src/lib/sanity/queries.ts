@@ -1,4 +1,5 @@
 import { client } from './client'
+import type { LinkBio } from '@/lib/linkBio'
 
 export type Reference = {
   _key:     string
@@ -59,4 +60,18 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
 
 export async function getCategories() {
   return client.fetch(`*[_type == "category"] | order(title asc) { _id, title, color }`)
+}
+
+/** Documento único que alimenta /links. Retorna null se ainda não foi criado no Studio. */
+export async function getLinkBio(): Promise<LinkBio | null> {
+  return client.fetch(
+    `*[_type == "linkBio"][0] {
+      posicionamento,
+      chamadaPrincipal,
+      destaques[] { _key, rotulo, descricao, destino, ativo },
+      blocos[] { _key, titulo, itens[] { _key, rotulo, destino } },
+      mensagemWhatsapp,
+      avisoTemporario,
+    }`
+  )
 }

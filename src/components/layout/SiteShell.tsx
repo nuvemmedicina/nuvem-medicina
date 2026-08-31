@@ -10,9 +10,12 @@ import { ConsentBanner } from '@/components/ui/ConsentBanner'
 
 export function SiteShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
-  const isStudio  = pathname?.startsWith('/studio')
+  const isStudio = pathname?.startsWith('/studio')
+  // /links é a página da bio do Instagram: layout próprio, sem cabeçalho,
+  // rodapé, botão flutuante de WhatsApp ou chat da Nuvete.
+  const isLinkBio = pathname?.startsWith('/links')
 
-  if (isStudio) return <>{children}</>
+  if (isStudio || isLinkBio) return <>{children}</>
 
   return (
     <>
