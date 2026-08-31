@@ -54,12 +54,14 @@ export default async function LinksPage() {
   const destaquesAtivos = destaques.filter(d => d.ativo !== false)
 
   return (
-    <div className="min-h-screen bg-cloud flex flex-col items-center px-5 py-10">
-      <div className="w-full max-w-[440px] flex flex-col items-center text-center">
+    <div className="min-h-screen bg-cloud flex flex-col items-center px-5 py-10 relative overflow-hidden">
+      <div className="absolute inset-0 hero-grid-bg pointer-events-none" />
+
+      <div className="relative z-10 w-full max-w-[440px] flex flex-col items-center text-center">
 
         <LogoTeal className="h-11 w-auto" />
 
-        <h1 className="font-serif font-light text-steel text-[1.3rem] mt-4 leading-snug">
+        <h1 className="font-serif font-light text-steel text-[1.3rem] mt-4 leading-snug uppercase tracking-wide">
           NU.V.E.M Medicina
         </h1>
 
