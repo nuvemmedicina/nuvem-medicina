@@ -35,7 +35,7 @@ export const HERO_SLIDES: HeroSlide[] = [
       <>
         O ecossistema completo de medicina especializada: diagnóstico de alta precisão,
         equipe multidisciplinar e formação profissional baseada em casos reais.{' '}
-        <strong className="text-teal font-semibold">Única clínica do segmento com gestão ISO 9001.</strong>
+        <strong className="text-teal font-semibold">Clínica com certificação ISO 9001.</strong>
       </>
     ),
     imagem: {

@@ -13,7 +13,7 @@ export const organizationSchema = {
   url:         BASE_URL,
   logo:        `${BASE_URL}/images/logo.svg`,
   image:       `${BASE_URL}/images/vera-eliane.jpg`,
-  description: 'Clínica especializada em gastroenterologia, diagnóstico avançado e ensino médico em Belo Horizonte. Única clínica do segmento certificada ISO 9001.',
+  description: 'Clínica especializada em gastroenterologia, diagnóstico avançado e ensino médico em Belo Horizonte. Clínica com certificação ISO 9001.',
   telephone:   '+55-31-2537-3131',
   email:       CONTATO.email,
   foundingDate: '2018',
@@ -241,7 +241,19 @@ export function postSchema(post: PostParaSchema) {
 }
 
 // ─── FAQPage schema factory ────────────────────────────────────────────────────
-export function faqSchema(faqs: { pergunta: string; resposta: string }[]) {
+type BlocoTextoFaq = { _type?: string; children?: { text?: string }[] }
+
+// O Google exige texto puro no JSON-LD de FAQ: nada de negrito, itálico ou
+// marcadores de lista, mesmo quando a resposta é salva como texto formatado.
+function textoSimplesDaResposta(resposta: string | BlocoTextoFaq[]): string {
+  if (typeof resposta === 'string') return resposta
+  return resposta
+    .map(bloco => (bloco._type === 'block' ? (bloco.children ?? []).map(c => c.text ?? '').join('') : ''))
+    .filter(Boolean)
+    .join('\n')
+}
+
+export function faqSchema(faqs: { pergunta: string; resposta: string | BlocoTextoFaq[] }[]) {
   return {
     '@context': 'https://schema.org',
     '@type':    'FAQPage',
@@ -250,7 +262,7 @@ export function faqSchema(faqs: { pergunta: string; resposta: string }[]) {
       name:             f.pergunta,
       acceptedAnswer: {
         '@type': 'Answer',
-        text:    f.resposta,
+        text:    textoSimplesDaResposta(f.resposta),
       },
     })),
   }

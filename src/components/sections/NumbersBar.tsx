@@ -1,7 +1,7 @@
 // NumbersBar
 const NUMBERS = [
   { val: '+2.000', gold: true,  label: 'Avaliações Google',  sub: '★★★★★ Nota máxima' },
-  { val: 'ISO 9001', gold: false, label: 'Única no Segmento', sub: 'Gestão certificada BH' },
+  { val: 'ISO 9001', gold: false, label: 'Certificação de Qualidade', sub: 'Gestão certificada BH' },
   { val: '6',     gold: false, label: 'Especialidades',      sub: 'Equipe integrada' },
   { val: '7',     gold: true,  label: 'Tipos de Exames',     sub: 'Alta resolução diagnóstica' },
 ]

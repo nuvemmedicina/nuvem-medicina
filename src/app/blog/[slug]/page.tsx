@@ -70,8 +70,9 @@ function formatDate(dateStr: string) {
 }
 
 /** Extrai os blocos faqItem do corpo do artigo, na ordem em que aparecem no texto. */
+// resposta pode ser string (respostas antigas) ou Portable Text (respostas novas, formatadas).
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function extrairFaqs(body: any[] = []): { pergunta: string; resposta: string }[] {
+function extrairFaqs(body: any[] = []): { pergunta: string; resposta: string | any[] }[] {
   return body
     .filter(b => b._type === 'faqItem' && b.pergunta && b.resposta)
     .map(b => ({ pergunta: b.pergunta, resposta: b.resposta }))

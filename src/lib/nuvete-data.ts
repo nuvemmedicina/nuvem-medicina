@@ -381,7 +381,7 @@ export const NUVETE_RESPOSTAS: NuveteResposta[] = [
   },
   {
     gatilhos: ['iso', '9001', 'certificação', 'certificado', 'qualidade'],
-    resposta: 'A NU.V.E.M é a **única clínica do segmento em Belo Horizonte** com certificação ISO 9001.\n\nIsso significa que cada processo, do agendamento ao diagnóstico, é padronizado, auditado e continuamente melhorado conforme padrões internacionais de qualidade.',
+    resposta: 'A NU.V.E.M é uma clínica com certificação ISO 9001.\n\nIsso significa que cada processo, do agendamento ao diagnóstico, é padronizado, auditado e continuamente melhorado conforme padrões internacionais de qualidade.',
     botoes: [
       { label: '🏆 Saiba mais sobre a ISO 9001', acao: 'link:/gestao-da-qualidade' },
     ],

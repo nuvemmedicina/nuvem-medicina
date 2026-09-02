@@ -11,11 +11,11 @@ export const revalidate = 3600
  */
 const CONTEUDO_INSTITUCIONAL = `# NU.V.E.M Medicina
 
-> Clínica especializada em gastroenterologia, diagnóstico avançado e ensino médico em Belo Horizonte, Minas Gerais, Brasil. Única clínica do segmento com Certificação ISO 9001.
+> Clínica especializada em gastroenterologia, diagnóstico avançado e ensino médico em Belo Horizonte, Minas Gerais, Brasil. Clínica com certificação ISO 9001.
 
 ## Sobre a NU.V.E.M Medicina
 
-A NU.V.E.M Medicina é um ecossistema completo de saúde digestiva localizado no bairro Santa Efigênia, Belo Horizonte – MG. Integra clínica especializada (diagnóstico e cuidado) e centro de formação profissional (NU.V.E.M Ensino), sendo a única clínica do segmento de gastroenterologia na cidade certificada pela norma ISO 9001.
+A NU.V.E.M Medicina é um ecossistema completo de saúde digestiva localizado no bairro Santa Efigênia, Belo Horizonte – MG. Integra clínica especializada (diagnóstico e cuidado) e centro de formação profissional (NU.V.E.M Ensino), com certificação pela norma ISO 9001 em gastroenterologia.
 
 **Responsável Técnica:** Dra. Vera Ângelo — Gastroenterologista | CRM-MG 22284 | RQE 10411 | RQE 22736
 **CRM da Clínica:** CRM-MG 20532
@@ -57,7 +57,7 @@ A NU.V.E.M Medicina é um ecossistema completo de saúde digestiva localizado no
 
 ## Diferenciais e Certificações
 
-- **ISO 9001:** Única clínica do segmento de gastroenterologia em Belo Horizonte certificada. Auditoria externa periódica. Processos clínicos padronizados.
+- **ISO 9001:** Certificação de gestão da qualidade em gastroenterologia em Belo Horizonte. Auditoria externa periódica. Processos clínicos padronizados.
 - **1.991 avaliações Google:** Nota máxima ★★★★★
 - **Equipe multidisciplinar:** Gastroenterologistas, fisioterapeuta pélvica, pediatra, nefrologista
 - **Tecnologia diagnóstica:** Equipamentos de última geração para manometria AR, pHmetria e testes respiratórios
@@ -96,7 +96,7 @@ const RODAPE = `## Informações para Agendamento
 
 ## Aviso Legal
 
-As informações neste site têm caráter informativo e educacional, em conformidade com as normas do Conselho Federal de Medicina (Res. CFM nº 1.974/2011). Não substituem consulta médica profissional.`
+As informações neste site têm caráter informativo e educacional, em conformidade com as normas do Conselho Federal de Medicina (Res. CFM nº 2.336/2023). Não substituem consulta médica profissional.`
 
 function linhaDoArtigo(titulo: string, slug: string, descricao?: string) {
   const desc = (descricao ?? '').trim().replace(/\s+/g, ' ')

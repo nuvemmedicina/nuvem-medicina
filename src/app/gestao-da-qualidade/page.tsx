@@ -10,7 +10,7 @@ import { CheckCircle, Shield, FileText, BarChart3, RefreshCw, Users, ChevronDown
 export const metadata: Metadata = {
   alternates:  { canonical: '/gestao-da-qualidade' },
   title:       'Gestão da Qualidade · ISO 9001',
-  description: 'Conheça o sistema de gestão da qualidade ISO 9001 da NU.V.E.M Medicina, única clínica do segmento certificada em Belo Horizonte.',
+  description: 'Conheça o sistema de gestão da qualidade ISO 9001 da NU.V.E.M Medicina em Belo Horizonte.',
 }
 
 const PRINCIPIOS = [
@@ -39,7 +39,7 @@ export default function GestaoQualidadePage() {
       <PageHero
         tag="Gestão da Qualidade"
         title={<>Certificação <em>ISO 9001</em>,<br />o padrão que nos define</>}
-        desc="Somos a única clínica do segmento em Belo Horizonte com gestão certificada pela norma ISO 9001, o padrão internacional de excelência em qualidade."
+        desc="Somos uma clínica com gestão certificada pela norma ISO 9001, o padrão internacional de excelência em qualidade."
       />
 
       {/* O que é ISO 9001 */}
@@ -74,8 +74,8 @@ export default function GestaoQualidadePage() {
                 documentados, auditados externamente e em constante melhoria.
               </p>
               <p>
-                <strong className="text-steel font-medium">Somos a única clínica do segmento
-                de gastroenterologia e diagnóstico digestivo em Belo Horizonte</strong> a possuir
+                <strong className="text-steel font-medium">Somos uma clínica
+                de gastroenterologia e diagnóstico digestivo em Belo Horizonte</strong> com
                 esta certificação, o que representa um diferencial concreto de segurança e
                 confiança para nossos pacientes e parceiros.
               </p>

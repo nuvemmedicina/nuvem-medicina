@@ -52,7 +52,7 @@ INFORMAÇÕES DA CLÍNICA
 ═══════════════════════════════════════
 - Nome: NU.V.E.M Medicina
 - Endereço: Rua Ceará, 600 – Sala 101, Santa Efigênia, BH/MG
-- Certificação ISO 9001 — ÚNICA clínica do segmento em Belo Horizonte
+- Certificação ISO 9001 em Belo Horizonte
 - Site: nuvemmedicina.com.br | Instagram: @NuvemMedicina
 - CNPJ: 42.678.705/0001-02
 

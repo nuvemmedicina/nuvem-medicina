@@ -36,9 +36,9 @@ export function IsoSection() {
           <div>
             <p className="sec-tag-dark reveal">Gestão da Qualidade</p>
             <h2 className="sec-title-dark reveal reveal-d1">
-              A única clínica com<br />
+              Clínica com<br />
               <em>Certificação ISO 9001</em><br />
-              no segmento em BH
+              em BH
             </h2>
             <p className="text-[0.98rem] font-light leading-[1.85] mt-4 mb-8 reveal reveal-d2 text-muted-dark">
               A ISO 9001 é o padrão internacional de excelência em gestão. Cada processo,
@@ -83,7 +83,7 @@ export function IsoSection() {
                   <div>
                     <strong className="block text-[0.88rem] font-semibold text-steel mb-0.5">Certificação ISO 9001</strong>
                     <span className="text-[0.76rem] text-steel/55 leading-snug">
-                      Única clínica do segmento em BH<br />com gestão de qualidade certificada
+                      Clínica com certificação ISO 9001
                     </span>
                   </div>
                 </div>

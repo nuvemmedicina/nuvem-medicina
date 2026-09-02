@@ -127,7 +127,7 @@ const DETAIL: Record<string, DetailData> = {
       { title: 'Integração GI + Pélvico', body: 'Abordagem única na NU.V.E.M que combina gastroenterologia e fisioterapia pélvica para resultados superiores em casos de constipação com componente funcional.' },
     ],
     diferenciais: [
-      'Única clínica em BH que integra fisioterapia pélvica e manometria anorretal no mesmo espaço',
+      'Manometria anorretal e fisioterapia pélvica no mesmo espaço, do diagnóstico ao tratamento',
       'Biofeedback eletromiográfico de última geração com registro gráfico de evolução',
       'Protocolos individualizados com reavaliação periódica documentada',
       'Integração direta com gastroenterologia para casos de constipação obstrutiva',
@@ -181,7 +181,7 @@ const DETAIL: Record<string, DetailData> = {
       { title: 'Acompanhamento Evolutivo', body: 'Monitoramento periódico com halimetria para avaliar resposta ao tratamento de forma objetiva, garantindo que a melhora seja documentada e sustentada.' },
     ],
     diferenciais: [
-      'Único protocolo multidisciplinar completo para halitose em Belo Horizonte',
+      'Protocolo multidisciplinar para investigar a origem da halitose e tratar a causa',
       'Halimetria quantitativa objetiva: resultado em ppb (partes por bilhão) de CSV',
       'Investigação simultânea de origem oral, digestiva e sistêmica na mesma consulta',
       'Plano terapêutico individualizado com acompanhamento evolutivo documentado',
@@ -290,7 +290,7 @@ const DETAIL: Record<string, DetailData> = {
       { title: 'Prevenção e Rastreamento', body: 'Avaliação renal preventiva em pacientes de risco (diabéticos, hipertensos, histórico familiar), com exames complementares e orientação dietética personalizada para proteção renal.' },
     ],
     diferenciais: [
-      'Única clínica em BH com nefrologia integrada à gastroenterologia no mesmo espaço',
+      'Nefrologia e gastroenterologia no mesmo espaço, para quem precisa das duas avaliações',
       'Investigação de oxalúria entérica e disbiose como causas de litíase renal recorrente',
       'Abordagem da interface GI-Renal: impacto da microbiota na saúde renal',
       'Suporte multidisciplinar completo sem necessidade de múltiplos encaminhamentos',

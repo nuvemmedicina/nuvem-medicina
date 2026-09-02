@@ -27,9 +27,15 @@ export const postType = defineType({
       name:  'slug',
       title: 'URL do artigo',
       type:  'slug',
-      options: { source: 'title', maxLength: 96 },
-      description: 'Atenção: se este artigo já foi publicado, NÃO clique em "Generate" para gerar o slug novamente a partir do título. Trocar a URL de um artigo publicado quebra o histórico de busca do Google e exige criar um redirecionamento 301.',
-      validation: Rule => Rule.required(),
+      description: 'Escreva a URL manualmente: apenas letras minúsculas, sem acento, com hífen entre as palavras (ex.: "disturbios-intestinais"). Se este artigo já foi publicado, não altere o valor deste campo: trocar a URL quebra o histórico de busca do Google e exige criar um redirecionamento 301.',
+      validation: Rule => Rule
+        .required()
+        .custom(value => {
+          if (!value?.current) return true
+          return /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(value.current)
+            ? true
+            : 'Use apenas letras minúsculas sem acento, números e hífen entre as palavras, sem espaços nem outros caracteres. Exemplo: "disturbios-intestinais".'
+        }),
     }),
     defineField({
       name:  'author',

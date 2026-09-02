@@ -28,7 +28,7 @@ const PREPAROS = [
     slug:    'manometria-anorretal',
     pdfUrl:  '/pdfs/preparo-manometria-anorretal-v1.pdf',
     itens: [
-      'Realizar enema de limpeza (Minilax® ou similar) 1–2 horas antes do exame',
+      'Realizar enema de limpeza (Minilax® ou similar) 1-2 horas antes do exame',
       'Não é necessário jejum',
       'Usar roupa confortável e calça que possa ser abaixada',
       'Trazer o pedido médico e exames anteriores',

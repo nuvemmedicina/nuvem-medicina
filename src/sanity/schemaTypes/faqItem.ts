@@ -1,4 +1,4 @@
-import { defineType, defineField } from 'sanity'
+import { defineType, defineField, defineArrayMember } from 'sanity'
 import { HelpCircleIcon } from 'lucide-react'
 
 export const faqItemType = defineType({
@@ -8,16 +8,30 @@ export const faqItemType = defineType({
   icon:  HelpCircleIcon,
   fields: [
     defineField({
-      name:       'pergunta',
-      title:      'Pergunta',
-      type:       'string',
-      validation: Rule => Rule.required(),
+      name:        'pergunta',
+      title:       'Pergunta',
+      type:        'string',
+      description: 'Apenas texto simples, sem formatação. Não cole marcação de título, negrito ou links aqui: eles aparecerão exatamente como digitados na página.',
+      validation:  Rule => Rule.required(),
     }),
     defineField({
-      name:       'resposta',
-      title:      'Resposta',
-      type:       'text',
-      rows:       5,
+      name:  'resposta',
+      title: 'Resposta',
+      type:  'array',
+      of: [
+        defineArrayMember({
+          type:   'block',
+          styles: [{ title: 'Normal', value: 'normal' }],
+          lists:  [{ title: 'Lista com marcadores', value: 'bullet' }],
+          marks: {
+            decorators: [
+              { title: 'Negrito', value: 'strong' },
+              { title: 'Itálico', value: 'em' },
+            ],
+            annotations: [],
+          },
+        }),
+      ],
       validation: Rule => Rule.required(),
     }),
   ],

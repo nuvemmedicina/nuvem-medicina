@@ -122,7 +122,7 @@ export const EXAMES: Exame[] = [
       'Equipamentos de última geração com mapeamento completo da pressão esofágica em alta resolução. Laudos emitidos por especialistas certificados ISO 9001.',
     ],
     info: [
-      { icon: 'Clock',   text: 'Duração: 30–45 minutos' },
+      { icon: 'Clock',   text: 'Duração: 30-45 minutos' },
       { icon: 'Shield',  text: 'Certificação ISO 9001, padrão internacional' },
       { icon: 'Check',   text: 'Preparo específico · sem sedação' },
     ],
@@ -139,7 +139,7 @@ export const EXAMES: Exame[] = [
       'Protocolo completo com biofeedback integrado. Equipamentos de última geração com laudos certificados ISO 9001.',
     ],
     info: [
-      { icon: 'Clock',   text: 'Duração: 30–45 minutos' },
+      { icon: 'Clock',   text: 'Duração: 30-45 minutos' },
       { icon: 'Shield',  text: 'Certificação ISO 9001, padrão internacional' },
       { icon: 'Check',   text: 'Preparo com enema · sem sedação' },
     ],
@@ -173,7 +173,7 @@ export const EXAMES: Exame[] = [
     ],
     info: [
       { icon: 'Check',  text: 'Sem coleta de sangue · sem sedação' },
-      { icon: 'Clock',  text: 'Duração: 2–3 horas conforme substrato' },
+      { icon: 'Clock',  text: 'Duração: 2-3 horas conforme substrato' },
     ],
   },
   {

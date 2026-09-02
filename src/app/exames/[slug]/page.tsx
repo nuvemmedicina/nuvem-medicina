@@ -88,14 +88,14 @@ const EXAM_DETAIL: Record<string, {
       'Complementar à avaliação pélvica funcional',
     ],
     preparo: [
-      'Realizar enema de limpeza (Minilax® ou similar) 1–2 horas antes do exame',
+      'Realizar enema de limpeza (Minilax® ou similar) 1-2 horas antes do exame',
       'Não é necessário jejum',
       'Usar roupa confortável e calça que possa ser abaixada',
       'Comparecer com o pedido médico e exames anteriores',
       'Informar à equipe o uso de qualquer medicamento',
     ],
     preparoCards: [
-      { icon: '🚿', badge: '1–2h antes',   title: 'Enema de Limpeza', body: 'Realizar enema (Minilax® ou similar) 1 a 2 horas antes do exame para limpeza do canal anal.' },
+      { icon: '🚿', badge: '1-2h antes',   title: 'Enema de Limpeza', body: 'Realizar enema (Minilax® ou similar) 1 a 2 horas antes do exame para limpeza do canal anal.' },
       { icon: '🍽️', title: 'Sem Jejum',    body: 'Não é necessário jejum. Você pode se alimentar normalmente antes do exame.' },
       { icon: '👕', title: 'Vestimenta',    body: 'Use roupa confortável e calça que possa ser abaixada com facilidade.' },
       { icon: '📋', title: 'Documentos',    body: 'Traga o pedido médico e exames anteriores disponíveis (ultrassom pélvico, manometria prévia).' },
@@ -284,7 +284,7 @@ const RESP_TECNOLOGIAS = [
     sub:    'Diagnóstico não invasivo portátil',
     desc:   'Equipamento portátil para teste respiratório de H₂ em ar expirado. Indicado no diagnóstico de intolerância à lactose e frutose, malabsorção de carboidratos e supercrescimento bacteriano. Resultado instantâneo em menos de 60 segundos, com exibição em display LCD.',
     specs:  [
-      { label: 'Gás medido',    value: 'H₂ (1–500 PPM)' },
+      { label: 'Gás medido',    value: 'H₂ (1-500 PPM)' },
       { label: 'Resposta',      value: '< 60 segundos' },
       { label: 'Portabilidade', value: '120g · pilhas AA' },
       { label: 'Conectividade', value: 'Standalone ou PC' },
@@ -581,7 +581,7 @@ export default async function ExameSlugPage({ params }: Props) {
                             { prazo: '4 semanas', med: 'Antibióticos' },
                             { prazo: '3 semanas', med: 'Análogos GLP-1' },
                             { prazo: '2 semanas', med: 'Probióticos' },
-                            { prazo: '5–7 dias',  med: 'Laxativos' },
+                            { prazo: '5-7 dias',  med: 'Laxativos' },
                           ].map(m => (
                             <div key={m.med} className="bg-gold/8 border border-gold/20 rounded-xl px-3 py-2.5 text-center">
                               <p className="text-[0.72rem] font-bold text-gold">{m.prazo}</p>

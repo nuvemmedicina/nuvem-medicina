@@ -66,7 +66,7 @@ export function Footer() {
               <IsoSeal size={48} />
               <div>
                 <p className="text-[0.78rem] font-semibold text-white leading-tight">Certificação ISO 9001</p>
-                <p className="text-[0.72rem] text-white/45 mt-0.5">Única clínica do segmento em BH</p>
+                <p className="text-[0.72rem] text-white/45 mt-0.5">Clínica com certificação ISO 9001</p>
               </div>
             </div>
 
@@ -141,7 +141,7 @@ export function Footer() {
           </div>
           <div className="flex flex-col items-center md:items-end gap-2">
             <p className="text-[0.65rem] text-white/20 max-w-md leading-relaxed text-center md:text-right">
-              As informações neste site têm caráter informativo e educacional, em conformidade com as normas do Conselho Federal de Medicina (Res. CFM nº 1.974/2011). Não substituem consulta médica profissional.
+              As informações neste site têm caráter informativo e educacional, em conformidade com as normas do Conselho Federal de Medicina (Res. CFM nº 2.336/2023). Não substituem consulta médica profissional.
             </p>
             <a
               href="https://anawebdesign.com.br"

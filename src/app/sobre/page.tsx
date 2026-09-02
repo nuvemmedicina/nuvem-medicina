@@ -10,12 +10,12 @@ import { CONTATO }       from '@/lib/data'
 export const metadata: Metadata = {
   alternates:  { canonical: '/sobre' },
   title:       'Sobre a Clínica',
-  description: 'Conheça a NU.V.E.M Medicina: história, missão, valores e o diferencial ISO 9001 que nos torna únicos em Belo Horizonte.',
+  description: 'Conheça a NU.V.E.M Medicina: história, missão, valores e o diferencial ISO 9001 em Belo Horizonte.',
 }
 
 const PILARES = [
   { num: '01', Icon: Microscope,   title: 'Diagnóstico de Precisão', desc: 'Equipamentos de última geração operados por especialistas certificados, garantindo resultados confiáveis e laudos detalhados.' },
-  { num: '02', Icon: ShieldCheck,  title: 'Gestão ISO 9001',          desc: 'Únicos no segmento em BH com certificação internacional de qualidade. Cada processo é padronizado, auditado e continuamente melhorado.' },
+  { num: '02', Icon: ShieldCheck,  title: 'Gestão ISO 9001',          desc: 'Certificação internacional de qualidade. Cada processo é padronizado, auditado e continuamente melhorado.' },
   { num: '03', Icon: Users,        title: 'Equipe Multidisciplinar',  desc: 'Gastroenterologistas, fisioterapeutas pélvicos, nefrologista, pediatra e especialistas em halitose trabalhando de forma integrada.' },
   { num: '04', Icon: Heart,        title: 'Cuidado Humanizado',        desc: 'Escuta ativa, respeito ao tempo do paciente e comunicação clara em cada etapa do atendimento.' },
   { num: '05', Icon: GraduationCap,title: 'Ensino Médico de Elite',    desc: 'Centro de formação profissional com metodologia hands-on baseada nos casos reais da própria clínica.' },
@@ -49,7 +49,7 @@ export default function SobrePage() {
                 Localizada no coração do bairro Santa Efigênia, a clínica tornou-se referência
                 em diagnósticos avançados: manometria de alta resolução, testes respiratórios
                 para SIBO e <em><strong>H. pylori</strong></em>, pHmetria, halimetria e muito mais, sob gestão certificada
-                pela norma ISO 9001, única no segmento em Belo Horizonte.
+                pela norma ISO 9001.
               </p>
               <p className="reveal reveal-d4">
                 Mais do que uma clínica, a NU.V.E.M é um ecossistema: o braço assistencial
@@ -63,7 +63,7 @@ export default function SobrePage() {
           <div className="grid grid-cols-2 gap-4 reveal reveal-d2">
             {[
               { val: '+2.000', label: 'Avaliações Google', sub: '★★★★★', gold: true },
-              { val: 'ISO 9001', label: 'Certificação', sub: 'Única no segmento', gold: true },
+              { val: 'ISO 9001', label: 'Certificação', sub: 'Gestão certificada', gold: true },
               { val: '6+', label: 'Anos de história', sub: 'Em constante crescimento', gold: false },
               { val: '6', label: 'Especialidades', sub: 'Equipe integrada', gold: false },
             ].map(s => (
