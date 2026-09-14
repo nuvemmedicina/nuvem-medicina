@@ -3,8 +3,11 @@
 // Se a API não estiver configurada ou falhar, exibe os depoimentos estáticos.
 
 import Image from 'next/image'
+import { getTranslations, getLocale } from 'next-intl/server'
 import { ExternalLink } from 'lucide-react'
-import { DEPOIMENTOS }   from '@/lib/data'
+import type { Depoimento } from '@/types'
+import { getDepoimentos } from '@/lib/content/catalog'
+import type { AppLocale } from '@/i18n/routing'
 import { fetchGoogleReviews, formatRatingCount, type GoogleReview } from '@/lib/google-reviews'
 import { CONTATO } from '@/lib/data'
 
@@ -66,7 +69,7 @@ function GoogleReviewCard({ review, index }: { review: GoogleReview; index: numb
 
 // ─── Card para depoimento estático ───────────────────────────────────────────
 
-function StaticCard({ dep, index }: { dep: typeof DEPOIMENTOS[0]; index: number }) {
+function StaticCard({ dep, index }: { dep: Depoimento; index: number }) {
   return (
     <div
       className={`bg-cloud border border-teal/10 rounded-[14px] p-7 hover:border-teal/25 hover:-translate-y-1 hover:shadow-md transition-all reveal reveal-d${Math.min(index % 3, 4)}`}
@@ -94,6 +97,9 @@ function StaticCard({ dep, index }: { dep: typeof DEPOIMENTOS[0]; index: number 
 // ─── Componente principal (async server component) ────────────────────────────
 
 export async function DepoimentosSection() {
+  const locale = await getLocale() as AppLocale
+  const t = await getTranslations('home.depoimentos')
+  const DEPOIMENTOS = getDepoimentos(locale)
   const googleData = await fetchGoogleReviews()
 
   const totalLabel   = googleData ? formatRatingCount(googleData.totalRatings) : '+2.000'
@@ -113,8 +119,8 @@ export async function DepoimentosSection() {
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:justify-between lg:items-end gap-6 mb-14">
           <div>
-            <p className="sec-tag reveal">Depoimentos</p>
-            <h2 className="sec-title reveal reveal-d1">O que dizem nossos <em>pacientes e alunos</em></h2>
+            <p className="sec-tag reveal">{t('tag')}</p>
+            <h2 className="sec-title reveal reveal-d1">{t.rich('title', { em: chunks => <em>{chunks}</em> })}</h2>
           </div>
           <div className="reveal reveal-d1 flex flex-col items-end gap-1">
             <div className="flex gap-1 justify-end">
@@ -123,7 +129,7 @@ export async function DepoimentosSection() {
               ))}
             </div>
             <div className="text-[0.82rem] text-steel/55">
-              Baseado em <strong className="text-steel">{totalLabel} avaliações</strong> no Google
+              {t.rich('basedOn', { count: totalLabel, strong: chunks => <strong className="text-steel">{chunks}</strong> })}
             </div>
             {usingGoogle && (
               <a
@@ -132,7 +138,7 @@ export async function DepoimentosSection() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1 text-[0.72rem] text-teal hover:text-teal/70 transition-colors"
               >
-                Ver todas no Google <ExternalLink className="w-3 h-3" />
+                {t('verTodas')} <ExternalLink className="w-3 h-3" />
               </a>
             )}
           </div>
@@ -153,7 +159,7 @@ export async function DepoimentosSection() {
         {/* Atribuição Google — exigida pelos Termos de Serviço quando usando a API */}
         {usingGoogle && (
           <div className="mt-10 flex items-center justify-center gap-2 opacity-40">
-            <span className="text-[0.7rem] text-steel/50 uppercase tracking-wider">Avaliações de</span>
+            <span className="text-[0.7rem] text-steel/50 uppercase tracking-wider">{t('avaliacoesDe')}</span>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="https://www.gstatic.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png"

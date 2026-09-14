@@ -1,14 +1,17 @@
 'use client'
 
-import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { Menu, X, Calendar } from 'lucide-react'
+import { Link } from '@/i18n/navigation'
 import { NAV_ITEMS } from '@/lib/data'
 import { cn } from '@/lib/utils'
 import { LogoTeal } from '@/components/icons/LogoTeal'
 import { LogoBranco } from '@/components/icons/LogoBranco'
+import { LanguageSwitcher } from '@/components/layout/LanguageSwitcher'
 
 export function Navbar() {
+  const t = useTranslations('nav')
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
@@ -56,13 +59,13 @@ export function Navbar() {
                     onMouseLeave={() => setActiveDropdown(null)}
                     onClick={() => setActiveDropdown(activeDropdown === item.href ? null : item.href)}
                   >
-                    {item.label}
+                    {t(item.key)}
                     <svg className="w-3 h-3 opacity-60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M6 9l6 6 6-6"/>
                     </svg>
                   </button>
                 ) : (
-                  <Link href={item.href} className="nav-link">{item.label}</Link>
+                  <Link href={item.href} className="nav-link">{t(item.key)}</Link>
                 )}
                 {item.children && activeDropdown === item.href && (
                   <div
@@ -79,7 +82,7 @@ export function Navbar() {
                           className="flex items-center gap-2.5 px-4 py-3.5 text-[0.82rem] text-steel/65 hover:text-teal hover:bg-teal/5 transition-colors"
                         >
                           <span className="w-1.5 h-1.5 rounded-full bg-teal/35 shrink-0" />
-                          {child.label}
+                          {t(child.key)}
                         </Link>
                       ))}
                     </div>
@@ -90,12 +93,13 @@ export function Navbar() {
           </div>
 
           <div className="hidden lg:flex items-center gap-4">
+            <LanguageSwitcher />
             <a href="tel:3125373131" className="text-[0.82rem] text-steel/55 hover:text-teal transition-colors">
               (31) 2537-3131
             </a>
             <Link href="/agendar" className="btn-nav-cta">
               <Calendar className="w-3.5 h-3.5" />
-              Agendar Consulta
+              {t('agendarCta')}
             </Link>
           </div>
 
@@ -120,7 +124,7 @@ export function Navbar() {
                   className="block py-4 text-[1.05rem] font-semibold text-white border-b border-white/10 hover:text-teal-light transition-colors"
                   onClick={() => setMobileOpen(false)}
                 >
-                  {item.label}
+                  {t(item.key)}
                 </Link>
                 {item.children && (
                   <div className="pl-4 py-1">
@@ -131,20 +135,21 @@ export function Navbar() {
                         className="block py-3 text-[0.9rem] text-white/60 hover:text-white transition-colors"
                         onClick={() => setMobileOpen(false)}
                       >
-                        {child.label}
+                        {t(child.key)}
                       </Link>
                     ))}
                   </div>
                 )}
               </div>
             ))}
-            <div className="mt-6 flex flex-col gap-3">
+            <div className="mt-6 flex flex-col gap-4">
+              <LanguageSwitcher variant="mobile" />
               <a href="tel:3125373131" className="text-center text-white/60 py-2 text-[1rem]">
                 (31) 2537-3131
               </a>
               <Link href="/agendar" className="btn-gold justify-center" onClick={() => setMobileOpen(false)}>
                 <Calendar className="w-4 h-4" />
-                Agendar Consulta
+                {t('agendarCta')}
               </Link>
             </div>
           </div>

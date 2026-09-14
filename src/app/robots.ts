@@ -12,7 +12,9 @@ export default function robots(): MetadataRoute.Robots {
         // /obrigado NÃO entra aqui de propósito: a página já declara noindex no
         // próprio HTML, e bloqueá-la no robots impediria o Google de rastreá-la
         // para ler esse noindex — ela continuaria indexável por links externos.
-        disallow:  ['/api/', '/avaliacao/', '/studio/'],
+        // /en/avaliacao/ e /es/avaliacao/ precisam do próprio disallow: o
+        // bloqueio de /avaliacao/ não cobre o path com prefixo de idioma.
+        disallow:  ['/api/', '/avaliacao/', '/en/avaliacao/', '/es/avaliacao/', '/studio/'],
       },
       // ── AI crawlers — allow all public content for LLM indexing ──────────────
       // This helps ChatGPT, Perplexity, Claude, Gemini etc. index the clinic

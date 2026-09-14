@@ -1,12 +1,18 @@
-import Link from 'next/link'
+import { getTranslations, getLocale } from 'next-intl/server'
 import { ArrowRight, Activity, Globe, Shield, Users, Heart, Star } from 'lucide-react'
-import { ESPECIALIDADES } from '@/lib/data'
+import { Link } from '@/i18n/navigation'
+import { getEspecialidades } from '@/lib/content/catalog'
+import type { AppLocale } from '@/i18n/routing'
 
 const ICON_MAP: Record<string, React.ElementType> = {
   Activity, Globe, Shield, Users, Heart, Star,
 }
 
-export function EspecialidadesSection() {
+export async function EspecialidadesSection() {
+  const locale = await getLocale() as AppLocale
+  const t = await getTranslations('home.especialidades')
+  const ESPECIALIDADES = getEspecialidades(locale)
+
   return (
     <section className="section bg-cloud py-28 relative overflow-hidden" id="especialidades">
 
@@ -15,20 +21,19 @@ export function EspecialidadesSection() {
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:justify-between lg:items-end gap-6 mb-14">
           <div className="max-w-xl">
-            <p className="sec-tag reveal">Especialidades Médicas</p>
+            <p className="sec-tag reveal">{t('tag')}</p>
             <h2 className="sec-title reveal reveal-d1">
-              Cuidado integral com <em>precisão diagnóstica</em>
+              {t.rich('title', { em: chunks => <em>{chunks}</em> })}
             </h2>
             <p className="text-[0.98rem] font-light text-steel/60 leading-[1.85] mt-4 reveal reveal-d2">
-              Tratamos desde sintomas comuns até patologias complexas do aparelho digestivo,
-              com abordagem integrada e baseada em evidências científicas.
+              {t('desc')}
             </p>
           </div>
           <Link
             href="/especialidades"
             className="reveal reveal-d2 inline-flex items-center gap-2 text-teal text-[0.88rem] font-semibold border-b-2 border-teal/25 pb-0.5 hover:border-teal hover:gap-3.5 transition-all shrink-0"
           >
-            Ver todas as especialidades <ArrowRight className="w-3.5 h-3.5" />
+            {t('cta')} <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
 

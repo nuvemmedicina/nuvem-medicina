@@ -1,15 +1,26 @@
 import type { Metadata } from 'next'
+import { getTranslations } from 'next-intl/server'
 import { AvaliacaoForm } from './AvaliacaoForm'
 import { IsoSeal }      from '@/components/icons/IsoSeal'
+import { localizedAlternates } from '@/lib/i18n-seo'
 
-export const metadata: Metadata = {
-  alternates:  { canonical: '/avaliacao' },
-  title:       'Avalie sua Experiência · NU.V.E.M Medicina',
-  description: 'Conte como foi sua experiência na NU.V.E.M Medicina. Sua opinião nos ajuda a continuar melhorando o atendimento.',
-  robots:      { index: false }, // NPS page — don't index
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'avaliacaoPage' })
+  return {
+    alternates:  localizedAlternates('/avaliacao', locale),
+    title:       t('metaTitle'),
+    description: t('metaDescription'),
+    robots:      { index: false }, // NPS page — don't index
+  }
 }
 
-export default function AvaliacaoPage() {
+export default async function AvaliacaoPage() {
+  const t = await getTranslations('avaliacaoPage')
   return (
     <div className="min-h-screen bg-cloud flex flex-col">
       {/* Top gradient bar */}
@@ -28,18 +39,17 @@ export default function AvaliacaoPage() {
               <div className="flex items-center gap-3 mb-6">
                 <IsoSeal size={44} />
                 <div>
-                  <p className="text-[0.65rem] font-bold uppercase tracking-[.12em] text-teal">Avaliação de Qualidade ISO 9001</p>
-                  <p className="text-[0.72rem] text-steel/60">Sua opinião faz parte do nosso sistema de gestão</p>
+                  <p className="text-[0.65rem] font-bold uppercase tracking-[.12em] text-teal">{t('isoTag')}</p>
+                  <p className="text-[0.72rem] text-steel/60">{t('isoSub')}</p>
                 </div>
               </div>
 
               <h1 className="font-serif font-light text-steel text-[1.9rem] leading-tight mb-2">
-                Sua opinião faz a<br />
-                <em className="italic text-teal" style={{ fontStyle: 'italic' }}>NU.V.E.M crescer.</em>
+                {t('titleLine1')}<br />
+                <em className="italic text-teal" style={{ fontStyle: 'italic' }}>{t('titleEm')}</em>
               </h1>
               <p className="text-[0.85rem] text-steel/65 mb-8 leading-relaxed">
-                Olá! Queremos entender como foi sua experiência conosco.<br />
-                Leva menos de 30 segundos. 💙
+                {t.rich('desc', { br: () => <br /> })}
               </p>
 
               <AvaliacaoForm />
@@ -48,7 +58,7 @@ export default function AvaliacaoPage() {
 
           {/* Footer note */}
           <p className="text-center text-[0.68rem] text-steel/40 mt-6 leading-relaxed px-4">
-            Suas respostas são tratadas com confidencialidade conforme a LGPD.<br />
+            {t('footerNote')}<br />
             © {new Date().getFullYear()} NU.V.E.M Medicina · <a href="https://www.nuvemmedicina.com.br" className="hover:text-teal transition-colors">nuvemmedicina.com.br</a>
           </p>
         </div>

@@ -1,28 +1,51 @@
 import type { Metadata } from 'next'
-import Link    from 'next/link'
+import { getTranslations } from 'next-intl/server'
+import { setRequestLocale } from 'next-intl/server'
 import { ArrowRight, Activity, Globe, Shield, Users, Heart, Star } from 'lucide-react'
+import { Link } from '@/i18n/navigation'
 import { PageHero }       from '@/components/ui/PageHero'
 import { SectionWrapper } from '@/components/ui/SectionWrapper'
 import { CtaBanner }      from '@/components/ui/CtaBanner'
-import { ESPECIALIDADES } from '@/lib/data'
+import { getEspecialidades } from '@/lib/content/catalog'
+import { localizedAlternates } from '@/lib/i18n-seo'
+import { routing, type AppLocale } from '@/i18n/routing'
 
-export const metadata: Metadata = {
-  alternates:  { canonical: '/especialidades' },
-  title:       'Especialidades Médicas',
-  description: 'Gastroenterologia, fisioterapia pélvica, halitose, pediatria, nefrologia e motilidade digestiva em Belo Horizonte. Equipe multidisciplinar ISO 9001.',
+interface Props { params: Promise<{ locale: string }> }
+
+export function generateStaticParams() {
+  return routing.locales.map(locale => ({ locale }))
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'especialidadesPage' })
+  return {
+    alternates:  localizedAlternates('/especialidades', locale),
+    title:       t('metaTitle'),
+    description: t('metaDescription'),
+  }
 }
 
 const ICON_MAP: Record<string, React.ElementType> = {
   Activity, Globe, Shield, Users, Heart, Star,
 }
 
-export default function EspecialidadesPage() {
+export default async function EspecialidadesPage({ params }: Props) {
+  const { locale } = await params
+  setRequestLocale(locale)
+  const t = await getTranslations('especialidadesPage')
+  const ESPECIALIDADES = getEspecialidades(locale as AppLocale)
+
   return (
     <>
       <PageHero
-        tag="Especialidades Médicas"
-        title={<>Cuidado integral com <em>precisão diagnóstica</em></>}
-        desc="Tratamos desde sintomas comuns até patologias complexas do aparelho digestivo, com abordagem multidisciplinar integrada e baseada em evidências científicas."
+        tag={t('tag')}
+        title={t.rich('title', { em: chunks => <em>{chunks}</em> })}
+        desc={t('desc')}
       />
 
       <SectionWrapper>
@@ -53,7 +76,7 @@ export default function EspecialidadesPage() {
                   ))}
                 </div>
                 <span className="inline-flex items-center gap-1.5 text-[0.78rem] font-medium text-teal border-b border-teal/25 pb-px group-hover:gap-2.5 transition-all">
-                  Saiba mais <ArrowRight className="w-3.5 h-3.5" />
+                  {t('saibaMais')} <ArrowRight className="w-3.5 h-3.5" />
                 </span>
               </Link>
             )

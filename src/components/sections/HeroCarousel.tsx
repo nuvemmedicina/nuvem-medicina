@@ -3,12 +3,14 @@
 // Carrossel do hero da home: autoplay 5s, pausa no hover, loop infinito.
 // Slides definidos em src/lib/hero-slides.tsx.
 import { useCallback, useEffect, useState } from 'react'
-import Link from 'next/link'
+import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
-import { HERO_SLIDES } from '@/lib/hero-slides'
+import { Link } from '@/i18n/navigation'
+import { getHeroSlides } from '@/lib/hero-slides'
+import type { AppLocale } from '@/i18n/routing'
 
 function CtaLink({ href, className, children }: { href: string; className: string; children: React.ReactNode }) {
   const externo = href.startsWith('http')
@@ -23,6 +25,9 @@ function CtaLink({ href, className, children }: { href: string; className: strin
 }
 
 export function HeroCarousel() {
+  const locale = useLocale() as AppLocale
+  const t = useTranslations('home.hero')
+  const HERO_SLIDES = getHeroSlides(locale)
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true },
     [Autoplay({ delay: 5000, stopOnInteraction: false, stopOnMouseEnter: true })],
@@ -109,14 +114,14 @@ export function HeroCarousel() {
       <div className="flex items-center gap-5 mt-8">
         <button
           onClick={scrollPrev}
-          aria-label="Slide anterior"
+          aria-label={t('prevSlide')}
           className="hidden sm:flex w-10 h-10 rounded-full border border-teal/20 bg-white/70 backdrop-blur-sm items-center justify-center text-teal hover:bg-teal hover:text-white transition-colors"
         >
           <ChevronLeft className="w-5 h-5" />
         </button>
         <button
           onClick={scrollNext}
-          aria-label="Próximo slide"
+          aria-label={t('nextSlide')}
           className="hidden sm:flex w-10 h-10 rounded-full border border-teal/20 bg-white/70 backdrop-blur-sm items-center justify-center text-teal hover:bg-teal hover:text-white transition-colors"
         >
           <ChevronRight className="w-5 h-5" />
@@ -127,7 +132,7 @@ export function HeroCarousel() {
             <button
               key={slide.id}
               onClick={() => scrollTo(i)}
-              aria-label={`Ir para o slide ${i + 1}`}
+              aria-label={t('goToSlide', { n: i + 1 })}
               aria-current={i === selected}
               className={`h-2 rounded-full transition-all duration-300 ${
                 i === selected ? 'bg-teal w-7' : 'bg-teal/25 w-2 hover:bg-teal/50'

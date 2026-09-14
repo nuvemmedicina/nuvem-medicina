@@ -1,8 +1,9 @@
 // ─── Site-wide shared types ─────────────────────────────────────────────────
 
 export interface NavItem {
-  label: string
-  href:  string
+  /** Chave em messages/{locale}.json, namespace "nav" (ex.: "clinica"). */
+  key:  string
+  href: string
   children?: NavItem[]
 }
 

@@ -10,46 +10,46 @@ import type { NavItem, Especialidade, Exame, Depoimento } from '@/types'
 export const CONVENIOS_DESTAQUE = ['Unimed BH', 'Amil']
 
 // ─── Navigation ──────────────────────────────────────────────────────────────
+// Rótulos vêm de messages/{locale}.json, namespace "nav" (ver Navbar/Footer).
 export const NAV_ITEMS: NavItem[] = [
   {
-    label: 'A Clínica',
+    key: 'clinica',
     href: '/sobre',
     children: [
-      { label: 'Sobre a Clínica',         href: '/sobre' },
-      { label: 'Equipe',                  href: '/equipe' },
-      { label: 'Gestão da Qualidade',     href: '/gestao-da-qualidade' },
-      // { label: 'Infraestrutura',       href: '/infraestrutura' }, // em breve — aguardando novas fotos
+      { key: 'clinicaSobre',     href: '/sobre' },
+      { key: 'clinicaEquipe',    href: '/equipe' },
+      { key: 'clinicaQualidade', href: '/gestao-da-qualidade' },
     ],
   },
   {
-    label: 'Especialidades',
+    key: 'especialidadesLabel',
     href: '/especialidades',
     children: [
-      { label: 'Gastroenterologia',    href: '/especialidades/gastroenterologia' },
-      { label: 'Motilidade Digestiva', href: '/especialidades/motilidade-digestiva' },
-      { label: 'Fisioterapia Pélvica', href: '/especialidades/fisioterapia-pelvica' },
-      { label: 'Halitose',             href: '/especialidades/halitose' },
-      { label: 'Pediatria',            href: '/especialidades/pediatria' },
-      { label: 'Nefrologia',           href: '/especialidades/nefrologia' },
+      { key: 'gastroenterologia',    href: '/especialidades/gastroenterologia' },
+      { key: 'motilidadeDigestiva',  href: '/especialidades/motilidade-digestiva' },
+      { key: 'fisioterapiaPelvica',  href: '/especialidades/fisioterapia-pelvica' },
+      { key: 'halitose',             href: '/especialidades/halitose' },
+      { key: 'pediatria',            href: '/especialidades/pediatria' },
+      { key: 'nefrologia',           href: '/especialidades/nefrologia' },
     ],
   },
   {
-    label: 'Exames',
+    key: 'examesLabel',
     href: '/exames',
     children: [
-      { label: 'Manometria Esofágica',      href: '/exames/manometria-esofagica' },
-      { label: 'Manometria Anorretal',      href: '/exames/manometria-anorretal' },
-      { label: 'pHmetria e Impedânciometria', href: '/exames/phmetria-impedanciometria' },
-      { label: 'Testes Respiratórios',      href: '/exames/testes-respiratorios' },
-      { label: 'Halimetria e Sialometria',  href: '/exames/halimetria-sialometria' },
-      { label: 'Avaliação Pélvica',         href: '/exames/avaliacao-pelvica' },
-      { label: 'Preparos para Exames',      href: '/exames/preparos' },
+      { key: 'manometriaEsofagica',      href: '/exames/manometria-esofagica' },
+      { key: 'manometriaAnorretal',      href: '/exames/manometria-anorretal' },
+      { key: 'phmetriaImpedanciometria', href: '/exames/phmetria-impedanciometria' },
+      { key: 'testesRespiratorios',      href: '/exames/testes-respiratorios' },
+      { key: 'halimetriaSialometria',    href: '/exames/halimetria-sialometria' },
+      { key: 'avaliacaoPelvica',         href: '/exames/avaliacao-pelvica' },
+      { key: 'preparos',                 href: '/exames/preparos' },
     ],
   },
-  { label: 'ISO 9001',   href: '/gestao-da-qualidade' },
-  { label: 'Ensino',    href: '/ensino' },
-  { label: 'Convênios', href: '/convenios-medicos' },
-  { label: 'Blog',      href: '/blog' },
+  { key: 'iso',       href: '/gestao-da-qualidade' },
+  { key: 'ensino',    href: '/ensino' },
+  { key: 'convenios', href: '/convenios-medicos' },
+  { key: 'blog',      href: '/blog' },
 ]
 
 // ─── Especialidades ───────────────────────────────────────────────────────────

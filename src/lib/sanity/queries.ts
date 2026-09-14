@@ -36,25 +36,34 @@ export type Post = {
   especialidadeRelacionada?: string
   revisadoPor?: Autor
   dataRevisao?: string
+  language?:      string
+  translationOf?: { _ref: string }
 }
 
-export async function getAllPosts(): Promise<Post[]> {
+/**
+ * `language` é opcional e por padrão filtra pt-BR — todo chamador existente
+ * (sitemap, Nuvete, llms.txt) continua vendo só os artigos em português sem
+ * precisar passar nada. `coalesce(language, "pt-BR")` cobre os posts
+ * publicados antes do campo existir, que não têm valor gravado.
+ */
+export async function getAllPosts(language = 'pt-BR'): Promise<Post[]> {
   return client.fetch(
-    `*[_type == "post" && defined(slug.current)] | order(publishedAt desc) {
+    `*[_type == "post" && defined(slug.current) && coalesce(language, "pt-BR") == $language] | order(publishedAt desc) {
       _id, title, slug, publishedAt, excerpt, coverImage, author->, categories[]->, readingTime, dataRevisao, respostaDireta
-    }`
+    }`,
+    { language }
   )
 }
 
-export async function getPostBySlug(slug: string): Promise<Post | null> {
+export async function getPostBySlug(slug: string, language = 'pt-BR'): Promise<Post | null> {
   return client.fetch(
-    `*[_type == "post" && slug.current == $slug][0] {
+    `*[_type == "post" && slug.current == $slug && coalesce(language, "pt-BR") == $language][0] {
       _id, title, slug, publishedAt, excerpt, coverImage { ..., credit }, author->, categories[]->, body, readingTime,
       references[] { _key, citation, url },
       perguntaPrincipal, respostaDireta, exameRelacionado, especialidadeRelacionada, dataRevisao,
       revisadoPor->
     }`,
-    { slug }
+    { slug, language }
   )
 }
 

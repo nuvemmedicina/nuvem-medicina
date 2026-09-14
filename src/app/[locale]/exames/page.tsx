@@ -1,24 +1,43 @@
 import type { Metadata } from 'next'
-import Link    from 'next/link'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { ArrowRight, Download } from 'lucide-react'
+import { Link } from '@/i18n/navigation'
 import { PageHero }       from '@/components/ui/PageHero'
 import { SectionWrapper } from '@/components/ui/SectionWrapper'
 import { CtaBanner }      from '@/components/ui/CtaBanner'
-import { EXAMES, EXAM_PDFS } from '@/lib/data'
+import { EXAM_PDFS } from '@/lib/data'
+import { getExames } from '@/lib/content/catalog'
+import { localizedAlternates } from '@/lib/i18n-seo'
+import { routing, type AppLocale } from '@/i18n/routing'
 
-export const metadata: Metadata = {
-  alternates:  { canonical: '/exames' },
-  title:       'Exames e Diagnósticos',
-  description: 'Manometria esofágica e anorretal de alta resolução, pHmetria, testes respiratórios, halimetria e avaliação pélvica em Belo Horizonte. Certificação ISO 9001.',
+interface Props { params: Promise<{ locale: string }> }
+
+export function generateStaticParams() {
+  return routing.locales.map(locale => ({ locale }))
 }
 
-export default function ExamesPage() {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'examesPage' })
+  return {
+    alternates:  localizedAlternates('/exames', locale),
+    title:       t('metaTitle'),
+    description: t('metaDescription'),
+  }
+}
+
+export default async function ExamesPage({ params }: Props) {
+  const { locale } = await params
+  setRequestLocale(locale)
+  const t = await getTranslations('examesPage')
+  const EXAMES = getExames(locale as AppLocale)
+
   return (
     <>
       <PageHero
-        tag="Exames e Diagnósticos"
-        title={<>Precisão técnica <em>certificada</em></>}
-        desc="Infraestrutura diagnóstica de última geração operada por especialistas com treinamento e certificação ISO 9001: os resultados mais confiáveis do segmento."
+        tag={t('tag')}
+        title={t.rich('title', { em: chunks => <em>{chunks}</em> })}
+        desc={t('desc')}
       />
 
       <SectionWrapper mist grid>
@@ -59,7 +78,7 @@ export default function ExamesPage() {
                       href={`/exames/${exame.id}`}
                       className="inline-flex items-center gap-1.5 text-[0.85rem] font-semibold text-teal group-hover:gap-2.5 transition-all"
                     >
-                      Ver detalhes <ArrowRight className="w-3.5 h-3.5" />
+                      {t('verDetalhes')} <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
                     {pdfUrl && (
                       <a
@@ -68,7 +87,7 @@ export default function ExamesPage() {
                         className="inline-flex items-center gap-1.5 text-[0.78rem] text-steel/45 hover:text-teal transition-colors"
                       >
                         <Download className="w-3.5 h-3.5" />
-                        Baixar preparo
+                        {t('baixarPreparo')}
                       </a>
                     )}
                   </div>
@@ -81,11 +100,11 @@ export default function ExamesPage() {
         {/* Preparos link */}
         <div className="mt-8 p-6 bg-white border border-teal/10 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-sm">
           <div>
-            <h3 className="text-[1rem] font-semibold text-steel mb-1">Preparos para Exames</h3>
-            <p className="text-[0.88rem] text-steel/55">Guia completo de como se preparar para cada exame da NU.V.E.M, com download em PDF.</p>
+            <h3 className="text-[1rem] font-semibold text-steel mb-1">{t('preparosTitle')}</h3>
+            <p className="text-[0.88rem] text-steel/55">{t('preparosDesc')}</p>
           </div>
           <Link href="/exames/preparos" className="btn-teal shrink-0">
-            Ver preparos <ArrowRight className="w-4 h-4" />
+            {t('verPreparos')} <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
 

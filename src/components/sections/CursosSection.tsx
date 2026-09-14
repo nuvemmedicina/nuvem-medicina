@@ -3,6 +3,7 @@
 // Usada na home e na página /ensino.
 
 import Image from 'next/image'
+import { getTranslations } from 'next-intl/server'
 import { ExternalLink, CalendarDays, Monitor, MapPin } from 'lucide-react'
 import { CURSOS, type Curso } from '@/lib/cursos'
 
@@ -20,7 +21,7 @@ const TIPO_COLOR: Record<Curso['tipo'], string> = {
   Live:       'bg-white/90 text-rose-600 border-white/50',
 }
 
-function CursoCard({ curso, index }: { curso: Curso; index: number }) {
+function CursoCard({ curso, index, inscreverSeLabel }: { curso: Curso; index: number; inscreverSeLabel: string }) {
   const ModalIcon = MODALIDADE_ICON[curso.modalidade]
 
   return (
@@ -79,7 +80,7 @@ function CursoCard({ curso, index }: { curso: Curso; index: number }) {
           {curso.descricao}
         </p>
         <div className="mt-5 flex items-center gap-1.5 text-[0.85rem] font-semibold text-teal group-hover:gap-2.5 transition-all">
-          Inscrever-se <ExternalLink className="w-3.5 h-3.5" />
+          {inscreverSeLabel} <ExternalLink className="w-3.5 h-3.5" />
         </div>
       </div>
     </a>
@@ -93,7 +94,8 @@ interface Props {
   dark?: boolean
 }
 
-export function CursosSection({ limit, dark = false }: Props) {
+export async function CursosSection({ limit, dark = false }: Props) {
+  const t = await getTranslations('home.cursos')
   const cursos = limit ? CURSOS.slice(0, limit) : CURSOS
 
   if (cursos.length === 0) return null
@@ -108,13 +110,12 @@ export function CursosSection({ limit, dark = false }: Props) {
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:justify-between lg:items-end gap-6 mb-12">
           <div>
-            <p className={`sec-tag reveal ${dark ? 'text-teal-light' : ''}`}>Cursos & Palestras</p>
+            <p className={`sec-tag reveal ${dark ? 'text-teal-light' : ''}`}>{t('tag')}</p>
             <h2 className={`sec-title reveal reveal-d1 ${dark ? 'text-white' : ''}`}>
-              Formação e <em>atualização</em> científica
+              {t.rich('title', { em: chunks => <em>{chunks}</em> })}
             </h2>
             <p className={`text-[0.95rem] font-light leading-[1.85] mt-3 max-w-xl reveal reveal-d2 ${dark ? 'text-white/60' : 'text-steel/60'}`}>
-              Cursos, palestras e workshops com a equipe NU.V.E.M e parceiros de referência nacional.
-              Conteúdo aplicado à prática clínica real.
+              {t('desc')}
             </p>
           </div>
           {!limit && (
@@ -128,7 +129,7 @@ export function CursosSection({ limit, dark = false }: Props) {
                   : 'text-teal border-teal/25 hover:border-teal'
               }`}
             >
-              Ver todos os cursos <ExternalLink className="w-3.5 h-3.5" />
+              {t('verTodos')} <ExternalLink className="w-3.5 h-3.5" />
             </a>
           )}
         </div>
@@ -142,7 +143,7 @@ export function CursosSection({ limit, dark = false }: Props) {
               : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
         }`}>
           {cursos.map((curso, i) => (
-            <CursoCard key={curso.id} curso={curso} index={i} />
+            <CursoCard key={curso.id} curso={curso} index={i} inscreverSeLabel={t('inscreverSe')} />
           ))}
         </div>
 
@@ -159,7 +160,7 @@ export function CursosSection({ limit, dark = false }: Props) {
                   : 'bg-teal text-white hover:bg-teal/90'
               }`}
             >
-              Ver todos os cursos <ExternalLink className="w-4 h-4" />
+              {t('verTodos')} <ExternalLink className="w-4 h-4" />
             </a>
           </div>
         )}

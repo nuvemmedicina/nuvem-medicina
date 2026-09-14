@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { Send, Loader2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
@@ -13,15 +14,17 @@ function getNpsColor(score: number) {
   return                  { ring: 'border-emerald-400',bg: 'bg-emerald-50',      text: 'text-emerald-600' }
 }
 
-function getNpsLabel(score: number | null) {
-  if (score === null) return ''
-  if (score <= 6)  return '😔 Precisamos melhorar'
-  if (score <= 8)  return '🙂 Satisfatório'
-  if (score === 9) return '😊 Muito satisfeito!'
-  return '🤩 Excelente! Adoramos!'
-}
-
 export function AvaliacaoForm() {
+  const t = useTranslations('avaliacaoForm')
+
+  function getNpsLabel(score: number | null) {
+    if (score === null) return ''
+    if (score <= 6)  return t('npsLabelBaixo')
+    if (score <= 8)  return t('npsLabelMedio')
+    if (score === 9) return t('npsLabel9')
+    return t('npsLabelTop')
+  }
+
   const [step,      setStep]    = useState<Step>('nps')
   const [score,     setScore]   = useState<number | null>(null)
   const [motivo,    setMotivo]  = useState('')
@@ -47,7 +50,7 @@ export function AvaliacaoForm() {
 
       setStep('done')
     } catch {
-      setError('Não foi possível enviar. Tente novamente.')
+      setError(t('erroEnvio'))
     }
     setLoading(false)
   }
@@ -57,11 +60,11 @@ export function AvaliacaoForm() {
     <div className="space-y-6">
       <div>
         <p className="text-[0.82rem] font-semibold text-steel mb-1">
-          O quanto você indicaria a NU.V.E.M para um amigo ou familiar?
+          {t('npsPergunta')}
         </p>
         <div className="flex justify-between text-[0.65rem] text-steel/45 mt-1 mb-4">
-          <span>🔴 0 — Não indicaria</span>
-          <span>10 — Indicaria com certeza 🟢</span>
+          <span>{t('npsBaixo')}</span>
+          <span>{t('npsAlto')}</span>
         </div>
 
         {/* Score buttons */}
@@ -106,15 +109,15 @@ export function AvaliacaoForm() {
           <div>
             <p className={cn('text-[0.78rem] font-semibold', colors.text)}>{getNpsLabel(score)}</p>
             <button onClick={() => setStep('nps')} className="text-[0.68rem] text-steel/45 hover:text-steel/70 transition-colors underline">
-              Alterar nota
+              {t('alterarNota')}
             </button>
           </div>
         </div>
 
         <div>
           <label className="block text-[0.78rem] font-semibold text-steel mb-2">
-            Poderia nos contar brevemente o motivo da sua nota?{' '}
-            <span className="text-steel/45 font-normal">(opcional)</span>
+            {t('motivoLabel')}{' '}
+            <span className="text-steel/45 font-normal">{t('opcional')}</span>
           </label>
           <textarea
             value={motivo}
@@ -123,10 +126,10 @@ export function AvaliacaoForm() {
             maxLength={500}
             placeholder={
               score !== null && score <= 6
-                ? 'O que poderíamos ter feito melhor?'
+                ? t('motivoPlaceholderBaixo')
                 : score !== null && score >= 9
-                ? 'O que mais te surpreendeu positivamente?'
-                : 'Conte-nos sua experiência...'
+                ? t('motivoPlaceholderAlto')
+                : t('motivoPlaceholderMedio')
             }
             className="w-full bg-cloud border border-teal/15 rounded-xl px-4 py-3 text-[0.82rem] text-steel placeholder:text-steel/40 outline-none focus:border-teal/40 transition-colors resize-none"
           />
@@ -139,14 +142,14 @@ export function AvaliacaoForm() {
             className="flex-1 text-white text-[0.82rem] font-semibold py-3 rounded-xl hover:-translate-y-0.5 transition-all"
             style={{ background: 'linear-gradient(135deg, #00465F, #0e7fa5)', boxShadow: '0 8px 24px rgba(0,70,95,.25)' }}
           >
-            Continuar →
+            {t('continuar')}
           </button>
           <button
             onClick={handleSubmit}
             disabled={loading}
             className="text-[0.78rem] text-steel/55 hover:text-steel border border-teal/15 hover:border-teal/30 rounded-xl px-4 transition-colors"
           >
-            {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Pular'}
+            {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : t('pular')}
           </button>
         </div>
       </div>
@@ -158,13 +161,13 @@ export function AvaliacaoForm() {
     <div className="space-y-5">
       <div>
         <label className="block text-[0.78rem] font-semibold text-steel mb-2">
-          Seu e-mail <span className="text-steel/45 font-normal">(opcional — para retornarmos seu contato)</span>
+          {t('emailLabel')} <span className="text-steel/45 font-normal">{t('emailSub')}</span>
         </label>
         <input
           type="email"
           value={email}
           onChange={e => setEmail(e.target.value)}
-          placeholder="seuemail@exemplo.com"
+          placeholder={t('emailPlaceholder')}
           className="w-full bg-cloud border border-teal/15 rounded-xl px-4 py-3 text-[0.82rem] text-steel placeholder:text-steel/40 outline-none focus:border-teal/40 transition-colors"
         />
       </div>
@@ -183,19 +186,19 @@ export function AvaliacaoForm() {
           style={{ background: 'linear-gradient(135deg, #00465F, #0e7fa5)', boxShadow: '0 8px 24px rgba(0,70,95,.25)' }}
         >
           {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
-          {loading ? 'Enviando...' : 'Enviar Avaliação'}
+          {loading ? t('enviando') : t('enviarAvaliacao')}
         </button>
         <button
           onClick={handleSubmit}
           disabled={loading}
           className="text-[0.78rem] text-steel/55 hover:text-steel border border-teal/15 hover:border-teal/30 rounded-xl px-4 transition-colors"
         >
-          Pular
+          {t('pular')}
         </button>
       </div>
 
       <p className="text-center text-[0.65rem] text-steel/40">
-        Dados tratados conforme a LGPD. Não compartilhamos seu e-mail.
+        {t('lgpdEmail')}
       </p>
     </div>
   )
@@ -212,20 +215,20 @@ export function AvaliacaoForm() {
 
       <div>
         <h2 className="font-serif font-light text-steel text-[1.5rem] mb-2">
-          Muito obrigado! 💙
+          {t('obrigado')}
         </h2>
         <p className="text-[0.85rem] text-steel/65 leading-relaxed">
-          Sua avaliação foi registrada com sucesso.<br />
+          {t('registradoComSucesso')}<br />
           {score !== null && score >= 9
-            ? 'Ficamos muito felizes com sua satisfação. Até a próxima!'
-            : 'Vamos usar seu feedback para continuar melhorando.'}
+            ? t('felizesTop')
+            : t('felizesMedio')}
         </p>
       </div>
 
       {/* NPS score summary */}
       {score !== null && (
         <div className={cn('inline-flex items-center gap-2 px-4 py-2 rounded-full border text-[0.78rem] font-semibold mx-auto', getNpsColor(score).ring, getNpsColor(score).bg, getNpsColor(score).text)}>
-          Nota {score}/10 — {getNpsLabel(score)}
+          {t('notaLabel', { score })} {getNpsLabel(score)}
         </div>
       )}
 
@@ -233,7 +236,7 @@ export function AvaliacaoForm() {
       {score !== null && score >= 9 && (
         <div className="pt-2 space-y-3">
           <p className="text-[0.78rem] text-steel/65">
-            Que tal deixar também uma avaliação no Google? Ajuda muito! 🌟
+            {t('pedirGoogle')}
           </p>
           <a
             href="https://share.google/b7FR17p6wrkEOZ5JR"
@@ -242,7 +245,7 @@ export function AvaliacaoForm() {
             className="inline-flex items-center gap-2 text-white text-[0.8rem] font-semibold px-5 py-2.5 rounded-xl hover:-translate-y-0.5 transition-all"
             style={{ background: 'linear-gradient(135deg, #00465F, #0e7fa5)', boxShadow: '0 8px 24px rgba(0,70,95,.25)' }}
           >
-            ⭐ Avaliar no Google
+            {t('avaliarGoogle')}
           </a>
         </div>
       )}
@@ -251,7 +254,7 @@ export function AvaliacaoForm() {
         href="/"
         className="inline-flex items-center gap-1.5 text-[0.78rem] text-steel/55 hover:text-teal transition-colors"
       >
-        ← Voltar ao site
+        {t('voltarSite')}
       </a>
     </div>
   )

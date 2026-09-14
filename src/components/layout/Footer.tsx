@@ -1,48 +1,54 @@
-import Link            from 'next/link'
+'use client'
+
+import { useTranslations } from 'next-intl'
 import { Instagram, Youtube, MessageCircle, Linkedin } from 'lucide-react'
+import { Link } from '@/i18n/navigation'
 import { LogoBranco }  from '@/components/icons/LogoBranco'
 import { IsoSeal }     from '@/components/icons/IsoSeal'
 import { CookiePreferencesLink } from '@/components/ui/CookiePreferencesLink'
 import { CONTATO }     from '@/lib/data'
 
-const FOOTER_COLS = [
-  {
-    title: 'Especialidades',
-    links: [
-      { label: 'Gastroenterologia',    href: '/especialidades/gastroenterologia' },
-      { label: 'Fisioterapia Pélvica', href: '/especialidades/fisioterapia-pelvica' },
-      { label: 'Halitose',             href: '/especialidades/halitose' },
-      { label: 'Pediatria',            href: '/especialidades/pediatria' },
-      { label: 'Nefrologia',           href: '/especialidades/nefrologia' },
-      { label: 'Motilidade Digestiva', href: '/especialidades/motilidade-digestiva' },
-    ],
-  },
-  {
-    title: 'Exames',
-    links: [
-      { label: 'Manometria Esofágica',    href: '/exames/manometria-esofagica' },
-      { label: 'Manometria Anorretal',    href: '/exames/manometria-anorretal' },
-      { label: 'pHmetria e Impedância',   href: '/exames/phmetria-impedanciometria' },
-      { label: 'Testes Respiratórios',    href: '/exames/testes-respiratorios' },
-      { label: 'Halimetria e Sialometria',href: '/exames/halimetria-sialometria' },
-      { label: 'Avaliação Pélvica',       href: '/exames/avaliacao-pelvica' },
-      { label: 'Preparos para Exames',    href: '/exames/preparos' },
-    ],
-  },
-  {
-    title: 'Institucional',
-    links: [
-      { label: 'Sobre a Clínica',         href: '/sobre' },
-      { label: 'Equipe',                  href: '/equipe' },
-      { label: 'Gestão da Qualidade',     href: '/gestao-da-qualidade' },
-      { label: 'NU.V.E.M Ensino',         href: '/ensino' },
-      { label: 'Convênios',               href: '/convenios-medicos' },
-      { label: 'Blog',                    href: '/blog' },
-    ],
-  },
-]
-
 export function Footer() {
+  const t = useTranslations('footer')
+  const tNav = useTranslations('nav')
+
+  const FOOTER_COLS = [
+    {
+      title: t('colEspecialidades'),
+      links: [
+        { label: tNav('gastroenterologia'),   href: '/especialidades/gastroenterologia' },
+        { label: tNav('fisioterapiaPelvica'), href: '/especialidades/fisioterapia-pelvica' },
+        { label: tNav('halitose'),            href: '/especialidades/halitose' },
+        { label: tNav('pediatria'),           href: '/especialidades/pediatria' },
+        { label: tNav('nefrologia'),          href: '/especialidades/nefrologia' },
+        { label: tNav('motilidadeDigestiva'), href: '/especialidades/motilidade-digestiva' },
+      ],
+    },
+    {
+      title: t('colExames'),
+      links: [
+        { label: tNav('manometriaEsofagica'),   href: '/exames/manometria-esofagica' },
+        { label: tNav('manometriaAnorretal'),   href: '/exames/manometria-anorretal' },
+        { label: t('phmetriaImpedancia'),       href: '/exames/phmetria-impedanciometria' },
+        { label: tNav('testesRespiratorios'),   href: '/exames/testes-respiratorios' },
+        { label: tNav('halimetriaSialometria'), href: '/exames/halimetria-sialometria' },
+        { label: tNav('avaliacaoPelvica'),      href: '/exames/avaliacao-pelvica' },
+        { label: t('preparos'),                 href: '/exames/preparos' },
+      ],
+    },
+    {
+      title: t('colInstitucional'),
+      links: [
+        { label: t('institucionalSobre'),     href: '/sobre' },
+        { label: t('institucionalEquipe'),    href: '/equipe' },
+        { label: t('institucionalQualidade'), href: '/gestao-da-qualidade' },
+        { label: t('institucionalEnsino'),    href: '/ensino' },
+        { label: t('institucionalConvenios'), href: '/convenios-medicos' },
+        { label: t('institucionalBlog'),      href: '/blog' },
+      ],
+    },
+  ]
+
   return (
     <footer className="border-t border-teal/8 relative overflow-hidden" style={{ background: '#00465F' }}>
 
@@ -58,15 +64,15 @@ export function Footer() {
             </Link>
 
             <p className="text-[0.82rem] text-white/45 leading-relaxed mb-5">
-              Ecossistema de excelência em saúde digestiva e ensino médico em Belo Horizonte, com certificação ISO 9001.
+              {t('tagline')}
             </p>
 
             {/* ISO Seal */}
             <div className="flex items-center gap-3 mb-5 justify-start">
               <IsoSeal size={48} />
               <div>
-                <p className="text-[0.78rem] font-semibold text-white leading-tight">Certificação ISO 9001</p>
-                <p className="text-[0.72rem] text-white/45 mt-0.5">Clínica com certificação ISO 9001</p>
+                <p className="text-[0.78rem] font-semibold text-white leading-tight">{t('isoTitle')}</p>
+                <p className="text-[0.72rem] text-white/45 mt-0.5">{t('isoSubtitle')}</p>
               </div>
             </div>
 
@@ -129,11 +135,11 @@ export function Footer() {
             </a>
             <div className="flex items-center gap-4 justify-start">
               <a href="/politica-de-privacidade" className="text-[0.72rem] text-white/35 hover:text-teal-light transition-colors">
-                Política de Privacidade
+                {t('privacyPolicy')}
               </a>
               <span className="text-white/25 text-[0.72rem]">·</span>
               <a href="/direitos-do-paciente" className="text-[0.72rem] text-white/35 hover:text-teal-light transition-colors">
-                Direitos do Paciente
+                {t('patientRights')}
               </a>
               <span className="text-white/25 text-[0.72rem]">·</span>
               <CookiePreferencesLink />
@@ -141,7 +147,7 @@ export function Footer() {
           </div>
           <div className="flex flex-col items-center md:items-end gap-2">
             <p className="text-[0.65rem] text-white/20 max-w-md leading-relaxed text-center md:text-right">
-              As informações neste site têm caráter informativo e educacional, em conformidade com as normas do Conselho Federal de Medicina (Res. CFM nº 2.336/2023). Não substituem consulta médica profissional.
+              {t('disclaimer')}
             </p>
             <a
               href="https://anawebdesign.com.br"
@@ -149,7 +155,7 @@ export function Footer() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 text-[0.72rem] text-white/35 hover:text-teal-light transition-colors group"
             >
-              Desenvolvido por
+              {t('developedBy')}
               <span className="font-semibold text-teal-light/55 group-hover:text-teal-light transition-colors">
                 Ana Webdesign
               </span>

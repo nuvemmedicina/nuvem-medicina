@@ -1,8 +1,8 @@
-import Link    from 'next/link'
+'use client'
+
+import { useTranslations } from 'next-intl'
 import { Calendar, ArrowRight } from 'lucide-react'
 import { CONTATO } from '@/lib/data'
-
-const waMsg = encodeURIComponent('Olá! Gostaria de agendar uma consulta na NU.V.E.M Medicina.')
 
 interface CtaBannerProps {
   title?:      string
@@ -11,10 +11,14 @@ interface CtaBannerProps {
 }
 
 export function CtaBanner({
-  title = 'Pronto para cuidar da sua saúde digestiva?',
-  desc  = 'Agende sua consulta e experimente o padrão de excelência ISO 9001 da NU.V.E.M Medicina.',
+  title,
+  desc,
   linkEnsino = false,
 }: CtaBannerProps) {
+  const t = useTranslations('ctaBanner')
+  title ??= t('title')
+  desc  ??= t('desc')
+  const waMsg = encodeURIComponent(t('whatsappMsg'))
   return (
     <div
       className="relative rounded-2xl overflow-hidden p-10 md:p-14 my-16"
@@ -41,7 +45,7 @@ export function CtaBanner({
             className="btn-gold"
           >
             <Calendar className="w-4 h-4" />
-            Agendar Consulta
+            {t('agendar')}
           </a>
           {linkEnsino && (
             <a
@@ -49,7 +53,7 @@ export function CtaBanner({
               target="_blank" rel="noopener noreferrer"
               className="btn-ghost-dark"
             >
-              NU.V.E.M Ensino <ArrowRight className="w-4 h-4" />
+              {t('ensino')} <ArrowRight className="w-4 h-4" />
             </a>
           )}
         </div>

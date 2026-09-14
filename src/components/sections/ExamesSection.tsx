@@ -1,14 +1,20 @@
 'use client'
 
 import { useState } from 'react'
-import Link from 'next/link'
+import { useTranslations, useLocale } from 'next-intl'
 import { Clock, Shield, Check, ArrowRight, Download } from 'lucide-react'
-import { EXAMES, EXAM_PDFS } from '@/lib/data'
+import { Link } from '@/i18n/navigation'
+import { EXAM_PDFS } from '@/lib/data'
+import { getExames } from '@/lib/content/catalog'
+import type { AppLocale } from '@/i18n/routing'
 import { cn }     from '@/lib/utils'
 
 const ICON_MAP: Record<string, React.ElementType> = { Clock, Shield, Check }
 
 export function ExamesSection() {
+  const locale = useLocale() as AppLocale
+  const t = useTranslations('home.exames')
+  const EXAMES = getExames(locale)
   const [active, setActive] = useState(EXAMES[0].id)
   const current = EXAMES.find(e => e.id === active) ?? EXAMES[0]
   const pdfUrl = EXAM_PDFS[current.id]
@@ -25,10 +31,10 @@ export function ExamesSection() {
 
           {/* ── LEFT ── */}
           <div className="lg:sticky lg:top-[100px]">
-            <p className="sec-tag reveal">Exames e Diagnósticos</p>
-            <h2 className="sec-title reveal reveal-d1">Precisão técnica <em>certificada</em></h2>
+            <p className="sec-tag reveal">{t('tag')}</p>
+            <h2 className="sec-title reveal reveal-d1">{t.rich('title', { em: chunks => <em>{chunks}</em> })}</h2>
             <p className="text-[0.98rem] font-light text-steel/60 leading-[1.85] mt-4 mb-10 reveal reveal-d2">
-              Infraestrutura diagnóstica de última geração operada por especialistas com treinamento e certificação ISO 9001.
+              {t('desc')}
             </p>
 
             <div className="flex flex-col reveal reveal-d3 bg-white rounded-2xl border border-teal/10 overflow-hidden shadow-sm">
@@ -100,7 +106,7 @@ export function ExamesSection() {
 
               <div className="flex flex-wrap gap-3">
                 <Link href={`/exames/${current.id}`} className="btn-teal">
-                  Saiba mais <ArrowRight className="w-4 h-4" />
+                  {t('ctaSaibaMais')} <ArrowRight className="w-4 h-4" />
                 </Link>
                 {pdfUrl && (
                   <a
@@ -109,7 +115,7 @@ export function ExamesSection() {
                     className="btn-download"
                   >
                     <Download className="w-4 h-4" />
-                    Baixar Preparo
+                    {t('ctaBaixarPreparo')}
                   </a>
                 )}
               </div>

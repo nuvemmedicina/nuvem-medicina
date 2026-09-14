@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
-import Link              from 'next/link'
 import Image             from 'next/image'
 import { notFound }      from 'next/navigation'
+import { getTranslations } from 'next-intl/server'
 import { ArrowLeft }     from 'lucide-react'
 import { PortableText }  from '@portabletext/react'
+import { Link }            from '@/i18n/navigation'
 import { SectionWrapper }  from '@/components/ui/SectionWrapper'
 import { Breadcrumb }      from '@/components/ui/Breadcrumb'
 import { JsonLd }          from '@/components/ui/JsonLd'
@@ -21,17 +22,21 @@ import { getPostBySlug, getAllPosts } from '@/lib/sanity/queries'
 import { urlFor }          from '@/lib/sanity/image'
 import { postSchema, faqSchema, breadcrumbSchema } from '@/lib/schema'
 import { SITE_URL } from '@/lib/site'
+import { localizedAlternates } from '@/lib/i18n-seo'
+import type { AppLocale } from '@/i18n/routing'
 
 export const revalidate = 60
 
-export async function generateStaticParams() {
-  const posts = await getAllPosts()
-  return posts.map(p => ({ slug: p.slug.current }))
-}
+const OG_LOCALE: Record<AppLocale, string> = { 'pt-BR': 'pt_BR', en: 'en_US', es: 'es_419' }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-  const { slug } = await params
-  const post = await getPostBySlug(slug)
+// Sem generateStaticParams: os posts são renderizados sob demanda e cacheados
+// por `revalidate` (ISR) — evita gerar páginas 404 estáticas para /en e /es
+// enquanto a maioria dos artigos ainda não tem tradução (ver pilotagem do
+// mecanismo de tradução mais abaixo neste projeto).
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }): Promise<Metadata> {
+  const { locale, slug } = await params
+  const post = await getPostBySlug(slug, locale)
   if (!post) return {}
   const ogImage = post.coverImage
     ? urlFor(post.coverImage).width(1200).height(630).url()
@@ -43,13 +48,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title:       post.title,
     description,
-    alternates:  { canonical: `/blog/${slug}` },
+    alternates:  localizedAlternates(`/blog/${slug}`, locale),
     openGraph: {
       title:       post.title,
       description,
       type:        'article',
       siteName:    'NU.V.E.M Medicina',
-      locale:      'pt_BR',
+      locale:      OG_LOCALE[locale as AppLocale] ?? OG_LOCALE['pt-BR'],
       publishedTime: post.publishedAt,
       modifiedTime:  post.dataRevisao ?? post.publishedAt,
       ...(ogImage && {
@@ -63,10 +68,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       ...(ogImage && { images: [ogImage] }),
     },
   }
-}
-
-function formatDate(dateStr: string) {
-  return new Date(dateStr).toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })
 }
 
 /** Extrai os blocos faqItem do corpo do artigo, na ordem em que aparecem no texto. */
@@ -142,10 +143,14 @@ function pessoaParaSchema(autor?: NonNullable<Awaited<ReturnType<typeof getPostB
   }
 }
 
-export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params
-  const post = await getPostBySlug(slug)
+export default async function PostPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
+  const { locale, slug } = await params
+  const post = await getPostBySlug(slug, locale)
   if (!post) notFound()
+
+  const t = await getTranslations('blogPost')
+  const formatDate = (dateStr: string) =>
+    new Date(dateStr).toLocaleDateString(locale, { day: '2-digit', month: 'long', year: 'numeric' })
 
   const faqs = extrairFaqs(post.body)
   const coverImageUrl = post.coverImage ? urlFor(post.coverImage).width(1200).height(675).url() : undefined
@@ -177,7 +182,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
         <div className="absolute inset-0 dark-grid-bg pointer-events-none opacity-60" />
         <div className="relative z-10 max-w-3xl mx-auto px-6">
           <Link href="/blog" className="inline-flex items-center gap-2 text-[0.78rem] text-white/55 hover:text-white mb-8 transition-colors">
-            <ArrowLeft className="w-3.5 h-3.5" /> Voltar ao blog
+            <ArrowLeft className="w-3.5 h-3.5" /> {t('voltarAoBlog')}
           </Link>
           {post.categories && post.categories.length > 0 && (
             <div className="flex flex-wrap gap-2 mb-4">
@@ -198,9 +203,9 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
           {post.excerpt && <p className="text-[0.97rem] text-white/65 leading-relaxed mb-6">{post.excerpt}</p>}
           <div className="flex items-center gap-4 text-[0.78rem] text-white/50">
-            {post.author && <span>Por {post.author.name}</span>}
+            {post.author && <span>{t('por', { nome: post.author.name })}</span>}
             {post.publishedAt && <><span>·</span><span>{formatDate(post.publishedAt)}</span></>}
-            {post.readingTime && <><span>·</span><span>{post.readingTime} min de leitura</span></>}
+            {post.readingTime && <><span>·</span><span>{t('minLeitura', { min: post.readingTime })}</span></>}
           </div>
         </div>
       </div>
@@ -213,7 +218,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           </div>
           {post.coverImage.credit && (
             <p className="text-[0.7rem] text-steel/40 mt-1.5 text-right">
-              Imagem: {post.coverImage.credit}
+              {t('imagem')}: {post.coverImage.credit}
             </p>
           )}
         </div>
@@ -222,7 +227,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
       {/* Body */}
       <SectionWrapper>
         <div className="max-w-3xl mx-auto">
-          <Breadcrumb crumbs={[{ label: 'Blog', href: '/blog' }, { label: post.title }]} />
+          <Breadcrumb crumbs={[{ label: t('blogLabel'), href: '/blog' }, { label: post.title }]} />
 
           {/* Títulos em Cormorant 500 — o peso 600 não é carregado pela fonte e o
               navegador simulava um negrito artificial, pesado demais ao lado do
@@ -248,8 +253,8 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           exameRelacionado={post.exameRelacionado}
           especialidadeRelacionada={post.especialidadeRelacionada}
           artigoTitle={post.title}
-          fallbackTitle="Gostou do conteúdo?"
-          fallbackDesc="Agende uma consulta com nossa equipe especializada e cuide da sua saúde digestiva."
+          fallbackTitle={t('fallbackTitle')}
+          fallbackDesc={t('fallbackDesc')}
         />
       </SectionWrapper>
     </>

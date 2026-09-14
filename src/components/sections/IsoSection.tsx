@@ -1,16 +1,12 @@
 // ── IsoSection ────────────────────────────────────────────────────────────────
+import { getTranslations } from 'next-intl/server'
 import { Activity, BookOpen, Shield } from 'lucide-react'
 import { CONTATO } from '@/lib/data'
 import { IsoSeal } from '@/components/icons/IsoSeal'
 
-export function IsoSection() {
-  const pts = [
-    'Processos clínicos padronizados e auditados externamente',
-    'Rastreabilidade completa de exames e prontuários',
-    'Treinamentos e certificações educacionais validados',
-    'Indicadores de qualidade monitorados continuamente',
-    'Segurança e satisfação do paciente como prioridade absoluta',
-  ]
+export async function IsoSection() {
+  const t = await getTranslations('home.iso')
+  const pts = [t('pt1'), t('pt2'), t('pt3'), t('pt4'), t('pt5')]
 
   return (
     <section
@@ -34,16 +30,14 @@ export function IsoSection() {
 
           {/* Content */}
           <div>
-            <p className="sec-tag-dark reveal">Gestão da Qualidade</p>
+            <p className="sec-tag-dark reveal">{t('tag')}</p>
             <h2 className="sec-title-dark reveal reveal-d1">
-              Clínica com<br />
-              <em>Certificação ISO 9001</em><br />
-              em BH
+              {t('titleLine1')}<br />
+              <em>{t('titleEm')}</em><br />
+              {t('titleLine3')}
             </h2>
             <p className="text-[0.98rem] font-light leading-[1.85] mt-4 mb-8 reveal reveal-d2 text-muted-dark">
-              A ISO 9001 é o padrão internacional de excelência em gestão. Cada processo,
-              do agendamento ao diagnóstico, segue protocolos rigorosos de qualidade,
-              rastreabilidade e melhoria contínua.
+              {t('desc')}
             </p>
 
             <div className="flex flex-col gap-3.5 mb-8 reveal reveal-d3">
@@ -74,16 +68,16 @@ export function IsoSection() {
               <div className="relative z-10">
                 <p className="flex items-center gap-2 text-gold text-[0.72rem] font-bold tracking-[.14em] uppercase mb-5">
                   <span className="w-4 h-px bg-gold" />
-                  Diferenciais da Clínica
+                  {t('diferenciaisTag')}
                 </p>
 
                 {/* ISO Badge */}
                 <div className="flex items-center gap-3.5 p-4 bg-white border border-gold/25 rounded-xl mb-6 shadow-sm">
                   <IsoSeal size={54} className="shrink-0" />
                   <div>
-                    <strong className="block text-[0.88rem] font-semibold text-steel mb-0.5">Certificação ISO 9001</strong>
+                    <strong className="block text-[0.88rem] font-semibold text-steel mb-0.5">{t('isoBadgeTitle')}</strong>
                     <span className="text-[0.76rem] text-steel/55 leading-snug">
-                      Clínica com certificação ISO 9001
+                      {t('isoBadgeDesc')}
                     </span>
                   </div>
                 </div>
@@ -91,21 +85,9 @@ export function IsoSection() {
                 {/* Feature list */}
                 <div className="flex flex-col gap-2.5">
                   {[
-                    {
-                      Icon: Activity,
-                      title: 'Tecnologia Diagnóstica de Ponta',
-                      desc: 'Manometria AR, pHmetria, testes respiratórios H₂/CH₄/H₂S',
-                    },
-                    {
-                      Icon: Shield,
-                      title: 'Equipe Multidisciplinar',
-                      desc: 'Gastro, fisioterapia pélvica, nefrologia, pediatria',
-                    },
-                    {
-                      Icon: BookOpen,
-                      title: 'Centro de Ensino Médico',
-                      desc: 'Formação hands-on com certificação validada ISO 9001',
-                    },
+                    { Icon: Activity, title: t('feat1Title'), desc: t('feat1Desc') },
+                    { Icon: Shield,   title: t('feat2Title'), desc: t('feat2Desc') },
+                    { Icon: BookOpen, title: t('feat3Title'), desc: t('feat3Desc') },
                   ].map(({ Icon, title, desc }) => (
                     <div
                       key={title}

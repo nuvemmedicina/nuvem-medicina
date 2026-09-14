@@ -1,8 +1,11 @@
 'use client'
 
-import Link from 'next/link'
+import { useLocale, useTranslations } from 'next-intl'
+import { Link } from '@/i18n/navigation'
 import { Calendar, ArrowRight } from 'lucide-react'
-import { CONTATO, EXAMES, ESPECIALIDADES } from '@/lib/data'
+import { CONTATO } from '@/lib/data'
+import { getEspecialidades, getExames } from '@/lib/content/catalog'
+import type { AppLocale } from '@/i18n/routing'
 import { CtaBanner } from '@/components/ui/CtaBanner'
 import { pushEvent } from '@/lib/gtm'
 
@@ -20,6 +23,10 @@ interface Props {
  * CtaBanner genérico em vez de gerar um link quebrado.
  */
 export function ChamadaExame({ exameRelacionado, especialidadeRelacionada, artigoTitle, fallbackTitle, fallbackDesc }: Props) {
+  const locale = useLocale() as AppLocale
+  const t = useTranslations('chamadaExame')
+  const EXAMES = getExames(locale)
+  const ESPECIALIDADES = getEspecialidades(locale)
   const exame = exameRelacionado ? EXAMES.find(e => e.id === exameRelacionado) : undefined
   const especialidade = !exame && especialidadeRelacionada
     ? ESPECIALIDADES.find(e => e.slug === especialidadeRelacionada)
@@ -33,6 +40,8 @@ export function ChamadaExame({ exameRelacionado, especialidadeRelacionada, artig
 
   if (!alvo) return <CtaBanner title={fallbackTitle} desc={fallbackDesc} />
 
+  // Mensagem do WhatsApp sempre em português: quem lê do outro lado é a
+  // equipe da clínica, independente do idioma em que a pessoa navega o site.
   const waMsg = encodeURIComponent(`Olá! Li o artigo "${artigoTitle}" e gostaria de agendar: ${alvo.nome}.`)
   const tipoDestino = exame ? 'exame' : 'especialidade'
 
@@ -43,7 +52,7 @@ export function ChamadaExame({ exameRelacionado, especialidadeRelacionada, artig
 
       <div className="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-8">
         <div className="max-w-xl">
-          <p className="text-[0.68rem] font-bold uppercase tracking-[.12em] text-teal-light mb-2">Exame relacionado</p>
+          <p className="text-[0.68rem] font-bold uppercase tracking-[.12em] text-teal-light mb-2">{t('exameRelacionado')}</p>
           <h2 className="font-serif font-light text-white text-[1.9rem] leading-snug mb-3">{alvo.nome}</h2>
           <p className="text-[0.95rem] font-light text-white/65 leading-relaxed">{alvo.linha}</p>
         </div>
@@ -54,7 +63,7 @@ export function ChamadaExame({ exameRelacionado, especialidadeRelacionada, artig
             className="btn-gold"
             onClick={() => pushEvent({ event: 'clique_cta_artigo', artigo: artigoTitle, destino: alvo.href, tipo_destino: tipoDestino })}
           >
-            Ver o exame <ArrowRight className="w-4 h-4" />
+            {t('verOExame')} <ArrowRight className="w-4 h-4" />
           </Link>
           <a
             href={`${CONTATO.whatsappUrl}?text=${waMsg}`}
@@ -63,7 +72,7 @@ export function ChamadaExame({ exameRelacionado, especialidadeRelacionada, artig
             onClick={() => pushEvent({ event: 'clique_cta_artigo', artigo: artigoTitle, destino: CONTATO.whatsappUrl, tipo_destino: 'whatsapp' })}
           >
             <Calendar className="w-4 h-4" />
-            Agendar via WhatsApp
+            {t('agendarViaWhatsapp')}
           </a>
         </div>
       </div>

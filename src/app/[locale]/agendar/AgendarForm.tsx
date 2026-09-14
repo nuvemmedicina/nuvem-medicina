@@ -1,20 +1,24 @@
 'use client'
 
 import { useState }  from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter } from '@/i18n/navigation'
+import { useLocale, useTranslations } from 'next-intl'
 import { Send }      from 'lucide-react'
-import { CONTATO, ESPECIALIDADES, EXAMES } from '@/lib/data'
+import { CONTATO }   from '@/lib/data'
+import { getEspecialidades, getExames } from '@/lib/content/catalog'
+import type { AppLocale } from '@/i18n/routing'
 import { formatWhatsAppMessage } from '@/lib/utils'
 import { pushEvent, origemPagina } from '@/lib/gtm'
 
-const SERVICOS = [
-  { group: 'Consultas', options: ESPECIALIDADES.map(e => e.title) },
-  { group: 'Exames',    options: EXAMES.map(e => e.title) },
-  { group: 'Ensino',    options: ['Aperfeiçoamento Teórico', 'Treinamento Hands-On', 'Informações sobre Programas'] },
-]
-
 export function AgendarForm() {
   const router              = useRouter()
+  const locale               = useLocale() as AppLocale
+  const t                    = useTranslations('agendarForm')
+  const SERVICOS = [
+    { group: t('grupoConsultas'), options: getEspecialidades(locale).map(e => e.title) },
+    { group: t('grupoExames'),    options: getExames(locale).map(e => e.title) },
+    { group: t('grupoEnsino'),    options: [t('ensinoOpt1'), t('ensinoOpt2'), t('ensinoOpt3')] },
+  ]
   const [form, setForm]     = useState({ nome: '', telefone: '', email: '', servico: '', mensagem: '' })
   const [sent, setSent]     = useState(false)
   const [errors, setErrors] = useState<Record<string, boolean>>({})
@@ -69,8 +73,8 @@ export function AgendarForm() {
           <polyline points="20 6 9 17 4 12"/>
         </svg>
       </div>
-      <h3 className="text-steel font-semibold mb-2">Solicitação enviada!</h3>
-      <p className="text-[0.9rem] text-steel/65">Abrindo WhatsApp para confirmar o agendamento…</p>
+      <h3 className="text-steel font-semibold mb-2">{t('solicitacaoEnviada')}</h3>
+      <p className="text-[0.9rem] text-steel/65">{t('abrindoWhatsapp')}</p>
     </div>
   )
 
@@ -78,23 +82,23 @@ export function AgendarForm() {
     <form onSubmit={submit} noValidate className="space-y-4">
       <div>
         <label className="block text-[0.72rem] font-semibold uppercase tracking-[.04em] text-steel/45 mb-1.5">
-          Nome Completo *
+          {t('nomeCompleto')}
         </label>
-        <input type="text" placeholder="Seu nome completo" value={form.nome}
+        <input type="text" placeholder={t('nomePlaceholder')} value={form.nome}
           onChange={e => update('nome', e.target.value)} className={inputCls('nome')} />
       </div>
 
       <div className="grid grid-cols-2 gap-4">
         <div>
           <label className="block text-[0.72rem] font-semibold uppercase tracking-[.04em] text-steel/45 mb-1.5">
-            Telefone *
+            {t('telefone')}
           </label>
           <input type="tel" placeholder="(31) 00000-0000" value={form.telefone}
             onChange={e => update('telefone', e.target.value)} className={inputCls('telefone')} />
         </div>
         <div>
           <label className="block text-[0.72rem] font-semibold uppercase tracking-[.04em] text-steel/45 mb-1.5">
-            E-mail
+            {t('email')}
           </label>
           <input type="email" placeholder="seu@email.com" value={form.email}
             onChange={e => update('email', e.target.value)} className={inputCls('email')} />
@@ -103,12 +107,12 @@ export function AgendarForm() {
 
       <div>
         <label className="block text-[0.72rem] font-semibold uppercase tracking-[.04em] text-steel/45 mb-1.5">
-          Serviço de Interesse *
+          {t('servicoInteresse')}
         </label>
         <select value={form.servico} onChange={e => update('servico', e.target.value)}
           className={`${inputCls('servico')} appearance-none`}
         >
-          <option value="">Selecione...</option>
+          <option value="">{t('selecione')}</option>
           {SERVICOS.map(grp => (
             <optgroup key={grp.group} label={grp.group}>
               {grp.options.map(opt => <option key={opt} value={opt}>{opt}</option>)}
@@ -119,9 +123,9 @@ export function AgendarForm() {
 
       <div>
         <label className="block text-[0.72rem] font-semibold uppercase tracking-[.04em] text-steel/45 mb-1.5">
-          Mensagem (opcional)
+          {t('mensagemOpcional')}
         </label>
-        <textarea rows={3} placeholder="Descreva brevemente sua necessidade…" value={form.mensagem}
+        <textarea rows={3} placeholder={t('mensagemPlaceholder')} value={form.mensagem}
           onChange={e => update('mensagem', e.target.value)}
           className={`${inputCls('mensagem')} resize-none`}
         />
@@ -131,12 +135,12 @@ export function AgendarForm() {
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4 text-teal shrink-0 mt-0.5">
           <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
         </svg>
-        Seus dados são protegidos conforme a LGPD e usados exclusivamente para contato de agendamento.
+        {t('lgpd')}
       </div>
 
       <button type="submit" className="btn-gold w-full justify-center py-3.5 text-[0.87rem]">
         <Send className="w-4 h-4" />
-        Enviar Solicitação
+        {t('enviarSolicitacao')}
       </button>
     </form>
   )

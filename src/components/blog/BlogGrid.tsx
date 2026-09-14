@@ -1,16 +1,11 @@
 'use client'
 
 import { useState } from 'react'
-import Link          from 'next/link'
+import { useLocale, useTranslations } from 'next-intl'
 import Image         from 'next/image'
+import { Link }      from '@/i18n/navigation'
 import { urlFor }    from '@/lib/sanity/image'
 import type { Post } from '@/lib/sanity/queries'
-
-function formatDate(dateStr: string) {
-  return new Date(dateStr).toLocaleDateString('pt-BR', {
-    day: '2-digit', month: 'long', year: 'numeric',
-  })
-}
 
 interface Props {
   posts:      Post[]
@@ -18,9 +13,17 @@ interface Props {
 }
 
 export function BlogGrid({ posts, categories }: Props) {
-  const [active, setActive] = useState<string>('Todos')
+  const t = useTranslations('blogPage')
+  const locale = useLocale()
+  const [active, setActive] = useState<string>(t('todos'))
 
-  const filtered = active === 'Todos'
+  function formatDate(dateStr: string) {
+    return new Date(dateStr).toLocaleDateString(locale, {
+      day: '2-digit', month: 'long', year: 'numeric',
+    })
+  }
+
+  const filtered = active === t('todos')
     ? posts
     : posts.filter(p => p.categories?.some(c => c.title === active))
 
@@ -29,7 +32,7 @@ export function BlogGrid({ posts, categories }: Props) {
       {/* Filtros */}
       {categories.length > 0 && (
         <div className="flex flex-wrap gap-2 mb-12">
-          {['Todos', ...categories].map(cat => (
+          {[t('todos'), ...categories].map(cat => (
             <button
               key={cat}
               onClick={() => setActive(cat)}
@@ -53,7 +56,7 @@ export function BlogGrid({ posts, categories }: Props) {
       {/* Grid */}
       {filtered.length === 0 ? (
         <p className="text-center text-steel/50 py-24 text-[0.9rem]">
-          Nenhum artigo nesta categoria.
+          {t('nenhumArtigo')}
         </p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -103,7 +106,7 @@ export function BlogGrid({ posts, categories }: Props) {
                     href={`/blog/${post.slug.current}`}
                     className="inline-flex items-center gap-1.5 text-[0.78rem] font-medium text-teal border-b border-teal/25 pb-px hover:gap-2.5 transition-all"
                   >
-                    Ler artigo →
+                    {t('lerArtigo')}
                   </Link>
                 </div>
               </article>

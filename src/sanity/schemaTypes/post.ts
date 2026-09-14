@@ -18,6 +18,29 @@ export const postType = defineType({
   type:  'document',
   fields: [
     defineField({
+      name:  'language',
+      title: 'Idioma',
+      type:  'string',
+      options: {
+        list: [
+          { title: 'Português (BR)', value: 'pt-BR' },
+          { title: 'English',        value: 'en' },
+          { title: 'Español',        value: 'es' },
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'pt-BR',
+      validation: Rule => Rule.required(),
+    }),
+    defineField({
+      name:  'translationOf',
+      title: 'Tradução de',
+      type:  'reference',
+      to:    [{ type: 'post' }],
+      description: 'Preencha apenas em traduções (idioma diferente de pt-BR), apontando para o artigo original em português.',
+      hidden: ({ document }) => !document?.language || document.language === 'pt-BR',
+    }),
+    defineField({
       name:       'title',
       title:      'Título',
       type:       'string',
@@ -192,9 +215,10 @@ export const postType = defineType({
     }),
   ],
   preview: {
-    select: { title: 'title', author: 'author.name', media: 'coverImage' },
-    prepare({ title, author, media }) {
-      return { title, subtitle: author ? `Por ${author}` : '', media }
+    select: { title: 'title', author: 'author.name', media: 'coverImage', language: 'language' },
+    prepare({ title, author, media, language }) {
+      const idioma = language && language !== 'pt-BR' ? `[${language}] ` : ''
+      return { title: `${idioma}${title}`, subtitle: author ? `Por ${author}` : '', media }
     },
   },
 })

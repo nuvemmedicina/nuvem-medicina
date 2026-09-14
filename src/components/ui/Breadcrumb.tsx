@@ -1,12 +1,14 @@
-import Link from 'next/link'
+import { getTranslations } from 'next-intl/server'
 import { ChevronRight } from 'lucide-react'
+import { Link } from '@/i18n/navigation'
 
 interface Crumb { label: string; href?: string }
 
-export function Breadcrumb({ crumbs }: { crumbs: Crumb[] }) {
+export async function Breadcrumb({ crumbs }: { crumbs: Crumb[] }) {
+  const t = await getTranslations('common')
   return (
     <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-[0.78rem] text-teal/50 mb-4 flex-wrap">
-      <Link href="/" className="hover:text-teal transition-colors">Início</Link>
+      <Link href="/" className="hover:text-teal transition-colors">{t('home')}</Link>
       {crumbs.map((crumb, i) => (
         <span key={crumb.label} className="flex items-center gap-1.5">
           <ChevronRight className="w-3 h-3 opacity-50" />
