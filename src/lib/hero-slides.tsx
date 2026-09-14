@@ -51,7 +51,7 @@ const HERO_SLIDES_PT: HeroSlide[] = [
   },
   {
     id:    'curso-dici',
-    badge: 'Início em 03 de agosto de 2026',
+    badge: 'Curso Online · Certificado MEC/FACOP',
     title: (
       <>
         Curso de Aperfeiçoamento em{' '}
@@ -161,7 +161,7 @@ const HERO_SLIDES_EN: HeroSlide[] = [
   },
   {
     id:    'curso-dici',
-    badge: 'Starts August 3, 2026',
+    badge: 'Online Course · MEC/FACOP Certified',
     title: (
       <>
         Advanced Course in{' '}
@@ -272,7 +272,7 @@ const HERO_SLIDES_ES: HeroSlide[] = [
   },
   {
     id:    'curso-dici',
-    badge: 'Inicio el 3 de agosto de 2026',
+    badge: 'Curso Online · Certificado MEC/FACOP',
     title: (
       <>
         Curso de Perfeccionamiento en{' '}
