@@ -90,7 +90,7 @@
   }
 
   .btn-nav-cta {
-    @apply inline-flex items-center gap-2 text-white font-semibold text-[0.85rem] px-5 py-2.5 rounded-lg transition-all;
+    @apply inline-flex items-center gap-2 text-white font-semibold text-[0.85rem] px-4 py-2.5 rounded-lg transition-all whitespace-nowrap;
     background: linear-gradient(135deg, #00465F 0%, #0e7fa5 100%);
     &:hover {
       @apply -translate-y-px;
@@ -157,7 +157,7 @@
 
   /* ── Nav links (light navbar) ── */
   .nav-link {
-    @apply text-[0.78rem] font-medium px-3.5 py-2 rounded-md transition-all;
+    @apply text-[0.76rem] font-medium px-2.5 py-2 rounded-md transition-all whitespace-nowrap;
     color: rgba(var(--steel), 0.65);
     &:hover {
       @apply text-teal;

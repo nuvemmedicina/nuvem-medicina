@@ -49,7 +49,7 @@ export function Navbar() {
             <LogoTeal className="h-10 w-auto opacity-95" />
           </Link>
 
-          <div className="hidden lg:flex items-center gap-1">
+          <div className="hidden lg:flex items-center gap-0.5 shrink-0">
             {NAV_ITEMS.map(item => (
               <div key={item.href} className="relative">
                 {item.children ? (
@@ -92,9 +92,9 @@ export function Navbar() {
             ))}
           </div>
 
-          <div className="hidden lg:flex items-center gap-4">
+          <div className="hidden lg:flex items-center gap-2.5 shrink-0">
             <LanguageSwitcher />
-            <a href="tel:3125373131" className="text-[0.82rem] text-steel/55 hover:text-teal transition-colors">
+            <a href="tel:3125373131" className="hidden xl:inline text-[0.8rem] text-steel/55 hover:text-teal transition-colors whitespace-nowrap">
               (31) 2537-3131
             </a>
             <Link href="/agendar" className="btn-nav-cta">
