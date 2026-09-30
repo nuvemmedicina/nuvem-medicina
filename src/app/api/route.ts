@@ -83,11 +83,9 @@ EQUIPE MULTIDISCIPLINAR:
 - Dra. Camilla Mendes — Clínica Médica e Medicina Interna
 - Dra. Danielle Martins — Gastroenterologia e DGBI
 - Dr. Gabriel de Souza Fernandes Filho — Gastroenterologia
-- Dra. Larissa Veiga Raña — Gastroenterologia Clínica
 - Dra. Luiza Auarek — Nefrologia (interface GI-Renal)
 - Dra. Mariana Fernandes — Pediatria (saúde digestiva infantil)
 - Dra. Raissa Dalat — Cirurgia Pediátrica
-- Dr. Thiago Guimarães — Clínica Médica e Hematologia
 
 ═══════════════════════════════════════
 ESPECIALIDADES

@@ -203,16 +203,16 @@ export const NUVETE_RESPOSTAS: NuveteResposta[] = [
     ],
   },
   {
-    gatilhos: ['claudia utsch', 'claudia', 'danielle martins', 'danielle', 'larissa veiga', 'larissa'],
-    resposta: '👩‍⚕️ **Equipe de Gastroenterologia:**\n\n- **Dra. Claudia Utsch**: Gastroenterologia Clínica\n- **Dra. Danielle Martins**: Gastroenterologia e DGBI\n- **Dra. Larissa Veiga Raña**: Gastroenterologia Clínica\n\nAtuam em conjunto com a Dra. Vera Ângelo no atendimento de doenças digestivas.',
+    gatilhos: ['claudia utsch', 'claudia', 'danielle martins', 'danielle'],
+    resposta: '👩‍⚕️ **Equipe de Gastroenterologia:**\n\n- **Dra. Claudia Utsch**: Gastroenterologia Clínica\n- **Dra. Danielle Martins**: Gastroenterologia e DGBI\n\nAtuam em conjunto com a Dra. Vera Ângelo no atendimento de doenças digestivas.',
     botoes: [
       { label: '👥 Ver perfis completos', acao: 'link:/equipe' },
       { label: '📅 Agendar consulta', acao: 'whatsapp' },
     ],
   },
   {
-    gatilhos: ['camilla mendes', 'camilla', 'thiago guimarães', 'thiago guimaraes', 'thiago', 'clínica médica', 'clinica medica', 'hematologia'],
-    resposta: '👩‍⚕️ **Clínica Médica e Hematologia:**\n\n- **Dra. Camilla Mendes**: Clínica Médica e Medicina Interna\n- **Dr. Thiago Guimarães**: Clínica Médica e Hematologia\n\nAtuam no acompanhamento clínico integrado dos pacientes da NU.V.E.M.',
+    gatilhos: ['camilla mendes', 'camilla', 'clínica médica', 'clinica medica'],
+    resposta: '👩‍⚕️ **Dra. Camilla Mendes**\nClínica Médica e Medicina Interna\n\nAtua no acompanhamento clínico integrado dos pacientes da NU.V.E.M.',
     botoes: [
       { label: '👥 Ver toda a equipe', acao: 'link:/equipe' },
       { label: '📅 Agendar consulta', acao: 'whatsapp' },
@@ -244,7 +244,7 @@ export const NUVETE_RESPOSTAS: NuveteResposta[] = [
   },
   {
     gatilhos: ['equipe', 'médicos', 'medicos', 'especialistas', 'quem atende', 'profissionais'],
-    resposta: '👩‍⚕️ **Nossa Equipe Multidisciplinar:**\n\n**Sócias Fundadoras:**\n- Dra. Vera Ângelo: Gastroenterologia e Motilidade\n- Dra. Eliane Basques Moura: Cirurgia Pediátrica\n\n**Especialistas:**\n- Dra. Amanda Araújo: Gastroenterologia e Motilidade Digestiva\n- Dr. Gabriel de Souza Fernandes Filho: Gastroenterologia\n- Dra. Anna Karoline: Fisioterapia Pélvica\n- Dra. Claudia Utsch: Gastroenterologia\n- Dra. Danielle Martins: Gastroenterologia\n- Dra. Camilla Mendes: Clínica Médica\n- Dr. Thiago Guimarães: Clínica Médica e Hematologia\n- Dra. Luiza Auarek: Nefrologia\n- Dra. Mariana Fernandes: Pediatria\n- Dra. Adrianna Buzatti Viana: Cirurgia Pediátrica\n- Dra. Raissa Dalat: Cirurgia Pediátrica\n- Dra. Larissa Veiga Raña: Gastroenterologia\n\nTodos atuam de forma integrada sob gestão ISO 9001 💙',
+    resposta: '👩‍⚕️ **Nossa Equipe Multidisciplinar:**\n\n**Sócias Fundadoras:**\n- Dra. Vera Ângelo: Gastroenterologia e Motilidade\n- Dra. Eliane Basques Moura: Cirurgia Pediátrica\n\n**Especialistas:**\n- Dra. Amanda Araújo: Gastroenterologia e Motilidade Digestiva\n- Dr. Gabriel de Souza Fernandes Filho: Gastroenterologia\n- Dra. Anna Karoline: Fisioterapia Pélvica\n- Dra. Claudia Utsch: Gastroenterologia\n- Dra. Danielle Martins: Gastroenterologia\n- Dra. Camilla Mendes: Clínica Médica\n- Dra. Luiza Auarek: Nefrologia\n- Dra. Mariana Fernandes: Pediatria\n- Dra. Adrianna Buzatti Viana: Cirurgia Pediátrica\n- Dra. Raissa Dalat: Cirurgia Pediátrica\n\nTodos atuam de forma integrada sob gestão ISO 9001 💙',
     botoes: [
       { label: '👥 Conhecer toda a equipe', acao: 'link:/equipe' },
       { label: '📅 Agendar consulta', acao: 'whatsapp' },
@@ -261,8 +261,16 @@ export const NUVETE_RESPOSTAS: NuveteResposta[] = [
     ],
   },
   {
+    gatilhos: ['dgbi', 'doenças funcionais', 'doencas funcionais', 'intestino-cérebro', 'intestino-cerebro', 'cérebro-intestino', 'cerebro-intestino', 'exames normais', 'exame normal'],
+    resposta: '🧠 **DGBI: Distúrbios da Interação Intestino-Cérebro**\n\nÉ o nome atual (critérios de Roma) para o que antes se chamava "doenças funcionais digestivas", como a síndrome do intestino irritável, a dispepsia funcional e o inchaço abdominal funcional.\n\nOs sintomas são reais, mesmo quando os exames de rotina vêm normais: envolvem a comunicação entre o intestino e o sistema nervoso, a sensibilidade visceral e a motilidade.\n\nNa NU.V.E.M, a avaliação é feita pela gastroenterologia, com apoio de exames funcionais (manometria, testes respiratórios) quando indicados.\n\n📖 Temos um artigo sobre isso: **Exames normais, mas a barriga continua incomodando? Entenda o que é um DGBI**',
+    botoes: [
+      { label: '📖 Ler o artigo', acao: 'link:/blog/o-que-e-dgbi-disturbio-interacao-intestino-cerebro' },
+      { label: '📅 Agendar consulta', acao: 'whatsapp' },
+    ],
+  },
+  {
     gatilhos: ['gastroenterologia', 'gastro', 'digestivo', 'intestino', 'estômago', 'estomago', 'cólon', 'colon', 'gastrite', 'colite', 'crohn', 'celiaca', 'celíaca'],
-    resposta: '🔹 **Gastroenterologia**\n\nA NU.V.E.M é especializada em doenças do aparelho digestivo, com foco em diagnóstico de precisão:\n\n- Doença do refluxo (DRGE)\n- Acalasia e distúrbios motores esofágicos\n- Síndrome do intestino irritável (SII)\n- Doença de Crohn e retocolite\n- Doença celíaca\n- Gastrite e *H. pylori*\n- SIBO e disbiose intestinal\n- Constipação crônica\n- Doenças funcionais digestivas',
+    resposta: '🔹 **Gastroenterologia**\n\nA NU.V.E.M é especializada em doenças do aparelho digestivo, com foco em diagnóstico de precisão:\n\n- Doença do refluxo (DRGE)\n- Acalasia e distúrbios motores esofágicos\n- Síndrome do intestino irritável (SII)\n- Doença de Crohn e retocolite\n- Doença celíaca\n- Gastrite e *H. pylori*\n- SIBO e disbiose intestinal\n- Constipação crônica\n- DGBI: distúrbios da interação intestino-cérebro (antigas "doenças funcionais digestivas")',
     botoes: [
       { label: '🩺 Saiba mais', acao: 'link:/especialidades/gastroenterologia' },
       { label: '📅 Agendar consulta', acao: 'whatsapp' },
@@ -293,7 +301,7 @@ export const NUVETE_RESPOSTAS: NuveteResposta[] = [
     ],
   },
   {
-    gatilhos: ['motilidade', 'motilidade digestiva', 'funcional', 'doenças funcionais', 'dgbi', 'distúrbio cérebro-intestino', 'disturbio cerebro-intestino', 'interação cérebro-intestino'],
+    gatilhos: ['motilidade', 'motilidade digestiva', 'funcional'],
     resposta: '🔹 **Motilidade Digestiva**\n\nAvaliação dos movimentos e da função do aparelho digestivo com exames de alta precisão:\n\n- Manometria Esofágica de Alta Resolução\n- Manometria Anorretal\n- pHmetria e Impedanciopletismografia\n- Testes Respiratórios (H₂, CH₄, H₂S)\n\nSomos referência nacional nessa área, com a Dra. Vera Ângelo à frente das pesquisas.',
     botoes: [
       { label: '🩺 Saiba mais', acao: 'link:/especialidades/motilidade-digestiva' },
