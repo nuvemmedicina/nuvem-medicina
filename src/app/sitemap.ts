@@ -69,6 +69,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE}/dra-vera-angelo`,         priority: 0.75, changeFrequency: 'monthly' as const },
     { url: `${BASE}/dra-eliane-basques`,      priority: 0.75, changeFrequency: 'monthly' as const },
     { url: `${BASE}/gestao-da-qualidade`,     priority: 0.85, changeFrequency: 'monthly' as const },
+    { url: `${BASE}/album-da-saude`,          priority: 0.6,  changeFrequency: 'monthly' as const },
     { url: `${BASE}/ensino`,                  priority: 0.8,  changeFrequency: 'monthly' as const },
     { url: `${BASE}/convenios-medicos`,       priority: 0.7,  changeFrequency: 'monthly' as const },
     { url: `${BASE}/direitos-do-paciente`,    priority: 0.4,  changeFrequency: 'yearly'  as const },

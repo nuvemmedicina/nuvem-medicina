@@ -43,6 +43,7 @@ export function Footer() {
         { label: t('institucionalEquipe'),    href: '/equipe' },
         { label: t('institucionalQualidade'), href: '/gestao-da-qualidade' },
         { label: t('institucionalEnsino'),    href: '/ensino' },
+        { label: t('institucionalAlbum'),     href: '/album-da-saude' },
         { label: t('institucionalConvenios'), href: '/convenios-medicos' },
         { label: t('institucionalBlog'),      href: '/blog' },
       ],

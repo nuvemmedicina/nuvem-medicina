@@ -81,6 +81,7 @@ Centro de formação profissional para médicos, fisioterapeutas e especialistas
 - [Exames e Diagnósticos](https://www.nuvemmedicina.com.br/exames)
 - [Preparos para Exames](https://www.nuvemmedicina.com.br/exames/preparos)
 - [NU.V.E.M Ensino](https://www.nuvemmedicina.com.br/ensino)
+- [Álbum da Saúde (app infantil)](https://www.nuvemmedicina.com.br/album-da-saude)
 - [Convênios](https://www.nuvemmedicina.com.br/convenios-medicos)
 - [Agendar Consulta](https://www.nuvemmedicina.com.br/agendar)
 - [Contato](https://www.nuvemmedicina.com.br/contato)

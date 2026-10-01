@@ -17,6 +17,7 @@ const PT_ONLY_SEGMENTS = [
   'ensino',
   'convenios-medicos',
   'gestao-da-qualidade',
+  'album-da-saude',
   'direitos-do-paciente',
   'politica-de-privacidade',
   'links',
