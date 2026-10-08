@@ -17,6 +17,7 @@ export interface Curso {
   imagem:      string
   href:        string      // URL externa de inscrição
   destaque?:   boolean     // aparece em maior destaque
+  encerrado?:  boolean     // turma fechada: mostra "Em breve nova turma" e leva ao site da NU.V.E.M Ensino
 }
 
 export const CURSOS: Curso[] = [
@@ -29,7 +30,7 @@ export const CURSOS: Curso[] = [
     data:       'Agosto 2026',
     instrutor:  'Dra. Vera Ângelo',
     descricao:  'Aperfeiçoamento em distúrbios da interação cérebro-intestino: SII, dispepsia funcional e ferramentas diagnósticas modernas. Online com encontros ao vivo, início em agosto de 2026.',
-    imagem:     '/images/dra-vera-angelo-1.jpeg',
+    imagem:     '/images/cursos/capa-dici-neurogastro.jpg',
     href:       'https://www.nuvemensino.com.br/cursos/dici-neurogastroenterologia-2026',
     destaque:   true,
   },
@@ -39,12 +40,12 @@ export const CURSOS: Curso[] = [
     parceiro:   'NU.V.E.M Ensino',
     tipo:       'Curso',
     modalidade: 'Presencial',
-    data:       'Outubro 2026',
     instrutor:  'Dra. Vera Ângelo',
     descricao:  'Treinamento teórico-prático completo em testes respiratórios para diagnóstico de intolerâncias alimentares, SIBO, IMO, LIBO e SIFO. Prática supervisionada com equipamentos Dynamed e Health Go.',
-    imagem:     '/images/dra-vera-angelo-1.jpeg',
-    href:       'https://www.nuvemensino.com.br/cursos/testes-respiratorios-h2-ch4-h2s-outubro',
+    imagem:     '/images/cursos/capa-testes-respiratorios.jpg',
+    href:       'https://www.nuvemensino.com.br/',
     destaque:   false,
+    encerrado:  true,
   },
   {
     id:         'fisioterapia-assoalho-pelvico',
@@ -54,7 +55,7 @@ export const CURSOS: Curso[] = [
     modalidade: 'Presencial',
     instrutor:  'Dra. Karol Rocha',
     descricao:  'Treinamento teórico-prático hands-on de 30h em avaliação e reabilitação das disfunções do assoalho pélvico, com Dra. Karol Rocha. Turmas com no máximo 2 alunos e agendamento flexível.',
-    imagem:     '/images/anna-karoline.jpg',
+    imagem:     '/images/cursos/capa-assoalho-pelvico.jpg',
     href:       'https://www.nuvemensino.com.br/cursos/fisioterapia-respiratoria',
     destaque:   false,
   },

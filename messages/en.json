@@ -305,7 +305,9 @@
       "title": "Training and scientific <em>updates</em>",
       "desc": "Courses, talks and workshops with the NU.V.E.M team and leading national partners. Content applied to real clinical practice.",
       "verTodos": "See all courses",
-      "inscreverSe": "Enroll"
+      "inscreverSe": "Enroll",
+      "emBreve": "New class coming soon",
+      "turmaFechada": "Class full"
     },
     "depoimentos": {
       "tag": "Testimonials",

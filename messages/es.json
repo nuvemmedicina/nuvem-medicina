@@ -305,7 +305,9 @@
       "title": "Formación y <em>actualización</em> científica",
       "desc": "Cursos, charlas y talleres con el equipo NU.V.E.M y socios de referencia nacional. Contenido aplicado a la práctica clínica real.",
       "verTodos": "Ver todos los cursos",
-      "inscreverSe": "Inscribirme"
+      "inscreverSe": "Inscribirme",
+      "emBreve": "Próximamente nueva clase",
+      "turmaFechada": "Grupo cerrado"
     },
     "depoimentos": {
       "tag": "Testimonios",

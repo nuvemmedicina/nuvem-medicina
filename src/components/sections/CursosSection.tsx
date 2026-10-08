@@ -21,7 +21,9 @@ const TIPO_COLOR: Record<Curso['tipo'], string> = {
   Live:       'bg-white/90 text-rose-600 border-white/50',
 }
 
-function CursoCard({ curso, index, inscreverSeLabel }: { curso: Curso; index: number; inscreverSeLabel: string }) {
+interface CardLabels { inscreverSe: string; emBreve: string; turmaFechada: string }
+
+function CursoCard({ curso, index, labels }: { curso: Curso; index: number; labels: CardLabels }) {
   const ModalIcon = MODALIDADE_ICON[curso.modalidade]
 
   return (
@@ -37,7 +39,7 @@ function CursoCard({ curso, index, inscreverSeLabel }: { curso: Curso; index: nu
           src={curso.imagem}
           alt={curso.titulo}
           fill
-          className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+          className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#001a27]/70 via-transparent to-transparent" />
 
@@ -52,6 +54,12 @@ function CursoCard({ curso, index, inscreverSeLabel }: { curso: Curso; index: nu
             </span>
           )}
         </div>
+
+        {curso.encerrado && (
+          <span className="absolute top-3 right-3 text-[0.6rem] font-bold tracking-[.1em] uppercase px-2.5 py-1 rounded-full bg-[#001a27]/80 text-white border border-white/20 backdrop-blur-sm">
+            {labels.turmaFechada}
+          </span>
+        )}
 
         {/* Modalidade + data */}
         <div className="absolute bottom-3 left-3 flex items-center gap-3">
@@ -80,7 +88,7 @@ function CursoCard({ curso, index, inscreverSeLabel }: { curso: Curso; index: nu
           {curso.descricao}
         </p>
         <div className="mt-5 flex items-center gap-1.5 text-[0.85rem] font-semibold text-teal group-hover:gap-2.5 transition-all">
-          {inscreverSeLabel} <ExternalLink className="w-3.5 h-3.5" />
+          {curso.encerrado ? labels.emBreve : labels.inscreverSe} <ExternalLink className="w-3.5 h-3.5" />
         </div>
       </div>
     </a>
@@ -143,7 +151,7 @@ export async function CursosSection({ limit, dark = false }: Props) {
               : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
         }`}>
           {cursos.map((curso, i) => (
-            <CursoCard key={curso.id} curso={curso} index={i} inscreverSeLabel={t('inscreverSe')} />
+            <CursoCard key={curso.id} curso={curso} index={i} labels={{ inscreverSe: t('inscreverSe'), emBreve: t('emBreve'), turmaFechada: t('turmaFechada') }} />
           ))}
         </div>
 

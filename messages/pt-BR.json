@@ -305,7 +305,9 @@
       "title": "Formação e <em>atualização</em> científica",
       "desc": "Cursos, palestras e workshops com a equipe NU.V.E.M e parceiros de referência nacional. Conteúdo aplicado à prática clínica real.",
       "verTodos": "Ver todos os cursos",
-      "inscreverSe": "Inscrever-se"
+      "inscreverSe": "Inscrever-se",
+      "emBreve": "Em breve nova turma",
+      "turmaFechada": "Turma fechada"
     },
     "depoimentos": {
       "tag": "Depoimentos",
