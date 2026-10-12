@@ -13,6 +13,7 @@ const ROTAS_FIXAS = [
   { title: 'Todos os exames',         value: '/exames' },
   { title: 'Todas as especialidades', value: '/especialidades' },
   { title: 'Contato',                 value: '/contato' },
+  { title: 'Álbum da Saúde',          value: '/album-da-saude' },
 ]
 
 // Listas geradas a partir de src/lib/data.ts — mesma solução usada no campo
