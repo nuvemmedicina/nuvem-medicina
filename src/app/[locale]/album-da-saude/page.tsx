@@ -2,10 +2,11 @@ import type { Metadata } from 'next'
 import Image              from 'next/image'
 import { PageHero }       from '@/components/ui/PageHero'
 import { SectionWrapper } from '@/components/ui/SectionWrapper'
-import { ExternalLink, Smartphone, WifiOff, ShieldCheck, Volume2, Hand, Shirt } from 'lucide-react'
+import { ExternalLink, Smartphone, WifiOff, ShieldCheck, Volume2, Hand, Shirt, Download, Printer } from 'lucide-react'
 import { SITE_URL }       from '@/lib/site'
 
 const ALBUM_URL = 'https://album.nuvemmedicina.com.br'
+const PDF_URL   = '/downloads/album-da-saude-nuvem.pdf'
 
 const DESCRICAO =
   'Álbum da Saúde da NU.V.E.M Medicina: sete hábitos de saúde para crianças de 2 a 6 anos, com selos, ' +
@@ -37,7 +38,7 @@ const MISSOES = [
 const COMO_FUNCIONA = [
   { Icon: Hand,    title: 'Toque e arraste',     desc: 'A criança cola selos e veste os personagens com o dedo. Não precisa saber ler e não existe resposta errada.' },
   { Icon: Volume2, title: 'Tudo narrado',        desc: 'Cada toque tem uma fala da Dra. Vera Ângelo. As legendas pequenas são para o adulto acompanhar.' },
-  { Icon: Shirt,   title: 'Roupinhas de prêmio', desc: 'Seis selos completam uma missão e liberam roupas novas para a Nuvenzinha e o Nuvenzinho.' },
+  { Icon: Shirt,   title: 'Roupinhas de prêmio', desc: 'O primeiro selo de uma missão libera um acessório, o terceiro libera uma roupa nova e o sexto vale uma medalha.' },
 ]
 
 export default function AlbumDaSaudePage() {
@@ -89,6 +90,40 @@ export default function AlbumDaSaudePage() {
                 </a>
               </div>
             </div>
+          </div>
+        </div>
+      </SectionWrapper>
+
+      {/* Versão impressa para baixar */}
+      <SectionWrapper>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+          <div className="reveal order-2 lg:order-1">
+            <p className="sec-tag">Versão impressa</p>
+            <h2 className="sec-title mt-2 mb-5">
+              Prefere no <em>papel</em>? Baixe e imprima
+            </h2>
+            <p className="text-[0.95rem] font-light text-steel/65 leading-[1.8] mb-7">
+              O Meu Álbum da Saúde também existe em versão para imprimir em casa: 22 páginas em A4,
+              com as sete missões, os selos para marcar e as roupinhas da Nuvenzinha e do Nuvenzinho.
+              É gratuito e pode ser usado junto com o álbum online.
+            </p>
+            <a href={PDF_URL} download className="btn-teal inline-flex items-center gap-2">
+              Baixar o álbum em PDF <Download className="w-4 h-4" aria-hidden="true" />
+            </a>
+            <p className="flex items-center gap-2 mt-4 text-[0.82rem] font-light text-steel/55">
+              <Printer className="w-4 h-4" aria-hidden="true" /> PDF · 22 páginas · 5,4 MB
+            </p>
+          </div>
+          <div className="reveal reveal-d1 order-1 lg:order-2 flex justify-center">
+            <a href={PDF_URL} download aria-label="Baixar o Meu Álbum da Saúde em PDF" className="block">
+              <Image
+                src="/images/album-saude/capa-impresso.webp"
+                alt="Capa do Meu Álbum da Saúde impresso, com a Dra. Vera Ângelo, a Nuvenzinha e o Nuvenzinho"
+                width={600}
+                height={850}
+                className="w-full max-w-[300px] h-auto rounded-xl shadow-[0_12px_32px_rgba(27,72,94,0.18)] rotate-[-2deg]"
+              />
+            </a>
           </div>
         </div>
       </SectionWrapper>
