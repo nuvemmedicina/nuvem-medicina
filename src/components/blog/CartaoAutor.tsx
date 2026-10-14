@@ -24,7 +24,7 @@ export function CartaoAutor({ autor, revisadoPor, dataRevisao }: Props) {
   return (
     <div className="mt-12 pt-8 border-t border-teal/10">
       <div className="flex items-start gap-4">
-        {autor.image && (
+        {autor.image?.asset && (
           <div className="w-14 h-14 rounded-full overflow-hidden shrink-0 relative border border-teal/15">
             <Image src={urlFor(autor.image).width(112).height(112).url()} alt={autor.name} fill className="object-cover" />
           </div>

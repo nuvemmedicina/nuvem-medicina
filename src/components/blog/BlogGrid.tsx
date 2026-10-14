@@ -67,7 +67,7 @@ export function BlogGrid({ posts, categories }: Props) {
                 key={post._id}
                 className={`group bg-white border border-teal/10 rounded-2xl overflow-hidden shadow-sm hover:border-teal/25 hover:-translate-y-1 hover:shadow-md transition-all reveal reveal-d${i % 3}`}
               >
-                {post.coverImage ? (
+                {post.coverImage?.asset ? (
                   <div className="relative h-44 w-full overflow-hidden">
                     <Image
                       src={urlFor(post.coverImage).width(640).height(360).url()}

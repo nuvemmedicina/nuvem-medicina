@@ -22,7 +22,8 @@ import { getPostBySlug, getAllPosts } from '@/lib/sanity/queries'
 import { urlFor }          from '@/lib/sanity/image'
 import { postSchema, faqSchema, breadcrumbSchema } from '@/lib/schema'
 import { SITE_URL } from '@/lib/site'
-import { localizedAlternates } from '@/lib/i18n-seo'
+import { translatedAlternates } from '@/lib/i18n-seo'
+import { TraducoesDaPagina } from '@/components/layout/TraducoesDaPagina'
 import type { AppLocale } from '@/i18n/routing'
 
 export const revalidate = 60
@@ -38,17 +39,17 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale, slug } = await params
   const post = await getPostBySlug(slug, locale)
   if (!post) return {}
-  const ogImage = post.coverImage
+  const ogImage = post.coverImage?.asset
     ? urlFor(post.coverImage).width(1200).height(630).url()
     : undefined
-  // respostaDireta é escrita para responder a pergunta de busca de forma direta,
-  // então é a melhor description quando existe; excerpt continua sendo o recuo
-  // para os artigos que ainda não a têm preenchida.
-  const description = post.respostaDireta ?? post.excerpt
+  // excerpt é o resumo curto (até 200 caracteres) e cabe no snippet da busca,
+  // por isso é a description preferida; respostaDireta (até 320 caracteres, que
+  // o Google cortaria por volta de 155) fica como recuo para quem não tem excerpt.
+  const description = post.excerpt ?? post.respostaDireta
   return {
     title:       post.title,
     description,
-    alternates:  localizedAlternates(`/blog/${slug}`, locale),
+    alternates:  translatedAlternates('/blog', locale, versoesDoPost(post, locale)),
     openGraph: {
       title:       post.title,
       description,
@@ -70,6 +71,15 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   }
 }
 
+/**
+ * Versões do artigo em cada idioma, sempre incluindo a atual (garante o
+ * canonical mesmo se a consulta de traduções vier vazia).
+ */
+function versoesDoPost(post: { slug: { current: string }; translations?: { language: string; slug: string }[] }, locale: string) {
+  const versoes = (post.translations ?? []).filter(v => v.language !== locale)
+  return [...versoes, { language: locale, slug: post.slug.current }]
+}
+
 /** Extrai os blocos faqItem do corpo do artigo, na ordem em que aparecem no texto. */
 // resposta pode ser string (respostas antigas) ou Portable Text (respostas novas, formatadas).
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -83,7 +93,9 @@ function extrairFaqs(body: any[] = []): { pergunta: string; resposta: string | a
 // artigo para o evento `abriu_faq` do dataLayer (ver src/components/blog/FaqItem.tsx).
 const buildPtComponents = (artigoTitle: string) => ({
   types: {
-    image: ({ value }: any) => (
+    // Bloco de imagem sem foto (ex.: foto removida no Studio e bloco esquecido)
+    // é ignorado: sem asset, urlFor quebra a renderização da página inteira.
+    image: ({ value }: any) => value?.asset ? (
       <figure className="my-8">
         <Image
           src={urlFor(value).width(1200).url()}
@@ -94,7 +106,7 @@ const buildPtComponents = (artigoTitle: string) => ({
         />
         {value.caption && <figcaption className="text-center text-[0.78rem] text-steel/50 mt-2">{value.caption}</figcaption>}
       </figure>
-    ),
+    ) : null,
     calloutBlock:  ({ value }: any) => <CalloutBlock value={value} />,
     faqItem:       ({ value }: any) => <FaqItem value={value} artigoTitle={artigoTitle} />,
     downloadBlock: ({ value }: any) => <DownloadBlock value={value} />,
@@ -139,7 +151,7 @@ function pessoaParaSchema(autor?: NonNullable<Awaited<ReturnType<typeof getPostB
     crm:        autor.crm,
     rqe:        autor.rqe,
     titulacao:  autor.titulacao,
-    image:      autor.image ? urlFor(autor.image).width(400).height(400).url() : undefined,
+    image:      autor.image?.asset ? urlFor(autor.image).width(400).height(400).url() : undefined,
   }
 }
 
@@ -152,8 +164,11 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
   const formatDate = (dateStr: string) =>
     new Date(dateStr).toLocaleDateString(locale, { day: '2-digit', month: 'long', year: 'numeric' })
 
+  const caminhosPorIdioma = Object.fromEntries(
+    versoesDoPost(post, locale).map(v => [v.language, `/blog/${v.slug}`]),
+  )
   const faqs = extrairFaqs(post.body)
-  const coverImageUrl = post.coverImage ? urlFor(post.coverImage).width(1200).height(675).url() : undefined
+  const coverImageUrl = post.coverImage?.asset ? urlFor(post.coverImage).width(1200).height(675).url() : undefined
 
   return (
     <>
@@ -161,7 +176,7 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
         postSchema({
           title:         post.title,
           slug:          post.slug.current,
-          description:   post.respostaDireta ?? post.excerpt,
+          description:   post.excerpt ?? post.respostaDireta,
           datePublished: post.publishedAt,
           dataRevisao:   post.dataRevisao,
           image:         coverImageUrl,
@@ -176,6 +191,7 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
           { name: post.title, url: `${SITE_URL}/blog/${post.slug.current}` },
         ]),
       ]} />
+      <TraducoesDaPagina pathname={`/blog/${slug}`} caminhos={caminhosPorIdioma} recuo="/blog" />
 
       {/* Hero */}
       <div className="relative pt-32 pb-16 overflow-hidden" style={{ background: 'linear-gradient(135deg, #002535, #00465F)' }}>
@@ -211,7 +227,7 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
       </div>
 
       {/* Cover image */}
-      {post.coverImage && (
+      {coverImageUrl && post.coverImage && (
         <div className="max-w-3xl mx-auto px-6 -mt-8 relative z-10">
           <div className="relative w-full rounded-2xl overflow-hidden shadow-xl" style={{ aspectRatio: '16/9' }}>
             <Image src={coverImageUrl!} alt={post.title} fill className="object-cover" />

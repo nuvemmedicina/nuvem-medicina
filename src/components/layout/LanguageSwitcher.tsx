@@ -6,6 +6,7 @@ import { Globe, Check } from 'lucide-react'
 import { usePathname, useRouter } from '@/i18n/navigation'
 import { routing } from '@/i18n/routing'
 import { cn } from '@/lib/utils'
+import { useTraducoesDaPagina } from '@/components/layout/TraducoesDaPagina'
 
 const LABELS: Record<string, string> = {
   'pt-BR': 'PT',
@@ -28,9 +29,16 @@ export function LanguageSwitcher({ variant = 'desktop' }: Props) {
   const pathname = usePathname()
   const router   = useRouter()
   const [open, setOpen] = useState(false)
+  const traducoes = useTraducoesDaPagina()
 
   const select = (l: string) => {
-    router.replace(pathname, { locale: l })
+    // Páginas com slug próprio por idioma (artigos do blog) registram suas
+    // versões; sem versão no idioma escolhido, o destino é o recuo (ex.: /blog).
+    // Nas demais páginas o caminho é o mesmo em todos os idiomas.
+    const destino = traducoes?.pathname === pathname
+      ? (traducoes.caminhos[l] ?? traducoes.recuo)
+      : pathname
+    router.replace(destino, { locale: l })
     setOpen(false)
   }
 

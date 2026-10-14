@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next'
 import { ESPECIALIDADES, EXAMES } from '@/lib/data'
-import { getAllPosts } from '@/lib/sanity/queries'
+import { getAllPostsWithTranslations } from '@/lib/sanity/queries'
 import { SITE_URL as BASE } from '@/lib/site'
 import { routing } from '@/i18n/routing'
 
@@ -76,21 +76,35 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE}/politica-de-privacidade`, priority: 0.3,  changeFrequency: 'yearly'  as const },
   ].map(p => ({ ...p, lastModified: agora }))
 
-  // Posts do blog. Ainda só em pt-BR (tradução via IA é piloto, fase seguinte
-  // deste projeto) — sem bloco de idiomas até existirem posts en/es publicados.
+  // Posts do blog em todos os idiomas. Cada versão é uma entrada própria (o
+  // slug muda por idioma) e, quando o artigo tem tradução publicada, ganha o
+  // bloco de idiomas só com as versões que existem. Artigo sem tradução sai
+  // sem bloco, para não apontar para URLs inexistentes.
   // Se o Sanity estiver indisponível no build, o sitemap sai sem os posts em
   // vez de derrubar a geração da página inteira.
   let postPages: MetadataRoute.Sitemap = []
   try {
-    const posts = await getAllPosts()
-    postPages = posts.map(post => ({
-      url:             `${BASE}/blog/${post.slug.current}`,
-      priority:        0.7,
-      changeFrequency: 'monthly' as const,
-      lastModified:    post.dataRevisao ? new Date(post.dataRevisao)
-                      : post.publishedAt ? new Date(post.publishedAt)
-                      : agora,
-    }))
+    const posts = await getAllPostsWithTranslations()
+    postPages = posts.map(post => {
+      const language = post.language ?? routing.defaultLocale
+      const versoes = post.translations ?? []
+      const entrada: MetadataRoute.Sitemap[number] = {
+        url:             withLocale(`/blog/${post.slug.current}`, language),
+        priority:        0.7,
+        changeFrequency: 'monthly' as const,
+        lastModified:    post.dataRevisao ? new Date(post.dataRevisao)
+                        : post.publishedAt ? new Date(post.publishedAt)
+                        : agora,
+      }
+      if (versoes.length < 2) return entrada
+
+      const languages: Record<string, string> = Object.fromEntries(
+        versoes.map(v => [v.language, withLocale(`/blog/${v.slug}`, v.language)]),
+      )
+      const padrao = languages[routing.defaultLocale] ?? entrada.url
+      languages['x-default'] = padrao
+      return { ...entrada, alternates: { languages } }
+    })
   } catch {
     postPages = []
   }

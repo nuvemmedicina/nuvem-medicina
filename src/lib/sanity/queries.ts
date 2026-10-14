@@ -38,7 +38,26 @@ export type Post = {
   dataRevisao?: string
   language?:      string
   translationOf?: { _ref: string }
+  translations?:  PostTranslation[]
 }
+
+/** Uma versão do mesmo artigo em algum idioma (inclui a própria versão). */
+export type PostTranslation = {
+  language: string
+  slug:     string
+}
+
+/**
+ * Projeção GROQ que reúne todas as versões publicadas do mesmo artigo.
+ * O original é o post sem `translationOf`; as traduções apontam para ele.
+ * A partir de qualquer versão, `coalesce(^.translationOf._ref, ^._id)` chega
+ * ao id do original, e o grupo é o original mais tudo que aponta para ele.
+ * Rascunhos ficam de fora, para não ligar a URLs que ainda não existem.
+ */
+const TRANSLATIONS_PROJECTION = `"translations": *[
+  _type == "post" && defined(slug.current) && !(_id in path("drafts.**")) &&
+  (_id == coalesce(^.translationOf._ref, ^._id) || translationOf._ref == coalesce(^.translationOf._ref, ^._id))
+] { "language": coalesce(language, "pt-BR"), "slug": slug.current }`
 
 /**
  * `language` é opcional e por padrão filtra pt-BR — todo chamador existente
@@ -55,13 +74,27 @@ export async function getAllPosts(language = 'pt-BR'): Promise<Post[]> {
   )
 }
 
+/**
+ * Todos os posts publicados, de todos os idiomas, com as versões de cada um.
+ * Usado pelo sitemap para montar o hreflang de cada artigo.
+ */
+export async function getAllPostsWithTranslations(): Promise<Post[]> {
+  return client.fetch(
+    `*[_type == "post" && defined(slug.current) && !(_id in path("drafts.**"))] | order(publishedAt desc) {
+      _id, slug, publishedAt, dataRevisao, "language": coalesce(language, "pt-BR"),
+      ${TRANSLATIONS_PROJECTION}
+    }`
+  )
+}
+
 export async function getPostBySlug(slug: string, language = 'pt-BR'): Promise<Post | null> {
   return client.fetch(
     `*[_type == "post" && slug.current == $slug && coalesce(language, "pt-BR") == $language][0] {
       _id, title, slug, publishedAt, excerpt, coverImage { ..., credit }, author->, categories[]->, body, readingTime,
       references[] { _key, citation, url },
       perguntaPrincipal, respostaDireta, exameRelacionado, especialidadeRelacionada, dataRevisao,
-      revisadoPor->
+      revisadoPor->,
+      ${TRANSLATIONS_PROJECTION}
     }`,
     { slug, language }
   )
