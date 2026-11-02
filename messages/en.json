@@ -256,6 +256,8 @@
   "chamadaExame": {
     "exameRelacionado": "Related exam",
     "verOExame": "See the exam",
+    "especialidadeRelacionada": "Related specialty",
+    "verAEspecialidade": "See the specialty",
     "agendarViaWhatsapp": "Book via WhatsApp"
   },
   "home": {

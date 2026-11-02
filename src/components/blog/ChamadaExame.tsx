@@ -33,9 +33,9 @@ export function ChamadaExame({ exameRelacionado, especialidadeRelacionada, artig
     : undefined
 
   const alvo = exame
-    ? { nome: exame.title, linha: exame.subtitle, href: `/exames/${exame.id}` }
+    ? { nome: exame.title, linha: exame.subtitle, href: `/exames/${exame.id}`, rotulo: t('exameRelacionado'), botao: t('verOExame') }
     : especialidade
-      ? { nome: especialidade.title, linha: especialidade.desc, href: `/especialidades/${especialidade.slug}` }
+      ? { nome: especialidade.title, linha: especialidade.desc, href: `/especialidades/${especialidade.slug}`, rotulo: t('especialidadeRelacionada'), botao: t('verAEspecialidade') }
       : null
 
   if (!alvo) return <CtaBanner title={fallbackTitle} desc={fallbackDesc} />
@@ -52,7 +52,7 @@ export function ChamadaExame({ exameRelacionado, especialidadeRelacionada, artig
 
       <div className="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-8">
         <div className="max-w-xl">
-          <p className="text-[0.68rem] font-bold uppercase tracking-[.12em] text-teal-light mb-2">{t('exameRelacionado')}</p>
+          <p className="text-[0.68rem] font-bold uppercase tracking-[.12em] text-teal-light mb-2">{alvo.rotulo}</p>
           <h2 className="font-serif font-light text-white text-[1.9rem] leading-snug mb-3">{alvo.nome}</h2>
           <p className="text-[0.95rem] font-light text-white/65 leading-relaxed">{alvo.linha}</p>
         </div>
@@ -63,7 +63,7 @@ export function ChamadaExame({ exameRelacionado, especialidadeRelacionada, artig
             className="btn-gold"
             onClick={() => pushEvent({ event: 'clique_cta_artigo', artigo: artigoTitle, destino: alvo.href, tipo_destino: tipoDestino })}
           >
-            {t('verOExame')} <ArrowRight className="w-4 h-4" />
+            {alvo.botao} <ArrowRight className="w-4 h-4" />
           </Link>
           <a
             href={`${CONTATO.whatsappUrl}?text=${waMsg}`}
