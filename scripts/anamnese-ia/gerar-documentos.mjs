@@ -2,6 +2,11 @@
  * Gera os documentos da clínica para a Dr.IAgenda:
  *   docs/anamnese-ia/clinica-nuvem-dr-iagenda.html  (fonte do PDF)
  *   docs/anamnese-ia/clinica-nuvem-dr-iagenda.pdf   (A4, via Microsoft Edge headless)
+ *   docs/anamnese-ia/clinica-nuvem-dr-iagenda-formulario.pdf
+ *       mesma diagramação, com a Parte A em campos editáveis já preenchidos
+ *       (para a gestão completar). Para trazer as respostas de volta:
+ *       python scripts/anamnese-ia/campos-pdf.py ler <pdf-preenchido> respostas.json
+ *       e importar o JSON em /anamnese-ia ("Importar respostas").
  *   docs/anamnese-ia/preparos-para-ia.md            (texto simples para a IA do WhatsApp)
  *   docs/anamnese-ia/relatorio-validacao.md         (pendências [VALIDAR COM A EQUIPE MÉDICA])
  *
@@ -18,6 +23,7 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs'
 import { execFileSync } from 'node:child_process'
 import path from 'node:path'
+import { tmpdir } from 'node:os'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 
 import { SECOES_CLINICA, CAMPOS_MEDICO } from '@/lib/anamnese-ia/schema'
@@ -65,13 +71,51 @@ const lista = (itens, exame, secao) => itens.length
   ? `<ul>${itens.map(i => itemHtml(i, exame, secao)).join('')}</ul>` : ''
 
 // ─── Capítulo 1: Parte A ──────────────────────────────────────────────────────
-function capituloClinica() {
+/*
+ * Versão formulário: cada pergunta vira uma caixa vazia com dois marcadores
+ * de texto invisíveis (canto superior esquerdo e inferior direito). Depois da
+ * impressão, campos-pdf.py localiza os marcadores, apaga-os e cria ali um
+ * campo editável (AcroForm) já preenchido com o valor atual.
+ */
+const camposForm = [] // { marcador, id, tipo, valor, opcoes, multilinha }
+
+// Fontes padrão de formulário PDF (Helvetica/WinAnsi) não têm subscritos nem "−".
+const paraWinAnsi = s => s
+  .replace(/[₀-₉]/g, c => String(c.charCodeAt(0) - 0x2080))
+  .replace(/−/g, '-')
+
+function linhasEstimadas(v, porLinha = 92) {
+  return v.split('\n').reduce((n, l) => n + Math.max(1, Math.ceil(l.length / porLinha)), 0)
+}
+
+function caixaCampo(f) {
+  const n = String(camposForm.length).padStart(3, '0')
+  const v = paraWinAnsi(txt(clinica[f.id]))
+  if (f.type === 'checks') {
+    const marcados = Array.isArray(clinica[f.id]) ? clinica[f.id] : []
+    return `<div class="opcoes">${f.options.map((o, j) => {
+      const mk = `CB${n}${String(j).padStart(2, '0')}Q`
+      camposForm.push({ marcador: mk, id: f.id, tipo: 'check', opcao: o, valor: marcados.includes(o) })
+      return `<span class="op"><span class="cx"><i class="mk">${mk}</i></span>${esc(o)}</span>`
+    }).join('')}</div>`
+  }
+  const multilinha = f.type === 'textarea'
+  const linhas = multilinha ? Math.max(f.rows ?? 3, linhasEstimadas(v) + 1) : 1
+  const altura = multilinha ? 2.4 + linhas * 4.3 : 7.5
+  camposForm.push({ marcador: `FS${n}Q`, fim: `FE${n}Q`, id: f.id, tipo: f.type === 'select' ? 'combo' : 'texto', valor: v, opcoes: f.options ?? [], multilinha })
+  return `<div class="campo" style="height:${altura.toFixed(1)}mm"><i class="mk">FS${n}Q</i><i class="mk mk-fim">FE${n}Q</i></div>`
+}
+
+function capituloClinica(form = false) {
+  if (form) camposForm.length = 0
   return SECOES_CLINICA.map((s, i) => `
     <section class="bloco">
       <h3 id="sec-${s.id}">1.${i + 1} ${esc(s.title)}</h3>
       <dl>${s.fields.map(f => {
         const v = txt(clinica[f.id])
-        return `<div class="par"><dt>${esc(f.label)}${f.orig ? ` <span class="orig">orig. ${esc(f.orig)}</span>` : ''}</dt>
+        const rotulo = `<dt>${esc(f.label)}${f.required ? ' <span class="obr">*</span>' : ''}${f.orig ? ` <span class="orig">orig. ${esc(f.orig)}</span>` : ''}</dt>`
+        if (form) return `<div class="par">${rotulo}${f.help ? `<p class="ajuda">${esc(f.help)}</p>` : ''}<dd>${caixaCampo(f)}</dd></div>`
+        return `<div class="par">${rotulo}
           <dd>${v ? html(v) : '<span class="preencher">[A PREENCHER PELA GESTÃO]</span>'}</dd></div>`
       }).join('')}</dl>
     </section>`).join('')
@@ -128,9 +172,9 @@ function capituloMedicos() {
 // ─── HTML ─────────────────────────────────────────────────────────────────────
 const logo = `data:image/svg+xml;base64,${readFileSync(path.join(ROOT, 'public/images/logo.svg')).toString('base64')}`
 
-function montarHtml(paginas = {}) {
+function montarHtml(paginas = {}, form = false) {
   pendencias.length = 0
-  const cap1 = capituloClinica()
+  const cap1 = capituloClinica(form)
   const cap2 = capituloPreparos()
   const cap3 = capituloMedicos()
   const sumario = [
@@ -204,14 +248,23 @@ function montarHtml(paginas = {}) {
   .medico { border: 1px solid var(--mist); border-radius: 2mm; padding: 3.2mm 3.8mm; break-inside: avoid; font-size: 8.4pt; }
   .medico p { margin: 0 0 1mm; } .m-nome { font-weight: 600; color: var(--teal); font-size: 10pt; } .m-esp { color: #777; font-size: 7.8pt; }
   .nota { font-size: 8pt; color: #888; margin-top: 4mm; }
+  .campo { position: relative; border: 1px solid #b9d6d9; border-radius: 1.4mm; background: #f7fbfb; margin-top: .8mm; }
+  .mk { position: absolute; font: normal 3pt/1 Helvetica, sans-serif; color: #f7fbfb; white-space: nowrap; }
+  .campo .mk { left: .4mm; top: .4mm; } .campo .mk-fim { left: auto; top: auto; right: .4mm; bottom: .4mm; }
+  .opcoes { display: flex; flex-wrap: wrap; gap: 1.6mm 5mm; margin-top: 1mm; }
+  .op { display: inline-flex; align-items: center; gap: 1.6mm; }
+  .cx { position: relative; width: 3.8mm; height: 3.8mm; border: 1px solid #8fbcc1; border-radius: .7mm; background: #f7fbfb; }
+  .cx .mk { left: .2mm; top: .2mm; font-size: 1.6pt; }
+  .ajuda { margin: .2mm 0 0; font-size: 7.6pt; color: #8a8a8a; line-height: 1.35; }
+  .obr { color: var(--gold-dark); }
 </style></head><body>
 
 <section class="capa">
   <img class="logo" src="${logo}" alt="NU.V.E.M Medicina">
-  <p class="tag">Documento interno · IA de atendimento</p>
+  <p class="tag">${form ? 'Formulário para a gestão · IA de atendimento' : 'Documento interno · IA de atendimento'}</p>
   <h1>Informações da clínica<br>para a <em>Dr.IAgenda</em></h1>
   <p>Dados da clínica pedidos na anamnese da Secretária IA, preparos de exames em padrão único e resumo dos profissionais.</p>
-  <p>Origem dos dados da clínica: ${esc(origemDados)}.</p>
+  <p>${form ? 'Os campos da Parte A já vêm preenchidos com os dados do site: confira, corrija e complete o que falta. Preencha no Adobe Acrobat Reader, no Edge ou no Chrome e salve o arquivo.' : `Origem dos dados da clínica: ${esc(origemDados)}.`}</p>
   <div class="rodape">NU.V.E.M Medicina · ${esc(CONTATO.endereco)}, ${esc(CONTATO.bairro)} · ${esc(CONTATO.telefone)}<br>
   ${esc(CONTATO.crmClinica)} · Diretora técnica: ${esc(CONTATO.diretora.nome)} (${esc(CONTATO.diretora.crm)} · ${esc(CONTATO.diretora.rqe)}) · Versão de ${HOJE}</div>
 </section>
@@ -226,6 +279,7 @@ function montarHtml(paginas = {}) {
 
 <h1 class="cap" id="cap1">1. Informações da clínica</h1>
 <p class="intro">Parte A da anamnese: o que vale para a clínica inteira. A numeração "orig." indica a pergunta correspondente no formulário da Dr.IAgenda.</p>
+${form ? `<div class="aviso"><b>Como preencher.</b> Clique dentro das caixas para editar. Os campos já trazem os dados do site; substitua os trechos ___ e preencha as caixas vazias. Campos com <span class="obr">*</span> são obrigatórios. Não escreva dados de pacientes (LGPD). Ao terminar, salve o PDF e envie de volta.</div>` : ''}
 ${cap1}
 
 <h1 class="cap" id="cap2" style="margin-bottom:2mm">2. Preparos de exames</h1>
@@ -268,16 +322,30 @@ print(json.dumps(res))`
   }
 }
 
-const htmlPath = path.join(OUT, 'clinica-nuvem-dr-iagenda.html')
-const pdfPath  = path.join(OUT, 'clinica-nuvem-dr-iagenda.pdf')
-writeFileSync(htmlPath, montarHtml())
-if (EDGE) {
+function gerarPdf(htmlPath, pdfPath, form) {
+  writeFileSync(htmlPath, montarHtml({}, form))
   imprimir(htmlPath, pdfPath)
   const paginas = localizarPaginas(pdfPath)
-  writeFileSync(htmlPath, montarHtml(paginas))
+  writeFileSync(htmlPath, montarHtml(paginas, form))
   imprimir(htmlPath, pdfPath)
   console.log('PDF:', path.relative(ROOT, pdfPath), '· sumário com', Object.keys(paginas).length, 'entradas numeradas')
+}
+
+const htmlPath = path.join(OUT, 'clinica-nuvem-dr-iagenda.html')
+const pdfPath  = path.join(OUT, 'clinica-nuvem-dr-iagenda.pdf')
+if (EDGE) {
+  // 1) Versão formulário (Parte A editável, pré-preenchida)
+  const tmpHtml  = path.join(tmpdir(), 'clinica-nuvem-formulario.html')
+  const tmpPdf   = path.join(tmpdir(), 'clinica-nuvem-formulario-base.pdf')
+  const formPdf  = path.join(OUT, 'clinica-nuvem-dr-iagenda-formulario.pdf')
+  const metaJson = path.join(tmpdir(), 'clinica-nuvem-campos.json')
+  gerarPdf(tmpHtml, tmpPdf, true)
+  writeFileSync(metaJson, JSON.stringify(camposForm))
+  execFileSync('python', ['-W', 'ignore', path.join(ROOT, 'scripts/anamnese-ia/campos-pdf.py'), 'criar', tmpPdf, metaJson, formPdf], { stdio: 'inherit' })
+  // 2) Versão de leitura (por último: o relatório usa as pendências desta passada)
+  gerarPdf(htmlPath, pdfPath, false)
 } else {
+  writeFileSync(htmlPath, montarHtml())
   console.warn('Microsoft Edge não encontrado: gerado só o HTML.')
 }
 

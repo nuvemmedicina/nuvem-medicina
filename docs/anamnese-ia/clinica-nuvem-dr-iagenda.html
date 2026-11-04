@@ -62,6 +62,15 @@
   .medico { border: 1px solid var(--mist); border-radius: 2mm; padding: 3.2mm 3.8mm; break-inside: avoid; font-size: 8.4pt; }
   .medico p { margin: 0 0 1mm; } .m-nome { font-weight: 600; color: var(--teal); font-size: 10pt; } .m-esp { color: #777; font-size: 7.8pt; }
   .nota { font-size: 8pt; color: #888; margin-top: 4mm; }
+  .campo { position: relative; border: 1px solid #b9d6d9; border-radius: 1.4mm; background: #f7fbfb; margin-top: .8mm; }
+  .mk { position: absolute; font: normal 3pt/1 Helvetica, sans-serif; color: #f7fbfb; white-space: nowrap; }
+  .campo .mk { left: .4mm; top: .4mm; } .campo .mk-fim { left: auto; top: auto; right: .4mm; bottom: .4mm; }
+  .opcoes { display: flex; flex-wrap: wrap; gap: 1.6mm 5mm; margin-top: 1mm; }
+  .op { display: inline-flex; align-items: center; gap: 1.6mm; }
+  .cx { position: relative; width: 3.8mm; height: 3.8mm; border: 1px solid #8fbcc1; border-radius: .7mm; background: #f7fbfb; }
+  .cx .mk { left: .2mm; top: .2mm; font-size: 1.6pt; }
+  .ajuda { margin: .2mm 0 0; font-size: 7.6pt; color: #8a8a8a; line-height: 1.35; }
+  .obr { color: var(--gold-dark); }
 </style></head><body>
 
 <section class="capa">
@@ -85,13 +94,14 @@
 <h1 class="cap" id="cap1">1. Informações da clínica</h1>
 <p class="intro">Parte A da anamnese: o que vale para a clínica inteira. A numeração "orig." indica a pergunta correspondente no formulário da Dr.IAgenda.</p>
 
+
     <section class="bloco">
       <h3 id="sec-identificacao">1.1 Identificação e escopo</h3>
-      <dl><div class="par"><dt>E-mail utilizado na compra <span class="orig">orig. 1</span></dt>
-          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Nome da clínica <span class="orig">orig. 6</span></dt>
-          <dd>NU.V.E.M Medicina</dd></div><div class="par"><dt>Responsável pelo preenchimento (nome e cargo) <span class="orig">orig. 5</span></dt>
-          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Tipo de atendimento <span class="orig">orig. 7</span></dt>
-          <dd>Clínica com múltiplos profissionais</dd></div><div class="par"><dt>A IA vai servir apenas para você ou para outros profissionais também? <span class="orig">orig. 2</span></dt>
+      <dl><div class="par"><dt>E-mail utilizado na compra <span class="obr">*</span> <span class="orig">orig. 1</span></dt>
+          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Nome da clínica <span class="obr">*</span> <span class="orig">orig. 6</span></dt>
+          <dd>NU.V.E.M Medicina</dd></div><div class="par"><dt>Responsável pelo preenchimento (nome e cargo) <span class="obr">*</span> <span class="orig">orig. 5</span></dt>
+          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Tipo de atendimento <span class="obr">*</span> <span class="orig">orig. 7</span></dt>
+          <dd>Clínica com múltiplos profissionais</dd></div><div class="par"><dt>A IA vai servir apenas para você ou para outros profissionais também? <span class="obr">*</span> <span class="orig">orig. 2</span></dt>
           <dd>Para outros profissionais também</dd></div><div class="par"><dt>CNPJ</dt>
           <dd>42.678.705/0001-02</dd></div><div class="par"><dt>Registro da clínica no CRM</dt>
           <dd>CRM-MG 20532</dd></div><div class="par"><dt>Diretoria técnica (nome, CRM e RQE)</dt>
@@ -99,83 +109,83 @@
     </section>
     <section class="bloco">
       <h3 id="sec-localizacao">1.2 Localização, horários e contato</h3>
-      <dl><div class="par"><dt>Endereço completo da clínica <span class="orig">orig. 36</span></dt>
-          <dd>Rua Ceará, 600 – Sala 101<br>Santa Efigênia, Belo Horizonte – MG<br>CEP 30150-310<br>Mapa: https://goo.gl/maps/BELYyu7yUHd41gdc8</dd></div><div class="par"><dt>Instruções de chegada <span class="orig">orig. 37</span></dt>
+      <dl><div class="par"><dt>Endereço completo da clínica <span class="obr">*</span> <span class="orig">orig. 36</span></dt>
+          <dd>Rua Ceará, 600 – Sala 101<br>Santa Efigênia, Belo Horizonte – MG<br>CEP 30150-310<br>Mapa: https://goo.gl/maps/BELYyu7yUHd41gdc8</dd></div><div class="par"><dt>Instruções de chegada <span class="obr">*</span> <span class="orig">orig. 37</span></dt>
           <dd>Próximo ao metrô Santa Efigênia. Várias linhas de ônibus passam pela Rua Ceará.</dd></div><div class="par"><dt>Estacionamento</dt>
-          <dd>Estacionamentos privados nas proximidades.</dd></div><div class="par"><dt>Horário de funcionamento da clínica <span class="orig">orig. 24</span></dt>
+          <dd>Estacionamentos privados nas proximidades.</dd></div><div class="par"><dt>Horário de funcionamento da clínica <span class="obr">*</span> <span class="orig">orig. 24</span></dt>
           <dd>Segunda a quinta: 7h às 17h30<br>Sexta: 7h às 16h30<br>Sábado e domingo: fechado</dd></div><div class="par"><dt>Feriados, recessos e férias coletivas</dt>
-          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Fuso horário <span class="orig">orig. 26</span></dt>
-          <dd>Horário de Brasília (America/Sao_Paulo, UTC−3)</dd></div><div class="par"><dt>Canais de contato (telefone, WhatsApp, e-mail, site, redes)</dt>
+          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Fuso horário <span class="obr">*</span> <span class="orig">orig. 26</span></dt>
+          <dd>Horário de Brasília (America/Sao_Paulo, UTC−3)</dd></div><div class="par"><dt>Canais de contato (telefone, WhatsApp, e-mail, site, redes) <span class="obr">*</span></dt>
           <dd>Telefone: (31) 2537-3131<br>WhatsApp: (31) 99726-1029<br>E-mail: contato@nuvemmedicina.com.br<br>Site: https://www.nuvemmedicina.com.br<br>Instagram: https://instagram.com/nuvemmedicina<br>YouTube: https://www.youtube.com/@NuvemMedicina</dd></div><div class="par"><dt>Horário em que há atendente humano no WhatsApp</dt>
           <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div></dl>
     </section>
     <section class="bloco">
       <h3 id="sec-servicos">1.3 Serviços, exames e posicionamento</h3>
-      <dl><div class="par"><dt>Modalidade de atendimento (padrão da clínica) <span class="orig">orig. 4</span></dt>
-          <dd>Presencial</dd></div><div class="par"><dt>Especialidades e áreas de atuação da clínica <span class="orig">orig. 34</span></dt>
-          <dd>Gastroenterologia · Motilidade digestiva · Fisioterapia pélvica · Halitose · Pediatria · Nefrologia · Cirurgia pediátrica · Clínica médica</dd></div><div class="par"><dt>Exames e procedimentos realizados na clínica (estruturado) <span class="orig">orig. 21</span></dt>
+      <dl><div class="par"><dt>Modalidade de atendimento (padrão da clínica) <span class="obr">*</span> <span class="orig">orig. 4</span></dt>
+          <dd>Presencial</dd></div><div class="par"><dt>Especialidades e áreas de atuação da clínica <span class="obr">*</span> <span class="orig">orig. 34</span></dt>
+          <dd>Gastroenterologia · Motilidade digestiva · Fisioterapia pélvica · Halitose · Pediatria · Nefrologia · Cirurgia pediátrica · Clínica médica</dd></div><div class="par"><dt>Exames e procedimentos realizados na clínica (estruturado) <span class="obr">*</span> <span class="orig">orig. 21</span></dt>
           <dd>Manometria esofágica de alta resolução — exame de 10 a 20 min (permanência de cerca de 2 h); sem sedação; pedido médico obrigatório; valor: <span class="lacuna">___</span>; IA pode agendar? <span class="lacuna">___</span><br>Manometria anorretal — 40 a 60 min; sem sedação; pedido médico obrigatório; valor: <span class="lacuna">___</span>; IA pode agendar? <span class="lacuna">___</span><br>pHmetria e impedanciometria esofágica — instalação de 15 a 20 min e monitoramento de 24 h; pedido médico obrigatório; valor: <span class="lacuna">___</span>; IA pode agendar? <span class="lacuna">___</span><br>Teste respiratório para H. pylori — 30 a 40 min; pedido médico obrigatório; valor: <span class="lacuna">___</span>; IA pode agendar? <span class="lacuna">___</span><br>Teste respiratório para SIBO / IMO / lactose / frutose (H₂, CH₄, H₂S) — 2 a 3 h; pedido médico obrigatório; valor: <span class="lacuna">___</span>; IA pode agendar? <span class="lacuna">___</span><br>Halimetria e sialometria — 30 a 40 min; pedido médico obrigatório; valor: <span class="lacuna">___</span>; IA pode agendar? <span class="lacuna">___</span><br>Avaliação pélvica com biofeedback eletromiográfico — 40 a 60 min; pedido médico obrigatório; realizada pela fisioterapeuta; valor: <span class="lacuna">___</span>; IA pode agendar? <span class="lacuna">___</span><br>Consultas médicas — ver Parte B (cada profissional).</dd></div><div class="par"><dt>Valores dos exames e procedimentos (tabela da clínica) <span class="orig">orig. 17</span></dt>
-          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>O que a clínica não realiza e quem não atende <span class="orig">orig. 22</span></dt>
-          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Principais dores e problemas dos pacientes que procuram a clínica <span class="orig">orig. 18</span></dt>
-          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>O que diferencia a clínica <span class="orig">orig. 33</span></dt>
-          <dd>Certificação ISO 9001 de gestão da qualidade. Equipe multidisciplinar (gastroenterologia, motilidade digestiva, fisioterapia pélvica, pediatria, cirurgia pediátrica, nefrologia e clínica médica). Exames funcionais digestivos realizados na própria clínica. NU.V.E.M Ensino: cursos para profissionais de saúde.</dd></div><div class="par"><dt>História da clínica <span class="orig">orig. 35</span></dt>
+          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>O que a clínica não realiza e quem não atende <span class="obr">*</span> <span class="orig">orig. 22</span></dt>
+          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Principais dores e problemas dos pacientes que procuram a clínica <span class="obr">*</span> <span class="orig">orig. 18</span></dt>
+          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>O que diferencia a clínica <span class="obr">*</span> <span class="orig">orig. 33</span></dt>
+          <dd>Certificação ISO 9001 de gestão da qualidade. Equipe multidisciplinar (gastroenterologia, motilidade digestiva, fisioterapia pélvica, pediatria, cirurgia pediátrica, nefrologia e clínica médica). Exames funcionais digestivos realizados na própria clínica. NU.V.E.M Ensino: cursos para profissionais de saúde.</dd></div><div class="par"><dt>História da clínica <span class="obr">*</span> <span class="orig">orig. 35</span></dt>
           <dd>Clínica fundada em 2018 em Belo Horizonte pelas sócias Dra. Vera Ângelo e Dra. Eliane Basques. <span class="lacuna">___</span> (completar)</dd></div><div class="par"><dt>Prazos de entrega de laudos</dt>
           <dd>Manometria: até 3 dias úteis<br>pHmetria: alguns dias após a devolução do equipamento<br>Testes respiratórios: até 3 dias úteis<br>Halimetria e sialometria: até 2 dias úteis</dd></div></dl>
     </section>
     <section class="bloco">
       <h3 id="sec-convenios">1.4 Convênios</h3>
-      <dl><div class="par"><dt>Aceita convênio? Se sim, quais? <span class="orig">orig. 10</span></dt>
-          <dd>Sim: Unimed BH, Amil, Porto Seguro Saúde, Hapvida, Plamed e Samp.<br>Também atendimento particular com recibo para reembolso (verificar com o plano).</dd></div><div class="par"><dt>Regras detalhadas de convênios <span class="orig">orig. 11</span></dt>
+      <dl><div class="par"><dt>Aceita convênio? Se sim, quais? <span class="obr">*</span> <span class="orig">orig. 10</span></dt>
+          <dd>Sim: Unimed BH, Amil, Porto Seguro Saúde, Hapvida, Plamed e Samp.<br>Também atendimento particular com recibo para reembolso (verificar com o plano).</dd></div><div class="par"><dt>Regras detalhadas de convênios <span class="obr">*</span> <span class="orig">orig. 11</span></dt>
           <dd>Exames: levar a guia ou o número de autorização do convênio no dia; o paciente deve verificar a cobertura e a necessidade de autorização prévia com o convênio.<br><span class="lacuna">___</span> (coparticipação, coleta de carteirinha, procedimentos não cobertos, o que fazer se o convênio não estiver na lista)</dd></div></dl>
     </section>
     <section class="bloco">
       <h3 id="sec-pagamento">1.5 Pagamento</h3>
-      <dl><div class="par"><dt>A IA deve cobrar pagamento antecipado? <span class="orig">orig. 3</span></dt>
-          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Qual a dinâmica do pagamento? <span class="orig">orig. 12</span></dt>
-          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Métodos de pagamento <span class="orig">orig. 13</span></dt>
+      <dl><div class="par"><dt>A IA deve cobrar pagamento antecipado? <span class="obr">*</span> <span class="orig">orig. 3</span></dt>
+          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Qual a dinâmica do pagamento? <span class="obr">*</span> <span class="orig">orig. 12</span></dt>
+          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Métodos de pagamento <span class="obr">*</span> <span class="orig">orig. 13</span></dt>
           <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Se cobrar antecipado, como deve ser feito? <span class="orig">orig. 14</span></dt>
-          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Regras de parcelamento <span class="orig">orig. 15</span></dt>
+          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Regras de parcelamento <span class="obr">*</span> <span class="orig">orig. 15</span></dt>
           <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Recibo e reembolso</dt>
           <dd>Atendimento particular com emissão de recibo para reembolso. <span class="lacuna">___</span> (prazo e documentos)</dd></div></dl>
     </section>
     <section class="bloco">
       <h3 id="sec-agenda">1.6 Agenda e confirmação</h3>
-      <dl><div class="par"><dt>Regras de agenda da clínica <span class="orig">orig. 9</span></dt>
-          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Restrições gerais de agenda <span class="orig">orig. 25</span></dt>
-          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Antecedência mínima para agendar <span class="orig">orig. 27</span></dt>
-          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Usa algum prontuário ou sistema de agenda? Qual? <span class="orig">orig. 28</span></dt>
-          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Dados que a IA deve pedir ao paciente para confirmar o agendamento <span class="orig">orig. 29</span></dt>
-          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Perguntas antes de marcar (triagem geral) <span class="orig">orig. 30</span></dt>
-          <dd>Consulta ou exame? Qual exame/especialidade?<br>Tem pedido médico? (necessário para a maioria dos exames; consulta não precisa de encaminhamento)<br>Convênio ou particular? Qual convênio?<br>Idade do paciente (para direcionar pediatria)<br><span class="lacuna">___</span> (completar)</dd></div><div class="par"><dt>Documentos que o paciente deve levar</dt>
-          <dd>Pedido médico (obrigatório para exames)<br>Guia ou número de autorização do convênio (exames por convênio)<br>Exames anteriores relacionados<br>Lista de medicamentos em uso<br><span class="lacuna">___</span> (documento com foto e carteirinha? confirmar)</dd></div><div class="par"><dt>Orientações após confirmar o agendamento <span class="orig">orig. 41</span></dt>
+      <dl><div class="par"><dt>Regras de agenda da clínica <span class="obr">*</span> <span class="orig">orig. 9</span></dt>
+          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Restrições gerais de agenda <span class="obr">*</span> <span class="orig">orig. 25</span></dt>
+          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Antecedência mínima para agendar <span class="obr">*</span> <span class="orig">orig. 27</span></dt>
+          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Usa algum prontuário ou sistema de agenda? Qual? <span class="obr">*</span> <span class="orig">orig. 28</span></dt>
+          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Dados que a IA deve pedir ao paciente para confirmar o agendamento <span class="obr">*</span> <span class="orig">orig. 29</span></dt>
+          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Perguntas antes de marcar (triagem geral) <span class="obr">*</span> <span class="orig">orig. 30</span></dt>
+          <dd>Consulta ou exame? Qual exame/especialidade?<br>Tem pedido médico? (necessário para a maioria dos exames; consulta não precisa de encaminhamento)<br>Convênio ou particular? Qual convênio?<br>Idade do paciente (para direcionar pediatria)<br><span class="lacuna">___</span> (completar)</dd></div><div class="par"><dt>Documentos que o paciente deve levar <span class="obr">*</span></dt>
+          <dd>Pedido médico (obrigatório para exames)<br>Guia ou número de autorização do convênio (exames por convênio)<br>Exames anteriores relacionados<br>Lista de medicamentos em uso<br><span class="lacuna">___</span> (documento com foto e carteirinha? confirmar)</dd></div><div class="par"><dt>Orientações após confirmar o agendamento <span class="obr">*</span> <span class="orig">orig. 41</span></dt>
           <dd>Enviar o preparo do exame agendado e o endereço da clínica. <span class="lacuna">___</span> (completar)</dd></div></dl>
     </section>
     <section class="bloco">
       <h3 id="sec-politicas">1.7 Políticas e exceções</h3>
-      <dl><div class="par"><dt>Política de cancelamento <span class="orig">orig. 38</span></dt>
-          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Remarcação e no-show (falta sem aviso) <span class="orig">orig. 39</span></dt>
-          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Paciente antigo e indicação <span class="orig">orig. 40</span></dt>
-          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Tolerância de atraso <span class="orig">orig. 42</span></dt>
+      <dl><div class="par"><dt>Política de cancelamento <span class="obr">*</span> <span class="orig">orig. 38</span></dt>
+          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Remarcação e no-show (falta sem aviso) <span class="obr">*</span> <span class="orig">orig. 39</span></dt>
+          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Paciente antigo e indicação <span class="obr">*</span> <span class="orig">orig. 40</span></dt>
+          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Tolerância de atraso <span class="obr">*</span> <span class="orig">orig. 42</span></dt>
           <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div></dl>
     </section>
     <section class="bloco">
       <h3 id="sec-preparos">1.8 Preparos de exames</h3>
-      <dl><div class="par"><dt>Preparo pré e pós <span class="orig">orig. 23</span></dt>
+      <dl><div class="par"><dt>Preparo pré e pós <span class="obr">*</span> <span class="orig">orig. 23</span></dt>
           <dd>Os preparos padronizados dos 7 exames estão no PDF da clínica (anexo "Orientações de preparo"). A IA deve enviar o preparo correspondente ao exame após confirmar o agendamento e, em dúvidas sobre suspensão de medicamentos, orientar que o paciente fale com o médico solicitante ou com a clínica, nunca suspender por conta própria.</dd></div></dl>
     </section>
     <section class="bloco">
       <h3 id="sec-secretaria">1.9 Secretária IA</h3>
-      <dl><div class="par"><dt>Nome da Secretária IA <span class="orig">orig. 31</span></dt>
-          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>A IA vai apenas qualificar ou também agendar? <span class="orig">orig. 32</span></dt>
-          <dd>Qualificar e agendar</dd></div><div class="par"><dt>Tom de voz da IA</dt>
-          <dd>Acolhedor, claro e objetivo. Linguagem simples, sem termos técnicos sem explicação. Trata o paciente por "você". <span class="lacuna">___</span> (emojis? assinatura?)</dd></div><div class="par"><dt>O que a IA nunca deve dizer ou fazer</dt>
-          <dd>Não dar diagnóstico nem interpretar sintomas ou resultados de exames.<br>Não indicar, alterar ou suspender medicamentos: suspensões de preparo sempre "conforme orientação do médico solicitante".<br>Não prometer resultados nem usar superlativos ("o melhor", "o mais preciso", "referência") — normas do CFM sobre publicidade médica.<br>Não informar valores que a clínica não autorizou a IA a informar.<br>Não pedir dados de saúde além do necessário para agendar (LGPD).<br>Não confirmar cobertura de convênio sem verificação da equipe.<br><span class="lacuna">___</span> (completar)</dd></div><div class="par"><dt>Perguntas frequentes (pergunta e resposta)</dt>
+      <dl><div class="par"><dt>Nome da Secretária IA <span class="obr">*</span> <span class="orig">orig. 31</span></dt>
+          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>A IA vai apenas qualificar ou também agendar? <span class="obr">*</span> <span class="orig">orig. 32</span></dt>
+          <dd>Qualificar e agendar</dd></div><div class="par"><dt>Tom de voz da IA <span class="obr">*</span></dt>
+          <dd>Acolhedor, claro e objetivo. Linguagem simples, sem termos técnicos sem explicação. Trata o paciente por "você". <span class="lacuna">___</span> (emojis? assinatura?)</dd></div><div class="par"><dt>O que a IA nunca deve dizer ou fazer <span class="obr">*</span></dt>
+          <dd>Não dar diagnóstico nem interpretar sintomas ou resultados de exames.<br>Não indicar, alterar ou suspender medicamentos: suspensões de preparo sempre "conforme orientação do médico solicitante".<br>Não prometer resultados nem usar superlativos ("o melhor", "o mais preciso", "referência") — normas do CFM sobre publicidade médica.<br>Não informar valores que a clínica não autorizou a IA a informar.<br>Não pedir dados de saúde além do necessário para agendar (LGPD).<br>Não confirmar cobertura de convênio sem verificação da equipe.<br><span class="lacuna">___</span> (completar)</dd></div><div class="par"><dt>Perguntas frequentes (pergunta e resposta) <span class="obr">*</span></dt>
           <dd>Preciso de pedido médico? — Para a maioria dos exames, sim. Para consultas, não é necessário encaminhamento.<br>Quanto tempo demora o laudo? — Ver "Prazos de entrega de laudos".<br>Vocês aceitam meu convênio? — Ver lista de convênios; se não estiver na lista, transferir para a equipe.<br>Onde fica a clínica? — Ver endereço e instruções de chegada.<br><span class="lacuna">___</span> (completar)</dd></div></dl>
     </section>
     <section class="bloco">
       <h3 id="sec-humano">1.10 Encaminhamento humano, urgência e anexos</h3>
       <dl><div class="par"><dt>Gatilhos padrão de atendimento humano <span class="orig">orig. 43–49</span></dt>
-          <dd>Pedido de humano · Urgência · Reclamação · Receita e atestado</dd></div><div class="par"><dt>Regra de urgência: o que a IA deve fazer</dt>
+          <dd>Pedido de humano · Urgência · Reclamação · Receita e atestado</dd></div><div class="par"><dt>Regra de urgência: o que a IA deve fazer <span class="obr">*</span></dt>
           <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Gatilhos específicos da clínica para atendimento humano <span class="orig">orig. 50</span></dt>
           <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Para quem transferir e como</dt>
           <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Anexos que serão enviados à Dr.IAgenda <span class="orig">orig. 52</span></dt>
