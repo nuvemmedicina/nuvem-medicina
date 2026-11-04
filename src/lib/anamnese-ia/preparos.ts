@@ -285,3 +285,32 @@ export const DIVERGENCIAS_GERAIS: string[] = [
   'As versões em inglês e espanhol de exames-detail.ts foram traduzidas por IA e citam Fleet® no enema da manometria anorretal (o PDF oficial cita Minilax).',
   'Textos com superlativos publicados no chatbot ("referência nacional", "o protocolo mais completo disponível", "altamente preciso") e no PDF de H. pylori ("o método não invasivo mais preciso") podem conflitar com as normas do CFM sobre publicidade médica. Foram retirados nesta versão padronizada.',
 ]
+
+// ─── Pendências para a página /anamnese-ia/validacao ──────────────────────────
+export type Pendencia = {
+  id:     string   // estável enquanto o conteúdo deste arquivo não mudar de posição
+  slug:   string
+  exame:  string
+  secao:  string
+  texto:  string
+  motivo: string
+}
+
+const SECOES: [keyof Preparo, string][] = [
+  ['antes', 'Antes do exame'], ['jejum', 'Jejum'], ['noDia', 'No dia do exame'],
+  ['durante', 'Durante o monitoramento'], ['apos', 'Após o exame'], ['contato', 'Quando entrar em contato'],
+]
+
+export function listarPendencias(): Pendencia[] {
+  const out: Pendencia[] = []
+  for (const p of PREPAROS) {
+    const add = (chave: string, secao: string, texto: string, motivo?: string) => {
+      if (motivo) out.push({ id: `${p.slug}:${chave}`, slug: p.slug, exame: p.nome, secao, texto, motivo })
+    }
+    for (const [k, nome] of SECOES.slice(0, 2)) (p[k] as Item[] | undefined)?.forEach((it, i) => add(`${k}-${i}`, nome, it.t, it.v))
+    p.medicamentos.linhas.forEach((l, i) => add(`med-${i}`, 'Medicamentos', `${l.med}: ${l.conduta}${l.obs ? ` (${l.obs})` : ''}`, l.v))
+    p.medicamentos.notas.forEach((it, i) => add(`nota-${i}`, 'Medicamentos', it.t, it.v))
+    for (const [k, nome] of SECOES.slice(2)) (p[k] as Item[] | undefined)?.forEach((it, i) => add(`${k}-${i}`, nome, it.t, it.v))
+  }
+  return out
+}
