@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<title>NU.V.E.M Medicina · Informações da clínica para a Dr.IAgenda</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --teal:#00465F; --teal-mid:#0A5E7E; --mist:#CBE4E6; --gold:#C9A84C; --gold-dark:#A67C2E; --steel:#363636; }
+  @page {
+    size: A4; margin: 27mm 18mm 20mm;
+    @top-left    { content: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iQ2FtYWRhXzIiIGRhdGEtbmFtZT0iQ2FtYWRhIDIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDQ0Ni41NiAyNjcuMTQiPgogIDxkZWZzPgogICAgPHN0eWxlPgogICAgICAuY2xzLTEgewogICAgICAgIGZpbGw6ICMxZDQ4NWU7CiAgICAgIH0KICAgIDwvc3R5bGU+CiAgPC9kZWZzPgogIDxnIGlkPSJfw5HDq8Ouw6lfNCIgZGF0YS1uYW1lPSLDkcOrw67DqSA0Ij4KICAgIDxnPgogICAgICA8cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0yMzUuNzMsMTk4LjcyYy0uNDQtMS4wNC0xLjItMS44LTIuMjctMi4zLTEuMDctLjQ5LTIuMTctLjU0LTMuMjktLjE1LTEuMTIuNC0xLjkzLDEuMTQtMi40MSwyLjIybC0yNC4zNyw1NC45NS0zMC4wMi02NS43OGMtLjQ5LTEuMDktMS4yNC0xLjgzLTIuMjctMi4yMy0xLjAyLS4zOS0yLjA3LS4zNS0zLjE0LjE1LTEuMDcuNS0xLjgsMS4yNi0yLjE5LDIuMy0uMzksMS4wNC0uMzksMi4xLDAsMy4xOWwzMy4zMyw3Mi4zN2MuODgsMi4wNywyLjI0LDMuMTEsNC4wOSwzLjExLDIuMTQsMCwzLjctMS4wNCw0LjY4LTMuMTFsMjcuNzgtNjEuNTNjLjQ5LTEuMDguNTEtMi4xNS4wNy0zLjE5Ii8+CiAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTY4LjIxLDIwMi4zNWMtMy4yMi01LjUxLTcuNjMtOS43LTEzLjIzLTEyLjU3LTUuMTMtMi42My0xMC44OS00LTE3LjIxLTQuMjIsMC0uMDMsMC0uMDUsMC0uMDctLjI3LDAtLjUzLS4wMi0uOC0uMDItLjE2LDAtLjMxLjAyLS40Ny4wMy0uMTYsMC0uMzEtLjAzLS40Ny0uMDMtLjI3LDAtLjUzLjAyLS44LjAyLDAsLjAyLDAsLjA0LDAsLjA3LTYuMzIuMjItMTIuMDcsMS41OS0xNy4yMSw0LjIyLTUuNiwyLjg3LTEwLjAxLDcuMDctMTMuMjMsMTIuNTctMy4yMiw1LjUxLTQuODIsMTIuMzEtNC44MiwyMC4zOXYzOS4zM2MwLDEuMjcuNDEsMi4zMiwxLjI0LDMuMTQuODMuODMsMS44OCwxLjI0LDMuMTQsMS4yNHMyLjMyLS40MSwzLjE0LTEuMjRjLjgzLS44MywxLjI0LTEuODgsMS4yNC0zLjE0di0zOS4zM2MwLTYuNDMsMS4yNC0xMS43NCwzLjczLTE1Ljk0LDIuNDktNC4xOSw1Ljg1LTcuMzMsMTAuMDktOS40Myw0LjEyLTIuMDMsOC43Ny0zLjA2LDEzLjkzLTMuMTIsNS4xNy4wNiw5LjgyLDEuMDksMTMuOTMsMy4xMiw0LjI0LDIuMSw3LjYsNS4yNCwxMC4wOSw5LjQzLDIuNDgsNC4xOSwzLjczLDkuNSwzLjczLDE1Ljk0djM5LjMzYzAsMS4yNy40MSwyLjMyLDEuMjQsMy4xNC44My44MywxLjg3LDEuMjQsMy4xNCwxLjI0czIuMzItLjQxLDMuMTQtMS4yNGMuODMtLjgzLDEuMjQtMS44OCwxLjI0LTMuMTR2LTM5LjMzYzAtOC4wOS0xLjYxLTE0Ljg5LTQuODItMjAuMzkiLz4KICAgICAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJNODcuOTMsMjQ5LjU3YzMuMjIsNS41MSw3LjYzLDkuNywxMy4yMywxMi41Nyw1LjEzLDIuNjMsMTAuODksNCwxNy4yMSw0LjIyLDAsLjAyLDAsLjA1LDAsLjA3LjI3LDAsLjUzLjAyLjguMDIuMTYsMCwuMzEtLjAyLjQ3LS4wMy4xNiwwLC4zMS4wMy40Ny4wMy4yNywwLC41My0uMDIuOC0uMDIsMC0uMDIsMC0uMDQsMC0uMDcsNi4zMi0uMjIsMTIuMDctMS41OSwxNy4yMS00LjIyLDUuNi0yLjg3LDEwLjAyLTcuMDcsMTMuMjMtMTIuNTcsMy4yMi01LjUxLDQuODItMTIuMzEsNC44Mi0yMC4zOXYtMzkuMzNjMC0xLjI3LS40Mi0yLjMyLTEuMjQtMy4xNC0uODItLjgzLTEuODgtMS4yNC0zLjE0LTEuMjRzLTIuMzIuNDEtMy4xNCwxLjI0Yy0uODMuODMtMS4yNCwxLjg4LTEuMjQsMy4xNHYzOS4zM2MwLDYuNDMtMS4yNCwxMS43NC0zLjczLDE1Ljk0LTIuNDksNC4xOS01Ljg1LDcuMzMtMTAuMDksOS40My00LjExLDIuMDMtOC43NywzLjA2LTEzLjkzLDMuMTItNS4xNy0uMDYtOS44Mi0xLjA5LTEzLjkzLTMuMTItNC4yNC0yLjEtNy42LTUuMjQtMTAuMDktOS40My0yLjQ4LTQuMTktMy43My05LjUtMy43My0xNS45NHYtMzkuMzNjMC0xLjI3LS40MS0yLjMyLTEuMjQtMy4xNC0uODMtLjgzLTEuODctMS4yNC0zLjE0LTEuMjRzLTIuMzIuNDEtMy4xNCwxLjI0Yy0uODMuODMtMS4yNCwxLjg4LTEuMjQsMy4xNHYzOS4zM2MwLDguMDksMS42MSwxNC44OSw0LjgyLDIwLjM5Ii8+CiAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTMzNi41NywyNjYuNTZjLTEuMjksMC0yLjM3LS40My0zLjIyLTEuMjgtLjg1LS44NS0xLjI4LTEuOTItMS4yOC0zLjIycy40NC0yLjM1LDEuMzItMy4xOGMuODgtLjgyLDEuOTQtMS4yMywzLjE4LTEuMjNzMi4yOC40MywzLjE0LDEuMjhjLjg1Ljg1LDEuMjgsMS45LDEuMjgsMy4xNHMtLjQzLDIuMjktMS4yOCwzLjE4Yy0uODUuODgtMS45LDEuMzItMy4xNCwxLjMyIi8+CiAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTIzNi40LDE5My45NWMtMS4yOSwwLTIuMzctLjQzLTMuMjItMS4yOC0uODYtLjg1LTEuMjgtMS45Mi0xLjI4LTMuMjJzLjQ0LTIuMzUsMS4zMi0zLjE4Yy44OC0uODIsMS45NC0xLjIzLDMuMTgtMS4yM3MyLjI4LjQzLDMuMTQsMS4yOGMuODUuODUsMS4yOCwxLjksMS4yOCwzLjE0cy0uNDMsMi4yOS0xLjI4LDMuMThjLS44NS44OC0xLjksMS4zMi0zLjE0LDEuMzIiLz4KICAgICAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTYyLjc0LDI2Ni41NmMtMS4zLDAtMi4zNy0uNDMtMy4yMi0xLjI4LS44Ni0uODUtMS4yOC0xLjkyLTEuMjgtMy4yMnMuNDQtMi4zNSwxLjMyLTMuMThjLjg4LS44MiwxLjk0LTEuMjMsMy4xOC0xLjIzczIuMjguNDMsMy4xNCwxLjI4Yy44NS44NSwxLjI4LDEuOSwxLjI4LDMuMTRzLS40MywyLjI5LTEuMjgsMy4xOGMtLjg1Ljg4LTEuOSwxLjMyLTMuMTQsMS4zMiIvPgogICAgICA8cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik00NDIuNjksMjAxLjk0Yy0yLjU4LTUuMTctNi4xMi05LjIxLTEwLjYtMTIuMTMtNC40OC0yLjkyLTkuNy00LjM4LTE1LjY1LTQuMzhzLTExLjExLDEuMzktMTUuNzksNC4xNmMtNC42NCwyLjc2LTguMzIsNi42LTExLjA1LDExLjUyLS4wMi0uMDMtLjA0LS4wNy0uMDYtLjEtLjA2LjEtLjEzLjE5LS4xOS4yOS0uMDQtLjA3LS4wOS0uMTMtLjEzLS4yLS4wMi4wMy0uMDQuMDctLjA2LjEtMi43Mi00LjkyLTYuNC04Ljc2LTExLjA1LTExLjUyLTQuNjgtMi43OC05Ljk0LTQuMTYtMTUuNzktNC4xNnMtMTEuMTYsMS40Ni0xNS42NSw0LjM4Yy00LjQ4LDIuOTItOC4wMiw2Ljk3LTEwLjYsMTIuMTMtMi41OCw1LjE3LTMuODgsMTEuMTEtMy44OCwxNy44NHYyOC42NmMwLDEuMjcuMzksMi4zMSwxLjE3LDMuMTQuNzguODMsMS44NSwxLjI0LDMuMjEsMS4yNCwxLjI3LDAsMi4zMi0uNDEsMy4xNC0xLjI0LjgzLS44MywxLjI0LTEuODcsMS4yNC0zLjE0di0yOC42NmMwLTcuNSwxLjk3LTEzLjY0LDUuOTItMTguNDIsMy45NS00Ljc3LDkuMDktNy4xNiwxNS40My03LjE2LDYuNzIsMCwxMi4yMSwyLjIyLDE2LjQ0LDYuNjUsMi42MywyLjc1LDQuNDEsNi4xLDUuMzMsMTAuMDQtLjAyLjA0LS4wMy4wOS0uMDYuMTMuMjQuOTEuNCwxLjg4LjU3LDIuODQuMTksMS41NS4yNywzLjE4LjIzLDQuODloLjAzYzAsLjM0LS4wMy42OC0uMDMsMS4wMnY0Mi4yNWMwLDEuMjcuMzksMi4zMSwxLjE3LDMuMTQuNzguODMsMS44NSwxLjI0LDMuMjEsMS4yNC40MywwLC44Mi0uMDcsMS4yLS4xNi45NS0uMTQsMS43My0uNTMsMi4zNC0xLjE3Ljc4LS44MywxLjE3LTEuODgsMS4xNy0zLjE0di00Mi4yNWMwLS4zNS0uMDItLjY4LS4wMy0xLjAyaC4wM2MtLjA0LTEuNTkuMDQtMy4xLjItNC41Ni4xNy0xLjAyLjM0LTIuMDQuNi0zLS4wMy0uMDYtLjA1LS4xNC0uMDktLjIuOTEtMy45OSwyLjctNy4zNyw1LjM2LTEwLjE1LDQuMjQtNC40NCw5LjcyLTYuNjUsMTYuNDQtNi42NSw2LjM0LDAsMTEuNDgsMi4zOSwxNS40Myw3LjE2LDMuOTUsNC43OCw1LjkyLDEwLjkyLDUuOTIsMTguNDJ2NDIuMjVjMCwxLjI3LjQxLDIuMzEsMS4yNCwzLjE0LjgzLjgzLDEuODcsMS4yNCwzLjE0LDEuMjQsMS4zNiwwLDIuNDQtLjQxLDMuMjEtMS4yNC43OC0uODMsMS4xNy0xLjg4LDEuMTctMy4xNHYtNDIuMjVjMC02LjcyLTEuMjktMTIuNjctMy44OC0xNy44NCIvPgogICAgICA8cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0yNTcuNDYsMjA5LjU0YzIuNDgtNC44Nyw1LjktOC43LDEwLjIzLTExLjQ4LDQuMzQtMi43OCw5LjI4LTQuMTYsMTQuODQtNC4xNiw1Ljg1LDAsMTAuOTQsMS4zOSwxNS4yOCw0LjE2LDQuMzQsMi43OCw3LjY4LDYuNjEsMTAuMDIsMTEuNDgsMS43MywzLjU5LDIuNzUsNy42LDMuMSwxMS45OWgtNTYuOTFjLjQ5LTQuNDEsMS42My04LjQxLDMuNDUtMTEuOTlNMzE0LjcsMjA0LjY0Yy0zLjEyLTUuODktNy40NS0xMC41My0xMy4wMS0xMy44OS01LjU2LTMuMzYtMTEuOTQtNS4wNC0xOS4xNS01LjA0cy0xMy43OSwxLjc1LTE5LjQ0LDUuMjZjLTUuNjYsMy41MS0xMC4wOSw4LjMxLTEzLjMsMTQuNC0zLjIyLDYuMDktNC44MiwxMy4xNC00LjgyLDIxLjEzczEuNywxNC45MSw1LjEyLDIxLjA1YzMuNDEsNi4xNCw4LjExLDEwLjk0LDE0LjExLDE0LjQsNS45OSwzLjQ2LDEyLjg0LDUuMTksMjAuNTQsNS4xOSw0LjU4LDAsOS4zOC0uOTIsMTQuNC0yLjc4LDUuMDItMS44NSw5LjA5LTQuMTksMTIuMjEtNy4wMi45Ny0uODgsMS40NC0xLjg1LDEuMzktMi45Mi0uMDUtMS4wNy0uNjEtMi4wNS0xLjY4LTIuOTItLjc4LS42OC0xLjczLTEtMi44NS0uOTUtMS4xMi4wNS0yLjA3LjQ2LTIuODUsMS4yNC0yLjI0LDIuMTQtNS4yOSwzLjg3LTkuMTQsNS4xOS0zLjg1LDEuMzItNy42OCwxLjk3LTExLjQ4LDEuOTctNi4wNCwwLTExLjQtMS4zOS0xNi4wOC00LjE3LTQuNjgtMi43OC04LjMzLTYuNi0xMC45Ny0xMS40OC0yLjI2LTQuMTgtMy40OC04LjkzLTMuODEtMTQuMThoNjEuMjZjMS4yNywwLDIuMjktLjM2LDMuMDctMS4xLjc4LS43MywxLjE3LTEuNzMsMS4xNy0zLDAtNy43LTEuNTYtMTQuNS00LjY4LTIwLjQiLz4KICAgICAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMzQ2LjczLDgyLjE5Yy00LjM5LTYuODEtMTQuOTItMTguMjItMzYuMTEtMTguMjItMS41NCwwLTMuMTMuMDYtNC43NC4xOC0uNDktMTQuODEtNS4xNy0yOC40Mi0xMy42NC0zOS41NS04LjUzLTExLjIyLTIwLjUzLTE5LjI5LTMzLjc3LTIyLjczLTQuNzYtMS4yNC05LjU2LTEuODYtMTQuMjgtMS44Ni0yMC43NSwwLTM5LjE5LDEyLjA4LTQ5Ljk5LDMyLjUxLTguNjUtNy4xMi0xOS4zMi0xMC42Mi0zMC4yMy05LjY3LTE1Ljk0LDEuNC0yOS44NiwxMi4wMi0zNi43OSwyNy45MS0xNy4wNy0xLjQ0LTMxLjcsNS42OC00MC43MiwxOS42MS05LjA2LDEzLjk5LTEwLjQzLDMyLjM0LTMuNDksNDYuNzUsNy44MywxNi4yNSwyNC4zNywyNS4xOSw0Ni41NywyNS4xOWg2MS43M3YzNS4zN2guMDRjLS4wMS4xMi0uMDQuMjMtLjA0LjM2djQuNDljMCwxLjY5LDEuMzgsMy4wNywzLjA3LDMuMDdoMS43N2MxLjYyLDAsMi45My0xLjMxLDIuOTMtMi45M3YtNDUuMzRjMC0xLjYyLTEuMzEtMi45My0yLjkzLTIuOTNoLTY2LjU3Yy0xOS4wOCwwLTMzLjE1LTcuMzgtMzkuNi0yMC43Ny01Ljc1LTExLjk0LTQuNTgtMjcuMjEsMy0zOC44OSw2Ljc4LTEwLjQ3LDE3LjQ0LTE2LjI0LDMwLjAyLTE2LjI0aDBjMi4wMSwwLDQuMDkuMTUsNi4xNi40NWwuNzQuMTFjMS4zNy4xOSwyLjY4LS41OSwzLjE2LTEuODlsLjI3LS43NGM1LjQtMTQuNjIsMTcuNDEtMjQuNDYsMzEuMzQtMjUuNjgsMTAuMy0uOSwyMC40LDMuMTEsMjgsMTEuMDFsLjk1Ljk5Yy42OC43LDEuNjYsMS4wMiwyLjYyLjg1Ljk2LS4xNywxLjc3LS44MSwyLjE3LTEuN2wuNTctMS4yOWM5LjA2LTIwLjQ2LDI1Ljk5LTMyLjY3LDQ1LjI5LTMyLjY3aDBjNC4wNiwwLDguMjEuNTQsMTIuMzIsMS42MSwyMS4yNyw1LjUzLDQyLjM4LDI1Ljg4LDQxLjU5LDU4LjlsLS4wMywxLjJjLS4wMi44Ni4zNCwxLjY4Ljk4LDIuMjVzMS41LjgzLDIuMzUuNzJsMS4xLS4xNWMyLjczLS4zOCw1LjQtLjU3LDcuOTUtLjU3LDEzLjI4LDAsMjMuNTcsNS4wNiwyOS43NCwxNC42NSw2LjM1LDkuODQsNy4yMywyMy40NCwyLjIxLDMzLjg0LTQuMzcsOS4wNC0xMi4yNywxNC4wMS0yMi4yNSwxNC4wMWgtODQuMzF2LTIzLjA5aDYuOTRjMS4wMywwLDEuOTgtLjU0LDIuNTEtMS40Mi41My0uODguNTYtMS45OC4wNy0yLjg5bC0yMC4wMy0zNy40OWMtLjUxLS45NS0xLjUtMS41NS0yLjU4LTEuNTVzLTIuMDcuNTktMi41OCwxLjU1bC0yMC4wMywzNy40OWMtLjQ5LjkxLS40NiwyLC4wNywyLjg5LjUzLjg4LDEuNDgsMS40MiwyLjUxLDEuNDJoNi45M3Y2Ni4zN3MwLC4wMywwLC4wM2MtLjAxLjExLS4wMy4yMi0uMDMuMzN2NC40OWMwLC4yNC4wMy40Ny4wOS43LjExLjU3LjM5LDEuMDkuOCwxLjUxLjU1LjU1LDEuMjkuODYsMi4wNy44NmgxLjc0YzEuNjksMCwzLjA3LTEuMzgsMy4wNy0zLjA3di00LjQ5YzAtLjEyLS4wMi0uMjQtLjA0LS4zNmguMDd2LTcxLjM2YzAtLjc4LS4zLTEuNTItLjg1LTIuMDctLjU1LS41NS0xLjI5LS44Ni0yLjA3LS44NmgtMy41OGwxMS44NC0yMi4xNiwxMS44NCwyMi4xNmgtMy41OGMtMS42MiwwLTIuOTMsMS4zMS0yLjkzLDIuOTN2MzMuMDZjMCwxLjYyLDEuMzEsMi45MywyLjkzLDIuOTNoODkuMTRjMTIuOTEsMCwyMy41NS02LjcyLDI5LjIxLTE4LjQzLDYuMi0xMi44NCw1LjEyLTI5LjU5LTIuNjgtNDEuNyIvPgogICAgPC9nPgogIDwvZz4KPC9zdmc+"); width: 22mm; height: 13mm; vertical-align: bottom; padding-bottom: 4mm; }
+    @top-right   { content: "Informações da clínica · Dr.IAgenda"; font: 500 7.5pt Poppins, sans-serif; color: #00465F; vertical-align: bottom; padding-bottom: 5mm; }
+    @bottom-left { content: "NU.V.E.M Medicina · Documento interno · 04/11/2026"; font: 400 7pt Poppins, sans-serif; color: #8a8a8a; }
+    @bottom-right{ content: "Página " counter(page) " de " counter(pages); font: 500 7.5pt Poppins, sans-serif; color: #00465F; }
+  }
+  @page capa { margin: 0; @top-left { content: none } @top-right { content: none } @bottom-left { content: none } @bottom-right { content: none } }
+  * { box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { font-family: Poppins, sans-serif; font-weight: 400; font-size: 9.6pt; line-height: 1.5; color: var(--steel); margin: 0; }
+  .capa { page: capa; height: 297mm; padding: 34mm 24mm 22mm; display: flex; flex-direction: column; background: linear-gradient(160deg, #00465F 0%, #00293A 100%); color: #fff; break-after: page; }
+  .capa .logo { width: 62mm; background: #fff; border-radius: 4mm; padding: 5mm 7mm; }
+  .capa .tag { margin-top: auto; font-size: 8.5pt; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+  .capa h1 { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 34pt; line-height: 1.08; margin: 4mm 0 6mm; }
+  .capa h1 em { color: var(--gold); }
+  .capa p { color: rgba(255,255,255,.75); max-width: 135mm; margin: 0 0 2mm; }
+  .capa .rodape { margin-top: 18mm; padding-top: 5mm; border-top: 1px solid rgba(255,255,255,.2); font-size: 8pt; color: rgba(255,255,255,.6); }
+  h1.cap { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 25pt; color: var(--teal); margin: 0 0 2mm; break-before: page; }
+  h1.cap + .intro { color: #666; margin: 0 0 6mm; }
+  h2.cap-sub { font-size: 14pt; font-weight: 600; color: var(--teal); margin: 0 0 1mm; }
+  h2.cap-sub .num { color: var(--gold-dark); margin-right: 1.5mm; }
+  h3 { font-size: 11pt; font-weight: 600; color: var(--teal); border-bottom: 1.5px solid var(--mist); padding-bottom: 1.2mm; margin: 6mm 0 3mm; break-after: avoid; }
+  h4 { font-size: 9pt; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--teal-mid); margin: 4.5mm 0 1.5mm; break-after: avoid; }
+  .sumario ol { list-style: none; padding: 0; margin: 0; }
+  .sumario li { display: flex; align-items: baseline; gap: 2mm; padding: 1.3mm 0; }
+  .sumario li.n0 { font-weight: 600; color: var(--teal); margin-top: 3mm; font-size: 10.5pt; }
+  .sumario li.n1 { padding-left: 7mm; color: #555; }
+  .sumario .pontos { flex: 1; border-bottom: 1px dotted #bbb; transform: translateY(-1mm); }
+  .sumario a { color: inherit; text-decoration: none; }
+  .aviso { background: #f5fafa; border: 1px solid var(--mist); border-left: 3px solid var(--gold); border-radius: 2mm; padding: 3.5mm 4.5mm; margin: 6mm 0; font-size: 8.8pt; }
+  .aviso b { color: var(--teal); }
+  .par { break-inside: avoid; margin-bottom: 2.6mm; }
+  dl { margin: 0; } dt { font-size: 8pt; font-weight: 600; color: #666; } dd { margin: .5mm 0 0; }
+  .orig { font-weight: 400; color: #aaa; }
+  .preencher { color: var(--gold-dark); font-weight: 600; font-size: 8.5pt; }
+  .lacuna { color: var(--gold-dark); font-weight: 600; }
+  .preparo { break-before: page; }
+  .preparo .sub { margin: 0; color: var(--gold-dark); font-weight: 500; }
+  .serve { margin: 2mm 0 3mm; font-size: 10pt; }
+  .ficha { display: flex; flex-wrap: wrap; gap: 2mm; margin: 0 0 1mm; }
+  .ficha div { background: #f2f8f8; border: 1px solid var(--mist); border-radius: 1.8mm; padding: 1.6mm 3mm; font-size: 8.2pt; }
+  .ficha span { color: #777; margin-right: 1.4mm; } .ficha strong { color: var(--teal); font-weight: 600; }
+  ul { margin: 0; padding-left: 4.6mm; } li { margin: 0 0 1.3mm; break-inside: avoid; } li::marker { color: var(--gold); }
+  .validar { display: inline-block; background: #fff3d6; color: #8a5a00; border: 1px solid #e8c56a; border-radius: 1mm; font-size: 7pt; font-weight: 600; padding: 0 1.2mm; margin-left: 1mm; letter-spacing: .02em; }
+  .motivo { display: block; font-size: 7.8pt; font-style: italic; color: #8a5a00; margin-top: .6mm; }
+  .conforme { margin: 0 0 2mm; font-size: 8.6pt; color: var(--teal); font-weight: 500; }
+  table.meds { width: 100%; border-collapse: collapse; margin: 1mm 0 2.5mm; font-size: 8.4pt; }
+  .meds th { text-align: left; background: var(--teal); color: #fff; font-weight: 500; padding: 1.6mm 2mm; }
+  .meds td { border-bottom: 1px solid #e3eeee; padding: 1.6mm 2mm; vertical-align: top; }
+  .meds tr { break-inside: avoid; } .meds td.conduta { font-weight: 600; color: var(--teal); white-space: nowrap; }
+  .vazio { color: #888; margin: 0; }
+  .fonte { margin-top: 5mm; font-size: 7.2pt; color: #aaa; }
+  .medicos { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5mm; margin-top: 4mm; }
+  .medico { border: 1px solid var(--mist); border-radius: 2mm; padding: 3.2mm 3.8mm; break-inside: avoid; font-size: 8.4pt; }
+  .medico p { margin: 0 0 1mm; } .m-nome { font-weight: 600; color: var(--teal); font-size: 10pt; } .m-esp { color: #777; font-size: 7.8pt; }
+  .nota { font-size: 8pt; color: #888; margin-top: 4mm; }
+  .campo { position: relative; border: 1px solid #b9d6d9; border-radius: 1.4mm; background: #f7fbfb; margin-top: .8mm; }
+  .mk { position: absolute; font: normal 3pt/1 Helvetica, sans-serif; color: #f7fbfb; white-space: nowrap; }
+  .campo .mk { left: .4mm; top: .4mm; } .campo .mk-fim { left: auto; top: auto; right: .4mm; bottom: .4mm; }
+  .opcoes { display: flex; flex-wrap: wrap; gap: 1.6mm 5mm; margin-top: 1mm; }
+  .op { display: inline-flex; align-items: center; gap: 1.6mm; }
+  .cx { position: relative; width: 3.8mm; height: 3.8mm; border: 1px solid #8fbcc1; border-radius: .7mm; background: #f7fbfb; }
+  .cx .mk { left: .2mm; top: .2mm; font-size: 1.6pt; }
+  .ajuda { margin: .2mm 0 0; font-size: 7.6pt; color: #8a8a8a; line-height: 1.35; }
+  .obr { color: var(--gold-dark); }
+</style></head><body>
+
+<section class="capa">
+  <img class="logo" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iQ2FtYWRhXzIiIGRhdGEtbmFtZT0iQ2FtYWRhIDIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDQ0Ni41NiAyNjcuMTQiPgogIDxkZWZzPgogICAgPHN0eWxlPgogICAgICAuY2xzLTEgewogICAgICAgIGZpbGw6ICMxZDQ4NWU7CiAgICAgIH0KICAgIDwvc3R5bGU+CiAgPC9kZWZzPgogIDxnIGlkPSJfw5HDq8Ouw6lfNCIgZGF0YS1uYW1lPSLDkcOrw67DqSA0Ij4KICAgIDxnPgogICAgICA8cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0yMzUuNzMsMTk4LjcyYy0uNDQtMS4wNC0xLjItMS44LTIuMjctMi4zLTEuMDctLjQ5LTIuMTctLjU0LTMuMjktLjE1LTEuMTIuNC0xLjkzLDEuMTQtMi40MSwyLjIybC0yNC4zNyw1NC45NS0zMC4wMi02NS43OGMtLjQ5LTEuMDktMS4yNC0xLjgzLTIuMjctMi4yMy0xLjAyLS4zOS0yLjA3LS4zNS0zLjE0LjE1LTEuMDcuNS0xLjgsMS4yNi0yLjE5LDIuMy0uMzksMS4wNC0uMzksMi4xLDAsMy4xOWwzMy4zMyw3Mi4zN2MuODgsMi4wNywyLjI0LDMuMTEsNC4wOSwzLjExLDIuMTQsMCwzLjctMS4wNCw0LjY4LTMuMTFsMjcuNzgtNjEuNTNjLjQ5LTEuMDguNTEtMi4xNS4wNy0zLjE5Ii8+CiAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTY4LjIxLDIwMi4zNWMtMy4yMi01LjUxLTcuNjMtOS43LTEzLjIzLTEyLjU3LTUuMTMtMi42My0xMC44OS00LTE3LjIxLTQuMjIsMC0uMDMsMC0uMDUsMC0uMDctLjI3LDAtLjUzLS4wMi0uOC0uMDItLjE2LDAtLjMxLjAyLS40Ny4wMy0uMTYsMC0uMzEtLjAzLS40Ny0uMDMtLjI3LDAtLjUzLjAyLS44LjAyLDAsLjAyLDAsLjA0LDAsLjA3LTYuMzIuMjItMTIuMDcsMS41OS0xNy4yMSw0LjIyLTUuNiwyLjg3LTEwLjAxLDcuMDctMTMuMjMsMTIuNTctMy4yMiw1LjUxLTQuODIsMTIuMzEtNC44MiwyMC4zOXYzOS4zM2MwLDEuMjcuNDEsMi4zMiwxLjI0LDMuMTQuODMuODMsMS44OCwxLjI0LDMuMTQsMS4yNHMyLjMyLS40MSwzLjE0LTEuMjRjLjgzLS44MywxLjI0LTEuODgsMS4yNC0zLjE0di0zOS4zM2MwLTYuNDMsMS4yNC0xMS43NCwzLjczLTE1Ljk0LDIuNDktNC4xOSw1Ljg1LTcuMzMsMTAuMDktOS40Myw0LjEyLTIuMDMsOC43Ny0zLjA2LDEzLjkzLTMuMTIsNS4xNy4wNiw5LjgyLDEuMDksMTMuOTMsMy4xMiw0LjI0LDIuMSw3LjYsNS4yNCwxMC4wOSw5LjQzLDIuNDgsNC4xOSwzLjczLDkuNSwzLjczLDE1Ljk0djM5LjMzYzAsMS4yNy40MSwyLjMyLDEuMjQsMy4xNC44My44MywxLjg3LDEuMjQsMy4xNCwxLjI0czIuMzItLjQxLDMuMTQtMS4yNGMuODMtLjgzLDEuMjQtMS44OCwxLjI0LTMuMTR2LTM5LjMzYzAtOC4wOS0xLjYxLTE0Ljg5LTQuODItMjAuMzkiLz4KICAgICAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJNODcuOTMsMjQ5LjU3YzMuMjIsNS41MSw3LjYzLDkuNywxMy4yMywxMi41Nyw1LjEzLDIuNjMsMTAuODksNCwxNy4yMSw0LjIyLDAsLjAyLDAsLjA1LDAsLjA3LjI3LDAsLjUzLjAyLjguMDIuMTYsMCwuMzEtLjAyLjQ3LS4wMy4xNiwwLC4zMS4wMy40Ny4wMy4yNywwLC41My0uMDIuOC0uMDIsMC0uMDIsMC0uMDQsMC0uMDcsNi4zMi0uMjIsMTIuMDctMS41OSwxNy4yMS00LjIyLDUuNi0yLjg3LDEwLjAyLTcuMDcsMTMuMjMtMTIuNTcsMy4yMi01LjUxLDQuODItMTIuMzEsNC44Mi0yMC4zOXYtMzkuMzNjMC0xLjI3LS40Mi0yLjMyLTEuMjQtMy4xNC0uODItLjgzLTEuODgtMS4yNC0zLjE0LTEuMjRzLTIuMzIuNDEtMy4xNCwxLjI0Yy0uODMuODMtMS4yNCwxLjg4LTEuMjQsMy4xNHYzOS4zM2MwLDYuNDMtMS4yNCwxMS43NC0zLjczLDE1Ljk0LTIuNDksNC4xOS01Ljg1LDcuMzMtMTAuMDksOS40My00LjExLDIuMDMtOC43NywzLjA2LTEzLjkzLDMuMTItNS4xNy0uMDYtOS44Mi0xLjA5LTEzLjkzLTMuMTItNC4yNC0yLjEtNy42LTUuMjQtMTAuMDktOS40My0yLjQ4LTQuMTktMy43My05LjUtMy43My0xNS45NHYtMzkuMzNjMC0xLjI3LS40MS0yLjMyLTEuMjQtMy4xNC0uODMtLjgzLTEuODctMS4yNC0zLjE0LTEuMjRzLTIuMzIuNDEtMy4xNCwxLjI0Yy0uODMuODMtMS4yNCwxLjg4LTEuMjQsMy4xNHYzOS4zM2MwLDguMDksMS42MSwxNC44OSw0LjgyLDIwLjM5Ii8+CiAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTMzNi41NywyNjYuNTZjLTEuMjksMC0yLjM3LS40My0zLjIyLTEuMjgtLjg1LS44NS0xLjI4LTEuOTItMS4yOC0zLjIycy40NC0yLjM1LDEuMzItMy4xOGMuODgtLjgyLDEuOTQtMS4yMywzLjE4LTEuMjNzMi4yOC40MywzLjE0LDEuMjhjLjg1Ljg1LDEuMjgsMS45LDEuMjgsMy4xNHMtLjQzLDIuMjktMS4yOCwzLjE4Yy0uODUuODgtMS45LDEuMzItMy4xNCwxLjMyIi8+CiAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTIzNi40LDE5My45NWMtMS4yOSwwLTIuMzctLjQzLTMuMjItMS4yOC0uODYtLjg1LTEuMjgtMS45Mi0xLjI4LTMuMjJzLjQ0LTIuMzUsMS4zMi0zLjE4Yy44OC0uODIsMS45NC0xLjIzLDMuMTgtMS4yM3MyLjI4LjQzLDMuMTQsMS4yOGMuODUuODUsMS4yOCwxLjksMS4yOCwzLjE0cy0uNDMsMi4yOS0xLjI4LDMuMThjLS44NS44OC0xLjksMS4zMi0zLjE0LDEuMzIiLz4KICAgICAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTYyLjc0LDI2Ni41NmMtMS4zLDAtMi4zNy0uNDMtMy4yMi0xLjI4LS44Ni0uODUtMS4yOC0xLjkyLTEuMjgtMy4yMnMuNDQtMi4zNSwxLjMyLTMuMThjLjg4LS44MiwxLjk0LTEuMjMsMy4xOC0xLjIzczIuMjguNDMsMy4xNCwxLjI4Yy44NS44NSwxLjI4LDEuOSwxLjI4LDMuMTRzLS40MywyLjI5LTEuMjgsMy4xOGMtLjg1Ljg4LTEuOSwxLjMyLTMuMTQsMS4zMiIvPgogICAgICA8cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik00NDIuNjksMjAxLjk0Yy0yLjU4LTUuMTctNi4xMi05LjIxLTEwLjYtMTIuMTMtNC40OC0yLjkyLTkuNy00LjM4LTE1LjY1LTQuMzhzLTExLjExLDEuMzktMTUuNzksNC4xNmMtNC42NCwyLjc2LTguMzIsNi42LTExLjA1LDExLjUyLS4wMi0uMDMtLjA0LS4wNy0uMDYtLjEtLjA2LjEtLjEzLjE5LS4xOS4yOS0uMDQtLjA3LS4wOS0uMTMtLjEzLS4yLS4wMi4wMy0uMDQuMDctLjA2LjEtMi43Mi00LjkyLTYuNC04Ljc2LTExLjA1LTExLjUyLTQuNjgtMi43OC05Ljk0LTQuMTYtMTUuNzktNC4xNnMtMTEuMTYsMS40Ni0xNS42NSw0LjM4Yy00LjQ4LDIuOTItOC4wMiw2Ljk3LTEwLjYsMTIuMTMtMi41OCw1LjE3LTMuODgsMTEuMTEtMy44OCwxNy44NHYyOC42NmMwLDEuMjcuMzksMi4zMSwxLjE3LDMuMTQuNzguODMsMS44NSwxLjI0LDMuMjEsMS4yNCwxLjI3LDAsMi4zMi0uNDEsMy4xNC0xLjI0LjgzLS44MywxLjI0LTEuODcsMS4yNC0zLjE0di0yOC42NmMwLTcuNSwxLjk3LTEzLjY0LDUuOTItMTguNDIsMy45NS00Ljc3LDkuMDktNy4xNiwxNS40My03LjE2LDYuNzIsMCwxMi4yMSwyLjIyLDE2LjQ0LDYuNjUsMi42MywyLjc1LDQuNDEsNi4xLDUuMzMsMTAuMDQtLjAyLjA0LS4wMy4wOS0uMDYuMTMuMjQuOTEuNCwxLjg4LjU3LDIuODQuMTksMS41NS4yNywzLjE4LjIzLDQuODloLjAzYzAsLjM0LS4wMy42OC0uMDMsMS4wMnY0Mi4yNWMwLDEuMjcuMzksMi4zMSwxLjE3LDMuMTQuNzguODMsMS44NSwxLjI0LDMuMjEsMS4yNC40MywwLC44Mi0uMDcsMS4yLS4xNi45NS0uMTQsMS43My0uNTMsMi4zNC0xLjE3Ljc4LS44MywxLjE3LTEuODgsMS4xNy0zLjE0di00Mi4yNWMwLS4zNS0uMDItLjY4LS4wMy0xLjAyaC4wM2MtLjA0LTEuNTkuMDQtMy4xLjItNC41Ni4xNy0xLjAyLjM0LTIuMDQuNi0zLS4wMy0uMDYtLjA1LS4xNC0uMDktLjIuOTEtMy45OSwyLjctNy4zNyw1LjM2LTEwLjE1LDQuMjQtNC40NCw5LjcyLTYuNjUsMTYuNDQtNi42NSw2LjM0LDAsMTEuNDgsMi4zOSwxNS40Myw3LjE2LDMuOTUsNC43OCw1LjkyLDEwLjkyLDUuOTIsMTguNDJ2NDIuMjVjMCwxLjI3LjQxLDIuMzEsMS4yNCwzLjE0LjgzLjgzLDEuODcsMS4yNCwzLjE0LDEuMjQsMS4zNiwwLDIuNDQtLjQxLDMuMjEtMS4yNC43OC0uODMsMS4xNy0xLjg4LDEuMTctMy4xNHYtNDIuMjVjMC02LjcyLTEuMjktMTIuNjctMy44OC0xNy44NCIvPgogICAgICA8cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0yNTcuNDYsMjA5LjU0YzIuNDgtNC44Nyw1LjktOC43LDEwLjIzLTExLjQ4LDQuMzQtMi43OCw5LjI4LTQuMTYsMTQuODQtNC4xNiw1Ljg1LDAsMTAuOTQsMS4zOSwxNS4yOCw0LjE2LDQuMzQsMi43OCw3LjY4LDYuNjEsMTAuMDIsMTEuNDgsMS43MywzLjU5LDIuNzUsNy42LDMuMSwxMS45OWgtNTYuOTFjLjQ5LTQuNDEsMS42My04LjQxLDMuNDUtMTEuOTlNMzE0LjcsMjA0LjY0Yy0zLjEyLTUuODktNy40NS0xMC41My0xMy4wMS0xMy44OS01LjU2LTMuMzYtMTEuOTQtNS4wNC0xOS4xNS01LjA0cy0xMy43OSwxLjc1LTE5LjQ0LDUuMjZjLTUuNjYsMy41MS0xMC4wOSw4LjMxLTEzLjMsMTQuNC0zLjIyLDYuMDktNC44MiwxMy4xNC00LjgyLDIxLjEzczEuNywxNC45MSw1LjEyLDIxLjA1YzMuNDEsNi4xNCw4LjExLDEwLjk0LDE0LjExLDE0LjQsNS45OSwzLjQ2LDEyLjg0LDUuMTksMjAuNTQsNS4xOSw0LjU4LDAsOS4zOC0uOTIsMTQuNC0yLjc4LDUuMDItMS44NSw5LjA5LTQuMTksMTIuMjEtNy4wMi45Ny0uODgsMS40NC0xLjg1LDEuMzktMi45Mi0uMDUtMS4wNy0uNjEtMi4wNS0xLjY4LTIuOTItLjc4LS42OC0xLjczLTEtMi44NS0uOTUtMS4xMi4wNS0yLjA3LjQ2LTIuODUsMS4yNC0yLjI0LDIuMTQtNS4yOSwzLjg3LTkuMTQsNS4xOS0zLjg1LDEuMzItNy42OCwxLjk3LTExLjQ4LDEuOTctNi4wNCwwLTExLjQtMS4zOS0xNi4wOC00LjE3LTQuNjgtMi43OC04LjMzLTYuNi0xMC45Ny0xMS40OC0yLjI2LTQuMTgtMy40OC04LjkzLTMuODEtMTQuMThoNjEuMjZjMS4yNywwLDIuMjktLjM2LDMuMDctMS4xLjc4LS43MywxLjE3LTEuNzMsMS4xNy0zLDAtNy43LTEuNTYtMTQuNS00LjY4LTIwLjQiLz4KICAgICAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMzQ2LjczLDgyLjE5Yy00LjM5LTYuODEtMTQuOTItMTguMjItMzYuMTEtMTguMjItMS41NCwwLTMuMTMuMDYtNC43NC4xOC0uNDktMTQuODEtNS4xNy0yOC40Mi0xMy42NC0zOS41NS04LjUzLTExLjIyLTIwLjUzLTE5LjI5LTMzLjc3LTIyLjczLTQuNzYtMS4yNC05LjU2LTEuODYtMTQuMjgtMS44Ni0yMC43NSwwLTM5LjE5LDEyLjA4LTQ5Ljk5LDMyLjUxLTguNjUtNy4xMi0xOS4zMi0xMC42Mi0zMC4yMy05LjY3LTE1Ljk0LDEuNC0yOS44NiwxMi4wMi0zNi43OSwyNy45MS0xNy4wNy0xLjQ0LTMxLjcsNS42OC00MC43MiwxOS42MS05LjA2LDEzLjk5LTEwLjQzLDMyLjM0LTMuNDksNDYuNzUsNy44MywxNi4yNSwyNC4zNywyNS4xOSw0Ni41NywyNS4xOWg2MS43M3YzNS4zN2guMDRjLS4wMS4xMi0uMDQuMjMtLjA0LjM2djQuNDljMCwxLjY5LDEuMzgsMy4wNywzLjA3LDMuMDdoMS43N2MxLjYyLDAsMi45My0xLjMxLDIuOTMtMi45M3YtNDUuMzRjMC0xLjYyLTEuMzEtMi45My0yLjkzLTIuOTNoLTY2LjU3Yy0xOS4wOCwwLTMzLjE1LTcuMzgtMzkuNi0yMC43Ny01Ljc1LTExLjk0LTQuNTgtMjcuMjEsMy0zOC44OSw2Ljc4LTEwLjQ3LDE3LjQ0LTE2LjI0LDMwLjAyLTE2LjI0aDBjMi4wMSwwLDQuMDkuMTUsNi4xNi40NWwuNzQuMTFjMS4zNy4xOSwyLjY4LS41OSwzLjE2LTEuODlsLjI3LS43NGM1LjQtMTQuNjIsMTcuNDEtMjQuNDYsMzEuMzQtMjUuNjgsMTAuMy0uOSwyMC40LDMuMTEsMjgsMTEuMDFsLjk1Ljk5Yy42OC43LDEuNjYsMS4wMiwyLjYyLjg1Ljk2LS4xNywxLjc3LS44MSwyLjE3LTEuN2wuNTctMS4yOWM5LjA2LTIwLjQ2LDI1Ljk5LTMyLjY3LDQ1LjI5LTMyLjY3aDBjNC4wNiwwLDguMjEuNTQsMTIuMzIsMS42MSwyMS4yNyw1LjUzLDQyLjM4LDI1Ljg4LDQxLjU5LDU4LjlsLS4wMywxLjJjLS4wMi44Ni4zNCwxLjY4Ljk4LDIuMjVzMS41LjgzLDIuMzUuNzJsMS4xLS4xNWMyLjczLS4zOCw1LjQtLjU3LDcuOTUtLjU3LDEzLjI4LDAsMjMuNTcsNS4wNiwyOS43NCwxNC42NSw2LjM1LDkuODQsNy4yMywyMy40NCwyLjIxLDMzLjg0LTQuMzcsOS4wNC0xMi4yNywxNC4wMS0yMi4yNSwxNC4wMWgtODQuMzF2LTIzLjA5aDYuOTRjMS4wMywwLDEuOTgtLjU0LDIuNTEtMS40Mi41My0uODguNTYtMS45OC4wNy0yLjg5bC0yMC4wMy0zNy40OWMtLjUxLS45NS0xLjUtMS41NS0yLjU4LTEuNTVzLTIuMDcuNTktMi41OCwxLjU1bC0yMC4wMywzNy40OWMtLjQ5LjkxLS40NiwyLC4wNywyLjg5LjUzLjg4LDEuNDgsMS40MiwyLjUxLDEuNDJoNi45M3Y2Ni4zN3MwLC4wMywwLC4wM2MtLjAxLjExLS4wMy4yMi0uMDMuMzN2NC40OWMwLC4yNC4wMy40Ny4wOS43LjExLjU3LjM5LDEuMDkuOCwxLjUxLjU1LjU1LDEuMjkuODYsMi4wNy44NmgxLjc0YzEuNjksMCwzLjA3LTEuMzgsMy4wNy0zLjA3di00LjQ5YzAtLjEyLS4wMi0uMjQtLjA0LS4zNmguMDd2LTcxLjM2YzAtLjc4LS4zLTEuNTItLjg1LTIuMDctLjU1LS41NS0xLjI5LS44Ni0yLjA3LS44NmgtMy41OGwxMS44NC0yMi4xNiwxMS44NCwyMi4xNmgtMy41OGMtMS42MiwwLTIuOTMsMS4zMS0yLjkzLDIuOTN2MzMuMDZjMCwxLjYyLDEuMzEsMi45MywyLjkzLDIuOTNoODkuMTRjMTIuOTEsMCwyMy41NS02LjcyLDI5LjIxLTE4LjQzLDYuMi0xMi44NCw1LjEyLTI5LjU5LTIuNjgtNDEuNyIvPgogICAgPC9nPgogIDwvZz4KPC9zdmc+" alt="NU.V.E.M Medicina">
+  <p class="tag">Documento interno · IA de atendimento</p>
+  <h1>Informações da clínica<br>para a <em>Dr.IAgenda</em></h1>
+  <p>Dados da clínica pedidos na anamnese da Secretária IA, preparos de exames em padrão único e resumo dos profissionais.</p>
+  <p>Origem dos dados da clínica: pré-preenchimento com dados do site (formulário ainda não respondido).</p>
+  <div class="rodape">NU.V.E.M Medicina · Rua Ceará, 600 – Sala 101, Santa Efigênia, Belo Horizonte – MG · (31) 2537-3131<br>
+  CRM-MG 20532 · Diretora técnica: Dra. Vera Ângelo (CRM-MG 22284 · RQE 10411 · RQE 22736) · Versão de 04/11/2026</div>
+</section>
+
+<section class="sumario">
+  <h1 class="cap" style="break-before:auto">Sumário</h1>
+  <ol><li class="n0"><a href="#cap1">1. Informações da clínica</a><span class="pontos"></span><span>3</span></li><li class="n1"><a href="#sec-identificacao">1.1 Identificação e escopo</a><span class="pontos"></span><span>3</span></li><li class="n1"><a href="#sec-localizacao">1.2 Localização, horários e contato</a><span class="pontos"></span><span>3</span></li><li class="n1"><a href="#sec-servicos">1.3 Serviços, exames e posicionamento</a><span class="pontos"></span><span>4</span></li><li class="n1"><a href="#sec-convenios">1.4 Convênios</a><span class="pontos"></span><span>5</span></li><li class="n1"><a href="#sec-pagamento">1.5 Pagamento</a><span class="pontos"></span><span>5</span></li><li class="n1"><a href="#sec-agenda">1.6 Agenda e confirmação</a><span class="pontos"></span><span>5</span></li><li class="n1"><a href="#sec-politicas">1.7 Políticas e exceções</a><span class="pontos"></span><span>6</span></li><li class="n1"><a href="#sec-preparos">1.8 Preparos de exames</a><span class="pontos"></span><span>6</span></li><li class="n1"><a href="#sec-secretaria">1.9 Secretária IA</a><span class="pontos"></span><span>6</span></li><li class="n1"><a href="#sec-humano">1.10 Encaminhamento humano, urgência e anexos</a><span class="pontos"></span><span>7</span></li><li class="n0"><a href="#cap2">2. Preparos de exames</a><span class="pontos"></span><span>8</span></li><li class="n1"><a href="#prep-manometria-esofagica">2.1 Manometria Esofágica de Alta Resolução</a><span class="pontos"></span><span>8</span></li><li class="n1"><a href="#prep-manometria-anorretal">2.2 Manometria Anorretal</a><span class="pontos"></span><span>10</span></li><li class="n1"><a href="#prep-phmetria-impedanciometria">2.3 pHmetria e Impedanciometria Esofágica</a><span class="pontos"></span><span>11</span></li><li class="n1"><a href="#prep-teste-respiratorio-hpylori">2.4 Teste Respiratório para H. pylori</a><span class="pontos"></span><span>13</span></li><li class="n1"><a href="#prep-teste-respiratorio-sibo-imo">2.5 Teste Respiratório para SIBO, IMO, Lactose e Frutose</a><span class="pontos"></span><span>15</span></li><li class="n1"><a href="#prep-halimetria-sialometria">2.6 Halimetria e Sialometria</a><span class="pontos"></span><span>17</span></li><li class="n1"><a href="#prep-avaliacao-pelvica">2.7 Avaliação Pélvica com Biofeedback Eletromiográfico</a><span class="pontos"></span><span>19</span></li><li class="n0"><a href="#cap3">3. Profissionais</a><span class="pontos"></span><span>20</span></li></ol>
+  <div class="aviso"><b>Como ler este documento.</b> Os preparos foram reorganizados a partir dos PDFs oficiais da clínica, sem criar orientações novas.
+  Itens marcados com <span class="validar">[VALIDAR COM A EQUIPE MÉDICA]</span> têm divergência entre versões publicadas, lacuna ou instrução ambígua e precisam ser confirmados antes de a IA usar o texto.
+  Campos marcados <span class="preencher">[A PREENCHER PELA GESTÃO]</span> e trechos <span class="lacuna">___</span> ainda não têm resposta.</div>
+</section>
+
+<h1 class="cap" id="cap1">1. Informações da clínica</h1>
+<p class="intro">Parte A da anamnese: o que vale para a clínica inteira. A numeração "orig." indica a pergunta correspondente no formulário da Dr.IAgenda.</p>
+
+
+    <section class="bloco">
+      <h3 id="sec-identificacao">1.1 Identificação e escopo</h3>
+      <dl><div class="par"><dt>E-mail utilizado na compra <span class="obr">*</span> <span class="orig">orig. 1</span></dt>
+          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Nome da clínica <span class="obr">*</span> <span class="orig">orig. 6</span></dt>
+          <dd>NU.V.E.M Medicina</dd></div><div class="par"><dt>Responsável pelo preenchimento (nome e cargo) <span class="obr">*</span> <span class="orig">orig. 5</span></dt>
+          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Tipo de atendimento <span class="obr">*</span> <span class="orig">orig. 7</span></dt>
+          <dd>Clínica com múltiplos profissionais</dd></div><div class="par"><dt>A IA vai servir apenas para você ou para outros profissionais também? <span class="obr">*</span> <span class="orig">orig. 2</span></dt>
+          <dd>Para outros profissionais também</dd></div><div class="par"><dt>CNPJ</dt>
+          <dd>42.678.705/0001-02</dd></div><div class="par"><dt>Registro da clínica no CRM</dt>
+          <dd>CRM-MG 20532</dd></div><div class="par"><dt>Diretoria técnica (nome, CRM e RQE)</dt>
+          <dd>Dra. Vera Ângelo · CRM-MG 22284 · RQE 10411 · RQE 22736</dd></div></dl>
+    </section>
+    <section class="bloco">
+      <h3 id="sec-localizacao">1.2 Localização, horários e contato</h3>
+      <dl><div class="par"><dt>Endereço completo da clínica <span class="obr">*</span> <span class="orig">orig. 36</span></dt>
+          <dd>Rua Ceará, 600 – Sala 101<br>Santa Efigênia, Belo Horizonte – MG<br>CEP 30150-310<br>Mapa: https://goo.gl/maps/BELYyu7yUHd41gdc8</dd></div><div class="par"><dt>Instruções de chegada <span class="obr">*</span> <span class="orig">orig. 37</span></dt>
+          <dd>Próximo ao metrô Santa Efigênia. Várias linhas de ônibus passam pela Rua Ceará.</dd></div><div class="par"><dt>Estacionamento</dt>
+          <dd>Estacionamentos privados nas proximidades.</dd></div><div class="par"><dt>Horário de funcionamento da clínica <span class="obr">*</span> <span class="orig">orig. 24</span></dt>
+          <dd>Segunda a quinta: 7h às 17h30<br>Sexta: 7h às 16h30<br>Sábado e domingo: fechado</dd></div><div class="par"><dt>Feriados, recessos e férias coletivas</dt>
+          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Fuso horário <span class="obr">*</span> <span class="orig">orig. 26</span></dt>
+          <dd>Horário de Brasília (America/Sao_Paulo, UTC−3)</dd></div><div class="par"><dt>Canais de contato (telefone, WhatsApp, e-mail, site, redes) <span class="obr">*</span></dt>
+          <dd>Telefone: (31) 2537-3131<br>WhatsApp: (31) 99726-1029<br>E-mail: contato@nuvemmedicina.com.br<br>Site: https://www.nuvemmedicina.com.br<br>Instagram: https://instagram.com/nuvemmedicina<br>YouTube: https://www.youtube.com/@NuvemMedicina</dd></div><div class="par"><dt>Horário em que há atendente humano no WhatsApp</dt>
+          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div></dl>
+    </section>
+    <section class="bloco">
+      <h3 id="sec-servicos">1.3 Serviços, exames e posicionamento</h3>
+      <dl><div class="par"><dt>Modalidade de atendimento (padrão da clínica) <span class="obr">*</span> <span class="orig">orig. 4</span></dt>
+          <dd>Presencial</dd></div><div class="par"><dt>Especialidades e áreas de atuação da clínica <span class="obr">*</span> <span class="orig">orig. 34</span></dt>
+          <dd>Gastroenterologia · Motilidade digestiva · Fisioterapia pélvica · Halitose · Pediatria · Nefrologia · Cirurgia pediátrica · Clínica médica</dd></div><div class="par"><dt>Exames e procedimentos realizados na clínica (estruturado) <span class="obr">*</span> <span class="orig">orig. 21</span></dt>
+          <dd>Manometria esofágica de alta resolução — exame de 10 a 20 min (permanência de cerca de 2 h); sem sedação; pedido médico obrigatório; valor: <span class="lacuna">___</span>; IA pode agendar? <span class="lacuna">___</span><br>Manometria anorretal — 40 a 60 min; sem sedação; pedido médico obrigatório; valor: <span class="lacuna">___</span>; IA pode agendar? <span class="lacuna">___</span><br>pHmetria e impedanciometria esofágica — instalação de 15 a 20 min e monitoramento de 24 h; pedido médico obrigatório; valor: <span class="lacuna">___</span>; IA pode agendar? <span class="lacuna">___</span><br>Teste respiratório para H. pylori — 30 a 40 min; pedido médico obrigatório; valor: <span class="lacuna">___</span>; IA pode agendar? <span class="lacuna">___</span><br>Teste respiratório para SIBO / IMO / lactose / frutose (H₂, CH₄, H₂S) — 2 a 3 h; pedido médico obrigatório; valor: <span class="lacuna">___</span>; IA pode agendar? <span class="lacuna">___</span><br>Halimetria e sialometria — 30 a 40 min; pedido médico obrigatório; valor: <span class="lacuna">___</span>; IA pode agendar? <span class="lacuna">___</span><br>Avaliação pélvica com biofeedback eletromiográfico — 40 a 60 min; pedido médico obrigatório; realizada pela fisioterapeuta; valor: <span class="lacuna">___</span>; IA pode agendar? <span class="lacuna">___</span><br>Consultas médicas — ver Parte B (cada profissional).</dd></div><div class="par"><dt>Valores dos exames e procedimentos (tabela da clínica) <span class="orig">orig. 17</span></dt>
+          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>O que a clínica não realiza e quem não atende <span class="obr">*</span> <span class="orig">orig. 22</span></dt>
+          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Principais dores e problemas dos pacientes que procuram a clínica <span class="obr">*</span> <span class="orig">orig. 18</span></dt>
+          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>O que diferencia a clínica <span class="obr">*</span> <span class="orig">orig. 33</span></dt>
+          <dd>Certificação ISO 9001 de gestão da qualidade. Equipe multidisciplinar (gastroenterologia, motilidade digestiva, fisioterapia pélvica, pediatria, cirurgia pediátrica, nefrologia e clínica médica). Exames funcionais digestivos realizados na própria clínica. NU.V.E.M Ensino: cursos para profissionais de saúde.</dd></div><div class="par"><dt>História da clínica <span class="obr">*</span> <span class="orig">orig. 35</span></dt>
+          <dd>Clínica fundada em 2018 em Belo Horizonte pelas sócias Dra. Vera Ângelo e Dra. Eliane Basques. <span class="lacuna">___</span> (completar)</dd></div><div class="par"><dt>Prazos de entrega de laudos</dt>
+          <dd>Manometria: até 3 dias úteis<br>pHmetria: alguns dias após a devolução do equipamento<br>Testes respiratórios: até 3 dias úteis<br>Halimetria e sialometria: até 2 dias úteis</dd></div></dl>
+    </section>
+    <section class="bloco">
+      <h3 id="sec-convenios">1.4 Convênios</h3>
+      <dl><div class="par"><dt>Aceita convênio? Se sim, quais? <span class="obr">*</span> <span class="orig">orig. 10</span></dt>
+          <dd>Sim: Unimed BH, Amil, Porto Seguro Saúde, Hapvida, Plamed e Samp.<br>Também atendimento particular com recibo para reembolso (verificar com o plano).</dd></div><div class="par"><dt>Regras detalhadas de convênios <span class="obr">*</span> <span class="orig">orig. 11</span></dt>
+          <dd>Exames: levar a guia ou o número de autorização do convênio no dia; o paciente deve verificar a cobertura e a necessidade de autorização prévia com o convênio.<br><span class="lacuna">___</span> (coparticipação, coleta de carteirinha, procedimentos não cobertos, o que fazer se o convênio não estiver na lista)</dd></div></dl>
+    </section>
+    <section class="bloco">
+      <h3 id="sec-pagamento">1.5 Pagamento</h3>
+      <dl><div class="par"><dt>A IA deve cobrar pagamento antecipado? <span class="obr">*</span> <span class="orig">orig. 3</span></dt>
+          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Qual a dinâmica do pagamento? <span class="obr">*</span> <span class="orig">orig. 12</span></dt>
+          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Métodos de pagamento <span class="obr">*</span> <span class="orig">orig. 13</span></dt>
+          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Se cobrar antecipado, como deve ser feito? <span class="orig">orig. 14</span></dt>
+          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Regras de parcelamento <span class="obr">*</span> <span class="orig">orig. 15</span></dt>
+          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Recibo e reembolso</dt>
+          <dd>Atendimento particular com emissão de recibo para reembolso. <span class="lacuna">___</span> (prazo e documentos)</dd></div></dl>
+    </section>
+    <section class="bloco">
+      <h3 id="sec-agenda">1.6 Agenda e confirmação</h3>
+      <dl><div class="par"><dt>Regras de agenda da clínica <span class="obr">*</span> <span class="orig">orig. 9</span></dt>
+          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Restrições gerais de agenda <span class="obr">*</span> <span class="orig">orig. 25</span></dt>
+          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Antecedência mínima para agendar <span class="obr">*</span> <span class="orig">orig. 27</span></dt>
+          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Usa algum prontuário ou sistema de agenda? Qual? <span class="obr">*</span> <span class="orig">orig. 28</span></dt>
+          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Dados que a IA deve pedir ao paciente para confirmar o agendamento <span class="obr">*</span> <span class="orig">orig. 29</span></dt>
+          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Perguntas antes de marcar (triagem geral) <span class="obr">*</span> <span class="orig">orig. 30</span></dt>
+          <dd>Consulta ou exame? Qual exame/especialidade?<br>Tem pedido médico? (necessário para a maioria dos exames; consulta não precisa de encaminhamento)<br>Convênio ou particular? Qual convênio?<br>Idade do paciente (para direcionar pediatria)<br><span class="lacuna">___</span> (completar)</dd></div><div class="par"><dt>Documentos que o paciente deve levar <span class="obr">*</span></dt>
+          <dd>Pedido médico (obrigatório para exames)<br>Guia ou número de autorização do convênio (exames por convênio)<br>Exames anteriores relacionados<br>Lista de medicamentos em uso<br><span class="lacuna">___</span> (documento com foto e carteirinha? confirmar)</dd></div><div class="par"><dt>Orientações após confirmar o agendamento <span class="obr">*</span> <span class="orig">orig. 41</span></dt>
+          <dd>Enviar o preparo do exame agendado e o endereço da clínica. <span class="lacuna">___</span> (completar)</dd></div></dl>
+    </section>
+    <section class="bloco">
+      <h3 id="sec-politicas">1.7 Políticas e exceções</h3>
+      <dl><div class="par"><dt>Política de cancelamento <span class="obr">*</span> <span class="orig">orig. 38</span></dt>
+          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Remarcação e no-show (falta sem aviso) <span class="obr">*</span> <span class="orig">orig. 39</span></dt>
+          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Paciente antigo e indicação <span class="obr">*</span> <span class="orig">orig. 40</span></dt>
+          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Tolerância de atraso <span class="obr">*</span> <span class="orig">orig. 42</span></dt>
+          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div></dl>
+    </section>
+    <section class="bloco">
+      <h3 id="sec-preparos">1.8 Preparos de exames</h3>
+      <dl><div class="par"><dt>Preparo pré e pós <span class="obr">*</span> <span class="orig">orig. 23</span></dt>
+          <dd>Os preparos padronizados dos 7 exames estão no PDF da clínica (anexo "Orientações de preparo"). A IA deve enviar o preparo correspondente ao exame após confirmar o agendamento e, em dúvidas sobre suspensão de medicamentos, orientar que o paciente fale com o médico solicitante ou com a clínica, nunca suspender por conta própria.</dd></div></dl>
+    </section>
+    <section class="bloco">
+      <h3 id="sec-secretaria">1.9 Secretária IA</h3>
+      <dl><div class="par"><dt>Nome da Secretária IA <span class="obr">*</span> <span class="orig">orig. 31</span></dt>
+          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>A IA vai apenas qualificar ou também agendar? <span class="obr">*</span> <span class="orig">orig. 32</span></dt>
+          <dd>Qualificar e agendar</dd></div><div class="par"><dt>Tom de voz da IA <span class="obr">*</span></dt>
+          <dd>Acolhedor, claro e objetivo. Linguagem simples, sem termos técnicos sem explicação. Trata o paciente por "você". <span class="lacuna">___</span> (emojis? assinatura?)</dd></div><div class="par"><dt>O que a IA nunca deve dizer ou fazer <span class="obr">*</span></dt>
+          <dd>Não dar diagnóstico nem interpretar sintomas ou resultados de exames.<br>Não indicar, alterar ou suspender medicamentos: suspensões de preparo sempre "conforme orientação do médico solicitante".<br>Não prometer resultados nem usar superlativos ("o melhor", "o mais preciso", "referência") — normas do CFM sobre publicidade médica.<br>Não informar valores que a clínica não autorizou a IA a informar.<br>Não pedir dados de saúde além do necessário para agendar (LGPD).<br>Não confirmar cobertura de convênio sem verificação da equipe.<br><span class="lacuna">___</span> (completar)</dd></div><div class="par"><dt>Perguntas frequentes (pergunta e resposta) <span class="obr">*</span></dt>
+          <dd>Preciso de pedido médico? — Para a maioria dos exames, sim. Para consultas, não é necessário encaminhamento.<br>Quanto tempo demora o laudo? — Ver "Prazos de entrega de laudos".<br>Vocês aceitam meu convênio? — Ver lista de convênios; se não estiver na lista, transferir para a equipe.<br>Onde fica a clínica? — Ver endereço e instruções de chegada.<br><span class="lacuna">___</span> (completar)</dd></div></dl>
+    </section>
+    <section class="bloco">
+      <h3 id="sec-humano">1.10 Encaminhamento humano, urgência e anexos</h3>
+      <dl><div class="par"><dt>Gatilhos padrão de atendimento humano <span class="orig">orig. 43–49</span></dt>
+          <dd>Pedido de humano · Urgência · Reclamação · Receita e atestado</dd></div><div class="par"><dt>Regra de urgência: o que a IA deve fazer <span class="obr">*</span></dt>
+          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Gatilhos específicos da clínica para atendimento humano <span class="orig">orig. 50</span></dt>
+          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Para quem transferir e como</dt>
+          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div><div class="par"><dt>Anexos que serão enviados à Dr.IAgenda <span class="orig">orig. 52</span></dt>
+          <dd>Orientações de preparo</dd></div><div class="par"><dt>Observações gerais <span class="orig">orig. 51</span></dt>
+          <dd><span class="preencher">[A PREENCHER PELA GESTÃO]</span></dd></div></dl>
+    </section>
+
+<h1 class="cap" id="cap2" style="margin-bottom:2mm">2. Preparos de exames</h1>
+<p class="intro">Cada preparo segue a mesma estrutura: para que serve, antes do exame, jejum, medicamentos, no dia do exame, após o exame e quando entrar em contato com a clínica.</p>
+<div class="aviso"><b>Medicamentos:</b> Suspender ou manter medicamentos sempre conforme orientação médica (do médico que solicitou o exame). Nunca suspender por conta própria.</div>
+
+    <section class="preparo" style="break-before:auto" id="prep-manometria-esofagica">
+      <h2 class="cap-sub"><span class="num">2.1</span> Manometria Esofágica de Alta Resolução</h2>
+      
+      <p class="serve">Avalia os movimentos do esôfago e o funcionamento dos esfíncteres. Ajuda no diagnóstico de acalasia, disfagia (dificuldade para engolir) e refluxo refratário.</p>
+      <div class="ficha"><div><span>Duração do exame</span><strong>10 a 20 minutos</strong></div><div><span>Tempo total na clínica</span><strong>cerca de 2 horas</strong></div><div><span>Sedação</span><strong>não há</strong></div><div><span>Pedido médico</span><strong>obrigatório</strong></div></div>
+      <h4>Antes do exame (dias anteriores)</h4><ul><li>Verifique com o seu convênio a cobertura e a necessidade de autorização prévia.</li><li>Medicamentos: veja a tabela abaixo (alguns são suspensos 48 horas antes).</li></ul>
+      <h4>Jejum</h4><ul><li>Jejum absoluto (inclusive de água) a partir das 22h da noite anterior ao exame. <span class="validar">[VALIDAR COM A EQUIPE MÉDICA]</span><span class="motivo">O site (/exames/preparos e card da página do exame) e o chatbot Nuvete dizem "jejum de 6 horas". O PDF oficial diz jejum absoluto a partir das 22h. Confirmar qual vale.</span></li><li>Casos especiais (crianças, idosos, diabéticos etc.): o tempo de jejum é avaliado individualmente.</li></ul>
+      <h4>Medicamentos</h4>
+      <p class="conforme">Suspender ou manter medicamentos sempre conforme orientação médica (do médico que solicitou o exame). Nunca suspender por conta própria.</p>
+      
+      <table class="meds"><thead><tr><th>Medicamento</th><th>Conduta</th><th>Observação</th></tr></thead><tbody>
+      <tr><td>Para dor torácica (se for o caso): Dilacoron, Isordil, Cardizem e Diltiazem</td><td class="conduta">Suspender 48 horas antes</td><td>Somente com orientação médica</td></tr><tr><td>Para motilidade: Domperidona, Metoclopramida, Bromoprida ou similares</td><td class="conduta">Suspender 48 horas antes</td><td>Somente com orientação médica</td></tr><tr><td>Omeprazol, Pantoprazol, Lansoprazol, antiácidos, Sucrafilm ou Lufta Gastro Pro</td><td class="conduta">Pode manter</td><td>Não interfere neste exame</td></tr><tr><td>Medicamentos para hipertensão, diabetes, problemas pulmonares e cardiológicos</td><td class="conduta">Pode manter</td><td> <span class="validar">[VALIDAR COM A EQUIPE MÉDICA]</span><span class="motivo">O card do site diz "podem ser tomados normalmente com o mínimo de água possível"; o PDF pede jejum absoluto inclusive de água a partir das 22h. Definir como o paciente toma esses medicamentos no dia.</span></td></tr></tbody></table>
+      <h4>No dia do exame</h4><ul><li>Levar o pedido médico e exames anteriores (endoscopia digestiva, raio-X do esôfago).</li><li>Levar a guia ou o número de autorização do convênio.</li><li>Chegada antecipada: Não informado no preparo oficial (o card do site diz 15 minutos antes). <span class="validar">[VALIDAR COM A EQUIPE MÉDICA]</span><span class="motivo">Definir a antecedência de chegada.</span></li><li>Acompanhante: Não informado no preparo oficial (sem orientação). <span class="validar">[VALIDAR COM A EQUIPE MÉDICA]</span><span class="motivo">Definir se é necessário ou recomendado.</span></li><li>Roupa: Não informado no preparo oficial (o card do site diz roupas com abertura frontal, evitar gola alta). <span class="validar">[VALIDAR COM A EQUIPE MÉDICA]</span><span class="motivo">Confirmar orientação de vestimenta.</span></li><li>Como é o exame: uma sonda fina é introduzida pelo nariz; o desconforto é momentâneo e bem tolerado pela maioria dos pacientes.</li></ul>
+      
+      <h4>Após o exame</h4><ul><li>Você pode retornar às atividades normais imediatamente, inclusive dirigir.</li></ul>
+      <h4>Quando entrar em contato com a clínica</h4><ul><li>Em caso de dúvida, entre em contato com a clínica antes do exame: (31) 2537-3131 ou WhatsApp (31) 99726-1029.</li><li>Se você usa algum dos medicamentos da tabela e não recebeu orientação do seu médico sobre suspendê-lo, fale com o médico solicitante ou com a clínica antes do exame.</li></ul>
+      <p class="fonte">Fonte: public/pdfs/preparo-manometria-esofagica-v1.pdf</p>
+    </section>
+    <section class="preparo" id="prep-manometria-anorretal">
+      <h2 class="cap-sub"><span class="num">2.2</span> Manometria Anorretal</h2>
+      
+      <p class="serve">Avalia o funcionamento do esfíncter anal e do assoalho pélvico. Ajuda no diagnóstico de incontinência fecal, constipação obstrutiva e dificuldades para evacuar.</p>
+      <div class="ficha"><div><span>Duração</span><strong>40 a 60 minutos</strong></div><div><span>Sedação</span><strong>não há</strong></div><div><span>Jejum</span><strong>não é necessário</strong></div><div><span>Pedido médico</span><strong>obrigatório</strong></div></div>
+      <h4>Antes do exame (dias anteriores)</h4><ul><li>Compre o MINILAX na farmácia (não precisa de receita).</li></ul>
+      <h4>Jejum</h4><ul><li>Não é necessário jejum: pode se alimentar normalmente.</li></ul>
+      <h4>Medicamentos</h4>
+      <p class="conforme">Suspender ou manter medicamentos sempre conforme orientação médica (do médico que solicitou o exame). Nunca suspender por conta própria.</p>
+      <ul><li>Informe à equipe TODOS os medicamentos em uso, especialmente anticoagulantes.</li><li>Suspensão de medicamentos: Não informado no preparo oficial (sem orientação de suspensão). <span class="validar">[VALIDAR COM A EQUIPE MÉDICA]</span><span class="motivo">Confirmar se algum medicamento deve ser suspenso (o chatbot cita supositórios; o site cita laxativos e fitoterápicos apenas para informar).</span></li></ul>
+      <h4>No dia do exame</h4><ul><li>Preparo intestinal (essencial): aplicar 02 MINILAX 2 horas antes do horário agendado, conforme as instruções da embalagem, deitado de lado com os joelhos dobrados. Aguardar a evacuação completa antes de sair para a clínica. <span class="validar">[VALIDAR COM A EQUIPE MÉDICA]</span><span class="motivo">Divergência entre versões: o site diz "enema Minilax® ou similar 1 a 2 horas antes"; o chatbot Nuvete diz "enema retal (Fleet) 2 horas antes"; as versões em inglês e espanhol citam Fleet®. Confirmar produto, quantidade e horário.</span></li><li>Levar o pedido médico e exames anteriores (ultrassom pélvico, colonoscopia).</li><li>Roupa confortável e fácil de remover (calça larga ou saia). Higiene íntima normal.</li><li>Acompanhante: não é obrigatório, mas é bem-vindo.</li><li>Chegar 10 minutos antes do horário agendado.</li><li>Como é o exame: é feito deitado de lado; uma pequena sonda é introduzida delicadamente. O procedimento é bem tolerado.</li></ul>
+      
+      <h4>Após o exame</h4><ul><li>Não informado no preparo oficial (sem orientação para depois do exame). <span class="validar">[VALIDAR COM A EQUIPE MÉDICA]</span><span class="motivo">Definir orientações pós-exame (retorno às atividades, sinais de alerta).</span></li></ul>
+      <h4>Quando entrar em contato com a clínica</h4><ul><li>Em caso de dúvida, entre em contato com a clínica antes do exame: (31) 2537-3131 ou WhatsApp (31) 99726-1029.</li></ul>
+      <p class="fonte">Fonte: public/pdfs/preparo-manometria-anorretal-v1.pdf</p>
+    </section>
+    <section class="preparo" id="prep-phmetria-impedanciometria">
+      <h2 class="cap-sub"><span class="num">2.3</span> pHmetria e Impedanciometria Esofágica</h2>
+      <p class="sub">Monitoramento de 24 horas</p>
+      <p class="serve">Registra o refluxo do estômago para o esôfago durante 24 horas, enquanto você mantém sua rotina normal.</p>
+      <div class="ficha"><div><span>Instalação</span><strong>15 a 20 minutos</strong></div><div><span>Monitoramento</span><strong>24 horas contínuas</strong></div><div><span>Atividade</span><strong>normal durante o exame</strong></div><div><span>Pedido médico</span><strong>obrigatório</strong></div></div>
+      <h4>Antes do exame (dias anteriores)</h4><ul><li>Suspensão de medicamentos: veja a tabela abaixo. A suspensão correta é fundamental para o resultado.</li><li>Em alguns casos o médico pede que o exame seja feito em uso dos medicamentos. Essa orientação deve estar escrita no pedido médico.</li></ul>
+      <h4>Jejum</h4><ul><li>Jejum ABSOLUTO a partir das 22h da noite anterior (nem água). Casos específicos são avaliados individualmente. <span class="validar">[VALIDAR COM A EQUIPE MÉDICA]</span><span class="motivo">O site e o chatbot Nuvete dizem "jejum de 4 horas antes da instalação do cateter". Confirmar qual vale.</span></li></ul>
+      <h4>Medicamentos</h4>
+      <p class="conforme">Suspender ou manter medicamentos sempre conforme orientação médica (do médico que solicitou o exame). Nunca suspender por conta própria.</p>
+      
+      <table class="meds"><thead><tr><th>Medicamento</th><th>Conduta</th><th>Observação</th></tr></thead><tbody>
+      <tr><td>Inibidores de bomba de prótons (IBP): omeprazol, pantoprazol, esomeprazol, lansoprazol</td><td class="conduta">Suspender 10 dias antes</td><td>Somente com autorização do médico solicitante <span class="validar">[VALIDAR COM A EQUIPE MÉDICA]</span><span class="motivo">O site e o chatbot dizem 7 dias; o PDF oficial diz 10 dias.</span></td></tr><tr><td>Procinéticos: domperidona, metoclopramida, bromoprida</td><td class="conduta">Suspender 48 horas antes</td><td>Somente com autorização do médico solicitante</td></tr><tr><td>Antiácidos: Mylanta, Gaviscon, Luftal, bicarbonato</td><td class="conduta">Suspender 48 horas antes</td><td>Somente com autorização do médico solicitante <span class="validar">[VALIDAR COM A EQUIPE MÉDICA]</span><span class="motivo">O site diz 24 horas antes; o PDF oficial diz 48 horas.</span></td></tr><tr><td>Bloqueadores H2: ranitidina, famotidina</td><td class="conduta">Suspender 48 horas antes</td><td>Somente com autorização do médico solicitante</td></tr></tbody></table><ul><li>NUNCA suspenda IBP ou qualquer medicamento por conta própria. Em caso de dúvida, ligue para a clínica antes de parar qualquer medicamento.</li></ul>
+      <h4>No dia do exame</h4><ul><li>Tome banho antes de ir para a clínica.</li><li>Use blusa de botão na frente, para facilitar a colocação. Evite roupas apertadas ou com zíper.</li><li>Chegada antecipada e acompanhante: Não informado no preparo oficial (sem orientação). <span class="validar">[VALIDAR COM A EQUIPE MÉDICA]</span><span class="motivo">Definir antecedência de chegada e se acompanhante é necessário.</span></li></ul>
+      <h4>Durante o monitoramento</h4><ul><li>Mantenha a atividade normal: trabalhar, caminhar, dormir.</li><li>Registre no diário de sintomas fornecido pela clínica: horário das refeições, sintomas e posição (deitado, sentado, em pé).</li><li>Não ingira café, chás com cafeína, refrigerantes com cafeína ou qualquer medicamento para refluxo. <span class="validar">[VALIDAR COM A EQUIPE MÉDICA]</span><span class="motivo">O chatbot Nuvete acrescenta "evitar alimentos muito ácidos (limão, vinagre)", que não está no PDF oficial. Confirmar.</span></li><li>Banho: após a colocação do aparelho não é permitido tomar banho; evitar banho de imersão. Não pode molhar o aparelho. <span class="validar">[VALIDAR COM A EQUIPE MÉDICA]</span><span class="motivo">Contradição dentro do PDF oficial: o item 2 diz que não será permitido tomar banho; o item 7 diz que uma ducha rápida é permitida com cuidado. Definir a orientação.</span></li><li>Mantenha a cabeceira da cama na posição habitual (não elevar artificialmente).</li></ul>
+      <h4>Após o exame</h4><ul><li>Retirada do aparelho: Não informado no preparo oficial (não diz quando nem onde devolver o equipamento). <span class="validar">[VALIDAR COM A EQUIPE MÉDICA]</span><span class="motivo">Definir orientação de retorno à clínica para retirada/devolução do aparelho após 24 horas.</span></li></ul>
+      <h4>Quando entrar em contato com a clínica</h4><ul><li>Em caso de dúvida, entre em contato com a clínica antes do exame: (31) 2537-3131 ou WhatsApp (31) 99726-1029.</li><li>Antes de suspender qualquer medicamento, se tiver dúvida sobre a autorização do seu médico.</li></ul>
+      <p class="fonte">Fonte: public/pdfs/preparo-phmetria-impedanciometria-v1.pdf</p>
+    </section>
+    <section class="preparo" id="prep-teste-respiratorio-hpylori">
+      <h2 class="cap-sub"><span class="num">2.4</span> Teste Respiratório para H. pylori</h2>
+      
+      <p class="serve">Exame não invasivo para diagnóstico e para confirmar a eliminação da bactéria Helicobacter pylori, associada a gastrite, úlcera e outros problemas do estômago.</p>
+      <div class="ficha"><div><span>Duração</span><strong>30 a 40 minutos</strong></div><div><span>Método</span><strong>não invasivo</strong></div><div><span>Pedido médico</span><strong>obrigatório, com o tipo de exame especificado</strong></div></div>
+      <h4>Antes do exame (dias anteriores)</h4><ul><li>Alguns medicamentos precisam ser suspensos semanas antes: veja a tabela abaixo.</li></ul>
+      <h4>Jejum</h4><ul><li>Jejum de 2 horas antes do exame. Somente água é permitida. <span class="validar">[VALIDAR COM A EQUIPE MÉDICA]</span><span class="motivo">O chatbot Nuvete diz "jejum de 4 horas"; o PDF oficial diz 2 horas. Confirmar.</span></li></ul>
+      <h4>Medicamentos</h4>
+      <p class="conforme">Suspender ou manter medicamentos sempre conforme orientação médica (do médico que solicitou o exame). Nunca suspender por conta própria.</p>
+      
+      <table class="meds"><thead><tr><th>Medicamento</th><th>Conduta</th><th>Observação</th></tr></thead><tbody>
+      <tr><td>Antibióticos (amoxicilina, claritromicina, metronidazol etc.)</td><td class="conduta">Suspender 4 semanas antes</td><td>Somente com orientação médica</td></tr><tr><td>IBP (omeprazol, pantoprazol etc.)</td><td class="conduta">Suspender 2 semanas antes</td><td>Somente com orientação do médico solicitante</td></tr><tr><td>Bismuto (Bepanthol, De-Nol etc.)</td><td class="conduta">Suspender 4 semanas antes</td><td>Interfere diretamente no resultado <span class="validar">[VALIDAR COM A EQUIPE MÉDICA]</span><span class="motivo">O PDF cita "Bepanthol" como exemplo de bismuto. Conferir o exemplo (Bepantol é um produto de dexpantenol, não de bismuto).</span></td></tr><tr><td>Análogos de GLP-1 (Ozempic®, Rybelsus®, Wegovy®, Mounjaro®)</td><td class="conduta">Suspender 3 semanas antes</td><td>Somente com orientação médica</td></tr></tbody></table><ul><li>NUNCA suspenda medicamentos por conta própria. Sempre consulte o médico que solicitou o exame antes de interromper qualquer tratamento.</li></ul>
+      <h4>No dia do exame</h4><ul><li>Não fume no dia do exame (o tabaco interfere no resultado).</li><li>Não masque chiclete nem chupe balas nas 2 horas anteriores.</li><li>Escove os dentes normalmente, mas não engula o creme dental.</li><li>Leve o pedido médico e informe à equipe todos os medicamentos em uso.</li><li>Chegada antecipada e acompanhante: Não informado no preparo oficial (sem orientação). <span class="validar">[VALIDAR COM A EQUIPE MÉDICA]</span><span class="motivo">Definir antecedência de chegada e se acompanhante é necessário.</span></li></ul>
+      
+      <h4>Após o exame</h4><ul><li>Não informado no preparo oficial (sem orientação para depois do exame). <span class="validar">[VALIDAR COM A EQUIPE MÉDICA]</span><span class="motivo">Confirmar se pode voltar às atividades e à alimentação normalmente.</span></li></ul>
+      <h4>Quando entrar em contato com a clínica</h4><ul><li>Em caso de dúvida, entre em contato com a clínica antes do exame: (31) 2537-3131 ou WhatsApp (31) 99726-1029.</li></ul>
+      <p class="fonte">Fonte: public/pdfs/preparo-teste-respiratorio-hpylori-v1.pdf</p>
+    </section>
+    <section class="preparo" id="prep-teste-respiratorio-sibo-imo">
+      <h2 class="cap-sub"><span class="num">2.5</span> Teste Respiratório para SIBO, IMO, Lactose e Frutose</h2>
+      <p class="sub">H₂ · CH₄ · H₂S</p>
+      <p class="serve">Avalia supercrescimento bacteriano (SIBO/IMO), intolerâncias alimentares e outros distúrbios digestivos pela análise do ar exalado. Sem coleta de sangue.</p>
+      <div class="ficha"><div><span>Duração</span><strong>2 a 3 horas</strong></div><div><span>Método</span><strong>não invasivo, sem coleta de sangue</strong></div><div><span>Pedido médico</span><strong>obrigatório</strong></div></div>
+      <h4>Antes do exame (dias anteriores)</h4><ul><li>Dieta do dia anterior (muito importante). PODE comer: arroz branco cozido; carne bovina, frango ou peixe grelhado (sem temperos industrializados); ovos cozidos, mexidos ou estrelados; azeite de oliva e sal a gosto; água à vontade.</li><li>NÃO pode comer no dia anterior: feijão, lentilha, ervilha, grão-de-bico e derivados; leite, queijo, iogurte e laticínios; pão, massas, biscoitos, farinha de trigo; frutas (especialmente maçã, pera, banana, melancia); brócolis, couve, repolho, cebola, alho, aspargos; mel, açúcar, refrigerantes, sucos; álcool de qualquer tipo.</li><li>Colonoscopia ou enema opaco: aguardar 2 semanas após o procedimento (preparo intestinal) para fazer o exame.</li><li>Probióticos: Não informado no preparo oficial (o PDF não cita). <span class="validar">[VALIDAR COM A EQUIPE MÉDICA]</span><span class="motivo">O site e o chatbot Nuvete pedem "não usar probióticos nas 2 semanas anteriores", que não está no PDF oficial. Confirmar.</span></li></ul>
+      <h4>Jejum</h4><ul><li>Jejum completo de 12 horas antes do exame. Somente água é permitida, em pequena quantidade, até 0h. <span class="validar">[VALIDAR COM A EQUIPE MÉDICA]</span><span class="motivo">Ambíguo: não fica claro se a água é permitida depois de 0h. Confirmar.</span></li></ul>
+      <h4>Medicamentos</h4>
+      <p class="conforme">Suspender ou manter medicamentos sempre conforme orientação médica (do médico que solicitou o exame). Nunca suspender por conta própria.</p>
+      
+      <table class="meds"><thead><tr><th>Medicamento</th><th>Conduta</th><th>Observação</th></tr></thead><tbody>
+      <tr><td>Antibióticos (exceto colírios): amoxicilina, claritromicina, metronidazol etc.</td><td class="conduta">Suspender 4 semanas antes</td><td>Somente com orientação médica</td></tr><tr><td>Análogos de GLP-1 (Ozempic®, Rybelsus®, Wegovy®, Mounjaro®)</td><td class="conduta">Suspender 3 semanas antes</td><td>Somente com orientação médica</td></tr><tr><td>Laxativos</td><td class="conduta">Suspender 5 a 7 dias antes</td><td>Se clinicamente possível, com orientação médica <span class="validar">[VALIDAR COM A EQUIPE MÉDICA]</span><span class="motivo">O chatbot Nuvete diz "não usar laxativos nas 24 horas anteriores"; o PDF oficial diz 5 a 7 dias.</span></td></tr></tbody></table>
+      <h4>No dia do exame</h4><ul><li>Faça uma boa higiene da boca e use enxaguante bucal sem álcool. <span class="validar">[VALIDAR COM A EQUIPE MÉDICA]</span><span class="motivo">O site diz "não escovar os dentes com creme dental 30 minutos antes" e o chatbot diz "não escovar os dentes 30 min antes". Confirmar a orientação de higiene oral.</span></li><li>Não fume no dia do exame. Não use chicletes ou balas. <span class="validar">[VALIDAR COM A EQUIPE MÉDICA]</span><span class="motivo">O site e o chatbot dizem "não fumar 1 hora antes"; o PDF oficial diz no dia do exame.</span></li><li>Não pratique exercícios físicos intensos na 1 hora anterior.</li><li>Chegue 10 minutos antes, com o pedido médico em mãos.</li><li>Use roupas confortáveis: o exame é realizado sentado.</li><li>Acompanhante: Não informado no preparo oficial (sem orientação). <span class="validar">[VALIDAR COM A EQUIPE MÉDICA]</span><span class="motivo">Definir se acompanhante é necessário (exame de 2 a 3 horas).</span></li></ul>
+      
+      <h4>Após o exame</h4><ul><li>Não informado no preparo oficial (sem orientação para depois do exame). <span class="validar">[VALIDAR COM A EQUIPE MÉDICA]</span><span class="motivo">Confirmar se pode voltar à alimentação e aos medicamentos normalmente.</span></li></ul>
+      <h4>Quando entrar em contato com a clínica</h4><ul><li>Em caso de dúvida, entre em contato com a clínica antes do exame: (31) 2537-3131 ou WhatsApp (31) 99726-1029.</li></ul>
+      <p class="fonte">Fonte: public/pdfs/preparo-teste-respiratorio-sibo-imo-v1.pdf</p>
+    </section>
+    <section class="preparo" id="prep-halimetria-sialometria">
+      <h2 class="cap-sub"><span class="num">2.6</span> Halimetria e Sialometria</h2>
+      <p class="sub">Diagnóstico de halitose</p>
+      <p class="serve">A halimetria mede os compostos sulfurados que causam o mau hálito. A sialometria avalia a produção de saliva. Qualquer substância na boca pode alterar o resultado.</p>
+      <div class="ficha"><div><span>Duração</span><strong>30 a 40 minutos</strong></div><div><span>Método</span><strong>não invasivo</strong></div><div><span>Pedido médico</span><strong>obrigatório</strong></div></div>
+      <h4>Antes do exame (dias anteriores)</h4><ul><li>3 semanas antes: não utilizar antibióticos. Caso tenha utilizado, informe a clínica.</li><li>24 horas antes: não comer alho, cebola e comidas com temperos fortes (pimentas, curry etc.).</li><li>24 horas antes: não utilizar cosméticos aromáticos nem enxaguantes bucais.</li><li>24 horas antes: não ingerir bebidas alcoólicas.</li><li>12 horas antes: não fumar. <span class="validar">[VALIDAR COM A EQUIPE MÉDICA]</span><span class="motivo">Contradição no PDF oficial: "12 horas antes: não fumar" e, na tabela, "não fumar nas 2 h anteriores". O site e o chatbot dizem 2 horas. Definir.</span></li></ul>
+      <h4>Jejum</h4><ul><li>3 horas antes: não tomar café nem chá aromatizado.</li><li>2 horas antes: é obrigatório comer algo (uma refeição leve é suficiente).</li><li>Bebidas: somente água é permitida.</li><li>O quadro-resumo do PDF indica "Jejum: 3 horas". <span class="validar">[VALIDAR COM A EQUIPE MÉDICA]</span><span class="motivo">Contradição: o PDF indica jejum de 3 horas e, ao mesmo tempo, refeição leve obrigatória 2 horas antes. O site e o chatbot dizem "não comer nas 3 horas anteriores". Definir a regra de alimentação.</span></li></ul>
+      <h4>Medicamentos</h4>
+      <p class="conforme">Suspender ou manter medicamentos sempre conforme orientação médica (do médico que solicitou o exame). Nunca suspender por conta própria.</p>
+      
+      <table class="meds"><thead><tr><th>Medicamento</th><th>Conduta</th><th>Observação</th></tr></thead><tbody>
+      <tr><td>Antibióticos</td><td class="conduta">Não utilizar nas 3 semanas anteriores</td><td>Se tiver utilizado, informe a clínica</td></tr></tbody></table><ul><li>Informe à equipe todos os medicamentos em uso.</li></ul>
+      <h4>No dia do exame</h4><ul><li>Escove os dentes imediatamente após a refeição, usando sua pasta habitual. <span class="validar">[VALIDAR COM A EQUIPE MÉDICA]</span><span class="motivo">O site e o chatbot dizem "não escovar os dentes nas 2 horas anteriores". Confirmar.</span></li><li>Não use enxaguantes bucais. Evite perfume, desodorante e cremes com fragrância forte.</li><li>Evite atividade física intensa na 1 hora anterior.</li><li>Leve o pedido médico.</li><li>Chegada antecipada e acompanhante: Não informado no preparo oficial (sem orientação). <span class="validar">[VALIDAR COM A EQUIPE MÉDICA]</span><span class="motivo">Definir antecedência de chegada e se acompanhante é necessário.</span></li><li>Como é o exame: rápido, indolor e não invasivo; você sopra em um aparelho que mede os gases do ar exalado.</li></ul>
+      
+      <h4>Após o exame</h4><ul><li>Não informado no preparo oficial (sem orientação para depois do exame). <span class="validar">[VALIDAR COM A EQUIPE MÉDICA]</span><span class="motivo">Confirmar se há orientação pós-exame.</span></li></ul>
+      <h4>Quando entrar em contato com a clínica</h4><ul><li>Em caso de dúvida, entre em contato com a clínica antes do exame: (31) 2537-3131 ou WhatsApp (31) 99726-1029.</li><li>Se você usou antibiótico nas últimas 3 semanas.</li></ul>
+      <p class="fonte">Fonte: public/pdfs/preparo-halimetria-sialometria-v1.pdf</p>
+    </section>
+    <section class="preparo" id="prep-avaliacao-pelvica">
+      <h2 class="cap-sub"><span class="num">2.7</span> Avaliação Pélvica com Biofeedback Eletromiográfico</h2>
+      
+      <p class="serve">Avalia o funcionamento do assoalho pélvico, para diagnóstico e tratamento de incontinência urinária ou fecal, disfunções pélvicas e constipação obstrutiva. Realizada pela fisioterapeuta.</p>
+      <div class="ficha"><div><span>Duração</span><strong>40 a 60 minutos</strong></div><div><span>Método</span><strong>não invasivo</strong></div><div><span>Jejum</span><strong>não é necessário</strong></div><div><span>Pedido médico</span><strong>obrigatório</strong></div></div>
+      <h4>Antes do exame (dias anteriores)</h4><ul><li>Se possível, faça um diário miccional nos 3 dias anteriores.</li><li>Anote seus sintomas: frequência urinária, episódios de perda, constipação, dor pélvica.</li><li>Anote seu histórico: partos, cirurgias pélvicas, prolapsos, tratamentos anteriores.</li></ul>
+      <h4>Jejum</h4><ul><li>Não é necessário jejum: pode se alimentar normalmente.</li></ul>
+      <h4>Medicamentos</h4>
+      <p class="conforme">Suspender ou manter medicamentos sempre conforme orientação médica (do médico que solicitou o exame). Nunca suspender por conta própria.</p>
+      <ul><li>Leve a lista de todos os medicamentos em uso, inclusive vitaminas, suplementos e fitoterápicos, e informe especialmente anticolinérgicos e diuréticos.</li><li>Suspensão de medicamentos: Não informado no preparo oficial (sem orientação de suspensão). <span class="validar">[VALIDAR COM A EQUIPE MÉDICA]</span><span class="motivo">Confirmar se algum medicamento deve ser suspenso.</span></li></ul>
+      <h4>No dia do exame</h4><ul><li>Higiene íntima normal.</li><li>Roupas confortáveis e fáceis de remover (calça larga, legging ou saia).</li><li>Leve o pedido médico e exames anteriores, se houver: manometria anorretal, ultrassom pélvico, urodinâmica.</li><li>Chegue 10 minutos antes.</li><li>Acompanhante: Não informado no preparo oficial (sem orientação). <span class="validar">[VALIDAR COM A EQUIPE MÉDICA]</span><span class="motivo">Definir se acompanhante é permitido/recomendado.</span></li><li>A avaliação é realizada com respeito e privacidade; tire suas dúvidas antes de iniciar.</li></ul>
+      
+      <h4>Após o exame</h4><ul><li>Não informado no preparo oficial (sem orientação para depois do exame). <span class="validar">[VALIDAR COM A EQUIPE MÉDICA]</span><span class="motivo">Confirmar se há orientação pós-avaliação.</span></li></ul>
+      <h4>Quando entrar em contato com a clínica</h4><ul><li>Em caso de dúvida, entre em contato com a clínica antes do exame: (31) 2537-3131 ou WhatsApp (31) 99726-1029.</li></ul>
+      <p class="fonte">Fonte: public/pdfs/preparo-avaliacao-pelvica-v1.pdf</p>
+    </section>
+
+<h1 class="cap" id="cap3">3. Profissionais</h1>
+<div class="medicos">
+    <div class="medico">
+      <p class="m-nome">Dra. Vera Ângelo</p>
+      <p class="m-esp">Gastroenterologia e Motilidade · CRM-MG 22284 · RQE 10411 · RQE 22736</p>
+      <p><b>Áreas:</b> SIBO / IMO · Testes respiratórios · Motilidade digestiva · DGBI</p>
+      <p>Sócia fundadora e diretora técnica da NU.V.E.M. Mestre e Doutora pela UFMG. Professora convidada do Hospital Israelita Albert Einstein. Autora de obras pela Editora Rubio.</p>
+      
+    </div>
+    <div class="medico">
+      <p class="m-nome">Dra. Eliane Basques</p>
+      <p class="m-esp">Cirurgia Pediátrica · CRM-MG 27601 · RQE 9324</p>
+      <p><b>Áreas:</b> Manometria anorretal · Assoalho pélvico · Cirurgia pediátrica · Casos interdisciplinares</p>
+      <p>Cirurgiã pediátrica, cofundadora da NU.V.E.M. Atua em manometria anorretal e disfunções do assoalho pélvico, na interface entre gastroenterologia e cirurgia.</p>
+      <p><b>Consultas, exames e procedimentos que realiza:</b> Manometria anorretal · <span class="lacuna">___</span></p>
+    </div>
+    <div class="medico">
+      <p class="m-nome">Dra. Amanda Araújo</p>
+      <p class="m-esp">Gastroenterologia e Motilidade Digestiva · <span class="preencher">registro a preencher</span></p>
+      <p><b>Áreas:</b> Gastroenterologia · Motilidade digestiva</p>
+      
+      
+    </div>
+    <div class="medico">
+      <p class="m-nome">Dra. Anna Karoline</p>
+      <p class="m-esp">Fisioterapia Pélvica · Crefito 4/270579-F</p>
+      <p><b>Áreas:</b> Biofeedback EMG · Assoalho pélvico · Incontinência</p>
+      <p>Fisioterapeuta especializada em assoalho pélvico, biofeedback eletromiográfico e tratamento de incontinência.</p>
+      <p><b>Consultas, exames e procedimentos que realiza:</b> Avaliação pélvica com biofeedback eletromiográfico · <span class="lacuna">___</span></p>
+    </div>
+    <div class="medico">
+      <p class="m-nome">Dra. Adrianna Buzatti Viana</p>
+      <p class="m-esp">Cirurgia Pediátrica · CRM-MG 71689 · RQE 44101 · RQE 59942</p>
+      <p><b>Áreas:</b> Cirurgia pediátrica · Casos complexos</p>
+      
+      
+    </div>
+    <div class="medico">
+      <p class="m-nome">Dra. Claudia Utsch</p>
+      <p class="m-esp">Gastroenterologia · CRM-MG 47651 · RQE 51470 · RQE 51471</p>
+      <p><b>Áreas:</b> Gastroenterologia clínica · Doenças digestivas</p>
+      
+      
+    </div>
+    <div class="medico">
+      <p class="m-nome">Dra. Camilla Mendes</p>
+      <p class="m-esp">Clínica Médica · CRM 61518</p>
+      <p><b>Áreas:</b> Clínica médica · Medicina interna</p>
+      
+      
+    </div>
+    <div class="medico">
+      <p class="m-nome">Dra. Danielle Martins</p>
+      <p class="m-esp">Gastroenterologia e Motilidade · CRM 72935</p>
+      <p><b>Áreas:</b> Gastroenterologia · DGBI</p>
+      
+      
+    </div>
+    <div class="medico">
+      <p class="m-nome">Dr. Gabriel de Souza Fernandes Filho</p>
+      <p class="m-esp">Gastroenterologia · <span class="preencher">registro a preencher</span></p>
+      <p><b>Áreas:</b> Gastroenterologia clínica</p>
+      
+      
+    </div>
+    <div class="medico">
+      <p class="m-nome">Dra. Luiza Auarek</p>
+      <p class="m-esp">Nefrologia · CRM 81521 · RQE 62607 · RQE 54226</p>
+      <p><b>Áreas:</b> Nefrologia · Interface GI-renal</p>
+      <p>Nefrologista. Atende doença renal crônica, nefrolitíase, hipertensão de causa renal e alterações em exames, de forma integrada ao acompanhamento digestivo.</p>
+      
+    </div>
+    <div class="medico">
+      <p class="m-nome">Dra. Mariana Fernandes</p>
+      <p class="m-esp">Pediatria · CRM 65936</p>
+      <p><b>Áreas:</b> Saúde digestiva infantil · Pediatria</p>
+      <p>Pediatra com atuação em saúde digestiva infantil: constipação, dor abdominal recorrente, refluxo e problemas alimentares em crianças e adolescentes.</p>
+      
+    </div>
+    <div class="medico">
+      <p class="m-nome">Dra. Raissa Dalat</p>
+      <p class="m-esp">Cirurgia Pediátrica · CRM-MG 78824 · RQE 61983</p>
+      <p><b>Áreas:</b> Cirurgia pediátrica</p>
+      
+      
+    </div></div>
+    <p class="nota">Resumo a partir dos dados do site. Agenda, valores, retorno, faixa etária e teleconsulta entram quando cada profissional responder a Parte B do formulário.</p>
+</body></html>
