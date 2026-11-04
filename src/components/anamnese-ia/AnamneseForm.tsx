@@ -15,12 +15,21 @@ import { PREFILL_CLINICA, MEDICOS_SITE, prefillMedico } from '@/lib/anamnese-ia/
 type Medico = { uid: string; slug?: string; values: Values }
 type Estado = { clinica: Values; medicos: Medico[]; atualizadoEm?: string }
 
+/** completo = Parte A + Parte B · clinica = só Parte A (gestão) · medico = um profissional */
+type Modo = 'completo' | 'clinica' | 'medico'
+
 const VERSAO = 'v1'
-const chave = (modo: 'completo' | 'medico', slug?: string) =>
-  modo === 'completo' ? `anamnese-ia:${VERSAO}:completo` : `anamnese-ia:${VERSAO}:medico:${slug ?? 'novo'}`
+const chave = (modo: Modo, slug?: string) =>
+  modo === 'medico' ? `anamnese-ia:${VERSAO}:medico:${slug ?? 'novo'}` : `anamnese-ia:${VERSAO}:${modo}`
 
 function novoUid() {
   return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`
+}
+
+function inicialPara(modo: Modo, slug?: string): Estado {
+  if (modo === 'completo') return estadoInicial()
+  if (modo === 'clinica')  return { clinica: { ...PREFILL_CLINICA }, medicos: [] }
+  return { clinica: {}, medicos: [{ uid: slug ?? 'novo', slug, values: prefillMedico(slug) }] }
 }
 
 function estadoInicial(): Estado {
@@ -223,12 +232,11 @@ function Impressao({ clinica, medicos }: { clinica?: Values; medicos: Medico[] }
 }
 
 // ─── Formulário ───────────────────────────────────────────────────────────────
-export function AnamneseForm({ modo, slug }: { modo: 'completo' | 'medico'; slug?: string }) {
+export function AnamneseForm({ modo, slug }: { modo: Modo; slug?: string }) {
   const k = chave(modo, slug)
-  const [estado, setEstado] = useState<Estado>(() =>
-    modo === 'completo'
-      ? estadoInicial()
-      : { clinica: {}, medicos: [{ uid: slug ?? 'novo', slug, values: prefillMedico(slug) }] })
+  const [estado, setEstado] = useState<Estado>(() => inicialPara(modo, slug))
+  const temClinica = modo !== 'medico'
+  const temMedicos = modo === 'completo'
   const [carregado, setCarregado] = useState(false)
   const [salvoEm, setSalvoEm]     = useState<string | null>(null)
   const [semStorage, setSemStorage] = useState(false)
@@ -328,7 +336,7 @@ export function AnamneseForm({ modo, slug }: { modo: 'completo' | 'medico'; slug
   const limpar = () => {
     if (!window.confirm('Apagar o rascunho deste navegador e voltar aos dados do site?')) return
     try { window.localStorage.removeItem(k) } catch { /* sem storage */ }
-    setEstado(modo === 'completo' ? estadoInicial() : { clinica: {}, medicos: [{ uid: slug ?? 'novo', slug, values: prefillMedico(slug) }] })
+    setEstado(inicialPara(modo, slug))
   }
 
   const medicoUnico = modo === 'medico' ? estado.medicos[0] : undefined
@@ -352,11 +360,15 @@ export function AnamneseForm({ modo, slug }: { modo: 'completo' | 'medico'; slug
         <div className="mb-8 max-w-3xl">
           <p className="mb-2 text-[0.72rem] font-semibold uppercase tracking-[.14em] text-gold-dark">Uso interno · Dr.IAgenda</p>
           <h1 className="mb-3 font-serif text-[2rem] font-medium leading-tight text-teal sm:text-[2.5rem]">
-            {modo === 'completo' ? <>Anamnese da <em>IA de atendimento</em></> : <>Anamnese da IA: <em>{String(medicoUnico?.values.nome || 'profissional')}</em></>}
+            {modo === 'completo' && <>Anamnese da <em>IA de atendimento</em></>}
+            {modo === 'clinica' && <>Anamnese da IA: <em>dados da clínica</em></>}
+            {modo === 'medico' && <>Anamnese da IA: <em>{String(medicoUnico?.values.nome || 'profissional')}</em></>}
           </h1>
           <p className="text-[0.95rem] leading-relaxed text-steel/65">
             {modo === 'completo'
               ? 'A Parte A reúne o que vale para a clínica inteira e é respondida uma única vez pela gestão. A Parte B tem um bloco por profissional, só com o que é individual. Cada profissional pode responder pelo próprio link.'
+              : modo === 'clinica'
+              ? 'Parte A da anamnese da Dr.IAgenda: o que vale para a clínica inteira (endereço, horários, convênios, pagamento, agenda, políticas e regras da Secretária IA). É respondida uma única vez pela gestão. Agenda, valores e restrições de cada profissional ficam com os próprios profissionais.'
               : 'Responda apenas o que é individual: agenda, valores, retorno, restrições e a sua apresentação. As informações da clínica (endereço, convênios, políticas, preparos) já são respondidas pela gestão.'}
           </p>
           <div className="mt-4 flex gap-2.5 rounded-xl border border-teal/15 bg-mist/30 p-3.5 text-[0.8rem] leading-snug text-steel/70">
@@ -369,7 +381,7 @@ export function AnamneseForm({ modo, slug }: { modo: 'completo' | 'medico'; slug
           {/* Índice e progresso */}
           <aside className="lg:sticky lg:top-20 lg:self-start">
             <nav className="rounded-2xl border border-teal/10 bg-white p-4 shadow-sm">
-              {modo === 'completo' && (
+              {temClinica && (
                 <>
                   <p className="mb-1 text-[0.7rem] font-bold uppercase tracking-[.1em] text-steel/40">Parte A · Clínica</p>
                   <div className="mb-3"><Barra {...progressoClinica} /></div>
@@ -386,6 +398,7 @@ export function AnamneseForm({ modo, slug }: { modo: 'completo' | 'medico'; slug
                       )
                     })}
                   </ul>
+                  {temMedicos && <>
                   <p className="mb-1 text-[0.7rem] font-bold uppercase tracking-[.1em] text-steel/40">Parte B · Profissionais ({estado.medicos.length})</p>
                   <ul className="hidden max-h-[38vh] space-y-0.5 overflow-auto lg:block">
                     {estado.medicos.map(m => {
@@ -400,6 +413,7 @@ export function AnamneseForm({ modo, slug }: { modo: 'completo' | 'medico'; slug
                       )
                     })}
                   </ul>
+                  </>}
                 </>
               )}
               {modo === 'medico' && medicoUnico && (
@@ -413,13 +427,14 @@ export function AnamneseForm({ modo, slug }: { modo: 'completo' | 'medico'; slug
           </aside>
 
           <main className="min-w-0 space-y-6">
-            {modo === 'completo' && (
+            {temClinica && (
               <>
                 <h2 className="pt-1 text-[0.78rem] font-bold uppercase tracking-[.12em] text-teal">Parte A · Clínica <span className="font-normal normal-case tracking-normal text-steel/45">(respondida uma vez pela gestão)</span></h2>
                 {SECOES_CLINICA.map((s, i) => (
                   <SecaoCard key={s.id} s={s} numero={`A${i + 1}.`} values={estado.clinica} escopo="a" onChange={setClinica} />
                 ))}
 
+                {temMedicos && <>
                 <div className="flex flex-wrap items-end justify-between gap-3 pt-6">
                   <h2 className="text-[0.78rem] font-bold uppercase tracking-[.12em] text-teal">Parte B · Profissionais <span className="font-normal normal-case tracking-normal text-steel/45">(um bloco por profissional)</span></h2>
                   <button type="button" onClick={() => inputImport.current?.click()} className="inline-flex items-center gap-1.5 text-[0.8rem] font-medium text-teal hover:underline">
@@ -469,6 +484,7 @@ export function AnamneseForm({ modo, slug }: { modo: 'completo' | 'medico'; slug
                 <button type="button" onClick={adicionarMedico} className="flex w-full items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-teal/25 py-4 text-[0.9rem] font-medium text-teal transition hover:border-teal/50 hover:bg-teal/5">
                   <Plus className="h-4 w-4" /> Adicionar profissional
                 </button>
+                </>}
               </>
             )}
 
@@ -482,6 +498,8 @@ export function AnamneseForm({ modo, slug }: { modo: 'completo' | 'medico'; slug
               <p className="mb-5 text-[0.84rem] leading-relaxed text-white/70">
                 {modo === 'completo'
                   ? 'Gere o PDF (use "Salvar como PDF" na janela de impressão) e o JSON para enviar à Dr.IAgenda. A Parte A e cada profissional também podem ser exportados separadamente.'
+                  : modo === 'clinica'
+                  ? 'Gere o PDF (use "Salvar como PDF" na janela de impressão) e o JSON da Parte A. Envie o JSON para quem está consolidando a anamnese: ele é importado no formulário principal.'
                   : 'Gere o PDF e o JSON das suas respostas e envie para a gestão da clínica, que vai juntá-las ao formulário principal.'}
               </p>
               <div className="flex flex-wrap gap-2.5">
@@ -497,6 +515,10 @@ export function AnamneseForm({ modo, slug }: { modo: 'completo' | 'medico'; slug
                       <Download className="h-4 w-4" /> JSON só da Parte A
                     </button>
                   </>
+                ) : modo === 'clinica' ? (
+                  <button type="button" onClick={baixarClinica} className="inline-flex items-center gap-2 rounded-xl border border-white/30 px-4 py-2.5 text-[0.86rem] font-medium hover:bg-white/10">
+                    <Download className="h-4 w-4" /> Baixar JSON
+                  </button>
                 ) : medicoUnico && (
                   <button type="button" onClick={() => baixarMedico(medicoUnico)} className="inline-flex items-center gap-2 rounded-xl border border-white/30 px-4 py-2.5 text-[0.86rem] font-medium hover:bg-white/10">
                     <Download className="h-4 w-4" /> Baixar JSON
@@ -519,7 +541,7 @@ export function AnamneseForm({ modo, slug }: { modo: 'completo' | 'medico'; slug
       )}
 
       <div className="px-2">
-        <Impressao clinica={modo === 'completo' ? estado.clinica : undefined} medicos={estado.medicos} />
+        <Impressao clinica={temClinica ? estado.clinica : undefined} medicos={temMedicos || modo === 'medico' ? estado.medicos : []} />
       </div>
     </div>
   )
