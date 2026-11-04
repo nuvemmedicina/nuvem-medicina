@@ -143,7 +143,7 @@ function Campo({ f, value, onChange, escopo }: {
   )
 }
 
-function Barra({ ok, total }: { ok: number; total: number }) {
+export function Barra({ ok, total }: { ok: number; total: number }) {
   const pct = total ? Math.round((ok / total) * 100) : 100
   return (
     <div className="flex items-center gap-2">
