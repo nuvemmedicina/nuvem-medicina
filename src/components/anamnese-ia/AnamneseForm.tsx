@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Image from 'next/image'
 import {
   Plus, Trash2, Link2, Download, FileText, Upload, Check, ChevronDown, RotateCcw, ShieldCheck,
@@ -10,6 +10,7 @@ import {
   type Field, type Section, type Values, type Value,
 } from '@/lib/anamnese-ia/schema'
 import { PREFILL_CLINICA, MEDICOS_SITE, prefillMedico } from '@/lib/anamnese-ia/prefill'
+import { useServidor, rotuloStatus } from '@/components/anamnese-ia/useServidor'
 
 // ─── Tipos e armazenamento ────────────────────────────────────────────────────
 type Medico = { uid: string; slug?: string; values: Values }
@@ -29,7 +30,8 @@ function novoUid() {
 function inicialPara(modo: Modo, slug?: string): Estado {
   if (modo === 'completo') return estadoInicial()
   if (modo === 'clinica')  return { clinica: { ...PREFILL_CLINICA }, medicos: [] }
-  return { clinica: {}, medicos: [{ uid: slug ?? 'novo', slug, values: prefillMedico(slug) }] }
+  // profissional novo: uid próprio, que vira o escopo no servidor (medico-novo-<uid>)
+  return { clinica: {}, medicos: [{ uid: slug ?? novoUid(), slug, values: prefillMedico(slug) }] }
 }
 
 function estadoInicial(): Estado {
@@ -261,6 +263,20 @@ export function AnamneseForm({ modo, slug }: { modo: Modo; slug?: string }) {
     return () => clearTimeout(t)
   }, [estado, carregado, k])
 
+  // Servidor (Sanity, via /api/anamnese-ia) — só quando o link tem ?c=código
+  const escopo = modo === 'medico'
+    ? (slug ? `medico-${slug}` : `medico-novo-${estado.medicos[0]?.uid ?? 'x'}`)
+    : modo
+  const aoCarregarRemoto = useCallback((d: Estado) => {
+    if (d && d.clinica && Array.isArray(d.medicos)) setEstado(d)
+  }, [])
+  const servidor = useServidor({ escopo, estado, carregado, aoCarregarRemoto })
+  const servidorAtivo = !!servidor.codigo && servidor.status !== 'acesso-negado'
+  const enviar = async () => {
+    const ok = await servidor.enviar()
+    setAviso(ok ? 'Respostas enviadas. Obrigado!' : 'Não foi possível enviar agora. Suas respostas estão guardadas neste navegador; tente de novo em instantes.')
+  }
+
   useEffect(() => {
     if (!aviso) return
     const t = setTimeout(() => setAviso(null), 3500)
@@ -334,7 +350,7 @@ export function AnamneseForm({ modo, slug }: { modo: Modo; slug?: string }) {
   }
 
   const limpar = () => {
-    if (!window.confirm('Apagar o rascunho deste navegador e voltar aos dados do site?')) return
+    if (!window.confirm(servidorAtivo ? 'Apagar todas as respostas (neste navegador e no servidor) e voltar aos dados do site?' : 'Apagar o rascunho deste navegador e voltar aos dados do site?')) return
     try { window.localStorage.removeItem(k) } catch { /* sem storage */ }
     setEstado(inicialPara(modo, slug))
   }
@@ -348,7 +364,9 @@ export function AnamneseForm({ modo, slug }: { modo: Modo; slug?: string }) {
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3">
           <Image src="/images/logo.svg" alt="NU.V.E.M Medicina" width={120} height={32} className="h-7 w-auto" priority />
           <p className="text-right text-[0.72rem] leading-tight text-steel/50">
-            {semStorage
+            {servidor.codigo
+              ? <span className={servidor.status === 'erro' || servidor.status === 'acesso-negado' ? 'text-gold-dark' : ''}>{rotuloStatus(servidor.status, servidor.salvoEm)}</span>
+              : semStorage
               ? <span className="text-gold-dark">Rascunho não pôde ser salvo neste navegador. Exporte o JSON antes de sair.</span>
               : salvoEm ? <>Rascunho salvo às {salvoEm}<br className="sm:hidden" /><span className="hidden sm:inline"> · </span>neste navegador</> : 'Carregando rascunho…'}
           </p>
@@ -494,8 +512,26 @@ export function AnamneseForm({ modo, slug }: { modo: Modo; slug?: string }) {
 
             {/* Finalizar */}
             <section className="rounded-2xl border border-teal/15 bg-teal p-5 text-white shadow-sm sm:p-7">
-              <h3 className="mb-1 text-[1.05rem] font-semibold">Finalizar e exportar</h3>
-              <p className="mb-5 text-[0.84rem] leading-relaxed text-white/70">
+              <h3 className="mb-1 text-[1.05rem] font-semibold">{servidorAtivo ? 'Enviar respostas' : 'Finalizar e exportar'}</h3>
+              {servidorAtivo && (
+                <div className="mb-4">
+                  <p className="mb-3 text-[0.84rem] leading-relaxed text-white/75">
+                    Suas respostas são salvas automaticamente enquanto você preenche, e você pode continuar em outro aparelho pelo mesmo link. Quando terminar, toque em <strong>Enviar respostas</strong>.
+                  </p>
+                  {servidor.finalizadoEm && (
+                    <p className="mb-3 inline-flex items-center gap-1.5 rounded-lg bg-white/10 px-3 py-1.5 text-[0.8rem]">
+                      <Check className="h-3.5 w-3.5" /> Enviado em {new Date(servidor.finalizadoEm).toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })}. Alterações depois disso continuam sendo salvas.
+                    </p>
+                  )}
+                  <div>
+                    <button type="button" onClick={enviar} disabled={servidor.status === 'salvando'} className="inline-flex items-center gap-2 rounded-xl bg-gold px-5 py-3 text-[0.92rem] font-semibold text-ink hover:bg-gold-light disabled:opacity-60">
+                      <Check className="h-4 w-4" /> {servidor.finalizadoEm ? 'Enviar de novo' : 'Enviar respostas'}
+                    </button>
+                  </div>
+                  <p className="mt-4 text-[0.74rem] text-white/50">Se quiser uma cópia, use os botões abaixo.</p>
+                </div>
+              )}
+              <p className={`mb-5 text-[0.84rem] leading-relaxed text-white/70 ${servidorAtivo ? 'hidden' : ''}`}>
                 {modo === 'completo'
                   ? 'Gere o PDF (use "Salvar como PDF" na janela de impressão) e o JSON para enviar à Dr.IAgenda. A Parte A e cada profissional também podem ser exportados separadamente.'
                   : modo === 'clinica'
@@ -503,7 +539,7 @@ export function AnamneseForm({ modo, slug }: { modo: Modo; slug?: string }) {
                   : 'Gere o PDF e o JSON das suas respostas e envie para a gestão da clínica, que vai juntá-las ao formulário principal.'}
               </p>
               <div className="flex flex-wrap gap-2.5">
-                <button type="button" onClick={() => window.print()} className="inline-flex items-center gap-2 rounded-xl bg-gold px-4 py-2.5 text-[0.86rem] font-semibold text-ink hover:bg-gold-light">
+                <button type="button" onClick={() => window.print()} className={servidorAtivo ? 'inline-flex items-center gap-2 rounded-xl border border-white/30 px-4 py-2.5 text-[0.86rem] font-medium hover:bg-white/10' : 'inline-flex items-center gap-2 rounded-xl bg-gold px-4 py-2.5 text-[0.86rem] font-semibold text-ink hover:bg-gold-light'}>
                   <FileText className="h-4 w-4" /> Exportar PDF
                 </button>
                 {modo === 'completo' ? (
