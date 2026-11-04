@@ -1,10 +1,11 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import Image from 'next/image'
 import { Download, FileText, RotateCcw, ShieldCheck, Check } from 'lucide-react'
 import { listarPendencias, PREPAROS, VALIDAR } from '@/lib/anamnese-ia/preparos'
 import { Barra } from '@/components/anamnese-ia/AnamneseForm'
+import { useServidor, rotuloStatus } from '@/components/anamnese-ia/useServidor'
 
 /**
  * Validação dos preparos pela equipe médica: um cartão por item marcado
@@ -20,7 +21,7 @@ const DECISOES = [
 type Decisao = typeof DECISOES[number]['v']
 
 type Resposta = { decisao?: Decisao; orientacao?: string; comentario?: string }
-type Estado = { validador: string; respostas: Record<string, Resposta>; observacoes: string }
+type Estado = { validador: string; respostas: Record<string, Resposta>; observacoes: string; atualizadoEm?: string }
 
 const CHAVE = 'anamnese-ia:v1:validacao'
 const VAZIO: Estado = { validador: '', respostas: {}, observacoes: '' }
@@ -52,8 +53,20 @@ export function ValidacaoForm() {
     return () => clearTimeout(t)
   }, [estado, carregado])
 
+  const agora = () => new Date().toISOString()
   const setResp = (id: string, patch: Resposta) =>
-    setEstado(e => ({ ...e, respostas: { ...e.respostas, [id]: { ...e.respostas[id], ...patch } } }))
+    setEstado(e => ({ ...e, atualizadoEm: agora(), respostas: { ...e.respostas, [id]: { ...e.respostas[id], ...patch } } }))
+
+  // Servidor (Sanity, via /api/anamnese-ia) — só quando o link tem ?c=código
+  const aoCarregarRemoto = useCallback((d: Estado) => { if (d?.respostas) setEstado(d) }, [])
+  const servidor = useServidor({ escopo: 'validacao', estado, carregado, aoCarregarRemoto })
+  const servidorAtivo = !!servidor.codigo && servidor.status !== 'acesso-negado'
+  const [aviso, setAviso] = useState<string | null>(null)
+  useEffect(() => { if (!aviso) return; const t = setTimeout(() => setAviso(null), 4000); return () => clearTimeout(t) }, [aviso])
+  const enviar = async () => {
+    const ok = await servidor.enviar()
+    setAviso(ok ? 'Validação enviada. Obrigada!' : 'Não foi possível enviar agora. As respostas estão guardadas neste navegador; tente de novo em instantes.')
+  }
 
   const ok = pendencias.filter(p => resolvida(estado.respostas[p.id])).length
   const grupos = PREPAROS.map(p => ({ p, itens: pendencias.filter(x => x.slug === p.slug) })).filter(g => g.itens.length)
@@ -71,7 +84,7 @@ export function ValidacaoForm() {
     setTimeout(() => URL.revokeObjectURL(url), 1000)
   }
   const limpar = () => {
-    if (!window.confirm('Apagar todas as respostas deste navegador?')) return
+    if (!window.confirm(servidorAtivo ? 'Apagar todas as respostas (neste navegador e no servidor)?' : 'Apagar todas as respostas deste navegador?')) return
     try { window.localStorage.removeItem(CHAVE) } catch { /* sem storage */ }
     setEstado(VAZIO)
   }
@@ -86,7 +99,9 @@ export function ValidacaoForm() {
           <div className="w-40 sm:w-56">
             <Barra ok={ok} total={pendencias.length} />
             <p className="mt-0.5 text-right text-[0.68rem] text-steel/45">
-              {semStorage ? <span className="text-gold-dark">Rascunho não salvo: exporte o JSON</span> : salvoEm ? `Salvo às ${salvoEm}` : 'Carregando…'}
+              {servidor.codigo
+                ? <span className={servidor.status === 'erro' || servidor.status === 'acesso-negado' ? 'text-gold-dark' : ''}>{rotuloStatus(servidor.status, servidor.salvoEm)}</span>
+                : semStorage ? <span className="text-gold-dark">Rascunho não salvo: exporte o JSON</span> : salvoEm ? `Salvo às ${salvoEm}` : 'Carregando…'}
             </p>
           </div>
         </div>
@@ -105,7 +120,7 @@ export function ValidacaoForm() {
 
         <section className="mb-6 rounded-2xl border border-teal/10 bg-white p-5 shadow-sm sm:p-7">
           <label htmlFor="validador" className="mb-1.5 block text-[0.88rem] font-medium text-steel">Validado por (nome, CRM)<span className="ml-0.5 text-gold-dark">*</span></label>
-          <input id="validador" className={input} value={estado.validador} onChange={e => setEstado(s => ({ ...s, validador: e.target.value }))} />
+          <input id="validador" className={input} value={estado.validador} onChange={e => setEstado(s => ({ ...s, atualizadoEm: agora(), validador: e.target.value }))} />
         </section>
 
         <div className="space-y-8">
@@ -164,19 +179,32 @@ export function ValidacaoForm() {
 
         <section className="mt-8 rounded-2xl border border-teal/10 bg-white p-5 shadow-sm sm:p-7">
           <label htmlFor="obs" className="mb-1.5 block text-[0.88rem] font-medium text-steel">Observações gerais</label>
-          <textarea id="obs" rows={4} className={input} value={estado.observacoes} onChange={e => setEstado(s => ({ ...s, observacoes: e.target.value }))} />
+          <textarea id="obs" rows={4} className={input} value={estado.observacoes} onChange={e => setEstado(s => ({ ...s, atualizadoEm: agora(), observacoes: e.target.value }))} />
         </section>
 
         <section className="mt-6 rounded-2xl bg-teal p-5 text-white shadow-sm sm:p-7">
-          <h3 className="mb-1 text-[1.05rem] font-semibold">Finalizar e exportar</h3>
-          <p className="mb-5 text-[0.84rem] leading-relaxed text-white/70">{ok} de {pendencias.length} pontos respondidos. Baixe o JSON e envie o arquivo; o PDF serve como registro (use &quot;Salvar como PDF&quot; na janela de impressão).</p>
+          <h3 className="mb-1 text-[1.05rem] font-semibold">{servidorAtivo ? 'Enviar validação' : 'Finalizar e exportar'}</h3>
+          {servidorAtivo ? (
+            <div className="mb-4">
+              <p className="mb-3 text-[0.84rem] leading-relaxed text-white/75">{ok} de {pendencias.length} pontos respondidos. As respostas são salvas automaticamente e podem ser continuadas em outro aparelho pelo mesmo link. Quando terminar, toque em <strong>Enviar validação</strong>.</p>
+              {servidor.finalizadoEm && (
+                <p className="mb-3 inline-flex items-center gap-1.5 rounded-lg bg-white/10 px-3 py-1.5 text-[0.8rem]"><Check className="h-3.5 w-3.5" /> Enviada em {new Date(servidor.finalizadoEm).toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })}. Alterações depois disso continuam sendo salvas.</p>
+              )}
+              <div><button type="button" onClick={enviar} disabled={servidor.status === 'salvando'} className="inline-flex items-center gap-2 rounded-xl bg-gold px-5 py-3 text-[0.92rem] font-semibold text-ink hover:bg-gold-light disabled:opacity-60"><Check className="h-4 w-4" /> {servidor.finalizadoEm ? 'Enviar de novo' : 'Enviar validação'}</button></div>
+              <p className="mt-4 text-[0.74rem] text-white/50">Se quiser uma cópia, use os botões abaixo.</p>
+            </div>
+          ) : (
+            <p className="mb-5 text-[0.84rem] leading-relaxed text-white/70">{ok} de {pendencias.length} pontos respondidos. Baixe o JSON e envie o arquivo; o PDF serve como registro (use &quot;Salvar como PDF&quot; na janela de impressão).</p>
+          )}
           <div className="flex flex-wrap gap-2.5">
-            <button type="button" onClick={baixarJson} className="inline-flex items-center gap-2 rounded-xl bg-gold px-4 py-2.5 text-[0.86rem] font-semibold text-ink hover:bg-gold-light"><Download className="h-4 w-4" /> Baixar JSON</button>
+            <button type="button" onClick={baixarJson} className={servidorAtivo ? 'inline-flex items-center gap-2 rounded-xl border border-white/30 px-4 py-2.5 text-[0.86rem] font-medium hover:bg-white/10' : 'inline-flex items-center gap-2 rounded-xl bg-gold px-4 py-2.5 text-[0.86rem] font-semibold text-ink hover:bg-gold-light'}><Download className="h-4 w-4" /> Baixar JSON</button>
             <button type="button" onClick={() => window.print()} className="inline-flex items-center gap-2 rounded-xl border border-white/30 px-4 py-2.5 text-[0.86rem] font-medium hover:bg-white/10"><FileText className="h-4 w-4" /> Exportar PDF</button>
             <button type="button" onClick={limpar} className="inline-flex items-center gap-2 rounded-xl px-3 py-2.5 text-[0.8rem] text-white/60 hover:text-white"><RotateCcw className="h-3.5 w-3.5" /> Limpar respostas</button>
           </div>
         </section>
       </div>
+
+      {aviso && <div role="status" className="fixed inset-x-4 bottom-4 z-40 mx-auto max-w-sm rounded-xl bg-ink px-4 py-3 text-center text-[0.85rem] text-white shadow-lg print:hidden">{aviso}</div>}
 
       {/* Impressão */}
       <div className="hidden px-2 print:block">
