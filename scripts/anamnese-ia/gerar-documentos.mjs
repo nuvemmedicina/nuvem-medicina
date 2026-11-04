@@ -10,17 +10,23 @@
  *   docs/anamnese-ia/preparos-para-ia.md            (texto simples para a IA do WhatsApp)
  *   docs/anamnese-ia/relatorio-validacao.md         (pendências [VALIDAR COM A EQUIPE MÉDICA])
  *
+ *   docs/anamnese-ia/anexos/  (os 5 tipos de anexo do formulário da Dr.IAgenda,
+ *       cada um em PDF e em Markdown — ver gerarAnexos())
+ *
  * Uso:
  *   node --import ./scripts/anamnese-ia/register.mjs scripts/anamnese-ia/gerar-documentos.mjs
- *   ... gerar-documentos.mjs --respostas caminho/anamnese-ia-nuvem-AAAA-MM-DD.json
+ *   ... gerar-documentos.mjs --respostas docs/anamnese-ia/respostas
  *
- * Sem --respostas, a Parte A e a lista de profissionais saem com os dados do
- * site (pré-preenchimento). Com o JSON exportado do formulário /anamnese-ia,
- * saem com as respostas da gestão e dos médicos.
+ * --respostas aceita um arquivo ou uma pasta. Numa pasta, lê todos os
+ * arquivos exportados pelas páginas /anamnese-ia:
+ *   *.json  anamnese-ia/completo · anamnese-ia/clinica · anamnese-ia/medico ·
+ *           anamnese-ia/validacao
+ *   *.pdf   PDF editável da Parte A preenchido pela gestão (lido com campos-pdf.py)
+ * Sem --respostas, tudo sai com os dados do site (pré-preenchimento).
  *
  * Os preparos vêm de src/lib/anamnese-ia/preparos.ts (padrão único).
  */
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs'
+import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync, statSync, copyFileSync } from 'node:fs'
 import { execFileSync } from 'node:child_process'
 import path from 'node:path'
 import { tmpdir } from 'node:os'
@@ -28,11 +34,22 @@ import { fileURLToPath, pathToFileURL } from 'node:url'
 
 import { SECOES_CLINICA, CAMPOS_MEDICO } from '@/lib/anamnese-ia/schema'
 import { PREFILL_CLINICA, MEDICOS_SITE, prefillMedico } from '@/lib/anamnese-ia/prefill'
-import { PREPAROS, VALIDAR, CONFORME, DIVERGENCIAS_GERAIS } from '@/lib/anamnese-ia/preparos'
+import { PREPAROS as PREPAROS_BASE, VALIDAR, CONFORME, DIVERGENCIAS_GERAIS, aplicarValidacao } from '@/lib/anamnese-ia/preparos'
 import { CONTATO } from '@/lib/data'
 
 const ROOT = path.resolve(fileURLToPath(new URL('../../', import.meta.url)))
-const OUT  = path.join(ROOT, 'docs', 'anamnese-ia')
+/*
+ * Saída. O repositório é PÚBLICO: documentos gerados com as respostas reais
+ * (valores, agendas, regras internas) vão para docs/anamnese-ia/respostas/,
+ * que está no .gitignore. Sem respostas (só dados do site), a saída continua
+ * em docs/anamnese-ia/. --saida <pasta> força outra pasta.
+ */
+const iSaida = process.argv.indexOf('--saida')
+const OUT = iSaida > -1
+  ? path.resolve(process.argv[iSaida + 1])
+  : process.argv.includes('--respostas')
+    ? path.join(ROOT, 'docs', 'anamnese-ia', 'respostas', 'documentos-finais')
+    : path.join(ROOT, 'docs', 'anamnese-ia')
 mkdirSync(OUT, { recursive: true })
 
 const EDGE = [
@@ -45,15 +62,62 @@ const HOJE = new Date().toLocaleDateString('pt-BR', { timeZone: 'America/Sao_Pau
 // ─── Respostas (opcional) ─────────────────────────────────────────────────────
 const iResp = process.argv.indexOf('--respostas')
 let clinica = { ...PREFILL_CLINICA }
-let medicos = MEDICOS_SITE.map(m => prefillMedico(m.slug))
-let origemDados = 'pré-preenchimento com dados do site (formulário ainda não respondido)'
-if (iResp > -1) {
-  const d = JSON.parse(readFileSync(process.argv[iResp + 1], 'utf8'))
-  if (d.tipo !== 'anamnese-ia/completo') throw new Error('Esperado o "JSON completo" exportado de /anamnese-ia')
-  clinica = d.clinica.valores
-  medicos = d.medicos.map(m => m.valores)
-  origemDados = `respostas exportadas do formulário em ${new Date(d.exportadoEm).toLocaleDateString('pt-BR')}`
+const medicosPorSlug = new Map(MEDICOS_SITE.map(m => [m.slug, prefillMedico(m.slug)]))
+let PREPAROS = PREPAROS_BASE
+let validacao = null           // { validador, aplicadas, total }
+const lidos = []               // resumo do que foi lido, para o console e o relatório
+
+function lerRespostas(alvo) {
+  const arquivos = statSync(alvo).isDirectory()
+    ? readdirSync(alvo).filter(f => /\.(json|pdf)$/i.test(f)).map(f => path.join(alvo, f)).sort()
+    : [alvo]
+  let decisoes = []
+  for (const arq of arquivos) {
+    let d
+    if (/\.pdf$/i.test(arq)) {
+      const tmp = path.join(tmpdir(), `anamnese-pdf-${Date.now()}.json`)
+      execFileSync('python', ['-W', 'ignore', path.join(ROOT, 'scripts/anamnese-ia/campos-pdf.py'), 'ler', arq, tmp], { stdio: 'ignore' })
+      d = JSON.parse(readFileSync(tmp, 'utf8'))
+    } else {
+      d = JSON.parse(readFileSync(arq, 'utf8'))
+    }
+    const nome = path.basename(arq)
+    switch (d.tipo) {
+      case 'anamnese-ia/completo':
+        clinica = { ...clinica, ...d.clinica.valores }
+        for (const m of d.medicos) medicosPorSlug.set(m.slug || `extra-${medicosPorSlug.size}`, m.valores)
+        lidos.push(`${nome}: formulário completo (Parte A + ${d.medicos.length} profissionais)`)
+        break
+      case 'anamnese-ia/clinica':
+        clinica = { ...clinica, ...d.valores }
+        lidos.push(`${nome}: Parte A (clínica)`)
+        break
+      case 'anamnese-ia/medico':
+        medicosPorSlug.set(d.slug || `extra-${medicosPorSlug.size}`, d.valores)
+        lidos.push(`${nome}: ${d.nome || d.slug}`)
+        break
+      case 'anamnese-ia/validacao':
+        decisoes = decisoes.concat(d.itens)
+        validacao = { validador: d.validador }
+        lidos.push(`${nome}: validação dos preparos (${d.resolvidos}/${d.total}, por ${d.validador || 'não informado'})`)
+        break
+      default:
+        console.warn(`Ignorado (formato desconhecido): ${nome}`)
+    }
+  }
+  if (decisoes.length) {
+    const r = aplicarValidacao(decisoes)
+    PREPAROS = r.preparos
+    validacao.aplicadas = r.aplicadas
+  }
 }
+
+if (iResp > -1) lerRespostas(process.argv[iResp + 1])
+const medicos = [...medicosPorSlug.values()]
+const temRespostas = lidos.length > 0
+const origemDados = temRespostas
+  ? `respostas da anamnese (${lidos.length} arquivo${lidos.length > 1 ? 's' : ''}), consolidadas em ${new Date().toLocaleDateString('pt-BR')}`
+  : 'pré-preenchimento com dados do site (formulário ainda não respondido)'
 
 // ─── Utilidades ───────────────────────────────────────────────────────────────
 const esc = s => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
@@ -122,9 +186,9 @@ function capituloClinica(form = false) {
 }
 
 // ─── Capítulo 2: Preparos ─────────────────────────────────────────────────────
-function capituloPreparos() {
+function capituloPreparos(prefixo = '2.') {
   return PREPAROS.map((p, i) => {
-    const n = `2.${i + 1}`
+    const n = `${prefixo}${i + 1}`
     const tabela = p.medicamentos.linhas.length ? `
       <table class="meds"><thead><tr><th>Medicamento</th><th>Conduta</th><th>Observação</th></tr></thead><tbody>
       ${p.medicamentos.linhas.map(l => {
@@ -166,35 +230,19 @@ function capituloMedicos() {
           return campo(m, id) ? `<p><b>${esc(f.label)}:</b> ${html(campo(m, id))}</p>` : ''
         }).join('')}
     </div>`).join('')}</div>
-    <p class="nota">${iResp > -1 ? 'Resumo a partir das respostas da Parte B.' : 'Resumo a partir dos dados do site. Agenda, valores, retorno, faixa etária e teleconsulta entram quando cada profissional responder a Parte B do formulário.'}</p>`
+    <p class="nota">${temRespostas ? 'Resumo a partir das respostas da Parte B.' : 'Resumo a partir dos dados do site. Agenda, valores, retorno, faixa etária e teleconsulta entram quando cada profissional responder a Parte B do formulário.'}</p>`
 }
 
 // ─── HTML ─────────────────────────────────────────────────────────────────────
 const logo = `data:image/svg+xml;base64,${readFileSync(path.join(ROOT, 'public/images/logo.svg')).toString('base64')}`
 
-function montarHtml(paginas = {}, form = false) {
-  pendencias.length = 0
-  const cap1 = capituloClinica(form)
-  const cap2 = capituloPreparos()
-  const cap3 = capituloMedicos()
-  const sumario = [
-    ['cap1', '1. Informações da clínica', 0],
-    ...SECOES_CLINICA.map((s, i) => [`sec-${s.id}`, `1.${i + 1} ${s.title}`, 1]),
-    ['cap2', '2. Preparos de exames', 0],
-    ...PREPAROS.map((p, i) => [`prep-${p.slug}`, `2.${i + 1} ${p.nome}`, 1]),
-    ['cap3', '3. Profissionais', 0],
-  ]
-  return `<!doctype html>
-<html lang="pt-BR"><head><meta charset="utf-8">
-<title>NU.V.E.M Medicina · Informações da clínica para a Dr.IAgenda</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+const estilos = cabecalho => `
 <style>
   :root { --teal:#00465F; --teal-mid:#0A5E7E; --mist:#CBE4E6; --gold:#C9A84C; --gold-dark:#A67C2E; --steel:#363636; }
   @page {
     size: A4; margin: 27mm 18mm 20mm;
     @top-left    { content: url("${logo}"); width: 22mm; height: 13mm; vertical-align: bottom; padding-bottom: 4mm; }
-    @top-right   { content: "Informações da clínica · Dr.IAgenda"; font: 500 7.5pt Poppins, sans-serif; color: #00465F; vertical-align: bottom; padding-bottom: 5mm; }
+    @top-right   { content: "${cabecalho}"; font: 500 7.5pt Poppins, sans-serif; color: #00465F; vertical-align: bottom; padding-bottom: 5mm; }
     @bottom-left { content: "NU.V.E.M Medicina · Documento interno · ${HOJE}"; font: 400 7pt Poppins, sans-serif; color: #8a8a8a; }
     @bottom-right{ content: "Página " counter(page) " de " counter(pages); font: 500 7.5pt Poppins, sans-serif; color: #00465F; }
   }
@@ -257,7 +305,39 @@ function montarHtml(paginas = {}, form = false) {
   .cx .mk { left: .2mm; top: .2mm; font-size: 1.6pt; }
   .ajuda { margin: .2mm 0 0; font-size: 7.6pt; color: #8a8a8a; line-height: 1.35; }
   .obr { color: var(--gold-dark); }
-</style></head><body>
+
+  .anexo-topo { border-bottom: 2px solid var(--teal); padding-bottom: 4mm; margin-bottom: 6mm; }
+  .anexo-topo .tag { font-size: 7.8pt; letter-spacing: .16em; text-transform: uppercase; color: var(--gold-dark); font-weight: 600; margin: 0; }
+  .anexo-topo h1 { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 26pt; color: var(--teal); margin: 1mm 0 1.5mm; line-height: 1.1; }
+  .anexo-topo p { margin: 0; color: #666; font-size: 8.8pt; }
+  table.tab { width: 100%; border-collapse: collapse; margin: 2mm 0 4mm; font-size: 8.2pt; }
+  .tab th { text-align: left; background: var(--teal); color: #fff; font-weight: 500; padding: 1.6mm 2mm; vertical-align: bottom; }
+  .tab td { border-bottom: 1px solid #e3eeee; padding: 1.6mm 2mm; vertical-align: top; }
+  .tab tr { break-inside: avoid; } .tab td:first-child { font-weight: 600; color: var(--teal); }
+  .passo { break-inside: avoid; border-left: 3px solid var(--mist); padding: .5mm 0 .5mm 4mm; margin: 0 0 4mm; }
+  .passo h3 { border: 0; margin: 0 0 1.5mm; padding: 0; }
+  .passo h3 .num { color: var(--gold-dark); margin-right: 1.5mm; }
+  .rascunho { background: #fff3d6; border: 1px solid #e8c56a; border-radius: 2mm; padding: 3mm 4mm; font-size: 8.6pt; color: #7a5200; margin: 0 0 5mm; }
+</style>`
+
+function montarHtml(paginas = {}, form = false) {
+  pendencias.length = 0
+  const cap1 = capituloClinica(form)
+  const cap2 = capituloPreparos()
+  const cap3 = capituloMedicos()
+  const sumario = [
+    ['cap1', '1. Informações da clínica', 0],
+    ...SECOES_CLINICA.map((s, i) => [`sec-${s.id}`, `1.${i + 1} ${s.title}`, 1]),
+    ['cap2', '2. Preparos de exames', 0],
+    ...PREPAROS.map((p, i) => [`prep-${p.slug}`, `2.${i + 1} ${p.nome}`, 1]),
+    ['cap3', '3. Profissionais', 0],
+  ]
+  return `<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<title>NU.V.E.M Medicina · Informações da clínica para a Dr.IAgenda</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+${estilos('Informações da clínica · Dr.IAgenda')}</head><body>
 
 <section class="capa">
   <img class="logo" src="${logo}" alt="NU.V.E.M Medicina">
@@ -426,3 +506,171 @@ const rel = [
 writeFileSync(path.join(OUT, 'relatorio-validacao.md'), rel)
 
 console.log(`Markdown e relatório gerados em ${path.relative(ROOT, OUT)} · ${pendencias.length} itens a validar · ${faltam.length} campos da Parte A pendentes`)
+
+// ─── Anexos do formulário da Dr.IAgenda ───────────────────────────────────────
+/*
+ * Os 5 tipos de anexo que o formulário da Dr.IAgenda aceita. Cada anexo é
+ * descrito uma vez como uma lista de blocos e vira PDF (para a Dr.IAgenda) e
+ * Markdown (para a IA, a Nuvete e o site).
+ *
+ * Blocos: { titulo, campos: [ids da Parte A] }
+ *         { titulo, tabela: { cols, linhas } }
+ *         { titulo, html, md }                  (conteúdo livre)
+ *         { passo: n, titulo, campos?, extra? } (passos do script de atendimento)
+ */
+const CAMPO_A   = Object.fromEntries(SECOES_CLINICA.flatMap(s => s.fields).map(f => [f.id, f]))
+const TODOS_MED = Object.fromEntries(CAMPOS_MEDICO.flatMap(s => s.fields).map(f => [f.id, f.label]))
+const PREENCHER     = '[A PREENCHER PELA GESTÃO]'
+const PREENCHER_MED = '[a preencher pelo profissional]'
+const vA = id => txt(clinica[id])
+const vM = (m, id) => txt(m[id])
+
+function paresHtml(ids) {
+  return `<dl>${ids.map(id => `<div class="par"><dt>${esc(CAMPO_A[id].label)}</dt><dd>${vA(id) ? html(vA(id)) : `<span class="preencher">${PREENCHER}</span>`}</dd></div>`).join('')}</dl>`
+}
+function paresMd(ids) {
+  return ids.map(id => {
+    const v = vA(id) || PREENCHER
+    return v.includes('\n')
+      ? `**${CAMPO_A[id].label}:**\n\n${v.split('\n').map(l => `- ${l}`).join('\n')}`
+      : `**${CAMPO_A[id].label}:** ${v}`
+  }).join('\n\n')
+}
+function tabelaHtml({ cols, linhas }) {
+  return `<table class="tab"><thead><tr>${cols.map(c => `<th>${esc(c)}</th>`).join('')}</tr></thead><tbody>${
+    linhas.map(l => `<tr>${l.map(c => `<td>${c ? html(c) : `<span class="preencher">${PREENCHER_MED}</span>`}</td>`).join('')}</tr>`).join('')}</tbody></table>`
+}
+function tabelaMd({ cols, linhas }) {
+  const cel = c => (c || PREENCHER_MED).replace(/\n/g, '<br>').replace(/\|/g, '/')
+  return [`| ${cols.join(' | ')} |`, `| ${cols.map(() => '---').join(' | ')} |`, ...linhas.map(l => `| ${l.map(cel).join(' | ')} |`)].join('\n')
+}
+const tabela = t => ({ html: tabelaHtml(t), md: tabelaMd(t) })
+const texto  = t => ({ html: `<p>${esc(t)}</p>`, md: t })
+
+function renderBlocos(blocos) {
+  const h = blocos.map(b => {
+    const extra = b.extra?.html ?? ''
+    if (b.passo) return `<div class="passo"><h3><span class="num">${b.passo}.</span>${esc(b.titulo)}</h3>${b.campos ? paresHtml(b.campos) : ''}${extra}</div>`
+    return `<h3>${esc(b.titulo)}</h3>${b.campos ? paresHtml(b.campos) : ''}${extra}`
+  }).join('')
+  const m = blocos.map(b => [
+    b.passo ? `## ${b.passo}. ${b.titulo}` : `## ${b.titulo}`,
+    b.campos ? paresMd(b.campos) : '',
+    b.extra?.md ?? '',
+  ].filter(Boolean).join('\n\n')).join('\n\n')
+  return { h, m }
+}
+
+function definirAnexos() {
+  const profs = medicos.map(m => ({ nome: vM(m, 'nome') || 'Profissional', m }))
+  const linhas = ids => profs.map(({ nome, m }) => [nome, ...ids.map(id => vM(m, id))])
+  const soCom = (id, cols) => profs.filter(({ m }) => vM(m, id)).map(({ nome, m }) => [nome, ...cols.map(c => vM(m, c))])
+
+  const excecoesConv = soCom('convenios', ['convenios'])
+  const gatilhosMed  = soCom('gatilhos', ['gatilhos'])
+
+  return [
+    {
+      arquivo: '01-orientacoes-de-preparo', tipo: 'Orientações de preparo',
+      titulo: 'Orientações de preparo dos exames',
+      sub: validacao
+        ? `Preparos padronizados com a validação da equipe médica (${validacao.validador || 'validador não informado'}).`
+        : 'Preparos padronizados a partir dos PDFs oficiais. Itens marcados ainda aguardam a validação da equipe médica.',
+      corpo: `<div class="aviso"><b>Medicamentos:</b> ${esc(CONFORME)}</div>${capituloPreparos('').replace('<section class="preparo"', '<section class="preparo" style="break-before:auto"')}`,
+      md,
+    },
+    {
+      arquivo: '02-tabela-de-precos-e-procedimentos', tipo: 'Tabela de preços e procedimentos',
+      titulo: 'Tabela de preços e procedimentos',
+      sub: 'Exames da clínica, consultas de cada profissional e regras de pagamento.',
+      blocos: [
+        { titulo: 'Exames e procedimentos realizados na clínica', campos: ['examesOferecidos', 'valorProcedimento'] },
+        { titulo: 'Consultas por profissional', extra: tabela({ cols: ['Profissional', 'Especialidade', 'Duração', 'Consulta particular', 'Retorno', 'Teleconsulta'], linhas: linhas(['especialidade', 'duracao', 'valorConsulta', 'retorno', 'teleconsulta']) }) },
+        { titulo: 'Procedimentos próprios dos profissionais', extra: tabela({ cols: ['Profissional', 'O que realiza', 'Valores'], linhas: linhas(['realiza', 'valoresOutros']) }) },
+        { titulo: 'Pagamento', campos: ['cobraAntecipado', 'dinamicaPagamento', 'metodos', 'comoAntecipado', 'parcelamento', 'reembolso'] },
+        { titulo: 'Regra para a IA', extra: texto('A IA só informa valores que a clínica autorizou (indicado em cada exame e procedimento). Descontos e negociação de valores são sempre transferidos para a equipe.') },
+      ],
+    },
+    {
+      arquivo: '03-lista-e-regras-de-convenio', tipo: 'Lista e regras de convênio',
+      titulo: 'Lista e regras de convênio',
+      sub: 'Convênios aceitos, regras de autorização e exceções por profissional.',
+      blocos: [
+        { titulo: 'Convênios aceitos', campos: ['convenios'] },
+        { titulo: 'Regras', campos: ['regrasConvenio', 'documentosLevar', 'reembolso'] },
+        { titulo: 'Exceções por profissional', extra: excecoesConv.length
+          ? tabela({ cols: ['Profissional', 'Convênios (diferentes da lista da clínica)'], linhas: excecoesConv })
+          : texto(temRespostas ? 'Nenhum profissional informou convênios diferentes da lista da clínica.' : 'Será preenchido com as respostas de cada profissional.') },
+        { titulo: 'Regra para a IA', extra: texto('A IA não confirma cobertura de procedimento: informa a lista de convênios e, se o plano do paciente não estiver na lista ou houver dúvida de cobertura, transfere para a equipe.') },
+      ],
+    },
+    {
+      arquivo: '04-script-de-atendimento', tipo: 'Script ou fluxo de atendimento',
+      titulo: 'Script e fluxo de atendimento',
+      sub: 'Ordem da conversa da Secretária IA no WhatsApp, montada a partir da anamnese.',
+      aviso: 'Rascunho montado a partir das respostas da anamnese. Precisa ser aprovado pela gestão antes do envio à Dr.IAgenda.',
+      blocos: [
+        { passo: 1, titulo: 'Apresentação e tom de voz', campos: ['nomeIA', 'tomDeVoz', 'qualificaAgenda'] },
+        { passo: 2, titulo: 'Entender a necessidade', campos: ['triagemGeral', 'especialidades'],
+          extra: tabela({ cols: ['Profissional', 'Especialidade', 'Faixa etária', 'Perguntas de triagem'], linhas: linhas(['especialidade', 'faixaEtaria', 'triagem']) }) },
+        { passo: 3, titulo: 'O que não agendar', campos: ['naoRealiza'],
+          extra: tabela({ cols: ['Profissional', 'Não realiza / restrições'], linhas: linhas(['naoAtende']) }) },
+        { passo: 4, titulo: 'Agendar', campos: ['regrasAgenda', 'restricoesAgenda', 'antecedencia', 'horarioClinica', 'dadosConfirmacao'],
+          extra: tabela({ cols: ['Profissional', 'Dias e horários', 'Duração', 'Encaixes'], linhas: linhas(['diasHorarios', 'duracao', 'encaixes']) }) },
+        { passo: 5, titulo: 'Depois de confirmar', campos: ['posConfirmacao', 'documentosLevar', 'preparo'] },
+        { passo: 6, titulo: 'Cancelamento, remarcação e atrasos', campos: ['cancelamento', 'remarcacao', 'atraso', 'pacienteAntigo'] },
+        { passo: 7, titulo: 'Quando transferir para a equipe', campos: ['gatilhosPadrao', 'gatilhosEspecificos', 'urgencia', 'transferencia', 'horarioWhatsapp'],
+          extra: gatilhosMed.length ? tabela({ cols: ['Profissional', 'Transferir quando'], linhas: gatilhosMed }) : undefined },
+        { passo: 8, titulo: 'O que a IA nunca faz', campos: ['nuncaFazer'] },
+        { passo: 9, titulo: 'Perguntas frequentes', campos: ['faq'] },
+      ],
+    },
+    {
+      arquivo: '05-material-de-apoio-clinica', tipo: 'Outro material de apoio',
+      titulo: 'Informações da clínica',
+      sub: 'Parte A da anamnese e resumo dos profissionais.',
+      copiaDe: pdfPath,   // o PDF é o documento completo da clínica; o Markdown resume os mesmos dados
+      blocos: [
+        ...SECOES_CLINICA.map(s => ({ titulo: s.title, campos: s.fields.map(f => f.id) })),
+        { titulo: 'Profissionais', extra: { html: '', md: profs.map(({ nome, m }) => [
+          `### ${nome}`, '',
+          ...['especialidade', 'registro', 'areas', 'bio', 'realiza', 'faixaEtaria', 'diasHorarios', 'duracao', 'teleconsulta', 'retorno']
+            .filter(id => vM(m, id)).map(id => `- **${TODOS_MED[id]}:** ${vM(m, id).replace(/\n/g, ' · ')}`),
+        ].join('\n')).join('\n\n') } },
+      ],
+    },
+  ]
+}
+
+function anexoHtml(a, corpo) {
+  return `<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>NU.V.E.M Medicina · ${esc(a.titulo)}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+${estilos(`${a.tipo} · Dr.IAgenda`)}</head><body>
+<div class="anexo-topo"><p class="tag">Anexo para a Dr.IAgenda · ${esc(a.tipo)}</p><h1>${esc(a.titulo)}</h1>
+<p>${esc(a.sub ?? '')} NU.V.E.M Medicina · ${esc(CONTATO.endereco)}, ${esc(CONTATO.bairro)} · versão de ${HOJE}.</p></div>
+${a.aviso ? `<div class="rascunho">${esc(a.aviso)}</div>` : ''}
+${corpo}
+</body></html>`
+}
+
+function gerarAnexos() {
+  const dir = path.join(OUT, 'anexos')
+  mkdirSync(dir, { recursive: true })
+  for (const a of definirAnexos()) {
+    const { h, m } = a.blocos ? renderBlocos(a.blocos) : { h: a.corpo, m: '' }
+    const topoMd = [`# ${a.titulo} — NU.V.E.M Medicina`, '', `Anexo para a Dr.IAgenda: ${a.tipo}. Versão de ${HOJE}. ${a.sub ?? ''}`.trim(), ...(a.aviso ? ['', `> ${a.aviso}`] : []), ''].join('\n')
+    writeFileSync(path.join(dir, `${a.arquivo}.md`), a.md ?? `${topoMd}\n${m}\n`)
+    const pdf = path.join(dir, `${a.arquivo}.pdf`)
+    if (a.copiaDe) { if (existsSync(a.copiaDe)) copyFileSync(a.copiaDe, pdf); continue }
+    if (!EDGE) continue
+    const tmpHtml = path.join(tmpdir(), `anexo-${a.arquivo}.html`)
+    writeFileSync(tmpHtml, anexoHtml(a, h))
+    imprimir(tmpHtml, pdf)
+  }
+  console.log(`Anexos: ${path.relative(ROOT, dir)} (5 PDFs + 5 Markdown)`)
+}
+
+gerarAnexos()
+if (lidos.length) console.log('Respostas lidas:\n  ' + lidos.join('\n  ') + (validacao ? `\n  Validação aplicada a ${validacao.aplicadas} itens.` : ''))

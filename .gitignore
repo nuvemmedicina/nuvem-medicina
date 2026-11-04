@@ -32,3 +32,6 @@ Thumbs.db
 
 # Claude Code worktrees
 .claude/worktrees/
+
+# Respostas reais da anamnese da IA (repositório público: não versionar)
+docs/anamnese-ia/respostas/

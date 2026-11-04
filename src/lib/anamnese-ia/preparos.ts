@@ -314,3 +314,45 @@ export function listarPendencias(): Pendencia[] {
   }
   return out
 }
+
+// ─── Aplicar a validação da equipe médica ─────────────────────────────────────
+export type DecisaoValidacao = { id: string; decisao?: 'manter' | 'corrigir' | 'remover'; orientacao?: string }
+
+/**
+ * Devolve uma cópia dos preparos com as decisões de /anamnese-ia/validacao:
+ * manter → tira a marca de validação; corrigir → troca o texto pela
+ * orientação informada; remover → apaga o item. Itens sem decisão continuam
+ * marcados. Os IDs seguem a mesma ordem de listarPendencias().
+ */
+export function aplicarValidacao(decisoes: DecisaoValidacao[]): { preparos: Preparo[]; aplicadas: number } {
+  const porId = new Map(decisoes.filter(d => d.decisao).map(d => [d.id, d]))
+  let aplicadas = 0
+  const preparos: Preparo[] = PREPAROS.map(p => {
+    const item = (chave: string, it: Item): Item | null => {
+      const d = porId.get(`${p.slug}:${chave}`)
+      if (!it.v || !d) return it
+      aplicadas++
+      if (d.decisao === 'remover') return null
+      if (d.decisao === 'corrigir' && d.orientacao?.trim()) return { t: d.orientacao.trim() }
+      return { t: it.t }
+    }
+    const itens = (k: string, arr?: Item[]) => arr?.map((it, i) => item(`${k}-${i}`, it)).filter((x): x is Item => !!x)
+    const linhas = p.medicamentos.linhas.flatMap((l, i): Linha[] => {
+      const d = porId.get(`${p.slug}:med-${i}`)
+      if (!l.v || !d) return [l]
+      aplicadas++
+      if (d.decisao === 'remover') return []
+      const { v: _v, ...resto } = l
+      if (d.decisao === 'corrigir' && d.orientacao?.trim()) return [{ ...resto, conduta: d.orientacao.trim(), obs: undefined }]
+      return [resto]
+    })
+    return {
+      ...p,
+      antes: itens('antes', p.antes)!, jejum: itens('jejum', p.jejum)!,
+      medicamentos: { linhas, notas: itens('nota', p.medicamentos.notas)! },
+      noDia: itens('noDia', p.noDia)!, durante: itens('durante', p.durante),
+      apos: itens('apos', p.apos)!, contato: itens('contato', p.contato)!,
+    }
+  })
+  return { preparos, aplicadas }
+}
