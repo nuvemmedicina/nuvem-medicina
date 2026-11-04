@@ -14,8 +14,10 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
   // /links é a página da bio do Instagram: layout próprio, sem cabeçalho,
   // rodapé, botão flutuante de WhatsApp ou chat da Nuvete.
   const isLinkBio = pathname?.startsWith('/links')
+  // /anamnese-ia é ferramenta interna (Dr.IAgenda): sem a navegação do site.
+  const isAnamnese = pathname?.startsWith('/anamnese-ia')
 
-  if (isStudio || isLinkBio) return <>{children}</>
+  if (isStudio || isLinkBio || isAnamnese) return <>{children}</>
 
   return (
     <>

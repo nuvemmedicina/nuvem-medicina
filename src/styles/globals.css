@@ -223,3 +223,10 @@
     font-size: clamp(2.4rem, 4vw, 3rem);
   }
 }
+
+/* Impressão do formulário interno /anamnese-ia (Exportar PDF) */
+@media print {
+  @page { size: A4; margin: 14mm 14mm 16mm; }
+  html, body { background: #fff !important; }
+  .print\:block { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}

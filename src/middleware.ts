@@ -22,6 +22,7 @@ const PT_ONLY_SEGMENTS = [
   'politica-de-privacidade',
   'links',
   'obrigado',
+  'anamnese-ia',
 ]
 const ptOnlyPattern = new RegExp(`^/(en|es)/(${PT_ONLY_SEGMENTS.join('|')})(/.*)?$`)
 
