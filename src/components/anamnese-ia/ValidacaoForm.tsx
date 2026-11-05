@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { Download, FileText, RotateCcw, ShieldCheck, Check } from 'lucide-react'
 import { listarPendencias, PREPAROS, VALIDAR } from '@/lib/anamnese-ia/preparos'
 import { Barra } from '@/components/anamnese-ia/AnamneseForm'
-import { useServidor, rotuloStatus } from '@/components/anamnese-ia/useServidor'
+import { useServidor, rotuloStatus, useHoje } from '@/components/anamnese-ia/useServidor'
 
 /**
  * Validação dos preparos pela equipe médica: um cartão por item marcado
@@ -38,6 +38,7 @@ function gravar(e: Estado) {
 
 export function ValidacaoForm() {
   const pendencias = useMemo(() => listarPendencias(), [])
+  const hoje = useHoje()
   const [estado, setEstado] = useState<Estado>(VAZIO)
   const [carregado, setCarregado] = useState(false)
   const [salvoEm, setSalvoEm] = useState<string | null>(null)
@@ -212,7 +213,7 @@ export function ValidacaoForm() {
           <Image src="/images/logo.svg" alt="NU.V.E.M Medicina" width={150} height={40} />
           <div className="text-right text-[9pt] text-steel/60">
             <p className="font-semibold text-teal">Validação dos preparos de exames</p>
-            <p>{new Date().toLocaleDateString('pt-BR')} · {ok}/{pendencias.length} respondidos</p>
+            <p>{hoje} · {ok}/{pendencias.length} respondidos</p>
           </div>
         </div>
         <p className="mb-4 text-[10pt]"><strong>Validado por:</strong> {estado.validador || '(não informado)'}</p>

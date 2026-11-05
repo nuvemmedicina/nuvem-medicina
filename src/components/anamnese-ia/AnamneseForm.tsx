@@ -10,7 +10,7 @@ import {
   type Field, type Section, type Values, type Value,
 } from '@/lib/anamnese-ia/schema'
 import { PREFILL_CLINICA, MEDICOS_SITE, prefillMedico } from '@/lib/anamnese-ia/prefill'
-import { useServidor, rotuloStatus } from '@/components/anamnese-ia/useServidor'
+import { useServidor, rotuloStatus, useHoje } from '@/components/anamnese-ia/useServidor'
 
 // ─── Tipos e armazenamento ────────────────────────────────────────────────────
 type Medico = { uid: string; slug?: string; values: Values }
@@ -187,7 +187,7 @@ function RespostaImpressa({ v }: { v: Value | undefined }) {
 }
 
 function Impressao({ clinica, medicos }: { clinica?: Values; medicos: Medico[] }) {
-  const data = new Date().toLocaleDateString('pt-BR')
+  const data = useHoje()
   return (
     <div className="hidden print:block">
       <div className="mb-6 flex items-center justify-between border-b-2 border-teal pb-3">

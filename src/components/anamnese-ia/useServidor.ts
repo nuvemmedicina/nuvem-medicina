@@ -124,3 +124,14 @@ export function rotuloStatus(s: StatusServidor, salvoEm: string | null) {
     case 'acesso-negado': return 'Código de acesso inválido: respostas só neste navegador'
   }
 }
+
+/**
+ * Data de hoje calculada só no aparelho, depois de montar a página.
+ * Renderizar new Date() direto dá diferença entre servidor (UTC) e celular
+ * (Brasília) depois das 21h, o que quebra a hidratação do React (#418).
+ */
+export function useHoje() {
+  const [hoje, setHoje] = useState('')
+  useEffect(() => { setHoje(new Date().toLocaleDateString('pt-BR')) }, [])
+  return hoje
+}
