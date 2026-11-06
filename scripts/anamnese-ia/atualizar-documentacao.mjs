@@ -39,10 +39,11 @@ console.log('\n2) Gerando documentos…')
 node('gerar-documentos.mjs', ['--respostas', SERV, '--respostas', RESP, '--saida', SAIDA])
 
 // ─── Situação ─────────────────────────────────────────────────────────────────
-const ler = dir => existsSync(dir)
-  ? readdirSync(dir).filter(f => f.endsWith('.json')).map(f => JSON.parse(readFileSync(path.join(dir, f), 'utf8')))
+const ler = (dir, fonte) => existsSync(dir)
+  ? readdirSync(dir).filter(f => f.endsWith('.json')).map(f => ({ ...JSON.parse(readFileSync(path.join(dir, f), 'utf8')), __fonte: fonte }))
   : []
-const docs = [...ler(SERV), ...ler(RESP)]
+const docs = [...ler(SERV, 'servidor'), ...ler(RESP, 'arquivo')]
+const ajustes = docs.filter(d => d.tipo === 'anamnese-ia/ajustes')
 const txt = v => Array.isArray(v) ? v.join(' · ') : String(v ?? '').trim()
 const obrig = (campos, v) => { const o = campos.filter(f => f.required); return `${o.filter(f => txt(v[f.id]) && !/_{3,}/.test(txt(v[f.id]))).length}/${o.length}` }
 
@@ -54,23 +55,28 @@ linhas.push('## Gestão (Parte A)', '', clin
   : '- ❌ Não começou', '')
 
 linhas.push('## Profissionais', '')
-const grupos = { enviado: [], pdf: [], andamento: [], falta: [] }
+const grupos = { enviado: [], pdf: [], andamento: [], falta: [], dispensado: [] }
+// Profissionais que a gestão mandou transferir para a recepção (afastados, eventuais)
+const dispensados = new Set(ajustes.flatMap(a => Object.entries(a.medicos ?? {})
+  .filter(([, v]) => /transferir para a recepção/i.test(v.gatilhos ?? '')).map(([slug]) => slug)))
 for (const m of MEDICOS_SITE) {
   const versoes = docs.filter(d => d.tipo === 'anamnese-ia/medico' && d.slug === m.slug)
-  const servidor = versoes.find(d => !d.origem)
-  const pdf = versoes.find(d => d.origem)
+  const servidor = versoes.find(d => d.__fonte === 'servidor')
+  const pdf = versoes.find(d => d.__fonte === 'arquivo')
   if (servidor?.finalizadoEm) grupos.enviado.push(`${m.nome} (${obrig(TODOS_CAMPOS_MEDICO, servidor.valores)})`)
   else if (pdf) grupos.pdf.push(m.nome)
+  else if (dispensados.has(m.slug) && !servidor) grupos.dispensado.push(m.nome)
   else if (servidor) grupos.andamento.push(`${m.nome} (${obrig(TODOS_CAMPOS_MEDICO, servidor.valores)})`)
   else grupos.falta.push(m.nome)
 }
 const novosMed = docs.filter(d => d.tipo === 'anamnese-ia/medico' && String(d.slug).startsWith('novo-'))
 const total = MEDICOS_SITE.length
-linhas.push(`Responderam: **${grupos.enviado.length + grupos.pdf.length} de ${total}**${novosMed.length ? ` (+ ${novosMed.length} profissional novo)` : ''}`, '')
+linhas.push(`Responderam: **${grupos.enviado.length + grupos.pdf.length} de ${total - grupos.dispensado.length}**${grupos.dispensado.length ? ` (${grupos.dispensado.length} dispensado${grupos.dispensado.length > 1 ? 's' : ''})` : ''}${novosMed.length ? ` (+ ${novosMed.length} profissional novo)` : ''}`, '')
 if (grupos.enviado.length) linhas.push(`- ✅ Enviaram pelo link: ${grupos.enviado.join(', ')}`)
-if (grupos.pdf.length) linhas.push(`- ✅ Responderam por PDF: ${grupos.pdf.join(', ')}`)
+if (grupos.pdf.length) linhas.push(`- ✅ Responderam por arquivo (PDF ou JSON): ${grupos.pdf.join(', ')}`)
 if (grupos.andamento.length) linhas.push(`- ⏳ Começaram e não enviaram: ${grupos.andamento.join(', ')}`)
 if (grupos.falta.length) linhas.push(`- ❌ Ainda não abriram: ${grupos.falta.join(', ')}`)
+if (grupos.dispensado.length) linhas.push(`- ➖ Dispensados (perguntas sobre eles vão para a recepção): ${grupos.dispensado.join(', ')}`)
 linhas.push('')
 
 const val = docs.find(d => d.tipo === 'anamnese-ia/validacao')

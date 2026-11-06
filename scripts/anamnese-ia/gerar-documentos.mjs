@@ -97,12 +97,17 @@ function lerRespostas(alvos) {
         lidos.push(`${nome}: Parte A (clínica)`)
         break
       case 'anamnese-ia/medico': {
-        // O mesmo profissional pode chegar por PDF e pelo link: vale a versão mais recente
+        // O mesmo profissional pode chegar por PDF, por JSON e pelo link. Vale a versão
+        // enviada; entre as não enviadas, a mais completa; empate, a mais recente.
+        // (Abrir o link de novo salva só os dados do site e não pode apagar respostas.)
         const slug = d.slug || `extra-${medicosPorSlug.size}`
-        const em = d.exportadoEm ?? ''
-        if (medicoEm.has(slug) && medicoEm.get(slug) > em) { lidos.push(`${nome}: ${d.nome || slug} (ignorado: há versão mais recente)`); break }
+        const preenchidos = CAMPOS_MEDICO.flatMap(s => s.fields).filter(f => String(d.valores?.[f.id] ?? '').trim()).length
+        const nota = [d.finalizadoEm ? 1 : 0, preenchidos, d.exportadoEm ?? '']
+        const atual = medicoEm.get(slug)
+        const melhor = (a, b) => a[0] !== b[0] ? a[0] > b[0] : a[1] !== b[1] ? a[1] > b[1] : a[2] >= b[2]
+        if (atual && !melhor(nota, atual)) { lidos.push(`${nome}: ${d.nome || slug} (ignorado: há versão mais completa)`); break }
         medicosPorSlug.set(slug, d.valores)
-        medicoEm.set(slug, em)
+        medicoEm.set(slug, nota)
         lidos.push(`${nome}: ${d.nome || slug}${d.finalizadoEm ? ' (enviado)' : d.origem ? '' : ' (em andamento)'}`)
         break
       }
