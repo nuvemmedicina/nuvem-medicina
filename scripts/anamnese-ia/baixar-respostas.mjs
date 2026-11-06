@@ -13,7 +13,7 @@ import { mkdirSync, writeFileSync, rmSync } from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { createClient } from '@sanity/client'
-import { listarPendencias } from '@/lib/anamnese-ia/preparos'
+import { listarPendencias, PREPAROS_NOVOS, CAMPOS_NOVO, chaveNovo, novoCompleto } from '@/lib/anamnese-ia/preparos'
 
 const ROOT = path.resolve(fileURLToPath(new URL('../../', import.meta.url)))
 const DIR  = path.join(ROOT, 'docs', 'anamnese-ia', 'respostas', 'servidor')
@@ -53,7 +53,11 @@ for (const d of docs) {
     const ok = pend.filter(p => { const r = dados.respostas?.[p.id]; return r?.decisao && (r.decisao !== 'corrigir' || r.orientacao?.trim()) }).length
     arquivo = '30-validacao.json'
     conteudo = { tipo: 'anamnese-ia/validacao', ...base(d), validador: dados.validador, observacoes: dados.observacoes,
-      resolvidos: ok, total: pend.length, itens: pend.map(p => ({ ...p, ...dados.respostas?.[p.id] })) }
+      resolvidos: ok, total: pend.length, itens: pend.map(p => ({ ...p, ...dados.respostas?.[p.id] })),
+      preparosNovos: PREPAROS_NOVOS.map(p => ({ ...p,
+        modo: dados.respostas?.[chaveNovo(p.slug, 'modo')]?.texto ?? null,
+        completo: novoCompleto(p, dados.respostas ?? {}),
+        campos: Object.fromEntries(CAMPOS_NOVO.map(c => [c.id, dados.respostas?.[chaveNovo(p.slug, c.id)]?.texto ?? ''])) })) }
   } else continue
   writeFileSync(path.join(DIR, arquivo), JSON.stringify(conteudo, null, 2))
   resumo.push(`${arquivo.padEnd(42)} ${quando(d)}`)

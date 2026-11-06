@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from 'next-sanity'
 import { escopoValido, codigoConfere, docId } from '@/lib/anamnese-ia/acesso'
+import { mesclarValidacao } from '@/lib/anamnese-ia/mesclar'
 
 /**
  * Salva e lê as respostas das páginas /anamnese-ia no Sanity (documentos
@@ -46,7 +47,7 @@ export async function POST(req: NextRequest) {
   try { body = await req.json() } catch { return NextResponse.json({ erro: 'JSON inválido' }, { status: 400 }) }
   const erro = autorizar(body.escopo, body.c)
   if (erro) return NextResponse.json({ erro }, { status: 403 })
-  const dadosJson = JSON.stringify(body.dados ?? null)
+  let dadosJson = JSON.stringify(body.dados ?? null)
   if (dadosJson.length > LIMITE) return NextResponse.json({ erro: 'Respostas grandes demais' }, { status: 413 })
   const client = sanity()
   if (!client) return NextResponse.json({ erro: 'Servidor sem configuração' }, { status: 503 })
@@ -55,6 +56,12 @@ export async function POST(req: NextRequest) {
   const id = docId(escopo)
   const agora = new Date().toISOString()
   try {
+    // Validação: várias pessoas usam o mesmo link; junta item a item em vez de substituir
+    if (escopo === 'validacao') {
+      const atual = await client.getDocument<Doc>(id)
+      const antigo = atual?.dadosJson ? JSON.parse(atual.dadosJson) : null
+      dadosJson = JSON.stringify(mesclarValidacao(antigo, (body.dados ?? {}) as Parameters<typeof mesclarValidacao>[1]))
+    }
     await client.transaction()
       .createIfNotExists({ _id: id, _type: 'anamneseIaResposta', escopo })
       .patch(id, p => p.set({ dadosJson, atualizadoEm: agora, versao: 'v1', ...(body.finalizar ? { finalizadoEm: agora } : {}) }))

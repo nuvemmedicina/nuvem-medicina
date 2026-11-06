@@ -356,3 +356,79 @@ export function aplicarValidacao(decisoes: DecisaoValidacao[]): { preparos: Prep
   })
   return { preparos, aplicadas }
 }
+
+// ─── Preparos novos (sem preparo cadastrado) ──────────────────────────────────
+/*
+ * Exames que entraram na tabela da clínica em 06/11/2026 sem preparo escrito.
+ * A equipe médica preenche em /anamnese-ia/validacao, na estrutura padrão.
+ * As respostas ficam em respostas["novo:<slug>:<campo>"].texto.
+ */
+export type PreparoNovo = {
+  slug: string
+  nome: string
+  responsavel: string
+  contexto: string
+  mesmoQue?: { slug: string; nome: string }
+}
+
+export const PREPAROS_NOVOS: PreparoNovo[] = [
+  {
+    slug: 'transito-colonico', nome: 'Trânsito colônico', responsavel: 'Dra. Eliane Basques',
+    contexto: 'Exame realizado pela Dra. Eliane, somente particular (R$ 1.300). Ainda não há preparo escrito.',
+  },
+  {
+    slug: 'manometria-esofagica-convencional', nome: 'Manometria esofágica convencional (8 canais)', responsavel: 'Dra. Vera Ângelo',
+    contexto: 'Exame menos completo que a manometria de alta resolução (24 canais), R$ 700. Ainda não há preparo escrito.',
+    mesmoQue: { slug: 'manometria-esofagica', nome: 'Manometria Esofágica de Alta Resolução' },
+  },
+]
+
+/** Campos do preparo novo, na mesma estrutura dos preparos padronizados. */
+export const CAMPOS_NOVO: { id: string; label: string; ajuda: string; obrigatorio?: boolean }[] = [
+  { id: 'serve',        label: 'Para que serve', ajuda: '1 a 2 linhas, em linguagem simples.', obrigatorio: true },
+  { id: 'ficha',        label: 'Duração, sedação e pedido médico', ajuda: 'Ex.: 40 minutos; sem sedação; pedido médico obrigatório.' },
+  { id: 'antes',        label: 'Antes do exame (dias anteriores)', ajuda: 'Dieta, cuidados, o que comprar. Um item por linha.' },
+  { id: 'jejum',        label: 'Jejum', ajuda: 'Se não precisa, escreva "Não é necessário jejum".', obrigatorio: true },
+  { id: 'medicamentos', label: 'Medicamentos', ajuda: 'O que suspender (e com quanto tempo de antecedência) e o que manter. Um por linha.', obrigatorio: true },
+  { id: 'noDia',        label: 'No dia do exame', ajuda: 'O que levar, roupa, acompanhante, chegada antecipada. Um item por linha.', obrigatorio: true },
+  { id: 'apos',         label: 'Após o exame', ajuda: 'Retorno às atividades, cuidados, entrega do laudo.' },
+  { id: 'contato',      label: 'Quando entrar em contato com a clínica', ajuda: 'Situações em que o paciente deve ligar.' },
+]
+
+export const chaveNovo = (slug: string, campo: string) => `novo:${slug}:${campo}`
+
+type RespNovo = Record<string, { texto?: string } | undefined>
+
+/** O preparo novo foi respondido? (mesmo preparo de outro exame, ou campos obrigatórios preenchidos) */
+export function novoCompleto(p: PreparoNovo, r: RespNovo) {
+  const modo = r[chaveNovo(p.slug, 'modo')]?.texto
+  if (p.mesmoQue && modo === 'mesmo') return true
+  if (p.mesmoQue && modo !== 'diferente') return false
+  return CAMPOS_NOVO.filter(c => c.obrigatorio).every(c => !!r[chaveNovo(p.slug, c.id)]?.texto?.trim())
+}
+
+/** Converte as respostas dos preparos novos em Preparo (para o PDF e o Markdown). */
+export function preparosDosNovos(r: RespNovo): Preparo[] {
+  const linhas = (t?: string): Item[] => (t ?? '').split('\n').map(s => s.trim()).filter(Boolean).map(t => ({ t }))
+  const out: Preparo[] = []
+  for (const p of PREPAROS_NOVOS) {
+    if (!novoCompleto(p, r)) continue
+    const modo = r[chaveNovo(p.slug, 'modo')]?.texto
+    const base = p.mesmoQue && PREPAROS.find(x => x.slug === p.mesmoQue!.slug)
+    if (base && modo === 'mesmo') {
+      out.push({ ...base, slug: p.slug, nome: p.nome, sub: `Mesmo preparo da ${p.mesmoQue!.nome}`, fonte: `Validação da equipe médica (${p.responsavel})` })
+      continue
+    }
+    const v = (id: string) => r[chaveNovo(p.slug, id)]?.texto
+    out.push({
+      slug: p.slug, nome: p.nome, serve: v('serve') ?? '',
+      ficha: v('ficha') ? [['Informações', v('ficha')!]] : [],
+      antes: linhas(v('antes')), jejum: linhas(v('jejum')),
+      medicamentos: { linhas: [], notas: linhas(v('medicamentos')) },
+      noDia: linhas(v('noDia')), apos: linhas(v('apos')),
+      contato: linhas(v('contato')).length ? linhas(v('contato')) : [{ t: 'Em caso de dúvida, entre em contato com a clínica antes do exame: (31) 2537-3131 ou WhatsApp (31) 99726-1029.' }],
+      fonte: `Escrito pela equipe médica na validação (${p.responsavel})`,
+    })
+  }
+  return out
+}
