@@ -126,6 +126,12 @@ function lerRespostas(alvos) {
   // Ajustes da gestão por último: sobrescrevem só os campos que trazem
   for (const a of ajustes) {
     clinica = { ...clinica, ...(a.clinica ?? {}) }
+    // Decisões da gestão sobre os preparos entram antes das da validação médica:
+    // se a equipe médica responder o mesmo ponto, vale a resposta dela.
+    if (a.validacao?.length) {
+      decisoes = [...a.validacao, ...decisoes]
+      if (!validacao) validacao = { validador: 'gestão' }
+    }
     for (const [slug, campos] of Object.entries(a.medicos ?? {})) {
       if (medicosPorSlug.has(slug)) medicosPorSlug.set(slug, { ...medicosPorSlug.get(slug), ...campos })
     }
