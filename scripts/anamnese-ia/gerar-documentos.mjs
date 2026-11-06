@@ -67,10 +67,13 @@ let PREPAROS = PREPAROS_BASE
 let validacao = null           // { validador, aplicadas, total }
 const lidos = []               // resumo do que foi lido, para o console e o relatório
 
-function lerRespostas(alvo) {
-  const arquivos = statSync(alvo).isDirectory()
+const medicoEm = new Map()     // slug -> momento da versão usada (vale a mais recente)
+const ajustes = []             // anamnese-ia/ajustes: aplicados por último
+
+function lerRespostas(alvos) {
+  const arquivos = alvos.flatMap(alvo => statSync(alvo).isDirectory()
     ? readdirSync(alvo).filter(f => /\.(json|pdf)$/i.test(f)).map(f => path.join(alvo, f)).sort()
-    : [alvo]
+    : [alvo])
   let decisoes = []
   let novos = {}   // respostas dos preparos novos, no formato novo:<slug>:<campo> -> { texto }
   for (const arq of arquivos) {
@@ -93,9 +96,19 @@ function lerRespostas(alvo) {
         clinica = { ...clinica, ...d.valores }
         lidos.push(`${nome}: Parte A (clínica)`)
         break
-      case 'anamnese-ia/medico':
-        medicosPorSlug.set(d.slug || `extra-${medicosPorSlug.size}`, d.valores)
-        lidos.push(`${nome}: ${d.nome || d.slug}`)
+      case 'anamnese-ia/medico': {
+        // O mesmo profissional pode chegar por PDF e pelo link: vale a versão mais recente
+        const slug = d.slug || `extra-${medicosPorSlug.size}`
+        const em = d.exportadoEm ?? ''
+        if (medicoEm.has(slug) && medicoEm.get(slug) > em) { lidos.push(`${nome}: ${d.nome || slug} (ignorado: há versão mais recente)`); break }
+        medicosPorSlug.set(slug, d.valores)
+        medicoEm.set(slug, em)
+        lidos.push(`${nome}: ${d.nome || slug}${d.finalizadoEm ? ' (enviado)' : d.origem ? '' : ' (em andamento)'}`)
+        break
+      }
+      case 'anamnese-ia/ajustes':
+        ajustes.push(d)
+        lidos.push(`${nome}: ajustes da gestão`)
         break
       case 'anamnese-ia/validacao':
         decisoes = decisoes.concat(d.itens)
@@ -110,6 +123,13 @@ function lerRespostas(alvo) {
         console.warn(`Ignorado (formato desconhecido): ${nome}`)
     }
   }
+  // Ajustes da gestão por último: sobrescrevem só os campos que trazem
+  for (const a of ajustes) {
+    clinica = { ...clinica, ...(a.clinica ?? {}) }
+    for (const [slug, campos] of Object.entries(a.medicos ?? {})) {
+      if (medicosPorSlug.has(slug)) medicosPorSlug.set(slug, { ...medicosPorSlug.get(slug), ...campos })
+    }
+  }
   if (decisoes.length) {
     const r = aplicarValidacao(decisoes)
     PREPAROS = r.preparos
@@ -122,7 +142,9 @@ function lerRespostas(alvo) {
   }
 }
 
-if (iResp > -1) lerRespostas(process.argv[iResp + 1])
+// --respostas pode aparecer várias vezes (ex.: pasta do servidor + pasta com PDFs transcritos e ajustes)
+const alvosResp = process.argv.flatMap((a, i) => a === '--respostas' ? [process.argv[i + 1]] : [])
+if (alvosResp.length) lerRespostas(alvosResp)
 const medicos = [...medicosPorSlug.values()]
 const temRespostas = lidos.length > 0
 const origemDados = temRespostas
