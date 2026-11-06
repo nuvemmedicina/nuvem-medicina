@@ -80,36 +80,6 @@ const HERO_SLIDES_PT: HeroSlide[] = [
     },
   },
   {
-    id:    'curso-testes-respiratorios',
-    badge: '02 e 03 de outubro · 25 vagas',
-    title: (
-      <>
-        Testes Respiratórios de H₂, CH₄ e H₂S:{' '}
-        <em className="italic text-teal">Curso Hands-On</em>
-      </>
-    ),
-    description: (
-      <>
-        Treinamento teórico-prático presencial com a Dra. Vera Ângelo. Domine o
-        diagnóstico de SIBO, IMO, LIBO, SIFO e intolerâncias alimentares, com prática
-        supervisionada nos equipamentos Dynamed e Health Go.
-      </>
-    ),
-    imagem: {
-      src: '/images/teste-respiratorio-2.webp',
-      alt: 'Prática com equipamento de teste respiratório na NU.V.E.M Ensino',
-    },
-    primaryCta: {
-      label: 'Matricular-se agora',
-      href:  'https://www.nuvemensino.com.br/checkout/testes-respiratorios-h2-ch4-h2s-outubro',
-      Icon:  GraduationCap,
-    },
-    secondaryCta: {
-      label: 'Ver detalhes do curso',
-      href:  'https://www.nuvemensino.com.br/cursos/testes-respiratorios-h2-ch4-h2s-outubro',
-    },
-  },
-  {
     id:    'exame-teste-respiratorio',
     badge: 'Exame não invasivo',
     title: (
@@ -187,36 +157,6 @@ const HERO_SLIDES_EN: HeroSlide[] = [
     secondaryCta: {
       label: 'See course details',
       href:  'https://www.nuvemensino.com.br/cursos/dici-neurogastroenterologia-2026',
-    },
-  },
-  {
-    id:    'curso-testes-respiratorios',
-    badge: 'October 2-3 · 25 seats',
-    title: (
-      <>
-        H₂, CH₄ and H₂S Breath Testing:{' '}
-        <em className="italic text-teal">Hands-On Course</em>
-      </>
-    ),
-    description: (
-      <>
-        In-person theoretical and practical training with Dr. Vera Ângelo. Master
-        the diagnosis of SIBO, IMO, LIBO, SIFO and food intolerances, with
-        supervised practice on Dynamed and Health Go equipment.
-      </>
-    ),
-    imagem: {
-      src: '/images/teste-respiratorio-2.webp',
-      alt: 'Hands-on practice with breath test equipment at NU.V.E.M Ensino',
-    },
-    primaryCta: {
-      label: 'Enroll now',
-      href:  'https://www.nuvemensino.com.br/checkout/testes-respiratorios-h2-ch4-h2s-outubro',
-      Icon:  GraduationCap,
-    },
-    secondaryCta: {
-      label: 'See course details',
-      href:  'https://www.nuvemensino.com.br/cursos/testes-respiratorios-h2-ch4-h2s-outubro',
     },
   },
   {
@@ -298,36 +238,6 @@ const HERO_SLIDES_ES: HeroSlide[] = [
     secondaryCta: {
       label: 'Ver detalles del curso',
       href:  'https://www.nuvemensino.com.br/cursos/dici-neurogastroenterologia-2026',
-    },
-  },
-  {
-    id:    'curso-testes-respiratorios',
-    badge: '2 y 3 de octubre · 25 cupos',
-    title: (
-      <>
-        Pruebas Respiratorias de H₂, CH₄ y H₂S:{' '}
-        <em className="italic text-teal">Curso Práctico</em>
-      </>
-    ),
-    description: (
-      <>
-        Entrenamiento teórico-práctico presencial con la Dra. Vera Ângelo. Domine
-        el diagnóstico de SIBO, IMO, LIBO, SIFO e intolerancias alimentarias, con
-        práctica supervisada en los equipos Dynamed y Health Go.
-      </>
-    ),
-    imagem: {
-      src: '/images/teste-respiratorio-2.webp',
-      alt: 'Práctica con equipo de prueba respiratoria en NU.V.E.M Ensino',
-    },
-    primaryCta: {
-      label: 'Inscribirme ahora',
-      href:  'https://www.nuvemensino.com.br/checkout/testes-respiratorios-h2-ch4-h2s-outubro',
-      Icon:  GraduationCap,
-    },
-    secondaryCta: {
-      label: 'Ver detalles del curso',
-      href:  'https://www.nuvemensino.com.br/cursos/testes-respiratorios-h2-ch4-h2s-outubro',
     },
   },
   {
