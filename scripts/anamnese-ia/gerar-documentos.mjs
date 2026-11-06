@@ -604,7 +604,6 @@ function definirAnexos() {
   const linhas = ids => profs.map(({ nome, m }) => [nome, ...ids.map(id => vM(m, id))])
   const soCom = (id, cols) => profs.filter(({ m }) => vM(m, id)).map(({ nome, m }) => [nome, ...cols.map(c => vM(m, c))])
 
-  const excecoesConv = soCom('convenios', ['convenios'])
   const gatilhosMed  = soCom('gatilhos', ['gatilhos'])
 
   return [
@@ -632,13 +631,11 @@ function definirAnexos() {
     {
       arquivo: '03-lista-e-regras-de-convenio', tipo: 'Lista e regras de convênio',
       titulo: 'Lista e regras de convênio',
-      sub: 'Convênios aceitos, regras de autorização e exceções por profissional.',
+      sub: 'Convênios aceitos por profissional, regras de autorização e o que fazer quando o plano não é atendido.',
       blocos: [
-        { titulo: 'Convênios aceitos', campos: ['convenios'] },
+        { titulo: 'Convênios por profissional', extra: tabela({ cols: ['Profissional', 'Especialidade', 'Convênios aceitos'], linhas: linhas(['especialidade', 'convenios']) }) },
+        { titulo: 'Convênios da clínica', campos: ['convenios'] },
         { titulo: 'Regras', campos: ['regrasConvenio', 'documentosLevar', 'reembolso'] },
-        { titulo: 'Exceções por profissional', extra: excecoesConv.length
-          ? tabela({ cols: ['Profissional', 'Convênios (diferentes da lista da clínica)'], linhas: excecoesConv })
-          : texto(temRespostas ? 'Nenhum profissional informou convênios diferentes da lista da clínica.' : 'Será preenchido com as respostas de cada profissional.') },
         { titulo: 'Regra para a IA', extra: texto('A IA não confirma cobertura de procedimento: informa a lista de convênios e, se o plano do paciente não estiver na lista ou houver dúvida de cobertura, transfere para a equipe.') },
       ],
     },
