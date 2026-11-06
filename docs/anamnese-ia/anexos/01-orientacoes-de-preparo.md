@@ -1,6 +1,6 @@
 # Preparos de exames — NU.V.E.M Medicina
 
-Versão de 04/11/2026. Texto para a Secretária IA consultar ao responder pacientes no WhatsApp.
+Versão de 06/11/2026. Texto para a Secretária IA consultar ao responder pacientes no WhatsApp.
 
 ## Regras para a IA
 
@@ -228,53 +228,6 @@ Versão de 04/11/2026. Texto para a Secretária IA consultar ao responder pacien
 ### Quando entrar em contato com a clínica
 
 - Em caso de dúvida, entre em contato com a clínica antes do exame: (31) 2537-3131 ou WhatsApp (31) 99726-1029.
-
-## Halimetria e Sialometria (Diagnóstico de halitose)
-
-**Para que serve:** A halimetria mede os compostos sulfurados que causam o mau hálito. A sialometria avalia a produção de saliva. Qualquer substância na boca pode alterar o resultado.
-
-- Duração: 30 a 40 minutos
-- Método: não invasivo
-- Pedido médico: obrigatório
-
-### Antes do exame (dias anteriores)
-
-- 3 semanas antes: não utilizar antibióticos. Caso tenha utilizado, informe a clínica.
-- 24 horas antes: não comer alho, cebola e comidas com temperos fortes (pimentas, curry etc.).
-- 24 horas antes: não utilizar cosméticos aromáticos nem enxaguantes bucais.
-- 24 horas antes: não ingerir bebidas alcoólicas.
-- 12 horas antes: não fumar. [VALIDAR COM A EQUIPE MÉDICA]
-
-### Jejum
-
-- 3 horas antes: não tomar café nem chá aromatizado.
-- 2 horas antes: é obrigatório comer algo (uma refeição leve é suficiente).
-- Bebidas: somente água é permitida.
-- O quadro-resumo do PDF indica "Jejum: 3 horas". [VALIDAR COM A EQUIPE MÉDICA]
-
-### Medicamentos
-
-- Suspender ou manter medicamentos sempre conforme orientação médica (do médico que solicitou o exame). Nunca suspender por conta própria.
-- Antibióticos: Não utilizar nas 3 semanas anteriores (Se tiver utilizado, informe a clínica)
-- Informe à equipe todos os medicamentos em uso.
-
-### No dia do exame
-
-- Escove os dentes imediatamente após a refeição, usando sua pasta habitual. [VALIDAR COM A EQUIPE MÉDICA]
-- Não use enxaguantes bucais. Evite perfume, desodorante e cremes com fragrância forte.
-- Evite atividade física intensa na 1 hora anterior.
-- Leve o pedido médico.
-- Chegada antecipada e acompanhante: Não informado no preparo oficial (sem orientação). [VALIDAR COM A EQUIPE MÉDICA]
-- Como é o exame: rápido, indolor e não invasivo; você sopra em um aparelho que mede os gases do ar exalado.
-
-### Após o exame
-
-- Não informado no preparo oficial (sem orientação para depois do exame). [VALIDAR COM A EQUIPE MÉDICA]
-
-### Quando entrar em contato com a clínica
-
-- Em caso de dúvida, entre em contato com a clínica antes do exame: (31) 2537-3131 ou WhatsApp (31) 99726-1029.
-- Se você usou antibiótico nas últimas 3 semanas.
 
 ## Avaliação Pélvica com Biofeedback Eletromiográfico
 

@@ -1,6 +1,6 @@
 # Informações da clínica — NU.V.E.M Medicina
 
-Anexo para a Dr.IAgenda: Outro material de apoio. Versão de 04/11/2026. Parte A da anamnese e resumo dos profissionais.
+Anexo para a Dr.IAgenda: Outro material de apoio. Versão de 06/11/2026. Parte A da anamnese e resumo dos profissionais.
 
 ## Identificação e escopo
 
@@ -67,7 +67,6 @@ Anexo para a Dr.IAgenda: Outro material de apoio. Versão de 04/11/2026. Parte A
 - pHmetria e impedanciometria esofágica — instalação de 15 a 20 min e monitoramento de 24 h; pedido médico obrigatório; valor: ___; IA pode agendar? ___
 - Teste respiratório para H. pylori — 30 a 40 min; pedido médico obrigatório; valor: ___; IA pode agendar? ___
 - Teste respiratório para SIBO / IMO / lactose / frutose (H₂, CH₄, H₂S) — 2 a 3 h; pedido médico obrigatório; valor: ___; IA pode agendar? ___
-- Halimetria e sialometria — 30 a 40 min; pedido médico obrigatório; valor: ___; IA pode agendar? ___
 - Avaliação pélvica com biofeedback eletromiográfico — 40 a 60 min; pedido médico obrigatório; realizada pela fisioterapeuta; valor: ___; IA pode agendar? ___
 - Consultas médicas — ver Parte B (cada profissional).
 
@@ -86,7 +85,6 @@ Anexo para a Dr.IAgenda: Outro material de apoio. Versão de 04/11/2026. Parte A
 - Manometria: até 3 dias úteis
 - pHmetria: alguns dias após a devolução do equipamento
 - Testes respiratórios: até 3 dias úteis
-- Halimetria e sialometria: até 2 dias úteis
 
 ## Convênios
 
@@ -156,7 +154,7 @@ Anexo para a Dr.IAgenda: Outro material de apoio. Versão de 04/11/2026. Parte A
 
 ## Preparos de exames
 
-**Preparo pré e pós:** Os preparos padronizados dos 7 exames estão no PDF da clínica (anexo "Orientações de preparo"). A IA deve enviar o preparo correspondente ao exame após confirmar o agendamento e, em dúvidas sobre suspensão de medicamentos, orientar que o paciente fale com o médico solicitante ou com a clínica, nunca suspender por conta própria.
+**Preparo pré e pós:** Os preparos padronizados dos exames estão no PDF da clínica (anexo "Orientações de preparo"). A IA deve enviar o preparo correspondente ao exame após confirmar o agendamento e, em dúvidas sobre suspensão de medicamentos, orientar que o paciente fale com o médico solicitante ou com a clínica, nunca suspender por conta própria.
 
 ## Secretária IA
 

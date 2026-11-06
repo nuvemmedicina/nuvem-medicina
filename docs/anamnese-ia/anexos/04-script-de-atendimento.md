@@ -1,6 +1,6 @@
 # Script e fluxo de atendimento — NU.V.E.M Medicina
 
-Anexo para a Dr.IAgenda: Script ou fluxo de atendimento. Versão de 04/11/2026. Ordem da conversa da Secretária IA no WhatsApp, montada a partir da anamnese.
+Anexo para a Dr.IAgenda: Script ou fluxo de atendimento. Versão de 06/11/2026. Ordem da conversa da Secretária IA no WhatsApp, montada a partir da anamnese.
 
 > Rascunho montado a partir das respostas da anamnese. Precisa ser aprovado pela gestão antes do envio à Dr.IAgenda.
 
@@ -101,7 +101,7 @@ Anexo para a Dr.IAgenda: Script ou fluxo de atendimento. Versão de 04/11/2026. 
 - Lista de medicamentos em uso
 - ___ (documento com foto e carteirinha? confirmar)
 
-**Preparo pré e pós:** Os preparos padronizados dos 7 exames estão no PDF da clínica (anexo "Orientações de preparo"). A IA deve enviar o preparo correspondente ao exame após confirmar o agendamento e, em dúvidas sobre suspensão de medicamentos, orientar que o paciente fale com o médico solicitante ou com a clínica, nunca suspender por conta própria.
+**Preparo pré e pós:** Os preparos padronizados dos exames estão no PDF da clínica (anexo "Orientações de preparo"). A IA deve enviar o preparo correspondente ao exame após confirmar o agendamento e, em dúvidas sobre suspensão de medicamentos, orientar que o paciente fale com o médico solicitante ou com a clínica, nunca suspender por conta própria.
 
 ## 6. Cancelamento, remarcação e atrasos
 

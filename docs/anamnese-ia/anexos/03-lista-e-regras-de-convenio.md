@@ -1,8 +1,25 @@
 # Lista e regras de convênio — NU.V.E.M Medicina
 
-Anexo para a Dr.IAgenda: Lista e regras de convênio. Versão de 04/11/2026. Convênios aceitos, regras de autorização e exceções por profissional.
+Anexo para a Dr.IAgenda: Lista e regras de convênio. Versão de 06/11/2026. Convênios aceitos por profissional, regras de autorização e o que fazer quando o plano não é atendido.
 
-## Convênios aceitos
+## Convênios por profissional
+
+| Profissional | Especialidade | Convênios aceitos |
+| --- | --- | --- |
+| Dra. Vera Ângelo | Gastroenterologia e Motilidade | [a preencher pelo profissional] |
+| Dra. Eliane Basques | Cirurgia Pediátrica | [a preencher pelo profissional] |
+| Dra. Amanda Araújo | Gastroenterologia e Motilidade Digestiva | [a preencher pelo profissional] |
+| Dra. Anna Karoline | Fisioterapia Pélvica | [a preencher pelo profissional] |
+| Dra. Adrianna Buzatti Viana | Cirurgia Pediátrica | [a preencher pelo profissional] |
+| Dra. Claudia Utsch | Gastroenterologia | [a preencher pelo profissional] |
+| Dra. Camilla Mendes | Clínica Médica | [a preencher pelo profissional] |
+| Dra. Danielle Martins | Gastroenterologia e Motilidade | [a preencher pelo profissional] |
+| Dr. Gabriel de Souza Fernandes Filho | Gastroenterologia | [a preencher pelo profissional] |
+| Dra. Luiza Auarek | Nefrologia | [a preencher pelo profissional] |
+| Dra. Mariana Fernandes | Pediatria | [a preencher pelo profissional] |
+| Dra. Raissa Dalat | Cirurgia Pediátrica | [a preencher pelo profissional] |
+
+## Convênios da clínica
 
 **Aceita convênio? Se sim, quais?:**
 
@@ -25,10 +42,6 @@ Anexo para a Dr.IAgenda: Lista e regras de convênio. Versão de 04/11/2026. Con
 - ___ (documento com foto e carteirinha? confirmar)
 
 **Recibo e reembolso:** Atendimento particular com emissão de recibo para reembolso. ___ (prazo e documentos)
-
-## Exceções por profissional
-
-Será preenchido com as respostas de cada profissional.
 
 ## Regra para a IA
 

@@ -1,8 +1,8 @@
 # Relatório de validação — preparos e dados da clínica
 
-Gerado em 04/11/2026 junto com `clinica-nuvem-dr-iagenda.pdf`. Fonte principal dos preparos: PDFs oficiais `public/pdfs/preparo-*-v1.pdf`. Comparados com: página `/exames/preparos`, `src/lib/content/exames-detail.ts` e chatbot Nuvete (`src/lib/nuvete-data.ts`).
+Gerado em 06/11/2026 junto com `clinica-nuvem-dr-iagenda.pdf`. Fonte principal dos preparos: PDFs oficiais `public/pdfs/preparo-*-v1.pdf`. Comparados com: página `/exames/preparos`, `src/lib/content/exames-detail.ts` e chatbot Nuvete (`src/lib/nuvete-data.ts`).
 
-## 1. Itens [VALIDAR COM A EQUIPE MÉDICA] (34)
+## 1. Itens [VALIDAR COM A EQUIPE MÉDICA] (29)
 
 ### Manometria Esofágica de Alta Resolução
 
@@ -70,19 +70,6 @@ Gerado em 04/11/2026 junto com `clinica-nuvem-dr-iagenda.pdf`. Fonte principal d
   - Definir se acompanhante é necessário (exame de 2 a 3 horas).
 - [ ] **Após o exame:** Não informado no preparo oficial (sem orientação para depois do exame).
   - Confirmar se pode voltar à alimentação e aos medicamentos normalmente.
-
-### Halimetria e Sialometria
-
-- [ ] **Antes do exame:** 12 horas antes: não fumar.
-  - Contradição no PDF oficial: "12 horas antes: não fumar" e, na tabela, "não fumar nas 2 h anteriores". O site e o chatbot dizem 2 horas. Definir.
-- [ ] **Jejum:** O quadro-resumo do PDF indica "Jejum: 3 horas".
-  - Contradição: o PDF indica jejum de 3 horas e, ao mesmo tempo, refeição leve obrigatória 2 horas antes. O site e o chatbot dizem "não comer nas 3 horas anteriores". Definir a regra de alimentação.
-- [ ] **No dia do exame:** Escove os dentes imediatamente após a refeição, usando sua pasta habitual.
-  - O site e o chatbot dizem "não escovar os dentes nas 2 horas anteriores". Confirmar.
-- [ ] **No dia do exame:** Chegada antecipada e acompanhante: Não informado no preparo oficial (sem orientação).
-  - Definir antecedência de chegada e se acompanhante é necessário.
-- [ ] **Após o exame:** Não informado no preparo oficial (sem orientação para depois do exame).
-  - Confirmar se há orientação pós-exame.
 
 ### Avaliação Pélvica com Biofeedback Eletromiográfico
 
