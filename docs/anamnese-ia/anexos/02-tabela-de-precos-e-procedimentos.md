@@ -1,6 +1,6 @@
 # Tabela de preços e procedimentos — NU.V.E.M Medicina
 
-Anexo para a Dr.IAgenda: Tabela de preços e procedimentos. Versão de 04/11/2026. Exames da clínica, consultas de cada profissional e regras de pagamento.
+Anexo para a Dr.IAgenda: Tabela de preços e procedimentos. Versão de 06/11/2026. Exames da clínica, consultas de cada profissional e regras de pagamento.
 
 ## Exames e procedimentos realizados na clínica
 
@@ -11,7 +11,6 @@ Anexo para a Dr.IAgenda: Tabela de preços e procedimentos. Versão de 04/11/202
 - pHmetria e impedanciometria esofágica — instalação de 15 a 20 min e monitoramento de 24 h; pedido médico obrigatório; valor: ___; IA pode agendar? ___
 - Teste respiratório para H. pylori — 30 a 40 min; pedido médico obrigatório; valor: ___; IA pode agendar? ___
 - Teste respiratório para SIBO / IMO / lactose / frutose (H₂, CH₄, H₂S) — 2 a 3 h; pedido médico obrigatório; valor: ___; IA pode agendar? ___
-- Halimetria e sialometria — 30 a 40 min; pedido médico obrigatório; valor: ___; IA pode agendar? ___
 - Avaliação pélvica com biofeedback eletromiográfico — 40 a 60 min; pedido médico obrigatório; realizada pela fisioterapeuta; valor: ___; IA pode agendar? ___
 - Consultas médicas — ver Parte B (cada profissional).
 

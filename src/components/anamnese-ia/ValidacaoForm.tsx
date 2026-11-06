@@ -128,7 +128,7 @@ export function ValidacaoForm() {
         <p className="mb-2 text-[0.72rem] font-semibold uppercase tracking-[.14em] text-gold-dark">Equipe médica · Preparos de exames</p>
         <h1 className="mb-3 font-serif text-[2rem] font-medium leading-tight text-teal sm:text-[2.5rem]">Validação dos <em>preparos</em></h1>
         <p className="mb-4 text-[0.95rem] leading-relaxed text-steel/65">
-          Os preparos dos 7 exames foram padronizados a partir dos PDFs oficiais da clínica, sem orientação nova. Nos {pendencias.length} pontos abaixo há divergência entre o PDF, o site e a Nuvete (chat do site), lacuna ou instrução ambígua. No final, há {PREPAROS_NOVOS.length} exames novos que ainda não têm preparo escrito. A decisão de vocês vale para a IA do WhatsApp, a Nuvete, o site e os PDFs de preparo.
+          Os preparos dos {PREPAROS.length} exames foram padronizados a partir dos PDFs oficiais da clínica, sem orientação nova. Nos {pendencias.length} pontos abaixo há divergência entre o PDF, o site e a Nuvete (chat do site), lacuna ou instrução ambígua. No final, há {PREPAROS_NOVOS.length} exames novos que ainda não têm preparo escrito. A decisão de vocês vale para a IA do WhatsApp, a Nuvete, o site e os PDFs de preparo.
         </p>
         <div className="mb-8 flex gap-2.5 rounded-xl border border-teal/15 bg-mist/30 p-3.5 text-[0.8rem] leading-snug text-steel/70">
           <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-teal" />

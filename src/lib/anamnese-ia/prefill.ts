@@ -39,13 +39,12 @@ export const PREFILL_CLINICA: Values = {
     'pHmetria e impedanciometria esofágica — instalação de 15 a 20 min e monitoramento de 24 h; pedido médico obrigatório; valor: ___; IA pode agendar? ___',
     'Teste respiratório para H. pylori — 30 a 40 min; pedido médico obrigatório; valor: ___; IA pode agendar? ___',
     'Teste respiratório para SIBO / IMO / lactose / frutose (H₂, CH₄, H₂S) — 2 a 3 h; pedido médico obrigatório; valor: ___; IA pode agendar? ___',
-    'Halimetria e sialometria — 30 a 40 min; pedido médico obrigatório; valor: ___; IA pode agendar? ___',
     'Avaliação pélvica com biofeedback eletromiográfico — 40 a 60 min; pedido médico obrigatório; realizada pela fisioterapeuta; valor: ___; IA pode agendar? ___',
     'Consultas médicas — ver Parte B (cada profissional).',
   ].join('\n'),
   diferenciais: 'Certificação ISO 9001 de gestão da qualidade. Equipe multidisciplinar (gastroenterologia, motilidade digestiva, fisioterapia pélvica, pediatria, cirurgia pediátrica, nefrologia e clínica médica). Exames funcionais digestivos realizados na própria clínica. NU.V.E.M Ensino: cursos para profissionais de saúde.',
   historia: 'Clínica fundada em 2018 em Belo Horizonte pelas sócias Dra. Vera Ângelo e Dra. Eliane Basques. ___ (completar)',
-  prazosLaudos: 'Manometria: até 3 dias úteis\npHmetria: alguns dias após a devolução do equipamento\nTestes respiratórios: até 3 dias úteis\nHalimetria e sialometria: até 2 dias úteis',
+  prazosLaudos: 'Manometria: até 3 dias úteis\npHmetria: alguns dias após a devolução do equipamento\nTestes respiratórios: até 3 dias úteis',
 
   convenios: 'Sim: Unimed BH, Amil, Porto Seguro Saúde, Hapvida, Plamed e Samp.\nTambém atendimento particular com recibo para reembolso (verificar com o plano).',
   regrasConvenio: 'Exames: levar a guia ou o número de autorização do convênio no dia; o paciente deve verificar a cobertura e a necessidade de autorização prévia com o convênio.\n___ (coparticipação, coleta de carteirinha, procedimentos não cobertos, o que fazer se o convênio não estiver na lista)',
@@ -55,7 +54,7 @@ export const PREFILL_CLINICA: Values = {
   posConfirmacao: 'Enviar o preparo do exame agendado e o endereço da clínica. ___ (completar)',
   triagemGeral: 'Consulta ou exame? Qual exame/especialidade?\nTem pedido médico? (necessário para a maioria dos exames; consulta não precisa de encaminhamento)\nConvênio ou particular? Qual convênio?\nIdade do paciente (para direcionar pediatria)\n___ (completar)',
 
-  preparo: 'Os preparos padronizados dos 7 exames estão no PDF da clínica (anexo "Orientações de preparo"). A IA deve enviar o preparo correspondente ao exame após confirmar o agendamento e, em dúvidas sobre suspensão de medicamentos, orientar que o paciente fale com o médico solicitante ou com a clínica, nunca suspender por conta própria.',
+  preparo: 'Os preparos padronizados dos exames estão no PDF da clínica (anexo "Orientações de preparo"). A IA deve enviar o preparo correspondente ao exame após confirmar o agendamento e, em dúvidas sobre suspensão de medicamentos, orientar que o paciente fale com o médico solicitante ou com a clínica, nunca suspender por conta própria.',
 
   qualificaAgenda: 'Qualificar e agendar',
   tomDeVoz: 'Acolhedor, claro e objetivo. Linguagem simples, sem termos técnicos sem explicação. Trata o paciente por "você". ___ (emojis? assinatura?)',

@@ -35,7 +35,14 @@ export const CONFORME = 'Suspender ou manter medicamentos sempre conforme orient
 const CONTATO_PADRAO: Item = { t: 'Em caso de dúvida, entre em contato com a clínica antes do exame: (31) 2537-3131 ou WhatsApp (31) 99726-1029.' }
 const LACUNA = (o: string) => `Não informado no preparo oficial (${o}).`
 
-export const PREPAROS: Preparo[] = [
+/**
+ * Exames que a clínica não realiza (decisão da gestão em 06/11/2026). Ficam
+ * registrados abaixo para histórico, mas saem dos documentos, do texto da IA
+ * e da página de validação.
+ */
+export const EXAMES_FORA = new Set(['halimetria-sialometria'])
+
+const PREPAROS_TODOS: Preparo[] = [
   // ── 1. Manometria esofágica ────────────────────────────────────────────────
   {
     slug: 'manometria-esofagica',
@@ -273,6 +280,8 @@ export const PREPAROS: Preparo[] = [
     fonte: 'public/pdfs/preparo-avaliacao-pelvica-v1.pdf',
   },
 ]
+
+export const PREPAROS: Preparo[] = PREPAROS_TODOS.filter(p => !EXAMES_FORA.has(p.slug))
 
 /**
  * Divergências que não cabem num item do preparo (afetam o site/chatbot

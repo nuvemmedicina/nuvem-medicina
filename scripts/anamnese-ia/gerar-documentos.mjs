@@ -67,10 +67,13 @@ let PREPAROS = PREPAROS_BASE
 let validacao = null           // { validador, aplicadas, total }
 const lidos = []               // resumo do que foi lido, para o console e o relatório
 
-function lerRespostas(alvo) {
-  const arquivos = statSync(alvo).isDirectory()
+const medicoEm = new Map()     // slug -> momento da versão usada (vale a mais recente)
+const ajustes = []             // anamnese-ia/ajustes: aplicados por último
+
+function lerRespostas(alvos) {
+  const arquivos = alvos.flatMap(alvo => statSync(alvo).isDirectory()
     ? readdirSync(alvo).filter(f => /\.(json|pdf)$/i.test(f)).map(f => path.join(alvo, f)).sort()
-    : [alvo]
+    : [alvo])
   let decisoes = []
   let novos = {}   // respostas dos preparos novos, no formato novo:<slug>:<campo> -> { texto }
   for (const arq of arquivos) {
@@ -93,9 +96,24 @@ function lerRespostas(alvo) {
         clinica = { ...clinica, ...d.valores }
         lidos.push(`${nome}: Parte A (clínica)`)
         break
-      case 'anamnese-ia/medico':
-        medicosPorSlug.set(d.slug || `extra-${medicosPorSlug.size}`, d.valores)
-        lidos.push(`${nome}: ${d.nome || d.slug}`)
+      case 'anamnese-ia/medico': {
+        // O mesmo profissional pode chegar por PDF, por JSON e pelo link. Vale a versão
+        // enviada; entre as não enviadas, a mais completa; empate, a mais recente.
+        // (Abrir o link de novo salva só os dados do site e não pode apagar respostas.)
+        const slug = d.slug || `extra-${medicosPorSlug.size}`
+        const preenchidos = CAMPOS_MEDICO.flatMap(s => s.fields).filter(f => String(d.valores?.[f.id] ?? '').trim()).length
+        const nota = [d.finalizadoEm ? 1 : 0, preenchidos, d.exportadoEm ?? '']
+        const atual = medicoEm.get(slug)
+        const melhor = (a, b) => a[0] !== b[0] ? a[0] > b[0] : a[1] !== b[1] ? a[1] > b[1] : a[2] >= b[2]
+        if (atual && !melhor(nota, atual)) { lidos.push(`${nome}: ${d.nome || slug} (ignorado: há versão mais completa)`); break }
+        medicosPorSlug.set(slug, d.valores)
+        medicoEm.set(slug, nota)
+        lidos.push(`${nome}: ${d.nome || slug}${d.finalizadoEm ? ' (enviado)' : d.origem ? '' : ' (em andamento)'}`)
+        break
+      }
+      case 'anamnese-ia/ajustes':
+        ajustes.push(d)
+        lidos.push(`${nome}: ajustes da gestão`)
         break
       case 'anamnese-ia/validacao':
         decisoes = decisoes.concat(d.itens)
@@ -110,6 +128,19 @@ function lerRespostas(alvo) {
         console.warn(`Ignorado (formato desconhecido): ${nome}`)
     }
   }
+  // Ajustes da gestão por último: sobrescrevem só os campos que trazem
+  for (const a of ajustes) {
+    clinica = { ...clinica, ...(a.clinica ?? {}) }
+    // Decisões da gestão sobre os preparos entram antes das da validação médica:
+    // se a equipe médica responder o mesmo ponto, vale a resposta dela.
+    if (a.validacao?.length) {
+      decisoes = [...a.validacao, ...decisoes]
+      if (!validacao) validacao = { validador: 'gestão' }
+    }
+    for (const [slug, campos] of Object.entries(a.medicos ?? {})) {
+      if (medicosPorSlug.has(slug)) medicosPorSlug.set(slug, { ...medicosPorSlug.get(slug), ...campos })
+    }
+  }
   if (decisoes.length) {
     const r = aplicarValidacao(decisoes)
     PREPAROS = r.preparos
@@ -122,7 +153,9 @@ function lerRespostas(alvo) {
   }
 }
 
-if (iResp > -1) lerRespostas(process.argv[iResp + 1])
+// --respostas pode aparecer várias vezes (ex.: pasta do servidor + pasta com PDFs transcritos e ajustes)
+const alvosResp = process.argv.flatMap((a, i) => a === '--respostas' ? [process.argv[i + 1]] : [])
+if (alvosResp.length) lerRespostas(alvosResp)
 const medicos = [...medicosPorSlug.values()]
 const temRespostas = lidos.length > 0
 const origemDados = temRespostas
@@ -576,7 +609,6 @@ function definirAnexos() {
   const linhas = ids => profs.map(({ nome, m }) => [nome, ...ids.map(id => vM(m, id))])
   const soCom = (id, cols) => profs.filter(({ m }) => vM(m, id)).map(({ nome, m }) => [nome, ...cols.map(c => vM(m, c))])
 
-  const excecoesConv = soCom('convenios', ['convenios'])
   const gatilhosMed  = soCom('gatilhos', ['gatilhos'])
 
   return [
@@ -604,13 +636,11 @@ function definirAnexos() {
     {
       arquivo: '03-lista-e-regras-de-convenio', tipo: 'Lista e regras de convênio',
       titulo: 'Lista e regras de convênio',
-      sub: 'Convênios aceitos, regras de autorização e exceções por profissional.',
+      sub: 'Convênios aceitos por profissional, regras de autorização e o que fazer quando o plano não é atendido.',
       blocos: [
-        { titulo: 'Convênios aceitos', campos: ['convenios'] },
+        { titulo: 'Convênios por profissional', extra: tabela({ cols: ['Profissional', 'Especialidade', 'Convênios aceitos'], linhas: linhas(['especialidade', 'convenios']) }) },
+        { titulo: 'Convênios da clínica', campos: ['convenios'] },
         { titulo: 'Regras', campos: ['regrasConvenio', 'documentosLevar', 'reembolso'] },
-        { titulo: 'Exceções por profissional', extra: excecoesConv.length
-          ? tabela({ cols: ['Profissional', 'Convênios (diferentes da lista da clínica)'], linhas: excecoesConv })
-          : texto(temRespostas ? 'Nenhum profissional informou convênios diferentes da lista da clínica.' : 'Será preenchido com as respostas de cada profissional.') },
         { titulo: 'Regra para a IA', extra: texto('A IA não confirma cobertura de procedimento: informa a lista de convênios e, se o plano do paciente não estiver na lista ou houver dúvida de cobertura, transfere para a equipe.') },
       ],
     },
