@@ -65,7 +65,7 @@ for (const m of MEDICOS_SITE) {
   const pdf = versoes.find(d => d.__fonte === 'arquivo')
   if (servidor?.finalizadoEm) grupos.enviado.push(`${m.nome} (${obrig(TODOS_CAMPOS_MEDICO, servidor.valores)})`)
   else if (pdf) grupos.pdf.push(m.nome)
-  else if (dispensados.has(m.slug) && !servidor) grupos.dispensado.push(m.nome)
+  else if (dispensados.has(m.slug)) grupos.dispensado.push(m.nome)
   else if (servidor) grupos.andamento.push(`${m.nome} (${obrig(TODOS_CAMPOS_MEDICO, servidor.valores)})`)
   else grupos.falta.push(m.nome)
 }
