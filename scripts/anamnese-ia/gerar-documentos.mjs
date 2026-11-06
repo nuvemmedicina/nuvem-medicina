@@ -34,7 +34,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url'
 
 import { SECOES_CLINICA, CAMPOS_MEDICO } from '@/lib/anamnese-ia/schema'
 import { PREFILL_CLINICA, MEDICOS_SITE, prefillMedico } from '@/lib/anamnese-ia/prefill'
-import { PREPAROS as PREPAROS_BASE, VALIDAR, CONFORME, DIVERGENCIAS_GERAIS, aplicarValidacao } from '@/lib/anamnese-ia/preparos'
+import { PREPAROS as PREPAROS_BASE, VALIDAR, CONFORME, DIVERGENCIAS_GERAIS, aplicarValidacao, preparosDosNovos, chaveNovo } from '@/lib/anamnese-ia/preparos'
 import { CONTATO } from '@/lib/data'
 
 const ROOT = path.resolve(fileURLToPath(new URL('../../', import.meta.url)))
@@ -72,6 +72,7 @@ function lerRespostas(alvo) {
     ? readdirSync(alvo).filter(f => /\.(json|pdf)$/i.test(f)).map(f => path.join(alvo, f)).sort()
     : [alvo]
   let decisoes = []
+  let novos = {}   // respostas dos preparos novos, no formato novo:<slug>:<campo> -> { texto }
   for (const arq of arquivos) {
     let d
     if (/\.pdf$/i.test(arq)) {
@@ -98,6 +99,10 @@ function lerRespostas(alvo) {
         break
       case 'anamnese-ia/validacao':
         decisoes = decisoes.concat(d.itens)
+        for (const pn of d.preparosNovos ?? []) {
+          if (pn.modo) novos[chaveNovo(pn.slug, 'modo')] = { texto: pn.modo }
+          for (const [k, v] of Object.entries(pn.campos ?? {})) novos[chaveNovo(pn.slug, k)] = { texto: v }
+        }
         validacao = { validador: d.validador }
         lidos.push(`${nome}: validação dos preparos (${d.resolvidos}/${d.total}, por ${d.validador || 'não informado'})`)
         break
@@ -109,6 +114,11 @@ function lerRespostas(alvo) {
     const r = aplicarValidacao(decisoes)
     PREPAROS = r.preparos
     validacao.aplicadas = r.aplicadas
+  }
+  const extras = preparosDosNovos(novos)
+  if (extras.length) {
+    PREPAROS = [...PREPAROS, ...extras]
+    lidos.push(`Preparos novos incluídos: ${extras.map(p => p.nome).join(', ')}`)
   }
 }
 
