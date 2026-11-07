@@ -3,7 +3,8 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import Image from 'next/image'
 import { Download, FileText, RotateCcw, ShieldCheck, Check } from 'lucide-react'
-import { listarPendencias, PREPAROS, VALIDAR, PREPAROS_NOVOS, CAMPOS_NOVO, chaveNovo, novoCompleto } from '@/lib/anamnese-ia/preparos'
+import { listarPendencias, PREPAROS, VALIDAR, PREPAROS_NOVOS, CAMPOS_NOVO, chaveNovo, novoCompleto, PENDENTE_NA_PROPOSTA } from '@/lib/anamnese-ia/preparos'
+import { PROPOSTAS, PROPOSTA_NOVOS, chaveProposta } from '@/lib/anamnese-ia/propostas'
 import { Barra } from '@/components/anamnese-ia/AnamneseForm'
 import { useServidor, rotuloStatus, useHoje } from '@/components/anamnese-ia/useServidor'
 
@@ -14,6 +15,10 @@ import { useServidor, rotuloStatus, useHoje } from '@/components/anamnese-ia/use
  * Mais de uma pessoa pode usar o link: cada resposta guarda quem ("por") e
  * quando ("em"), e o servidor junta item a item (lib/anamnese-ia/mesclar.ts).
  * Rascunho no navegador; exporta JSON e PDF (impressão).
+ *
+ * Propostas (lib/anamnese-ia/propostas.ts): ao aprovar ou corrigir, a resposta
+ * do item original passa a ser "corrigir" com o texto final, e a decisão sobre
+ * a proposta fica em proposta:<id>.
  */
 
 const DECISOES = [
@@ -58,11 +63,33 @@ export function ValidacaoForm() {
   }, [estado, carregado])
 
   const agora = () => new Date().toISOString()
-  const setResp = (id: string, patch: Resposta) =>
+  const setResps = (patches: Record<string, Resposta>) =>
     setEstado(e => {
       const t = agora()
-      return { ...e, atualizadoEm: t, respostas: { ...e.respostas, [id]: { ...e.respostas[id], ...patch, em: t, por: e.validador || undefined } } }
+      const respostas = { ...e.respostas }
+      for (const [id, patch] of Object.entries(patches)) respostas[id] = { ...e.respostas[id], ...patch, em: t, por: e.validador || undefined }
+      return { ...e, atualizadoEm: t, respostas }
     })
+  const setResp = (id: string, patch: Resposta) => setResps({ [id]: patch })
+
+  // Proposta: aprovar grava o texto proposto no item; corrigir grava o texto escrito
+  const decidirProposta = (id: string, texto: string, decisao: 'manter' | 'corrigir', orientacao?: string) => {
+    const final = decisao === 'manter' ? texto : (orientacao ?? '')
+    setResps({
+      [chaveProposta(id)]: { decisao, orientacao: decisao === 'corrigir' ? final : undefined },
+      [id]: { decisao: 'corrigir', orientacao: final, comentario: decisao === 'manter' ? 'Proposta aprovada' : 'Proposta corrigida' },
+    })
+  }
+  const usarPropostaNovo = (slug: string) => {
+    const base = PROPOSTA_NOVOS[slug]
+    if (!base) return
+    const patches: Record<string, Resposta> = {}
+    for (const [campo, texto] of Object.entries(base.campos)) {
+      const id = chaveNovo(slug, campo)
+      if (texto && !estado.respostas[id]?.texto?.trim()) patches[id] = { texto }
+    }
+    if (Object.keys(patches).length) setResps(patches)
+  }
 
   // Servidor (Sanity, via /api/anamnese-ia) — só quando o link tem ?c=código
   const aoCarregarRemoto = useCallback((d: Estado) => { if (d?.respostas) setEstado(d) }, [])
@@ -77,8 +104,9 @@ export function ValidacaoForm() {
 
   const okItens = pendencias.filter(p => resolvida(estado.respostas[p.id])).length
   const okNovos = PREPAROS_NOVOS.filter(p => novoCompleto(p, estado.respostas)).length
-  const ok = okItens + okNovos
-  const total = pendencias.length + PREPAROS_NOVOS.length
+  const okProps = PROPOSTAS.filter(x => resolvida(estado.respostas[chaveProposta(x.id)])).length
+  const ok = okItens + okNovos + okProps
+  const total = pendencias.length + PREPAROS_NOVOS.length + PROPOSTAS.length
   const novosExport = () => PREPAROS_NOVOS.map(p => ({
     ...p,
     modo: estado.respostas[chaveNovo(p.slug, 'modo')]?.texto ?? null,
@@ -94,6 +122,7 @@ export function ValidacaoForm() {
       resolvidos: okItens, total: pendencias.length,
       itens: pendencias.map(p => ({ ...p, ...estado.respostas[p.id] })),
       preparosNovos: novosExport(),
+      propostas: PROPOSTAS.map(x => ({ ...x, resposta: estado.respostas[chaveProposta(x.id)] ?? null })),
     }
     const url = URL.createObjectURL(new Blob([JSON.stringify(dados, null, 2)], { type: 'application/json;charset=utf-8' }))
     const a = document.createElement('a')
@@ -128,7 +157,7 @@ export function ValidacaoForm() {
         <p className="mb-2 text-[0.72rem] font-semibold uppercase tracking-[.14em] text-gold-dark">Equipe médica · Preparos de exames</p>
         <h1 className="mb-3 font-serif text-[2rem] font-medium leading-tight text-teal sm:text-[2.5rem]">Validação dos <em>preparos</em></h1>
         <p className="mb-4 text-[0.95rem] leading-relaxed text-steel/65">
-          Os preparos dos {PREPAROS.length} exames foram padronizados a partir dos PDFs oficiais da clínica, sem orientação nova. Nos {pendencias.length} pontos abaixo há divergência entre o PDF, o site e a Nuvete (chat do site), lacuna ou instrução ambígua. No final, há {PREPAROS_NOVOS.length} exames novos que ainda não têm preparo escrito. A decisão de vocês vale para a IA do WhatsApp, a Nuvete, o site e os PDFs de preparo.
+          Os preparos dos {PREPAROS.length} exames foram padronizados a partir dos PDFs oficiais da clínica, sem orientação nova. Nos {pendencias.length} pontos abaixo há divergência entre o PDF, o site e a Nuvete (chat do site), lacuna ou instrução ambígua. No final, há {PREPAROS_NOVOS.length} exames novos que ainda não têm preparo escrito. No início, há {PROPOSTAS.length} propostas para os pontos que ficaram sem orientação. A decisão de vocês vale para a IA do WhatsApp, a Nuvete, o site e os PDFs de preparo.
         </p>
         <div className="mb-8 flex gap-2.5 rounded-xl border border-teal/15 bg-mist/30 p-3.5 text-[0.8rem] leading-snug text-steel/70">
           <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-teal" />
@@ -141,6 +170,59 @@ export function ValidacaoForm() {
           <input id="validador" className={input} value={estado.validador} onChange={e => setEstado(s => ({ ...s, atualizadoEm: agora(), validador: e.target.value }))} />
         </section>
 
+        <section id="propostas" className="mb-10 scroll-mt-24">
+          <div className="mb-3 flex items-end justify-between gap-3">
+            <h2 className="text-[1.05rem] font-semibold text-teal">Propostas para aprovação</h2>
+            <span className={`shrink-0 text-[0.72rem] tabular-nums ${okProps === PROPOSTAS.length ? 'text-teal' : 'text-steel/45'}`}>{okProps}/{PROPOSTAS.length}</span>
+          </div>
+          <p className="mb-4 text-[0.86rem] leading-relaxed text-steel/60">Estes {PROPOSTAS.length} pontos ficaram sem orientação: foram mantidos como &quot;não informado&quot; ou marcados para corrigir sem texto. Para cada um há uma proposta baseada no site da clínica, nas respostas desta validação e no que outros serviços publicam. <strong>Aprove</strong> ou <strong>corrija</strong> escrevendo a orientação. A proposta só vale depois de aprovada. O trânsito colônico tem uma proposta própria em &quot;Preparos novos&quot;, no final da página.</p>
+          <div className="space-y-4">
+            {PROPOSTAS.map(x => {
+              const r = estado.respostas[chaveProposta(x.id)] ?? {}
+              const pronto = resolvida(r)
+              return (
+                <article key={x.id} className={`rounded-2xl border bg-white p-5 shadow-sm transition sm:p-6 ${pronto ? 'border-teal/30' : 'border-gold/40'}`}>
+                  <div className="mb-2 flex items-start justify-between gap-2">
+                    <div>
+                      <p className="text-[0.7rem] font-bold uppercase tracking-[.1em] text-teal/70">{x.exame}</p>
+                      <h3 className="text-[1rem] font-semibold text-steel">{x.ponto}</h3>
+                    </div>
+                    {pronto && <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-teal/8 px-2 py-0.5 text-[0.7rem] font-medium text-teal"><Check className="h-3 w-3" />{r.decisao === 'manter' ? 'aprovada' : 'corrigida'}</span>}
+                  </div>
+                  <p className="mb-3 text-[0.76rem] text-steel/50">Responsável: {x.responsavel}</p>
+                  <p className="mb-1 text-[0.72rem] font-semibold text-[#7a5200]">Hoje no preparo</p>
+                  <p className="mb-3 text-[0.88rem] leading-relaxed text-steel/75">{x.hoje}</p>
+                  <p className="mb-1 text-[0.72rem] font-semibold text-teal">Proposta</p>
+                  <div className="mb-3 rounded-xl border-l-4 border-teal bg-teal/5 px-3.5 py-2.5 text-[0.92rem] leading-relaxed text-steel">
+                    {x.proposta.split('\n').map((l, i) => <p key={i} className={i ? 'mt-1' : ''}>{l}</p>)}
+                  </div>
+                  <p className="mb-4 text-[0.8rem] leading-snug text-steel/55"><span className="font-semibold text-steel/70">Outras clínicas e referências:</span> {x.referencia}</p>
+                  <fieldset>
+                    <legend className="sr-only">Decisão sobre a proposta</legend>
+                    <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                      {([['manter', 'Aprovar a proposta'], ['corrigir', 'Corrigir']] as const).map(([v, label]) => (
+                        <label key={v} className={`flex cursor-pointer items-center gap-2 rounded-xl border px-3 py-2.5 text-[0.86rem] transition ${r.decisao === v ? 'border-teal bg-teal/5 font-medium text-teal' : 'border-teal/15 text-steel/70'}`}>
+                          <input type="radio" name={chaveProposta(x.id)} className="h-4 w-4 accent-[#00465F]" checked={r.decisao === v}
+                            onChange={() => decidirProposta(x.id, x.proposta, v, v === 'corrigir' ? (r.orientacao ?? x.proposta) : undefined)} />
+                          {label}
+                        </label>
+                      ))}
+                    </div>
+                  </fieldset>
+                  {r.decisao === 'corrigir' && (
+                    <div className="mt-3">
+                      <label htmlFor={`${x.id}-p`} className="mb-1.5 block text-[0.84rem] font-medium text-steel">Orientação correta<span className="ml-0.5 text-gold-dark">*</span></label>
+                      <p className="mb-1.5 text-[0.76rem] text-steel/50">O texto da proposta já está aqui: edite o que for preciso. Um item por linha.</p>
+                      <textarea id={`${x.id}-p`} rows={4} className={`${input} ${r.orientacao?.trim() ? '' : 'border-gold/60'}`} value={r.orientacao ?? ''} onChange={e => decidirProposta(x.id, x.proposta, 'corrigir', e.target.value)} />
+                    </div>
+                  )}
+                </article>
+              )
+            })}
+          </div>
+        </section>
+
+        <h2 className="mb-3 text-[0.72rem] font-semibold uppercase tracking-[.14em] text-steel/45">Pontos já respondidos (podem ser revistos)</h2>
         <div className="space-y-8">
           {grupos.map(({ p, itens }, gi) => {
             const feitos = itens.filter(x => resolvida(estado.respostas[x.id])).length
@@ -228,6 +310,16 @@ export function ValidacaoForm() {
                       </div>
                     </fieldset>
                   )}
+                  {mostrarCampos && PROPOSTA_NOVOS[p.slug] && (
+                    <div className="mb-4 rounded-xl border border-teal/15 bg-mist/30 p-3.5 text-[0.8rem] leading-snug text-steel/70">
+                      <p className="mb-2"><span className="font-semibold text-teal">Há uma proposta para este preparo.</span> {PROPOSTA_NOVOS[p.slug].referencia}</p>
+                      <p className="mb-3">O botão abaixo preenche os campos vazios com a proposta. Depois é só revisar e trocar cada <strong>[definir]</strong> e <strong>[confirmar]</strong> pela orientação da clínica.</p>
+                      <button type="button" onClick={() => usarPropostaNovo(p.slug)} className="inline-flex items-center gap-2 rounded-xl bg-teal px-4 py-2 text-[0.84rem] font-medium text-white hover:bg-teal/90">Usar a proposta como ponto de partida</button>
+                      {CAMPOS_NOVO.some(c => PENDENTE_NA_PROPOSTA.test(r[chaveNovo(p.slug, c.id)]?.texto ?? '')) && (
+                        <p className="mt-3 font-medium text-gold-dark">Ainda há [definir] ou [confirmar] nos campos abaixo: o preparo só conta como respondido depois de completar.</p>
+                      )}
+                    </div>
+                  )}
                   {mostrarCampos && CAMPOS_NOVO.map(c => {
                     const id = chaveNovo(p.slug, c.id)
                     const v = r[id]?.texto ?? ''
@@ -284,6 +376,19 @@ export function ValidacaoForm() {
           </div>
         </div>
         <p className="mb-4 text-[10pt]"><strong>Validado por:</strong> {estado.validador || '(não informado)'}</p>
+        <div className="mb-4">
+          <h2 className="mb-2 border-b border-teal/20 pb-1 text-[12pt] font-semibold text-teal">Propostas para aprovação</h2>
+          {PROPOSTAS.map(x => {
+            const r = estado.respostas[chaveProposta(x.id)] ?? {}
+            return (
+              <div key={x.id} className="mb-3 break-inside-avoid text-[9.5pt]">
+                <p className="text-[8.5pt] font-semibold text-steel/60">{x.exame} · {x.ponto}</p>
+                <p className="whitespace-pre-wrap">{x.proposta}</p>
+                <p className="mt-0.5"><strong>Decisão:</strong> {r.decisao === 'manter' ? 'Aprovada' : r.decisao === 'corrigir' ? `Corrigida: ${r.orientacao ?? ''}` : <span className="italic text-steel/40">{VALIDAR}</span>}</p>
+              </div>
+            )
+          })}
+        </div>
         {grupos.map(({ p, itens }) => (
           <div key={p.slug} className="mb-4">
             <h2 className="mb-2 border-b border-teal/20 pb-1 text-[12pt] font-semibold text-teal">{p.nome}</h2>

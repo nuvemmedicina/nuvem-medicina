@@ -146,7 +146,7 @@ function lerRespostas(alvos) {
     PREPAROS = r.preparos
     validacao.aplicadas = r.aplicadas
   }
-  const extras = preparosDosNovos(novos)
+  const extras = preparosDosNovos(novos, PREPAROS)
   if (extras.length) {
     PREPAROS = [...PREPAROS, ...extras]
     lidos.push(`Preparos novos incluídos: ${extras.map(p => p.nome).join(', ')}`)
@@ -604,6 +604,53 @@ function renderBlocos(blocos) {
   return { h, m }
 }
 
+/*
+ * Procedimentos de cada profissional com o valor da tabela de preços da
+ * clínica (campo valorProcedimento da Parte A). O que cada um realiza vem do
+ * formulário dele; o valor vem sempre da tabela, para não haver dois preços.
+ */
+const PROCEDIMENTOS = [
+  { nome: 'Manometria esofágica de alta resolução', tab: /^manometria esof[áa]gica de alta/i,
+    acha: l => /manometria esof/i.test(l) && (/alta resolu/i.test(l) || !/convencional/i.test(l)) },
+  { nome: 'Manometria esofágica convencional', tab: /^manometria esof[áa]gica convencional/i,
+    acha: l => /manometria esof/i.test(l) && (/convencional/i.test(l) || !/alta resolu/i.test(l)) },
+  { nome: 'pHmetria esofágica', tab: /^phmetria/i, acha: l => /(^|[^a-zà-ú])ph ?metria/i.test(l) },
+  { nome: 'ImpedanciopHmetria esofágica', tab: /^impedanciophmetria/i, acha: l => /imped[âa]n/i.test(l) },
+  { nome: 'Manometria anorretal', tab: /^manometria anorretal/i, acha: l => /anorretal/i.test(l) },
+  { nome: 'Trânsito colônico', tab: /^tr[âa]nsito/i, acha: l => /tr[âa]nsito col/i.test(l) },
+  { nome: 'Teste respiratório para SIBO', tab: /sibo:/i, acha: l => /sibo/i.test(l) && !/metano|imo/i.test(l) },
+  { nome: 'Teste respiratório para SIBO + IMO (metano)', tab: /sibo \+ imo/i, acha: l => /sibo/i.test(l) && /metano|imo/i.test(l) },
+  { nome: 'Teste respiratório para intolerância à lactose', tab: /lactose/i, acha: l => /lactose/i.test(l) },
+  { nome: 'Teste respiratório para intolerância à frutose', tab: /frutose/i, acha: l => /frutose/i.test(l) },
+  { nome: 'Teste respiratório para H. pylori', tab: /pylori/i, acha: l => /pylori/i.test(l) },
+  { nome: 'Avaliação pélvica com biofeedback', tab: /p[ée]lvica/i, acha: l => /p[ée]lvic|biofeedback/i.test(l) },
+]
+// "mil Reais", "600,00 REAIS", "R$600" → "R$ 1.000", "R$ 600"
+function reais(v) {
+  if (!v) return v
+  const n = /^\s*mil(\s|$)/i.test(v) ? 1000 : Number((v.match(/\d[\d.]*/)?.[0] ?? '').replace(/\./g, ''))
+  return n ? `R$ ${n.toLocaleString('pt-BR')}` : v
+}
+function precoTabela(re) {
+  const linha = txt(clinica.valorProcedimento).split('\n').find(l => re.test(l.trim()))
+  const v = linha?.split(':').slice(1).join(':').trim()
+  return v && !/_{3,}/.test(v) ? v : 'valor a confirmar com a gestão'
+}
+function procedimentosDe(m) {
+  const realiza = vM(m, 'realiza')
+  if (/transferir para a recep/i.test(realiza)) return [['Qualquer pergunta', 'Não informar; transferir para a recepção']]
+  const linhasR = realiza.split(/\n|·/).map(l => l.trim()).filter(Boolean)
+  // Os valores informados pelo profissional dizem qual manometria esofágica ele faz
+  const linhasV = vM(m, 'valoresOutros').split(/\n|·/).map(l => l.trim()).filter(Boolean)
+  const especifica = p => /manometria esof/i.test(p.nome) && linhasV.some(l => /manometria esof/i.test(l))
+  const achados = PROCEDIMENTOS.filter(p => linhasR.some(p.acha) && (!especifica(p) || linhasV.some(p.acha)))
+  const consulta = linhasR.some(l => /consulta/i.test(l)) || /\d/.test(vM(m, 'valorConsulta')) || !achados.length
+  return [
+    ...(consulta ? [['Consulta', reais(vM(m, 'valorConsulta')) || 'ver tabela de consultas']] : []),
+    ...achados.map(p => [p.nome, precoTabela(p.tab)]),
+  ]
+}
+
 function definirAnexos() {
   const profs = medicos.map(m => ({ nome: vM(m, 'nome') || 'Profissional', m }))
   const linhas = ids => profs.map(({ nome, m }) => [nome, ...ids.map(id => vM(m, id))])
@@ -627,8 +674,15 @@ function definirAnexos() {
       sub: 'Exames da clínica, consultas de cada profissional e regras de pagamento.',
       blocos: [
         { titulo: 'Exames e procedimentos realizados na clínica', campos: ['examesOferecidos', 'valorProcedimento'] },
-        { titulo: 'Consultas por profissional', extra: tabela({ cols: ['Profissional', 'Especialidade', 'Duração', 'Consulta particular', 'Retorno', 'Teleconsulta'], linhas: linhas(['especialidade', 'duracao', 'valorConsulta', 'retorno', 'teleconsulta']) }) },
-        { titulo: 'Procedimentos próprios dos profissionais', extra: tabela({ cols: ['Profissional', 'O que realiza', 'Valores'], linhas: linhas(['realiza', 'valoresOutros']) }) },
+        { titulo: 'Consultas por profissional', extra: tabela({ cols: ['Profissional', 'Especialidade', 'Duração', 'Consulta particular', 'Retorno', 'Teleconsulta'], linhas: linhas(['especialidade', 'duracao', 'valorConsulta', 'retorno', 'teleconsulta']).map(l => (l[3] = reais(l[3]), l)) }) },
+        { titulo: 'O que cada profissional realiza e quanto custa', extra: (() => {
+          const t = tabela({ cols: ['Profissional', 'Consulta ou exame', 'Valor'], linhas: profs.map(({ nome, m }) => {
+            const p = procedimentosDe(m)
+            return [nome, p.map(x => x[0]).join('\n'), p.map(x => x[1]).join('\n')]
+          }) })
+          const nota = 'Valores dos exames conforme a tabela de preços da clínica (acima). Consultas: valor informado por cada profissional. O que cada um realiza vem do formulário do profissional.'
+          return { html: `<div style="break-inside:avoid"><p>${esc(nota)}</p>${t.html}</div>`, md: `${nota}\n\n${t.md}` }
+        })() },
         { titulo: 'Pagamento', campos: ['cobraAntecipado', 'dinamicaPagamento', 'metodos', 'comoAntecipado', 'parcelamento', 'reembolso'] },
         { titulo: 'Regra para a IA', extra: texto('A IA só informa valores que a clínica autorizou (indicado em cada exame e procedimento). Descontos e negociação de valores são sempre transferidos para a equipe.') },
       ],
