@@ -413,17 +413,26 @@ export function novoCompleto(p: PreparoNovo, r: RespNovo) {
   const modo = r[chaveNovo(p.slug, 'modo')]?.texto
   if (p.mesmoQue && modo === 'mesmo') return true
   if (p.mesmoQue && modo !== 'diferente') return false
-  return CAMPOS_NOVO.filter(c => c.obrigatorio).every(c => !!r[chaveNovo(p.slug, c.id)]?.texto?.trim())
+  const texto = (id: string) => r[chaveNovo(p.slug, id)]?.texto?.trim() ?? ''
+  // Proposta usada como ponto de partida: só conta quando não sobra nenhum [definir]/[confirmar]
+  if (CAMPOS_NOVO.some(c => PENDENTE_NA_PROPOSTA.test(texto(c.id)))) return false
+  return CAMPOS_NOVO.filter(c => c.obrigatorio).every(c => !!texto(c.id))
 }
 
-/** Converte as respostas dos preparos novos em Preparo (para o PDF e o Markdown). */
-export function preparosDosNovos(r: RespNovo): Preparo[] {
+/** Marcas deixadas nas propostas para o médico completar (ver lib/anamnese-ia/propostas.ts). */
+export const PENDENTE_NA_PROPOSTA = /\[(definir|confirmar)\]/i
+
+/**
+ * Converte as respostas dos preparos novos em Preparo (para o PDF e o Markdown).
+ * `validados`: preparos já com a validação aplicada, para o "mesmo preparo" herdar as decisões.
+ */
+export function preparosDosNovos(r: RespNovo, validados: Preparo[] = PREPAROS): Preparo[] {
   const linhas = (t?: string): Item[] => (t ?? '').split('\n').map(s => s.trim()).filter(Boolean).map(t => ({ t }))
   const out: Preparo[] = []
   for (const p of PREPAROS_NOVOS) {
     if (!novoCompleto(p, r)) continue
     const modo = r[chaveNovo(p.slug, 'modo')]?.texto
-    const base = p.mesmoQue && PREPAROS.find(x => x.slug === p.mesmoQue!.slug)
+    const base = p.mesmoQue && validados.find(x => x.slug === p.mesmoQue!.slug)
     if (base && modo === 'mesmo') {
       out.push({ ...base, slug: p.slug, nome: p.nome, sub: `Mesmo preparo da ${p.mesmoQue!.nome}`, fonte: `Validação da equipe médica (${p.responsavel})` })
       continue
