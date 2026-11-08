@@ -12,8 +12,14 @@ export const FOTO = {
   maxBytes:  10 * 1024 * 1024,   // 10 MB
   minLado:   1200,               // px no lado menor
   tentativas: 15,                // envios por link (o painel pode liberar mais)
-  tipos: ['image/jpeg', 'image/png', 'image/webp', 'image/heic', 'image/heif'] as const,
-  accept: 'image/jpeg,image/png,image/webp,image/heic,image/heif,.jpg,.jpeg,.png,.webp,.heic,.heif',
+  /**
+   * Tipos que chegam ao servidor. HEIC não está aqui: o sharp não lê HEIC,
+   * então o navegador converte para JPEG antes (ou pede JPG). O seletor
+   * (accept) ainda aceita HEIC para a pessoa ver o aviso em vez de não
+   * achar o arquivo.
+   */
+  tipos: ['image/jpeg', 'image/png', 'image/webp'] as const,
+  accept:'image/jpeg,image/png,image/webp,image/heic,image/heif,.jpg,.jpeg,.png,.webp,.heic,.heif',
   versoes: {
     v45: { largura: 1200, altura: 1500, rotulo: 'Site (4:5)' },
     v11: { largura: 1080, altura: 1080, rotulo: 'Instagram (1:1)' },

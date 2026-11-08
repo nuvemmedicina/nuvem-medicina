@@ -16,6 +16,31 @@ const EXT:  Record<TipoFoto, string> = { jpeg: 'jpg', png: 'png', webp: 'webp', 
 
 type Escolhida = { file: File; tipo: TipoFoto; url: string | null; largura?: number; altura?: number }
 
+const MSG_HEIC = 'Este navegador não abre fotos HEIC, o formato padrão do iPhone. Envie a foto em JPG: pelo próprio iPhone ela já vai convertida; no computador, abra a foto e exporte como JPG.'
+
+/**
+ * Converte HEIC em JPEG no próprio aparelho (Safari abre HEIC; Chrome e Edge
+ * no Windows, não). O desenho no canvas já sai sem metadados. Limita o lado
+ * maior a 4096 px, abaixo do limite de canvas do iPhone. Devolve null se o
+ * navegador não conseguir abrir a foto.
+ */
+async function heicParaJpeg(file: File): Promise<File | null> {
+  let bmp: ImageBitmap
+  try { bmp = await createImageBitmap(file, { imageOrientation: 'from-image' }) } catch { return null }
+  try {
+    const escala = Math.min(1, 4096 / Math.max(bmp.width, bmp.height))
+    const c = document.createElement('canvas')
+    c.width = Math.round(bmp.width * escala)
+    c.height = Math.round(bmp.height * escala)
+    const ctx = c.getContext('2d')
+    if (!ctx) return null
+    ctx.drawImage(bmp, 0, 0, c.width, c.height)
+    const blob = await new Promise<Blob | null>(r => c.toBlob(r, 'image/jpeg', 0.92))
+    return blob ? new File([blob], 'foto.jpg', { type: 'image/jpeg' }) : null
+  } catch { return null }
+  finally { bmp.close() }
+}
+
 const dataHora = (iso: string) => new Date(iso).toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })
 
 /** Duas molduras, como a foto vai aparecer no site e no Instagram. */
@@ -73,25 +98,35 @@ export function FotoSecao({ escopo, codigo, children, podeEnviar = true, aoEnvia
   useEffect(() => { carregar() }, [carregar])
   useEffect(() => () => { if (arquivo?.url) URL.revokeObjectURL(arquivo.url) }, [arquivo])
 
-  const escolher = async (file: File) => {
+  const escolher = async (original: File) => {
     setErro(null)
     setArquivo(null)
-    if (file.size > FOTO.maxBytes) { setErro('A foto passa de 10 MB. Envie uma versão menor.'); return }
-    const tipo = tipoPeloConteudo(new Uint8Array(await file.slice(0, 32).arrayBuffer()))
+    let file = original
+    let tipo = tipoPeloConteudo(new Uint8Array(await file.slice(0, 32).arrayBuffer()))
     if (!tipo) { setErro('Este arquivo não é uma foto JPG, PNG, WebP ou HEIC.'); return }
-    let largura: number | undefined, altura: number | undefined
+
+    // HEIC (padrão do iPhone): o servidor não lê. Converte aqui, se o navegador
+    // abrir HEIC (Safari); se não abrir, pede JPG com uma explicação clara.
+    if (tipo === 'heic') {
+      setOcupado('Convertendo a foto…')
+      const jpg = await heicParaJpeg(file)
+      setOcupado(null)
+      if (!jpg) { setErro(MSG_HEIC); return }
+      file = jpg; tipo = 'jpeg'
+    }
+
+    if (file.size > FOTO.maxBytes) { setErro('A foto passa de 10 MB. Envie uma versão menor.'); return }
+    let largura: number, altura: number
     try {
       const bmp = await createImageBitmap(file, { imageOrientation: 'from-image' })
       largura = bmp.width; altura = bmp.height
       bmp.close()
-    } catch {
-      if (tipo !== 'heic') { setErro('Não conseguimos abrir esta foto. Tente outra.'); return }
-    }
-    if (largura && altura && Math.min(largura, altura) < FOTO.minLado) {
+    } catch { setErro('Não conseguimos abrir esta foto. Tente outra, em JPG.'); return }
+    if (Math.min(largura, altura) < FOTO.minLado) {
       setErro(`A foto tem ${largura} × ${altura} px. O lado menor precisa ter pelo menos ${FOTO.minLado} px.`)
       return
     }
-    setArquivo({ file, tipo, url: largura ? URL.createObjectURL(file) : null, largura, altura })
+    setArquivo({ file, tipo, url: URL.createObjectURL(file), largura, altura })
   }
 
   const enviar = async () => {
@@ -210,7 +245,7 @@ export function FotoSecao({ escopo, codigo, children, podeEnviar = true, aoEnvia
                       <li key={t} className="flex gap-2"><Check className="mt-0.5 h-4 w-4 shrink-0 text-teal" />{t}</li>
                     ))}
                   </ul>
-                  <p className="mb-3 text-[0.78rem] text-steel/50">JPG, PNG, WebP ou HEIC, até 10 MB, com pelo menos {FOTO.minLado} px no lado menor.</p>
+                  <p className="mb-3 text-[0.78rem] text-steel/50">JPG, PNG, WebP ou HEIC, até 10 MB, com pelo menos {FOTO.minLado} px no lado menor. Fotos HEIC do iPhone são convertidas para JPG antes do envio.</p>
 
                   <input ref={input} type="file" accept={FOTO.accept} className="hidden"
                     onChange={e => { const f = e.target.files?.[0]; if (f) escolher(f); e.target.value = '' }} />
@@ -223,9 +258,7 @@ export function FotoSecao({ escopo, codigo, children, podeEnviar = true, aoEnvia
 
                   {arquivo && (
                     <div className="mb-5">
-                      {arquivo.url
-                        ? <Molduras src={arquivo.url} legenda="Prévia. Confira antes de enviar." />
-                        : <p className="rounded-xl bg-mist/40 p-3.5 text-[0.85rem] text-steel/70">Este navegador não mostra prévia de HEIC. Depois do envio, a foto aparece aqui já recortada.</p>}
+                      {arquivo.url && <Molduras src={arquivo.url} legenda="Prévia. Confira antes de enviar." />}
                     </div>
                   )}
 

@@ -2,7 +2,8 @@
  * Processamento da foto no servidor (só em rotas da API).
  *
  * 1. Lê o arquivo enviado ao Blob privado e confere o tipo pelo conteúdo.
- * 2. HEIC é convertido com heic-convert (o sharp não lê HEIC).
+ * 2. HEIC não chega aqui: o sharp não lê HEIC, então o navegador converte
+ *    para JPEG antes do envio ou pede JPG (FotoSecao.tsx).
  * 3. sharp gira conforme a orientação da câmera e grava sem metadados
  *    (EXIF, GPS, modelo do aparelho, perfis). O sharp só copia metadados
  *    quando se pede withMetadata(), o que não fazemos.
@@ -11,7 +12,6 @@
  */
 import { createHash } from 'node:crypto'
 import sharp from 'sharp'
-import heicConvert from 'heic-convert'
 import { put, get, del } from '@vercel/blob'
 import { FOTO, recorte, tipoPeloConteudo, type TipoFoto, type VersaoFoto } from './foto'
 
@@ -63,11 +63,10 @@ export async function processarFoto(pathnameEnviado: string, pasta: string): Pro
     const tipo = tipoPeloConteudo(bruto.subarray(0, 32))
     if (!tipo) throw new ErroFoto('O arquivo não é uma foto JPG, PNG, WebP ou HEIC.')
 
-    let entrada: Buffer = bruto
-    if (tipo === 'heic') {
-      try { entrada = Buffer.from(await heicConvert({ buffer: bruto, format: 'JPEG', quality: 0.95 })) }
-      catch { throw new ErroFoto('Não conseguimos abrir esta foto HEIC. Tente enviar em JPG.') }
-    }
+    // O navegador converte HEIC antes do envio; se um HEIC chegar mesmo
+    // assim, a resposta explica o que fazer em vez de falhar calada.
+    if (tipo === 'heic') throw new ErroFoto('Fotos HEIC não podem ser abertas aqui. Envie a foto em JPG: pelo próprio iPhone ela já vai convertida; no computador, abra a foto e exporte como JPG.')
+    const entrada: Buffer = bruto
 
     // Original na orientação certa e sem metadados
     let original: { data: Buffer; info: sharp.OutputInfo }
