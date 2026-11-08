@@ -20,7 +20,7 @@ const ESPECIALIDADES_EN: Especialidade[] = [
     tags:  ['DGBI', 'SIBO / IMO', 'Motility'] },
   { num: '02', slug: 'fisioterapia-pelvica', icon: 'Globe',
     title: 'Pelvic Physical Therapy',
-    desc:  'Pelvic floor rehabilitation, functional digestive disorders and incontinence with specialized biofeedback.',
+    desc:  'Pelvic floor rehabilitation, disorders of gut-brain interaction (DGBI) and incontinence with biofeedback.',
     tags:  ['Pelvic Floor', 'Biofeedback', 'Rehabilitation'] },
   { num: '03', slug: 'halitose', icon: 'Shield',
     title: 'Halitosis',
@@ -47,7 +47,7 @@ const ESPECIALIDADES_ES: Especialidade[] = [
     tags:  ['DGBI', 'SIBO / IMO', 'Motilidad'] },
   { num: '02', slug: 'fisioterapia-pelvica', icon: 'Globe',
     title: 'Fisioterapia Pélvica',
-    desc:  'Rehabilitación del piso pélvico, trastornos digestivos funcionales e incontinencia con biofeedback especializado.',
+    desc:  'Rehabilitación del piso pélvico, trastornos de la interacción cerebro-intestino (DGBI) e incontinencia con biofeedback.',
     tags:  ['Piso Pélvico', 'Biofeedback', 'Rehabilitación'] },
   { num: '03', slug: 'halitose', icon: 'Shield',
     title: 'Halitosis',
@@ -84,10 +84,10 @@ const EXAMES_EN: Exame[] = [
     id: 'manometria-esofagica', num: '01',
     title: 'Esophageal Manometry', subtitle: 'High Resolution · Esophagus', tag: 'High Resolution',
     seoTitle: 'Esophageal Manometry in Belo Horizonte',
-    seoDescription: 'High-resolution esophageal manometry in Belo Horizonte, no sedation. Diagnosis of achalasia, dysphagia and reflux. ISO 9001 certified.',
+    seoDescription: 'High-resolution esophageal manometry in Belo Horizonte, no sedation. Diagnosis of achalasia, dysphagia and reflux. Management certified under ISO 9001.',
     desc: [
       'Precisely evaluates esophageal motility and lower esophageal sphincter function, essential for diagnosing achalasia, dysphagia and gastroesophageal reflux.',
-      'Latest-generation equipment with full high-resolution esophageal pressure mapping. Reports issued by ISO 9001 certified specialists.',
+      'Up-to-date equipment with full high-resolution esophageal pressure mapping. Reports issued at a clinic with management certified under ISO 9001.',
     ],
     info: [
       { icon: 'Clock',  text: 'Duration: 30-45 minutes' },
@@ -99,10 +99,10 @@ const EXAMES_EN: Exame[] = [
     id: 'manometria-anorretal', num: '02',
     title: 'Anorectal Manometry', subtitle: 'High Resolution · Anal Canal', tag: 'High Resolution',
     seoTitle: 'Anorectal Manometry in Belo Horizonte',
-    seoDescription: 'Anorectal manometry in Belo Horizonte for fecal incontinence, chronic constipation and pelvic floor assessment. ISO 9001 certified.',
+    seoDescription: 'Anorectal manometry in Belo Horizonte for fecal incontinence, chronic constipation and pelvic floor assessment. Management certified under ISO 9001.',
     desc: [
       'Evaluates the function of the anal canal and rectal sphincters, essential for diagnosing fecal incontinence, chronic constipation and pelvic floor disorders.',
-      'Complete protocol with integrated biofeedback. Latest-generation equipment with ISO 9001 certified reports.',
+      'Complete protocol with integrated biofeedback. Up-to-date equipment and reports issued at a clinic with management certified under ISO 9001.',
     ],
     info: [
       { icon: 'Clock',  text: 'Duration: 30-45 minutes' },
@@ -174,7 +174,7 @@ const EXAMES_ES: Exame[] = [
     seoDescription: 'Manometría esofágica de alta resolución en Belo Horizonte, sin sedación. Diagnóstico de acalasia, disfagia y reflujo. Certificación ISO 9001.',
     desc: [
       'Evalúa con precisión la motilidad del esófago y la función del esfínter esofágico inferior, esencial en el diagnóstico de acalasia, disfagia y reflujo gastroesofágico.',
-      'Equipos de última generación con mapeo completo de la presión esofágica en alta resolución. Informes emitidos por especialistas certificados ISO 9001.',
+      'Equipos actualizados con mapeo completo de la presión esofágica en alta resolución. Informes emitidos en una clínica con gestión certificada según la norma ISO 9001.',
     ],
     info: [
       { icon: 'Clock',  text: 'Duración: 30-45 minutos' },
@@ -189,7 +189,7 @@ const EXAMES_ES: Exame[] = [
     seoDescription: 'Manometría anorrectal en Belo Horizonte para incontinencia fecal, estreñimiento crónico y evaluación del piso pélvico. Certificación ISO 9001.',
     desc: [
       'Evalúa la función de los esfínteres del canal anal y el recto, fundamental en el diagnóstico de incontinencia fecal, estreñimiento crónico y trastornos del piso pélvico.',
-      'Protocolo completo con biofeedback integrado. Equipos de última generación con informes certificados ISO 9001.',
+      'Protocolo completo con biofeedback integrado. Equipos actualizados e informes emitidos en una clínica con gestión certificada según la norma ISO 9001.',
     ],
     info: [
       { icon: 'Clock',  text: 'Duración: 30-45 minutos' },

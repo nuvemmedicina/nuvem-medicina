@@ -10,10 +10,10 @@ import { IsoSeal }        from '@/components/icons/IsoSeal'
 export const metadata: Metadata = {
   alternates:  { canonical: '/dra-vera-angelo' },
   title:       'Dra. Vera Ângelo · Gastroenterologista',
-  description: 'Dra. Vera Ângelo — Mestre e Doutora pela UFMG, especialista em gastroenterologia, motilidade digestiva e testes respiratórios. Diretora Técnica da NU.V.E.M Medicina.',
+  description: 'Dra. Vera Ângelo — Mestre e Doutora pela UFMG, gastroenterologista com atuação em motilidade digestiva, testes respiratórios e DGBI. Diretora Técnica da NU.V.E.M Medicina.',
   openGraph: {
     title:       'Dra. Vera Ângelo · Gastroenterologista',
-    description: 'Dra. Vera Ângelo — Mestre e Doutora pela UFMG, especialista em gastroenterologia, motilidade digestiva e testes respiratórios. Diretora Técnica da NU.V.E.M Medicina.',
+    description: 'Dra. Vera Ângelo — Mestre e Doutora pela UFMG, gastroenterologista com atuação em motilidade digestiva, testes respiratórios e DGBI. Diretora Técnica da NU.V.E.M Medicina.',
     images: [{ url: '/images/dra-vera.jpg', width: 900, height: 900, alt: 'Dra. Vera Ângelo' }],
   },
   twitter: {
@@ -40,13 +40,13 @@ const FORMACAO = [
     icon: Award,
     titulo: 'Título de Especialista em Gastroenterologia',
     inst:   'Federação Brasileira de Gastroenterologia (FBG)',
-    detalhe: 'Certificação pela principal entidade de gastroenterologia do país',
+    detalhe: 'Título concedido pela Federação Brasileira de Gastroenterologia',
   },
   {
     icon: Award,
     titulo: 'Residência Médica em Gastroenterologia',
     inst:   'Hospital Felício Rocho · Belo Horizonte',
-    detalhe: 'Formação especializada em gastroenterologia no hospital de referência em BH',
+    detalhe: 'Residência em gastroenterologia no Hospital Felício Rocho, em Belo Horizonte',
   },
   {
     icon: Award,
@@ -60,13 +60,13 @@ const EXPERIENCIA = [
   {
     cargo:  'Diretora e Responsável Técnica',
     local:  'NU.V.E.M Medicina e Ensino',
-    desc:   'Fundadora e líder do ecossistema NU.V.E.M: clínica e centro de formação profissional em gastroenterologia e motilidade digestiva, certificado ISO 9001.',
+    desc:   'Fundadora do ecossistema NU.V.E.M: clínica e centro de formação profissional em gastroenterologia e motilidade digestiva, certificado ISO 9001.',
     destaque: true,
   },
   {
     cargo:  'Professora Convidada · Pós-Graduação',
     local:  'Hospital Israelita Albert Einstein',
-    desc:   'Docente do programa de pós-graduação em Doenças Funcionais e Manometria de um dos principais hospitais do Brasil.',
+    desc:   'Docente do programa de pós-graduação em Doenças Funcionais e Manometria do Hospital Israelita Albert Einstein.',
     destaque: false,
   },
   {
@@ -78,7 +78,7 @@ const EXPERIENCIA = [
   {
     cargo:  'Sócia Titular · GEDIIB',
     local:  'Grupo de Estudos da Doença Inflamatória Intestinal no Brasil',
-    desc:   'Membro ativo do grupo de estudos de referência nacional em doenças inflamatórias intestinais.',
+    desc:   'Membro do grupo brasileiro de estudos dedicado às doenças inflamatórias intestinais.',
     destaque: false,
   },
   {
@@ -217,21 +217,20 @@ export default function DraVeraPage() {
                   A Dra. Vera Ângelo é Mestre e Doutora em Patologia pela Universidade Federal de
                   Minas Gerais (UFMG) e Gastroenterologista com Título de Especialista pela
                   Federação Brasileira de Gastroenterologia. Com formação sólida e trajetória
-                  dedicada ao DGBI – Distúrbio da Interação Cérebro-Intestino, tornou-se uma das principais
-                  referências nacionais em testes respiratórios e motilidade digestiva.
+                  dedicada ao DGBI – Distúrbio da Interação Cérebro-Intestino, atua em SIBO/IMO,
+                  testes respiratórios e motilidade digestiva.
                 </p>
                 <p>
-                  Fundadora da NU.V.E.M Medicina, criou um ecossistema único que integra
-                  assistência clínica de excelência com formação profissional avançada.
+                  Fundadora da NU.V.E.M Medicina, criou um ecossistema que integra
+                  assistência clínica e formação profissional.
                   Professora convidada do Hospital Israelita Albert Einstein no programa de
                   pós-graduação em Doenças Funcionais e Manometria, é autora de diversas obras
-                  pela Editora Rubio, sendo os três lançamentos mais recentes destaques em
-                  programas de formação em todo o Brasil.
+                  pela Editora Rubio, entre elas três lançamentos recentes.
                 </p>
                 <p>
                   Sócia Titular do GEDIIB e da Sociedade Brasileira de Motilidade Digestiva,
-                  a Dra. Vera mantém-se na vanguarda da produção científica e da prática
-                  clínica, traduzindo o conhecimento mais recente em cuidado concreto e
+                  a Dra. Vera participa da produção científica e da prática
+                  clínica, levando o conhecimento atualizado para o cuidado concreto e
                   humanizado para cada paciente da NU.V.E.M.
                 </p>
               </div>
@@ -312,7 +311,7 @@ export default function DraVeraPage() {
           <p className="sec-tag justify-center reveal">Publicações</p>
           <h2 className="sec-title reveal reveal-d1">Livros e <em>Contribuições Literárias</em></h2>
           <p className="text-[0.97rem] text-steel/60 mt-3 reveal reveal-d2">
-            Autora de obras de referência pela Editora Rubio, utilizadas em programas de formação em todo o Brasil.
+            Autora e organizadora de obras pela Editora Rubio.
           </p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -375,7 +374,7 @@ export default function DraVeraPage() {
       <SectionWrapper>
         <CtaBanner
           title="Agende sua consulta com a Dra. Vera"
-          desc="Atendimento especializado em gastroenterologia, motilidade digestiva e testes respiratórios com padrão ISO 9001."
+          desc="Atendimento em gastroenterologia, motilidade digestiva e testes respiratórios, em clínica com gestão certificada pela norma ISO 9001."
         />
       </SectionWrapper>
     </>

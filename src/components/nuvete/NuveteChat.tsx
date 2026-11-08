@@ -142,7 +142,7 @@ export function NuveteChat() {
     if (topico.id === 'equipe') {
       addMsg({
         role: 'nuvete',
-        text: '👩‍⚕️ **Nossa equipe:**\n\n- **Dra. Vera Ângelo** — Gastroenterologista, Mestre e Doutora pela UFMG, fundadora da NU.V.E.M e referência em motilidade digestiva\n- **Dra. Eliane Basques Moura** — Cirurgiã Pediátrica, Diretora Técnica Substituta\n- Fisioterapeutas pélvicos, nefrologista, pediatra e especialistas em halitose\n\nGostaria de saber mais sobre alguma médica?',
+        text: '👩‍⚕️ **Nossa equipe:**\n\n- **Dra. Vera Ângelo** — Gastroenterologista, Mestre e Doutora pela UFMG, fundadora da NU.V.E.M, com atuação em motilidade digestiva\n- **Dra. Eliane Basques Moura** — Cirurgiã Pediátrica, Diretora Técnica Substituta\n- Fisioterapeutas pélvicos, nefrologista, pediatra e profissionais com atuação em halitose\n\nGostaria de saber mais sobre alguma médica?',
         botoes: [
           { label: '👩‍⚕️ Dra. Vera Ângelo', acao: 'link:/dra-vera-angelo' },
           { label: '👩‍⚕️ Dra. Eliane', acao: 'link:/dra-eliane-basques' },

@@ -50,8 +50,8 @@ const RESP_EXTRA_PT: RespExtra = {
   tecnologias: [
     {
       src: '/images/teste-respiratorio-1.webp', alt: 'Equipamento HealthGo AIR em uso na NU.V.E.M Medicina',
-      badge: 'Aprovado ANVISA', name: 'HealthGo AIR', sub: 'Tecnologia brasileira de última geração',
-      desc: 'O primeiro equipamento nacional para diagnóstico funcional do trato gastrointestinal por teste respiratório. Detecta simultaneamente H₂, CH₄ e H₂S, diferenciando quadros de SIBO, IMO e outras disbioses com precisão superior aos aparelhos tradicionais.',
+      badge: 'Aprovado ANVISA', name: 'HealthGo AIR', sub: 'Tecnologia brasileira',
+      desc: 'Equipamento nacional para diagnóstico funcional do trato gastrointestinal por teste respiratório. Detecta simultaneamente H₂, CH₄ e H₂S, o que ajuda o médico a investigar quadros de SIBO, IMO e outras disbioses.',
       specs: [
         { label: 'Gases medidos', value: 'H₂ · CH₄ · H₂S' },
         { label: 'Pacientes',     value: 'Até 5 simultâneos' },
@@ -126,8 +126,8 @@ const RESP_EXTRA_EN: RespExtra = {
   tecnologias: [
     {
       src: '/images/teste-respiratorio-1.webp', alt: 'HealthGo AIR equipment in use at NU.V.E.M Medicina',
-      badge: 'ANVISA Approved', name: 'HealthGo AIR', sub: 'Latest-generation Brazilian technology',
-      desc: 'The first Brazilian-made equipment for functional gastrointestinal diagnosis via breath test. Simultaneously detects H₂, CH₄ and H₂S, differentiating SIBO, IMO and other dysbioses with greater precision than traditional devices.',
+      badge: 'ANVISA Approved', name: 'HealthGo AIR', sub: 'Brazilian technology',
+      desc: 'Brazilian-made equipment for functional gastrointestinal diagnosis via breath test. Simultaneously detects H₂, CH₄ and H₂S, which helps the physician investigate SIBO, IMO and other dysbioses.',
       specs: [
         { label: 'Gases measured', value: 'H₂ · CH₄ · H₂S' },
         { label: 'Patients',       value: 'Up to 5 simultaneous' },
@@ -202,8 +202,8 @@ const RESP_EXTRA_ES: RespExtra = {
   tecnologias: [
     {
       src: '/images/teste-respiratorio-1.webp', alt: 'Equipo HealthGo AIR en uso en NU.V.E.M Medicina',
-      badge: 'Aprobado por ANVISA', name: 'HealthGo AIR', sub: 'Tecnología brasileña de última generación',
-      desc: 'El primer equipo nacional para el diagnóstico funcional del tracto gastrointestinal mediante prueba respiratoria. Detecta simultáneamente H₂, CH₄ y H₂S, diferenciando cuadros de SIBO, IMO y otras disbiosis con una precisión superior a los equipos tradicionales.',
+      badge: 'Aprobado por ANVISA', name: 'HealthGo AIR', sub: 'Tecnología brasileña',
+      desc: 'Equipo nacional para el diagnóstico funcional del tracto gastrointestinal mediante prueba respiratoria. Detecta simultáneamente H₂, CH₄ y H₂S, lo que ayuda al médico a investigar cuadros de SIBO, IMO y otras disbiosis.',
       specs: [
         { label: 'Gases medidos',      value: 'H₂ · CH₄ · H₂S' },
         { label: 'Pacientes',          value: 'Hasta 5 simultáneos' },

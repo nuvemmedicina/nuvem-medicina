@@ -124,7 +124,10 @@ export function Footer() {
         <div className="pt-6 border-t border-white/10 flex flex-col md:flex-row md:justify-between gap-4">
           <div className="space-y-1 text-left">
             <p className="text-[0.72rem] text-white/35">
-              © {new Date().getFullYear()} NU.V.E.M Medicina · CNPJ {CONTATO.cnpj} · {CONTATO.crmClinica}
+              © {new Date().getFullYear()} NU.V.E.M Medicina · CNPJ {CONTATO.cnpj} · {t('registroClinica')} {CONTATO.crmClinica}
+            </p>
+            <p className="text-[0.72rem] text-white/35">
+              {t('responsavelTecnica')}
             </p>
             <a
               href={CONTATO.maps}

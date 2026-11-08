@@ -14,9 +14,9 @@ export const metadata: Metadata = {
 }
 
 const PILARES = [
-  { num: '01', Icon: Microscope,   title: 'Diagnóstico de Precisão', desc: 'Equipamentos de última geração operados por especialistas certificados, garantindo resultados confiáveis e laudos detalhados.' },
+  { num: '01', Icon: Microscope,   title: 'Diagnóstico de Precisão', desc: 'Equipamentos atualizados, operados por equipe treinada, com laudos detalhados.' },
   { num: '02', Icon: ShieldCheck,  title: 'Gestão ISO 9001',          desc: 'Certificação internacional de qualidade. Cada processo é padronizado, auditado e continuamente melhorado.' },
-  { num: '03', Icon: Users,        title: 'Equipe Multidisciplinar',  desc: 'Gastroenterologistas, fisioterapeutas pélvicos, nefrologista, pediatra e especialistas em halitose trabalhando de forma integrada.' },
+  { num: '03', Icon: Users,        title: 'Equipe Multidisciplinar',  desc: 'Gastroenterologistas, fisioterapeutas pélvicos, nefrologista, pediatra e profissionais com atuação em halitose trabalhando de forma integrada.' },
   { num: '04', Icon: Heart,        title: 'Cuidado Humanizado',        desc: 'Escuta ativa, respeito ao tempo do paciente e comunicação clara em cada etapa do atendimento.' },
   { num: '05', Icon: GraduationCap,title: 'Ensino Médico de Elite',    desc: 'Centro de formação profissional com metodologia hands-on baseada nos casos reais da própria clínica.' },
   { num: '06', Icon: TrendingUp,   title: 'Melhoria Contínua',         desc: 'Indicadores de qualidade monitorados mensalmente e ações de melhoria implementadas de forma sistemática e documentada.' },
@@ -28,7 +28,7 @@ export default function SobrePage() {
       <PageHero
         tag="A Clínica"
         title={<>Sobre a <em>NU.V.E.M</em> Medicina</>}
-        desc="O ecossistema completo de excelência em saúde digestiva, onde tecnologia de ponta, cuidado humanizado e gestão certificada se unem em um único lugar."
+        desc="Clínica de gastroenterologia e motilidade digestiva que reúne equipamentos atualizados, cuidado humanizado e gestão certificada pela norma ISO 9001."
       />
 
       {/* Missão / Origem */}
@@ -42,12 +42,12 @@ export default function SobrePage() {
             <div className="space-y-5 mt-6 text-[0.98rem] font-light text-steel/65 leading-[1.85]">
               <p className="reveal reveal-d2">
                 A NU.V.E.M Medicina nasceu com uma missão clara: oferecer à população de Belo Horizonte
-                e região um atendimento em gastroenterologia verdadeiramente especializado, que une
-                tecnologia diagnóstica de última geração com um olhar profundamente humano.
+                e região um atendimento em gastroenterologia que une
+                equipamentos diagnósticos atualizados a um olhar humano.
               </p>
               <p className="reveal reveal-d3">
-                Localizada no coração do bairro Santa Efigênia, a clínica tornou-se referência
-                em diagnósticos avançados: manometria de alta resolução, testes respiratórios
+                Localizada no coração do bairro Santa Efigênia, a clínica realiza
+                exames diagnósticos: manometria de alta resolução, testes respiratórios
                 para SIBO e <em><strong>H. pylori</strong></em>, pHmetria, halimetria e muito mais, sob gestão certificada
                 pela norma ISO 9001.
               </p>
@@ -87,7 +87,7 @@ export default function SobrePage() {
         <div className="relative z-10 max-w-[1240px] mx-auto px-8">
           <div className="text-center mb-14">
             <p className="sec-tag justify-center reveal">Nossos Pilares</p>
-            <h2 className="sec-title reveal reveal-d1">O que nos torna <em>únicos</em></h2>
+            <h2 className="sec-title reveal reveal-d1">O que nos <em>orienta</em></h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">

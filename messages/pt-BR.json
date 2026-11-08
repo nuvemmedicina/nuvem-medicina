@@ -41,17 +41,19 @@
     "institucionalBlog": "Blog",
     "phmetriaImpedancia": "pHmetria e Impedância",
     "preparos": "Preparos para Exames",
-    "tagline": "Ecossistema de excelência em saúde digestiva e ensino médico em Belo Horizonte, com certificação ISO 9001.",
+    "tagline": "Gastroenterologia, motilidade digestiva e ensino médico em Belo Horizonte, com gestão certificada pela norma ISO 9001.",
     "isoTitle": "Certificação ISO 9001",
-    "isoSubtitle": "Clínica com certificação ISO 9001",
+    "isoSubtitle": "Gestão certificada pela norma ISO 9001",
     "privacyPolicy": "Política de Privacidade",
     "patientRights": "Direitos do Paciente",
-    "disclaimer": "As informações neste site têm caráter informativo e educacional, em conformidade com as normas do Conselho Federal de Medicina (Res. CFM nº 2.336/2023). Não substituem consulta médica profissional.",
+    "disclaimer": "Conteúdo informativo e educacional, em conformidade com a Res. CFM nº 2.336/2023. Não substitui consulta médica.",
+    "responsavelTecnica": "Responsável técnica: Dra. Vera Ângelo · CRM-MG 22284 · RQE 10411 · RQE 22736 · Diretora Técnica",
+    "registroClinica": "Registro da clínica",
     "developedBy": "Desenvolvido por"
   },
   "ctaBanner": {
     "title": "Pronto para cuidar da sua saúde digestiva?",
-    "desc": "Agende sua consulta e experimente o padrão de excelência ISO 9001 da NU.V.E.M Medicina.",
+    "desc": "Agende sua consulta na NU.V.E.M Medicina, clínica com gestão certificada pela norma ISO 9001.",
     "agendar": "Agendar Consulta",
     "ensino": "NU.V.E.M Ensino",
     "whatsappMsg": "Olá! Gostaria de agendar uma consulta na NU.V.E.M Medicina."
@@ -71,7 +73,7 @@
     "metaDescription": "Manometria esofágica e anorretal de alta resolução, pHmetria, testes respiratórios, halimetria e avaliação pélvica em Belo Horizonte. Certificação ISO 9001.",
     "tag": "Exames e Diagnósticos",
     "title": "Precisão técnica <em>certificada</em>",
-    "desc": "Infraestrutura diagnóstica de última geração operada por especialistas com treinamento e certificação ISO 9001: os resultados mais confiáveis do segmento.",
+    "desc": "Equipamentos atualizados, operados por equipe treinada, em clínica com gestão certificada pela norma ISO 9001.",
     "verDetalhes": "Ver detalhes",
     "baixarPreparo": "Baixar preparo",
     "preparosTitle": "Preparos para Exames",
@@ -97,11 +99,11 @@
     "verEquipeCompleta": "Ver equipe completa",
     "areasDeAtuacao": "Áreas de atuação",
     "examesRelacionados": "Exames relacionados",
-    "isoBadge": "Especialidade realizada com protocolo",
-    "isoBadgeStrong": "certificado ISO 9001",
+    "isoBadge": "Atendimento realizado em clínica com",
+    "isoBadgeStrong": "gestão certificada pela norma ISO 9001",
     "saibaMais": "Saiba mais",
     "agendarConsulta": "Agendar consulta",
-    "agendarDesc": "Atendimento especializado em {esp} com equipe certificada ISO 9001.",
+    "agendarDesc": "Atendimento em {esp}, em clínica com gestão certificada pela norma ISO 9001.",
     "agendarAgora": "Agendar agora"
   },
   "exameDetail": {
@@ -127,8 +129,8 @@
     "preparosDoExame": "Preparos do Exame",
     "preparoDoExame": "Preparo do Exame",
     "baixeGuiaCalma": "Baixe o guia completo de preparo em PDF para ler com calma em casa.",
-    "isoBadge": "Exame realizado com protocolo",
-    "isoBadgeStrong": "certificado ISO 9001",
+    "isoBadge": "Exame realizado em clínica com",
+    "isoBadgeStrong": "gestão certificada pela norma ISO 9001",
     "especialidadesRelacionadas": "Especialidades relacionadas",
     "agendarEsteExame": "Agendar este Exame"
   },
@@ -262,7 +264,7 @@
   },
   "home": {
     "meta": {
-      "title": "NU.V.E.M Medicina — Excelência em Saúde Digestiva · Belo Horizonte"
+      "title": "NU.V.E.M Medicina · Gastroenterologia e Motilidade Digestiva em Belo Horizonte"
     },
     "hero": {
       "prevSlide": "Slide anterior",
@@ -278,7 +280,7 @@
     "exames": {
       "tag": "Exames e Diagnósticos",
       "title": "Precisão técnica <em>certificada</em>",
-      "desc": "Infraestrutura diagnóstica de última geração operada por especialistas com treinamento e certificação ISO 9001.",
+      "desc": "Equipamentos atualizados, operados por equipe treinada, em clínica com gestão certificada pela norma ISO 9001.",
       "ctaSaibaMais": "Saiba mais",
       "ctaBaixarPreparo": "Baixar Preparo"
     },
@@ -287,7 +289,7 @@
       "titleLine1": "Clínica com",
       "titleEm": "Certificação ISO 9001",
       "titleLine3": "em BH",
-      "desc": "A ISO 9001 é o padrão internacional de excelência em gestão. Cada processo, do agendamento ao diagnóstico, segue protocolos rigorosos de qualidade, rastreabilidade e melhoria contínua.",
+      "desc": "A ISO 9001 é a norma internacional de sistemas de gestão da qualidade. Cada processo, do agendamento ao diagnóstico, segue protocolos de qualidade, rastreabilidade e melhoria contínua.",
       "pt1": "Processos clínicos padronizados e auditados externamente",
       "pt2": "Rastreabilidade completa de exames e prontuários",
       "pt3": "Treinamentos e certificações educacionais validados",
@@ -295,18 +297,18 @@
       "pt5": "Segurança e satisfação do paciente como prioridade absoluta",
       "diferenciaisTag": "Diferenciais da Clínica",
       "isoBadgeTitle": "Certificação ISO 9001",
-      "isoBadgeDesc": "Clínica com certificação ISO 9001",
-      "feat1Title": "Tecnologia Diagnóstica de Ponta",
+      "isoBadgeDesc": "Gestão certificada pela norma ISO 9001",
+      "feat1Title": "Equipamentos Diagnósticos Atualizados",
       "feat1Desc": "Manometria AR, pHmetria, testes respiratórios H₂/CH₄/H₂S",
       "feat2Title": "Equipe Multidisciplinar",
       "feat2Desc": "Gastro, fisioterapia pélvica, nefrologia, pediatria",
       "feat3Title": "Centro de Ensino Médico",
-      "feat3Desc": "Formação hands-on com certificação validada ISO 9001"
+      "feat3Desc": "Formação hands-on em clínica com gestão certificada pela norma ISO 9001"
     },
     "cursos": {
       "tag": "Cursos & Palestras",
       "title": "Formação e <em>atualização</em> científica",
-      "desc": "Cursos, palestras e workshops com a equipe NU.V.E.M e parceiros de referência nacional. Conteúdo aplicado à prática clínica real.",
+      "desc": "Cursos, palestras e workshops com a equipe NU.V.E.M e parceiros convidados. Conteúdo aplicado à prática clínica real.",
       "verTodos": "Ver todos os cursos",
       "inscreverSe": "Inscrever-se",
       "emBreve": "Em breve nova turma",

@@ -10,10 +10,10 @@ import { IsoSeal }        from '@/components/icons/IsoSeal'
 export const metadata: Metadata = {
   alternates:  { canonical: '/dra-eliane-basques' },
   title:       'Dra. Eliane Basques · Manometria Anorretal',
-  description: 'Dra. Eliane Basques Moura — Cirurgiã Pediátrica e especialista em Manometria Anorretal. Sócia Fundadora e Diretora Técnica Substituta da NU.V.E.M Medicina.',
+  description: 'Dra. Eliane Basques Moura — Cirurgiã Pediátrica com atuação em manometria anorretal. Sócia Fundadora e Diretora Técnica Substituta da NU.V.E.M Medicina.',
   openGraph: {
     title:       'Dra. Eliane Basques · Manometria Anorretal',
-    description: 'Dra. Eliane Basques Moura — Cirurgiã Pediátrica e especialista em Manometria Anorretal. Sócia Fundadora e Diretora Técnica Substituta da NU.V.E.M Medicina.',
+    description: 'Dra. Eliane Basques Moura — Cirurgiã Pediátrica com atuação em manometria anorretal. Sócia Fundadora e Diretora Técnica Substituta da NU.V.E.M Medicina.',
     images: [{ url: '/images/dra-eliane.jpg', width: 900, height: 900, alt: 'Dra. Eliane Basques' }],
   },
   twitter: {
@@ -28,7 +28,7 @@ const FORMACAO = [
     icon: Award,
     titulo: 'Especialização em Manometria Anorretal',
     inst:   'NU.V.E.M Medicina · Belo Horizonte',
-    detalhe: 'Especialista na avaliação funcional do assoalho pélvico e diagnóstico de disfunções anorretais.',
+    detalhe: 'Atuação na avaliação funcional do assoalho pélvico e diagnóstico de disfunções anorretais.',
   },
   {
     icon: Award,
@@ -40,7 +40,7 @@ const FORMACAO = [
     icon: GraduationCap,
     titulo: 'Residência Médica em Cirurgia Pediátrica',
     inst:   'Hospital das Clínicas da UFMG',
-    detalhe: 'Formação especializada em cirurgia pediátrica no hospital universitário de referência em Minas Gerais.',
+    detalhe: 'Formação em cirurgia pediátrica em hospital universitário de Minas Gerais.',
   },
   {
     icon: GraduationCap,
@@ -54,11 +54,11 @@ const EXPERIENCIA = [
   {
     cargo:    'Sócia Fundadora · Diretora Técnica Substituta',
     local:    'NU.V.E.M Medicina e Ensino',
-    desc:     'Cofundadora da NU.V.E.M, responsável técnica substituta e especialista em manometria anorretal. Atua na interface entre gastroenterologia, fisioterapia pélvica e cirurgia nos casos mais complexos.',
+    desc:     'Cofundadora da NU.V.E.M, responsável técnica substituta, com atuação em manometria anorretal. Atua na interface entre gastroenterologia, fisioterapia pélvica e cirurgia em casos complexos.',
     destaque: true,
   },
   {
-    cargo:    'Especialista em Manometria Anorretal',
+    cargo:    'Manometria Anorretal',
     local:    'NU.V.E.M Medicina',
     desc:     'Realiza a avaliação funcional do assoalho pélvico, diagnóstico de incontinência fecal, constipação obstrutiva e disfunções defecatórias com protocolo ISO 9001.',
     destaque: false,
@@ -72,7 +72,7 @@ const EXPERIENCIA = [
   {
     cargo:    'Colaboradora em Casos Interdisciplinares',
     local:    'NU.V.E.M Medicina',
-    desc:     'Integração única entre cirurgia pediátrica e gastroenterologia, oferecendo à NU.V.E.M uma perspectiva cirúrgica nos casos que demandam abordagem multidisciplinar complexa.',
+    desc:     'Integração entre cirurgia pediátrica e gastroenterologia, oferecendo à NU.V.E.M uma perspectiva cirúrgica nos casos que demandam abordagem multidisciplinar complexa.',
     destaque: false,
   },
 ]
@@ -95,7 +95,7 @@ export default function DraElianePage() {
       <PageHero
         tag="Nossa Equipe"
         title={<>Dra. <em>Eliane Basques</em></>}
-        desc="Cirurgiã Pediátrica · Especialista em Manometria Anorretal · Sócia Fundadora da NU.V.E.M Medicina"
+        desc="Cirurgiã Pediátrica · Atuação em Manometria Anorretal · Sócia Fundadora da NU.V.E.M Medicina"
       />
 
       <SectionWrapper dark grid>
@@ -154,20 +154,20 @@ export default function DraElianePage() {
             <div className="reveal reveal-d1">
               <p className="sec-tag">Sobre a médica</p>
               <h2 className="sec-title mt-2 mb-5">
-                Expertise única em <em>manometria anorretal</em>
+                Atuação em <em>manometria anorretal</em>
               </h2>
               <div className="space-y-4 text-[0.97rem] font-light text-steel/60 leading-[1.85]">
                 <p>
-                  A Dra. Eliane Basques Moura é cirurgiã pediátrica e especialista em manometria
+                  A Dra. Eliane Basques Moura é cirurgiã pediátrica com atuação em manometria
                   anorretal, com formação sólida pelo Hospital das Clínicas da UFMG e Título de
                   Especialista pela Sociedade Brasileira de Cirurgia Pediátrica.
                 </p>
                 <p>
                   Cofundadora da NU.V.E.M Medicina e Diretora Técnica Substituta, a Dra. Eliane
-                  traz para a clínica uma combinação rara: a visão cirúrgica pediátrica aliada
-                  à expertise em avaliação funcional do assoalho pélvico. Essa integração permite
+                  traz para a clínica a visão cirúrgica pediátrica aliada
+                  à experiência em avaliação funcional do assoalho pélvico. Essa integração permite
                   abordar casos complexos de incontinência fecal, constipação obstrutiva e
-                  disfunções defecatórias com uma perspectiva completa e diferenciada.
+                  disfunções defecatórias com uma perspectiva integrada.
                 </p>
                 <p>
                   Na NU.V.E.M, realiza manometrias anorretais com protocolo ISO 9001,
@@ -263,7 +263,7 @@ export default function DraElianePage() {
       <SectionWrapper>
         <CtaBanner
           title="Agende com a Dra. Eliane"
-          desc="Atendimento especializado em manometria anorretal e avaliação funcional do assoalho pélvico com padrão ISO 9001."
+          desc="Atendimento em manometria anorretal e avaliação funcional do assoalho pélvico, em clínica com gestão certificada pela norma ISO 9001."
         />
       </SectionWrapper>
     </>

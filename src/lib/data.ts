@@ -64,7 +64,7 @@ export const ESPECIALIDADES: Especialidade[] = [
   {
     num: '02', slug: 'fisioterapia-pelvica',
     title: 'Fisioterapia Pélvica',
-    desc: 'Reabilitação do assoalho pélvico, distúrbios digestivos funcionais e incontinência com biofeedback especializado.',
+    desc: 'Reabilitação do assoalho pélvico, distúrbios da interação cérebro-intestino (DGBI) e incontinência com biofeedback.',
     tags: ['Assoalho Pélvico', 'Biofeedback', 'Reabilitação'],
     icon: 'Globe',
   },
@@ -119,7 +119,7 @@ export const EXAMES: Exame[] = [
     seoDescription: 'Manometria esofágica de alta resolução em Belo Horizonte, sem sedação. Diagnóstico de acalasia, disfagia e refluxo. Certificação ISO 9001.',
     desc: [
       'Avalia com precisão a motilidade do esôfago e a função do esfíncter esofágico inferior, sendo essencial no diagnóstico de acalasia, disfagia e refluxo gastroesofágico.',
-      'Equipamentos de última geração com mapeamento completo da pressão esofágica em alta resolução. Laudos emitidos por especialistas certificados ISO 9001.',
+      'Equipamentos atualizados com mapeamento completo da pressão esofágica em alta resolução. Laudos emitidos em clínica com gestão certificada pela norma ISO 9001.',
     ],
     info: [
       { icon: 'Clock',   text: 'Duração: 30-45 minutos' },
@@ -136,7 +136,7 @@ export const EXAMES: Exame[] = [
     seoDescription: 'Manometria anorretal em Belo Horizonte para incontinência fecal, constipação crônica e avaliação do assoalho pélvico. Certificação ISO 9001.',
     desc: [
       'Avalia a função dos esfíncteres do canal anal e reto, sendo fundamental no diagnóstico de incontinência fecal, constipação crônica e distúrbios do assoalho pélvico.',
-      'Protocolo completo com biofeedback integrado. Equipamentos de última geração com laudos certificados ISO 9001.',
+      'Protocolo completo com biofeedback integrado. Equipamentos atualizados e laudos emitidos em clínica com gestão certificada pela norma ISO 9001.',
     ],
     info: [
       { icon: 'Clock',   text: 'Duração: 30-45 minutos' },

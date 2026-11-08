@@ -21,7 +21,7 @@ const SOCIAS = [
     foto:  '/images/dra-vera.jpg',
     href:  '/dra-vera-angelo',
     areas: ['SIBO / IMO', 'Testes Respiratórios', 'Motilidade Digestiva', 'DGBI'],
-    bio:   'Mestre e Doutora pela UFMG. Professora convidada do Hospital Israelita Albert Einstein. Autora de diversas obras pela Editora Rubio. Referência nacional em testes respiratórios e motilidade digestiva.',
+    bio:   'Mestre e Doutora pela UFMG. Professora convidada do Hospital Israelita Albert Einstein. Autora de obras pela Editora Rubio. Atua em SIBO/IMO, testes respiratórios, motilidade digestiva e DGBI.',
   },
   {
     nome:  'Dra. Eliane Basques',
@@ -31,18 +31,20 @@ const SOCIAS = [
     foto:  '/images/dra-eliane.jpg',
     href:  '/dra-eliane-basques',
     areas: ['Manometria Anorretal', 'Assoalho Pélvico', 'Cirurgia Pediátrica', 'Casos Interdisciplinares'],
-    bio:   'Cirurgiã pediátrica com expertise em manometria anorretal e disfunções do assoalho pélvico. Cofundadora da NU.V.E.M, atua na interface entre gastroenterologia e cirurgia.',
+    bio:   'Cirurgiã pediátrica com atuação em manometria anorretal e disfunções do assoalho pélvico. Cofundadora da NU.V.E.M, atua na interface entre gastroenterologia e cirurgia.',
   },
 ]
 
 const EQUIPE = [
+  // [A CONFIRMAR] registro da Dra. Amanda Araújo: aguardando conferência no portal do CFM.
+  // Não publicar o número antes disso. Ver RELATORIO-CORRECOES.md.
   { nome: 'Dra. Amanda Araújo',          esp: 'Gastroenterologia e Motilidade Digestiva', reg: '',                          foto: '/images/Amanda-Araujo.jpg',          areas: ['Gastroenterologia', 'Motilidade Digestiva'] },
   { nome: 'Dra. Anna Karoline',          esp: 'Fisioterapia Pélvica',           reg: 'Crefito 4/270579-F',                  foto: '/images/anna-karoline.jpg',          areas: ['Biofeedback EMG', 'Assoalho Pélvico', 'Incontinência'] },
   { nome: 'Dra. Adrianna Buzatti Viana', esp: 'Cirurgia Pediátrica',            reg: 'CRMMG 71689 · RQE 44101 · RQE 59942', foto: '/images/adrianna-buzatti-viana.jpg', areas: ['Cirurgia Pediátrica', 'Casos Complexos'] },
   { nome: 'Dra. Claudia Utsch',          esp: 'Gastroenterologia',              reg: 'CRM 47651-MG · RQE 51470 · 51471',    foto: '/images/claudia-utsch.jpg',          areas: ['Gastroenterologia Clínica', 'Doenças Digestivas'] },
   { nome: 'Dra. Camilla Mendes',         esp: 'Clínica Médica',                 reg: 'CRM 61518',                            foto: '/images/camilla-mendes.jpg',         areas: ['Clínica Médica', 'Medicina Interna'] },
   { nome: 'Dra. Danielle Martins',       esp: 'Gastroenterologia e Motilidade', reg: 'CRM 72935',                            foto: '/images/danielle-martins.jpg',       areas: ['Gastroenterologia', 'DGBI'] },
-  { nome: 'Dr. Gabriel de Souza Fernandes Filho', esp: 'Gastroenterologia',    reg: '',                                     foto: '/images/dr-Gabriel-de-Souza-Fernandes-Filho.jpg', areas: ['Gastroenterologia Clínica'] },
+  { nome: 'Dr. Gabriel de Souza Fernandes Filho', esp: 'Gastroenterologia',    reg: 'CRM 81843 · RQE 61806',                                     foto: '/images/dr-Gabriel-de-Souza-Fernandes-Filho.jpg', areas: ['Gastroenterologia Clínica'] },
   { nome: 'Dra. Luiza Auarek',          esp: 'Nefrologia',                     reg: 'CRM 81521 · RQE 62607 · RQE 54226',   foto: '/images/luiza-auarek.jpg',           areas: ['Nefrologia', 'Interface GI-Renal'] },
   { nome: 'Dra. Mariana Fernandes',      esp: 'Pediatria',                      reg: 'CRM 65936',                            foto: '/images/mariana-fernandes.jpg',      areas: ['Saúde Digestiva Infantil', 'Pediatria'] },
   { nome: 'Dra. Raissa Dalat',          esp: 'Cirurgia Pediátrica',            reg: 'CRMMG 78824 · RQE 61983',              foto: '/images/raissa-dalat.jpg',           areas: ['Cirurgia Pediátrica'] },
@@ -69,8 +71,8 @@ export default function EquipePage() {
     <>
       <PageHero
         tag="Nossa Equipe"
-        title={<>Especialistas unidos pelo <em>cuidado</em></>}
-        desc="Uma equipe multidisciplinar de excelência: gastroenterologistas, fisioterapeuta pélvica, cirurgiãs, nefrologista, pediatra e clínicos, unidos pelo padrão ISO 9001."
+        title={<>Profissionais unidos pelo <em>cuidado</em></>}
+        desc="Equipe multidisciplinar: gastroenterologistas, fisioterapeuta pélvica, cirurgiãs, nefrologista, pediatra e clínicos, em clínica com gestão certificada pela norma ISO 9001."
       />
 
       {/* Sócias Fundadoras */}
@@ -79,7 +81,7 @@ export default function EquipePage() {
           <p className="sec-tag justify-center reveal">Liderança</p>
           <h2 className="sec-title reveal reveal-d1">Sócias <em>Fundadoras</em></h2>
           <p className="text-[0.97rem] text-steel/65 mt-3 reveal reveal-d2 max-w-xl mx-auto">
-            As médicas que fundaram a NU.V.E.M e definem o padrão de excelência da clínica.
+            As médicas que fundaram a NU.V.E.M e conduzem a direção técnica da clínica.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -152,7 +154,7 @@ export default function EquipePage() {
           <p className="sec-tag justify-center reveal">Equipe Técnica</p>
           <h2 className="sec-title reveal reveal-d1">Quem cuida de <em>você</em></h2>
           <p className="text-[0.97rem] font-light text-steel/60 max-w-lg mx-auto mt-3 reveal reveal-d2">
-            Profissionais dedicados que garantem o acolhimento e a excelência operacional da NU.V.E.M.
+            Profissionais que cuidam do acolhimento e da rotina da NU.V.E.M.
           </p>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-5 max-w-3xl mx-auto">
@@ -194,7 +196,7 @@ export default function EquipePage() {
       <SectionWrapper>
         <CtaBanner
           title="Conheça nossa equipe pessoalmente"
-          desc="Agende sua consulta e experimente o cuidado multidisciplinar com padrão ISO 9001 da NU.V.E.M Medicina."
+          desc="Agende sua consulta com a equipe multidisciplinar da NU.V.E.M Medicina."
         />
       </SectionWrapper>
     </>

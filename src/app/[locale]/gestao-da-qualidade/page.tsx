@@ -39,7 +39,7 @@ export default function GestaoQualidadePage() {
       <PageHero
         tag="Gestão da Qualidade"
         title={<>Certificação <em>ISO 9001</em>,<br />o padrão que nos define</>}
-        desc="Somos uma clínica com gestão certificada pela norma ISO 9001, o padrão internacional de excelência em qualidade."
+        desc="Somos uma clínica com gestão certificada pela norma ISO 9001, a norma internacional de sistemas de gestão da qualidade."
       />
 
       {/* O que é ISO 9001 */}
@@ -59,7 +59,7 @@ export default function GestaoQualidadePage() {
           <div className="reveal reveal-d1">
             <p className="sec-tag">O que é ISO 9001</p>
             <h2 className="sec-title mt-2 mb-5">
-              O padrão <em>internacional</em> de excelência
+              A norma <em>internacional</em> de gestão da qualidade
             </h2>
             <div className="space-y-4 text-[0.97rem] font-light text-steel/65 leading-[1.85]">
               <p>
@@ -147,7 +147,7 @@ export default function GestaoQualidadePage() {
             Todos os procedimentos de biossegurança da NU.V.E.M seguem os Procedimentos
             Operacionais Padrão (POPs) documentados e aprovados conforme a ISO 9001.
             Equipamentos são higienizados, esterilizados e rastreados entre cada uso,
-            garantindo a máxima segurança para pacientes e colaboradores.
+            com foco na segurança de pacientes e colaboradores.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 reveal reveal-d3">
             {['Higienização certificada', 'Rastreabilidade de equipamentos', 'Treinamento contínuo da equipe'].map(item => (
@@ -324,7 +324,7 @@ export default function GestaoQualidadePage() {
             <div className="px-6 pb-6 pt-1 border-t border-teal/8 text-[0.88rem] font-light text-steel/65 leading-[1.82] space-y-5">
               <div>
                 <p className="text-[0.72rem] font-bold uppercase tracking-[.1em] text-teal mb-2">4.1 Análise do Contexto Organizacional (ISO 9001:2015 – item 4.1)</p>
-                <p className="mb-3">A Clínica NU.V.E.M atua na prestação de serviços médicos especializados em gastroenterologia, nutrologia e exames complementares voltados às doenças funcionais do trato gastrointestinal e intolerâncias alimentares, em ambiente ambulatorial especializado.</p>
+                <p className="mb-3">Gestão certificada pela norma ISO 9001 para os atendimentos clínicos e exames da NU.V.E.M Medicina.</p>
                 <p className="mb-2">Foram analisadas questões internas e externas relevantes que impactam a capacidade da organização em atingir os resultados pretendidos do SGQ, incluindo:</p>
                 <ul className="list-none space-y-1.5 pl-2">
                   {['Estrutura organizacional e capacidade operacional;',
@@ -367,7 +367,7 @@ export default function GestaoQualidadePage() {
             </summary>
             <div className="px-6 pb-6 pt-1 border-t border-teal/8 text-[0.88rem] font-light text-steel/65 leading-[1.82] space-y-3">
               <p>O escopo do SGQ da Clínica NU.V.E.M permanece definido como:</p>
-              <p className="italic border-l-2 border-teal/40 pl-4 text-steel/75">Prestação de atendimentos clínicos nas áreas de gastroenterologia e nutrologia, bem como a realização de exames complementares relacionados às doenças funcionais do trato gastrointestinal e intolerâncias alimentares.</p>
+              <p className="italic border-l-2 border-teal/40 pl-4 text-steel/75">Gestão certificada pela norma ISO 9001 para os atendimentos clínicos e exames da NU.V.E.M Medicina.</p>
               <p>O escopo está devidamente documentado, implementado e comunicado, atendendo aos requisitos do item 4.3 da ISO 9001:2015.</p>
             </div>
           </details>

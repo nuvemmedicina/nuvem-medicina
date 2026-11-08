@@ -41,17 +41,19 @@
     "institucionalBlog": "Blog",
     "phmetriaImpedancia": "pHmetría e Impedancia",
     "preparos": "Guías de Preparación",
-    "tagline": "Ecosistema de excelencia en salud digestiva y formación médica en Belo Horizonte, con certificación ISO 9001.",
+    "tagline": "Gastroenterología, motilidad digestiva y formación médica en Belo Horizonte, con gestión certificada según la norma ISO 9001.",
     "isoTitle": "Certificación ISO 9001",
-    "isoSubtitle": "Clínica con certificación ISO 9001",
+    "isoSubtitle": "Gestión certificada según la norma ISO 9001",
     "privacyPolicy": "Política de Privacidad",
     "patientRights": "Derechos del Paciente",
-    "disclaimer": "La información de este sitio tiene carácter informativo y educativo, conforme a las normas del Consejo Federal de Medicina de Brasil (Res. CFM n.º 2.336/2023). No sustituye la consulta médica profesional.",
+    "disclaimer": "Contenido informativo y educativo, conforme a la Res. CFM n.º 2.336/2023 (Consejo Federal de Medicina de Brasil). No sustituye la consulta médica.",
+    "responsavelTecnica": "Responsable técnica: Dra. Vera Ângelo · CRM-MG 22284 · RQE 10411 · RQE 22736 · Directora Técnica",
+    "registroClinica": "Registro de la clínica",
     "developedBy": "Desarrollado por"
   },
   "ctaBanner": {
     "title": "¿Listo para cuidar tu salud digestiva?",
-    "desc": "Agenda tu consulta y experimenta el estándar de excelencia ISO 9001 de NU.V.E.M Medicina.",
+    "desc": "Agenda tu consulta en NU.V.E.M Medicina, clínica con gestión certificada según la norma ISO 9001.",
     "agendar": "Agendar Consulta",
     "ensino": "NU.V.E.M Formación",
     "whatsappMsg": "¡Hola! Me gustaría agendar una consulta en NU.V.E.M Medicina."
@@ -71,7 +73,7 @@
     "metaDescription": "Manometría esofágica y anorrectal de alta resolución, pHmetría, pruebas respiratorias, halimetría y evaluación pélvica en Belo Horizonte. Certificación ISO 9001.",
     "tag": "Exámenes y Diagnósticos",
     "title": "Precisión técnica <em>certificada</em>",
-    "desc": "Infraestructura diagnóstica de última generación operada por especialistas con formación y certificación ISO 9001: los resultados más confiables del sector.",
+    "desc": "Equipos actualizados, operados por un equipo capacitado, en una clínica con gestión certificada según la norma ISO 9001.",
     "verDetalhes": "Ver detalles",
     "baixarPreparo": "Descargar guía de preparación",
     "preparosTitle": "Guías de Preparación",
@@ -97,11 +99,11 @@
     "verEquipeCompleta": "Ver equipo completo",
     "areasDeAtuacao": "Áreas de actuación",
     "examesRelacionados": "Exámenes relacionados",
-    "isoBadge": "Especialidad realizada con protocolo",
-    "isoBadgeStrong": "certificado ISO 9001",
+    "isoBadge": "Atención realizada en una clínica con",
+    "isoBadgeStrong": "gestión certificada según la norma ISO 9001",
     "saibaMais": "Saber más",
     "agendarConsulta": "Agendar consulta",
-    "agendarDesc": "Atención especializada en {esp} con equipo certificado ISO 9001.",
+    "agendarDesc": "Atención en {esp}, en una clínica con gestión certificada según la norma ISO 9001.",
     "agendarAgora": "Agendar ahora"
   },
   "exameDetail": {
@@ -127,8 +129,8 @@
     "preparosDoExame": "Guías de Preparación",
     "preparoDoExame": "Guía de Preparación",
     "baixeGuiaCalma": "Descargue la guía completa de preparación en PDF para leerla con calma en casa.",
-    "isoBadge": "Examen realizado con protocolo",
-    "isoBadgeStrong": "certificado ISO 9001",
+    "isoBadge": "Examen realizado en una clínica con",
+    "isoBadgeStrong": "gestión certificada según la norma ISO 9001",
     "especialidadesRelacionadas": "Especialidades relacionadas",
     "agendarEsteExame": "Agendar este Examen"
   },
@@ -262,7 +264,7 @@
   },
   "home": {
     "meta": {
-      "title": "NU.V.E.M Medicina — Excelencia en Salud Digestiva · Belo Horizonte, Brasil"
+      "title": "NU.V.E.M Medicina · Gastroenterología y Motilidad Digestiva en Belo Horizonte, Brasil"
     },
     "hero": {
       "prevSlide": "Diapositiva anterior",
@@ -278,7 +280,7 @@
     "exames": {
       "tag": "Exámenes y Diagnósticos",
       "title": "Precisión técnica <em>certificada</em>",
-      "desc": "Infraestructura diagnóstica de última generación operada por especialistas con formación y certificación ISO 9001.",
+      "desc": "Equipos actualizados, operados por un equipo capacitado, en una clínica con gestión certificada según la norma ISO 9001.",
       "ctaSaibaMais": "Saber más",
       "ctaBaixarPreparo": "Descargar Guía de Preparación"
     },
@@ -287,7 +289,7 @@
       "titleLine1": "Clínica con",
       "titleEm": "Certificación ISO 9001",
       "titleLine3": "en Belo Horizonte",
-      "desc": "La ISO 9001 es el estándar internacional de excelencia en gestión. Cada proceso, desde el agendamiento hasta el diagnóstico, sigue protocolos rigurosos de calidad, trazabilidad y mejora continua.",
+      "desc": "La ISO 9001 es la norma internacional de sistemas de gestión de la calidad. Cada proceso, desde el agendamiento hasta el diagnóstico, sigue protocolos de calidad, trazabilidad y mejora continua.",
       "pt1": "Procesos clínicos estandarizados y auditados externamente",
       "pt2": "Trazabilidad completa de exámenes e historiales clínicos",
       "pt3": "Capacitaciones y certificaciones educativas validadas",
@@ -295,18 +297,18 @@
       "pt5": "Seguridad y satisfacción del paciente como prioridad absoluta",
       "diferenciaisTag": "Nuestros Diferenciales",
       "isoBadgeTitle": "Certificación ISO 9001",
-      "isoBadgeDesc": "Clínica con certificación ISO 9001",
-      "feat1Title": "Tecnología Diagnóstica de Vanguardia",
+      "isoBadgeDesc": "Gestión certificada según la norma ISO 9001",
+      "feat1Title": "Equipos Diagnósticos Actualizados",
       "feat1Desc": "Manometría de alta resolución, pHmetría, pruebas respiratorias H₂/CH₄/H₂S",
       "feat2Title": "Equipo Multidisciplinario",
       "feat2Desc": "Gastroenterología, fisioterapia pélvica, nefrología, pediatría",
       "feat3Title": "Centro de Formación Médica",
-      "feat3Desc": "Formación práctica con certificación validada ISO 9001"
+      "feat3Desc": "Formación práctica en una clínica con gestión certificada según la norma ISO 9001"
     },
     "cursos": {
       "tag": "Cursos y Charlas",
       "title": "Formación y <em>actualización</em> científica",
-      "desc": "Cursos, charlas y talleres con el equipo NU.V.E.M y socios de referencia nacional. Contenido aplicado a la práctica clínica real.",
+      "desc": "Cursos, charlas y talleres con el equipo NU.V.E.M y socios invitados. Contenido aplicado a la práctica clínica real.",
       "verTodos": "Ver todos los cursos",
       "inscreverSe": "Inscribirme",
       "emBreve": "Próximamente nueva clase",

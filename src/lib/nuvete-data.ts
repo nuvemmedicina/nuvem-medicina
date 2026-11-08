@@ -164,7 +164,7 @@ export const NUVETE_RESPOSTAS: NuveteResposta[] = [
   // ── Médicas e equipe ─────────────────────────────────────────────────────────
   {
     gatilhos: ['dra vera', 'vera ângelo', 'vera angelo', 'dr vera', 'diretora técnica', 'fundadora', 'vera'],
-    resposta: '👩‍⚕️ **Dra. Vera Ângelo**\nGastroenterologista · Sócia Fundadora da NU.V.E.M\n\n🎓 Mestre e Doutora em Patologia pela UFMG\n📜 Título de Especialista pela Federação Brasileira de Gastroenterologia\n📚 Professora convidada do Hospital Israelita Albert Einstein\n✍️ Autora de diversas obras pela Editora Rubio\n🔬 Referência nacional em testes respiratórios e motilidade digestiva\n\n**CRM-MG 22284 · RQE 10411 · RQE 22736**',
+    resposta: '👩‍⚕️ **Dra. Vera Ângelo**\nGastroenterologista · Sócia Fundadora da NU.V.E.M\n\n🎓 Mestre e Doutora em Patologia pela UFMG\n📜 Título de Especialista pela Federação Brasileira de Gastroenterologia\n📚 Professora convidada do Hospital Israelita Albert Einstein\n✍️ Autora de diversas obras pela Editora Rubio\n🔬 Atua em SIBO/IMO, testes respiratórios, motilidade digestiva e DGBI\n\n**CRM-MG 22284 · RQE 10411 · RQE 22736**',
     botoes: [
       { label: '👩‍⚕️ Ver perfil completo', acao: 'link:/dra-vera-angelo' },
       { label: '📅 Agendar com a Dra. Vera', acao: 'whatsapp' },
@@ -196,7 +196,7 @@ export const NUVETE_RESPOSTAS: NuveteResposta[] = [
   },
   {
     gatilhos: ['anna karoline', 'anna', 'karoline', 'fisioterapeuta'],
-    resposta: '👩‍⚕️ **Dra. Anna Karoline**\nFisioterapia Pélvica\n\nEspecialista em assoalho pélvico, biofeedback eletromiográfico e tratamento de incontinência. Realiza avaliações completas com equipamentos de EMG de superfície.',
+    resposta: '👩‍⚕️ **Dra. Anna Karoline**\nFisioterapia Pélvica\n\nAtua em assoalho pélvico, biofeedback eletromiográfico e tratamento de incontinência. Realiza avaliações completas com equipamentos de EMG de superfície.',
     botoes: [
       { label: '🩺 Saiba mais sobre Fisioterapia Pélvica', acao: 'link:/especialidades/fisioterapia-pelvica' },
       { label: '📅 Agendar avaliação', acao: 'whatsapp' },
@@ -228,7 +228,7 @@ export const NUVETE_RESPOSTAS: NuveteResposta[] = [
   },
   {
     gatilhos: ['mariana fernandes', 'mariana'],
-    resposta: '👩‍⚕️ **Dra. Mariana Fernandes**\nPediatria\n\nPediatra especializada em saúde digestiva infantil. Atende crianças e adolescentes com constipação, dor abdominal recorrente, refluxo e problemas alimentares.',
+    resposta: '👩‍⚕️ **Dra. Mariana Fernandes**\nPediatria\n\nPediatra com atuação em saúde digestiva infantil. Atende crianças e adolescentes com constipação, dor abdominal recorrente, refluxo e problemas alimentares.',
     botoes: [
       { label: '🩺 Saiba mais sobre Pediatria', acao: 'link:/especialidades/pediatria' },
       { label: '📅 Agendar consulta pediátrica', acao: 'whatsapp' },
@@ -236,7 +236,7 @@ export const NUVETE_RESPOSTAS: NuveteResposta[] = [
   },
   {
     gatilhos: ['adrianna buzatti', 'adrianna', 'raissa dalat', 'raissa', 'cirurgiã pediátrica', 'cirurgia pediatrica'],
-    resposta: '👩‍⚕️ **Cirurgia Pediátrica:**\n\n- **Dra. Adrianna Buzatti Viana**: Cirurgia Pediátrica, casos complexos\n- **Dra. Raissa Dalat**: Cirurgia Pediátrica\n- **Dra. Eliane Basques Moura**: Diretora Técnica Substituta, especialista em manometria anorretal\n\nA equipe de cirurgia pediátrica atua de forma integrada com gastroenterologia e fisioterapia.',
+    resposta: '👩‍⚕️ **Cirurgia Pediátrica:**\n\n- **Dra. Adrianna Buzatti Viana**: Cirurgia Pediátrica, casos complexos\n- **Dra. Raissa Dalat**: Cirurgia Pediátrica\n- **Dra. Eliane Basques Moura**: Diretora Técnica Substituta, com atuação em manometria anorretal\n\nA equipe de cirurgia pediátrica atua de forma integrada com gastroenterologia e fisioterapia.',
     botoes: [
       { label: '👥 Ver toda a equipe', acao: 'link:/equipe' },
       { label: '📅 Agendar consulta', acao: 'whatsapp' },
@@ -270,7 +270,7 @@ export const NUVETE_RESPOSTAS: NuveteResposta[] = [
   },
   {
     gatilhos: ['gastroenterologia', 'gastro', 'digestivo', 'intestino', 'estômago', 'estomago', 'cólon', 'colon', 'gastrite', 'colite', 'crohn', 'celiaca', 'celíaca'],
-    resposta: '🔹 **Gastroenterologia**\n\nA NU.V.E.M é especializada em doenças do aparelho digestivo, com foco em diagnóstico de precisão:\n\n- Doença do refluxo (DRGE)\n- Acalasia e distúrbios motores esofágicos\n- Síndrome do intestino irritável (SII)\n- Doença de Crohn e retocolite\n- Doença celíaca\n- Gastrite e *H. pylori*\n- SIBO e disbiose intestinal\n- Constipação crônica\n- DGBI: distúrbios da interação intestino-cérebro (antigas "doenças funcionais digestivas")',
+    resposta: '🔹 **Gastroenterologia**\n\nA NU.V.E.M atua no diagnóstico e no cuidado das doenças do aparelho digestivo:\n\n- Doença do refluxo (DRGE)\n- Acalasia e distúrbios motores esofágicos\n- Síndrome do intestino irritável (SII)\n- Doença de Crohn e retocolite\n- Doença celíaca\n- Gastrite e *H. pylori*\n- SIBO e disbiose intestinal\n- Constipação crônica\n- DGBI: distúrbios da interação intestino-cérebro (antigas "doenças funcionais digestivas")',
     botoes: [
       { label: '🩺 Saiba mais', acao: 'link:/especialidades/gastroenterologia' },
       { label: '📅 Agendar consulta', acao: 'whatsapp' },
@@ -302,7 +302,7 @@ export const NUVETE_RESPOSTAS: NuveteResposta[] = [
   },
   {
     gatilhos: ['motilidade', 'motilidade digestiva', 'funcional'],
-    resposta: '🔹 **Motilidade Digestiva**\n\nAvaliação dos movimentos e da função do aparelho digestivo com exames de alta precisão:\n\n- Manometria Esofágica de Alta Resolução\n- Manometria Anorretal\n- pHmetria e Impedanciopletismografia\n- Testes Respiratórios (H₂, CH₄, H₂S)\n\nSomos referência nacional nessa área, com a Dra. Vera Ângelo à frente das pesquisas.',
+    resposta: '🔹 **Motilidade Digestiva**\n\nAvaliação dos movimentos e da função do aparelho digestivo com exames de alta precisão:\n\n- Manometria Esofágica de Alta Resolução\n- Manometria Anorretal\n- pHmetria e Impedanciopletismografia\n- Testes Respiratórios (H₂, CH₄, H₂S)\n\nA Dra. Vera Ângelo, Diretora Técnica da clínica, atua nessa área.',
     botoes: [
       { label: '🩺 Saiba mais', acao: 'link:/especialidades/motilidade-digestiva' },
       { label: '📅 Agendar exame', acao: 'whatsapp' },
@@ -321,7 +321,7 @@ export const NUVETE_RESPOSTAS: NuveteResposta[] = [
   },
   {
     gatilhos: ['laudo', 'resultado', 'quando fica pronto', 'prazo'],
-    resposta: '📄 **Prazos dos laudos na NU.V.E.M:**\n\n- Manometria: até 3 dias úteis\n- pHmetria: alguns dias após a devolução do equipamento\n- Testes Respiratórios: até 3 dias úteis\n- Halimetria e Sialometria: até 2 dias úteis\n\nTodos os laudos seguem o padrão ISO 9001. Estruturados, detalhados e entregues no prazo. 💙',
+    resposta: '📄 **Prazos dos laudos na NU.V.E.M:**\n\n- Manometria: até 3 dias úteis\n- pHmetria: alguns dias após a devolução do equipamento\n- Testes Respiratórios: até 3 dias úteis\n- Halimetria e Sialometria: até 2 dias úteis\n\nOs laudos seguem os processos da gestão certificada pela norma ISO 9001. Estruturados, detalhados e entregues no prazo. 💙',
     botoes: [
       { label: '📅 Agendar exame', acao: 'whatsapp' },
     ],
@@ -373,7 +373,7 @@ export const NUVETE_RESPOSTAS: NuveteResposta[] = [
   },
   {
     gatilhos: ['sibo', 'supercrescimento', 'imo', 'libo'],
-    resposta: 'A NU.V.E.M é referência em diagnóstico de SIBO (supercrescimento bacteriano intestinal) e IMO (supercrescimento de metanogênicos).\n\nUtilizamos testes respiratórios com H₂, CH₄ e H₂S, o protocolo mais completo disponível, sem coleta de sangue.\n\nGostaria de saber sobre o preparo para o teste respiratório?',
+    resposta: 'A NU.V.E.M realiza testes respiratórios para investigação de SIBO (supercrescimento bacteriano intestinal) e IMO (supercrescimento de metanogênicos).\n\nO teste mede H₂, CH₄ e H₂S no ar expirado, sem coleta de sangue.\n\nGostaria de saber sobre o preparo para o teste respiratório?',
     botoes: [
       { label: '📋 Ver preparo SIBO', acao: 'preparo:respiratorio-sibo' },
       { label: '📅 Agendar exame', acao: 'whatsapp' },

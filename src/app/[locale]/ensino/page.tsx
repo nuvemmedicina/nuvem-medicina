@@ -39,7 +39,7 @@ const INSTRUTORES = [
     crm:   'CRM-MG 22284 · RQE 10411 · RQE 22736',
     foto:  '/images/dra-vera.jpg',
     role:  'Fundadora e Diretora Técnica',
-    bio:   'Mestre e Doutora pela UFMG. Professora convidada do Hospital Israelita Albert Einstein. Autora de diversas obras pela Editora Rubio. Referência nacional em testes respiratórios e motilidade digestiva.',
+    bio:   'Mestre e Doutora pela UFMG. Professora convidada do Hospital Israelita Albert Einstein. Autora de obras pela Editora Rubio. Atua em SIBO/IMO, testes respiratórios, motilidade digestiva e DGBI.',
     href:  '/dra-vera-angelo',
   },
   {
@@ -48,7 +48,7 @@ const INSTRUTORES = [
     crm:   'CRM-MG 27601 · RQE 9324',
     foto:  '/images/dra-eliane.jpg',
     role:  'Diretora Técnica Substituta',
-    bio:   'Cirurgiã pediátrica e especialista em manometria anorretal. Cofundadora da NU.V.E.M, traz a visão cirúrgica integrada ao ensino de diagnóstico funcional avançado.',
+    bio:   'Cirurgiã pediátrica com atuação em manometria anorretal. Cofundadora da NU.V.E.M, traz a visão cirúrgica integrada ao ensino de diagnóstico funcional avançado.',
     href:  '/dra-eliane-basques',
   },
 ]
@@ -114,7 +114,7 @@ export default function EnsinoPage() {
           {[
             {
               n: '1', label: 'Fase 01', title: 'Atualização Teórica',
-              desc: 'Protocolos baseados em evidências científicas atuais, com novas diretrizes para H. pylori, SIBO, IMO e distúrbios funcionais digestivos.',
+              desc: 'Protocolos baseados em evidências científicas atuais, com novas diretrizes para H. pylori, SIBO, IMO e distúrbios da interação cérebro-intestino (DGBI).',
               hl: false, badge: null,
             },
             {
@@ -124,7 +124,7 @@ export default function EnsinoPage() {
             },
             {
               n: '3', label: 'Fase 03', title: 'Imersão Hands-On',
-              desc: 'Treinamento prático presencial com equipamentos de ponta na NU.V.E.M. Domínio da execução técnica e certificação ISO 9001 incluída.',
+              desc: 'Treinamento prático presencial com equipamentos atualizados na NU.V.E.M. Domínio da execução técnica e certificação ISO 9001 incluída.',
               hl: true, badge: 'Premium',
             },
           ].map((step, i) => (
@@ -263,7 +263,7 @@ export default function EnsinoPage() {
           <p className="sec-tag justify-center reveal">Plataforma de Cursos</p>
           <h2 className="sec-title reveal reveal-d1 mb-4">Acesse o portal <em>NU.V.E.M Ensino</em></h2>
           <p className="text-[0.97rem] font-light text-steel/60 max-w-md mx-auto mb-10 reveal reveal-d2">
-            Confira a agenda de cursos, inscrições e materiais disponíveis na plataforma exclusiva do NU.V.E.M Ensino.
+            Confira a agenda de cursos, inscrições e materiais disponíveis na plataforma do NU.V.E.M Ensino.
           </p>
           <div className="flex flex-wrap gap-4 justify-center reveal reveal-d3">
             <a href="https://www.nuvemensino.com.br/" target="_blank" rel="noopener noreferrer" className="btn-gold">

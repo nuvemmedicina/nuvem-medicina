@@ -13,7 +13,7 @@ export const organizationSchema = {
   url:         BASE_URL,
   logo:        `${BASE_URL}/images/logo.svg`,
   image:       `${BASE_URL}/images/vera-eliane.jpg`,
-  description: 'Clínica especializada em gastroenterologia, diagnóstico avançado e ensino médico em Belo Horizonte. Clínica com certificação ISO 9001.',
+  description: 'Clínica de gastroenterologia e motilidade digestiva, exames diagnósticos e ensino médico em Belo Horizonte. Gestão certificada pela norma ISO 9001.',
   telephone:   '+55-31-2537-3131',
   email:       CONTATO.email,
   foundingDate: '2018',
@@ -85,7 +85,7 @@ export const websiteSchema = {
   '@id':         `${BASE_URL}/#website`,
   url:           BASE_URL,
   name:          'NU.V.E.M Medicina',
-  description:   'Clínica de Gastroenterologia com Certificação ISO 9001 em Belo Horizonte',
+  description:   'Clínica de gastroenterologia e motilidade digestiva em Belo Horizonte, com gestão certificada pela norma ISO 9001',
   publisher:     { '@id': `${BASE_URL}/#organization` },
   potentialAction: {
     '@type':       'SearchAction',
