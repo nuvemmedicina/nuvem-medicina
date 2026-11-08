@@ -52,7 +52,7 @@ export const PROPOSTAS: Proposta[] = [
     responsavel: 'Dra. Vera Ângelo',
     hoje: 'Marcado para corrigir, mas sem orientação escrita. Não diz quando nem onde devolver o aparelho.',
     proposta: 'Volte à clínica no dia seguinte, no mesmo horário em que a sonda foi colocada (cerca de 24 horas depois), para retirar a sonda e devolver o aparelho com o diário preenchido.\nNão retire a sonda em casa. Se ela sair do lugar ou causar desconforto forte, entre em contato com a clínica.\nO laudo fica pronto alguns dias após a devolução do aparelho.',
-    referencia: 'O HC-FMB/UNESP orienta voltar no dia seguinte, no mesmo horário, para retirar a sonda. Serviços na Espanha fazem a retirada entre 22 e 24 horas depois e recolhem o diário. A confirmar: a clínica fecha no sábado e na sexta funciona até 16h30. A pHmetria é instalada na sexta?',
+    referencia: 'O HC-FMB/UNESP orienta voltar no dia seguinte, no mesmo horário, para retirar a sonda. Serviços na Espanha fazem a retirada entre 22 e 24 horas depois e recolhem o diário. Na NU.V.E.M a pHmetria não é instalada na sexta-feira (confirmado pela gestão em 08/11), então a retirada no dia seguinte sempre cai em dia útil.',
   },
   {
     id: 'teste-respiratorio-hpylori:noDia-4', exame: 'Teste respiratório para H. pylori', ponto: 'Chegada antecipada e acompanhante',
