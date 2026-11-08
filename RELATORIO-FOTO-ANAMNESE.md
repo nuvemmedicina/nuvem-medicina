@@ -14,12 +14,45 @@ Um commit por item:
 | `feat(anamnese): envio da foto` | Seção "Sua foto para o site", com orientações, molduras 4:5 e 1:1 e as opções "a clínica providencia" e "sem foto". Envio direto para o armazenamento privado. No servidor: tipo conferido pelo conteúdo do arquivo, até 10 MB, mínimo de 1200 px, metadados removidos e versões em WebP. |
 | `fix(anamnese): HEIC` | O sharp não lê HEIC. O navegador converte HEIC para JPG antes do envio quando consegue abrir o arquivo (Safari no iPhone e no Mac). Quando não consegue (Chrome e Edge no Windows), mostra uma mensagem pedindo JPG. O servidor só recebe JPG, PNG e WebP. |
 | `chore(lint): ESLint 9` | É o mesmo commit do PR #140. A `main` usa `next lint`, que o Next 16 removeu, então o lint não rodava. Some sozinho quando os dois PRs entrarem. |
-| `feat(anamnese): termo de autorização` | Termo versão 1.0 em `src/lib/anamnese-ia/termo-imagem.ts`, com caixa de aceite obrigatória e desmarcada. Cada aceite gera um registro que não pode ser editado. |
+| `feat(anamnese): termo de autorização` | Termo (versão 1.0, hoje 1.1) em `src/lib/anamnese-ia/termo-imagem.ts`, com caixa de aceite obrigatória e desmarcada. Cada aceite gera um registro que não pode ser editado. |
 | `feat(anamnese): aprovação da página` | Rota `/anamnese-ia/medico/<slug>/aprovacao`, com prévia e os botões "Aprovo a publicação" e "Quero ajustes". Status por médico e regras de publicação. |
 | `feat(anamnese): painel` | Tela `/anamnese-ia/painel`, com um código para a Ana Paula e outro para a Dra. Vera. Tem lista com status, ações e o CSV das autorizações. |
 | 2 commits `fix(anamnese)` | Ajustes encontrados nos testes: Instagram com espaço passou a mostrar o aviso; prévia do painel e iniciais sem acento. |
+| `feat(anamnese): foto já usada no site` | A foto atual do site entra no histórico como envio 0 e aparece com o título "Esta é a foto que usamos hoje no site". As opções são "Aprovo esta foto" (exige o termo), "Quero enviar outra", "a clínica providencia" e "sem foto". |
+| `feat(anamnese): origem da foto no painel` | Cada profissional mostra a origem da foto: atual do site, nova enviada, a clínica providencia ou sem foto. |
+| `feat(anamnese): termo versão 1.1` | Acrescenta a frase "Esta autorização inclui as fotos minhas que a NU.V.E.M Medicina já usa no site e nos materiais da clínica." Continua pendente de revisão pela gestão. |
 
-A rota `/anamnese-ia/validacao` não mudou. Ela é usada pela equipe toda para validar os preparos de exames, e misturar os dois fluxos ali quebraria o link compartilhado.
+A rota `/anamnese-ia/validacao` não mudou.
+
+## Fotos que o site já usa (envio 0)
+
+Mapeadas em 08/11/2026, em `src/lib/anamnese-ia/fotos-site.ts`:
+
+| Profissional | Arquivo | Tamanho | Onde aparece |
+|---|---|---|---|
+| Dra. Vera Ângelo | `/images/dra-vera.jpg` | 900 × 900 | /equipe, /dra-vera-angelo, /sobre, /ensino, especialidades gastroenterologia, halitose e motilidade digestiva |
+| Dra. Eliane Basques | `/images/dra-eliane.jpg` | 900 × 900 | /equipe, /dra-eliane-basques, /sobre, /ensino, especialidade pediatria |
+| Dra. Amanda Araújo | `/images/Amanda-Araujo.jpg` | 1691 × 1691 | /equipe |
+| Dra. Anna Karoline | `/images/anna-karoline.jpg` | 900 × 900 | /equipe, especialidade fisioterapia pélvica |
+| Dra. Claudia Utsch | `/images/claudia-utsch.jpg` | 900 × 900 | /equipe, especialidade gastroenterologia |
+| Dra. Camilla Mendes | `/images/camilla-mendes.jpg` | 900 × 900 | /equipe |
+| Dra. Danielle Martins | `/images/danielle-martins.jpg` | 900 × 900 | /equipe, especialidade gastroenterologia |
+| Dr. Gabriel de Souza Fernandes Filho | `/images/dr-Gabriel-de-Souza-Fernandes-Filho.jpg` | 1691 × 1691 | /equipe, especialidade motilidade digestiva |
+| Dra. Raissa Dalat | `/images/raissa-dalat.jpg` | 700 × 700 | /equipe |
+
+As especialidades aparecem nos 3 idiomas.
+
+- **Fora da importação**, por não entrarem no atendimento automático: Dra. Adrianna Buzatti Viana (`adrianna-buzatti-viana.jpg`), Dra. Luiza Auarek (`luiza-auarek.jpg`) e Dra. Mariana Fernandes (`mariana-fernandes.jpg`).
+- **Outras fotos da Dra. Vera que não foram importadas:**
+  - `dra-vera-angelo.jpg` (1080 × 1080), usada nos slides da home;
+  - `dra-vera-angelo-1.jpeg` e `dra-vera-dr-dan-l-waiztberg.jpg`, que não são usadas em nenhuma página.
+
+**Como funciona a importação:**
+- Ela acontece na primeira vez que o médico abre a anamnese, ou quando o painel é aberto, e não se repete.
+- A foto é lida no endereço público do site, porque na Vercel a pasta `public` não fica no disco das funções. O arquivo em `public/images` não muda.
+- A cópia vai para o Blob privado, em `anamnese-ia/fotos/<escopo>/site/`, sem metadados e com as versões 4:5 e 1:1.
+- Fotos com menos de 1200 px não são ampliadas. A versão 4:5 de uma foto de 900 px, por exemplo, sai com 720 × 900. O painel avisa quando a foto está abaixo de 1200 px.
+- Importar não escolhe nada pelo médico. A foto do site só vira a foto da página quando ele marca "Aprovo esta foto" e aceita o termo. Esse aceite fica registrado com o identificador do envio 0. Ela é usada pela equipe toda para validar os preparos de exames, e misturar os dois fluxos ali quebraria o link compartilhado.
 
 ## Onde ficam as fotos e os registros
 
@@ -116,9 +149,10 @@ Se o médico enviar uma foto nova depois, ele aceita o termo de novo e um novo a
 
 ## O que ficou pendente
 
-- **Revisão do termo pela gestão.** O texto está em `src/lib/anamnese-ia/termo-imagem.ts`. Ao mudar qualquer palavra, suba a versão (1.1, 2.0…) e anote a anterior em `VERSOES_ANTERIORES`.
+- **Revisão do termo pela gestão.** O texto está em `src/lib/anamnese-ia/termo-imagem.ts`, na versão 1.1. Ao mudar qualquer palavra, suba a versão (1.2, 2.0…) e anote a anterior em `VERSOES_ANTERIORES`.
+- **Importação real da foto do site.** Foi testada com o Sanity e o Blob simulados: a foto real da Dra. Vera foi lida do site, os 3 arquivos foram gravados como privados e sem EXIF, a importação aconteceu uma única vez e nada foi importado para a Dra. Luiza. A gravação real depende do Blob.
 - **Teste de ponta a ponta com o Blob e o Sanity reais.** Não foi feito porque o Blob ainda não existe e a geração de um código real foi bloqueada nesta sessão por proteção de credenciais. O que foi testado:
-  - 30 verificações automáticas fora do servidor: metadados e GPS removidos, orientação, tamanhos 4:5 e 1:1, recorte, tipo pelo conteúdo, termo, corrente de hashes, revogação e todos os status e regras de publicação.
+  - 44 verificações automáticas fora do servidor: metadados e GPS removidos, orientação, tamanhos 4:5 e 1:1, recorte, tipo pelo conteúdo, termo 1.1, corrente de hashes, revogação, todos os status e regras de publicação, fotos do site mapeadas (existem, tamanhos certos, exclusões) e envio 0.
   - Telas no navegador com um segredo de teste e sem acesso ao Sanity: anamnese com a seção da foto, prévia nas molduras, termo, aceite obrigatório, painel e aprovação no celular.
   - Respostas certas para código errado (403), slug inválido (404) e ausência do GTM.
   - Build e lint passando.
