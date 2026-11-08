@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   openGraph: {
     type:  'website',
     url:   `${SITE_URL}/links`,
-    title: 'NU.V.E.M Medicina — Links',
+    title: 'NU.V.E.M Medicina · Links',
     description: 'Agende sua consulta ou exame, veja convênios, preparos e conteúdos da NU.V.E.M Medicina.',
     images: [{
       url:    '/images/clinica-nuvem-medicna.png',
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card:        'summary_large_image',
-    title:       'NU.V.E.M Medicina — Links',
+    title:       'NU.V.E.M Medicina · Links',
     description: 'Agende sua consulta ou exame, veja convênios, preparos e conteúdos da NU.V.E.M Medicina.',
     images:      ['/images/clinica-nuvem-medicna.png'],
   },

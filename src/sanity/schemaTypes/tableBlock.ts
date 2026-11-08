@@ -9,7 +9,7 @@ export const tableBlock = defineType({
       name:        'caption',
       title:       'Legenda',
       type:        'string',
-      description: 'Opcional — aparece abaixo da tabela.',
+      description: 'Opcional: aparece abaixo da tabela.',
     }),
     defineField({
       name:         'hasHeader',

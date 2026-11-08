@@ -156,7 +156,7 @@ export async function DepoimentosSection() {
           }
         </div>
 
-        {/* Atribuição Google — exigida pelos Termos de Serviço quando usando a API */}
+        {/* Atribuição Google: exigida pelos Termos de Serviço quando usando a API */}
         {usingGoogle && (
           <div className="mt-10 flex items-center justify-center gap-2 opacity-40">
             <span className="text-[0.7rem] text-steel/50 uppercase tracking-wider">{t('avaliacoesDe')}</span>

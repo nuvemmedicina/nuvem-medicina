@@ -199,7 +199,7 @@ function Impressao({ clinica, medicos }: { clinica?: Values; medicos: Medico[] }
       </div>
       {clinica && (
         <>
-          <h1 className="mb-4 text-[16pt] font-semibold text-teal">Parte A — Clínica</h1>
+          <h1 className="mb-4 text-[16pt] font-semibold text-teal">Parte A · Clínica</h1>
           {SECOES_CLINICA.map(s => (
             <div key={s.id} className="mb-5">
               <h2 className="mb-2 border-b border-teal/20 pb-1 text-[12pt] font-semibold text-teal">{s.title}</h2>
@@ -215,7 +215,7 @@ function Impressao({ clinica, medicos }: { clinica?: Values; medicos: Medico[] }
       )}
       {medicos.map((m, i) => (
         <div key={m.uid} className={clinica || i > 0 ? 'break-before-page' : ''}>
-          <h1 className="mb-4 text-[16pt] font-semibold text-teal">Parte B — {String(m.values.nome || 'Profissional')}</h1>
+          <h1 className="mb-4 text-[16pt] font-semibold text-teal">Parte B · {String(m.values.nome || 'Profissional')}</h1>
           {CAMPOS_MEDICO.map(s => (
             <div key={s.id} className="mb-4">
               <h2 className="mb-2 border-b border-teal/20 pb-1 text-[12pt] font-semibold text-teal">{s.title}</h2>
@@ -263,7 +263,7 @@ export function AnamneseForm({ modo, slug }: { modo: Modo; slug?: string }) {
     return () => clearTimeout(t)
   }, [estado, carregado, k])
 
-  // Servidor (Sanity, via /api/anamnese-ia) — só quando o link tem ?c=código
+  // Servidor (Sanity, via /api/anamnese-ia): só quando o link tem ?c=código
   const escopo = modo === 'medico'
     ? (slug ? `medico-${slug}` : `medico-novo-${estado.medicos[0]?.uid ?? 'x'}`)
     : modo
@@ -467,7 +467,7 @@ export function AnamneseForm({ modo, slug }: { modo: Modo; slug?: string }) {
                       <summary className="flex cursor-pointer list-none items-center gap-3 p-5 sm:px-7 [&::-webkit-details-marker]:hidden">
                         <div className="min-w-0 flex-1">
                           <p className="truncate text-[1rem] font-semibold text-steel">{String(m.values.nome || 'Novo profissional')}</p>
-                          <p className="mb-2 truncate text-[0.78rem] text-steel/50">{String(m.values.especialidade || '—')}{m.values.registro ? ` · ${m.values.registro}` : ''}</p>
+                          <p className="mb-2 truncate text-[0.78rem] text-steel/50">{String(m.values.especialidade || '·')}{m.values.registro ? ` · ${m.values.registro}` : ''}</p>
                           <Barra {...p} />
                         </div>
                         <ChevronDown className="h-5 w-5 shrink-0 text-steel/40 transition group-open:rotate-180" />

@@ -3,7 +3,7 @@ import { defineType, defineField } from 'sanity'
 /**
  * Singleton que alimenta a página /links (o link único da bio do Instagram).
  * Existe porque o bloco "Em destaque" precisa mudar toda semana, acompanhando
- * as publicações do perfil — se depender de deploy, na terceira semana
+ * as publicações do perfil: se depender de deploy, na terceira semana
  * ninguém troca mais. Configurado como documento único em sanity.config.ts
  * (sem opção de criar um segundo).
  */

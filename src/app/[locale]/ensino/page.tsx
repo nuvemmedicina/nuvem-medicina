@@ -4,7 +4,6 @@ import Image   from 'next/image'
 import { ExternalLink, ArrowRight } from 'lucide-react'
 import { PageHero }       from '@/components/ui/PageHero'
 import { SectionWrapper } from '@/components/ui/SectionWrapper'
-import { CtaBanner }      from '@/components/ui/CtaBanner'
 import { CursosSection }  from '@/components/sections/CursosSection'
 import { renderRich } from '@/lib/rich'
 
@@ -39,7 +38,7 @@ const INSTRUTORES = [
     crm:   'CRM-MG 22284 · RQE 10411 · RQE 22736',
     foto:  '/images/dra-vera.jpg',
     role:  'Fundadora e Diretora Técnica',
-    bio:   'Mestre e Doutora pela UFMG. Professora convidada do Hospital Israelita Albert Einstein. Autora de diversas obras pela Editora Rubio. Referência nacional em testes respiratórios e motilidade digestiva.',
+    bio:   'Mestre e Doutora pela UFMG. Professora convidada do Hospital Israelita Albert Einstein. Autora de obras pela Editora Rubio. Atua em SIBO/IMO, testes respiratórios, motilidade digestiva e DGBI.',
     href:  '/dra-vera-angelo',
   },
   {
@@ -48,7 +47,7 @@ const INSTRUTORES = [
     crm:   'CRM-MG 27601 · RQE 9324',
     foto:  '/images/dra-eliane.jpg',
     role:  'Diretora Técnica Substituta',
-    bio:   'Cirurgiã pediátrica e especialista em manometria anorretal. Cofundadora da NU.V.E.M, traz a visão cirúrgica integrada ao ensino de diagnóstico funcional avançado.',
+    bio:   'Cirurgiã pediátrica com atuação em manometria anorretal. Cofundadora da NU.V.E.M, traz a visão cirúrgica integrada ao ensino de diagnóstico funcional avançado.',
     href:  '/dra-eliane-basques',
   },
 ]
@@ -114,7 +113,7 @@ export default function EnsinoPage() {
           {[
             {
               n: '1', label: 'Fase 01', title: 'Atualização Teórica',
-              desc: 'Protocolos baseados em evidências científicas atuais, com novas diretrizes para H. pylori, SIBO, IMO e distúrbios funcionais digestivos.',
+              desc: 'Protocolos baseados em evidências científicas atuais, com novas diretrizes para H. pylori, SIBO, IMO e distúrbios da interação cérebro-intestino (DGBI).',
               hl: false, badge: null,
             },
             {
@@ -124,7 +123,7 @@ export default function EnsinoPage() {
             },
             {
               n: '3', label: 'Fase 03', title: 'Imersão Hands-On',
-              desc: 'Treinamento prático presencial com equipamentos de ponta na NU.V.E.M. Domínio da execução técnica e certificação ISO 9001 incluída.',
+              desc: 'Treinamento prático presencial com equipamentos atualizados na NU.V.E.M. Domínio da execução técnica e certificação ISO 9001 incluída.',
               hl: true, badge: 'Premium',
             },
           ].map((step, i) => (
@@ -136,12 +135,12 @@ export default function EnsinoPage() {
                   : 'bg-white border border-teal/12 shadow-sm hover:-translate-y-2 hover:shadow-xl hover:border-teal/28'
               }`}
             >
-              {/* Grid texture overlay — só no card premium */}
+              {/* Grid texture overlay: só no card premium */}
               {step.hl && (
                 <div className="absolute inset-0 hero-grid-bg opacity-25 pointer-events-none" />
               )}
 
-              {/* Número decorativo — escala suave no hover */}
+              {/* Número decorativo: escala suave no hover */}
               <span
                 className="absolute top-3 right-5 font-serif text-[5.5rem] font-light leading-none select-none pointer-events-none transition-all duration-500 group-hover:scale-110 group-hover:-translate-y-1"
                 style={{ color: step.hl ? 'rgba(255,255,255,0.07)' : 'rgba(0,70,95,0.06)' }}
@@ -173,7 +172,7 @@ export default function EnsinoPage() {
                   {renderRich(step.desc)}
                 </p>
 
-                {/* Chip ISO — só no Premium */}
+                {/* Chip ISO: só no Premium */}
                 {step.hl && (
                   <div className="mt-6">
                     <span className="inline-flex items-center gap-1.5 text-[0.68rem] font-semibold text-gold bg-gold/12 border border-gold/22 px-3 py-1.5 rounded-full">
@@ -182,7 +181,7 @@ export default function EnsinoPage() {
                   </div>
                 )}
 
-                {/* Arrow — aparece suavemente no hover */}
+                {/* Arrow: aparece suavemente no hover */}
                 <div className={`mt-5 flex items-center gap-1.5 text-[0.73rem] font-medium transition-all duration-300 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 ${step.hl ? 'text-gold' : 'text-teal'}`}>
                   Saiba mais <ArrowRight className="w-3.5 h-3.5" />
                 </div>
@@ -263,7 +262,7 @@ export default function EnsinoPage() {
           <p className="sec-tag justify-center reveal">Plataforma de Cursos</p>
           <h2 className="sec-title reveal reveal-d1 mb-4">Acesse o portal <em>NU.V.E.M Ensino</em></h2>
           <p className="text-[0.97rem] font-light text-steel/60 max-w-md mx-auto mb-10 reveal reveal-d2">
-            Confira a agenda de cursos, inscrições e materiais disponíveis na plataforma exclusiva do NU.V.E.M Ensino.
+            Confira a agenda de cursos, inscrições e materiais disponíveis na plataforma do NU.V.E.M Ensino.
           </p>
           <div className="flex flex-wrap gap-4 justify-center reveal reveal-d3">
             <a href="https://www.nuvemensino.com.br/" target="_blank" rel="noopener noreferrer" className="btn-gold">

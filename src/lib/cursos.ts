@@ -11,7 +11,7 @@ export interface Curso {
   parceiro:    string
   tipo:        'Curso' | 'Palestra' | 'Workshop' | 'Congresso' | 'Live'
   modalidade:  'Online' | 'Presencial' | 'Híbrido'
-  data?:       string      // ex: "junho 2025" ou "14/06/2025" — omitir se não definida
+  data?:       string      // ex: "junho 2025" ou "14/06/2025", omitir se não definida
   instrutor?:  string      // nome do instrutor principal
   descricao:   string
   imagem:      string

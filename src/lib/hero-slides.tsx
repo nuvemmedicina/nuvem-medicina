@@ -30,16 +30,16 @@ const HERO_SLIDES_PT: HeroSlide[] = [
     badge: 'Belo Horizonte · Santa Efigênia',
     title: (
       <>
-        Excelência em{' '}
+        Cuidado em{' '}
         <em className="italic text-teal">Saúde Digestiva</em>{' '}
-        <span className="italic text-steel/40">e Diagnóstico Avançado</span>
+        <span className="italic text-steel/40">e Motilidade</span>
       </>
     ),
     description: (
       <>
-        O ecossistema completo de medicina especializada: diagnóstico de alta precisão,
+        Clínica de gastroenterologia e motilidade digestiva: exames de alta resolução,
         equipe multidisciplinar e formação profissional baseada em casos reais.{' '}
-        <strong className="text-teal font-semibold">Clínica com certificação ISO 9001.</strong>
+        <strong className="text-teal font-semibold">Gestão certificada pela norma ISO 9001.</strong>
       </>
     ),
     imagem: {
@@ -110,16 +110,16 @@ const HERO_SLIDES_EN: HeroSlide[] = [
     badge: 'Belo Horizonte · Santa Efigênia',
     title: (
       <>
-        Excellence in{' '}
+        Care in{' '}
         <em className="italic text-teal">Digestive Health</em>{' '}
-        <span className="italic text-steel/40">and Advanced Diagnostics</span>
+        <span className="italic text-steel/40">and Motility</span>
       </>
     ),
     description: (
       <>
-        A complete ecosystem of specialized medicine: high-precision diagnostics,
+        A gastroenterology and digestive motility clinic: high-resolution exams,
         a multidisciplinary team, and case-based medical education.{' '}
-        <strong className="text-teal font-semibold">ISO 9001 certified clinic.</strong>
+        <strong className="text-teal font-semibold">Management certified under ISO 9001.</strong>
       </>
     ),
     imagem: {
@@ -190,17 +190,17 @@ const HERO_SLIDES_ES: HeroSlide[] = [
     badge: 'Belo Horizonte · Santa Efigênia',
     title: (
       <>
-        Excelencia en{' '}
+        Cuidado en{' '}
         <em className="italic text-teal">Salud Digestiva</em>{' '}
-        <span className="italic text-steel/40">y Diagnóstico Avanzado</span>
+        <span className="italic text-steel/40">y Motilidad</span>
       </>
     ),
     description: (
       <>
-        El ecosistema completo de medicina especializada: diagnóstico de alta
-        precisión, equipo multidisciplinario y formación profesional basada en
+        Clínica de gastroenterología y motilidad digestiva: exámenes de alta
+        resolución, equipo multidisciplinario y formación profesional basada en
         casos reales.{' '}
-        <strong className="text-teal font-semibold">Clínica con certificación ISO 9001.</strong>
+        <strong className="text-teal font-semibold">Gestión certificada según la norma ISO 9001.</strong>
       </>
     ),
     imagem: {

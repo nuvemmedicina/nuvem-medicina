@@ -41,6 +41,14 @@ const OG_LOCALE: Record<AppLocale, string> = {
   es:      'es_419',
 }
 
+// Título usado por páginas que não declaram o próprio. Factual, sem
+// superlativo (Res. CFM nº 2.336/2023). O da home vem de messages/*.json.
+const TITULO_PADRAO: Record<AppLocale, string> = {
+  'pt-BR': 'NU.V.E.M Medicina · Gastroenterologia e Motilidade Digestiva em Belo Horizonte',
+  en:      'NU.V.E.M Medicina · Gastroenterology and Digestive Motility in Belo Horizonte, Brazil',
+  es:      'NU.V.E.M Medicina · Gastroenterología y Motilidad Digestiva en Belo Horizonte, Brasil',
+}
+
 export function generateStaticParams() {
   return routing.locales.map(locale => ({ locale }))
 }
@@ -56,11 +64,11 @@ export async function generateMetadata({
 
   return {
     title: {
-      default:  'NU.V.E.M Medicina — Excelência em Saúde Digestiva · Belo Horizonte',
+      default:  TITULO_PADRAO[locale as AppLocale] ?? TITULO_PADRAO['pt-BR'],
       template: '%s | NU.V.E.M Medicina',
     },
     description:
-      'Clínica especializada em gastroenterologia, manometria, testes respiratórios (SIBO/H. pylori), fisioterapia pélvica e ensino médico. ISO 9001. Santa Efigênia, Belo Horizonte – MG.',
+      'Clínica de gastroenterologia e motilidade digestiva: manometria, testes respiratórios (SIBO/H. pylori), fisioterapia pélvica e ensino médico. Gestão certificada pela norma ISO 9001. Santa Efigênia, Belo Horizonte, MG.',
     keywords: [
       'gastroenterologia belo horizonte', 'manometria esofágica BH', 'teste respiratório SIBO BH',
       'fisioterapia pélvica belo horizonte', 'halitose diagnóstico BH', 'ISO 9001 clínica BH',
@@ -80,19 +88,19 @@ export async function generateMetadata({
       locale:      ogLocale,
       url:         SITE_URL,
       siteName:    'NU.V.E.M Medicina',
-      title:       'NU.V.E.M Medicina — Gastroenterologia e Diagnóstico Avançado em BH',
-      description: 'Clínica especializada com ISO 9001. Manometria, testes respiratórios, pHmetria e fisioterapia pélvica em Belo Horizonte.',
+      title:       'NU.V.E.M Medicina · Gastroenterologia e Motilidade Digestiva em Belo Horizonte',
+      description: 'Gestão certificada pela norma ISO 9001. Manometria, testes respiratórios, pHmetria e fisioterapia pélvica em Belo Horizonte.',
       images: [{
         url:    '/images/vera-eliane.jpg',
         width:  1200,
         height: 630,
-        alt:    'Dra. Vera Ângelo e Dra. Eliane Basques — Fundadoras da NU.V.E.M Medicina',
+        alt:    'Dra. Vera Ângelo e Dra. Eliane Basques · Fundadoras da NU.V.E.M Medicina',
       }],
     },
     twitter: {
       card:        'summary_large_image',
-      title:       'NU.V.E.M Medicina — Gastroenterologia com ISO 9001 em BH',
-      description: 'Clínica especializada com certificação ISO 9001. SIBO, H. pylori, manometria, fisioterapia pélvica.',
+      title:       'NU.V.E.M Medicina · Gastroenterologia e Motilidade Digestiva em Belo Horizonte',
+      description: 'Gestão certificada pela norma ISO 9001. SIBO, H. pylori, manometria e fisioterapia pélvica.',
       images:      ['/images/vera-eliane.jpg'],
     },
     robots: {
@@ -139,7 +147,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} className={`${poppins.variable} ${cormorant.variable}`}>
       <head>
-        {/* Consent Mode v2 — precisa vir ANTES do GoogleTagManager. Define o
+        {/* Consent Mode v2: precisa vir ANTES do GoogleTagManager. Define o
             consentimento padrão como negado (ou aplica a escolha salva, se a
             pessoa já decidiu antes) antes de qualquer tag do contêiner avaliar
             se pode disparar. Ver src/components/ui/ConsentDefault.tsx. */}

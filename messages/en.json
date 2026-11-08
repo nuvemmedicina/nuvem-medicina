@@ -17,9 +17,8 @@
     "examesLabel": "Exams",
     "manometriaEsofagica": "Esophageal Manometry",
     "manometriaAnorretal": "Anorectal Manometry",
-    "phmetriaImpedanciometria": "pH & Impedance Monitoring",
+    "phmetriaImpedanciometria": "pH and Impedance-pH Monitoring",
     "testesRespiratorios": "Breath Tests",
-    "halimetriaSialometria": "Halimetry & Sialometry",
     "avaliacaoPelvica": "Pelvic Floor Assessment",
     "preparos": "Exam Prep Guides",
     "iso": "ISO 9001",
@@ -39,19 +38,21 @@
     "institucionalEnsino": "NU.V.E.M Education",
     "institucionalConvenios": "Insurance Plans",
     "institucionalBlog": "Blog",
-    "phmetriaImpedancia": "pH & Impedance Monitoring",
+    "phmetriaImpedancia": "pH and Impedance-pH Monitoring",
     "preparos": "Exam Prep Guides",
-    "tagline": "A full ecosystem of digestive health excellence and medical education in Belo Horizonte, ISO 9001 certified.",
+    "tagline": "Gastroenterology, digestive motility and medical education in Belo Horizonte, with management certified under ISO 9001.",
     "isoTitle": "ISO 9001 Certification",
-    "isoSubtitle": "ISO 9001 certified clinic",
+    "isoSubtitle": "Management certified under ISO 9001",
     "privacyPolicy": "Privacy Policy",
     "patientRights": "Patient Rights",
-    "disclaimer": "The information on this site is for informational and educational purposes, in accordance with the standards of the Brazilian Federal Council of Medicine (Res. CFM No. 2,336/2023). It does not replace a professional medical consultation.",
+    "disclaimer": "Informational and educational content, in accordance with Res. CFM No. 2,336/2023 (Brazilian Federal Council of Medicine). It does not replace a medical consultation.",
+    "responsavelTecnica": "Responsible physician: Dr. Vera Ângelo · CRM-MG 22284 · RQE 10411 · RQE 22736 · Technical Director",
+    "registroClinica": "Clinic registration",
     "developedBy": "Developed by"
   },
   "ctaBanner": {
     "title": "Ready to take care of your digestive health?",
-    "desc": "Book your appointment and experience the ISO 9001 standard of excellence at NU.V.E.M Medicina.",
+    "desc": "Book your appointment at NU.V.E.M Medicina, a clinic with management certified under ISO 9001.",
     "agendar": "Book an Appointment",
     "ensino": "NU.V.E.M Education",
     "whatsappMsg": "Hello! I'd like to book an appointment at NU.V.E.M Medicina."
@@ -68,10 +69,10 @@
   "examesPage": {
     "listLabel": "Exams",
     "metaTitle": "Exams & Diagnostics",
-    "metaDescription": "High-resolution esophageal and anorectal manometry, pH monitoring, breath tests, halimetry and pelvic assessment in Belo Horizonte. ISO 9001 certified.",
+    "metaDescription": "High-resolution and conventional esophageal manometry, anorectal manometry, pH and impedance-pH monitoring, breath tests and pelvic assessment in Belo Horizonte. Management certified under ISO 9001.",
     "tag": "Exams & Diagnostics",
     "title": "Technical precision, <em>certified</em>",
-    "desc": "State-of-the-art diagnostic infrastructure operated by specialists trained and certified under ISO 9001: the most reliable results in the field.",
+    "desc": "Up-to-date equipment operated by a trained team, in a clinic with management certified under ISO 9001.",
     "verDetalhes": "See details",
     "baixarPreparo": "Download prep guide",
     "preparosTitle": "Exam Prep Guides",
@@ -97,11 +98,11 @@
     "verEquipeCompleta": "See full team",
     "areasDeAtuacao": "Areas of practice",
     "examesRelacionados": "Related exams",
-    "isoBadge": "Specialty delivered under an",
-    "isoBadgeStrong": "ISO 9001 certified protocol",
+    "isoBadge": "Care provided at a clinic with",
+    "isoBadgeStrong": "management certified under ISO 9001",
     "saibaMais": "Learn more",
     "agendarConsulta": "Book an appointment",
-    "agendarDesc": "Specialized care in {esp} with an ISO 9001 certified team.",
+    "agendarDesc": "Care in {esp}, at a clinic with management certified under ISO 9001.",
     "agendarAgora": "Book now"
   },
   "exameDetail": {
@@ -127,8 +128,8 @@
     "preparosDoExame": "Prep Guides",
     "preparoDoExame": "Prep Guide",
     "baixeGuiaCalma": "Download the complete prep guide as a PDF to read at your own pace at home.",
-    "isoBadge": "Exam performed under an",
-    "isoBadgeStrong": "ISO 9001 certified protocol",
+    "isoBadge": "Exam performed at a clinic with",
+    "isoBadgeStrong": "management certified under ISO 9001",
     "especialidadesRelacionadas": "Related specialties",
     "agendarEsteExame": "Book This Exam"
   },
@@ -186,7 +187,6 @@
     "nomeCompleto": "Full Name *",
     "nomePlaceholder": "Your full name",
     "telefone": "Phone *",
-    "email": "Email",
     "servicoInteresse": "Service of Interest *",
     "selecione": "Select...",
     "grupoConsultas": "Consultations",
@@ -196,11 +196,12 @@
     "ensinoOpt2": "Hands-On Training",
     "ensinoOpt3": "Program Information",
     "mensagemOpcional": "Message (optional)",
-    "mensagemPlaceholder": "Briefly describe what you need…",
+    "mensagemPlaceholder": "E.g.: best day and time, health plan, whether you already have a medical referral",
+    "mensagemAviso": "There is no need to describe symptoms here.",
     "lgpd": "Your data is protected under LGPD (Brazil's data protection law) and used exclusively to contact you about scheduling.",
     "enviarSolicitacao": "Send Request",
-    "solicitacaoEnviada": "Request sent!",
-    "abrindoWhatsapp": "Opening WhatsApp to confirm your appointment…"
+    "solicitacaoEnviada": "Almost there! Tap send in WhatsApp to finish.",
+    "abrindoWhatsapp": "Opening WhatsApp with your message ready…"
   },
   "avaliacaoPage": {
     "metaTitle": "Rate Your Experience · NU.V.E.M Medicina",
@@ -214,8 +215,8 @@
   },
   "avaliacaoForm": {
     "npsPergunta": "How likely are you to recommend NU.V.E.M to a friend or family member?",
-    "npsBaixo": "🔴 0 — Would not recommend",
-    "npsAlto": "10 — Would definitely recommend 🟢",
+    "npsBaixo": "🔴 0 · Would not recommend",
+    "npsAlto": "10 · Would definitely recommend 🟢",
     "npsLabelBaixo": "😔 We need to improve",
     "npsLabelMedio": "🙂 Satisfactory",
     "npsLabel9": "😊 Very satisfied!",
@@ -229,7 +230,7 @@
     "continuar": "Continue →",
     "pular": "Skip",
     "emailLabel": "Your email",
-    "emailSub": "(optional — so we can follow up)",
+    "emailSub": "(optional, so we can follow up)",
     "emailPlaceholder": "youremail@example.com",
     "erroEnvio": "Couldn't send it. Please try again.",
     "enviando": "Sending...",
@@ -239,7 +240,7 @@
     "registradoComSucesso": "Your feedback was submitted successfully.",
     "felizesTop": "We're thrilled you're happy! See you next time!",
     "felizesMedio": "We'll use your feedback to keep improving.",
-    "notaLabel": "Score {score}/10 —",
+    "notaLabel": "Score {score}/10 ·",
     "pedirGoogle": "Would you also leave us a review on Google? It really helps! 🌟",
     "avaliarGoogle": "⭐ Review on Google",
     "voltarSite": "← Back to site"
@@ -262,7 +263,7 @@
   },
   "home": {
     "meta": {
-      "title": "NU.V.E.M Medicina — Digestive Health Excellence · Belo Horizonte, Brazil"
+      "title": "NU.V.E.M Medicina · Gastroenterology and Digestive Motility in Belo Horizonte, Brazil"
     },
     "hero": {
       "prevSlide": "Previous slide",
@@ -278,7 +279,7 @@
     "exames": {
       "tag": "Exams & Diagnostics",
       "title": "Technical precision, <em>certified</em>",
-      "desc": "State-of-the-art diagnostic infrastructure operated by specialists trained and certified under ISO 9001.",
+      "desc": "Up-to-date equipment operated by a trained team, in a clinic with management certified under ISO 9001.",
       "ctaSaibaMais": "Learn more",
       "ctaBaixarPreparo": "Download Prep Guide"
     },
@@ -287,7 +288,7 @@
       "titleLine1": "An ISO 9001",
       "titleEm": "Certified Clinic",
       "titleLine3": "in Belo Horizonte",
-      "desc": "ISO 9001 is the international standard of excellence in management. Every process, from scheduling to diagnosis, follows rigorous protocols for quality, traceability and continuous improvement.",
+      "desc": "ISO 9001 is the international standard for quality management systems. Every process, from scheduling to diagnosis, follows protocols for quality, traceability and continuous improvement.",
       "pt1": "Standardized clinical processes, externally audited",
       "pt2": "Full traceability of exams and medical records",
       "pt3": "Validated training programs and educational certifications",
@@ -295,18 +296,18 @@
       "pt5": "Patient safety and satisfaction as an absolute priority",
       "diferenciaisTag": "What Sets Us Apart",
       "isoBadgeTitle": "ISO 9001 Certification",
-      "isoBadgeDesc": "ISO 9001 certified clinic",
-      "feat1Title": "Leading-Edge Diagnostic Technology",
+      "isoBadgeDesc": "Management certified under ISO 9001",
+      "feat1Title": "Up-to-Date Diagnostic Equipment",
       "feat1Desc": "High-resolution manometry, pH monitoring, H₂/CH₄/H₂S breath tests",
       "feat2Title": "Multidisciplinary Team",
       "feat2Desc": "Gastroenterology, pelvic physical therapy, nephrology, pediatrics",
       "feat3Title": "Medical Education Center",
-      "feat3Desc": "Hands-on training with ISO 9001-validated certification"
+      "feat3Desc": "Hands-on training at a clinic with management certified under ISO 9001"
     },
     "cursos": {
       "tag": "Courses & Talks",
       "title": "Training and scientific <em>updates</em>",
-      "desc": "Courses, talks and workshops with the NU.V.E.M team and leading national partners. Content applied to real clinical practice.",
+      "desc": "Courses, talks and workshops with the NU.V.E.M team and invited partners. Content applied to real clinical practice.",
       "verTodos": "See all courses",
       "inscreverSe": "Enroll",
       "emBreve": "New class coming soon",
@@ -328,5 +329,8 @@
       "whatsapp": "Chat on WhatsApp",
       "whatsappMsg": "Hello! I'd like to book an appointment at NU.V.E.M Medicina."
     }
+  },
+  "contatoPadrao": {
+    "horario": "Monday to Thursday, 7 a.m. to 5:30 p.m. · Friday, 7 a.m. to 4:30 p.m."
   }
 }

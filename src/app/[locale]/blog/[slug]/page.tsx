@@ -18,7 +18,7 @@ import { ReferencesAccordion }  from '@/components/blog/ReferencesAccordion'
 import { BlocoRespostaDireta }  from '@/components/blog/BlocoRespostaDireta'
 import { CartaoAutor }          from '@/components/blog/CartaoAutor'
 import { ChamadaExame }         from '@/components/blog/ChamadaExame'
-import { getPostBySlug, getAllPosts } from '@/lib/sanity/queries'
+import { getPostBySlug } from '@/lib/sanity/queries'
 import { urlFor }          from '@/lib/sanity/image'
 import { postSchema, faqSchema, breadcrumbSchema } from '@/lib/schema'
 import { SITE_URL } from '@/lib/site'
@@ -31,7 +31,7 @@ export const revalidate = 60
 const OG_LOCALE: Record<AppLocale, string> = { 'pt-BR': 'pt_BR', en: 'en_US', es: 'es_419' }
 
 // Sem generateStaticParams: os posts são renderizados sob demanda e cacheados
-// por `revalidate` (ISR) — evita gerar páginas 404 estáticas para /en e /es
+// por `revalidate` (ISR): evita gerar páginas 404 estáticas para /en e /es
 // enquanto a maioria dos artigos ainda não tem tradução (ver pilotagem do
 // mecanismo de tradução mais abaixo neste projeto).
 
@@ -245,7 +245,7 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
         <div className="max-w-3xl mx-auto">
           <Breadcrumb crumbs={[{ label: t('blogLabel'), href: '/blog' }, { label: post.title }]} />
 
-          {/* Títulos em Cormorant 500 — o peso 600 não é carregado pela fonte e o
+          {/* Títulos em Cormorant 500: o peso 600 não é carregado pela fonte e o
               navegador simulava um negrito artificial, pesado demais ao lado do
               corpo em Poppins Light. H3 e H4 usam Poppins seminegrito: em
               tamanho menor, a Cormorant fina ficava difícil de ler. */}

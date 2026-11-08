@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { ExternalLink } from 'lucide-react'
 import { renderRich } from '@/lib/rich'
 
@@ -6,7 +5,7 @@ const STEPS = [
   {
     num: '1', label: 'Fase 01', highlight: false,
     title: 'Atualização Teórica',
-    desc: 'Protocolos baseados em evidências, com novas diretrizes para H. pylori, SIBO, IMO e distúrbios funcionais digestivos com especialistas da clínica.',
+    desc: 'Protocolos baseados em evidências, com novas diretrizes para H. pylori, SIBO, IMO e distúrbios da interação cérebro-intestino (DGBI) com a equipe da clínica.',
   },
   {
     num: '2', label: 'Fase 02', highlight: false,
@@ -16,7 +15,7 @@ const STEPS = [
   {
     num: '3', label: 'Fase 03: Premium', highlight: true,
     title: 'Imersão Hands-On',
-    desc: 'Treinamento prático presencial com equipamentos de ponta na NU.V.E.M. Domínio da execução técnica e certificação ISO 9001 incluída.',
+    desc: 'Treinamento prático presencial com equipamentos atualizados na NU.V.E.M. Domínio da execução técnica e certificação ISO 9001 incluída.',
   },
 ]
 
@@ -29,7 +28,7 @@ const MULT = [
     desc: 'Especialistas repassam expertise prática e domínio técnico para médicos, fisioterapeutas e alunos.' },
   { num: '6', label: 'Fase 06: Resultado', highlight: true,
     title: 'Elevação da Prática Médica',
-    desc: 'Alunos levam a excelência para seus consultórios. O Efeito Multiplicador NU.V.E.M em ação.' },
+    desc: 'Alunos levam o que aprenderam para seus consultórios. O Efeito Multiplicador NU.V.E.M em ação.' },
 ]
 
 export function EnsinoSection() {

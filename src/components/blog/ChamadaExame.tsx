@@ -7,7 +7,7 @@ import { CONTATO } from '@/lib/data'
 import { getEspecialidades, getExames } from '@/lib/content/catalog'
 import type { AppLocale } from '@/i18n/routing'
 import { CtaBanner } from '@/components/ui/CtaBanner'
-import { pushEvent } from '@/lib/gtm'
+import { pushEvent, tipoAtendimentoDaEspecialidade } from '@/lib/gtm'
 
 interface Props {
   exameRelacionado?:         string
@@ -43,7 +43,10 @@ export function ChamadaExame({ exameRelacionado, especialidadeRelacionada, artig
   // Mensagem do WhatsApp sempre em português: quem lê do outro lado é a
   // equipe da clínica, independente do idioma em que a pessoa navega o site.
   const waMsg = encodeURIComponent(`Olá! Li o artigo "${artigoTitle}" e gostaria de agendar: ${alvo.nome}.`)
-  const tipoDestino = exame ? 'exame' : 'especialidade'
+  // O evento leva só o tipo do atendimento, nunca qual exame ou especialidade
+  // a pessoa clicou (ver src/lib/gtm.ts). O título do artigo fica: descreve o
+  // conteúdo que estava sendo lido, como o caminho da página.
+  const tipoAtendimento = exame ? 'exame' : tipoAtendimentoDaEspecialidade(especialidade!.slug)
 
   return (
     <div className="relative rounded-2xl overflow-hidden p-10 md:p-14 my-16" style={{ background: '#00465F' }}>
@@ -61,7 +64,7 @@ export function ChamadaExame({ exameRelacionado, especialidadeRelacionada, artig
           <Link
             href={alvo.href}
             className="btn-gold"
-            onClick={() => pushEvent({ event: 'clique_cta_artigo', artigo: artigoTitle, destino: alvo.href, tipo_destino: tipoDestino })}
+            onClick={() => pushEvent({ event: 'clique_cta_artigo', artigo: artigoTitle, tipo_destino: 'pagina', tipo_atendimento: tipoAtendimento })}
           >
             {alvo.botao} <ArrowRight className="w-4 h-4" />
           </Link>
@@ -69,7 +72,7 @@ export function ChamadaExame({ exameRelacionado, especialidadeRelacionada, artig
             href={`${CONTATO.whatsappUrl}?text=${waMsg}`}
             target="_blank" rel="noopener noreferrer"
             className="btn-ghost-dark"
-            onClick={() => pushEvent({ event: 'clique_cta_artigo', artigo: artigoTitle, destino: CONTATO.whatsappUrl, tipo_destino: 'whatsapp' })}
+            onClick={() => pushEvent({ event: 'clique_cta_artigo', artigo: artigoTitle, tipo_destino: 'whatsapp', tipo_atendimento: tipoAtendimento })}
           >
             <Calendar className="w-4 h-4" />
             {t('agendarViaWhatsapp')}

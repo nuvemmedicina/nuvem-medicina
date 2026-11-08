@@ -39,7 +39,7 @@ export async function POST(req: NextRequest) {
         body: JSON.stringify({
           from:    'nuvete@nuvemmedicina.com.br',
           to:      ['contato@nuvemmedicina.com.br'],
-          subject: `[NPS] Nota ${score}/10 — ${category.toUpperCase()}`,
+          subject: `[NPS] Nota ${score}/10 · ${category.toUpperCase()}`,
           html: `
             <h2>Nova avaliação NU.V.E.M</h2>
             <p><strong>Nota:</strong> ${score}/10 (${category})</p>

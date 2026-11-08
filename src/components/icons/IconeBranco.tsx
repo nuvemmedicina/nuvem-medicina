@@ -6,8 +6,8 @@ interface Props {
 }
 
 /**
- * Ícone isolado BRANCO — para fundos escuros.
- * viewBox: 343.39 × 245.26 — aspect ratio ~1.4:1
+ * Ícone isolado BRANCO: para fundos escuros.
+ * viewBox: 343.39 × 245.26, aspect ratio ~1.4:1
  */
 export function IconeBranco({ className, 'aria-hidden': ariaHidden = true }: Props) {
   return (

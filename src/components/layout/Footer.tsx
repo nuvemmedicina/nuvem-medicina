@@ -3,6 +3,9 @@
 import { useTranslations } from 'next-intl'
 import { Instagram, Youtube, MessageCircle, Linkedin } from 'lucide-react'
 import { Link } from '@/i18n/navigation'
+// Política de privacidade e direitos do paciente só existem em português:
+// next/link sem prefixo de idioma, como o <a> que havia antes.
+import NextLink from 'next/link'
 import { LogoBranco }  from '@/components/icons/LogoBranco'
 import { IsoSeal }     from '@/components/icons/IsoSeal'
 import { CookiePreferencesLink } from '@/components/ui/CookiePreferencesLink'
@@ -31,7 +34,6 @@ export function Footer() {
         { label: tNav('manometriaAnorretal'),   href: '/exames/manometria-anorretal' },
         { label: t('phmetriaImpedancia'),       href: '/exames/phmetria-impedanciometria' },
         { label: tNav('testesRespiratorios'),   href: '/exames/testes-respiratorios' },
-        { label: tNav('halimetriaSialometria'), href: '/exames/halimetria-sialometria' },
         { label: tNav('avaliacaoPelvica'),      href: '/exames/avaliacao-pelvica' },
         { label: t('preparos'),                 href: '/exames/preparos' },
       ],
@@ -60,7 +62,7 @@ export function Footer() {
 
           {/* Brand */}
           <div className="text-left">
-            <Link href="/" className="inline-block mb-5" aria-label="NU.V.E.M Medicina — Página inicial">
+            <Link href="/" className="inline-block mb-5" aria-label="NU.V.E.M Medicina · Página inicial">
               <LogoBranco className="h-9 w-auto opacity-85 hover:opacity-100 transition-opacity" />
             </Link>
 
@@ -124,7 +126,10 @@ export function Footer() {
         <div className="pt-6 border-t border-white/10 flex flex-col md:flex-row md:justify-between gap-4">
           <div className="space-y-1 text-left">
             <p className="text-[0.72rem] text-white/35">
-              © {new Date().getFullYear()} NU.V.E.M Medicina · CNPJ {CONTATO.cnpj} · {CONTATO.crmClinica}
+              © {new Date().getFullYear()} NU.V.E.M Medicina · CNPJ {CONTATO.cnpj} · {t('registroClinica')} {CONTATO.crmClinica}
+            </p>
+            <p className="text-[0.72rem] text-white/35">
+              {t('responsavelTecnica')}
             </p>
             <a
               href={CONTATO.maps}
@@ -135,13 +140,13 @@ export function Footer() {
               {CONTATO.endereco} – {CONTATO.bairro} · {CONTATO.cep}
             </a>
             <div className="flex items-center gap-4 justify-start">
-              <a href="/politica-de-privacidade" className="text-[0.72rem] text-white/35 hover:text-teal-light transition-colors">
+              <NextLink href="/politica-de-privacidade" className="text-[0.72rem] text-white/35 hover:text-teal-light transition-colors">
                 {t('privacyPolicy')}
-              </a>
+              </NextLink>
               <span className="text-white/25 text-[0.72rem]">·</span>
-              <a href="/direitos-do-paciente" className="text-[0.72rem] text-white/35 hover:text-teal-light transition-colors">
+              <NextLink href="/direitos-do-paciente" className="text-[0.72rem] text-white/35 hover:text-teal-light transition-colors">
                 {t('patientRights')}
-              </a>
+              </NextLink>
               <span className="text-white/25 text-[0.72rem]">·</span>
               <CookiePreferencesLink />
             </div>

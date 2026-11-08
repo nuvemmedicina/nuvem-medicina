@@ -8,7 +8,7 @@ import { CtaBanner }      from '@/components/ui/CtaBanner'
 export const metadata: Metadata = {
   alternates:  { canonical: '/exames/preparos' },
   title:       'Preparos para Exames',
-  description: 'Guia completo de como se preparar para os exames da NU.V.E.M Medicina: manometria esofágica, manometria anorretal, pHmetria, testes respiratórios, halimetria e avaliação pélvica.',
+  description: 'Guia completo de como se preparar para os exames da NU.V.E.M Medicina: manometria esofágica, manometria anorretal, pHmetria e impedanciopHmetria, testes respiratórios e avaliação pélvica.',
 }
 
 const PREPAROS = [
@@ -60,19 +60,6 @@ const PREPAROS = [
       'Não escovar dentes com creme dental 30 minutos antes',
       'Não fumar 1 hora antes',
       'Não praticar exercícios intensos 1 hora antes',
-    ],
-  },
-  {
-    exame:   'Halimetria e Sialometria',
-    slug:    'halimetria-sialometria',
-    pdfUrl:  '/pdfs/preparo-halimetria-sialometria-v1.pdf',
-    itens: [
-      'Não comer nas 3 horas anteriores ao exame',
-      'Não escovar dentes nas 2 horas anteriores',
-      'Não usar enxaguante bucal ou spray bucal no dia do exame',
-      'Não fumar 2 horas antes',
-      'Não usar perfume ou desodorante com fragrância forte',
-      'Beber água normalmente é permitido',
     ],
   },
   {

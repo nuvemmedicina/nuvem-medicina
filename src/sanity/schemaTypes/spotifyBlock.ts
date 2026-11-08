@@ -9,14 +9,14 @@ export const spotifyBlockType = defineType({
       name:        'episodeId',
       title:       'ID do Episódio',
       type:        'string',
-      description: 'Cole o ID do episódio — parte do link após /episode/. Ex: 3KQYcT5hpDRdOSHh5yeL5I',
+      description: 'Cole o ID do episódio: parte do link após /episode/. Ex: 3KQYcT5hpDRdOSHh5yeL5I',
       validation:  Rule => Rule.required(),
     }),
     defineField({
       name:        'title',
       title:       'Título do Episódio',
       type:        'string',
-      description: 'Opcional — usado como legenda abaixo do player',
+      description: 'Opcional: usado como legenda abaixo do player',
     }),
   ],
   preview: {

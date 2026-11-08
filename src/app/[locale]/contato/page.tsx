@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
 import { Phone, MapPin, Clock, Mail, Instagram, Youtube } from 'lucide-react'
-import { Link } from '@/i18n/navigation'
 import { PageHero }       from '@/components/ui/PageHero'
 import { SectionWrapper } from '@/components/ui/SectionWrapper'
 import { AgendarForm }    from '@/app/[locale]/agendar/AgendarForm'
@@ -24,6 +23,7 @@ export async function generateMetadata({
 
 export default async function ContatoPage() {
   const t = await getTranslations('contatoPage')
+  const tc = await getTranslations('contatoPadrao')
   return (
     <>
       <PageHero
@@ -55,7 +55,7 @@ export default async function ContatoPage() {
                     { text: CONTATO.cep,      href: null },
                   ]},
                 { Icon: Clock,   label: t('horario'), lines: [
-                    { text: CONTATO.horario, href: null },
+                    { text: tc('horario'), href: null },
                   ]},
               ].map(({ Icon, label, lines }) => (
                 <div key={label} className="flex items-start gap-4 p-5 bg-white border border-teal/10 rounded-xl hover:border-teal/25 transition-colors">

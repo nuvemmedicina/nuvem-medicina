@@ -91,7 +91,7 @@ export function ValidacaoForm() {
     if (Object.keys(patches).length) setResps(patches)
   }
 
-  // Servidor (Sanity, via /api/anamnese-ia) — só quando o link tem ?c=código
+  // Servidor (Sanity, via /api/anamnese-ia): só quando o link tem ?c=código
   const aoCarregarRemoto = useCallback((d: Estado) => { if (d?.respostas) setEstado(d) }, [])
   const servidor = useServidor({ escopo: 'validacao', estado, carregado, aoCarregarRemoto })
   const servidorAtivo = !!servidor.codigo && servidor.status !== 'acesso-negado'

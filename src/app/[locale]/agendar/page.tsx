@@ -21,6 +21,7 @@ export async function generateMetadata({
 
 export default async function AgendarPage() {
   const t = await getTranslations('agendarPage')
+  const tc = await getTranslations('contatoPadrao')
   return (
     <div className="min-h-screen pt-[76px]">
       {/* Hero */}
@@ -57,7 +58,7 @@ export default async function AgendarPage() {
               {[
                 { Icon: Phone,  label: t('telWhats'),   values: [CONTATO.telefone, CONTATO.whatsapp], href: [`tel:${CONTATO.telefone.replace(/\D/g,'')}`, CONTATO.whatsappUrl] },
                 { Icon: MapPin, label: t('localizacao'), values: [CONTATO.endereco, CONTATO.bairro], href: [CONTATO.maps, CONTATO.maps] },
-                { Icon: Clock,  label: t('horario'),     values: [CONTATO.horario], href: ['#'] },
+                { Icon: Clock,  label: t('horario'),     values: [tc('horario')], href: ['#'] },
                 { Icon: Mail,   label: t('email'),       values: [CONTATO.email], href: [`mailto:${CONTATO.email}`] },
               ].map(({ Icon, label, values, href }) => (
                 <div key={label} className="flex gap-3.5 items-start p-4 bg-cloud border border-teal/10 rounded-2xl shadow-sm hover:border-teal/25 transition-colors">

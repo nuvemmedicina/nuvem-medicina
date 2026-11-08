@@ -6,7 +6,7 @@ interface Props {
 }
 
 /**
- * Logo completa cor azul-petróleo (#1d485e) — para fundos claros.
+ * Logo completa cor azul-petróleo (#1d485e): para fundos claros.
  */
 export function LogoTeal({ className, 'aria-hidden': ariaHidden }: Props) {
   return (

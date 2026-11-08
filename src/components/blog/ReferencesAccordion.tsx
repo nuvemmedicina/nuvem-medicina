@@ -15,7 +15,7 @@ export function ReferencesAccordion({ references }: Props) {
 
   return (
     <div className="mt-12 border border-teal/15 rounded-2xl overflow-hidden">
-      {/* Header — clicável */}
+      {/* Header: clicável */}
       <button
         onClick={() => setOpen(prev => !prev)}
         className="w-full flex items-center justify-between px-6 py-4 text-left hover:bg-teal/5 transition-colors"

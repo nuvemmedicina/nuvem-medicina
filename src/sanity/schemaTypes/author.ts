@@ -13,7 +13,7 @@ export const authorType = defineType({
       name:        'crm',
       title:       'CRM',
       type:        'string',
-      description: 'Texto livre, ex.: "CRM MG: 22284 | RQE: 10411 (Gastroenterologia)". Mantido como está para não quebrar o que já existe — use os campos RQE e Titulação abaixo para dados estruturados novos.',
+      description: 'Texto livre, ex.: "CRM MG: 22284 | RQE: 10411 (Gastroenterologia)". Mantido como está para não quebrar o que já existe. Use os campos RQE e Titulação abaixo para dados estruturados novos.',
     }),
     defineField({
       name:        'rqe',
