@@ -27,7 +27,8 @@ Convenções deste relatório:
 | 4 · Domínio, URLs antigas, indexação | `98888ae` | feito |
 | 5 · Agendamento | `05350b4` | documentado, sem mudança de campo |
 | 6 · Contato | `aec4d23` | feito |
-| Ajustes do formulário e da nuvete | este commit | feito |
+| Ajustes do formulário e da nuvete | `94a994a` | feito |
+| Resposta padrão e log da regra da nuvete | este commit | feito |
 
 Verificação: `npm run build` e `npm run type-check` passam a cada commit.
 Até o Bloco 3, `npm run lint` não rodava: o Next 16 removeu o `next lint` e o
@@ -1595,6 +1596,47 @@ No primeiro teste, só com o prompt, a resposta a "O exame resolve meu problema?
   > ⏰ Segunda a quinta, das 7h às 17h30 · Sexta, das 7h às 16h30
   > Posso te ajudar com mais alguma informação? 💙
 
+### Resposta padrão e log da regra (antes do merge)
+
+Se a reescrita também tiver palavra proibida ou travessão longo, a nuvete **não** mostra a reescrita: mostra a resposta padrão
+
+> Para essa dúvida, nossa equipe pode ajudar: WhatsApp (31) 99726-1029. 💙
+
+O mesmo vale se a segunda chamada falhar ou voltar vazia. A lógica ficou em `src/lib/nuvete-cfm.ts` (`aplicarRegraCfm`), e a rota só a chama.
+
+**Log para a revisão mensal.** Cada acionamento grava uma linha JSON no log do servidor (`console.warn`), com o evento `nuvete_regra_cfm`, a etapa (`reescrita` ou `resposta_padrao`), os termos encontrados na resposta do modelo e a data. **Não** entram a pergunta, a resposta, o identificador da sessão nem qualquer dado da pessoa. Exemplo real, do servidor local:
+
+```
+{"evento":"nuvete_regra_cfm","etapa":"reescrita","termos":["resolver"],"data":"2026-11-08T19:37:58.204Z"}
+```
+
+Como ler: na Vercel, projeto › **Logs**, filtrar por `nuvete_regra_cfm`. Contar quantas linhas são `reescrita` (a regra corrigiu) e quantas são `resposta_padrao` (a pessoa recebeu a mensagem genérica), e quais termos aparecem mais: esses viram ajustes no prompt. **Atenção:** a Vercel guarda os logs por pouco tempo, conforme o plano. Para uma revisão mensal, configure um Log Drain ou a retenção estendida da Vercel; sem isso, os registros mais antigos somem antes da revisão.
+
+**Testes** (respostas simuladas, sem chamar a API, com o TypeScript do projeto):
+
+```
+OK   1. original limpa: mostra a original, sem log
+     resposta: "A manometria ajuda o médico a investigar."
+     log: []
+OK   2. original com termo, reescrita limpa: mostra a reescrita, log "reescrita"
+     resposta: "O exame ajuda a entender o caso."
+     log: [{"evento":"nuvete_regra_cfm","etapa":"reescrita","termos":["melhor"],"data":"2026-11-08T19:37:24.662Z"}]
+OK   3. original e reescrita com termo: resposta padrão, dois logs
+     resposta: "Para essa dúvida, nossa equipe pode ajudar: WhatsApp (31) 99726-1029. 💙"
+     log: [{"evento":"nuvete_regra_cfm","etapa":"reescrita","termos":["garantimos","melhor"],"data":"2026-11-08T19:37:24.663Z"},{"evento":"nuvete_regra_cfm","etapa":"resposta_padrao","termos":["único","(travessão)"],"data":"2026-11-08T19:37:24.663Z"}]
+OK   4. reescrita falha (erro na API): resposta padrão
+     resposta: "Para essa dúvida, nossa equipe pode ajudar: WhatsApp (31) 99726-1029. 💙"
+     log: [{"evento":"nuvete_regra_cfm","etapa":"reescrita","termos":["único"],"data":"2026-11-08T19:37:24.663Z"},{"evento":"nuvete_regra_cfm","etapa":"resposta_padrao","termos":["único"],"data":"2026-11-08T19:37:24.663Z"}]
+OK   5. reescrita vazia: resposta padrão
+     resposta: "Para essa dúvida, nossa equipe pode ajudar: WhatsApp (31) 99726-1029. 💙"
+     log: [{"evento":"nuvete_regra_cfm","etapa":"reescrita","termos":["resolve"],"data":"2026-11-08T19:37:24.664Z"},{"evento":"nuvete_regra_cfm","etapa":"resposta_padrao","termos":["resolve"],"data":"2026-11-08T19:37:24.664Z"}]
+OK   6. original vazia: devolve vazia para a rota tratar, sem log
+     resposta: ""
+     log: []
+
+resposta padrão: Para essa dúvida, nossa equipe pode ajudar: WhatsApp (31) 99726-1029. 💙 · termos na padrão: []
+```
+
 ---
 
 ## Redirects criados e URLs antigas sem destino
@@ -1622,4 +1664,5 @@ Ver as seções do Bloco 3 (halimetria) e do Bloco 4 (WordPress, slugs com erro 
 7. **Gestão**: permanência da especialidade Halitose; escopo do certificado ISO 9001; o que diz o certificado dos cursos Hands-On.
 8. **CFM**: conferir o registro da Dra. Amanda Araújo antes de publicar.
 9. **Formulário de agendamento**: ajustes aplicados. Conferir no preview e lembrar que o título da página `/obrigado` no GA4 mudou.
-10. **Revisão do PR**: conferir o preview da Vercel antes do merge. Nenhum deploy em produção foi feito.
+10. **Revisão mensal da nuvete**: ler os logs `nuvete_regra_cfm` na Vercel e configurar um Log Drain ou retenção estendida, porque os logs somem rápido.
+11. **Revisão do PR**: conferir o preview da Vercel antes do merge. Nenhum deploy em produção foi feito.

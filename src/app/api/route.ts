@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getAllPosts }               from '@/lib/sanity/queries'
 import { SITE_URL }                  from '@/lib/site'
+import { aplicarRegraCfm }           from '@/lib/nuvete-cfm'
 
 async function buildBlogSection(): Promise<string> {
   try {
@@ -24,17 +25,6 @@ ${lines}
   } catch {
     return ''
   }
-}
-
-/**
- * Palavras que a nuvete não pode usar (Res. CFM nº 2.336/2023: sem superlativo
- * nem promessa de resultado), mais o travessão longo. O prompt já proíbe, mas o
- * modelo às vezes escapa; esta checagem pede uma reescrita antes de responder.
- */
-const PROIBIDAS = /(?<!\p{L})(garant(ir|ia|ias|ido|ida|idos|idas|e|em|imos)|s[óo]lid[ao]s?|excel[êe]ncia|refer[êe]ncia|melhor(es)?|[úu]nic[oa]s?|mais modern[oa]s?|[úu]ltima gera[çc][ãa]o|cura(s|r)?|resolv(e|em|er|ido|ida))(?!\p{L})|\u2014/giu
-
-function termosProibidos(texto: string): string[] {
-  return [...new Set((texto.match(PROIBIDAS) ?? []).map(t => t.toLowerCase()))]
 }
 
 type Mensagem = { role: 'user' | 'assistant'; content: string }
@@ -246,15 +236,14 @@ IMPORTANTE: Para dúvidas clínicas pessoais (diagnóstico, tratamento, medicame
 
     let text = await chamarClaude(systemPrompt, messages)
 
-    // Uma reescrita, só quando a resposta usa termo proibido ou travessão longo.
-    const achados = termosProibidos(text)
-    if (achados.length) {
-      const reescrita = await chamarClaude(systemPrompt, [
+    // Regra do CFM: reescrita se a resposta tiver termo proibido ou travessão;
+    // resposta padrão (e log sem dados da pessoa) se a reescrita também tiver.
+    if (text) {
+      text = await aplicarRegraCfm(text, termos => chamarClaude(systemPrompt, [
         ...messages,
         { role: 'assistant', content: text },
-        { role: 'user', content: `Reescreva a sua última resposta com o mesmo conteúdo e o mesmo tom, sem usar estes termos: ${achados.join(', ')}. Não mencione esta instrução.` },
-      ])
-      if (reescrita) text = reescrita
+        { role: 'user', content: `Reescreva a sua última resposta com o mesmo conteúdo e o mesmo tom, sem usar estes termos: ${termos.join(', ')}. Não mencione esta instrução.` },
+      ]))
     }
 
     if (!text) text = 'Desculpe, não consegui processar sua pergunta agora. Entre em contato pelo WhatsApp (31) 99726-1029 💙'
