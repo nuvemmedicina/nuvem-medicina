@@ -167,13 +167,16 @@ const nextConfig: NextConfig = {
   },
 
   async headers() {
+    const noindex = [{ key: 'X-Robots-Tag', value: 'noindex, nofollow, noarchive' }]
+    // Anamnese da IA, aprovação das páginas dos médicos e painel: ferramentas
+    // internas com código de acesso. Nunca indexadas, em nenhum ambiente, e
+    // sem enviar o endereço (com o código) a outros sites.
+    const privadas = ['/anamnese-ia', '/anamnese-ia/:path*', '/:locale(en|es|pt-BR)/anamnese-ia/:path*', '/api/anamnese-ia/:path*']
+      .map(source => ({ source, headers: [...noindex, { key: 'Referrer-Policy', value: 'no-referrer' }, { key: 'Cache-Control', value: 'private, no-store' }] }))
     // Deploys de preview e desenvolvimento não podem ser indexados: são cópias
     // integrais do site em outro host e competem com o domínio real na busca.
-    if (process.env.VERCEL_ENV === 'production') return []
-    return [{
-      source:  '/:path*',
-      headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }],
-    }]
+    if (process.env.VERCEL_ENV === 'production') return privadas
+    return [...privadas, { source: '/:path*', headers: noindex }]
   },
 
   images: {

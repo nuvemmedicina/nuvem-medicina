@@ -1,5 +1,5 @@
 import Script from 'next/script'
-import { GTM_ID } from '@/lib/gtm'
+import { GTM_ID, ROTA_SEM_MEDICAO } from '@/lib/gtm'
 
 /**
  * Contêiner do Google Tag Manager — única fonte de medição do site.
@@ -24,7 +24,7 @@ export function GoogleTagManager() {
 
   return (
     <Script id="gtm-init" strategy="afterInteractive">
-      {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      {`if(!new RegExp(${JSON.stringify(ROTA_SEM_MEDICAO)}).test(location.pathname))(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
