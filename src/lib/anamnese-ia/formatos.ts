@@ -10,7 +10,9 @@ export function normalizarInstagram(v: string): string {
   let s = String(v ?? '').trim()
   if (!s) return ''
   s = s.replace(/^https?:\/\//i, '').replace(/^(www\.)?(instagram\.com|instagr\.am)\//i, '')
-  s = s.split(/[/?#\s]/)[0].replace(/^@+/, '')
+  // Do link, só o nome do perfil; espaços e outros caracteres ficam para o
+  // aviso de erro em vez de sumirem calados
+  s = s.split(/[/?#]/)[0].replace(/^@+/, '')
   return s ? `@${s.toLowerCase()}` : ''
 }
 
