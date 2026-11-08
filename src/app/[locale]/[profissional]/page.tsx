@@ -22,8 +22,9 @@ export const dynamicParams = false
 
 type Props = { params: Promise<{ locale: string; profissional: string }> }
 
-export async function generateStaticParams({ params }: { params: { locale: string } }) {
-  if (params.locale !== 'pt-BR') return []
+// Mesmo padrão de /anamnese-ia/medico/[slug]: o slug é combinado com os três
+// idiomas do layout; /en e /es nunca são servidos (o middleware redireciona).
+export async function generateStaticParams() {
   return (await slugsComRota()).map(profissional => ({ profissional }))
 }
 
@@ -74,7 +75,7 @@ export default async function PaginaDoProfissional({ params }: Props) {
     return <Pagina />
   }
 
-  const { foto } = await publicacaoDe(p)
+  const { foto, versao } = await publicacaoDe(p)
   const faqs = perguntasFrequentes(p).map(f => ({
     pergunta: f.pergunta,
     resposta: [f.resposta, f.lista?.length ? `${f.lista.map(i => i.replace(/\.$/, '')).join('; ')}.` : '']
@@ -91,7 +92,7 @@ export default async function PaginaDoProfissional({ params }: Props) {
         ]),
         faqSchema(faqs),
       ]} />
-      <PaginaProfissional p={p} foto={foto} previa={modo === 'previa'} />
+      <PaginaProfissional p={p} foto={foto} previa={modo === 'previa'} versao={versao} />
     </>
   )
 }

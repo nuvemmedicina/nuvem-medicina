@@ -24,6 +24,8 @@ type Props = {
   foto: Foto | null
   /** Prévia: mostra a faixa de rascunho e as listas ainda não validadas. */
   previa: boolean
+  /** Versão do texto (profissionais-publicacao.ts), mostrada na faixa. */
+  versao: string
 }
 
 const LOCAL_CLIQUE = 'pagina_profissional'
@@ -82,17 +84,19 @@ function Retrato({ p, foto }: { p: Profissional; foto: Foto | null }) {
   )
 }
 
-export function FaixaRascunho() {
+/** Faixa da prévia. A versão é a que o profissional e a clínica aprovam. */
+export function FaixaRascunho({ versao }: { versao: string }) {
   return (
     <div role="status" className="bg-gold-light/30 border-b border-gold/50 text-steel">
       <p className="max-w-[1240px] mx-auto px-4 sm:px-8 py-2 text-center text-[0.8rem] font-semibold">
         Rascunho · aguardando aprovação
+        <span className="ml-2 font-normal text-steel/60">versão do texto {versao}</span>
       </p>
     </div>
   )
 }
 
-export function PaginaProfissional({ p, foto, previa }: Props) {
+export function PaginaProfissional({ p, foto, previa, versao }: Props) {
   const esp = especialidadeDeExibicao(p)
   const registro = formatarRegistro(p.registro)
   const exames = temExames(p)
@@ -117,7 +121,7 @@ export function PaginaProfissional({ p, foto, previa }: Props) {
 
   return (
     <div className="pt-[76px] font-sans text-steel">
-      {previa && <FaixaRascunho />}
+      {previa && <FaixaRascunho versao={versao} />}
 
       {/* 1 · Apresentação */}
       <header className="relative overflow-hidden bg-white">
