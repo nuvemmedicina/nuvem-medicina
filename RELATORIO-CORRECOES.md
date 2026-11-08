@@ -24,8 +24,8 @@ Convenções deste relatório:
 | 3 · Halimetria e sialometria | `6e27c1d` | feito, com textos para validar |
 | ESLint | `9937033` | configurado, lint passando |
 | Ajuste da nuvete | `e1bb073` | feito |
-| 4 · Domínio, URLs antigas, indexação | este commit | feito |
-| 5 · Agendamento | a seguir | |
+| 4 · Domínio, URLs antigas, indexação | `98888ae` | feito |
+| 5 · Agendamento | este commit | documentado, sem mudança de campo |
 | 6 · Contato | a seguir | |
 
 Verificação: `npm run build` e `npm run type-check` passam a cada commit.
@@ -795,6 +795,62 @@ Primeiro salto e destino final, seguindo a cadeia.
 | `/biosseguranca-procedimento-operacional-padrao` | `x-robots-tag: noindex` |
 
 Sitemap local: 87 URLs, todas com www, sem halimetria, sem páginas internas, `/exames/preparos` só em português.
+
+---
+
+## Bloco 5 · Formulário de agendamento
+
+No GA4, `/agendar` teve 207 usuários e `/obrigado` ("Solicitação Recebida"), 5.
+Nenhum campo foi alterado. A única mudança de código veio do Bloco 1:
+`servico_interesse` leva só o tipo do atendimento.
+
+### Como o fluxo funciona (lido no código e testado no servidor local)
+
+1. A pessoa preenche nome (obrigatório), telefone (obrigatório), e-mail
+   (opcional), serviço (obrigatório) e mensagem (opcional).
+2. **Validação**: sem nome, telefone ou serviço, os campos ficam vermelhos e
+   nada acontece. Testado: envio vazio não gera evento.
+3. **Envio**: o formulário **não manda os dados para servidor nenhum**. Ele abre
+   `wa.me/553197261029` com uma mensagem pronta ("Olá! Gostaria de agendar...
+   Nome, Telefone, Serviço, Mensagem"). Os dados só chegam à clínica se a
+   pessoa tocar em **enviar** dentro do WhatsApp.
+4. **Evento**: `envio_agendamento` sai **uma vez** por envio, com
+   `servico_interesse` (consulta, exame, fisioterapia ou ensino),
+   `origem_pagina` e `whatsapp_abriu`. Nome, telefone, e-mail e mensagem não
+   entram no dataLayer. Testado: `{"servico_interesse":"exame","origem_pagina":"/agendar","whatsapp_abriu":false}`
+   (falso só porque o teste bloqueou a janela).
+5. **Redirecionamento**: depois de 800 ms a aba do site vai para `/obrigado`,
+   que emite `pagina_obrigado` uma vez. Testado.
+
+### A queda de 207 para 5 é falha técnica ou comportamento?
+
+As duas coisas, e o número de `/obrigado` não mede agendamentos:
+
+- **Medição (técnico).** O page_view de `/obrigado` depende da navegação dentro
+  do site depois que o WhatsApp abre. No celular, o WhatsApp é aberto como
+  aplicativo e o navegador vai para segundo plano: o navegador costuma pausar
+  os timers da aba, a navegação para `/obrigado` pode só acontecer quando a
+  pessoa volta (ou nunca) e o page_view não sai. Some-se a isso a falha do
+  page_view após o consentimento (Bloco 1).
+- **Comportamento (real).** A própria página `/agendar` oferece telefone e
+  WhatsApp direto ao lado do formulário, e o site tem o botão flutuante de
+  WhatsApp. Parte das 207 pessoas agenda por esses canais, que contam como
+  `clique_whatsapp` e `clique_telefone`, e não passam por `/obrigado`.
+- **O evento certo para medir é `envio_agendamento`**, mas hoje ele está
+  inflado pela tag do GTM que registra as conversas da nuvete com esse nome
+  (TRACKING.md, 5.1). Só depois dessa correção dá para ler a taxa real
+  (envios ÷ usuários de `/agendar`).
+
+### Pontos para sua decisão (não alterados)
+
+| Ponto | Situação | Sugestão |
+|---|---|---|
+| "Solicitação enviada!" e "Nossa equipe responde em até 24h" | A mensagem aparece antes de qualquer envio: quem não tocar em enviar no WhatsApp acha que agendou, e a clínica nunca recebe. | Trocar por algo como "Confirme o envio no WhatsApp para concluir a solicitação." |
+| Campo **E-mail** | É pedido, mas não entra na mensagem do WhatsApp nem vai para lugar nenhum. | Pela LGPD (minimização), retirar o campo ou passar a usá-lo. |
+| Placeholder da mensagem: "Descreva brevemente sua necessidade…" | Convida a pessoa a escrever sintomas, que vão no texto do WhatsApp para a clínica (não para o GA4). | Trocar por algo neutro, como "Melhor dia e horário para contato (opcional)". |
+| Serviço de interesse | Necessário para agendar; vai só no texto do WhatsApp, e o dataLayer recebe apenas o tipo. | Manter. |
+
+O formulário não pede outro dado de saúde além do serviço e da mensagem livre opcional.
 
 ---
 
