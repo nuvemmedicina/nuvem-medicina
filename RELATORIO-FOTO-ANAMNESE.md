@@ -11,7 +11,8 @@ Um commit por item:
 | `fix(anamnese): sem GTM e com noindex` | O GTM não carrega mais em `/anamnese-ia`. Antes, o GA4 recebia o endereço completo, com o código de acesso `?c=`. O `pushEvent` ignora essas rotas. O servidor manda `X-Robots-Tag: noindex`, `Referrer-Policy: no-referrer` e `Cache-Control: private` nas páginas e na API da anamnese. |
 | `feat(anamnese): campo de Instagram` | Campo opcional "Instagram profissional" na identificação do médico. Aceita `@perfil`, `perfil` ou o link e guarda sempre como `@perfil`. Avisa quando o formato não vale. |
 | `feat(anamnese): código de acesso v2` | O código passa de 10 para 32 caracteres. Cada profissional novo tem link próprio (`links.mjs --novo "Nome"`), e é possível cancelar o link de uma pessoa só. **Os links antigos deixam de funcionar.** |
-| `feat(anamnese): envio da foto` | Seção "Sua foto para o site", com orientações, molduras 4:5 e 1:1 e as opções "a clínica providencia" e "sem foto". Envio direto para o armazenamento privado. No servidor: tipo conferido pelo conteúdo do arquivo, até 10 MB, mínimo de 1200 px, HEIC convertido, metadados removidos e versões em WebP. |
+| `feat(anamnese): envio da foto` | Seção "Sua foto para o site", com orientações, molduras 4:5 e 1:1 e as opções "a clínica providencia" e "sem foto". Envio direto para o armazenamento privado. No servidor: tipo conferido pelo conteúdo do arquivo, até 10 MB, mínimo de 1200 px, metadados removidos e versões em WebP. |
+| `fix(anamnese): HEIC` | O sharp não lê HEIC. O navegador converte HEIC para JPG antes do envio quando consegue abrir o arquivo (Safari no iPhone e no Mac). Quando não consegue (Chrome e Edge no Windows), mostra uma mensagem pedindo JPG. O servidor só recebe JPG, PNG e WebP. |
 | `chore(lint): ESLint 9` | É o mesmo commit do PR #140. A `main` usa `next lint`, que o Next 16 removeu, então o lint não rodava. Some sozinho quando os dois PRs entrarem. |
 | `feat(anamnese): termo de autorização` | Termo versão 1.0 em `src/lib/anamnese-ia/termo-imagem.ts`, com caixa de aceite obrigatória e desmarcada. Cada aceite gera um registro que não pode ser editado. |
 | `feat(anamnese): aprovação da página` | Rota `/anamnese-ia/medico/<slug>/aprovacao`, com prévia e os botões "Aprovo a publicação" e "Quero ajustes". Status por médico e regras de publicação. |
@@ -49,6 +50,39 @@ Todos os IDs no Sanity têm ponto, então são privados: não aparecem na leitur
 
 Nenhuma rota altera ou apaga esses registros. Uma revogação cria um registro novo.
 
+## Verificação antes do merge (08/11/2026)
+
+**1. Sanity sem token.** Consulta à API pública (`q8ibxbuz.apicdn.sanity.io` e `api.sanity.io`, dataset `production`), sem token:
+
+| Consulta GROQ | Sem token | Com o token do projeto |
+|---|---|---|
+| `count(*[_type == "post"])` | 25 | – |
+| `count(*[_id in path("anamnese-ia.**")])` | **0** | 7 (respostas da anamnese) |
+| `count(*[_type in ["anamneseIaResposta","anamneseIaFotos","anamneseIaAutorizacao","anamneseIaPagina"]])` | **0** | – |
+| `count(*[string::startsWith(_id, "anamnese")])` | **0** | – |
+
+Os documentos existem, mas a leitura pública não os enxerga. Todo ID criado pelo código começa com `anamnese-ia.` e tem ponto: respostas, `anamnese-ia.fotos.*`, `anamnese-ia.autorizacao.*` e `anamnese-ia.pagina.*`. Um teste automático confere isso.
+
+**2. Blob privado.** O único `put` grava com `access: 'private'`, e o envio do navegador também é `private`. Não existe nenhuma gravação pública no código, nem depois da aprovação: a publicação no site continua manual. O caminho no Blob fica guardado no Sanity, e a imagem só sai pela rota com código. Com o código do médico, a rota recusa a original (403); sem código, recusa tudo (403).
+
+**3. HEIC.** O navegador converte para JPG ou mostra uma mensagem pedindo JPG. No Chromium, um arquivo HEIC mostra a mensagem e não libera o botão de envio. Se um HEIC chegar ao servidor mesmo assim, a resposta traz a mesma explicação.
+
+**4. Painel e aprovação.** Resultado das rotas com segredo de teste:
+
+| Rota | Sem código | Código errado | Código de médico | Código do painel |
+|---|---|---|---|---|
+| Painel, GET | 403 | 403 | 403 | aceito |
+| Painel, POST | 403 | – | 403 | – |
+| CSV de autorizações | 403 | 403 | 403 | aceito |
+| Imagem da foto | 403 | – | só 4:5 e 1:1 | aceito |
+
+- O painel, a aprovação e a anamnese têm `<meta name="robots" content="noindex, nofollow">` e o cabeçalho `X-Robots-Tag` com noindex.
+- **GTM.** Depois do PR #140, o GTM só carrega em produção, então localmente nenhuma página o carrega. Por isso, testei a regra executando o próprio script do GTM com endereços simulados:
+  - Nas 7 rotas da anamnese (inclusive o painel, a aprovação e as rotas com `/en` e `/pt-BR`), o `gtm.js` não é inserido e o dataLayer nem é criado.
+  - Nas rotas públicas, o GTM carrega normalmente.
+  - O `pushEvent` também ignora a anamnese, e não há Meta Pixel no site.
+- O `<noscript>` do GTM ainda aparece no HTML das páginas internas, porque elas são pré-geradas, mas só é usado por navegadores sem JavaScript. Mesmo nesse caso, o `Referrer-Policy: no-referrer` impede que o endereço com o código seja enviado.
+
 ## Fluxo
 
 1. A clínica gera os links novos (veja "Antes do merge") e envia a cada médico.
@@ -84,11 +118,11 @@ Se o médico enviar uma foto nova depois, ele aceita o termo de novo e um novo a
 
 - **Revisão do termo pela gestão.** O texto está em `src/lib/anamnese-ia/termo-imagem.ts`. Ao mudar qualquer palavra, suba a versão (1.1, 2.0…) e anote a anterior em `VERSOES_ANTERIORES`.
 - **Teste de ponta a ponta com o Blob e o Sanity reais.** Não foi feito porque o Blob ainda não existe e a geração de um código real foi bloqueada nesta sessão por proteção de credenciais. O que foi testado:
-  - 28 verificações automáticas fora do servidor: metadados e GPS removidos, orientação, tamanhos 4:5 e 1:1, recorte, tipo pelo conteúdo, termo, corrente de hashes, revogação e todos os status e regras de publicação.
+  - 30 verificações automáticas fora do servidor: metadados e GPS removidos, orientação, tamanhos 4:5 e 1:1, recorte, tipo pelo conteúdo, termo, corrente de hashes, revogação e todos os status e regras de publicação.
   - Telas no navegador com um segredo de teste e sem acesso ao Sanity: anamnese com a seção da foto, prévia nas molduras, termo, aceite obrigatório, painel e aprovação no celular.
   - Respostas certas para código errado (403), slug inválido (404) e ausência do GTM.
   - Build e lint passando.
-- **HEIC real.** A conversão usa `heic-convert`, mas não houve foto de iPhone para testar. Vale enviar uma no primeiro teste.
+- **HEIC no iPhone.** A mensagem do Chrome foi testada. A conversão no Safari não foi, por falta de iPhone e de foto HEIC. Vale fazer o primeiro envio real de um iPhone.
 - **"A clínica providencia a foto".** Hoje isso só registra a pendência. Quando a foto chegar, ela pode ser enviada pelo link do próprio médico, mas o aceite do termo precisa ser dele. Se preferir que a clínica envie pelo painel, isso precisa de uma tela a mais.
 - **Página do site automática.** A publicação continua manual. Ligar as páginas dos médicos ao Sanity seria um projeto separado.
 - **Cache das páginas internas.** Nas páginas pré-geradas, o Next substitui o `Cache-Control: private`. As respostas da API e as imagens ficam com `private, no-store`, e as páginas não têm dados (tudo vem da API com código).
