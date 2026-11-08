@@ -1,0 +1,851 @@
+# Relatório · Páginas dos profissionais
+
+Branch `feat/paginas-profissionais`, a partir da `main` (com o PR #140). PR sem merge e sem deploy em produção. Data: 08/11/2026.
+
+## 1. O que mudou
+
+| Etapa | Arquivos |
+|---|---|
+| Dados | `src/lib/profissionais.ts` (fonte única), `src/lib/profissionais-texto.ts` (frases derivadas), `src/lib/profissionais-publicacao.ts` (regras de publicação, **único ponto de troca** com a anamnese) |
+| Componente | `src/components/profissionais/PaginaProfissional.tsx`: as 8 seções, sem texto escrito à mão sobre a pessoa |
+| Páginas | rota única `src/app/[locale]/[profissional]/page.tsx`; as páginas atuais da Dra. Vera e da Dra. Eliane foram movidas, sem mudar o texto, para `src/components/profissionais/antigas/`; sitemap e middleware (páginas só em português) passam a ler os dados |
+| Equipe | `/equipe` gerada a partir dos mesmos dados |
+| Schema | `profissionalSchema()` em `src/lib/schema.ts`; `directorSchema` sai do mesmo gerador |
+
+Arquivos do PR #142 não foram tocados.
+
+## 2. Como fica no ar
+
+| Ambiente | O que aparece |
+|---|---|
+| **Produção** (`VERCEL_ENV=production`) | Só páginas **aprovadas** geram rota e entram no sitemap. `/dra-vera-angelo` e `/dra-eliane-basques` continuam com a **página antiga**, no mesmo endereço, até a nova ser aprovada. As demais dão 404. |
+| **Prévia da Vercel** e computador local | Todas as 9 páginas, com a faixa "Rascunho · aguardando aprovação", a versão do texto e `noindex`. |
+
+Uma página só conta como aprovada quando as três condições abaixo valem ao mesmo tempo:
+1. `status: 'aprovada'`;
+2. o profissional **e** a clínica aprovaram a **versão atual** do texto;
+3. não há pendência que bloqueie, como CRM sem UF ou bio sem texto.
+
+A versão é um código de 10 caracteres calculado a partir de tudo o que aparece na página, inclusive a foto. Se qualquer dado mudar depois da aprovação, a versão muda e a página volta a não ser publicada. Nesse caso o build mostra um aviso `[profissionais] ... não vai ao ar: ...`.
+
+**Endereços.** Os dois endereços atuais foram mantidos. Os novos seguem o padrão `dra-`/`dr-` + o slug da anamnese:
+
+| Profissional | Endereço | Status | Versão do texto |
+|---|---|---|---|
+| Dra. Vera Ângelo | `/dra-vera-angelo` | aguardando_medico | `1c51b3946c` |
+| Dra. Eliane Basques | `/dra-eliane-basques` | aguardando_medico | `2379904101` |
+| Dra. Raissa Dalat | `/dra-raissa-dalat` | aguardando_medico | `603384794c` |
+| Dra. Anna Karoline | `/dra-anna-karoline` | aguardando_medico | `512c3e295d` |
+| Dr. Gabriel de Souza Fernandes Filho | `/dr-gabriel-fernandes-filho` | aguardando_medico | `9909b3b740` |
+| Dra. Amanda Araújo | `/dra-amanda-araujo` | aguardando_medico | `87d8db76e1` |
+| Dra. Danielle Martins | `/dra-danielle-martins` | rascunho (fase 2, sem rota em produção) | `49d9899a98` |
+| Dra. Claudia Utsch | `/dra-claudia-utsch` | rascunho (fase 2, sem rota em produção) | `f3b84627ce` |
+| Dra. Camilla Mendes | `/dra-camilla-mendes` | rascunho (fase 2, sem rota em produção) | `210b868029` |
+
+## 3. Como publicar uma página (hoje, com os campos à mão)
+
+1. Envie ao profissional o texto da seção 6 deste relatório (ou o link da prévia da Vercel, que mostra a versão na faixa do topo).
+2. Quando o profissional e a clínica aprovarem, abra `src/lib/profissionais.ts` e, no bloco da pessoa, troque:
+
+   ```ts
+   status: 'aguardando_medico',
+   aprovacoes: {},
+   ```
+   por
+   ```ts
+   status: 'aprovada',
+   aprovacoes: {
+     medico:  { data: '2026-11-20', versao: '603384794c', por: 'Dra. Raissa Dalat' },
+     clinica: { data: '2026-11-20', versao: '603384794c', por: 'Ana Paula' },
+   },
+   ```
+   Use a versão que o profissional aprovou, que aparece na faixa da prévia e na tabela acima.
+3. Abra um PR e confira a prévia da Vercel: a página aprovada perde a faixa de rascunho.
+4. Depois do merge, a página entra no ar, no sitemap e com link no cartão do `/equipe`. Para a Dra. Vera e a Dra. Eliane, a página nova substitui a antiga no mesmo endereço. A partir daí os arquivos de `src/components/profissionais/antigas/` podem ser apagados.
+
+**Para mudar um texto aprovado**, edite os dados. A versão muda e a página sai do ar até ser aprovada de novo. As páginas da Dra. Vera e da Dra. Eliane voltam para a versão antiga nesse intervalo.
+
+**Lista "Quando procurar avaliação":** depois da validação da Dra. Vera, troque `validacao: 'rascunho'` por `validacao: { por: 'Dra. Vera Ângelo', data: 'AAAA-MM-DD' }`. Até lá, a lista só aparece na prévia. Essa troca muda a versão do texto, então faça antes da aprovação final.
+
+Testei este passo a passo num build de produção, com a Dra. Raissa marcada como aprovada de forma temporária (o teste não foi commitado):
+- a página dela entrou no ar sem a faixa, no sitemap e com link no `/equipe`;
+- o Dr. Gabriel, marcado como "aprovada" sem as aprovações da versão atual, continuou com 404 e gerou o aviso no build.
+
+## 4. Como ligar a anamnese (depois do merge do PR #142)
+
+Tudo fica em `src/lib/profissionais-publicacao.ts`.
+
+1. Troque `export const FONTE_PUBLICACAO = 'manual' as FontePublicacao` por `'anamnese'`.
+2. Substitua o corpo de `lerDaAnamnese` por:
+
+   ```ts
+   import { sanity } from './anamnese-ia/servidor'
+   import { carregarProfissional } from './anamnese-ia/pagina-servidor'
+
+   async function lerDaAnamnese(p: Profissional): Promise<DadosPublicacao> {
+     const client = sanity()
+     if (!client) throw new Error('SANITY_WRITE_TOKEN ausente no build')
+     const { fotos, situacao: s } = await carregarProfissional(client, `medico-${p.slugAnamnese}`)
+
+     // Foto: "site" = a foto atual (pública); "sem-foto" = iniciais;
+     // "enviada" = precisa de cópia pública (ver observação 2 abaixo).
+     const foto = fotos?.opcao === 'sem-foto' ? null
+       : fotos?.opcao === 'enviada' ? fotoPublicaDaAnamnese(p, fotos) // a criar
+       : p.foto
+     const versao = versaoDoTexto(p, foto)
+
+     // A aprovação só vale para a página inteira (ver observação 1).
+     const aprovouEsta = s.texto?.conteudo.versaoPagina === versao
+     const aprovada = s.podePublicar && aprovouEsta
+     const quando = s.decisaoAtual?.em.slice(0, 10) ?? ''
+     return {
+       status: aprovada ? 'aprovada' : s.texto ? 'aguardando_medico' : 'rascunho',
+       foto,
+       aprovacoes: aprovada
+         ? { medico: { data: quando, versao, por: 'anamnese' }, clinica: { data: quando, versao, por: 'painel' } }
+         : {},
+     }
+   }
+   ```
+3. Confira se a Vercel tem `SANITY_WRITE_TOKEN` disponível no build. A leitura é feita no build e o resultado é estático. Uma aprovação nova só aparece depois de um novo deploy, ou de um deploy hook acionado pelo painel quando a clínica marcar "publicada".
+
+**Observações sobre o #142 que precisam de ajuste antes de ligar:**
+
+1. **O texto aprovado no #142 tem 6 campos** (nome, registro, especialidade, áreas, bio, Instagram). A página nova tem mais: o que faz, convênios, faixa etária, FAQ, lista "Quando procurar".
+   - **Recomendação:** quando a clínica criar a versão do texto no painel, gravar também `versaoPagina: versaoDoTexto(p)` e mostrar ao médico o texto completo da página (a seção 6 deste relatório é gerada pelas mesmas funções).
+   - Assim, a aprovação do médico fica ligada à página inteira. É isso que o trecho acima confere em `aprovouEsta`.
+2. **A foto enviada fica no Blob privado.** Para ir para a página pública, a foto aprovada precisa de uma cópia pública (por exemplo em `public/images/` ou num Blob público), feita só depois da aprovação da clínica e da autorização de imagem vigente.
+   - A opção "usar a foto atual do site" já funciona sem esse passo.
+   - Enquanto isso não existir, `fotoPublicaDaAnamnese` pode devolver `null`, e a página sai com iniciais.
+3. A autorização de imagem revogada faz `s.podePublicar` ficar falso, e a página sai do ar no próximo build. Isso atende ao prazo de 10 dias úteis do termo, desde que haja um deploy nesse prazo.
+
+## 5. Rastreamento (GTM)
+
+- A página não envia nome nem especialidade ao dataLayer. Ela não tem nenhum `pushEvent`.
+- Os dois botões de WhatsApp levam o atributo `data-local-clique="pagina_profissional"`. O texto dos botões é sempre "Agendar pelo WhatsApp", sem nome.
+- **Falta configurar no GTM** (eu não alterei o contêiner):
+  1. Variáveis > Nova > *Variável de evento automático* > tipo *Atributo do elemento* > atributo `data-local-clique`. Nome sugerido: `AEV - local_clique`.
+  2. Na tag GA4 do evento `clique_whatsapp`, adicionar o parâmetro `local_clique` = `{{AEV - local_clique}}`.
+  3. No GA4, registrar `local_clique` como dimensão personalizada (escopo de evento).
+  4. Testar pelo GTM Preview no site publicado. O GTM só carrega em produção.
+- **Atenção:** o `origem_pagina` (caminho da página) vai continuar trazendo o nome do profissional, como `/dra-vera-angelo`. O `TRACKING.md` permite o caminho, porque ele descreve o conteúdo visitado. Se a gestão preferir, uma tabela de consulta no GTM pode trocar esses caminhos por `/profissional` antes de enviar.
+- A mensagem pronta do WhatsApp tem o nome do profissional, mas vai só para o WhatsApp. Ela não é enviada ao GA4, porque a URL do clique não é parâmetro do evento.
+
+## 6. Texto final de cada página (para validação)
+
+Os textos abaixo saem das mesmas funções que montam a página. Seções sem dado confirmado ficam ocultas. Onde falta um dado no FAQ, a resposta diz que a equipe confirma no agendamento.
+
+### Dra. Vera Ângelo · `/dra-vera-angelo`
+
+Status: aguardando_medico · versão do texto `1c51b3946c` · foto: `/images/dra-vera.jpg`
+
+**1. Apresentação**
+
+- Rótulo: Gastroenterologia
+- Nome: Dra. Vera Ângelo
+- Registro: CRM-MG 22284 · RQE 10411 (Gastroenterologia) · RQE 22736 (Medicina do Trabalho)
+- Linha de apresentação: Médica especialista em Gastroenterologia. Sócia fundadora e Diretora Técnica da NU.V.E.M.
+- Botões: "Agendar pelo WhatsApp" (mensagem: "Olá! Gostaria de agendar com a Dra. Vera Ângelo na NU.V.E.M.") e "Ver exames"
+
+**2. O que faz na NU.V.E.M**
+
+- Consulta
+- Testes respiratórios · Somente particular
+- Faixa etária: 12 a 99 anos
+- Teleconsulta: Sim, no atendimento particular
+
+**3. Formação**
+
+> Sócia fundadora e diretora técnica da NU.V.E.M. Mestre e Doutora pela UFMG. Professora convidada do Hospital Israelita Albert Einstein. Autora de obras pela Editora Rubio.
+
+**4. Como pode ajudar**
+
+- Atua em: SIBO e IMO · Testes respiratórios · Motilidade digestiva · Distúrbios da interação cérebro-intestino (DGBI)
+- Quando procurar avaliação: ver a lista na seção "Listas para a Dra. Vera" (só aparece em produção depois de validada)
+
+**5. Exames relacionados**
+
+- Testes Respiratórios · links "Sobre o exame" (`/exames/testes-respiratorios`) e "Preparo" (`/exames/preparos#testes-respiratorios`)
+
+**6. Como é o atendimento**
+
+1. Agendamento: Pelo WhatsApp ou pelo telefone da clínica.
+2. Preparo: A clínica envia as orientações de preparo do exame.
+3. Exame ou consulta: Atendimento na NU.V.E.M, na Rua Ceará, 600, em Belo Horizonte.
+4. Laudo: Enviado para o médico que pediu o exame, com rastreabilidade pela gestão certificada na norma ISO 9001.
+
+**7. Perguntas frequentes**
+
+- *Precisa de pedido médico?*
+  Para exames, sim: o pedido médico é obrigatório. Para a consulta, a equipe confirma essa informação no agendamento, pelo WhatsApp ou telefone.
+- *Atende convênio?*
+  - Testes respiratórios: Somente particular.
+  Para os demais atendimentos, a equipe confirma essa informação no agendamento, pelo WhatsApp ou telefone.
+- *Faz teleconsulta?*
+  Sim, no atendimento particular.
+- *Qual idade atende?*
+  12 a 99 anos.
+- *O que levar?*
+  Leve no dia do atendimento:
+  - Pedido médico (obrigatório para exames)
+  - Guia ou número de autorização (exames por convênio)
+  - Documento com foto
+  - Carteirinha do convênio
+  - Exames anteriores
+  - Lista de medicamentos em uso
+
+**8. Agendamento:** "Agende com a Dra. Vera Ângelo", telefone, horário, endereço e botão "Agendar pelo WhatsApp". Rodapé padrão do site (responsável técnica e aviso da Res. CFM nº 2.336/2023).
+
+---
+
+### Dra. Eliane Basques · `/dra-eliane-basques`
+
+Status: aguardando_medico · versão do texto `2379904101` · foto: `/images/dra-eliane.jpg`
+
+**1. Apresentação**
+
+- Rótulo: Médica com atuação em cirurgia pediátrica
+- Nome: Dra. Eliane Basques
+- Registro: CRM-MG 27601 · RQE 9324
+- Linha de apresentação: Cofundadora e Diretora Técnica Substituta da NU.V.E.M.
+- Botões: "Agendar pelo WhatsApp" (mensagem: "Olá! Gostaria de agendar com a Dra. Eliane Basques na NU.V.E.M.") e "Ver exames"
+
+**2. O que faz na NU.V.E.M**
+
+- Manometria anorretal · Particular ou Unimed (Unipart, Unimax, Uniplan)
+- Trânsito colônico · Somente particular
+- Faixa etária: 1 a 80 anos
+- Consulta: Não faz consulta. Atende somente exames.
+- Dias de atendimento: Somente às quintas-feiras
+
+**3. Formação**
+
+> Cirurgiã pediátrica, cofundadora da NU.V.E.M. Atua em manometria anorretal e disfunções do assoalho pélvico, na interface entre gastroenterologia e cirurgia.
+
+**4. Como pode ajudar**
+
+- Atua em: Manometria anorretal · Assoalho pélvico · Casos interdisciplinares
+- Quando procurar avaliação: ver a lista na seção "Listas para a Dra. Vera" (só aparece em produção depois de validada)
+
+**5. Exames relacionados**
+
+- Manometria Anorretal · links "Sobre o exame" (`/exames/manometria-anorretal`) e "Preparo" (`/exames/preparos#manometria-anorretal`)
+- Trânsito colônico · sem link: "Informações e preparo pelo WhatsApp ou telefone."
+
+**6. Como é o atendimento**
+
+1. Agendamento: Pelo WhatsApp ou pelo telefone da clínica.
+2. Preparo: A clínica envia as orientações de preparo do exame.
+3. Exame: Atendimento na NU.V.E.M, na Rua Ceará, 600, em Belo Horizonte.
+4. Laudo: Enviado para o médico que pediu o exame, com rastreabilidade pela gestão certificada na norma ISO 9001.
+
+**7. Perguntas frequentes**
+
+- *Precisa de pedido médico?*
+  Sim. Os exames precisam de pedido médico.
+- *Atende convênio?*
+  - Manometria anorretal: Particular ou Unimed (Unipart, Unimax, Uniplan).
+  - Trânsito colônico: Somente particular.
+- *Faz teleconsulta?*
+  Não. A Dra. Eliane Basques realiza exames presenciais na NU.V.E.M e não faz consulta.
+- *Qual idade atende?*
+  1 a 80 anos.
+- *O que levar?*
+  Leve no dia do atendimento:
+  - Pedido médico (obrigatório para exames)
+  - Guia ou número de autorização (exames por convênio)
+  - Documento com foto
+  - Carteirinha do convênio
+  - Exames anteriores
+  - Lista de medicamentos em uso
+
+**8. Agendamento:** "Agende com a Dra. Eliane Basques", telefone, horário, endereço e botão "Agendar pelo WhatsApp". Rodapé padrão do site (responsável técnica e aviso da Res. CFM nº 2.336/2023).
+
+---
+
+### Dra. Raissa Dalat · `/dra-raissa-dalat`
+
+Status: aguardando_medico · versão do texto `603384794c` · foto: `/images/raissa-dalat.jpg`
+
+**1. Apresentação**
+
+- Rótulo: Médica com atuação em cirurgia pediátrica
+- Nome: Dra. Raissa Dalat
+- Registro: CRM-MG 78824 · RQE 61983
+- Botões: "Agendar pelo WhatsApp" (mensagem: "Olá! Gostaria de agendar com a Dra. Raissa Dalat na NU.V.E.M.")
+
+**2. O que faz na NU.V.E.M**
+
+- Consulta de cirurgia pediátrica geral
+- Consulta de coloproctologia infantil
+- Faixa etária: 0 a 14 anos
+- Teleconsulta: Sim, no atendimento particular
+
+**3. Formação**
+
+> Cirurgiã pediátrica com atuação em cirurgia pediátrica geral e coloproctologia infantil, pós-graduada em doenças funcionais do aparelho digestivo e manometrias.
+
+**4. Como pode ajudar**
+
+- Atua em: Cirurgia pediátrica geral · Coloproctologia infantil
+
+**5. Exames relacionados**
+
+_(seção oculta: não realiza exames)_
+
+**6. Como é o atendimento**
+
+1. Agendamento: Pelo WhatsApp ou pelo telefone da clínica.
+2. Preparo: A clínica envia as orientações para o dia do atendimento.
+3. Consulta: Atendimento na NU.V.E.M, na Rua Ceará, 600, em Belo Horizonte.
+4. Registro: Atendimento registrado em prontuário, com rastreabilidade pela gestão certificada na norma ISO 9001.
+
+**7. Perguntas frequentes**
+
+- *Precisa de pedido médico?*
+  Para a consulta, a equipe confirma essa informação no agendamento, pelo WhatsApp ou telefone.
+- *Atende convênio?*
+  A equipe confirma essa informação no agendamento, pelo WhatsApp ou telefone.
+- *Faz teleconsulta?*
+  Sim, no atendimento particular.
+- *Qual idade atende?*
+  0 a 14 anos.
+- *O que levar?*
+  Leve no dia do atendimento:
+  - Pedido médico (obrigatório para exames)
+  - Guia ou número de autorização (exames por convênio)
+  - Documento com foto
+  - Carteirinha do convênio
+  - Exames anteriores
+  - Lista de medicamentos em uso
+
+**8. Agendamento:** "Agende com a Dra. Raissa Dalat", telefone, horário, endereço e botão "Agendar pelo WhatsApp". Rodapé padrão do site (responsável técnica e aviso da Res. CFM nº 2.336/2023).
+
+---
+
+### Dra. Anna Karoline · `/dra-anna-karoline`
+
+Status: aguardando_medico · versão do texto `512c3e295d` · foto: `/images/anna-karoline.jpg`
+
+**1. Apresentação**
+
+- Rótulo: Fisioterapia Pélvica
+- Nome: Dra. Anna Karoline
+- Registro: Crefito 4/270579-F
+- Linha de apresentação: Fisioterapeuta com atuação em fisioterapia pélvica.
+- Botões: "Agendar pelo WhatsApp" (mensagem: "Olá! Gostaria de agendar com a Dra. Anna Karoline na NU.V.E.M.") e "Ver exames"
+
+**2. O que faz na NU.V.E.M**
+
+- Avaliação pélvica com biofeedback eletromiográfico
+- Reabilitação do assoalho pélvico
+- Faixa etária: 12 a 90 anos
+- Teleconsulta: Sim, no atendimento particular
+
+**3. Formação**
+
+> Fisioterapeuta com atuação em assoalho pélvico e biofeedback eletromiográfico (incontinência urinária e fecal, constipação, dor pélvica, pré e pós-parto, entre outros).
+
+**4. Como pode ajudar**
+
+- Atua em: Assoalho pélvico · Biofeedback eletromiográfico
+- Quando procurar avaliação: ver a lista na seção "Listas para a Dra. Vera" (só aparece em produção depois de validada)
+
+**5. Exames relacionados**
+
+- Avaliação Pélvica · links "Sobre o exame" (`/exames/avaliacao-pelvica`) e "Preparo" (`/exames/preparos#avaliacao-pelvica`)
+
+**6. Como é o atendimento**
+
+1. Agendamento: Pelo WhatsApp ou pelo telefone da clínica.
+2. Preparo: A clínica envia as orientações de preparo do exame.
+3. Exame ou consulta: Atendimento na NU.V.E.M, na Rua Ceará, 600, em Belo Horizonte.
+4. Laudo: Enviado para o médico que pediu o exame, com rastreabilidade pela gestão certificada na norma ISO 9001.
+
+**7. Perguntas frequentes**
+
+- *Precisa de pedido médico?*
+  Para exames, sim: o pedido médico é obrigatório. Para a consulta, a equipe confirma essa informação no agendamento, pelo WhatsApp ou telefone.
+- *Atende convênio?*
+  A equipe confirma essa informação no agendamento, pelo WhatsApp ou telefone.
+- *Faz teleconsulta?*
+  Sim, no atendimento particular.
+- *Qual idade atende?*
+  12 a 90 anos.
+- *O que levar?*
+  Leve no dia do atendimento:
+  - Pedido médico (obrigatório para exames)
+  - Guia ou número de autorização (exames por convênio)
+  - Documento com foto
+  - Carteirinha do convênio
+  - Exames anteriores
+  - Lista de medicamentos em uso
+
+**8. Agendamento:** "Agende com a Dra. Anna Karoline", telefone, horário, endereço e botão "Agendar pelo WhatsApp". Rodapé padrão do site (responsável técnica e aviso da Res. CFM nº 2.336/2023).
+
+---
+
+### Dr. Gabriel de Souza Fernandes Filho · `/dr-gabriel-fernandes-filho`
+
+Status: aguardando_medico · versão do texto `9909b3b740` · foto: `/images/dr-Gabriel-de-Souza-Fernandes-Filho.jpg`
+
+**1. Apresentação**
+
+- Rótulo: Gastroenterologia
+- Nome: Dr. Gabriel de Souza Fernandes Filho
+- Registro: CRM-MG 81843 · RQE 54179 (Clínica Médica) · RQE 61806 (Gastroenterologia)
+- Linha de apresentação: Médico especialista em Gastroenterologia.
+- Botões: "Agendar pelo WhatsApp" (mensagem: "Olá! Gostaria de agendar com o Dr. Gabriel de Souza Fernandes Filho na NU.V.E.M.") e "Ver exames"
+
+**2. O que faz na NU.V.E.M**
+
+- Manometria esofágica
+- pHmetria
+- ImpedanciopHmetria
+- Faixa etária: A partir de 15 anos
+- Consulta: Não faz consulta. Atende somente exames.
+
+**3. Formação**
+
+> Médico pela UFJF, com residência em Gastroenterologia pelo IPSEMG. Realiza manometria, pHmetria e impedanciopHmetria na NU.V.E.M. Atua nos hospitais Eduardo de Menezes, Orizonti e Mater Dei.
+
+**4. Como pode ajudar**
+
+- Atua em: Manometria esofágica · pHmetria e impedanciopHmetria
+- Quando procurar avaliação: ver a lista na seção "Listas para a Dra. Vera" (só aparece em produção depois de validada)
+
+**5. Exames relacionados**
+
+- Manometria Esofágica · links "Sobre o exame" (`/exames/manometria-esofagica`) e "Preparo" (`/exames/preparos#manometria-esofagica`)
+- pHmetria e ImpedanciopHmetria Esofágica · links "Sobre o exame" (`/exames/phmetria-impedanciometria`) e "Preparo" (`/exames/preparos#phmetria-impedanciometria`)
+
+**6. Como é o atendimento**
+
+1. Agendamento: Pelo WhatsApp ou pelo telefone da clínica.
+2. Preparo: A clínica envia as orientações de preparo do exame.
+3. Exame: Atendimento na NU.V.E.M, na Rua Ceará, 600, em Belo Horizonte.
+4. Laudo: Enviado para o médico que pediu o exame, com rastreabilidade pela gestão certificada na norma ISO 9001.
+
+**7. Perguntas frequentes**
+
+- *Precisa de pedido médico?*
+  Sim. Os exames precisam de pedido médico.
+- *Atende convênio?*
+  A equipe confirma essa informação no agendamento, pelo WhatsApp ou telefone.
+- *Faz teleconsulta?*
+  Não. O Dr. Gabriel de Souza Fernandes Filho realiza exames presenciais na NU.V.E.M e não faz consulta.
+- *Qual idade atende?*
+  A partir de 15 anos.
+- *O que levar?*
+  Leve no dia do atendimento:
+  - Pedido médico (obrigatório para exames)
+  - Guia ou número de autorização (exames por convênio)
+  - Documento com foto
+  - Carteirinha do convênio
+  - Exames anteriores
+  - Lista de medicamentos em uso
+
+**8. Agendamento:** "Agende com o Dr. Gabriel de Souza Fernandes Filho", telefone, horário, endereço e botão "Agendar pelo WhatsApp". Rodapé padrão do site (responsável técnica e aviso da Res. CFM nº 2.336/2023).
+
+---
+
+### Dra. Amanda Araújo · `/dra-amanda-araujo`
+
+Status: aguardando_medico · versão do texto `87d8db76e1` · foto: `/images/Amanda-Araujo.jpg`
+
+**1. Apresentação**
+
+- Rótulo: Gastroenterologia
+- Nome: Dra. Amanda Araújo
+- Registro: CRM-MG 86343 · RQE 58941 (Clínica Médica) · RQE 66655 (Gastroenterologia)
+- Linha de apresentação: Médica especialista em Gastroenterologia.
+- Botões: "Agendar pelo WhatsApp" (mensagem: "Olá! Gostaria de agendar com a Dra. Amanda Araújo na NU.V.E.M.") e "Ver exames"
+
+**2. O que faz na NU.V.E.M**
+
+- Manometria esofágica
+- pHmetria
+- ImpedanciopHmetria
+- Consulta: Não faz consulta. Atende somente exames.
+
+**3. Formação**
+
+> Gastroenterologista com atuação em motilidade, disfagia, refluxo e acalasia.
+
+**4. Como pode ajudar**
+
+- Atua em: Motilidade digestiva · Disfagia · Refluxo · Acalasia
+- Quando procurar avaliação: ver a lista na seção "Listas para a Dra. Vera" (só aparece em produção depois de validada)
+
+**5. Exames relacionados**
+
+- Manometria Esofágica · links "Sobre o exame" (`/exames/manometria-esofagica`) e "Preparo" (`/exames/preparos#manometria-esofagica`)
+- pHmetria e ImpedanciopHmetria Esofágica · links "Sobre o exame" (`/exames/phmetria-impedanciometria`) e "Preparo" (`/exames/preparos#phmetria-impedanciometria`)
+
+**6. Como é o atendimento**
+
+1. Agendamento: Pelo WhatsApp ou pelo telefone da clínica.
+2. Preparo: A clínica envia as orientações de preparo do exame.
+3. Exame: Atendimento na NU.V.E.M, na Rua Ceará, 600, em Belo Horizonte.
+4. Laudo: Enviado para o médico que pediu o exame, com rastreabilidade pela gestão certificada na norma ISO 9001.
+
+**7. Perguntas frequentes**
+
+- *Precisa de pedido médico?*
+  Sim. Os exames precisam de pedido médico.
+- *Atende convênio?*
+  A equipe confirma essa informação no agendamento, pelo WhatsApp ou telefone.
+- *Faz teleconsulta?*
+  Não. A Dra. Amanda Araújo realiza exames presenciais na NU.V.E.M e não faz consulta.
+- *Qual idade atende?*
+  A equipe confirma essa informação no agendamento, pelo WhatsApp ou telefone.
+- *O que levar?*
+  Leve no dia do atendimento:
+  - Pedido médico (obrigatório para exames)
+  - Guia ou número de autorização (exames por convênio)
+  - Documento com foto
+  - Carteirinha do convênio
+  - Exames anteriores
+  - Lista de medicamentos em uso
+
+**8. Agendamento:** "Agende com a Dra. Amanda Araújo", telefone, horário, endereço e botão "Agendar pelo WhatsApp". Rodapé padrão do site (responsável técnica e aviso da Res. CFM nº 2.336/2023).
+
+---
+
+### Dra. Danielle Martins · `/dra-danielle-martins`
+
+Status: rascunho (fase 2, sem rota em produção) · versão do texto `49d9899a98` · foto: `/images/danielle-martins.jpg`
+
+**1. Apresentação**
+
+- Rótulo: Gastroenterologia
+- Nome: Dra. Danielle Martins
+- Registro: CRM-MG 72935 · RQE 55612 (Clínica Médica) · RQE 60835 (Gastroenterologia)
+- Linha de apresentação: Médica especialista em Gastroenterologia.
+- Botões: "Agendar pelo WhatsApp" (mensagem: "Olá! Gostaria de agendar com a Dra. Danielle Martins na NU.V.E.M.")
+
+**2. O que faz na NU.V.E.M**
+
+- Consulta de gastroenterologia · Particular ou convênios: Agros, Allianz, Amagis, Amil, AMMP, Assefaz, Saúde Caixa, Care Plus, Cemig, Cenibra, Copass, Correios (Postal), Desban, Fundação Libertas, Fundaffemg, Fusex, Omint, Petrobras, Proasa e Vale
+- Consulta de nutrologia · Somente particular
+- Faixa etária: A partir de 16 anos
+- Teleconsulta: Sim, no atendimento particular
+
+**3. Formação**
+
+> Graduada pela Unifenas-BH, membro titular da Federação Brasileira de Gastroenterologia, pós-graduada em Nutrologia, docente do curso de Medicina do UniBH, corpo clínico da NU.V.E.M e da Rede Mater Dei.
+
+**4. Como pode ajudar**
+
+- Atua em: Gastroenterologia clínica
+
+**5. Exames relacionados**
+
+_(seção oculta: não realiza exames)_
+
+**6. Como é o atendimento**
+
+1. Agendamento: Pelo WhatsApp ou pelo telefone da clínica.
+2. Preparo: A clínica envia as orientações para o dia do atendimento.
+3. Consulta: Atendimento na NU.V.E.M, na Rua Ceará, 600, em Belo Horizonte.
+4. Registro: Atendimento registrado em prontuário, com rastreabilidade pela gestão certificada na norma ISO 9001.
+
+**7. Perguntas frequentes**
+
+- *Precisa de pedido médico?*
+  Para a consulta, a equipe confirma essa informação no agendamento, pelo WhatsApp ou telefone.
+- *Atende convênio?*
+  - Consulta de gastroenterologia: Particular ou convênios: Agros, Allianz, Amagis, Amil, AMMP, Assefaz, Saúde Caixa, Care Plus, Cemig, Cenibra, Copass, Correios (Postal), Desban, Fundação Libertas, Fundaffemg, Fusex, Omint, Petrobras, Proasa e Vale.
+  - Consulta de nutrologia: Somente particular.
+- *Faz teleconsulta?*
+  Sim, no atendimento particular.
+- *Qual idade atende?*
+  A partir de 16 anos.
+- *O que levar?*
+  Leve no dia do atendimento:
+  - Pedido médico (obrigatório para exames)
+  - Guia ou número de autorização (exames por convênio)
+  - Documento com foto
+  - Carteirinha do convênio
+  - Exames anteriores
+  - Lista de medicamentos em uso
+
+**8. Agendamento:** "Agende com a Dra. Danielle Martins", telefone, horário, endereço e botão "Agendar pelo WhatsApp". Rodapé padrão do site (responsável técnica e aviso da Res. CFM nº 2.336/2023).
+
+---
+
+### Dra. Claudia Utsch · `/dra-claudia-utsch`
+
+Status: rascunho (fase 2, sem rota em produção) · versão do texto `f3b84627ce` · foto: `/images/claudia-utsch.jpg`
+
+**1. Apresentação**
+
+- Rótulo: Médica com atuação em gastroenterologia
+- Nome: Dra. Claudia Utsch
+- Registro: CRM-MG 47651 · RQE 51470 · RQE 51471
+- Botões: "Agendar pelo WhatsApp" (mensagem: "Olá! Gostaria de agendar com a Dra. Claudia Utsch na NU.V.E.M.")
+
+**2. O que faz na NU.V.E.M**
+
+- Consulta · Particular ou Unimed (Unipart, Unimax, Uniplan)
+- Faixa etária: 15 a 95 anos
+- Teleconsulta: Não. O atendimento é presencial na NU.V.E.M.
+
+**3. Formação**
+
+_(seção oculta: bio pendente)_
+
+**4. Como pode ajudar**
+
+- Atua em: Gastroenterologia clínica
+
+**5. Exames relacionados**
+
+_(seção oculta: não realiza exames)_
+
+**6. Como é o atendimento**
+
+1. Agendamento: Pelo WhatsApp ou pelo telefone da clínica.
+2. Preparo: A clínica envia as orientações para o dia do atendimento.
+3. Consulta: Atendimento na NU.V.E.M, na Rua Ceará, 600, em Belo Horizonte.
+4. Registro: Atendimento registrado em prontuário, com rastreabilidade pela gestão certificada na norma ISO 9001.
+
+**7. Perguntas frequentes**
+
+- *Precisa de pedido médico?*
+  Para a consulta, a equipe confirma essa informação no agendamento, pelo WhatsApp ou telefone.
+- *Atende convênio?*
+  - Consulta: Particular ou Unimed (Unipart, Unimax, Uniplan).
+- *Faz teleconsulta?*
+  Não. O atendimento é presencial na NU.V.E.M..
+- *Qual idade atende?*
+  15 a 95 anos.
+- *O que levar?*
+  Leve no dia do atendimento:
+  - Pedido médico (obrigatório para exames)
+  - Guia ou número de autorização (exames por convênio)
+  - Documento com foto
+  - Carteirinha do convênio
+  - Exames anteriores
+  - Lista de medicamentos em uso
+
+**8. Agendamento:** "Agende com a Dra. Claudia Utsch", telefone, horário, endereço e botão "Agendar pelo WhatsApp". Rodapé padrão do site (responsável técnica e aviso da Res. CFM nº 2.336/2023).
+
+---
+
+### Dra. Camilla Mendes · `/dra-camilla-mendes`
+
+Status: rascunho (fase 2, sem rota em produção) · versão do texto `210b868029` · foto: `/images/camilla-mendes.jpg`
+
+**1. Apresentação**
+
+- Rótulo: Médica com atuação em clínica médica
+- Nome: Dra. Camilla Mendes
+- Registro: CRM 61518
+- Botões: "Agendar pelo WhatsApp" (mensagem: "Olá! Gostaria de agendar com a Dra. Camilla Mendes na NU.V.E.M.")
+
+**2. O que faz na NU.V.E.M**
+
+- Consulta de clínica médica · Unimed (Unipart, Unimax, Uniplan)
+- Faixa etária: 18 a 65 anos
+- Teleconsulta: Não. O atendimento é presencial na NU.V.E.M.
+
+**3. Formação**
+
+_(seção oculta: bio pendente)_
+
+**4. Como pode ajudar**
+
+- Atua em: Clínica médica
+
+**5. Exames relacionados**
+
+_(seção oculta: não realiza exames)_
+
+**6. Como é o atendimento**
+
+1. Agendamento: Pelo WhatsApp ou pelo telefone da clínica.
+2. Preparo: A clínica envia as orientações para o dia do atendimento.
+3. Consulta: Atendimento na NU.V.E.M, na Rua Ceará, 600, em Belo Horizonte.
+4. Registro: Atendimento registrado em prontuário, com rastreabilidade pela gestão certificada na norma ISO 9001.
+
+**7. Perguntas frequentes**
+
+- *Precisa de pedido médico?*
+  Para a consulta, a equipe confirma essa informação no agendamento, pelo WhatsApp ou telefone.
+- *Atende convênio?*
+  - Consulta de clínica médica: Unimed (Unipart, Unimax, Uniplan).
+- *Faz teleconsulta?*
+  Não. O atendimento é presencial na NU.V.E.M..
+- *Qual idade atende?*
+  18 a 65 anos.
+- *O que levar?*
+  Leve no dia do atendimento:
+  - Pedido médico (obrigatório para exames)
+  - Guia ou número de autorização (exames por convênio)
+  - Documento com foto
+  - Carteirinha do convênio
+  - Exames anteriores
+  - Lista de medicamentos em uso
+
+**8. Agendamento:** "Agende com a Dra. Camilla Mendes", telefone, horário, endereço e botão "Agendar pelo WhatsApp". Rodapé padrão do site (responsável técnica e aviso da Res. CFM nº 2.336/2023).
+
+---
+
+## 7. Listas "Quando procurar avaliação" · para validação da Dra. Vera
+
+Montadas só a partir das indicações ("para que serve") das páginas de exame que já estão no site, em linguagem do paciente, sem promessa nem orientação individual. Em cada página vem o aviso: "Lista informativa, feita a partir das indicações dos exames. A indicação de cada exame é sempre do médico que acompanha o paciente." Dra. Raissa, Dra. Danielle, Dra. Claudia e Dra. Camilla não têm lista porque não realizam exames.
+
+**Dra. Vera Ângelo** (fonte: Testes Respiratórios)
+
+- [ ] Gases e inchaço na barriga que se repetem  _(de: Testes Respiratórios)_
+- [ ] Desconforto depois de consumir leite ou alimentos com frutose, quando o médico suspeita de intolerância  _(de: Testes Respiratórios)_
+- [ ] Suspeita de SIBO ou IMO levantada pelo médico  _(de: Testes Respiratórios)_
+- [ ] Investigação de H. pylori, ou controle depois do tratamento  _(de: Testes Respiratórios)_
+- [ ] Intestino irritável em investigação  _(de: Testes Respiratórios)_
+
+**Dra. Eliane Basques** (fonte: Manometria Anorretal)
+
+- [ ] Perda involuntária de fezes  _(de: Manometria Anorretal)_
+- [ ] Prisão de ventre que continua mesmo com o tratamento  _(de: Manometria Anorretal)_
+- [ ] Alterações do assoalho pélvico  _(de: Manometria Anorretal)_
+- [ ] Suspeita de doença de Hirschsprung  _(de: Manometria Anorretal)_
+- [ ] Avaliação antes ou depois de cirurgia anorretal  _(de: Manometria Anorretal)_
+
+**Dra. Anna Karoline** (fonte: Avaliação Pélvica)
+
+- [ ] Perda involuntária de urina ou de fezes  _(de: Avaliação Pélvica)_
+- [ ] Alterações do assoalho pélvico  _(de: Avaliação Pélvica)_
+- [ ] Dificuldade para evacuar ligada ao assoalho pélvico  _(de: Avaliação Pélvica)_
+- [ ] Dor pélvica que se prolonga  _(de: Avaliação Pélvica)_
+- [ ] Preparo ou recuperação de cirurgia pélvica  _(de: Avaliação Pélvica)_
+
+**Dr. Gabriel de Souza Fernandes Filho** (fonte: Manometria Esofágica, pHmetria e ImpedanciopHmetria Esofágica)
+
+- [ ] Dificuldade para engolir  _(de: Manometria Esofágica)_
+- [ ] Refluxo que continua mesmo com o tratamento  _(de: Manometria Esofágica)_
+- [ ] Dor no peito quando o coração já foi avaliado  _(de: Manometria Esofágica)_
+- [ ] Tosse ou rouquidão que o médico relaciona ao refluxo  _(de: pHmetria e ImpedanciopHmetria Esofágica)_
+- [ ] Avaliação antes ou depois de cirurgia para refluxo  _(de: pHmetria e ImpedanciopHmetria Esofágica)_
+
+**Dra. Amanda Araújo** (fonte: Manometria Esofágica, pHmetria e ImpedanciopHmetria Esofágica)
+
+- [ ] Dificuldade para engolir  _(de: Manometria Esofágica)_
+- [ ] Suspeita de acalasia  _(de: Manometria Esofágica)_
+- [ ] Refluxo que continua mesmo com o tratamento  _(de: Manometria Esofágica)_
+- [ ] Dor no peito quando o coração já foi avaliado  _(de: Manometria Esofágica)_
+- [ ] Tosse ou rouquidão que o médico relaciona ao refluxo  _(de: pHmetria e ImpedanciopHmetria Esofágica)_
+
+## 8. Pendências [A CONFIRMAR] por profissional
+
+Nenhum desses dados aparece na página enquanto estiver pendente.
+
+**Dra. Vera Ângelo** (`/dra-vera-angelo`)
+
+- [A CONFIRMAR] convênios da consulta: a lista da equipe diz "consulta particular" e o anexo de convênios diz Unimed (Unipart, Unimax, Uniplan) e Amagis Saúde
+- A página antiga e o blog citam "Patologia Clínica"; no CFM o RQE 22736 é de Medicina do Trabalho. Confirmar a menção do blog e o item "Residência em Clínica Médica e Patologia Clínica" da página antiga.
+- Lista "Quando procurar avaliação": rascunho para validação da Dra. Vera.
+
+**Dra. Eliane Basques** (`/dra-eliane-basques`)
+
+- [A CONFIRMAR] especialidade do RQE 9324 (conferir no portal do CFM)
+- Lista "Quando procurar avaliação": rascunho para validação da Dra. Vera.
+
+**Dra. Raissa Dalat** (`/dra-raissa-dalat`)
+
+- [A CONFIRMAR] especialidade do RQE 61983 (conferir no portal do CFM)
+- [A CONFIRMAR] convênios: "somente particular"
+- Bio: manter "doenças funcionais do aparelho digestivo" só se for o nome oficial do curso (confirmar com a médica). No resto do site usamos DGBI.
+
+**Dra. Anna Karoline** (`/dra-anna-karoline`)
+
+- [A CONFIRMAR] convênios: "somente particular"
+- Tratamento "Dra." para fisioterapeuta: confirmar com a gestão. A página sempre diz "fisioterapeuta" e nunca "médica".
+- Lista "Quando procurar avaliação": rascunho para validação da Dra. Vera.
+
+**Dr. Gabriel de Souza Fernandes Filho** (`/dr-gabriel-fernandes-filho`)
+
+- [A CONFIRMAR] convênios: "somente particular"; pela regra da clínica a manometria esofágica convencional também é feita pela Unimed. Confirmar como mostrar
+- [A CONFIRMAR] convênios: "somente particular"; pela regra da clínica a pHmetria também é feita pela Unimed. Confirmar como mostrar
+- [A CONFIRMAR] convênios: "somente particular"
+- Lista "Quando procurar avaliação": rascunho para validação da Dra. Vera.
+
+**Dra. Amanda Araújo** (`/dra-amanda-araujo`)
+
+- [A CONFIRMAR] convênios
+- [A CONFIRMAR] faixa etária: "4 meses a 80 anos"
+- Lista "Quando procurar avaliação": rascunho para validação da Dra. Vera.
+
+**Dra. Danielle Martins** (`/dra-danielle-martins`)
+
+- Sem RQE de Nutrologia no CFM: "Nutrologia" não aparece como especialidade. Revisar com a médica e a gestão a "Consulta de nutrologia" e o trecho "pós-graduada em Nutrologia" da bio.
+
+**Dra. Claudia Utsch** (`/dra-claudia-utsch`)
+
+- [A CONFIRMAR] especialidade do RQE 51470
+- [A CONFIRMAR] especialidade do RQE 51471
+- [A CONFIRMAR] bio
+- **Bloqueia a publicação:** bio sem texto confirmado
+
+**Dra. Camilla Mendes** (`/dra-camilla-mendes`)
+
+- [A CONFIRMAR] UF do CRM 61518
+- [A CONFIRMAR] bio
+- Sem RQE: a página diz "médica com atuação em clínica médica", nunca "especialista".
+- Convênios: confirmar se também atende particular (os dados só citam a Unimed).
+- **Bloqueia a publicação:** CRM sem UF confirmada; bio sem texto confirmado
+
+**Dra. Adrianna Buzatti Viana** (só no /equipe, sem página)
+
+- [A CONFIRMAR] especialidade
+
+**Dra. Luiza Auarek** (só no /equipe, sem página)
+
+- [A CONFIRMAR] UF
+- [A CONFIRMAR] especialidade
+
+**Dra. Mariana Fernandes** (só no /equipe, sem página)
+
+- [A CONFIRMAR] UF
+
+## 9. Decisões aplicadas e observações de CFM
+
+- **Fotos no `/equipe`:** ficam as fotos atuais até chegar a aprovada pela anamnese. Nas páginas novas, a foto entra junto com a aprovação da página (ela faz parte da versão do texto).
+- **`/equipe` em produção:**
+  - todos os cartões mostram foto, nome, registro e especialidade;
+  - "Na NU.V.E.M" e o link para a página individual só aparecem quando a página está no ar, que hoje são só as duas antigas, da Dra. Vera e da Dra. Eliane;
+  - Dra. Adrianna, Dra. Luiza e Dra. Mariana continuam no `/equipe` como hoje, sem página.
+- **Mudanças que entram no ar com o merge**, por correção de CFM:
+  - no `/equipe`, "Gastroenterologia e Motilidade" vira "Gastroenterologia" (Vera, Amanda e Danielle);
+  - quem não tem RQE confirmado da especialidade aparece como "Médica com atuação em ...", hoje Eliane, Raissa, Claudia, Camilla, Adrianna, Luiza e Mariana;
+  - os registros passam a seguir o formato `CRM-MG 00000 · RQE 00000 (Especialidade)`;
+  - os RQEs da Dra. Vera mostram a especialidade.
+- **"Especialista em"** só aparece com RQE confirmado daquela especialidade. Hoje isso vale para Vera, Gabriel, Amanda e Danielle, todos em Gastroenterologia. Os outros aparecem como "Médica com atuação em ...".
+- **"Áreas de atuação"** é um termo técnico do CFM. Na página, a lista aparece como "Atua em", e motilidade digestiva aparece só nela, nunca como especialidade.
+- **Fisioterapeuta:** registro do Crefito, sempre "Fisioterapeuta", nunca "médica". Fica a pendência do tratamento "Dra.".
+- **Schema:** os profissionais passam a ser `Person`, com os registros em `hasCredential` (CRM-MG e cada RQE com a especialidade confirmada, ou Crefito-4), mais `worksFor` e `workLocation` na clínica com endereço.
+  - `Physician` foi trocado porque, no schema.org, ele é um tipo de estabelecimento e não aceita `hasCredential`.
+  - O `@id` `/#dra-vera-angelo` usado pelo blog foi mantido.
+  - A página emite também `BreadcrumbList` e `FAQPage`.
+  - Os autores do blog que não são a Dra. Vera continuam como `Physician`. Fica para outro PR.
+- **Fora do escopo, para revisar:**
+  - o rodapé mostra "RQE 10411 · RQE 22736" sem a especialidade;
+  - o blog atribui o RQE 22736 a Patologia Clínica, mas no CFM ele é de Medicina do Trabalho.
+
+## 10. O que foi verificado
+
+- `npm run lint`: sem erros. Os 27 avisos já existiam e nenhum é dos arquivos novos.
+- Build de produção (`VERCEL_ENV=production npm run build`): passou.
+  - Rotas geradas: só `/dra-vera-angelo` e `/dra-eliane-basques`, com a página antiga.
+  - As outras 7 dão 404.
+  - O sitemap e o `/equipe` só apontam para as duas.
+- Prévia local:
+  - as 9 páginas abrem, com faixa e `noindex`;
+  - `/en/dra-raissa-dalat` volta para o português;
+  - um endereço inexistente dá 404;
+  - no celular (375 px), os dois botões aparecem sem rolar.
+- Teste de aprovação: o passo a passo da seção 3 foi testado num build de produção e não foi commitado.
+- **Não verificado:**
+  - a prévia da Vercel, que só existe depois do PR;
+  - a configuração do GTM;
+  - a ligação com o #142, que depende do merge.

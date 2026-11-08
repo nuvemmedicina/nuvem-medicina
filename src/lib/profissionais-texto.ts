@@ -175,7 +175,7 @@ export function pendenciasDe(p: Profissional | MembroSemPagina): string[] {
   if ('quandoProcurar' in p && p.quandoProcurar?.validacao === 'rascunho') {
     achadas.push('Lista "Quando procurar avaliação": rascunho para validação da Dra. Vera.')
   }
-  return achadas
+  return [...new Set(achadas)]
 }
 
 /**
