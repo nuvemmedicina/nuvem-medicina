@@ -4,8 +4,11 @@ import { PaginaProfissional } from '@/components/profissionais/PaginaProfissiona
 import { PaginaAntigaVera, metadataAntigaVera } from '@/components/profissionais/antigas/PaginaAntigaVera'
 import { PaginaAntigaEliane, metadataAntigaEliane } from '@/components/profissionais/antigas/PaginaAntigaEliane'
 import { profissionalPorSlug } from '@/lib/profissionais'
-import { especialidadeDeExibicao, nomeCompleto } from '@/lib/profissionais-texto'
+import { especialidadeDeExibicao, nomeCompleto, perguntasFrequentes } from '@/lib/profissionais-texto'
 import { modoDaPagina, publicacaoDe, slugsComRota } from '@/lib/profissionais-publicacao'
+import { breadcrumbSchema, faqSchema, profissionalSchema } from '@/lib/schema'
+import { JsonLd } from '@/components/ui/JsonLd'
+import { SITE_URL } from '@/lib/site'
 
 /**
  * Páginas dos profissionais (/dra-vera-angelo, /dra-raissa-dalat...).
@@ -72,5 +75,23 @@ export default async function PaginaDoProfissional({ params }: Props) {
   }
 
   const { foto } = await publicacaoDe(p)
-  return <PaginaProfissional p={p} foto={foto} previa={modo === 'previa'} />
+  const faqs = perguntasFrequentes(p).map(f => ({
+    pergunta: f.pergunta,
+    resposta: [f.resposta, f.lista?.length ? `${f.lista.map(i => i.replace(/\.$/, '')).join('; ')}.` : '']
+      .filter(Boolean).join(' '),
+  }))
+  return (
+    <>
+      <JsonLd data={[
+        profissionalSchema(p, { foto, comPagina: true }),
+        breadcrumbSchema([
+          { name: 'Início', url: SITE_URL },
+          { name: 'Equipe', url: `${SITE_URL}/equipe` },
+          { name: nomeCompleto(p), url: `${SITE_URL}/${p.slug}` },
+        ]),
+        faqSchema(faqs),
+      ]} />
+      <PaginaProfissional p={p} foto={foto} previa={modo === 'previa'} />
+    </>
+  )
 }

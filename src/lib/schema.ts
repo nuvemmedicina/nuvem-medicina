@@ -1,5 +1,7 @@
 import { CONTATO, ESPECIALIDADES, EXAMES } from '@/lib/data'
 import { SITE_URL } from '@/lib/site'
+import { confirmado, profissionalPorSlug, type Foto, type Profissional, type Registro } from '@/lib/profissionais'
+import { especialidadeDeExibicao, formatarRegistro, nomeCompleto, rotuloProfissao } from '@/lib/profissionais-texto'
 
 const BASE_URL = SITE_URL
 
@@ -149,29 +151,90 @@ export function especialidadeSchema(esp: typeof ESPECIALIDADES[number]) {
   }
 }
 
-// ─── Person schema for the Medical Director ───────────────────────────────────
-export const directorSchema = {
-  '@context':   'https://schema.org',
-  '@type':      'Physician',
-  '@id':        `${BASE_URL}/#dra-vera-angelo`,
-  name:         'Dra. Vera Ângelo',
-  jobTitle:     'Gastroenterologista | Diretora Técnica',
-  worksFor:     { '@id': `${BASE_URL}/#organization` },
-  medicalSpecialty: 'Gastroenterology',
-  identifier: [
-    { '@type': 'PropertyValue', name: 'CRM', value: 'CRM-MG 22284' },
-    { '@type': 'PropertyValue', name: 'RQE', value: 'RQE 10411' },
-    { '@type': 'PropertyValue', name: 'RQE', value: 'RQE 22736' },
-  ],
-  knowsAbout: [
-    'Testes Respiratórios SIBO',
-    'Manometria de Alta Resolução',
-    'DGBI – Distúrbio da Interação Cérebro-Intestino',
-    'H. pylori',
-    'Intolerâncias Alimentares',
-  ],
-  url: `${BASE_URL}/equipe`,
+// ─── Profissionais (Person) ───────────────────────────────────────────────────
+/**
+ * Profissional da clínica como Person. Não usamos Physician: no schema.org ele
+ * é um tipo de estabelecimento (LocalBusiness), não de pessoa, e não aceita
+ * hasCredential. Os registros (CRM/RQE ou Crefito) vão em hasCredential e o
+ * local de trabalho é a clínica (@id /#organization), com endereço.
+ *
+ * O @id é /#<slug> (ex.: /#dra-vera-angelo), o mesmo que os artigos do blog
+ * citam como autor ou revisor.
+ */
+const CONSELHO = {
+  CRM:     (uf: string | null) => uf
+    ? { name: `Conselho Regional de Medicina do Estado de ${uf === 'MG' ? 'Minas Gerais' : uf}`, alternateName: `CRM-${uf}` }
+    : { name: 'Conselho Regional de Medicina' },
+  Crefito: (regiao: string) => ({ name: `Conselho Regional de Fisioterapia e Terapia Ocupacional da ${regiao}ª Região`, alternateName: `Crefito-${regiao}` }),
 }
+
+function credenciais(r: Registro) {
+  if (r.conselho === 'Crefito') {
+    return [{
+      '@type': 'EducationalOccupationalCredential',
+      credentialCategory: 'Registro profissional',
+      name: formatarRegistro(r),
+      identifier: `${r.regiao}/${r.numero}`,
+      recognizedBy: { '@type': 'Organization', ...CONSELHO.Crefito(r.regiao) },
+    }]
+  }
+  const uf = confirmado(r.uf)
+  const conselho = { '@type': 'Organization', ...CONSELHO.CRM(uf) }
+  return [
+    {
+      '@type': 'EducationalOccupationalCredential',
+      credentialCategory: 'Registro profissional',
+      name: uf ? `CRM-${uf} ${r.numero}` : `CRM ${r.numero}`,
+      identifier: r.numero,
+      recognizedBy: conselho,
+    },
+    ...r.rqes.map(rqe => {
+      const esp = confirmado(rqe.especialidade)
+      return {
+        '@type': 'EducationalOccupationalCredential',
+        credentialCategory: 'Registro de Qualificação de Especialista (RQE)',
+        name: esp ? `RQE ${rqe.numero} · ${esp}` : `RQE ${rqe.numero}`,
+        identifier: rqe.numero,
+        recognizedBy: conselho,
+      }
+    }),
+  ]
+}
+
+export function profissionalSchema(p: Profissional, opcoes: { foto?: Foto | null; comPagina?: boolean } = {}) {
+  const esp = especialidadeDeExibicao(p)
+  return {
+    '@context': 'https://schema.org',
+    '@type':    'Person',
+    '@id':      `${BASE_URL}/#${p.slug}`,
+    name:       nomeCompleto(p),
+    honorificPrefix: p.tratamento,
+    jobTitle:   p.cargo ? `${esp.descricao} · ${p.cargo}` : esp.descricao,
+    hasOccupation: { '@type': 'Occupation', name: rotuloProfissao(p) },
+    hasCredential: credenciais(p.registro),
+    knowsAbout: p.areasDeAtuacao,
+    worksFor:   { '@id': `${BASE_URL}/#organization` },
+    workLocation: {
+      '@type': 'MedicalClinic',
+      '@id':   `${BASE_URL}/#organization`,
+      name:    'NU.V.E.M Medicina',
+      address: {
+        '@type':         'PostalAddress',
+        streetAddress:   'Rua Ceará, 600, Sala 101',
+        addressLocality: 'Belo Horizonte',
+        addressRegion:   'MG',
+        postalCode:      '30150-310',
+        addressCountry:  'BR',
+      },
+    },
+    ...(opcoes.comPagina && { url: `${BASE_URL}/${p.slug}` }),
+    ...(opcoes.foto && { image: `${BASE_URL}${opcoes.foto.src}` }),
+  }
+}
+
+// Diretora técnica, emitida em todas as páginas pelo layout. Sem foto: a foto
+// só entra no schema quando aprovada, junto com a página nova.
+export const directorSchema = profissionalSchema(profissionalPorSlug('dra-vera-angelo')!, { comPagina: true })
 
 // ─── Article/MedicalWebPage schema factory ────────────────────────────────────
 interface PessoaParaSchema {
@@ -196,7 +259,7 @@ interface PostParaSchema {
 }
 
 /**
- * A Dra. Vera Ângelo já é emitida globalmente como Physician em directorSchema
+ * A Dra. Vera Ângelo já é emitida globalmente como Person em directorSchema
  * (ver mais abaixo). Quando o autor/revisor do artigo é ela, referenciamos a
  * mesma entidade via @id em vez de duplicar um Person novo: é o padrão
  * correto do schema.org para reaproveitar uma entidade já declarada na página.
