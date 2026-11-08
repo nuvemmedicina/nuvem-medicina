@@ -187,7 +187,6 @@
     "nomeCompleto": "Nombre Completo *",
     "nomePlaceholder": "Tu nombre completo",
     "telefone": "Teléfono *",
-    "email": "Correo electrónico",
     "servicoInteresse": "Servicio de Interés *",
     "selecione": "Seleccionar...",
     "grupoConsultas": "Consultas",
@@ -197,11 +196,12 @@
     "ensinoOpt2": "Entrenamiento Práctico",
     "ensinoOpt3": "Información sobre Programas",
     "mensagemOpcional": "Mensaje (opcional)",
-    "mensagemPlaceholder": "Describe brevemente lo que necesitas…",
+    "mensagemPlaceholder": "Ej.: mejor día y horario, convenio, si ya tienes la orden médica",
+    "mensagemAviso": "No es necesario describir síntomas aquí.",
     "lgpd": "Tus datos están protegidos conforme a la LGPD (ley de protección de datos de Brasil) y se usan exclusivamente para contactarte sobre el agendamiento.",
     "enviarSolicitacao": "Enviar Solicitud",
-    "solicitacaoEnviada": "¡Solicitud enviada!",
-    "abrindoWhatsapp": "Abriendo WhatsApp para confirmar tu cita…"
+    "solicitacaoEnviada": "¡Ya casi! Toca enviar en WhatsApp para terminar.",
+    "abrindoWhatsapp": "Abriendo WhatsApp con tu mensaje listo…"
   },
   "avaliacaoPage": {
     "metaTitle": "Evalúa tu Experiencia · NU.V.E.M Medicina",

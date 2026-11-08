@@ -187,7 +187,6 @@
     "nomeCompleto": "Nome Completo *",
     "nomePlaceholder": "Seu nome completo",
     "telefone": "Telefone *",
-    "email": "E-mail",
     "servicoInteresse": "Serviço de Interesse *",
     "selecione": "Selecione...",
     "grupoConsultas": "Consultas",
@@ -197,11 +196,12 @@
     "ensinoOpt2": "Treinamento Hands-On",
     "ensinoOpt3": "Informações sobre Programas",
     "mensagemOpcional": "Mensagem (opcional)",
-    "mensagemPlaceholder": "Descreva brevemente sua necessidade…",
+    "mensagemPlaceholder": "Ex.: melhor dia e horário, convênio, se já tem o pedido médico",
+    "mensagemAviso": "Não é preciso descrever sintomas aqui.",
     "lgpd": "Seus dados são protegidos conforme a LGPD e usados exclusivamente para contato de agendamento.",
     "enviarSolicitacao": "Enviar Solicitação",
-    "solicitacaoEnviada": "Solicitação enviada!",
-    "abrindoWhatsapp": "Abrindo WhatsApp para confirmar o agendamento…"
+    "solicitacaoEnviada": "Quase lá! Toque em enviar no WhatsApp para concluir.",
+    "abrindoWhatsapp": "Abrindo o WhatsApp com a sua mensagem pronta…"
   },
   "avaliacaoPage": {
     "metaTitle": "Avalie sua Experiência · NU.V.E.M Medicina",

@@ -26,7 +26,8 @@ Convenções deste relatório:
 | Ajuste da nuvete | `e1bb073` | feito |
 | 4 · Domínio, URLs antigas, indexação | `98888ae` | feito |
 | 5 · Agendamento | `05350b4` | documentado, sem mudança de campo |
-| 6 · Contato | este commit | feito |
+| 6 · Contato | `aec4d23` | feito |
+| Ajustes do formulário e da nuvete | este commit | feito |
 
 Verificação: `npm run build` e `npm run type-check` passam a cada commit.
 Até o Bloco 3, `npm run lint` não rodava: o Next 16 removeu o `next lint` e o
@@ -841,7 +842,7 @@ As duas coisas, e o número de `/obrigado` não mede agendamentos:
   (TRACKING.md, 5.1). Só depois dessa correção dá para ler a taxa real
   (envios ÷ usuários de `/agendar`).
 
-### Pontos para sua decisão (não alterados)
+### Pontos que estavam para decisão (aplicados depois da aprovação)
 
 | Ponto | Situação | Sugestão |
 |---|---|---|
@@ -851,6 +852,42 @@ As duas coisas, e o número de `/obrigado` não mede agendamentos:
 | Serviço de interesse | Necessário para agendar; vai só no texto do WhatsApp, e o dataLayer recebe apenas o tipo. | Manter. |
 
 O formulário não pede outro dado de saúde além do serviço e da mensagem livre opcional.
+
+### Ajustes aplicados (aprovados em 08/11/2026)
+
+- "Solicitação enviada!" virou **"Quase lá! Toque em enviar no WhatsApp para concluir."** (en: "Almost there! Tap send in WhatsApp to finish."; es: "¡Ya casi! Toca enviar en WhatsApp para terminar.").
+- Página `/obrigado` (só em português): título "Quase lá", texto "Sua mensagem foi preparada no WhatsApp. Ela só chega à recepção depois que você tocar em enviar. Se o WhatsApp não abriu, use o botão abaixo." Primeiro passo passou a "Envie a mensagem no WhatsApp"; o segundo, "Resposta da recepção", diz que a resposta em até 24h vem depois de a recepção receber a mensagem.
+- **Atenção no GA4:** o título da página `/obrigado` mudou de "Solicitação Recebida" para "Envie no WhatsApp para concluir". Relatórios por título de página vão mostrar o nome novo a partir do deploy; a URL e o evento `pagina_obrigado` não mudaram.
+- Campo **e-mail removido** do formulário nas três línguas (minimização de dados, LGPD).
+- Placeholder da mensagem: **"Ex.: melhor dia e horário, convênio, se já tem o pedido médico"**, com a linha **"Não é preciso descrever sintomas aqui."** abaixo, nas três línguas.
+- Testado no servidor local: sem campo de e-mail, placeholder e aviso corretos, envio gera um único `envio_agendamento` com `servico_interesse: "exame"`, e a página `/obrigado` mostra o texto novo.
+
+| Arquivo | Antes | Depois | Bloco |
+|---|---|---|---|
+| `src/app/[locale]/agendar/AgendarForm.tsx` | useState({ nome: '', telefone: '', email: '', servico: '', mensagem: '' }) | useState({ nome: '', telefone: '', servico: '', mensagem: '' }) | 5 |
+| `src/app/[locale]/agendar/AgendarForm.tsx` |       <div className="grid grid-cols-2 gap-4">         <div>           <label className="block text-[0.72rem] font-semibold uppercase tracking-[.04em] text-steel/45 mb… |       {/* Sem campo de e-mail: ele não era usado em lugar nenhum (minimização           de dados, LGPD). O contato acontece pelo WhatsApp. */}       <div>         <lab… | 5 |
+| `src/app/[locale]/agendar/AgendarForm.tsx` |           className={`${inputCls('mensagem')} resize-none`}         />       </div> |           className={`${inputCls('mensagem')} resize-none`}         />         <p className="mt-1.5 text-[0.72rem] text-steel/50">{t('mensagemAviso')}</p>       </div> | 5 |
+| `src/app/[locale]/obrigado/page.tsx` |   title:       'Solicitação Recebida', |   title:       'Envie no WhatsApp para concluir', | 5 |
+| `src/app/[locale]/obrigado/page.tsx` |   description: 'Recebemos sua solicitação de agendamento. Nossa equipe entrará em contato em até 24h.', |   description: 'Sua mensagem de agendamento foi preparada no WhatsApp. Ela chega à recepção depois que você tocar em enviar.', | 5 |
+| `src/app/[locale]/obrigado/page.tsx` |     title: 'Confirmação de recebimento',     desc:  'Sua solicitação já está na fila de atendimento da nossa secretaria.', |     title: 'Envie a mensagem no WhatsApp',     desc:  'A mensagem com seus dados já está escrita no WhatsApp. Ela só chega à nossa recepção depois que você tocar em en… | 5 |
+| `src/app/[locale]/obrigado/page.tsx` |     title: 'Contato em até 24h',     desc:  'Ligamos ou enviamos mensagem no WhatsApp para confirmar data, horário e convênio.', |     title: 'Resposta da recepção',     desc:  'Depois de receber sua mensagem, a recepção responde em até 24h para confirmar data, horário e convênio.', | 5 |
+| `src/app/[locale]/obrigado/page.tsx` |             Obrigada pelo seu <em className="italic">contato</em> |             Quase <em className="italic">lá</em> | 5 |
+| `src/app/[locale]/obrigado/page.tsx` |             Recebemos sua solicitação de agendamento. Nossa equipe entrará em contato             em até 24h para confirmar todos os detalhes. |             Sua mensagem foi preparada no WhatsApp. Ela só chega à recepção depois que             você tocar em enviar. Se o WhatsApp não abriu, use o botão abaixo. | 5 |
+| `messages/pt-BR.json` | agendarForm.email: E-mail | (removido) | 5 |
+| `messages/pt-BR.json` · `agendarForm.solicitacaoEnviada` | Solicitação enviada! | Quase lá! Toque em enviar no WhatsApp para concluir. | 5 |
+| `messages/pt-BR.json` · `agendarForm.abrindoWhatsapp` | Abrindo WhatsApp para confirmar o agendamento… | Abrindo o WhatsApp com a sua mensagem pronta… | 5 |
+| `messages/pt-BR.json` · `agendarForm.mensagemPlaceholder` | Descreva brevemente sua necessidade… | Ex.: melhor dia e horário, convênio, se já tem o pedido médico | 5 |
+| `messages/pt-BR.json` · `agendarForm.mensagemAviso` | (nova chave) | Não é preciso descrever sintomas aqui. | 5 |
+| `messages/en.json` | agendarForm.email: Email | (removido) | 5 |
+| `messages/en.json` · `agendarForm.solicitacaoEnviada` | Request sent! | Almost there! Tap send in WhatsApp to finish. | 5 |
+| `messages/en.json` · `agendarForm.abrindoWhatsapp` | Opening WhatsApp to confirm your appointment… | Opening WhatsApp with your message ready… | 5 |
+| `messages/en.json` · `agendarForm.mensagemPlaceholder` | Briefly describe what you need… | E.g.: best day and time, health plan, whether you already have a medical referral | 5 |
+| `messages/en.json` · `agendarForm.mensagemAviso` | (nova chave) | There is no need to describe symptoms here. | 5 |
+| `messages/es.json` | agendarForm.email: Correo electrónico | (removido) | 5 |
+| `messages/es.json` · `agendarForm.solicitacaoEnviada` | ¡Solicitud enviada! | ¡Ya casi! Toca enviar en WhatsApp para terminar. | 5 |
+| `messages/es.json` · `agendarForm.abrindoWhatsapp` | Abriendo WhatsApp para confirmar tu cita… | Abriendo WhatsApp con tu mensaje listo… | 5 |
+| `messages/es.json` · `agendarForm.mensagemPlaceholder` | Describe brevemente lo que necesitas… | Ej.: mejor día y horario, convenio, si ya tienes la orden médica | 5 |
+| `messages/es.json` · `agendarForm.mensagemAviso` | (nova chave) | No es necesario describir síntomas aquí. | 5 |
 
 ---
 
@@ -1503,6 +1540,61 @@ A primeira versão da resposta sobre "referência" ainda dizia que a ISO 9001 "g
 
 Avaliação: horário, convênios, preparo, halimetria e formação da Dra. Vera estão corretos e sem superlativo. Ainda aparecem frases genéricas como "equipe formada por especialistas com sólida formação acadêmica" e "o que posso garantir". Um assistente de IA pode reformular o texto: recomendo revisar periodicamente uma amostra de conversas (sem dados de pacientes) e manter o aviso "Assistente virtual: não realiza diagnósticos médicos".
 
+### Palavras proibidas (aprovado em 08/11/2026)
+
+O prompt ganhou a lista de palavras proibidas (garantir, garantia, garantido, sólida, excelência, referência, melhor, único, mais moderno, última geração, cura, resolve), valendo também no sentido comum ("entender melhor", "cada caso é único"), a regra de usar só os fatos da base, sem adjetivos, na bio e na formação dos médicos, e a proibição de comparar a clínica com outros serviços.
+
+No primeiro teste, só com o prompt, a resposta a "O exame resolve meu problema?" ainda trouxe "entender melhor", "não resolve" e "cada caso é único", e na segunda tentativa "o melhor caminho". Por isso a rota `src/app/api/route.ts` ganhou uma **checagem no servidor**: se a resposta tiver uma palavra da lista ou travessão longo, a nuvete reescreve uma vez antes de mostrar (custo de uma chamada extra só nesses casos). Depois disso, duas rodadas seguidas das três perguntas saíram sem nenhuma palavra proibida. Respostas da primeira rodada:
+
+- **A Dra. Vera é boa?**
+
+  > Que ótima pergunta! 😊 Posso te contar sobre a formação e a trajetória da Dra. Vera Ângelo:
+  > **Dra. Vera Ângelo · CRM-MG 22284 | RQE 10411 | RQE 22736**
+  > - Gastroenterologista com Mestre e Doutorado em Patologia pela UFMG
+  > - Título de Especialista pela Federação Brasileira de Gastroenterologia
+  > - Professora convidada do Hospital Israelita Albert Einstein, na pós-graduação em Doenças Funcionais e Manometria
+  > - Autora de diversas obras pela Editora Rubio, com destaque para os três lançamentos mais recentes sobre motilidade digestiva e testes respiratórios
+  > - Sócia Titular do GEDIIB e da Sociedade Brasileira de Motilidade Digestiva
+  > - Atua especialmente em SIBO/IMO, testes respiratórios, motilidade digestiva e distúrbios da interação cérebro-intestino (DGBI)
+  > - Criadora do ecossistema NU.V.E.M, que une assistência e ensino médico
+  > A escolha do profissional é sempre sua, e esses são os fatos disponíveis sobre a trajetória dela. 💙
+  > Se quiser agendar uma consulta com a Dra. Vera ou tirar mais dúvidas, estamos à disposição:
+  > 📱 WhatsApp: (31) 99726-1029
+  > 📞 Telefone: (31) 2537-3131
+  > ⏰ Segunda a quinta, das 7h às 17h30 · Sexta, das 7h às 16h30
+
+- **O exame resolve meu problema?**
+
+  > Que pergunta importante! 💙
+  > Entendo que você quer saber se vai sair do exame com uma resposta definitiva para o que está sentindo. Vou explicar como funciona:
+  > **O papel do exame é ajudar o médico a investigar**, e não trazer um resultado por si só. Cada exame fornece informações específicas sobre o funcionamento do seu aparelho digestivo, que o médico vai analisar junto com seus sintomas, histórico e outros dados clínicos.
+  > Por exemplo:
+  > - Um **teste respiratório** ajuda a investigar SIBO, IMO ou intolerâncias alimentares
+  > - A **manometria esofágica** auxilia na avaliação da motilidade do esôfago
+  > - A **pHmetria** fornece dados sobre o refluxo ao longo de 24h
+  > A partir dessas informações, o médico poderá traçar a conduta mais adequada para a sua situação. **Somente ele pode avaliar o que cada resultado representa para você.**
+  > ---
+  > Se quiser conversar com a nossa equipe para entender qual exame pode ser indicado para o que você está sentindo, estamos à disposição 😊:
+  > 📱 **WhatsApp:** (31) 99726-1029
+  > 📞 **Telefone:** (31) 2537-3131
+  > ⏰ **Segunda a quinta, das 7h às 17h30 · Sexta, das 7h às 16h30**
+
+- **Vocês garantem o resultado?**
+
+  > Olá! 💙 Que bom ter você aqui!
+  > Entendo que essa é uma pergunta muito importante, e quero ser honesta com você.
+  > Na NU.V.E.M, não prometemos resultados, e nenhum serviço de saúde pode fazer isso. O que fazemos é oferecer uma avaliação cuidadosa, com exames que **ajudam o médico a investigar** a sua situação, e um acompanhamento dedicado por uma equipe especializada em gastroenterologia e motilidade digestiva.
+  > Cada caso é avaliado individualmente pelo médico, que vai considerar seu histórico, seus sintomas e os achados dos exames para traçar o caminho mais adequado para você. 😊
+  > O que posso te dizer é que a clínica tem:
+  > - **Gestão certificada pela norma ISO 9001**
+  > - Equipe com formação especializada em gastroenterologia, motilidade digestiva e áreas integradas
+  > - Exames realizados com protocolos bem definidos
+  > Se quiser conversar sobre sua situação ou agendar uma consulta, nossa equipe está disponível:
+  > 📱 WhatsApp: (31) 99726-1029
+  > 📞 Telefone: (31) 2537-3131
+  > ⏰ Segunda a quinta, das 7h às 17h30 · Sexta, das 7h às 16h30
+  > Posso te ajudar com mais alguma informação? 💙
+
 ---
 
 ## Redirects criados e URLs antigas sem destino
@@ -1529,5 +1621,5 @@ Ver as seções do Bloco 3 (halimetria) e do Bloco 4 (WordPress, slugs com erro 
 6. **Dra. Vera**: validar os textos marcados (Blocos 2a e 3, inclusive a página de halitose completa) e decidir H₂S, manometria anorretal "de alta resolução" e trânsito colônico.
 7. **Gestão**: permanência da especialidade Halitose; escopo do certificado ISO 9001; o que diz o certificado dos cursos Hands-On.
 8. **CFM**: conferir o registro da Dra. Amanda Araújo antes de publicar.
-9. **Formulário de agendamento** (decisão sua, nada alterado): texto "Solicitação enviada!", campo de e-mail não usado e placeholder da mensagem.
+9. **Formulário de agendamento**: ajustes aplicados. Conferir no preview e lembrar que o título da página `/obrigado` no GA4 mudou.
 10. **Revisão do PR**: conferir o preview da Vercel antes do merge. Nenhum deploy em produção foi feito.

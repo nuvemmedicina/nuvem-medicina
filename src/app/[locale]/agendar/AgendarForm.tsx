@@ -23,7 +23,7 @@ export function AgendarForm() {
   ]
   // Nome exibido -> tipo genérico. O nome vai só na mensagem do WhatsApp.
   const tipoPorServico = new Map(SERVICOS.flatMap(g => g.options.map(o => [o.label, o.tipo] as const)))
-  const [form, setForm]     = useState({ nome: '', telefone: '', email: '', servico: '', mensagem: '' })
+  const [form, setForm]     = useState({ nome: '', telefone: '', servico: '', mensagem: '' })
   const [sent, setSent]     = useState(false)
   const [errors, setErrors] = useState<Record<string, boolean>>({})
 
@@ -95,21 +95,14 @@ export function AgendarForm() {
           onChange={e => update('nome', e.target.value)} className={inputCls('nome')} />
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
-        <div>
-          <label className="block text-[0.72rem] font-semibold uppercase tracking-[.04em] text-steel/45 mb-1.5">
-            {t('telefone')}
-          </label>
-          <input type="tel" placeholder="(31) 00000-0000" value={form.telefone}
-            onChange={e => update('telefone', e.target.value)} className={inputCls('telefone')} />
-        </div>
-        <div>
-          <label className="block text-[0.72rem] font-semibold uppercase tracking-[.04em] text-steel/45 mb-1.5">
-            {t('email')}
-          </label>
-          <input type="email" placeholder="seu@email.com" value={form.email}
-            onChange={e => update('email', e.target.value)} className={inputCls('email')} />
-        </div>
+      {/* Sem campo de e-mail: ele não era usado em lugar nenhum (minimização
+          de dados, LGPD). O contato acontece pelo WhatsApp. */}
+      <div>
+        <label className="block text-[0.72rem] font-semibold uppercase tracking-[.04em] text-steel/45 mb-1.5">
+          {t('telefone')}
+        </label>
+        <input type="tel" placeholder="(31) 00000-0000" value={form.telefone}
+          onChange={e => update('telefone', e.target.value)} className={inputCls('telefone')} />
       </div>
 
       <div>
@@ -136,6 +129,7 @@ export function AgendarForm() {
           onChange={e => update('mensagem', e.target.value)}
           className={`${inputCls('mensagem')} resize-none`}
         />
+        <p className="mt-1.5 text-[0.72rem] text-steel/50">{t('mensagemAviso')}</p>
       </div>
 
       <div className="flex items-start gap-2 p-3 bg-teal/5 border border-teal/10 rounded-lg text-[0.72rem] text-steel/50">

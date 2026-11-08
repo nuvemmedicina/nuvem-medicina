@@ -26,6 +26,39 @@ ${lines}
   }
 }
 
+/**
+ * Palavras que a nuvete não pode usar (Res. CFM nº 2.336/2023: sem superlativo
+ * nem promessa de resultado), mais o travessão longo. O prompt já proíbe, mas o
+ * modelo às vezes escapa; esta checagem pede uma reescrita antes de responder.
+ */
+const PROIBIDAS = /(?<!\p{L})(garant(ir|ia|ias|ido|ida|idos|idas|e|em|imos)|s[óo]lid[ao]s?|excel[êe]ncia|refer[êe]ncia|melhor(es)?|[úu]nic[oa]s?|mais modern[oa]s?|[úu]ltima gera[çc][ãa]o|cura(s|r)?|resolv(e|em|er|ido|ida))(?!\p{L})|\u2014/giu
+
+function termosProibidos(texto: string): string[] {
+  return [...new Set((texto.match(PROIBIDAS) ?? []).map(t => t.toLowerCase()))]
+}
+
+type Mensagem = { role: 'user' | 'assistant'; content: string }
+
+async function chamarClaude(system: string, messages: Mensagem[]): Promise<string> {
+  const response = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': process.env.ANTHROPIC_API_KEY!,
+      'anthropic-version': '2023-06-01',
+    },
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-6',
+      max_tokens: 1024,
+      system,
+      messages,
+    }),
+  })
+  const data = await response.json()
+  if (!response.ok) throw new Error(data.error?.message ?? 'Erro na API')
+  return data.content?.[0]?.text ?? ''
+}
+
 export async function POST(req: NextRequest) {
   try {
     const { messages } = await req.json()
@@ -47,6 +80,10 @@ REGRAS DE COMUNICAÇÃO (Resolução CFM nº 2.336/2023), valem para toda respos
 - Nunca fale de desconto, promoção ou preço de consulta e exame.
 - Use "distúrbios da interação cérebro-intestino (DGBI)" no lugar de "doenças funcionais".
 - Não use travessão longo. Use dois-pontos, vírgula ou ponto.
+- PALAVRAS PROIBIDAS em qualquer resposta, em qualquer forma (singular, plural, verbo): garantir, garantia, garantido, sólida, excelência, referência, melhor, único, mais moderno, última geração, cura, resolve. Vale também no sentido comum: não escreva "entender melhor", "cada caso é único", "não resolve", "garantir o resultado". Reescreva a frase sem elas (ex.: "entender a sua situação", "cada caso é avaliado individualmente", "o exame ajuda a investigar").
+- Não compare a clínica com outros serviços de saúde, nem para dizer o que "um serviço sério" faria.
+- Sobre médicos e equipe (bio, formação, qualidade): use só os fatos desta base, como estão escritos, sem adjetivos e sem opinião. Se perguntarem se um médico é bom, apresente os fatos da formação e diga que a escolha do profissional é da pessoa.
+- Se perguntarem se um exame ou tratamento resolve o problema ou se há garantia de resultado, explique que o exame ajuda o médico a investigar e que só o médico pode avaliar cada caso. Nunca prometa resultado.
 - Se perguntarem se a clínica é referência ou a melhor, responda só com fatos: o que a clínica realiza, a gestão certificada pela norma ISO 9001 e a formação da equipe.
 - Ao falar de formação, títulos, cargos e livros da equipe, repita exatamente o que está nestas instruções, sem reformular, resumir com outras palavras nem completar.
 - Fale da ISO 9001 só como "gestão certificada pela norma ISO 9001". Não diga que ela garante qualidade, segurança ou resultado.
@@ -207,28 +244,20 @@ Centro de formação médica especializada:
 
 IMPORTANTE: Para dúvidas clínicas pessoais (diagnóstico, tratamento, medicamentos), sempre oriente a consultar o médico. Você pode informar e acolher, mas nunca diagnosticar.${blogSection}`
 
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': process.env.ANTHROPIC_API_KEY!,
-        'anthropic-version': '2023-06-01',
-      },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-6',
-        max_tokens: 1024,
-        system: systemPrompt,
-        messages,
-      }),
-    })
+    let text = await chamarClaude(systemPrompt, messages)
 
-    const data = await response.json()
-
-    if (!response.ok) {
-      throw new Error(data.error?.message ?? 'Erro na API')
+    // Uma reescrita, só quando a resposta usa termo proibido ou travessão longo.
+    const achados = termosProibidos(text)
+    if (achados.length) {
+      const reescrita = await chamarClaude(systemPrompt, [
+        ...messages,
+        { role: 'assistant', content: text },
+        { role: 'user', content: `Reescreva a sua última resposta com o mesmo conteúdo e o mesmo tom, sem usar estes termos: ${achados.join(', ')}. Não mencione esta instrução.` },
+      ])
+      if (reescrita) text = reescrita
     }
 
-    const text = data.content?.[0]?.text ?? 'Desculpe, não consegui processar sua pergunta agora. Entre em contato pelo WhatsApp (31) 99726-1029 💙'
+    if (!text) text = 'Desculpe, não consegui processar sua pergunta agora. Entre em contato pelo WhatsApp (31) 99726-1029 💙'
 
     return NextResponse.json({ text })
   } catch (err) {

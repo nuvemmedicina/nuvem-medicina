@@ -187,7 +187,6 @@
     "nomeCompleto": "Full Name *",
     "nomePlaceholder": "Your full name",
     "telefone": "Phone *",
-    "email": "Email",
     "servicoInteresse": "Service of Interest *",
     "selecione": "Select...",
     "grupoConsultas": "Consultations",
@@ -197,11 +196,12 @@
     "ensinoOpt2": "Hands-On Training",
     "ensinoOpt3": "Program Information",
     "mensagemOpcional": "Message (optional)",
-    "mensagemPlaceholder": "Briefly describe what you need…",
+    "mensagemPlaceholder": "E.g.: best day and time, health plan, whether you already have a medical referral",
+    "mensagemAviso": "There is no need to describe symptoms here.",
     "lgpd": "Your data is protected under LGPD (Brazil's data protection law) and used exclusively to contact you about scheduling.",
     "enviarSolicitacao": "Send Request",
-    "solicitacaoEnviada": "Request sent!",
-    "abrindoWhatsapp": "Opening WhatsApp to confirm your appointment…"
+    "solicitacaoEnviada": "Almost there! Tap send in WhatsApp to finish.",
+    "abrindoWhatsapp": "Opening WhatsApp with your message ready…"
   },
   "avaliacaoPage": {
     "metaTitle": "Rate Your Experience · NU.V.E.M Medicina",

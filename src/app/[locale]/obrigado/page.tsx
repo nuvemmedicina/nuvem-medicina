@@ -6,8 +6,8 @@ import { ConversaoTag } from './ConversaoTag'
 
 export const metadata: Metadata = {
   alternates:  { canonical: '/obrigado' },
-  title:       'Solicitação Recebida',
-  description: 'Recebemos sua solicitação de agendamento. Nossa equipe entrará em contato em até 24h.',
+  title:       'Envie no WhatsApp para concluir',
+  description: 'Sua mensagem de agendamento foi preparada no WhatsApp. Ela chega à recepção depois que você tocar em enviar.',
   // Página de conversão: não deve aparecer nos resultados de busca
   robots: {
     index:     false,
@@ -19,13 +19,13 @@ export const metadata: Metadata = {
 const PROXIMOS_PASSOS = [
   {
     num:   '01',
-    title: 'Confirmação de recebimento',
-    desc:  'Sua solicitação já está na fila de atendimento da nossa secretaria.',
+    title: 'Envie a mensagem no WhatsApp',
+    desc:  'A mensagem com seus dados já está escrita no WhatsApp. Ela só chega à nossa recepção depois que você tocar em enviar.',
   },
   {
     num:   '02',
-    title: 'Contato em até 24h',
-    desc:  'Ligamos ou enviamos mensagem no WhatsApp para confirmar data, horário e convênio.',
+    title: 'Resposta da recepção',
+    desc:  'Depois de receber sua mensagem, a recepção responde em até 24h para confirmar data, horário e convênio.',
   },
   {
     num:   '03',
@@ -54,11 +54,11 @@ export default function ObrigadoPage() {
             className="font-serif font-light text-white leading-tight tracking-tight"
             style={{ fontSize: 'clamp(2.2rem, 3.5vw, 3.2rem)' }}
           >
-            Obrigada pelo seu <em className="italic">contato</em>
+            Quase <em className="italic">lá</em>
           </h1>
           <p className="text-[1rem] font-light text-white/70 mt-4 max-w-lg mx-auto leading-relaxed">
-            Recebemos sua solicitação de agendamento. Nossa equipe entrará em contato
-            em até 24h para confirmar todos os detalhes.
+            Sua mensagem foi preparada no WhatsApp. Ela só chega à recepção depois que
+            você tocar em enviar. Se o WhatsApp não abriu, use o botão abaixo.
           </p>
 
           <div className="flex flex-wrap gap-4 justify-center mt-10">
