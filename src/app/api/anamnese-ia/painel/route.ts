@@ -2,7 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import { GESTORES, codigoPara, escopoValido, gestorPeloCodigo } from '@/lib/anamnese-ia/acesso'
 import { sanity, idAleatorio, ipParcial, type Sanity } from '@/lib/anamnese-ia/servidor'
 import { MEDICOS_SITE } from '@/lib/anamnese-ia/prefill'
-import { docFotosId, FOTO, type AprovacaoClinica } from '@/lib/anamnese-ia/foto'
+import { docFotosId, FOTO, ORIGENS, usaFoto, type AprovacaoClinica } from '@/lib/anamnese-ia/foto'
+import { garantirFotoDoSite } from '@/lib/anamnese-ia/foto-servidor'
 import { docPaginaId, type Publicacao, type VersaoTexto } from '@/lib/anamnese-ia/pagina'
 import { carregarProfissional, conteudoDaAnamnese, hashConteudo, limparConteudo } from '@/lib/anamnese-ia/pagina-servidor'
 import { registrar, verificarCorrente } from '@/lib/anamnese-ia/autorizacao'
@@ -45,8 +46,11 @@ export async function GET(req: NextRequest) {
 
   const lista = await escoposDosProfissionais(client)
   const profissionais = await Promise.all(lista.map(async p => {
+    // Primeira abertura: copia a foto que o site já usa para o histórico (envio 0)
+    await garantirFotoDoSite(client, p.escopo)
     const { fotos, pagina, registros, vigente, situacao: s } = await carregarProfissional(client, p.escopo)
-    const atual = fotos?.envios?.find(e => e.id === fotos.atual) ?? null
+    const atual = usaFoto(fotos?.opcao) ? fotos?.envios?.find(e => e.id === fotos?.atual) ?? null : null
+    const daSite = fotos?.envios?.find(e => e.id === fotos.importacaoSite?.fotoId) ?? null
     const aprovacaoMedico = (pagina?.decisoes ?? []).filter(d => d.tipo === 'aprovou').at(-1) ?? null
     const ultimoAjuste = (pagina?.decisoes ?? []).filter(d => d.tipo === 'ajustes').at(-1) ?? null
     return {
@@ -57,8 +61,10 @@ export async function GET(req: NextRequest) {
       etapa: s.etapa, rotulo: s.rotulo, detalhe: s.detalhe,
       podePublicar: s.podePublicar, faltaParaPublicar: s.faltaParaPublicar, alerta: s.alertaPublicada,
       opcao: fotos?.opcao ?? null,
-      foto: atual ? { id: atual.id, em: atual.em, largura: atual.largura, altura: atual.altura, tipoEnviado: atual.tipoEnviado } : null,
-      totalEnvios: fotos?.envios?.length ?? 0,
+      origem: fotos?.opcao ? ORIGENS[fotos.opcao] : daSite ? 'Sem resposta (há foto atual do site)' : 'Sem resposta',
+      foto: atual ? { id: atual.id, em: atual.em, largura: atual.largura, altura: atual.altura, tipoEnviado: atual.tipoEnviado, numero: atual.numero ?? null, origem: atual.origem ?? 'envio' } : null,
+      fotoSite: daSite ? { id: daSite.id, importadaEm: daSite.em, largura: daSite.largura, altura: daSite.altura, arquivo: daSite.arquivoSite ?? '' } : null,
+      totalEnvios: fotos?.envios?.filter(e => e.origem !== 'site').length ?? 0,
       tentativas: fotos?.tentativas ?? 0,
       limiteTentativas: FOTO.tentativas + (fotos?.tentativasExtras ?? 0),
       aprovacaoClinica: s.aprovadaPelaClinica ? fotos?.aprovacaoClinica ?? null : null,
@@ -97,7 +103,7 @@ export async function POST(req: NextRequest) {
     case 'aprovar-foto': {
       let fotoId: string | null
       if (fotos?.opcao === 'sem-foto') fotoId = null
-      else if (fotos?.opcao === 'enviada' && fotos.atual) {
+      else if (usaFoto(fotos?.opcao) && fotos?.atual) {
         if (vigente?.fotoId !== fotos.atual) return erro('Esta foto não tem autorização de uso de imagem vigente.')
         fotoId = fotos.atual
       } else return erro('Não há foto nem a opção "sem foto" para aprovar.')

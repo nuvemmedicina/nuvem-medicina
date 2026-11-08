@@ -11,8 +11,10 @@ type Profissional = {
   linkAnamnese: string; linkAprovacao: string
   etapa: Etapa; rotulo: string; detalhe: string
   podePublicar: boolean; faltaParaPublicar: string[]; alerta: string | null
-  opcao: 'enviada' | 'clinica' | 'sem-foto' | null
-  foto: { id: string; em: string; largura: number; altura: number; tipoEnviado: string } | null
+  opcao: 'site' | 'enviada' | 'clinica' | 'sem-foto' | null
+  origem: string
+  foto: { id: string; em: string; largura: number; altura: number; tipoEnviado: string; numero: number | null; origem: 'site' | 'envio' } | null
+  fotoSite: { id: string; importadaEm: string; largura: number; altura: number; arquivo: string } | null
   totalEnvios: number; tentativas: number; limiteTentativas: number
   aprovacaoClinica: { fotoId: string | null; porNome: string; em: string } | null
   termo: { versao: string; em: string; fotoId: string | null } | null
@@ -46,10 +48,15 @@ function Cartao({ p, codigo, acao, ocupado }: {
 }) {
   const [conteudo, setConteudo] = useState<ConteudoPagina>(p.texto?.conteudo ?? CONTEUDO_VAZIO)
   const [motivo, setMotivo] = useState('')
-  const arquivo = (v: string, baixar = false) => p.foto
-    ? `/api/anamnese-ia/foto/arquivo?escopo=${encodeURIComponent(p.escopo)}&c=${encodeURIComponent(codigo)}&id=${p.foto.id}&v=${v}${baixar ? '&baixar=1' : ''}`
+  const arquivoDe = (id: string | undefined, v: string, baixar = false) => id
+    ? `/api/anamnese-ia/foto/arquivo?escopo=${encodeURIComponent(p.escopo)}&c=${encodeURIComponent(codigo)}&id=${id}&v=${v}${baixar ? '&baixar=1' : ''}`
     : ''
-  const fotoPagina = p.opcao === 'enviada' && p.foto ? arquivo('v45') : null
+  const arquivo = (v: string, baixar = false) => arquivoDe(p.foto?.id, v, baixar)
+  const fotoPagina = p.foto ? arquivo('v45') : null
+  const pequena = (f: { largura: number; altura: number }) => Math.min(f.largura, f.altura) < 1200
+  const descricaoFoto = (f: NonNullable<Profissional['foto']>) => f.origem === 'site'
+    ? `Envio 0 · origem: foto já usada no site · importada em ${data(f.em)}`
+    : `Envio ${f.numero ?? '?'} · nova enviada em ${data(f.em)}`
   const alterado = JSON.stringify(conteudo) !== JSON.stringify(p.texto?.conteudo ?? CONTEUDO_VAZIO)
   const copiar = async (caminho: string) => {
     const url = `${window.location.origin}${caminho}`
@@ -60,14 +67,15 @@ function Cartao({ p, codigo, acao, ocupado }: {
   return (
     <details className="group rounded-2xl border border-teal/10 bg-white shadow-sm">
       <summary className="flex cursor-pointer list-none items-center gap-3 p-4 sm:px-5 [&::-webkit-details-marker]:hidden">
-        {p.foto && p.opcao === 'enviada'
+        {p.foto || p.fotoSite
           // eslint-disable-next-line @next/next/no-img-element
-          ? <img src={arquivo('v11')} alt="" className="h-12 w-12 shrink-0 rounded-full border border-teal/10 object-cover" />
+          ? <img src={p.foto ? arquivo('v11') : arquivoDe(p.fotoSite?.id, 'v11')} alt="" className={`h-12 w-12 shrink-0 rounded-full border border-teal/10 object-cover ${p.foto ? '' : 'opacity-60'}`} />
           : <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-teal/10 text-[0.9rem] font-medium text-teal">{iniciais(p.nome)}</span>}
         <div className="min-w-0 flex-1">
           <p className="truncate text-[0.95rem] font-semibold text-steel">{p.nome}</p>
           <p className="mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-[0.74rem] text-steel/55">
             <span className={`rounded-full px-2 py-0.5 font-medium ${COR[p.etapa]}`}>{p.rotulo}</span>
+            <span className="rounded-full border border-teal/15 px-2 py-0.5">Foto: {p.origem}</span>
             {p.detalhe && <span>{p.detalhe}</span>}
             {p.alerta && <span className="inline-flex items-center gap-1 text-red-700"><AlertTriangle className="h-3.5 w-3.5" />{p.alerta}</span>}
           </p>
@@ -99,15 +107,18 @@ function Cartao({ p, codigo, acao, ocupado }: {
         {/* Foto */}
         <section>
           <h3 className="mb-2 text-[0.78rem] font-bold uppercase tracking-[.1em] text-teal/70">Foto</h3>
-          {p.opcao === 'enviada' && p.foto ? (
+          <p className="mb-2 text-[0.8rem] text-steel/70"><strong className="font-medium">Origem:</strong> {p.origem}</p>
+          {p.foto ? (
             <div className="flex flex-wrap items-start gap-4">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={arquivo('v45')} alt="" className="aspect-[4/5] w-32 rounded-xl border border-teal/10 object-cover" />
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={arquivo('v11')} alt="" className="aspect-square w-28 rounded-xl border border-teal/10 object-cover" />
               <div className="text-[0.8rem] text-steel/65">
-                <p>Enviada em {data(p.foto.em)} · original {p.foto.largura} × {p.foto.altura} px ({p.foto.tipoEnviado.toUpperCase()})</p>
-                <p>{p.totalEnvios} envio(s) no histórico · {p.tentativas} de {p.limiteTentativas} tentativas usadas</p>
+                <p>{descricaoFoto(p.foto)}</p>
+                <p>Original {p.foto.largura} × {p.foto.altura} px ({p.foto.tipoEnviado.toUpperCase()}){p.foto.origem === 'site' && p.fotoSite ? ` · ${p.fotoSite.arquivo}` : ''}</p>
+                {pequena(p.foto) && <p className="text-gold-dark">Abaixo de 1200 px no lado menor: serve para o site como está hoje, mas pode ficar sem nitidez em telas grandes.</p>}
+                <p>Histórico: {p.fotoSite ? 'foto do site (envio 0) + ' : ''}{p.totalEnvios} envio(s) novo(s) ·{p.tentativas} de {p.limiteTentativas} tentativas usadas</p>
                 <div className="mt-2 flex flex-wrap gap-2">
                   <a className={botao} href={arquivo('original', true)}><Download className="h-3.5 w-3.5" /> Original</a>
                   <a className={botao} href={arquivo('v45', true)}><Download className="h-3.5 w-3.5" /> 4:5</a>
@@ -117,12 +128,13 @@ function Cartao({ p, codigo, acao, ocupado }: {
             </div>
           ) : (
             <p className="text-[0.84rem] text-steel/65">
-              {p.opcao === 'clinica' ? 'O profissional pediu que a clínica providencie a foto.' : p.opcao === 'sem-foto' ? 'O profissional não quer foto no site.' : 'Nenhuma foto enviada.'}
+              {p.fotoSite && <>Foto atual do site importada em {data(p.fotoSite.importadaEm)} ({p.fotoSite.arquivo}, {p.fotoSite.largura} × {p.fotoSite.altura} px){p.opcao ? '. ' : ', aguardando a resposta do profissional. '}</>}
+              {p.opcao === 'clinica' ? 'O profissional pediu que a clínica providencie a foto.' : p.opcao === 'sem-foto' ? 'O profissional não quer foto no site.' : p.fotoSite ? '' : 'Nenhuma foto enviada.'}
               {p.tentativas > 0 && ` ${p.tentativas} de ${p.limiteTentativas} tentativas usadas.`}
             </p>
           )}
           <div className="mt-3 flex flex-wrap gap-2">
-            {!p.aprovacaoClinica && (p.opcao === 'sem-foto' || (p.opcao === 'enviada' && p.foto)) && (
+            {!p.aprovacaoClinica && (p.opcao === 'sem-foto' || p.foto) && (
               <button type="button" disabled={ocupado} className={botaoForte} onClick={() => acao(p.escopo, 'aprovar-foto')}>
                 <Check className="h-4 w-4" /> {p.opcao === 'sem-foto' ? 'Confirmar página sem foto' : 'Aprovar foto'}
               </button>
