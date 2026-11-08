@@ -20,8 +20,10 @@
  * decide é profissionais-publicacao.ts (único ponto de troca entre estes
  * campos e a anamnese do PR #142).
  *
- * Dados: arquivos da clínica, versão de 06/11/2026. Registros conferidos no
- * portal do CFM em 08/11/2026: Vera, Gabriel, Danielle e Amanda.
+ * Dados: arquivos da clínica, versão de 06/11/2026, atualizados pelos anexos
+ * validados de 08/11/2026 (tabela de preços e procedimentos; lista e regras
+ * de convênio). Registros conferidos no portal do CFM em 08/11/2026: Vera,
+ * Gabriel, Danielle e Amanda.
  */
 
 // ─── Pendências ──────────────────────────────────────────────────────────────
@@ -167,16 +169,15 @@ export const PROFISSIONAIS: Profissional[] = [
     ],
     bio: 'Sócia fundadora e diretora técnica da NU.V.E.M. Mestre e Doutora pela UFMG. Professora convidada do Hospital Israelita Albert Einstein. Autora de obras pela Editora Rubio.',
     oQueFazNaNuvem: [
-      { nome: 'Consulta', tipo: 'consulta', convenios: pendente('convênios da consulta: a lista da equipe diz "consulta particular" e o anexo de convênios diz Unimed (Unipart, Unimax, Uniplan) e Amagis Saúde') },
-      { nome: 'Testes respiratórios', tipo: 'exame', convenios: 'Somente particular', exameSlug: 'testes-respiratorios' },
+      { nome: 'Consulta', tipo: 'consulta', convenios: `Particular, ${UNIMED} ou Amagis Saúde` },
+      { nome: 'Teste respiratório para SIBO', tipo: 'exame', convenios: 'Somente particular', exameSlug: 'testes-respiratorios' },
+      { nome: 'Teste respiratório para SIBO + IMO (metano)', tipo: 'exame', convenios: 'Somente particular', exameSlug: 'testes-respiratorios' },
     ],
     quandoProcurar: {
       validacao: 'rascunho',
       itens: [
         { texto: 'Gases e inchaço na barriga que se repetem', fonte: 'testes-respiratorios' },
-        { texto: 'Desconforto depois de consumir leite ou alimentos com frutose, quando o médico suspeita de intolerância', fonte: 'testes-respiratorios' },
         { texto: 'Suspeita de SIBO ou IMO levantada pelo médico', fonte: 'testes-respiratorios' },
-        { texto: 'Investigação de H. pylori, ou controle depois do tratamento', fonte: 'testes-respiratorios' },
         { texto: 'Intestino irritável em investigação', fonte: 'testes-respiratorios' },
       ],
     },
@@ -246,8 +247,8 @@ export const PROFISSIONAIS: Profissional[] = [
     areasDeAtuacao: ['Cirurgia pediátrica geral', 'Coloproctologia infantil'],
     bio: 'Cirurgiã pediátrica com atuação em cirurgia pediátrica geral e coloproctologia infantil, pós-graduada em doenças funcionais do aparelho digestivo e manometrias.',
     oQueFazNaNuvem: [
-      { nome: 'Consulta de cirurgia pediátrica geral', tipo: 'consulta', convenios: pendente('convênios: "somente particular"') },
-      { nome: 'Consulta de coloproctologia infantil', tipo: 'consulta', convenios: pendente('convênios: "somente particular"') },
+      { nome: 'Consulta de cirurgia pediátrica geral', tipo: 'consulta', convenios: 'Somente particular' },
+      { nome: 'Consulta de coloproctologia infantil', tipo: 'consulta', convenios: 'Somente particular' },
     ],
     faixaEtaria: '0 a 14 anos',
     teleconsulta: { oferece: true, detalhe: 'no atendimento particular' },
@@ -264,7 +265,7 @@ export const PROFISSIONAIS: Profissional[] = [
   {
     slug: 'dra-anna-karoline',
     slugAnamnese: 'anna-karoline',
-    nome: 'Anna Karoline',
+    nome: 'Anna Karoline Rocha',
     tratamento: 'Dra.',
     profissao: 'fisioterapeuta',
     registro: { conselho: 'Crefito', regiao: '4', numero: '270579-F' },
@@ -272,8 +273,8 @@ export const PROFISSIONAIS: Profissional[] = [
     areasDeAtuacao: ['Assoalho pélvico', 'Biofeedback eletromiográfico'],
     bio: 'Fisioterapeuta com atuação em assoalho pélvico e biofeedback eletromiográfico (incontinência urinária e fecal, constipação, dor pélvica, pré e pós-parto, entre outros).',
     oQueFazNaNuvem: [
-      { nome: 'Avaliação pélvica com biofeedback eletromiográfico', tipo: 'exame', convenios: pendente('convênios: "somente particular"'), exameSlug: 'avaliacao-pelvica' },
-      { nome: 'Reabilitação do assoalho pélvico', tipo: 'reabilitacao', convenios: pendente('convênios: "somente particular"') },
+      { nome: 'Avaliação pélvica com biofeedback eletromiográfico', tipo: 'exame', convenios: 'Somente particular', exameSlug: 'avaliacao-pelvica' },
+      { nome: 'Reabilitação do assoalho pélvico', tipo: 'reabilitacao', convenios: 'Somente particular' },
     ],
     quandoProcurar: {
       validacao: 'rascunho',
@@ -285,7 +286,7 @@ export const PROFISSIONAIS: Profissional[] = [
         { texto: 'Preparo ou recuperação de cirurgia pélvica', fonte: 'avaliacao-pelvica' },
       ],
     },
-    faixaEtaria: '12 a 90 anos',
+    faixaEtaria: pendente('faixa etária: os dados de 06/11 dizem "12 a 90 anos" e a anamnese dela diz "15 a 90 anos"'),
     teleconsulta: { oferece: true, detalhe: 'no atendimento particular' },
     fazConsulta: true,
     foto: fotoSite('/images/anna-karoline.jpg', 900),
@@ -314,9 +315,11 @@ export const PROFISSIONAIS: Profissional[] = [
     areasDeAtuacao: ['Manometria esofágica', 'pHmetria e impedanciopHmetria'],
     bio: 'Médico pela UFJF, com residência em Gastroenterologia pelo IPSEMG. Realiza manometria, pHmetria e impedanciopHmetria na NU.V.E.M. Atua nos hospitais Eduardo de Menezes, Orizonti e Mater Dei.',
     oQueFazNaNuvem: [
-      { nome: 'Manometria esofágica', tipo: 'exame', convenios: pendente('convênios: "somente particular"; pela regra da clínica a manometria esofágica convencional também é feita pela Unimed. Confirmar como mostrar'), exameSlug: 'manometria-esofagica' },
-      { nome: 'pHmetria', tipo: 'exame', convenios: pendente('convênios: "somente particular"; pela regra da clínica a pHmetria também é feita pela Unimed. Confirmar como mostrar'), exameSlug: 'phmetria-impedanciometria' },
-      { nome: 'ImpedanciopHmetria', tipo: 'exame', convenios: pendente('convênios: "somente particular"'), exameSlug: 'phmetria-impedanciometria' },
+      { nome: 'Consulta', tipo: 'consulta', convenios: 'Somente particular' },
+      { nome: 'Manometria esofágica de alta resolução', tipo: 'exame', convenios: 'Somente particular', exameSlug: 'manometria-esofagica' },
+      { nome: 'Manometria esofágica convencional', tipo: 'exame', convenios: 'Somente particular', exameSlug: 'manometria-esofagica' },
+      { nome: 'pHmetria esofágica', tipo: 'exame', convenios: 'Somente particular', exameSlug: 'phmetria-impedanciometria' },
+      { nome: 'ImpedanciopHmetria esofágica', tipo: 'exame', convenios: 'Somente particular', exameSlug: 'phmetria-impedanciometria' },
     ],
     quandoProcurar: {
       validacao: 'rascunho',
@@ -330,9 +333,12 @@ export const PROFISSIONAIS: Profissional[] = [
     },
     faixaEtaria: 'A partir de 15 anos',
     teleconsulta: { oferece: false },
-    fazConsulta: false,
+    fazConsulta: true,
     foto: fotoSite('/images/dr-Gabriel-de-Souza-Fernandes-Filho.jpg', 1691),
-    pendencias: [],
+    pendencias: [
+      'Convênios: a lista por profissional (08/11/2026) diz "somente particular" para o Dr. Gabriel, mas a regra geral da clínica faz pHmetria e manometria esofágica convencional pela Unimed (como na página da Dra. Amanda). A página segue a lista por profissional; confirmar.',
+      'Consulta: os dados de 06/11 diziam que ele só faz exames; a tabela validada de 08/11 inclui consulta particular. A página segue a tabela.',
+    ],
     fase: 1,
     status: 'aguardando_medico',
     aprovacoes: {},
@@ -355,9 +361,9 @@ export const PROFISSIONAIS: Profissional[] = [
     areasDeAtuacao: ['Motilidade digestiva', 'Disfagia', 'Refluxo', 'Acalasia'],
     bio: 'Gastroenterologista com atuação em motilidade, disfagia, refluxo e acalasia.',
     oQueFazNaNuvem: [
-      { nome: 'Manometria esofágica', tipo: 'exame', convenios: pendente('convênios'), exameSlug: 'manometria-esofagica' },
-      { nome: 'pHmetria', tipo: 'exame', convenios: pendente('convênios'), exameSlug: 'phmetria-impedanciometria' },
-      { nome: 'ImpedanciopHmetria', tipo: 'exame', convenios: pendente('convênios'), exameSlug: 'phmetria-impedanciometria' },
+      { nome: 'Manometria esofágica de alta resolução', tipo: 'exame', convenios: 'Somente particular', exameSlug: 'manometria-esofagica' },
+      { nome: 'pHmetria esofágica', tipo: 'exame', convenios: `Particular ou ${UNIMED}`, exameSlug: 'phmetria-impedanciometria' },
+      { nome: 'ImpedanciopHmetria esofágica', tipo: 'exame', convenios: 'Somente particular', exameSlug: 'phmetria-impedanciometria' },
     ],
     quandoProcurar: {
       validacao: 'rascunho',
@@ -430,13 +436,15 @@ export const PROFISSIONAIS: Profissional[] = [
     areasDeAtuacao: ['Gastroenterologia clínica'],
     bio: pendente('bio'),
     oQueFazNaNuvem: [
-      { nome: 'Consulta', tipo: 'consulta', convenios: `Particular ou ${UNIMED}` },
+      { nome: 'Consulta', tipo: 'consulta', convenios: 'Particular ou Unimed' },
     ],
     faixaEtaria: '15 a 95 anos',
     teleconsulta: { oferece: false },
     fazConsulta: true,
     foto: fotoSite('/images/claudia-utsch.jpg', 900),
-    pendencias: [],
+    pendencias: [
+      'Convênios: a lista validada diz só "Unimed", sem os planos. Confirmar se são Unipart, Unimax e Uniplan.',
+    ],
     fase: 2,
     status: 'rascunho',
     aprovacoes: {},
@@ -453,7 +461,7 @@ export const PROFISSIONAIS: Profissional[] = [
     areasDeAtuacao: ['Clínica médica'],
     bio: pendente('bio'),
     oQueFazNaNuvem: [
-      { nome: 'Consulta de clínica médica', tipo: 'consulta', convenios: UNIMED },
+      { nome: 'Consulta de clínica médica', tipo: 'consulta', convenios: `Particular ou ${UNIMED}` },
     ],
     faixaEtaria: '18 a 65 anos',
     teleconsulta: { oferece: false },
@@ -461,7 +469,6 @@ export const PROFISSIONAIS: Profissional[] = [
     foto: fotoSite('/images/camilla-mendes.jpg', 900),
     pendencias: [
       'Sem RQE: a página diz "médica com atuação em clínica médica", nunca "especialista".',
-      'Convênios: confirmar se também atende particular (os dados só citam a Unimed).',
     ],
     fase: 2,
     status: 'rascunho',

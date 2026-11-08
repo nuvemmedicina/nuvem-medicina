@@ -2,6 +2,31 @@
 
 Branch `feat/paginas-profissionais`, a partir da `main` (com o PR #140). PR sem merge e sem deploy em produção. Data: 08/11/2026.
 
+**Fontes dos dados:**
+- arquivos da clínica, versão de 06/11/2026;
+- registros conferidos no portal do CFM em 08/11/2026;
+- anexos validados de 08/11/2026: "Tabela de preços e procedimentos" e "Lista e regras de convênio". Quando há divergência com os arquivos de 06/11, valem os anexos de 08/11.
+
+**O que os anexos de 08/11 mudaram:**
+- **Dra. Vera:**
+  - Convênios da consulta: particular, Unimed (Unipart, Unimax, Uniplan) ou Amagis Saúde. Fecha a pendência.
+  - Testes respiratórios: SIBO e SIBO + IMO, somente particular.
+  - A lista "Quando procurar avaliação" perdeu os itens de intolerância à lactose e à frutose e de H. pylori. Pela tabela, esses testes não são feitos por ela.
+- **Dra. Amanda:**
+  - Manometria esofágica de alta resolução e impedanciopHmetria: somente particular.
+  - pHmetria esofágica: particular ou Unimed (Unipart, Unimax, Uniplan).
+- **Dr. Gabriel:**
+  - Passa a ter consulta, somente particular.
+  - Exames: manometria esofágica de alta resolução e convencional, pHmetria e impedanciopHmetria, todos somente particular, como na lista por profissional. Há uma divergência com a regra geral da Unimed; ver pendências.
+- **Dra. Raissa e Dra. Anna Karoline:** somente particular, confirmado.
+- **Dra. Anna Karoline:**
+  - O nome passa a ser "Anna Karoline Rocha".
+  - A faixa etária ficou [A CONFIRMAR]: 12 a 90 anos nos dados de 06/11 e 15 a 90 na anamnese dela.
+- **Dra. Camilla:** particular ou Unimed (Unipart, Unimax, Uniplan).
+- **Dra. Claudia:** particular ou Unimed. Os planos da Unimed ficaram [A CONFIRMAR].
+- **FAQ "Atende convênio?":** agora diz que, se o plano não estiver na lista, o atendimento pode ser particular, com recibo para reembolso.
+- **Valores:** os anexos têm os preços, mas eles não aparecem nas páginas, porque o modelo aprovado não prevê preço.
+
 ## 1. O que mudou
 
 | Etapa | Arquivos |
@@ -32,15 +57,15 @@ A versão é um código de 10 caracteres calculado a partir de tudo o que aparec
 
 | Profissional | Endereço | Status | Versão do texto |
 |---|---|---|---|
-| Dra. Vera Ângelo | `/dra-vera-angelo` | aguardando_medico | `1c51b3946c` |
+| Dra. Vera Ângelo | `/dra-vera-angelo` | aguardando_medico | `5abd3459c2` |
 | Dra. Eliane Basques | `/dra-eliane-basques` | aguardando_medico | `2379904101` |
-| Dra. Raissa Dalat | `/dra-raissa-dalat` | aguardando_medico | `603384794c` |
-| Dra. Anna Karoline | `/dra-anna-karoline` | aguardando_medico | `512c3e295d` |
-| Dr. Gabriel de Souza Fernandes Filho | `/dr-gabriel-fernandes-filho` | aguardando_medico | `9909b3b740` |
-| Dra. Amanda Araújo | `/dra-amanda-araujo` | aguardando_medico | `87d8db76e1` |
+| Dra. Raissa Dalat | `/dra-raissa-dalat` | aguardando_medico | `b7ffad55df` |
+| Dra. Anna Karoline Rocha | `/dra-anna-karoline` | aguardando_medico | `1592b28da5` |
+| Dr. Gabriel de Souza Fernandes Filho | `/dr-gabriel-fernandes-filho` | aguardando_medico | `90dad462b9` |
+| Dra. Amanda Araújo | `/dra-amanda-araujo` | aguardando_medico | `8a6f097431` |
 | Dra. Danielle Martins | `/dra-danielle-martins` | rascunho (fase 2, sem rota em produção) | `49d9899a98` |
-| Dra. Claudia Utsch | `/dra-claudia-utsch` | rascunho (fase 2, sem rota em produção) | `f3b84627ce` |
-| Dra. Camilla Mendes | `/dra-camilla-mendes` | rascunho (fase 2, sem rota em produção) | `210b868029` |
+| Dra. Claudia Utsch | `/dra-claudia-utsch` | rascunho (fase 2, sem rota em produção) | `9cab494611` |
+| Dra. Camilla Mendes | `/dra-camilla-mendes` | rascunho (fase 2, sem rota em produção) | `93c2662977` |
 
 ## 3. Como publicar uma página (hoje, com os campos à mão)
 
@@ -55,8 +80,8 @@ A versão é um código de 10 caracteres calculado a partir de tudo o que aparec
    ```ts
    status: 'aprovada',
    aprovacoes: {
-     medico:  { data: '2026-11-20', versao: '603384794c', por: 'Dra. Raissa Dalat' },
-     clinica: { data: '2026-11-20', versao: '603384794c', por: 'Ana Paula' },
+     medico:  { data: '2026-11-20', versao: 'b7ffad55df', por: 'Dra. Raissa Dalat' },
+     clinica: { data: '2026-11-20', versao: 'b7ffad55df', por: 'Ana Paula' },
    },
    ```
    Use a versão que o profissional aprovou, que aparece na faixa da prévia e na tabela acima.
@@ -137,7 +162,7 @@ Os textos abaixo saem das mesmas funções que montam a página. Seções sem da
 
 ### Dra. Vera Ângelo · `/dra-vera-angelo`
 
-Status: aguardando_medico · versão do texto `1c51b3946c` · foto: `/images/dra-vera.jpg`
+Status: aguardando_medico · versão do texto `5abd3459c2` · foto: `/images/dra-vera.jpg`
 
 **1. Apresentação**
 
@@ -149,8 +174,9 @@ Status: aguardando_medico · versão do texto `1c51b3946c` · foto: `/images/dra
 
 **2. O que faz na NU.V.E.M**
 
-- Consulta
-- Testes respiratórios · Somente particular
+- Consulta · Particular, Unimed (Unipart, Unimax, Uniplan) ou Amagis Saúde
+- Teste respiratório para SIBO · Somente particular
+- Teste respiratório para SIBO + IMO (metano) · Somente particular
 - Faixa etária: 12 a 99 anos
 - Teleconsulta: Sim, no atendimento particular
 
@@ -179,8 +205,10 @@ Status: aguardando_medico · versão do texto `1c51b3946c` · foto: `/images/dra
 - *Precisa de pedido médico?*
   Para exames, sim: o pedido médico é obrigatório. Para a consulta, a equipe confirma essa informação no agendamento, pelo WhatsApp ou telefone.
 - *Atende convênio?*
-  - Testes respiratórios: Somente particular.
-  Para os demais atendimentos, a equipe confirma essa informação no agendamento, pelo WhatsApp ou telefone.
+  - Consulta: Particular, Unimed (Unipart, Unimax, Uniplan) ou Amagis Saúde.
+  - Teste respiratório para SIBO: Somente particular.
+  - Teste respiratório para SIBO + IMO (metano): Somente particular.
+  Se o plano não estiver na lista, o atendimento pode ser particular, com recibo para reembolso.
 - *Faz teleconsulta?*
   Sim, no atendimento particular.
 - *Qual idade atende?*
@@ -246,6 +274,7 @@ Status: aguardando_medico · versão do texto `2379904101` · foto: `/images/dra
 - *Atende convênio?*
   - Manometria anorretal: Particular ou Unimed (Unipart, Unimax, Uniplan).
   - Trânsito colônico: Somente particular.
+  Se o plano não estiver na lista, o atendimento pode ser particular, com recibo para reembolso.
 - *Faz teleconsulta?*
   Não. A Dra. Eliane Basques realiza exames presenciais na NU.V.E.M e não faz consulta.
 - *Qual idade atende?*
@@ -265,7 +294,7 @@ Status: aguardando_medico · versão do texto `2379904101` · foto: `/images/dra
 
 ### Dra. Raissa Dalat · `/dra-raissa-dalat`
 
-Status: aguardando_medico · versão do texto `603384794c` · foto: `/images/raissa-dalat.jpg`
+Status: aguardando_medico · versão do texto `b7ffad55df` · foto: `/images/raissa-dalat.jpg`
 
 **1. Apresentação**
 
@@ -276,8 +305,8 @@ Status: aguardando_medico · versão do texto `603384794c` · foto: `/images/rai
 
 **2. O que faz na NU.V.E.M**
 
-- Consulta de cirurgia pediátrica geral
-- Consulta de coloproctologia infantil
+- Consulta de cirurgia pediátrica geral · Somente particular
+- Consulta de coloproctologia infantil · Somente particular
 - Faixa etária: 0 a 14 anos
 - Teleconsulta: Sim, no atendimento particular
 
@@ -305,7 +334,9 @@ _(seção oculta: não realiza exames)_
 - *Precisa de pedido médico?*
   Para a consulta, a equipe confirma essa informação no agendamento, pelo WhatsApp ou telefone.
 - *Atende convênio?*
-  A equipe confirma essa informação no agendamento, pelo WhatsApp ou telefone.
+  - Consulta de cirurgia pediátrica geral: Somente particular.
+  - Consulta de coloproctologia infantil: Somente particular.
+  Todo atendimento particular tem recibo para reembolso, que o paciente verifica com o próprio plano.
 - *Faz teleconsulta?*
   Sim, no atendimento particular.
 - *Qual idade atende?*
@@ -323,23 +354,22 @@ _(seção oculta: não realiza exames)_
 
 ---
 
-### Dra. Anna Karoline · `/dra-anna-karoline`
+### Dra. Anna Karoline Rocha · `/dra-anna-karoline`
 
-Status: aguardando_medico · versão do texto `512c3e295d` · foto: `/images/anna-karoline.jpg`
+Status: aguardando_medico · versão do texto `1592b28da5` · foto: `/images/anna-karoline.jpg`
 
 **1. Apresentação**
 
 - Rótulo: Fisioterapia Pélvica
-- Nome: Dra. Anna Karoline
+- Nome: Dra. Anna Karoline Rocha
 - Registro: Crefito 4/270579-F
 - Linha de apresentação: Fisioterapeuta com atuação em fisioterapia pélvica.
-- Botões: "Agendar pelo WhatsApp" (mensagem: "Olá! Gostaria de agendar com a Dra. Anna Karoline na NU.V.E.M.") e "Ver exames"
+- Botões: "Agendar pelo WhatsApp" (mensagem: "Olá! Gostaria de agendar com a Dra. Anna Karoline Rocha na NU.V.E.M.") e "Ver exames"
 
 **2. O que faz na NU.V.E.M**
 
-- Avaliação pélvica com biofeedback eletromiográfico
-- Reabilitação do assoalho pélvico
-- Faixa etária: 12 a 90 anos
+- Avaliação pélvica com biofeedback eletromiográfico · Somente particular
+- Reabilitação do assoalho pélvico · Somente particular
 - Teleconsulta: Sim, no atendimento particular
 
 **3. Formação**
@@ -367,11 +397,13 @@ Status: aguardando_medico · versão do texto `512c3e295d` · foto: `/images/ann
 - *Precisa de pedido médico?*
   Para exames, sim: o pedido médico é obrigatório. Para a consulta, a equipe confirma essa informação no agendamento, pelo WhatsApp ou telefone.
 - *Atende convênio?*
-  A equipe confirma essa informação no agendamento, pelo WhatsApp ou telefone.
+  - Avaliação pélvica com biofeedback eletromiográfico: Somente particular.
+  - Reabilitação do assoalho pélvico: Somente particular.
+  Todo atendimento particular tem recibo para reembolso, que o paciente verifica com o próprio plano.
 - *Faz teleconsulta?*
   Sim, no atendimento particular.
 - *Qual idade atende?*
-  12 a 90 anos.
+  A equipe confirma essa informação no agendamento, pelo WhatsApp ou telefone.
 - *O que levar?*
   Leve no dia do atendimento:
   - Pedido médico (obrigatório para exames)
@@ -381,13 +413,13 @@ Status: aguardando_medico · versão do texto `512c3e295d` · foto: `/images/ann
   - Exames anteriores
   - Lista de medicamentos em uso
 
-**8. Agendamento:** "Agende com a Dra. Anna Karoline", telefone, horário, endereço e botão "Agendar pelo WhatsApp". Rodapé padrão do site (responsável técnica e aviso da Res. CFM nº 2.336/2023).
+**8. Agendamento:** "Agende com a Dra. Anna Karoline Rocha", telefone, horário, endereço e botão "Agendar pelo WhatsApp". Rodapé padrão do site (responsável técnica e aviso da Res. CFM nº 2.336/2023).
 
 ---
 
 ### Dr. Gabriel de Souza Fernandes Filho · `/dr-gabriel-fernandes-filho`
 
-Status: aguardando_medico · versão do texto `9909b3b740` · foto: `/images/dr-Gabriel-de-Souza-Fernandes-Filho.jpg`
+Status: aguardando_medico · versão do texto `90dad462b9` · foto: `/images/dr-Gabriel-de-Souza-Fernandes-Filho.jpg`
 
 **1. Apresentação**
 
@@ -399,11 +431,13 @@ Status: aguardando_medico · versão do texto `9909b3b740` · foto: `/images/dr-
 
 **2. O que faz na NU.V.E.M**
 
-- Manometria esofágica
-- pHmetria
-- ImpedanciopHmetria
+- Consulta · Somente particular
+- Manometria esofágica de alta resolução · Somente particular
+- Manometria esofágica convencional · Somente particular
+- pHmetria esofágica · Somente particular
+- ImpedanciopHmetria esofágica · Somente particular
 - Faixa etária: A partir de 15 anos
-- Consulta: Não faz consulta. Atende somente exames.
+- Teleconsulta: Não. O atendimento é presencial na NU.V.E.M.
 
 **3. Formação**
 
@@ -423,17 +457,22 @@ Status: aguardando_medico · versão do texto `9909b3b740` · foto: `/images/dr-
 
 1. Agendamento: Pelo WhatsApp ou pelo telefone da clínica.
 2. Preparo: A clínica envia as orientações de preparo do exame.
-3. Exame: Atendimento na NU.V.E.M, na Rua Ceará, 600, em Belo Horizonte.
+3. Exame ou consulta: Atendimento na NU.V.E.M, na Rua Ceará, 600, em Belo Horizonte.
 4. Laudo: Enviado para o médico que pediu o exame, com rastreabilidade pela gestão certificada na norma ISO 9001.
 
 **7. Perguntas frequentes**
 
 - *Precisa de pedido médico?*
-  Sim. Os exames precisam de pedido médico.
+  Para exames, sim: o pedido médico é obrigatório. Para a consulta, a equipe confirma essa informação no agendamento, pelo WhatsApp ou telefone.
 - *Atende convênio?*
-  A equipe confirma essa informação no agendamento, pelo WhatsApp ou telefone.
+  - Consulta: Somente particular.
+  - Manometria esofágica de alta resolução: Somente particular.
+  - Manometria esofágica convencional: Somente particular.
+  - pHmetria esofágica: Somente particular.
+  - ImpedanciopHmetria esofágica: Somente particular.
+  Todo atendimento particular tem recibo para reembolso, que o paciente verifica com o próprio plano.
 - *Faz teleconsulta?*
-  Não. O Dr. Gabriel de Souza Fernandes Filho realiza exames presenciais na NU.V.E.M e não faz consulta.
+  Não. O atendimento é presencial na NU.V.E.M.
 - *Qual idade atende?*
   A partir de 15 anos.
 - *O que levar?*
@@ -451,7 +490,7 @@ Status: aguardando_medico · versão do texto `9909b3b740` · foto: `/images/dr-
 
 ### Dra. Amanda Araújo · `/dra-amanda-araujo`
 
-Status: aguardando_medico · versão do texto `87d8db76e1` · foto: `/images/Amanda-Araujo.jpg`
+Status: aguardando_medico · versão do texto `8a6f097431` · foto: `/images/Amanda-Araujo.jpg`
 
 **1. Apresentação**
 
@@ -463,9 +502,9 @@ Status: aguardando_medico · versão do texto `87d8db76e1` · foto: `/images/Ama
 
 **2. O que faz na NU.V.E.M**
 
-- Manometria esofágica
-- pHmetria
-- ImpedanciopHmetria
+- Manometria esofágica de alta resolução · Somente particular
+- pHmetria esofágica · Particular ou Unimed (Unipart, Unimax, Uniplan)
+- ImpedanciopHmetria esofágica · Somente particular
 - Consulta: Não faz consulta. Atende somente exames.
 
 **3. Formação**
@@ -494,7 +533,10 @@ Status: aguardando_medico · versão do texto `87d8db76e1` · foto: `/images/Ama
 - *Precisa de pedido médico?*
   Sim. Os exames precisam de pedido médico.
 - *Atende convênio?*
-  A equipe confirma essa informação no agendamento, pelo WhatsApp ou telefone.
+  - Manometria esofágica de alta resolução: Somente particular.
+  - pHmetria esofágica: Particular ou Unimed (Unipart, Unimax, Uniplan).
+  - ImpedanciopHmetria esofágica: Somente particular.
+  Se o plano não estiver na lista, o atendimento pode ser particular, com recibo para reembolso.
 - *Faz teleconsulta?*
   Não. A Dra. Amanda Araújo realiza exames presenciais na NU.V.E.M e não faz consulta.
 - *Qual idade atende?*
@@ -557,6 +599,7 @@ _(seção oculta: não realiza exames)_
 - *Atende convênio?*
   - Consulta de gastroenterologia: Particular ou convênios: Agros, Allianz, Amagis, Amil, AMMP, Assefaz, Saúde Caixa, Care Plus, Cemig, Cenibra, Copass, Correios (Postal), Desban, Fundação Libertas, Fundaffemg, Fusex, Omint, Petrobras, Proasa e Vale.
   - Consulta de nutrologia: Somente particular.
+  Se o plano não estiver na lista, o atendimento pode ser particular, com recibo para reembolso.
 - *Faz teleconsulta?*
   Sim, no atendimento particular.
 - *Qual idade atende?*
@@ -576,7 +619,7 @@ _(seção oculta: não realiza exames)_
 
 ### Dra. Claudia Utsch · `/dra-claudia-utsch`
 
-Status: rascunho (fase 2, sem rota em produção) · versão do texto `f3b84627ce` · foto: `/images/claudia-utsch.jpg`
+Status: rascunho (fase 2, sem rota em produção) · versão do texto `9cab494611` · foto: `/images/claudia-utsch.jpg`
 
 **1. Apresentação**
 
@@ -587,7 +630,7 @@ Status: rascunho (fase 2, sem rota em produção) · versão do texto `f3b84627c
 
 **2. O que faz na NU.V.E.M**
 
-- Consulta · Particular ou Unimed (Unipart, Unimax, Uniplan)
+- Consulta · Particular ou Unimed
 - Faixa etária: 15 a 95 anos
 - Teleconsulta: Não. O atendimento é presencial na NU.V.E.M.
 
@@ -615,9 +658,10 @@ _(seção oculta: não realiza exames)_
 - *Precisa de pedido médico?*
   Para a consulta, a equipe confirma essa informação no agendamento, pelo WhatsApp ou telefone.
 - *Atende convênio?*
-  - Consulta: Particular ou Unimed (Unipart, Unimax, Uniplan).
+  - Consulta: Particular ou Unimed.
+  Se o plano não estiver na lista, o atendimento pode ser particular, com recibo para reembolso.
 - *Faz teleconsulta?*
-  Não. O atendimento é presencial na NU.V.E.M..
+  Não. O atendimento é presencial na NU.V.E.M.
 - *Qual idade atende?*
   15 a 95 anos.
 - *O que levar?*
@@ -635,7 +679,7 @@ _(seção oculta: não realiza exames)_
 
 ### Dra. Camilla Mendes · `/dra-camilla-mendes`
 
-Status: rascunho (fase 2, sem rota em produção) · versão do texto `210b868029` · foto: `/images/camilla-mendes.jpg`
+Status: rascunho (fase 2, sem rota em produção) · versão do texto `93c2662977` · foto: `/images/camilla-mendes.jpg`
 
 **1. Apresentação**
 
@@ -646,7 +690,7 @@ Status: rascunho (fase 2, sem rota em produção) · versão do texto `210b86802
 
 **2. O que faz na NU.V.E.M**
 
-- Consulta de clínica médica · Unimed (Unipart, Unimax, Uniplan)
+- Consulta de clínica médica · Particular ou Unimed (Unipart, Unimax, Uniplan)
 - Faixa etária: 18 a 65 anos
 - Teleconsulta: Não. O atendimento é presencial na NU.V.E.M.
 
@@ -674,9 +718,10 @@ _(seção oculta: não realiza exames)_
 - *Precisa de pedido médico?*
   Para a consulta, a equipe confirma essa informação no agendamento, pelo WhatsApp ou telefone.
 - *Atende convênio?*
-  - Consulta de clínica médica: Unimed (Unipart, Unimax, Uniplan).
+  - Consulta de clínica médica: Particular ou Unimed (Unipart, Unimax, Uniplan).
+  Se o plano não estiver na lista, o atendimento pode ser particular, com recibo para reembolso.
 - *Faz teleconsulta?*
-  Não. O atendimento é presencial na NU.V.E.M..
+  Não. O atendimento é presencial na NU.V.E.M.
 - *Qual idade atende?*
   18 a 65 anos.
 - *O que levar?*
@@ -694,14 +739,12 @@ _(seção oculta: não realiza exames)_
 
 ## 7. Listas "Quando procurar avaliação" · para validação da Dra. Vera
 
-Montadas só a partir das indicações ("para que serve") das páginas de exame que já estão no site, em linguagem do paciente, sem promessa nem orientação individual. Em cada página vem o aviso: "Lista informativa, feita a partir das indicações dos exames. A indicação de cada exame é sempre do médico que acompanha o paciente." Dra. Raissa, Dra. Danielle, Dra. Claudia e Dra. Camilla não têm lista porque não realizam exames.
+As listas foram montadas só a partir das indicações ("para que serve") das páginas de exame que já estão no site, em linguagem do paciente, sem promessa nem orientação individual. Cada página traz o aviso: "Lista informativa, feita a partir das indicações dos exames. A indicação de cada exame é sempre do médico que acompanha o paciente." A Dra. Raissa, a Dra. Danielle, a Dra. Claudia e a Dra. Camilla não têm lista, porque não realizam exames.
 
 **Dra. Vera Ângelo** (fonte: Testes Respiratórios)
 
 - [ ] Gases e inchaço na barriga que se repetem  _(de: Testes Respiratórios)_
-- [ ] Desconforto depois de consumir leite ou alimentos com frutose, quando o médico suspeita de intolerância  _(de: Testes Respiratórios)_
 - [ ] Suspeita de SIBO ou IMO levantada pelo médico  _(de: Testes Respiratórios)_
-- [ ] Investigação de H. pylori, ou controle depois do tratamento  _(de: Testes Respiratórios)_
 - [ ] Intestino irritável em investigação  _(de: Testes Respiratórios)_
 
 **Dra. Eliane Basques** (fonte: Manometria Anorretal)
@@ -712,7 +755,7 @@ Montadas só a partir das indicações ("para que serve") das páginas de exame 
 - [ ] Suspeita de doença de Hirschsprung  _(de: Manometria Anorretal)_
 - [ ] Avaliação antes ou depois de cirurgia anorretal  _(de: Manometria Anorretal)_
 
-**Dra. Anna Karoline** (fonte: Avaliação Pélvica)
+**Dra. Anna Karoline Rocha** (fonte: Avaliação Pélvica)
 
 - [ ] Perda involuntária de urina ou de fezes  _(de: Avaliação Pélvica)_
 - [ ] Alterações do assoalho pélvico  _(de: Avaliação Pélvica)_
@@ -742,7 +785,6 @@ Nenhum desses dados aparece na página enquanto estiver pendente.
 
 **Dra. Vera Ângelo** (`/dra-vera-angelo`)
 
-- [A CONFIRMAR] convênios da consulta: a lista da equipe diz "consulta particular" e o anexo de convênios diz Unimed (Unipart, Unimax, Uniplan) e Amagis Saúde
 - A página antiga e o blog citam "Patologia Clínica"; no CFM o RQE 22736 é de Medicina do Trabalho. Confirmar a menção do blog e o item "Residência em Clínica Médica e Patologia Clínica" da página antiga.
 - Lista "Quando procurar avaliação": rascunho para validação da Dra. Vera.
 
@@ -754,25 +796,22 @@ Nenhum desses dados aparece na página enquanto estiver pendente.
 **Dra. Raissa Dalat** (`/dra-raissa-dalat`)
 
 - [A CONFIRMAR] especialidade do RQE 61983 (conferir no portal do CFM)
-- [A CONFIRMAR] convênios: "somente particular"
 - Bio: manter "doenças funcionais do aparelho digestivo" só se for o nome oficial do curso (confirmar com a médica). No resto do site usamos DGBI.
 
-**Dra. Anna Karoline** (`/dra-anna-karoline`)
+**Dra. Anna Karoline Rocha** (`/dra-anna-karoline`)
 
-- [A CONFIRMAR] convênios: "somente particular"
+- [A CONFIRMAR] faixa etária: os dados de 06/11 dizem "12 a 90 anos" e a anamnese dela diz "15 a 90 anos"
 - Tratamento "Dra." para fisioterapeuta: confirmar com a gestão. A página sempre diz "fisioterapeuta" e nunca "médica".
 - Lista "Quando procurar avaliação": rascunho para validação da Dra. Vera.
 
 **Dr. Gabriel de Souza Fernandes Filho** (`/dr-gabriel-fernandes-filho`)
 
-- [A CONFIRMAR] convênios: "somente particular"; pela regra da clínica a manometria esofágica convencional também é feita pela Unimed. Confirmar como mostrar
-- [A CONFIRMAR] convênios: "somente particular"; pela regra da clínica a pHmetria também é feita pela Unimed. Confirmar como mostrar
-- [A CONFIRMAR] convênios: "somente particular"
+- Convênios: a lista por profissional (08/11/2026) diz "somente particular" para o Dr. Gabriel, mas a regra geral da clínica faz pHmetria e manometria esofágica convencional pela Unimed (como na página da Dra. Amanda). A página segue a lista por profissional; confirmar.
+- Consulta: os dados de 06/11 diziam que ele só faz exames; a tabela validada de 08/11 inclui consulta particular. A página segue a tabela.
 - Lista "Quando procurar avaliação": rascunho para validação da Dra. Vera.
 
 **Dra. Amanda Araújo** (`/dra-amanda-araujo`)
 
-- [A CONFIRMAR] convênios
 - [A CONFIRMAR] faixa etária: "4 meses a 80 anos"
 - Lista "Quando procurar avaliação": rascunho para validação da Dra. Vera.
 
@@ -785,6 +824,7 @@ Nenhum desses dados aparece na página enquanto estiver pendente.
 - [A CONFIRMAR] especialidade do RQE 51470
 - [A CONFIRMAR] especialidade do RQE 51471
 - [A CONFIRMAR] bio
+- Convênios: a lista validada diz só "Unimed", sem os planos. Confirmar se são Unipart, Unimax e Uniplan.
 - **Bloqueia a publicação:** bio sem texto confirmado
 
 **Dra. Camilla Mendes** (`/dra-camilla-mendes`)
@@ -792,7 +832,6 @@ Nenhum desses dados aparece na página enquanto estiver pendente.
 - [A CONFIRMAR] UF do CRM 61518
 - [A CONFIRMAR] bio
 - Sem RQE: a página diz "médica com atuação em clínica médica", nunca "especialista".
-- Convênios: confirmar se também atende particular (os dados só citam a Unimed).
 - **Bloqueia a publicação:** CRM sem UF confirmada; bio sem texto confirmado
 
 **Dra. Adrianna Buzatti Viana** (só no /equipe, sem página)

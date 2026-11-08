@@ -125,7 +125,12 @@ export function perguntasFrequentes(p: Profissional): Faq[] {
     pergunta: 'Atende convênio?',
     resposta: linhas.length === 0 ? CONFIRMAR_NO_AGENDAMENTO : '',
     lista: linhas.map(l => `${l.servico}: ${l.convenios}.`),
-    nota: linhas.length > 0 && faltaAlgum ? `Para os demais atendimentos, ${CONFIRMAR_MINUSCULA}` : undefined,
+    // Regra da lista de convênios validada em 08/11/2026: plano fora da lista
+    // do profissional não é atendido; oferece-se o atendimento particular.
+    nota: linhas.length === 0 ? undefined
+      : faltaAlgum ? `Para os demais atendimentos, ${CONFIRMAR_MINUSCULA}`
+      : linhas.every(l => l.convenios === 'Somente particular') ? 'Todo atendimento particular tem recibo para reembolso, que o paciente verifica com o próprio plano.'
+      : 'Se o plano não estiver na lista, o atendimento pode ser particular, com recibo para reembolso.',
   }
 
   const tele = textoTeleconsulta(p)
@@ -133,7 +138,7 @@ export function perguntasFrequentes(p: Profissional): Faq[] {
     pergunta: 'Faz teleconsulta?',
     resposta: !p.fazConsulta
       ? `Não. ${p.tratamento === 'Dr.' ? 'O' : 'A'} ${quem} realiza exames presenciais na NU.V.E.M e não faz consulta.`
-      : tele ? `${tele}.` : CONFIRMAR_NO_AGENDAMENTO,
+      : tele ? (tele.endsWith(".") ? tele : `${tele}.`) : CONFIRMAR_NO_AGENDAMENTO,
   }
 
   const faixa = confirmado(p.faixaEtaria)
