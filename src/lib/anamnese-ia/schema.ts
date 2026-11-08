@@ -24,6 +24,8 @@ export type Field = {
   options?:  string[]
   orig?:     string
   rows?:     number
+  /** Ajuste e conferência do texto ao sair do campo (ver formatos.ts). */
+  formato?:  'instagram'
 }
 
 export type Section = {
@@ -169,6 +171,7 @@ export const CAMPOS_MEDICO: Section[] = [
       { id: 'registro',      label: 'Registro profissional (CRM/RQE, Crefito etc.)', type: 'text', required: true },
       { id: 'especialidade', label: 'Especialidade', type: 'text', required: true, orig: '34' },
       { id: 'areas',         label: 'Áreas de atuação', type: 'textarea', required: true, orig: '34', rows: 2 },
+      { id: 'instagram',     label: 'Instagram profissional (opcional)', type: 'text', formato: 'instagram', help: 'Só o perfil profissional, por exemplo @dra.seunome. Ele aparece na sua página do site. Deixe em branco se não quiser.' },
       { id: 'bio',           label: 'Mini bio para a IA apresentar o profissional', type: 'textarea', required: true, orig: '35', rows: 4, help: 'Formação e trajetória, em 2 a 4 linhas. Normas do CFM: sem superlativos nem promessas de resultado.' },
     ],
   },

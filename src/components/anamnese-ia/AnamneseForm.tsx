@@ -11,6 +11,7 @@ import {
 } from '@/lib/anamnese-ia/schema'
 import { PREFILL_CLINICA, MEDICOS_SITE, prefillMedico } from '@/lib/anamnese-ia/prefill'
 import { useServidor, rotuloStatus, useHoje } from '@/components/anamnese-ia/useServidor'
+import { normalizarInstagram, erroInstagram } from '@/lib/anamnese-ia/formatos'
 
 // ─── Tipos e armazenamento ────────────────────────────────────────────────────
 type Medico = { uid: string; slug?: string; values: Values }
@@ -101,7 +102,16 @@ function Campo({ f, value, onChange, escopo }: {
   const id  = `${escopo}-${f.id}`
   const vazio = f.required && !preenchido(value)
   const base = 'w-full rounded-xl border bg-white px-3.5 py-2.5 text-[0.92rem] text-steel outline-none transition focus:border-teal focus:ring-2 focus:ring-teal/15'
-  const borda = vazio ? 'border-gold/60' : 'border-teal/15'
+  const erro  = f.formato === 'instagram' ? erroInstagram(String(value ?? '')) : null
+  const borda = erro ? 'border-red-300' : vazio ? 'border-gold/60' : 'border-teal/15'
+  const aoSair = () => {
+    if (f.formato !== 'instagram') return
+    const n = normalizarInstagram(String(value ?? ''))
+    if (n !== String(value ?? '')) onChange(n)
+  }
+  const extras = f.formato === 'instagram'
+    ? { autoCapitalize: 'none', autoCorrect: 'off', spellCheck: false, placeholder: '@seuperfil', 'aria-invalid': !!erro, 'aria-describedby': erro ? `${id}-erro` : undefined }
+    : {}
 
   return (
     <div className="mb-5">
@@ -113,8 +123,9 @@ function Campo({ f, value, onChange, escopo }: {
 
       {f.type === 'text' && (
         <input id={id} type="text" className={`${base} ${borda}`} value={String(value ?? '')}
-          required={f.required} onChange={e => onChange(e.target.value)} />
+          required={f.required} onChange={e => onChange(e.target.value)} onBlur={aoSair} {...extras} />
       )}
+      {erro && <p id={`${id}-erro`} className="mt-1.5 text-[0.78rem] text-red-700">{erro}</p>}
       {f.type === 'textarea' && (
         <textarea id={id} rows={f.rows ?? 3} className={`${base} ${borda} leading-relaxed`} value={String(value ?? '')}
           required={f.required} onChange={e => onChange(e.target.value)} />
