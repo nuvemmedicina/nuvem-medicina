@@ -19,8 +19,8 @@ Convenções deste relatório:
 | Bloco | Commit | Situação |
 |---|---|---|
 | 1 · Rastreamento | `6d16b95`, `3fb8192` | feito |
-| 2a · Textos CFM | este commit | feito, com textos para validar |
-| 2b · Travessões | a seguir | |
+| 2a · Textos CFM | `99de578` | feito, com textos para validar |
+| 2b · Travessões | este commit | feito |
 | 3 · Halimetria e sialometria | a seguir | |
 | 4 · Domínio, URLs antigas, indexação | a seguir | |
 | 5 · Agendamento | a seguir | |
@@ -346,6 +346,31 @@ Problemas encontrados no contêiner do GTM (seção 5 do TRACKING.md):
 | `src/app/llms.txt/route.ts` | Equipamentos de última geração para manometria | Equipamentos atualizados para manometria | 2 |
 | `src/app/llms.txt/route.ts` | Imersão presencial com equipamentos de ponta. | Imersão presencial com equipamentos atualizados. | 2 |
 | `src/app/[locale]/dra-vera-angelo/page.tsx` | Mestre e Doutora pela UFMG, especialista em gastroenterologia, motilidade digestiva e testes respiratórios. | Mestre e Doutora pela UFMG, gastroenterologista com atuação em motilidade digestiva, testes respiratórios e DGBI. | 2 |
+
+---
+
+## Bloco 2b · Travessões
+
+169 travessões longos em 162 linhas de `src/` e `messages/` (a contagem de 180
+do reconhecimento incluía os que o Bloco 2a já tinha removido). Só textos
+visíveis e comentários; nenhuma lógica mudou. Regras usadas:
+
+| Contexto | Troca | Exemplo |
+|---|---|---|
+| nome e descrição, título, rótulo | ` · ` | "NU.V.E.M Medicina · Links", "Dra. Vera Ângelo · Gastroenterologista", "Parte A · Clínica", "Nota {score}/10 ·" |
+| um travessão numa frase ou comentário | `: ` | "Consent Mode v2: consentimento de cookies..." |
+| par de travessões numa frase | `, ` | "Tratando a origem, por exemplo, SIBO ou xerostomia, o plano..." |
+| pergunta seguida de resposta | ponto de interrogação basta | "Preciso de pedido médico? Para a maioria dos exames, sim." |
+| campo vazio na ferramenta de anamnese | `'·'` | especialidade não preenchida |
+
+Doze trocas automáticas que ficaram estranhas foram ajustadas à mão (política
+de privacidade, descrições do Studio, comentários de `IsoSeal`, `WaFloat`,
+`site.ts`, `google-reviews.ts`, `linkBio.ts`). Restam 0 travessões em `src/` e
+`messages/`. `scripts/`, `docs/` e o README não entraram no escopo.
+
+Observação, sem alteração: o título da página da equipe sai duplicado
+("Equipe · NU.V.E.M Medicina | NU.V.E.M Medicina"), porque a página já declara
+o sufixo e o layout acrescenta outro. Já era assim antes desta branch.
 
 ---
 

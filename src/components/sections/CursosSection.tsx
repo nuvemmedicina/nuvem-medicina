@@ -155,7 +155,7 @@ export async function CursosSection({ limit, dark = false }: Props) {
           ))}
         </div>
 
-        {/* Botão "Ver todos" — só aparece quando há limite (home) */}
+        {/* Botão "Ver todos": só aparece quando há limite (home) */}
         {limit && (
           <div className="text-center mt-10 reveal reveal-d3">
             <a

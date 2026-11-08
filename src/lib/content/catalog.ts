@@ -1,6 +1,6 @@
 /**
  * Versões traduzidas (EN/ES) dos catálogos de ESPECIALIDADES, EXAMES e
- * DEPOIMENTOS definidos em src/lib/data.ts. Mantém apenas os campos de texto —
+ * DEPOIMENTOS definidos em src/lib/data.ts. Mantém apenas os campos de texto:
  * os campos estruturais (num, slug, id, icon, stars, initials) são os mesmos
  * de src/lib/data.ts e não precisam ser repetidos aqui.
  *
@@ -264,7 +264,7 @@ export function getExame(locale: AppLocale, id: string): Exame | undefined {
 }
 
 // ─── Depoimentos ───────────────────────────────────────────────────────────
-// name/stars/initials não mudam por idioma — só role/text (depoimentos reais
+// name/stars/initials não mudam por idioma: só role/text (depoimentos reais
 // de pacientes/alunos, traduzidos por IA; revisão da clínica recomendada
 // antes de publicar em produção).
 

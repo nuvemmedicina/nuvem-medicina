@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react'
 import { pushEvent } from '@/lib/gtm'
 
 /**
- * ConversaoTag — página /obrigado.
+ * ConversaoTag: página /obrigado.
  *
  * Emite `pagina_obrigado` na camada de dados. Quem transforma isso em conversão
  * do Google Ads é a tag `Ads · agendamento` do contêiner, com o rótulo da ação
@@ -12,7 +12,7 @@ import { pushEvent } from '@/lib/gtm'
  *
  * POR QUE AQUI, E NÃO NO FORMULÁRIO
  * Uma conversão disparada imediatamente antes de uma navegação costuma ser
- * perdida — a requisição é cancelada junto com a página. A página de obrigado
+ * perdida: a requisição é cancelada junto com a página. A página de obrigado
  * já está carregada quando dispara, e por isso é o padrão para esse caso.
  *
  * RELAÇÃO COM O `envio_agendamento`
@@ -24,7 +24,7 @@ import { pushEvent } from '@/lib/gtm'
  * para o Ads, senão cada agendamento conta em dobro.
  *
  * Não chame `window.gtag` daqui. O gtag deixou de ser carregado pelo layout, e
- * passou a vir do contêiner — o que significa que ele pode não existir ainda no
+ * passou a vir do contêiner: o que significa que ele pode não existir ainda no
  * momento em que este efeito roda. A camada de dados não tem esse problema:
  * o que for empurrado antes do contêiner carregar é processado assim que ele
  * inicializa.

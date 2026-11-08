@@ -117,7 +117,7 @@ export default function ObrigadoPage() {
               Onde vamos<br />receber você
             </h2>
             <p className="text-[0.97rem] font-light text-steel/60 leading-relaxed mb-10">
-              Guarde nossos dados — eles também chegam por WhatsApp junto com a confirmação.
+              Guarde nossos dados: eles também chegam por WhatsApp junto com a confirmação.
             </p>
 
             <div className="flex flex-col gap-3">

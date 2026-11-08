@@ -3,8 +3,8 @@
  * Busca avaliações reais do Google Places API (server-side only).
  *
  * Variáveis de ambiente necessárias (.env.local / Vercel):
- *   GOOGLE_PLACES_API_KEY  — chave da API do Google Cloud (Places API habilitada)
- *   GOOGLE_PLACE_ID        — Place ID da clínica no Google Maps
+ *   GOOGLE_PLACES_API_KEY: chave da API do Google Cloud (Places API habilitada)
+ *   GOOGLE_PLACE_ID: Place ID da clínica no Google Maps
  *
  * Cache: revalidado a cada 6 horas (Next.js fetch cache).
  */

@@ -1,7 +1,7 @@
 /**
  * Camada de dados do Google Tag Manager.
  *
- * REGRA DE OURO — LGPD e política do Google
+ * REGRA DE OURO: LGPD e política do Google
  * Esta é uma clínica médica. Nunca envie pelo dataLayer:
  *   · nome, e-mail, telefone, CPF ou qualquer identificador do paciente;
  *   · texto livre digitado pelo paciente (na Nuvete o paciente descreve
@@ -22,7 +22,7 @@ export type GTMEvent = {
 
 /**
  * Empurra um evento para o dataLayer.
- * Silencioso no servidor e antes do GTM carregar — o array é criado sob demanda
+ * Silencioso no servidor e antes do GTM carregar: o array é criado sob demanda
  * e o GTM consome o que já estiver enfileirado assim que inicializa.
  */
 export function pushEvent(payload: GTMEvent): void {

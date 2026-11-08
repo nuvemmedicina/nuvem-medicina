@@ -1,7 +1,7 @@
 import type { NavItem, Especialidade, Exame, Depoimento } from '@/types'
 
 /**
- * Convênios em destaque para o teaser das páginas de exame — não é a lista
+ * Convênios em destaque para o teaser das páginas de exame: não é a lista
  * completa (essa vive em /convenios-medicos). Existe porque Convênios Médicos
  * está entre as três páginas mais visitadas do site depois da home: a dúvida
  * sobre cobertura do plano surge antes da decisão de agendar, e hoje só é

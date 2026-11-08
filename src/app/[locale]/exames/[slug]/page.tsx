@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const exame = getExames(l).find(e => e.id === slug)
   if (!exame) return {}
   // seoTitle/seoDescription são escritos para intenção de busca, com a cidade
-  // (ex.: "manometria esofágica bh") — diferente de title/desc, que seguem em
+  // (ex.: "manometria esofágica bh"), diferente de title/desc, que seguem em
   // linguagem clínica no corpo da página.
   const title = exame.seoTitle       ?? exame.title
   const desc  = exame.seoDescription ?? exame.desc[0]
@@ -55,7 +55,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         url:    '/images/nuvem-medicina-bh.jpg',
         width:  1200,
         height: 630,
-        alt:    `Consultório NU.V.E.M Medicina — ${exame.title}`,
+        alt:    `Consultório NU.V.E.M Medicina · ${exame.title}`,
       }],
     },
     twitter: {
@@ -455,7 +455,7 @@ export default async function ExameSlugPage({ params }: Props) {
               })}
             </div>
 
-            {/* Convênios aceitos — Convênios Médicos é a 2ª página mais
+            {/* Convênios aceitos: Convênios Médicos é a 2ª página mais
                 visitada do site depois da home. A dúvida sobre cobertura
                 surge antes da decisão de agendar; responder aqui evita que
                 a pessoa saia da página de exame para procurar por conta própria. */}
@@ -472,7 +472,7 @@ export default async function ExameSlugPage({ params }: Props) {
               </Link>
             </div>
 
-            {/* PDF Download — dois botões para testes resp., um para outros */}
+            {/* PDF Download: dois botões para testes resp., um para outros */}
             {isResp ? (
               <div className="bg-teal/8 border border-teal/18 rounded-2xl p-5 space-y-3">
                 <h3 className="text-[0.78rem] font-bold uppercase tracking-[.08em] text-teal mb-1">{t('preparosDoExame')}</h3>
@@ -533,7 +533,7 @@ export default async function ExameSlugPage({ params }: Props) {
               {t('agendarEsteExame')}
             </Link>
 
-            {/* Vídeo NU.V.E.M Ensino — somente testes respiratórios */}
+            {/* Vídeo NU.V.E.M Ensino: somente testes respiratórios */}
             {isResp && (
               <div className="rounded-2xl overflow-hidden shadow-md border border-teal/10">
                 <div className="relative w-full" style={{ aspectRatio: '9/16' }}>

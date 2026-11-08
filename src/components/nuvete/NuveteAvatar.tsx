@@ -11,7 +11,7 @@ export function NuveteAvatar({ size = 40, pulse = false, className }: AvatarProp
     >
       <Image
         src="/images/nuvete.jpg"
-        alt="Nuvete — Assistente NU.V.E.M"
+        alt="Nuvete · Assistente NU.V.E.M"
         fill
         className="object-cover object-top rounded-full"
         sizes={`${size}px`}

@@ -3,7 +3,7 @@ import { CHAVE_CONSENT } from '@/lib/consent'
 
 /**
  * Define o consentimento padrão como negado ANTES do contêiner GTM carregar.
- * Precisa vir antes — se o GTM carregar primeiro e alguma tag disparar antes
+ * Precisa vir antes: se o GTM carregar primeiro e alguma tag disparar antes
  * deste comando, ela dispara sem saber que deveria estar negada por padrão.
  *
  * `strategy="beforeInteractive"` garante isso independente da ordem no JSX:
@@ -11,7 +11,7 @@ import { CHAVE_CONSENT } from '@/lib/consent'
  * (a estratégia do GoogleTagManager).
  *
  * Se a pessoa já escolheu antes (localStorage), aplica a escolha salva na
- * mesma passada — evita que quem já aceitou veja um instante de "negado" a
+ * mesma passada: evita que quem já aceitou veja um instante de "negado" a
  * cada nova visita, antes do React hidratar e o ConsentBanner rodar seu efeito.
  */
 export function ConsentDefault() {

@@ -60,7 +60,7 @@ export function Footer() {
 
           {/* Brand */}
           <div className="text-left">
-            <Link href="/" className="inline-block mb-5" aria-label="NU.V.E.M Medicina — Página inicial">
+            <Link href="/" className="inline-block mb-5" aria-label="NU.V.E.M Medicina · Página inicial">
               <LogoBranco className="h-9 w-auto opacity-85 hover:opacity-100 transition-opacity" />
             </Link>
 

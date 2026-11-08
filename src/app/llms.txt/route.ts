@@ -4,7 +4,7 @@ import { SITE_URL } from '@/lib/site'
 export const revalidate = 3600
 
 /**
- * Conteúdo institucional fixo — igual ao antigo public/llms.txt, mantido aqui
+ * Conteúdo institucional fixo: igual ao antigo public/llms.txt, mantido aqui
  * como texto porque não vem do Sanity. A seção de artigos do blog, mais
  * abaixo, é a única parte gerada dinamicamente: sem isso, a lista de artigos
  * saía de sincronia toda vez que um post novo era publicado.
@@ -17,7 +17,7 @@ const CONTEUDO_INSTITUCIONAL = `# NU.V.E.M Medicina
 
 A NU.V.E.M Medicina é um ecossistema completo de saúde digestiva localizado no bairro Santa Efigênia, Belo Horizonte – MG. Integra clínica especializada (diagnóstico e cuidado) e centro de formação profissional (NU.V.E.M Ensino), com certificação pela norma ISO 9001 em gastroenterologia.
 
-**Responsável Técnica:** Dra. Vera Ângelo — Gastroenterologista | CRM-MG 22284 | RQE 10411 | RQE 22736
+**Responsável Técnica:** Dra. Vera Ângelo · Gastroenterologista | CRM-MG 22284 | RQE 10411 | RQE 22736
 **CRM da Clínica:** CRM-MG 20532
 **CNPJ:** 42.678.705/0001-02
 **Endereço:** Rua Ceará, 600 – Sala 101, Santa Efigênia, Belo Horizonte – MG, CEP 30150-310

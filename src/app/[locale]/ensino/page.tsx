@@ -136,12 +136,12 @@ export default function EnsinoPage() {
                   : 'bg-white border border-teal/12 shadow-sm hover:-translate-y-2 hover:shadow-xl hover:border-teal/28'
               }`}
             >
-              {/* Grid texture overlay — só no card premium */}
+              {/* Grid texture overlay: só no card premium */}
               {step.hl && (
                 <div className="absolute inset-0 hero-grid-bg opacity-25 pointer-events-none" />
               )}
 
-              {/* Número decorativo — escala suave no hover */}
+              {/* Número decorativo: escala suave no hover */}
               <span
                 className="absolute top-3 right-5 font-serif text-[5.5rem] font-light leading-none select-none pointer-events-none transition-all duration-500 group-hover:scale-110 group-hover:-translate-y-1"
                 style={{ color: step.hl ? 'rgba(255,255,255,0.07)' : 'rgba(0,70,95,0.06)' }}
@@ -173,7 +173,7 @@ export default function EnsinoPage() {
                   {renderRich(step.desc)}
                 </p>
 
-                {/* Chip ISO — só no Premium */}
+                {/* Chip ISO: só no Premium */}
                 {step.hl && (
                   <div className="mt-6">
                     <span className="inline-flex items-center gap-1.5 text-[0.68rem] font-semibold text-gold bg-gold/12 border border-gold/22 px-3 py-1.5 rounded-full">
@@ -182,7 +182,7 @@ export default function EnsinoPage() {
                   </div>
                 )}
 
-                {/* Arrow — aparece suavemente no hover */}
+                {/* Arrow: aparece suavemente no hover */}
                 <div className={`mt-5 flex items-center gap-1.5 text-[0.73rem] font-medium transition-all duration-300 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 ${step.hl ? 'text-gold' : 'text-teal'}`}>
                   Saiba mais <ArrowRight className="w-3.5 h-3.5" />
                 </div>

@@ -50,7 +50,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         url:    '/images/nuvem-medicina-bh.jpg',
         width:  1200,
         height: 630,
-        alt:    `Consultório NU.V.E.M Medicina — ${esp.title}`,
+        alt:    `Consultório NU.V.E.M Medicina · ${esp.title}`,
       }],
     },
     twitter: {

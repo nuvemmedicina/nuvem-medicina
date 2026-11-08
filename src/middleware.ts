@@ -5,7 +5,7 @@ import { routing } from '@/i18n/routing'
 /**
  * Páginas ainda não traduzidas (fase 2 do projeto multilíngue). Uma tentativa
  * de acessá-las com prefixo de idioma (/en/sobre, /es/sobre) volta para a
- * versão pt-BR sem prefixo — nunca mostramos conteúdo português como se fosse
+ * versão pt-BR sem prefixo: nunca mostramos conteúdo português como se fosse
  * a versão em inglês/espanhol. Quando uma dessas páginas for traduzida, basta
  * tirar o segmento desta lista.
  */

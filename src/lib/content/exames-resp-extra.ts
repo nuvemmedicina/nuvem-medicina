@@ -2,7 +2,7 @@
  * Conteúdo extra exclusivo da página /exames/testes-respiratorios, por
  * idioma: PDFs de preparo, vídeos, cards de tecnologia e a seção de dieta
  * obrigatória do dia anterior. pt-BR é a fonte original; en/es são
- * traduções por IA — mesma observação de revisão clínica do arquivo
+ * traduções por IA: mesma observação de revisão clínica do arquivo
  * exames-detail.ts se aplica aqui (jejum, suspensão de medicamentos, dieta).
  */
 import type { AppLocale } from '@/i18n/routing'

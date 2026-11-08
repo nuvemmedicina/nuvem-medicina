@@ -6,7 +6,7 @@
  * ATENÇÃO: as seções `preparo`/`preparoCards` contêm instruções clínicas
  * (jejum, suspensão de medicamentos, dieta) traduzidas por IA. Recomenda-se
  * revisão da equipe clínica (Dra. Vera Ângelo) antes de considerar
- * definitivas as versões en/es — erros aqui afetam o preparo real do
+ * definitivas as versões en/es: erros aqui afetam o preparo real do
  * paciente para o exame.
  */
 import type { AppLocale } from '@/i18n/routing'

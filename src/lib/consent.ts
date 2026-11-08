@@ -1,13 +1,13 @@
 /**
- * Consent Mode v2 — consentimento de cookies para GA4 e Google Ads.
+ * Consent Mode v2: consentimento de cookies para GA4 e Google Ads.
  *
  * Padrão negado: nada é medido até a pessoa aceitar. É a prática mais alinhada
- * à LGPD — consentimento prévio, não recusa posterior — e vale para o
+ * à LGPD, consentimento prévio, não recusa posterior, e vale para o
  * contêiner GTM inteiro, porque todas as tags nele são tipos nativos do Google
  * (Tag do Google, Vinculador de Conversões, Rastreamento de Conversões do
  * Google Ads, eventos GA4). Todas respeitam o sinal de consentimento da camada
  * de dados automaticamente, sem exigir nenhuma configuração adicional dentro
- * do GTM — só o código precisa emitir o comando `gtag('consent', ...)`.
+ * do GTM: só o código precisa emitir o comando `gtag('consent', ...)`.
  *
  * O único evento que este arquivo emite é `consentimento_concedido`, só com
  * dados da página (ver emitirConsentimentoConcedido). A regra do que pode

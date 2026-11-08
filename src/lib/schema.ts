@@ -198,7 +198,7 @@ interface PostParaSchema {
 /**
  * A Dra. Vera Ângelo já é emitida globalmente como Physician em directorSchema
  * (ver mais abaixo). Quando o autor/revisor do artigo é ela, referenciamos a
- * mesma entidade via @id em vez de duplicar um Person novo — é o padrão
+ * mesma entidade via @id em vez de duplicar um Person novo: é o padrão
  * correto do schema.org para reaproveitar uma entidade já declarada na página.
  */
 function pessoaOuReferencia(pessoa?: PessoaParaSchema) {

@@ -216,8 +216,8 @@
   },
   "avaliacaoForm": {
     "npsPergunta": "How likely are you to recommend NU.V.E.M to a friend or family member?",
-    "npsBaixo": "🔴 0 — Would not recommend",
-    "npsAlto": "10 — Would definitely recommend 🟢",
+    "npsBaixo": "🔴 0 · Would not recommend",
+    "npsAlto": "10 · Would definitely recommend 🟢",
     "npsLabelBaixo": "😔 We need to improve",
     "npsLabelMedio": "🙂 Satisfactory",
     "npsLabel9": "😊 Very satisfied!",
@@ -231,7 +231,7 @@
     "continuar": "Continue →",
     "pular": "Skip",
     "emailLabel": "Your email",
-    "emailSub": "(optional — so we can follow up)",
+    "emailSub": "(optional, so we can follow up)",
     "emailPlaceholder": "youremail@example.com",
     "erroEnvio": "Couldn't send it. Please try again.",
     "enviando": "Sending...",
@@ -241,7 +241,7 @@
     "registradoComSucesso": "Your feedback was submitted successfully.",
     "felizesTop": "We're thrilled you're happy! See you next time!",
     "felizesMedio": "We'll use your feedback to keep improving.",
-    "notaLabel": "Score {score}/10 —",
+    "notaLabel": "Score {score}/10 ·",
     "pedirGoogle": "Would you also leave us a review on Google? It really helps! 🌟",
     "avaliarGoogle": "⭐ Review on Google",
     "voltarSite": "← Back to site"

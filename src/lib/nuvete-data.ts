@@ -1,4 +1,4 @@
-// ─── Nuvete — Base de Conhecimento ───────────────────────────────────────────
+// ─── Nuvete · Base de Conhecimento ───────────────────────────────────────────
 // A Nuvete é a assistente virtual da NU.V.E.M Medicina.
 // Personalidade: acolhedora, técnica, precisa e nunca faz diagnósticos.
 

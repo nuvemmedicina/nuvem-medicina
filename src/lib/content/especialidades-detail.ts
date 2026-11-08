@@ -188,7 +188,7 @@ const DETAIL_PT: Record<string, DetailData> = {
     faqs: [
       { pergunta: 'A halitose sempre tem origem na boca?', resposta: 'Não. A halitose pode ter causas digestivas, nasofaríngeas ou sistêmicas, por isso investigamos todas as possíveis origens em um único atendimento integrado.' },
       { pergunta: 'Como é diagnosticada a causa da halitose?', resposta: 'Por meio de halimetria quantitativa, sialometria e avaliação gastroenterológica completa, com parceria com odontologia e otorrinolaringologia quando necessário.' },
-      { pergunta: 'Como é o tratamento da halitose?', resposta: 'Depende da causa identificada. Tratando a origem — por exemplo, SIBO ou xerostomia — o plano de tratamento é definido pelo médico para cada caso.' },
+      { pergunta: 'Como é o tratamento da halitose?', resposta: 'Depende da causa identificada. Tratando a origem, por exemplo, SIBO ou xerostomia, o plano de tratamento é definido pelo médico para cada caso.' },
       { pergunta: 'O exame de halimetria é doloroso?', resposta: 'Não. É um exame simples, rápido e indolor, realizado com aparelho calibrado (Halimeter®).' },
     ],
   },
@@ -516,7 +516,7 @@ const DETAIL_EN: Record<string, DetailData> = {
     faqs: [
       { pergunta: 'Does halitosis always originate in the mouth?', resposta: 'No. Halitosis can have digestive, nasopharyngeal or systemic causes, which is why we investigate every possible origin in a single integrated visit.' },
       { pergunta: 'How is the cause of halitosis diagnosed?', resposta: 'Through quantitative halimetry, sialometry and a complete gastroenterological evaluation, with partnership with dentistry and otolaryngology when needed.' },
-      { pergunta: 'How is halitosis treated?', resposta: 'It depends on the identified cause. By treating the source — for example, SIBO or xerostomia — the treatment plan is defined by the physician for each case.' },
+      { pergunta: 'How is halitosis treated?', resposta: 'It depends on the identified cause. By treating the source, for example, SIBO or xerostomia, the treatment plan is defined by the physician for each case.' },
       { pergunta: 'Is the halimetry exam painful?', resposta: 'No. It’s a simple, quick and painless exam, performed with calibrated equipment (Halimeter®).' },
     ],
   },
@@ -607,7 +607,7 @@ const DETAIL_EN: Record<string, DetailData> = {
       'ISO 9001 certification: traceability of every exam and treatment decision',
     ],
     paraMedicos: {
-      intro: 'NU.V.E.M offers nephrology evaluation with a diagnostic edge: integration with gastroenterology allows investigation of intestinal causes of CKD progression, recurrent stones from enteric hyperoxaluria, and the impact of intestinal dysbiosis on kidney health — an approach that nephrology alone often doesn’t cover.',
+      intro: 'NU.V.E.M offers nephrology evaluation with a diagnostic edge: integration with gastroenterology allows investigation of intestinal causes of CKD progression, recurrent stones from enteric hyperoxaluria, and the impact of intestinal dysbiosis on kidney health, an approach that nephrology alone often doesn’t cover.',
       bullets: [
         'Complete metabolic investigation in cases of recurrent kidney stones',
         'Joint GI-Kidney evaluation with breath tests and intestinal permeability analysis',
@@ -844,7 +844,7 @@ const DETAIL_ES: Record<string, DetailData> = {
     faqs: [
       { pergunta: '¿La halitosis siempre tiene origen en la boca?', resposta: 'No. La halitosis puede tener causas digestivas, nasofaríngeas o sistémicas, por eso investigamos todos los orígenes posibles en una única consulta integrada.' },
       { pergunta: '¿Cómo se diagnostica la causa de la halitosis?', resposta: 'Mediante halimetría cuantitativa, sialometría y evaluación gastroenterológica completa, con colaboración de odontología y otorrinolaringología cuando es necesario.' },
-      { pergunta: '¿Cómo se trata la halitosis?', resposta: 'Depende de la causa identificada. Al tratar el origen —por ejemplo, SIBO o xerostomía— el plan de tratamiento lo define el médico para cada caso.' },
+      { pergunta: '¿Cómo se trata la halitosis?', resposta: 'Depende de la causa identificada. Al tratar el origen, por ejemplo, SIBO o xerostomía, el plan de tratamiento lo define el médico para cada caso.' },
       { pergunta: '¿El examen de halimetría es doloroso?', resposta: 'No. Es un examen simple, rápido e indoloro, realizado con un equipo calibrado (Halimeter®).' },
     ],
   },

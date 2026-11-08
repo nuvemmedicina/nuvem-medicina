@@ -94,7 +94,7 @@ export async function generateMetadata({
         url:    '/images/vera-eliane.jpg',
         width:  1200,
         height: 630,
-        alt:    'Dra. Vera Ângelo e Dra. Eliane Basques — Fundadoras da NU.V.E.M Medicina',
+        alt:    'Dra. Vera Ângelo e Dra. Eliane Basques · Fundadoras da NU.V.E.M Medicina',
       }],
     },
     twitter: {
@@ -147,7 +147,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} className={`${poppins.variable} ${cormorant.variable}`}>
       <head>
-        {/* Consent Mode v2 — precisa vir ANTES do GoogleTagManager. Define o
+        {/* Consent Mode v2: precisa vir ANTES do GoogleTagManager. Define o
             consentimento padrão como negado (ou aplica a escolha salva, se a
             pessoa já decidiu antes) antes de qualquer tag do contêiner avaliar
             se pode disparar. Ver src/components/ui/ConsentDefault.tsx. */}

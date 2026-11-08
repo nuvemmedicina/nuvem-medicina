@@ -10,10 +10,10 @@ import { IsoSeal }        from '@/components/icons/IsoSeal'
 export const metadata: Metadata = {
   alternates:  { canonical: '/dra-vera-angelo' },
   title:       'Dra. Vera Ângelo · Gastroenterologista',
-  description: 'Dra. Vera Ângelo — Mestre e Doutora pela UFMG, gastroenterologista com atuação em motilidade digestiva, testes respiratórios e DGBI. Diretora Técnica da NU.V.E.M Medicina.',
+  description: 'Dra. Vera Ângelo · Mestre e Doutora pela UFMG, gastroenterologista com atuação em motilidade digestiva, testes respiratórios e DGBI. Diretora Técnica da NU.V.E.M Medicina.',
   openGraph: {
     title:       'Dra. Vera Ângelo · Gastroenterologista',
-    description: 'Dra. Vera Ângelo — Mestre e Doutora pela UFMG, gastroenterologista com atuação em motilidade digestiva, testes respiratórios e DGBI. Diretora Técnica da NU.V.E.M Medicina.',
+    description: 'Dra. Vera Ângelo · Mestre e Doutora pela UFMG, gastroenterologista com atuação em motilidade digestiva, testes respiratórios e DGBI. Diretora Técnica da NU.V.E.M Medicina.',
     images: [{ url: '/images/dra-vera.jpg', width: 900, height: 900, alt: 'Dra. Vera Ângelo' }],
   },
   twitter: {

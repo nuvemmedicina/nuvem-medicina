@@ -216,8 +216,8 @@
   },
   "avaliacaoForm": {
     "npsPergunta": "¿Qué tan probable es que recomiendes NU.V.E.M a un amigo o familiar?",
-    "npsBaixo": "🔴 0 — No lo recomendaría",
-    "npsAlto": "10 — Lo recomendaría con certeza 🟢",
+    "npsBaixo": "🔴 0 · No lo recomendaría",
+    "npsAlto": "10 · Lo recomendaría con certeza 🟢",
     "npsLabelBaixo": "😔 Necesitamos mejorar",
     "npsLabelMedio": "🙂 Satisfactorio",
     "npsLabel9": "😊 ¡Muy satisfecho!",
@@ -231,7 +231,7 @@
     "continuar": "Continuar →",
     "pular": "Omitir",
     "emailLabel": "Tu correo electrónico",
-    "emailSub": "(opcional — para responder tu contacto)",
+    "emailSub": "(opcional, para responder tu contacto)",
     "emailPlaceholder": "tucorreo@ejemplo.com",
     "erroEnvio": "No se pudo enviar. Inténtalo de nuevo.",
     "enviando": "Enviando...",
@@ -241,7 +241,7 @@
     "registradoComSucesso": "Tu evaluación fue registrada con éxito.",
     "felizesTop": "Nos alegra mucho tu satisfacción. ¡Hasta la próxima!",
     "felizesMedio": "Usaremos tu comentario para seguir mejorando.",
-    "notaLabel": "Puntuación {score}/10 —",
+    "notaLabel": "Puntuación {score}/10 ·",
     "pedirGoogle": "¿Te animas a dejar también una reseña en Google? ¡Ayuda mucho! 🌟",
     "avaliarGoogle": "⭐ Evaluar en Google",
     "voltarSite": "← Volver al sitio"
