@@ -13,6 +13,8 @@ import { PREFILL_CLINICA, MEDICOS_SITE, prefillMedico } from '@/lib/anamnese-ia/
 import { useServidor, rotuloStatus, useHoje } from '@/components/anamnese-ia/useServidor'
 import { normalizarInstagram, erroInstagram } from '@/lib/anamnese-ia/formatos'
 import { FotoSecao } from '@/components/anamnese-ia/FotoSecao'
+import { TermoAutorizacao } from '@/components/anamnese-ia/TermoAutorizacao'
+import { TERMO, type DadosTermo } from '@/lib/anamnese-ia/termo-imagem'
 
 // ─── Tipos e armazenamento ────────────────────────────────────────────────────
 type Medico = { uid: string; slug?: string; values: Values }
@@ -242,6 +244,25 @@ function Impressao({ clinica, medicos }: { clinica?: Values; medicos: Medico[] }
         </div>
       ))}
     </div>
+  )
+}
+
+// ─── Foto e termo de autorização (só no link do profissional) ─────────────────
+function FotoComTermo({ escopo, codigo, values }: { escopo: string; codigo: string | null; values: Values }) {
+  const [dados, setDados] = useState<DadosTermo>({ nomeCompleto: '', registro: '' })
+  const [editado, setEditado] = useState(false)
+  const [aceito, setAceito] = useState(false)
+  // Até a pessoa mexer, acompanha o nome e o registro da anamnese
+  const atuais = editado ? dados : {
+    nomeCompleto: String(values.nome ?? '').replace(/^(dra?\.?\s+)/i, ''),
+    registro: String(values.registro ?? ''),
+  }
+  const completo = !!atuais.nomeCompleto.trim() && !!atuais.registro.trim()
+  return (
+    <FotoSecao escopo={escopo} codigo={codigo} podeEnviar={aceito && completo}
+      aoEnviar={() => ({ aceite: aceito, termoVersao: TERMO.versao, ...atuais })}>
+      <TermoAutorizacao dados={atuais} onDados={d => { setEditado(true); setDados(d) }} aceito={aceito} onAceito={setAceito} />
+    </FotoSecao>
   )
 }
 
@@ -523,7 +544,7 @@ export function AnamneseForm({ modo, slug }: { modo: Modo; slug?: string }) {
             ))}
 
             {modo === 'medico' && medicoUnico && (
-              <FotoSecao escopo={escopo} codigo={servidorAtivo ? servidor.codigo : null} />
+              <FotoComTermo escopo={escopo} codigo={servidorAtivo ? servidor.codigo : null} values={medicoUnico.values} />
             )}
 
             {/* Finalizar */}

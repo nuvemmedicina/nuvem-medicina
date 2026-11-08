@@ -1,14 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { autorizar } from '@/lib/anamnese-ia/acesso'
-import { sanity, idAleatorio } from '@/lib/anamnese-ia/servidor'
+import { del } from '@vercel/blob'
+import { sanity, idAleatorio, ipParcial } from '@/lib/anamnese-ia/servidor'
 import { docFotosId, estadoPublico, fotoAprovada, type DocFotos, type EnvioFoto, type OpcaoFoto } from '@/lib/anamnese-ia/foto'
 import { processarFoto, blobConfigurado, ErroFoto } from '@/lib/anamnese-ia/foto-servidor'
+import { TERMO, textoTermo } from '@/lib/anamnese-ia/termo-imagem'
+import { registrar, sha256 } from '@/lib/anamnese-ia/autorizacao'
 
 /**
  * Foto do profissional (documento privado anamnese-ia.fotos.<escopo>).
  *
  * GET  ?escopo=&c=                         estado da foto
- * POST { escopo, c, acao: 'processar', pathname }   processa um envio
+ * POST { escopo, c, acao: 'processar', pathname, aceite, termoVersao, nomeCompleto, registro }
+ *      processa um envio; exige o aceite do termo e cria o registro da autorização
  * POST { escopo, c, acao: 'opcao', opcao }          "clínica providencia" ou "sem foto"
  *
  * Cada envio fica no histórico (envios[]); trocar a foto só muda "atual".
@@ -30,7 +34,10 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-  let body: { escopo?: unknown; c?: unknown; acao?: unknown; pathname?: unknown; opcao?: unknown }
+  let body: {
+    escopo?: unknown; c?: unknown; acao?: unknown; pathname?: unknown; opcao?: unknown
+    aceite?: unknown; termoVersao?: unknown; nomeCompleto?: unknown; registro?: unknown
+  }
   try { body = await req.json() } catch { return NextResponse.json({ erro: 'JSON inválido' }, { status: 400 }) }
   const erro = autorizar(body.escopo, body.c)
   if (erro) return NextResponse.json({ erro }, { status: 403 })
@@ -61,10 +68,23 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ erro: 'Caminho inválido' }, { status: 400 })
   }
 
+  // Termo de autorização: sem o aceite da versão atual, a foto não é aceita
+  const nomeCompleto = typeof body.nomeCompleto === 'string' ? body.nomeCompleto.trim().slice(0, 160) : ''
+  const registro = typeof body.registro === 'string' ? body.registro.trim().slice(0, 160) : ''
+  if (body.aceite !== true || body.termoVersao !== TERMO.versao || !nomeCompleto || !registro) {
+    await del(pathname).catch(() => {})
+    return NextResponse.json({ erro: 'Para enviar a foto, preencha seu nome completo e o registro e marque a autorização de uso de imagem.' }, { status: 400 })
+  }
+
   const fotoId = `f-${agora.slice(0, 10).replace(/-/g, '')}-${idAleatorio(6)}`
   try {
     const r = await processarFoto(pathname, `anamnese-ia/fotos/${escopo}/${fotoId}`)
-    const envio: EnvioFoto = { _key: fotoId, id: fotoId, em: agora, ...r }
+    const aceite = await registrar(client, {
+      tipo: 'aceite', escopo, nomeCompleto, registro,
+      termoVersao: TERMO.versao, termoSha256: sha256(textoTermo({ nomeCompleto, registro })),
+      fotoId, ipParcial: ipParcial(req), registradoPor: 'profissional',
+    })
+    const envio: EnvioFoto = { _key: fotoId, id: fotoId, em: agora, ...r, autorizacaoId: aceite._id }
     await client.transaction()
       .createIfNotExists({ _id: id, _type: 'anamneseIaFotos', escopo })
       .patch(id, p => p.setIfMissing({ envios: [] }).append('envios', [envio]).set({ atual: fotoId, opcao: 'enviada', opcaoEm: agora }))
