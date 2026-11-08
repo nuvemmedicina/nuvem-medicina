@@ -55,7 +55,7 @@ export function especialidadeDeExibicao(p: Pessoa): { rotulo: string; descricao:
 }
 
 function minuscula(s: string) {
-  return s.charAt(0).toLowerCase() + s.slice(1)
+  return s.toLowerCase()
 }
 
 /** Iniciais para quando não há foto ("Vera Ângelo" → "VA"). */
