@@ -6,7 +6,7 @@ import { CONTATO, EXAMES } from '@/lib/data'
 import { confirmado, type Foto, type Profissional } from '@/lib/profissionais'
 import {
   especialidadeDeExibicao, formatarRegistro, iniciais, linhasConvenios, mensagemWhatsApp,
-  nomeCompleto, passosDoAtendimento, perguntasFrequentes, rotuloProfissao, temExames,
+  nomeCompleto, passosDoAtendimento, perguntasFrequentes, temExames,
   textoTeleconsulta, ROTULO_TIPO,
 } from '@/lib/profissionais-texto'
 
@@ -108,6 +108,12 @@ export function PaginaProfissional({ p, foto, previa }: Props) {
   const slugsExames = [...new Set(p.oQueFazNaNuvem.map(s => s.exameSlug).filter((s): s is string => !!s))]
   const cartoesExames = slugsExames.map(s => EXAMES.find(e => e.id === s)).filter(e => !!e)
   const faqs = perguntasFrequentes(p)
+  // Linha sob o nome: a descrição só quando acrescenta algo ao rótulo
+  // (ex.: "Médica especialista em Gastroenterologia"), mais o cargo.
+  const apresentacao = [
+    esp.descricao !== esp.rotulo ? `${esp.descricao}.` : null,
+    p.cargo ? `${p.cargo} da NU.V.E.M.` : null,
+  ].filter(Boolean).join(' ')
 
   return (
     <div className="pt-[76px] font-sans text-steel">
@@ -137,10 +143,9 @@ export function PaginaProfissional({ p, foto, previa }: Props) {
 
             <span className="block w-16 h-px bg-gold my-5 lg:my-7" aria-hidden />
 
-            <p className="text-[0.95rem] lg:text-[1.05rem] text-steel/80 leading-relaxed max-w-xl">
-              {esp.descricao !== esp.rotulo ? `${esp.descricao}.` : `${rotuloProfissao(p)}.`}
-              {p.cargo && <> {p.cargo} da NU.V.E.M.</>}
-            </p>
+            {apresentacao && (
+              <p className="text-[0.95rem] lg:text-[1.05rem] text-steel/80 leading-relaxed max-w-xl">{apresentacao}</p>
+            )}
 
             <div className="mt-6 lg:mt-8 flex flex-col sm:flex-row gap-3">
               <BotaoWhatsApp p={p} className="w-full sm:w-auto" />
@@ -174,7 +179,7 @@ export function PaginaProfissional({ p, foto, previa }: Props) {
 
         <dl className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {faixa && <Info rotulo="Faixa etária" valor={faixa} />}
-          {tele && <Info rotulo="Teleconsulta" valor={tele} />}
+          {tele && p.fazConsulta && <Info rotulo="Teleconsulta" valor={tele} />}
           {!p.fazConsulta && <Info rotulo="Consulta" valor="Não faz consulta. Atende somente exames." />}
           {dias && <Info rotulo="Dias de atendimento" valor={dias} />}
         </dl>
