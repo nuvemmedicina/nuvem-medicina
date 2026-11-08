@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Link from 'next/link'
 import { Cookie } from 'lucide-react'
 import {
   lerConsentSalvo,
@@ -77,9 +78,9 @@ export function ConsentBanner() {
           </div>
           <p className="text-[0.88rem] text-steel/70 leading-relaxed">
             Usamos cookies para analisar o uso do site e medir nossas campanhas, conforme nossa{' '}
-            <a href="/politica-de-privacidade" className="text-teal font-medium hover:underline">
+            <Link href="/politica-de-privacidade" className="text-teal font-medium hover:underline">
               Política de Privacidade
-            </a>
+            </Link>
             . Nenhum dado de saúde é coletado por esses cookies.
           </p>
         </div>

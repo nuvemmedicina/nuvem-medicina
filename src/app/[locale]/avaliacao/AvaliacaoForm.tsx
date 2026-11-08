@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { Send, Loader2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -250,12 +251,12 @@ export function AvaliacaoForm() {
         </div>
       )}
 
-      <a
+      <Link
         href="/"
         className="inline-flex items-center gap-1.5 text-[0.78rem] text-steel/55 hover:text-teal transition-colors"
       >
         {t('voltarSite')}
-      </a>
+      </Link>
     </div>
   )
 }

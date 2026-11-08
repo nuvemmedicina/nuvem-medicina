@@ -7,7 +7,6 @@ import { Link } from '@/i18n/navigation'
 import { NAV_ITEMS } from '@/lib/data'
 import { cn } from '@/lib/utils'
 import { LogoTeal } from '@/components/icons/LogoTeal'
-import { LogoBranco } from '@/components/icons/LogoBranco'
 import { LanguageSwitcher } from '@/components/layout/LanguageSwitcher'
 
 export function Navbar() {
