@@ -29,7 +29,7 @@ export function PaginaPrevia({ conteudo, foto }: { conteudo: ConteudoPagina; fot
           {conteudo.especialidade && <p className="mt-3 text-[1rem] font-medium text-gold-dark">{conteudo.especialidade}</p>}
           {areas.length > 0 && (
             <ul className="mt-3 flex flex-wrap gap-1.5">
-              {areas.map(a => <li key={a} className="rounded-full bg-teal/8 px-2.5 py-1 text-[0.76rem] text-teal">{a}</li>)}
+              {areas.map(a => <li key={a} className="rounded-full bg-teal/10 px-2.5 py-1 text-[0.76rem] text-teal">{a}</li>)}
             </ul>
           )}
           {conteudo.bio && <p className="mt-4 whitespace-pre-line text-[0.92rem] leading-relaxed text-steel/80">{conteudo.bio}</p>}

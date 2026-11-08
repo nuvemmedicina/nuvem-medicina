@@ -137,5 +137,6 @@ export function situacao(fotos: DocFotos | null, pagina: DocPagina | null, autor
 /** Iniciais para a página sem foto ("Dra. Vera Ângelo" → "VA"). */
 export function iniciais(nome: string) {
   const partes = nome.replace(/^(dra?\.?\s+)/i, '').split(/\s+/).filter(p => p.length > 2 || /^[A-ZÀ-Ý]/.test(p))
-  return ((partes[0]?.[0] ?? '') + (partes.length > 1 ? partes.at(-1)![0] : '')).toUpperCase()
+  return ((partes[0]?.[0] ?? '') + (partes.length > 1 ? partes.at(-1)![0] : ''))
+    .normalize('NFD').replace(/[̀-ͯ]/g, '').toUpperCase()
 }

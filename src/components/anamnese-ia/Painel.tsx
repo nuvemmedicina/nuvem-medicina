@@ -141,7 +141,7 @@ function Cartao({ p, codigo, acao, ocupado }: {
               <p className="whitespace-pre-line">{p.ajustes.pedido}</p>
             </div>
           )}
-          <div className="grid gap-3 lg:grid-cols-2">
+          <div className="grid gap-4 xl:grid-cols-2">
             <div className="grid gap-2.5">
               {([
                 ['nome', 'Nome', 1], ['registro', 'Registro profissional', 1], ['especialidade', 'Especialidade', 1],
