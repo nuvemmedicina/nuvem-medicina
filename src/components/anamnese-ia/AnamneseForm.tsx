@@ -12,6 +12,7 @@ import {
 import { PREFILL_CLINICA, MEDICOS_SITE, prefillMedico } from '@/lib/anamnese-ia/prefill'
 import { useServidor, rotuloStatus, useHoje } from '@/components/anamnese-ia/useServidor'
 import { normalizarInstagram, erroInstagram } from '@/lib/anamnese-ia/formatos'
+import { FotoSecao } from '@/components/anamnese-ia/FotoSecao'
 
 // ─── Tipos e armazenamento ────────────────────────────────────────────────────
 type Medico = { uid: string; slug?: string; values: Values }
@@ -520,6 +521,10 @@ export function AnamneseForm({ modo, slug }: { modo: Modo; slug?: string }) {
             {modo === 'medico' && medicoUnico && CAMPOS_MEDICO.map((s, i) => (
               <SecaoCard key={s.id} s={s} numero={`${i + 1}.`} values={medicoUnico.values} escopo="m" onChange={(id, v) => setMedico(medicoUnico.uid, id, v)} />
             ))}
+
+            {modo === 'medico' && medicoUnico && (
+              <FotoSecao escopo={escopo} codigo={servidorAtivo ? servidor.codigo : null} />
+            )}
 
             {/* Finalizar */}
             <section className="rounded-2xl border border-teal/15 bg-teal p-5 text-white shadow-sm sm:p-7">
