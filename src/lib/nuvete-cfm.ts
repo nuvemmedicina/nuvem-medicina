@@ -15,7 +15,7 @@
 
 const PROIBIDAS = /(?<!\p{L})(garant(ir|ia|ias|ido|ida|idos|idas|e|em|imos)|s[óo]lid[ao]s?|excel[êe]ncia|refer[êe]ncia|melhor(es)?|[úu]nic[oa]s?|mais modern[oa]s?|[úu]ltima gera[çc][ãa]o|cura(s|r)?|resolv(e|em|er|ido|ida))(?!\p{L})|\u2014/giu
 
-export const RESPOSTA_PADRAO = 'Para essa dúvida, nossa equipe pode ajudar: WhatsApp (31) 99726-1029. 💙'
+export const RESPOSTA_PADRAO = 'Para essa dúvida, nossa equipe pode ajudar: WhatsApp (31) 99726-1029.'
 
 /** Termos proibidos encontrados no texto, sem repetição, em minúsculas. */
 export function termosProibidos(texto: string): string[] {

@@ -95,8 +95,9 @@ Problemas encontrados no contêiner do GTM (seção 5 do TRACKING.md):
 - **Dr. Gabriel** entrou na página da equipe com "CRM 81843 · RQE 61806 ·
   Gastroenterologia". O registro também aparece nas três versões da página de
   Motilidade Digestiva. "Hepatologista" não aparecia em nenhum lugar.
-- **Dra. Amanda Araújo**: registro continua vazio na página. Ficou um
-  comentário `[A CONFIRMAR]` no dado, em `src/app/[locale]/equipe/page.tsx`.
+- **Dra. Amanda Araújo**: registro conferido no portal do CFM (08/11/2026) e
+  publicado na página da equipe: CRM-MG 86343 · RQE 58941 (Clínica Médica) · RQE 66655 (Gastroenterologia).
+  Sem "hepatologia": a ficha do CFM lista só Clínica Médica e Gastroenterologia.
 - **Rodapé**: novo texto da responsável técnica, "Registro da clínica CRM-MG
   20532" e o aviso padrão da Res. 2.336/2023, nas três línguas. O selo ISO
   passou a dizer "Gestão certificada pela norma ISO 9001".
@@ -1334,7 +1335,7 @@ Pontos de conteúdo clínico que **não** foram alterados, mas pedem revisão:
 
 | # | Pendência | Onde aparece | Quem confirma |
 |---|---|---|---|
-| 1 | Registro da Dra. Amanda Araújo (informado: CRM-MG 86343 · RQE 66655) | Não publicado. Marcador em `src/app/[locale]/equipe/page.tsx`. O número também não aparece em nenhum outro arquivo do site nem no prompt da nuvete. | você, no portal do CFM |
+| 1 | ~~Registro da Dra. Amanda Araújo~~ **Resolvido (08/11/2026):** CRM-MG 86343 · RQE 58941 (Clínica Médica) · RQE 66655 (Gastroenterologia), conferido no portal do CFM | Página da equipe (`src/app/[locale]/equipe/page.tsx`) e dados da anamnese da IA (`prefill.ts`). | feito |
 | 2 | Escopo do certificado ISO 9001 | `gestao-da-qualidade`: o texto antigo do escopo citava gastroenterologia, **nutrologia** e "doenças funcionais". Foi trocado por frase sem áreas. | gestão da qualidade, com o certificado |
 | 3 | "Certificação ISO 9001 inclusa/incluída" nos cursos Hands-On | `ensino/page.tsx`, `EnsinoSection.tsx`, `nuvete-data.ts`, prompt da nuvete, `llms.txt` | gestão da qualidade: a ISO certifica a gestão, não o aluno; confirmar o que o certificado do curso diz |
 | 4 | "O primeiro equipamento nacional" (HealthGo AIR) | trocado por "Equipamento nacional" em `exames-resp-extra.ts`; volta se houver fonte do fabricante | clínica |
@@ -1662,7 +1663,7 @@ Ver as seções do Bloco 3 (halimetria) e do Bloco 4 (WordPress, slugs com erro 
 5. **Backup dos documentos internos** (POPs, PPRA, LIP, auditorias de NR, checklist NR-32) antes de desligar de vez o WordPress antigo.
 6. **Dra. Vera**: validar os textos marcados (Blocos 2a e 3, inclusive a página de halitose completa) e decidir H₂S, manometria anorretal "de alta resolução" e trânsito colônico.
 7. **Gestão**: permanência da especialidade Halitose; escopo do certificado ISO 9001; o que diz o certificado dos cursos Hands-On.
-8. **CFM**: conferir o registro da Dra. Amanda Araújo antes de publicar.
+8. **CFM**: registro da Dra. Amanda Araújo conferido e publicado na página da equipe (08/11/2026).
 9. **Formulário de agendamento**: ajustes aplicados. Conferir no preview e lembrar que o título da página `/obrigado` no GA4 mudou.
 10. **Revisão mensal da nuvete**: ler os logs `nuvete_regra_cfm` na Vercel e configurar um Log Drain ou retenção estendida, porque os logs somem rápido.
 11. **Revisão do PR**: conferir o preview da Vercel antes do merge. Nenhum deploy em produção foi feito.
