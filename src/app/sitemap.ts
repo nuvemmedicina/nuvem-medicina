@@ -3,6 +3,7 @@ import { ESPECIALIDADES, EXAMES } from '@/lib/data'
 import { getAllPostsWithTranslations } from '@/lib/sanity/queries'
 import { SITE_URL as BASE } from '@/lib/site'
 import { routing } from '@/i18n/routing'
+import { slugsNoSitemap } from '@/lib/profissionais-publicacao'
 
 /**
  * O sitemap só deve listar URLs que respondem 200 e são autocanônicas.
@@ -66,8 +67,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE}/exames/preparos`,         priority: 0.85, changeFrequency: 'monthly' as const },
     { url: `${BASE}/sobre`,                   priority: 0.8,  changeFrequency: 'monthly' as const },
     { url: `${BASE}/equipe`,                  priority: 0.8,  changeFrequency: 'monthly' as const },
-    { url: `${BASE}/dra-vera-angelo`,         priority: 0.75, changeFrequency: 'monthly' as const },
-    { url: `${BASE}/dra-eliane-basques`,      priority: 0.75, changeFrequency: 'monthly' as const },
+    // Páginas de profissionais: só as públicas em produção (aprovadas e as
+    // duas páginas antigas). Ver src/lib/profissionais-publicacao.ts.
+    ...(await slugsNoSitemap()).map(slug => (
+      { url: `${BASE}/${slug}`,               priority: 0.75, changeFrequency: 'monthly' as const }
+    )),
     { url: `${BASE}/gestao-da-qualidade`,     priority: 0.85, changeFrequency: 'monthly' as const },
     { url: `${BASE}/album-da-saude`,          priority: 0.6,  changeFrequency: 'monthly' as const },
     { url: `${BASE}/ensino`,                  priority: 0.8,  changeFrequency: 'monthly' as const },

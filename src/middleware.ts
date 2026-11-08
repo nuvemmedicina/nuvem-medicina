@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import createIntlMiddleware from 'next-intl/middleware'
 import { routing } from '@/i18n/routing'
+import { SLUGS_PROFISSIONAIS } from '@/lib/profissionais'
 
 /**
  * Páginas ainda não traduzidas (fase 2 do projeto multilíngue). Uma tentativa
@@ -12,8 +13,8 @@ import { routing } from '@/i18n/routing'
 const PT_ONLY_SEGMENTS = [
   'sobre',
   'equipe',
-  'dra-vera-angelo',
-  'dra-eliane-basques',
+  // Páginas dos profissionais (src/lib/profissionais.ts).
+  ...SLUGS_PROFISSIONAIS,
   'ensino',
   'convenios-medicos',
   'gestao-da-qualidade',

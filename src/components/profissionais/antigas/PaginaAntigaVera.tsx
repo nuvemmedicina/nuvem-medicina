@@ -1,3 +1,8 @@
+/**
+ * Página antiga da Dra. Vera Ângelo, mantida sem mudanças no mesmo endereço
+ * até a versão nova (PaginaProfissional) ser aprovada. Depois da aprovação,
+ * este arquivo pode ser apagado.
+ */
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -7,7 +12,7 @@ import { SectionWrapper } from '@/components/ui/SectionWrapper'
 import { CtaBanner }      from '@/components/ui/CtaBanner'
 import { IsoSeal }        from '@/components/icons/IsoSeal'
 
-export const metadata: Metadata = {
+export const metadataAntigaVera: Metadata = {
   alternates:  { canonical: '/dra-vera-angelo' },
   title:       'Dra. Vera Ângelo · Gastroenterologista',
   description: 'Dra. Vera Ângelo · Mestre e Doutora pela UFMG, gastroenterologista com atuação em motilidade digestiva, testes respiratórios e DGBI. Diretora Técnica da NU.V.E.M Medicina.',
@@ -141,7 +146,7 @@ const AREAS = [
   'Ensino Médico Especializado',
 ]
 
-export default function DraVeraPage() {
+export function PaginaAntigaVera() {
   return (
     <>
       <PageHero

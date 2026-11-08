@@ -1,3 +1,8 @@
+/**
+ * Página antiga da Dra. Eliane Basques, mantida sem mudanças no mesmo endereço
+ * até a versão nova (PaginaProfissional) ser aprovada. Depois da aprovação,
+ * este arquivo pode ser apagado.
+ */
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -7,7 +12,7 @@ import { SectionWrapper } from '@/components/ui/SectionWrapper'
 import { CtaBanner }      from '@/components/ui/CtaBanner'
 import { IsoSeal }        from '@/components/icons/IsoSeal'
 
-export const metadata: Metadata = {
+export const metadataAntigaEliane: Metadata = {
   alternates:  { canonical: '/dra-eliane-basques' },
   title:       'Dra. Eliane Basques · Manometria Anorretal',
   description: 'Dra. Eliane Basques Moura · Cirurgiã Pediátrica com atuação em manometria anorretal. Sócia Fundadora e Diretora Técnica Substituta da NU.V.E.M Medicina.',
@@ -89,7 +94,7 @@ const AREAS = [
   'Saúde Digestiva Pediátrica',
 ]
 
-export default function DraElianePage() {
+export function PaginaAntigaEliane() {
   return (
     <>
       <PageHero
