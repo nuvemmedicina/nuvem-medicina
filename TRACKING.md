@@ -52,6 +52,7 @@ eventos do histórico do navegador"), que precisa continuar ligada (seção 4.2)
 | `src/components/blog/ChamadaExame.tsx` | `clique_cta_artigo` deixa de levar o caminho do exame ou da especialidade; ganha `tipo_atendimento`. |
 | `src/components/links/LinkBioButton.tsx` | `clique_link_bio` deixa de levar `rotulo` e `destino`; ganha `tipo_destino` e `tipo_atendimento`. |
 | `src/app/[locale]/obrigado/ConversaoTag.tsx` | Só comentário. `pagina_obrigado` continua igual. |
+| `src/components/ui/GoogleTagManager.tsx` | O contêiner só carrega em produção (`VERCEL_ENV === 'production'`). Ver 7.0. |
 
 ### 2.1 Evento `consentimento_concedido`
 
@@ -275,11 +276,33 @@ eventos não se sobrepõem.
 
 ## 7. Passo a passo para testar
 
+### 7.0 Onde o GTM carrega
+
+O contêiner só carrega quando `VERCEL_ENV === 'production'`
+(`src/components/ui/GoogleTagManager.tsx`). Em `npm run dev` e nos deploys de
+preview da Vercel ele **não** carrega, para os testes não mandarem eventos ao
+GA4 e ao Ads reais.
+
+- **No preview da Vercel ou em localhost:** dá para conferir só o código.
+  Abra o console do navegador e digite `window.dataLayer`. Os eventos
+  (`consentimento_concedido`, `envio_agendamento` etc.) e os comandos de
+  consentimento aparecem ali, mas nenhuma tag dispara.
+- **As tags:** só no site em produção, com o GTM Preview (7.1). O Preview não
+  publica nada: as alterações do espaço de trabalho do GTM só valem na aba
+  conectada ao Tag Assistant. Os eventos dessa aba chegam ao GA4 com a marca
+  de depuração e aparecem no DebugView; para tirá-los dos relatórios, crie em
+  GA4 › Administrador › Filtros de dados o filtro "Tráfego de desenvolvedor"
+  como **Ativo**.
+
+Ordem recomendada: publicar o PR em produção (depois da sua revisão), criar as
+tags no espaço de trabalho do GTM **sem publicar**, testar pelo Preview e só
+então clicar em Enviar › Publicar no GTM.
+
 ### 7.1 GTM Preview / Tag Assistant
 
-1. No GTM, clique em **Visualizar** e informe a URL do preview da Vercel
-   (o deploy de preview do PR). Abra em aba anônima, para começar sem
-   consentimento salvo.
+1. No GTM, clique em **Visualizar** e informe `https://www.nuvemmedicina.com.br`.
+   Na janela que abrir, use uma aba anônima ou limpe os dados do site antes,
+   para começar sem consentimento salvo.
 2. **Primeira visita, aceitando:**
    - No carregamento, o painel mostra `Consent` com tudo `denied` e a tag do
      Google do GA4 disparada.

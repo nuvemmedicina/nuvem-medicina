@@ -15,12 +15,21 @@ import { GTM_ID } from '@/lib/gtm'
  * aparecer. Foi exatamente para evitar essa janela que a remoção do gtag e a
  * definição de NEXT_PUBLIC_GTM_ID subiram no mesmo deploy.
  *
+ * SÓ EM PRODUÇÃO: o contêiner carrega apenas quando VERCEL_ENV é
+ * 'production'. Em desenvolvimento local e nos deploys de preview da Vercel ele
+ * não carrega, para testes não mandarem eventos ao GA4 e ao Ads reais. O
+ * dataLayer continua sendo preenchido normalmente (pushEvent, consentimento),
+ * então dá para conferir os eventos no console com `window.dataLayer`. Para
+ * testar as tags, use o GTM Preview no site em produção (ver TRACKING.md).
+ *
  * ATENÇÃO: sem `NEXT_PUBLIC_GTM_ID` o componente não renderiza nada — e, desde
  * a migração, isso significa o site inteiro sem medição alguma. A variável
  * precisa existir nos três ambientes da Vercel.
  */
+const GTM_ATIVO = Boolean(GTM_ID) && process.env.VERCEL_ENV === 'production'
+
 export function GoogleTagManager() {
-  if (!GTM_ID) return null
+  if (!GTM_ATIVO) return null
 
   return (
     <Script id="gtm-init" strategy="afterInteractive">
@@ -37,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  * Fallback para navegadores sem JavaScript. Vai no início do <body>.
  */
 export function GoogleTagManagerNoScript() {
-  if (!GTM_ID) return null
+  if (!GTM_ATIVO) return null
 
   return (
     <noscript>
