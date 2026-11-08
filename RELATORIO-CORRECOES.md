@@ -789,7 +789,149 @@ equipe não. Nada foi alterado. Ocorrências (fora da ferramenta de anamnese):
    - Antes: Utilizamos testes respiratórios com H₂, CH₄ e H₂S, o protocolo mais completo disponível, sem coleta de sangue.
    - Depois: O teste mede H₂, CH₄ e H₂S no ar expirado, sem coleta de sangue.
 
-### Bloco 3
+### Bloco 3 · Página de halitose (texto completo, validação da Dra. Vera)
+
+O texto novo sobre causas digestivas e encaminhamento para odontologia e
+otorrinolaringologia é conteúdo clínico e precisa de validação. A permanência
+da especialidade Halitose no site também está **pendente com a gestão**.
+Abaixo, como a página está agora nas três línguas.
+
+#### Português
+
+**Card da especialidade:** Investigação das causas digestivas do mau hálito, com encaminhamento para odontologia e otorrinolaringologia quando a origem é oral ou nasofaríngea. · Áreas: Causas Digestivas, Refluxo e SIBO, Encaminhamento Integrado
+
+**Abertura:** Avaliação da halitose com foco nas causas digestivas. Investigamos refluxo, SIBO, H. pylori e outras origens gastrointestinais, com encaminhamento para odontologia e otorrinolaringologia quando necessário.
+
+**Introdução:**
+
+> A halitose pode ter origem oral, nasofaríngea, sistêmica ou digestiva. Na NU.V.E.M, a consulta de gastroenterologia investiga as causas digestivas do mau hálito.
+>
+> Conforme a indicação médica, a investigação pode incluir exames realizados na clínica, como testes respiratórios e pHmetria. Quando a origem provável é oral ou nasofaríngea, a pessoa é orientada a procurar odontologia ou otorrinolaringologia.
+
+**Sintomas (sem alteração):** Mau hálito persistente mesmo após higiene bucal rigorosa; Gosto amargo ou metálico na boca; Relatos de pessoas próximas sobre o hálito; Boca seca frequente (xerostomia); Azia, regurgitação ou eructação associada; Sensação de ardor ou saburra na língua; Histórico de problemas gástricos ou intestinais; Desconforto social por causa do hálito.
+
+**Tópicos:**
+
+- **Halitose Digestiva:** Investigação aprofundada de SIBO, gastroparesia, refluxo gastroesofágico e disbiose como causas de mau hálito de origem gastrointestinal, frequentemente subdiagnosticadas.
+- **Avaliação Integrada:** Consulta que considera as possíveis origens do mau hálito (oral, digestiva, nasofaríngea e sistêmica) para orientar a investigação e os encaminhamentos.
+- **Plano Terapêutico Individualizado:** Tratamento direcionado à causa identificada, combinando abordagem digestiva, orientações de higiene oral e encaminhamento para especialistas quando necessário.
+- **Exames Digestivos:** Testes respiratórios (SIBO, IMO e H. pylori) e pHmetria podem ajudar o médico a investigar causas digestivas do mau hálito.
+
+**Diferenciais:**
+
+- Protocolo multidisciplinar para investigar a origem da halitose e tratar a causa
+- Exames digestivos realizados na própria clínica, conforme a indicação médica
+- Avaliação das possíveis origens oral, digestiva e sistêmica na consulta
+- Plano terapêutico individualizado, com acompanhamento médico
+- Gestão certificada pela norma ISO 9001
+
+**Para médicos:** Recebemos encaminhamentos de gastroenterologistas, otorrinolaringologistas, cirurgiões-dentistas e clínicos gerais para investigação das causas digestivas da halitose. A avaliação inclui triagem das causas digestivas e planejamento terapêutico integrado.
+
+- Investigação de SIBO, gastroparesia e DRGE como causas digestivas
+- Parceria com odontologia para halitose oral confirmada
+- Retorno ao médico solicitante com diagnóstico etiológico e plano terapêutico
+
+**Médica indicada:** Dra. Vera Ângelo · Gastroenterologia · CRM-MG 22284
+
+**Exames relacionados:** testes-respiratorios, phmetria-impedanciometria
+
+**Perguntas frequentes:**
+
+- **A halitose sempre tem origem na boca?** Não. A halitose pode ter causas digestivas, nasofaríngeas ou sistêmicas, por isso a consulta considera todas as possíveis origens e orienta os encaminhamentos.
+- **Como é diagnosticada a causa da halitose?** Por meio da avaliação gastroenterológica e, quando indicado, de exames como testes respiratórios e pHmetria. Causas orais e nasofaríngeas são avaliadas por odontologia e otorrinolaringologia.
+- **Como é o tratamento da halitose?** Depende da causa identificada. Tratando a origem, por exemplo, SIBO ou xerostomia, o plano de tratamento é definido pelo médico para cada caso.
+
+#### Inglês
+
+**Card da especialidade:** Investigation of the digestive causes of bad breath, with referral to dentistry and otolaryngology when the origin is oral or nasopharyngeal. · Áreas: Digestive Causes, Reflux and SIBO, Integrated Referral
+
+**Abertura:** Halitosis evaluation focused on digestive causes. We investigate reflux, SIBO, H. pylori and other gastrointestinal origins, with referral to dentistry and otolaryngology when needed.
+
+**Introdução:**
+
+> Halitosis can have an oral, nasopharyngeal, systemic or digestive origin. At NU.V.E.M, the gastroenterology visit investigates the digestive causes of bad breath.
+>
+> As indicated by the physician, the investigation may include exams performed at the clinic, such as breath tests and pH monitoring. When the likely origin is oral or nasopharyngeal, the patient is advised to see a dentist or an otolaryngologist.
+
+**Sintomas (sem alteração):** Persistent bad breath even after rigorous oral hygiene; Bitter or metallic taste in the mouth; People close to you commenting on your breath; Frequent dry mouth (xerostomia); Heartburn, regurgitation or belching; Burning sensation or coating on the tongue; History of gastric or intestinal problems; Social discomfort due to breath odor.
+
+**Tópicos:**
+
+- **Digestive Halitosis:** In-depth investigation of SIBO, gastroparesis, gastroesophageal reflux and dysbiosis as often underdiagnosed causes of gastrointestinal bad breath.
+- **Integrated Evaluation:** A visit that considers the possible origins of bad breath (oral, digestive, nasopharyngeal and systemic) to guide the investigation and referrals.
+- **Individualized Treatment Plan:** Treatment targeted at the identified cause, combining a digestive approach, oral hygiene guidance and referral to specialists when needed.
+- **Digestive Exams:** Breath tests (SIBO, IMO and H. pylori) and pH monitoring can help the physician investigate digestive causes of bad breath.
+
+**Diferenciais:**
+
+- Multidisciplinary protocol to investigate the origin of halitosis and treat the cause
+- Digestive exams performed at the clinic, as indicated by the physician
+- Evaluation of possible oral, digestive and systemic origins during the visit
+- Individualized treatment plan, with medical follow-up
+- Management certified under ISO 9001
+
+**Para médicos:** We receive referrals from gastroenterologists, otolaryngologists, dentists and general practitioners to investigate the digestive causes of halitosis. The evaluation includes screening for digestive causes and integrated treatment planning.
+
+- Investigation of SIBO, gastroparesis and GERD as digestive causes
+- Partnership with dentistry for confirmed oral halitosis
+- Feedback to the referring physician with etiological diagnosis and treatment plan
+
+**Médica indicada:** Dra. Vera Ângelo · Gastroenterology · CRM-MG 22284
+
+**Exames relacionados:** testes-respiratorios, phmetria-impedanciometria
+
+**Perguntas frequentes:**
+
+- **Does halitosis always originate in the mouth?** No. Halitosis can have digestive, nasopharyngeal or systemic causes, which is why the visit considers every possible origin and guides referrals.
+- **How is the cause of halitosis diagnosed?** Through a gastroenterological evaluation and, when indicated, exams such as breath tests and pH monitoring. Oral and nasopharyngeal causes are evaluated by dentistry and otolaryngology.
+- **How is halitosis treated?** It depends on the identified cause. By treating the source, for example, SIBO or xerostomia, the treatment plan is defined by the physician for each case.
+
+#### Espanhol
+
+**Card da especialidade:** Investigación de las causas digestivas del mal aliento, con derivación a odontología y otorrinolaringología cuando el origen es oral o nasofaríngeo. · Áreas: Causas Digestivas, Reflujo y SIBO, Derivación Integrada
+
+**Abertura:** Evaluación de la halitosis con foco en las causas digestivas. Investigamos reflujo, SIBO, H. pylori y otros orígenes gastrointestinales, con derivación a odontología y otorrinolaringología cuando es necesario.
+
+**Introdução:**
+
+> La halitosis puede tener origen oral, nasofaríngeo, sistémico o digestivo. En NU.V.E.M, la consulta de gastroenterología investiga las causas digestivas del mal aliento.
+>
+> Según la indicación médica, la investigación puede incluir exámenes realizados en la clínica, como pruebas respiratorias y pHmetría. Cuando el origen probable es oral o nasofaríngeo, se orienta a la persona a consultar odontología u otorrinolaringología.
+
+**Sintomas (sem alteração):** Mal aliento persistente incluso después de una higiene bucal rigurosa; Sabor amargo o metálico en la boca; Comentarios de personas cercanas sobre el aliento; Boca seca frecuente (xerostomía); Acidez, regurgitación o eructos asociados; Sensación de ardor o saburra en la lengua; Antecedentes de problemas gástricos o intestinales; Malestar social por causa del aliento.
+
+**Tópicos:**
+
+- **Halitosis Digestiva:** Investigación profunda de SIBO, gastroparesia, reflujo gastroesofágico y disbiosis como causas de mal aliento de origen gastrointestinal, frecuentemente subdiagnosticadas.
+- **Evaluación Integrada:** Consulta que considera los orígenes posibles del mal aliento (oral, digestivo, nasofaríngeo y sistémico) para orientar la investigación y las derivaciones.
+- **Plan Terapéutico Individualizado:** Tratamiento dirigido a la causa identificada, combinando el abordaje digestivo, orientaciones de higiene oral y derivación a especialistas cuando es necesario.
+- **Exámenes Digestivos:** Las pruebas respiratorias (SIBO, IMO y H. pylori) y la pHmetría pueden ayudar al médico a investigar causas digestivas del mal aliento.
+
+**Diferenciais:**
+
+- Protocolo multidisciplinario para investigar el origen de la halitosis y tratar la causa
+- Exámenes digestivos realizados en la propia clínica, según la indicación médica
+- Evaluación de los orígenes posibles oral, digestivo y sistémico en la consulta
+- Plan terapéutico individualizado, con seguimiento médico
+- Gestión certificada según la norma ISO 9001
+
+**Para médicos:** Recibimos derivaciones de gastroenterólogos, otorrinolaringólogos, odontólogos y médicos generales para investigar las causas digestivas de la halitosis. La evaluación incluye el cribado de causas digestivas y la planificación terapéutica integrada.
+
+- Investigación de SIBO, gastroparesia y ERGE como causas digestivas
+- Colaboración con odontología para halitosis oral confirmada
+- Retorno al médico derivante con diagnóstico etiológico y plan terapéutico
+
+**Médica indicada:** Dra. Vera Ângelo · Gastroenterología · CRM-MG 22284
+
+**Exames relacionados:** testes-respiratorios, phmetria-impedanciometria
+
+**Perguntas frequentes:**
+
+- **¿La halitosis siempre tiene origen en la boca?** No. La halitosis puede tener causas digestivas, nasofaríngeas o sistémicas, por eso la consulta considera todos los orígenes posibles y orienta las derivaciones.
+- **¿Cómo se diagnostica la causa de la halitosis?** Mediante la evaluación gastroenterológica y, cuando está indicado, exámenes como pruebas respiratorias y pHmetría. Las causas orales y nasofaríngeas las evalúan odontología y otorrinolaringología.
+- **¿Cómo se trata la halitosis?** Depende de la causa identificada. Al tratar el origen, por ejemplo, SIBO o xerostomía, el plan de tratamiento lo define el médico para cada caso.
+
+### Bloco 3 · Demais trocas
 
 1. `src/lib/data.ts`
    - Antes: desc: 'Diagnóstico multidisciplinar completo. Investigamos causas digestivas, orais e sistêmicas com halimetria de precisão.',     tags: ['Halimetria', 'Sialometria', 'Diagnóstico Integrado'],
@@ -974,6 +1116,36 @@ o teste será repetido no fim.
 | Vocês fazem halimetria? | "Sim, fazemos!", com preparo de halimetria e sialometria. | **Errado.** Corrigido no Bloco 3. |
 
 Depois do Bloco 3, "Vocês fazem halimetria?" passou a responder: "A halimetria **não é realizada** aqui na clínica", seguido das causas digestivas investigadas na consulta e da orientação de procurar dentista ou otorrinolaringologista. Ponto a revisar: a nuvete acrescentou por conta própria que o exame "é geralmente feito em consultórios odontológicos especializados em halitose", informação que não está no prompt.
+
+**Correção (antes do Bloco 4).** O prompt ganhou a seção "EXAMES QUE A CLÍNICA NÃO REALIZA": para halimetria, sialometria, endoscopia, colonoscopia, ultrassom ou qualquer exame fora da lista, a resposta é só que o exame não é feito na NU.V.E.M e que a pessoa deve conversar com o médico que pediu, sem sugerir onde fazer, sem explicar o exame e sem oferecer outro no lugar. Também passou a proibir qualquer informação que não esteja nas instruções e o travessão longo. Teste em 08/11/2026, servidor local (o horário ainda é o antigo, corrigido no Bloco 6):
+
+- **Vocês fazem halimetria?**
+
+  > Olá! 💙 Obrigada por entrar em contato com a NU.V.E.M Medicina!
+  > A halimetria não é realizada aqui na clínica. Para esse exame, você deve conversar com o profissional que fez a solicitação para orientações de onde realizá-lo. 😊
+  > Se quiser, posso te contar mais sobre como a nossa equipe de gastroenterologia investiga as **causas digestivas da halitose** (como refluxo, SIBO e H. pylori) em consulta! 🌿
+  > Para agendar ou tirar dúvidas, fale com a nossa equipe:
+  > 📱 **WhatsApp:** (31) 99726-1029
+  > 📞 **Telefone:** (31) 2537-3131
+  > ⏰ **Seg a Sex, 7h30 às 17h30**
+
+- **Vocês fazem endoscopia?**
+
+  > Olá! 💙 Obrigada por entrar em contato com a NU.V.E.M Medicina!
+  > A endoscopia não é realizada aqui na clínica. Para esse exame, você deve conversar com o médico que solicitou o pedido, pois ele poderá orientá-la sobre onde realizá-lo.
+  > Se você tiver outras dúvidas ou quiser saber mais sobre os exames e consultas que realizamos por aqui, estou à disposição! 😊
+  > Caso queira agendar uma consulta ou tirar dúvidas com nossa equipe:
+  > 📱 WhatsApp: (31) 99726-1029
+  > 📞 Telefone: (31) 2537-3131
+  > ⏰ Seg a Sex, 7h30 às 17h30
+
+- **Onde faço ultrassom?**
+
+  > Olá! 😊 Oi, tudo bem com você?
+  > O ultrassom não é um exame realizado aqui na NU.V.E.M Medicina. Para saber onde realizá-lo, recomendo entrar em contato com o médico que solicitou o exame : ele poderá te orientar da melhor forma sobre onde realizá-lo. 💙
+  > Se tiver alguma outra dúvida ou quiser saber mais sobre os exames e especialidades que oferecemos por aqui, é só me chamar! 😊
+
+Avaliação: as três respostas dizem que o exame não é feito na clínica e mandam conversar com o médico que pediu, sem indicar local. Na de halimetria, a nuvete oferece explicar a consulta de causas digestivas da halitose, que está na base da clínica. Nas respostas originais havia um travessão longo, que foi trocado por dois-pontos nesta citação; a regra nova do prompt proíbe o travessão.
 | Vocês são referência? São a melhor clínica de BH? | Não usa "referência" nem "melhor". Responde com fatos: exames que realiza, formação da Dra. Vera, gestão certificada ISO 9001. | OK, efeito da regra nova do prompt. |
 
 ---
