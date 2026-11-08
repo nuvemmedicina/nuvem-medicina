@@ -78,7 +78,7 @@ export default async function PaginaDoProfissional({ params }: Props) {
   const { foto, versao } = await publicacaoDe(p)
   const faqs = perguntasFrequentes(p).map(f => ({
     pergunta: f.pergunta,
-    resposta: [f.resposta, f.lista?.length ? `${f.lista.map(i => i.replace(/\.$/, '')).join('; ')}.` : '']
+    resposta: [f.resposta, f.lista?.length ? `${f.lista.map(i => i.replace(/\.$/, '')).join('; ')}.` : '', f.nota ?? '']
       .filter(Boolean).join(' '),
   }))
   return (

@@ -105,7 +105,7 @@ export const LISTA_O_QUE_LEVAR = [
   'Lista de medicamentos em uso',
 ]
 
-export type Faq = { pergunta: string; resposta: string; lista?: string[] }
+export type Faq = { pergunta: string; resposta: string; lista?: string[]; nota?: string }
 
 export function perguntasFrequentes(p: Profissional): Faq[] {
   const quem = nomeCompleto(p)
@@ -123,8 +123,9 @@ export function perguntasFrequentes(p: Profissional): Faq[] {
   const faltaAlgum = linhas.length < p.oQueFazNaNuvem.length
   const convenio: Faq = {
     pergunta: 'Atende convênio?',
-    resposta: linhas.length === 0 ? CONFIRMAR_NO_AGENDAMENTO : faltaAlgum ? `Para os demais atendimentos, ${CONFIRMAR_MINUSCULA}` : '',
+    resposta: linhas.length === 0 ? CONFIRMAR_NO_AGENDAMENTO : '',
     lista: linhas.map(l => `${l.servico}: ${l.convenios}.`),
+    nota: linhas.length > 0 && faltaAlgum ? `Para os demais atendimentos, ${CONFIRMAR_MINUSCULA}` : undefined,
   }
 
   const tele = textoTeleconsulta(p)

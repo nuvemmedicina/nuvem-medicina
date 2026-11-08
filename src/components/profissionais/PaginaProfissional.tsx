@@ -174,7 +174,7 @@ export function PaginaProfissional({ p, foto, previa, versao }: Props) {
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {p.oQueFazNaNuvem.map(s => (
             <div key={s.nome} className="rounded-2xl bg-mist/40 border border-teal/10 p-6">
-              <p className={`${rotuloPequeno} text-teal/70 mb-2`}>{ROTULO_TIPO[s.tipo]}</p>
+              {ROTULO_TIPO[s.tipo] !== s.nome && <p className={`${rotuloPequeno} text-teal/70 mb-2`}>{ROTULO_TIPO[s.tipo]}</p>}
               <h3 className="text-[1.05rem] font-semibold text-teal">{s.nome}</h3>
               {confirmado(s.convenios) && <p className="mt-2 text-[0.88rem] text-steel/75">{confirmado(s.convenios)}</p>}
             </div>
@@ -302,6 +302,7 @@ export function PaginaProfissional({ p, foto, previa, versao }: Props) {
                   ))}
                 </ul>
               )}
+              {f.nota && <p className="mt-3 text-[0.93rem] text-steel/80 leading-relaxed">{f.nota}</p>}
             </details>
           ))}
         </div>
