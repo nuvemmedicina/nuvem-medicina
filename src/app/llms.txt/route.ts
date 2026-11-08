@@ -28,10 +28,10 @@ A NU.V.E.M Medicina é um ecossistema completo de saúde digestiva localizado no
 
 ## Especialidades Médicas
 
-- **Gastroenterologia:** Distúrbios da interação cérebro-intestino (DGBI), SIBO, IMO, LIBO, disbiose intestinal, H. pylori, intolerâncias alimentares, equilíbrio da microbiota
+- **Gastroenterologia:** Distúrbios da interação cérebro-intestino (DGBI), SIBO, IMO, disbiose intestinal, H. pylori, intolerâncias alimentares, equilíbrio da microbiota
 - **Motilidade Digestiva:** Distúrbios esofágicos, acalasia, disfagia, refluxo gastroesofágico refratário
 - **Fisioterapia Pélvica:** Disfunções do assoalho pélvico, incontinência urinária e fecal, biofeedback eletromiográfico
-- **Halitose:** Diagnóstico multidisciplinar com halimetria e sialometria
+- **Halitose:** Investigação das causas digestivas do mau hálito na consulta de gastroenterologia. A clínica não realiza halimetria nem sialometria.
 - **Pediatria:** Saúde digestiva infantil, intolerâncias, H. pylori não invasivo
 - **Nefrologia:** Doenças renais, litíase, interface GI-renal
 
@@ -42,15 +42,12 @@ A NU.V.E.M Medicina é um ecossistema completo de saúde digestiva localizado no
 - **H. pylori (Ureia marcada):** Diagnóstico não invasivo. Preparo: jejum 4h, sem antibióticos 4 semanas, IBP 2 semanas (com médico).
 - **Lactose e Frutose:** Diagnóstico de intolerâncias. Preparo: jejum 12h, evitar fibras fermentáveis dia anterior.
 
-### Manometria de Alta Resolução
-- **Esofágica:** Avaliação da motilidade do esôfago. Diagnóstico de acalasia, disfagia, refluxo. Preparo: jejum 6h.
+### Manometria
+- **Esofágica (alta resolução, 24 canais, ou convencional, 8 canais):** Avaliação da motilidade do esôfago. Diagnóstico de acalasia, disfagia, refluxo. Preparo: jejum 6h.
 - **Anorretal:** Avaliação funcional do assoalho pélvico. Preparo: enema 2h antes conforme orientação.
 
-### pHmetria e Impedânciometria
+### pHmetria e ImpedanciopHmetria Esofágica (24h)
 - Monitoramento ambulatorial 24h de refluxo ácido e não-ácido. Preparo: suspender IBP 7 dias (com médico), jejum 4h antes da instalação.
-
-### Halimetria e Sialometria
-- Quantificação objetiva de compostos sulfurados. Diagnóstico diferencial da halitose. Preparo: sem comida 3h, sem escovação 2h, sem enxaguante no dia.
 
 ### Avaliação Pélvica
 - Biofeedback eletromiográfico para disfunções do assoalho pélvico. Sem jejum necessário.

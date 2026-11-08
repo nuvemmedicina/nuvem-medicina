@@ -31,7 +31,6 @@ export function Footer() {
         { label: tNav('manometriaAnorretal'),   href: '/exames/manometria-anorretal' },
         { label: t('phmetriaImpedancia'),       href: '/exames/phmetria-impedanciometria' },
         { label: tNav('testesRespiratorios'),   href: '/exames/testes-respiratorios' },
-        { label: tNav('halimetriaSialometria'), href: '/exames/halimetria-sialometria' },
         { label: tNav('avaliacaoPelvica'),      href: '/exames/avaliacao-pelvica' },
         { label: t('preparos'),                 href: '/exames/preparos' },
       ],

@@ -41,7 +41,6 @@ export const NAV_ITEMS: NavItem[] = [
       { key: 'manometriaAnorretal',      href: '/exames/manometria-anorretal' },
       { key: 'phmetriaImpedanciometria', href: '/exames/phmetria-impedanciometria' },
       { key: 'testesRespiratorios',      href: '/exames/testes-respiratorios' },
-      { key: 'halimetriaSialometria',    href: '/exames/halimetria-sialometria' },
       { key: 'avaliacaoPelvica',         href: '/exames/avaliacao-pelvica' },
       { key: 'preparos',                 href: '/exames/preparos' },
     ],
@@ -71,8 +70,8 @@ export const ESPECIALIDADES: Especialidade[] = [
   {
     num: '03', slug: 'halitose',
     title: 'Halitose',
-    desc: 'Diagnóstico multidisciplinar completo. Investigamos causas digestivas, orais e sistêmicas com halimetria de precisão.',
-    tags: ['Halimetria', 'Sialometria', 'Diagnóstico Integrado'],
+    desc: 'Investigação das causas digestivas do mau hálito, com encaminhamento para odontologia e otorrinolaringologia quando a origem é oral ou nasofaríngea.',
+    tags: ['Causas Digestivas', 'Refluxo e SIBO', 'Encaminhamento Integrado'],
     icon: 'Shield',
   },
   {
@@ -92,7 +91,7 @@ export const ESPECIALIDADES: Especialidade[] = [
   {
     num: '06', slug: 'motilidade-digestiva',
     title: 'Motilidade Digestiva',
-    desc: 'Avaliação avançada de distúrbios esofágicos e intestinais com manometria, pHmetria e impedânciometria integradas.',
+    desc: 'Avaliação avançada de distúrbios esofágicos e intestinais com manometria, pHmetria e impedanciopHmetria esofágica.',
     tags: ['Distúrbios Esofágicos', 'Refluxo', 'Alta Resolução'],
     icon: 'Star',
   },
@@ -104,7 +103,6 @@ export const EXAM_PDFS: Record<string, string> = {
   'manometria-anorretal':      '/pdfs/preparo-manometria-anorretal-v1.pdf',
   'phmetria-impedanciometria': '/pdfs/preparo-phmetria-impedanciometria-v1.pdf',
   'testes-respiratorios':      '/pdfs/preparo-teste-respiratorio-sibo-imo-v1.pdf',
-  'halimetria-sialometria':    '/pdfs/preparo-halimetria-sialometria-v1.pdf',
   'avaliacao-pelvica':         '/pdfs/preparo-avaliacao-pelvica-v1.pdf',
 }
 
@@ -113,13 +111,13 @@ export const EXAMES: Exame[] = [
   {
     id: 'manometria-esofagica', num: '01',
     title: 'Manometria Esofágica',
-    subtitle: 'Alta Resolução · Esôfago',
+    subtitle: 'Alta Resolução e Convencional · Esôfago',
     tag: 'Alta Resolução',
     seoTitle: 'Manometria Esofágica em BH',
-    seoDescription: 'Manometria esofágica de alta resolução em Belo Horizonte, sem sedação. Diagnóstico de acalasia, disfagia e refluxo. Certificação ISO 9001.',
+    seoDescription: 'Manometria esofágica de alta resolução e convencional em Belo Horizonte, sem sedação. Diagnóstico de acalasia, disfagia e refluxo. Certificação ISO 9001.',
     desc: [
       'Avalia com precisão a motilidade do esôfago e a função do esfíncter esofágico inferior, sendo essencial no diagnóstico de acalasia, disfagia e refluxo gastroesofágico.',
-      'Equipamentos atualizados com mapeamento completo da pressão esofágica em alta resolução. Laudos emitidos em clínica com gestão certificada pela norma ISO 9001.',
+      'Realizada em alta resolução (24 canais) ou pelo método convencional (8 canais), conforme a indicação médica. Equipamentos atualizados com mapeamento da pressão esofágica. Laudos emitidos em clínica com gestão certificada pela norma ISO 9001.',
     ],
     info: [
       { icon: 'Clock',   text: 'Duração: 30-45 minutos' },
@@ -146,14 +144,14 @@ export const EXAMES: Exame[] = [
   },
   {
     id: 'phmetria-impedanciometria', num: '03',
-    title: 'pHmetria e Impedânciometria',
+    title: 'pHmetria e ImpedanciopHmetria Esofágica',
     subtitle: 'Monitoramento 24h',
     tag: 'Monitoramento 24h',
-    seoTitle: 'pHmetria e Impedânciometria em BH',
-    seoDescription: 'pHmetria esofágica de 24 horas e impedanciometria em Belo Horizonte. Diagnóstico de refluxo ácido e não ácido refratário ao tratamento.',
+    seoTitle: 'pHmetria e ImpedanciopHmetria Esofágica em BH',
+    seoDescription: 'pHmetria esofágica e impedanciopHmetria esofágica (24h) em Belo Horizonte. Diagnóstico de refluxo ácido e não ácido refratário ao tratamento.',
     desc: [
       'Monitoramento ambulatorial que registra episódios de refluxo ácido e não-ácido ao longo de 24 horas, correlacionando sintomas com eventos de refluxo em atividade normal.',
-      'A impedânciometria detecta refluxo independente do pH, sendo essencial nos casos de refluxo refratário ao tratamento convencional.',
+      'A impedanciopHmetria detecta refluxo independente do pH, sendo essencial nos casos de refluxo refratário ao tratamento convencional.',
     ],
     info: [
       { icon: 'Clock',  text: 'Monitoramento ambulatorial de 24 horas' },
@@ -169,7 +167,7 @@ export const EXAMES: Exame[] = [
     seoDescription: 'Testes respiratórios não invasivos em Belo Horizonte para SIBO, IMO, H. pylori e intolerâncias alimentares. Sem sedação, resultado em um único exame.',
     desc: [
       'Diagnóstico de SIBO, IMO, intolerâncias alimentares e H. pylori por análise do ar exalado. Sem coleta de sangue, sem desconforto e com alta especificidade diagnóstica.',
-      'Protocolo NU.V.E.M detecta H₂, CH₄ e H₂S em um único exame, com cobertura de SIBO, LIBO, SIFO e infecção por H. pylori.',
+      'Os testes medem H₂, CH₄ e H₂S no ar expirado e ajudam o médico a investigar SIBO, IMO, intolerâncias e infecção por H. pylori.',
     ],
     info: [
       { icon: 'Check',  text: 'Sem coleta de sangue · sem sedação' },
@@ -177,22 +175,7 @@ export const EXAMES: Exame[] = [
     ],
   },
   {
-    id: 'halimetria-sialometria', num: '05',
-    title: 'Halimetria e Sialometria',
-    subtitle: 'Diagnóstico de Halitose',
-    tag: 'Diagnóstico Preciso',
-    seoTitle: 'Halimetria: Diagnóstico de Halitose em BH',
-    seoDescription: 'Halimetria e sialometria em Belo Horizonte para diagnóstico preciso da halitose. Protocolo multidisciplinar exclusivo NU.V.E.M.',
-    desc: [
-      'A halimetria quantifica objetivamente compostos sulfurados voláteis causadores da halitose, com diagnóstico diferencial entre causas orais, digestivas e sistêmicas.',
-      'A sialometria avalia o fluxo salivar, sendo essencial na investigação de xerostomia e suas relações com halitose e doenças sistêmicas.',
-    ],
-    info: [
-      { icon: 'Shield', text: 'Protocolo multidisciplinar exclusivo NU.V.E.M' },
-    ],
-  },
-  {
-    id: 'avaliacao-pelvica', num: '06',
+    id: 'avaliacao-pelvica', num: '05',
     title: 'Avaliação Pélvica',
     subtitle: 'Biofeedback e Eletromiografia',
     tag: 'Especialidade Integrada',

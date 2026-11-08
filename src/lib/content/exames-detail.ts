@@ -140,7 +140,7 @@ const DETAIL_PT: Record<string, ExameDetailData> = {
   'testes-respiratorios': {
     indicacoes: [
       'Suspeita de SIBO (supercrescimento bacteriano no intestino delgado)',
-      'Suspeita de IMO (supercrescimento de metanogênicos) ou LIBO',
+      'Suspeita de IMO (supercrescimento de metanogênicos)',
       'Intolerância à lactose ou frutose',
       'Diagnóstico de infecção por H. pylori',
       'Síndrome do intestino irritável para investigação etiológica',
@@ -162,36 +162,6 @@ const DETAIL_PT: Record<string, ExameDetailData> = {
       { pergunta: 'Preciso de algum preparo antes do exame?', resposta: 'Sim. É necessário jejum de 12 horas e uma dieta específica no dia anterior, sem alimentos fermentáveis. O guia completo de preparo está disponível em PDF para download.' },
     ],
     espRel: ['gastroenterologia', 'pediatria'],
-  },
-  'halimetria-sialometria': {
-    indicacoes: [
-      'Halitose persistente sem causa oral identificada',
-      'Avaliação objetiva antes e após tratamento',
-      'Suspeita de halitose de origem digestiva ou sistêmica',
-      'Rastreamento de xerostomia associada',
-    ],
-    preparo: [
-      'Não comer nas 3 horas anteriores',
-      'Não escovar dentes 2 horas antes',
-      'Não usar enxaguante bucal no dia',
-      'Não fumar 2 horas antes',
-      'Hidratação normal permitida',
-    ],
-    preparoCards: [
-      { icon: '🍽️', badge: '3h antes',  title: 'Alimentação',          body: 'Não comer nas 3 horas anteriores ao exame. Refeições alteram a composição do ar expirado.' },
-      { icon: '🦷', badge: '2h antes',  title: 'Higiene Oral',          body: 'Não escovar os dentes nas 2 horas anteriores. Não usar enxaguante, spray ou qualquer produto bucal no dia.' },
-      { icon: '🚭', badge: '2h antes',  title: 'Sem Fumar',             body: 'Não fumar nas 2 horas anteriores ao exame. O cigarro interfere diretamente na medição dos gases.' },
-      { icon: '🌸', title: 'Sem Perfume', body: 'Não usar perfume ou desodorante com fragrância forte no dia, pois podem interferir na leitura do halímetro.' },
-      { icon: '💧', title: 'Hidratação',  body: 'Beber água normalmente é permitido e recomendado para a sialometria.' },
-    ],
-    faqs: [
-      { pergunta: 'O que é a halimetria?', resposta: 'É um exame que mede objetivamente, em partes por bilhão, os compostos sulfurados voláteis presentes no ar exalado, principais responsáveis pelo mau hálito.' },
-      { pergunta: 'O que é a sialometria?', resposta: 'É a medição do fluxo salivar em repouso e estimulado, usada para identificar boca seca (xerostomia) como possível causa ou agravante da halitose.' },
-      { pergunta: 'Os exames de halimetria e sialometria doem?', resposta: 'Não. São exames simples, rápidos e indolores, realizados com um aparelho específico chamado halímetro.' },
-      { pergunta: 'Quanto tempo duram os exames?', resposta: 'A halimetria e a sialometria juntas duram cerca de 30 minutos.' },
-      { pergunta: 'A halitose sempre tem origem na boca?', resposta: 'Não. A halitose pode ter origem digestiva (refluxo, SIBO), nasofaríngea ou sistêmica. Por isso o protocolo da NU.V.E.M investiga todas as possíveis causas em conjunto.' },
-    ],
-    espRel: ['halitose'],
   },
   'avaliacao-pelvica': {
     indicacoes: [
@@ -334,7 +304,7 @@ const DETAIL_EN: Record<string, ExameDetailData> = {
   'testes-respiratorios': {
     indicacoes: [
       'Suspected SIBO (small intestinal bacterial overgrowth)',
-      'Suspected IMO (methanogen overgrowth) or LIBO',
+      'Suspected IMO (methanogen overgrowth)',
       'Lactose or fructose intolerance',
       'Diagnosis of H. pylori infection',
       'Irritable bowel syndrome for etiological investigation',
@@ -356,36 +326,6 @@ const DETAIL_EN: Record<string, ExameDetailData> = {
       { pergunta: 'Do I need any preparation before the exam?', resposta: 'Yes. A 12-hour fast and a specific diet the day before are required, with no fermentable foods. The complete prep guide is available as a downloadable PDF.' },
     ],
     espRel: ['gastroenterologia', 'pediatria'],
-  },
-  'halimetria-sialometria': {
-    indicacoes: [
-      'Persistent halitosis with no identified oral cause',
-      'Objective evaluation before and after treatment',
-      'Suspected halitosis of digestive or systemic origin',
-      'Screening for associated xerostomia',
-    ],
-    preparo: [
-      'No eating in the 3 hours before',
-      'No brushing teeth 2 hours before',
-      'No mouthwash on the day',
-      'No smoking 2 hours before',
-      'Normal hydration is allowed',
-    ],
-    preparoCards: [
-      { icon: '🍽️', badge: '3h before', title: 'Eating',        body: 'Do not eat in the 3 hours before the exam. Meals alter the composition of exhaled air.' },
-      { icon: '🦷', badge: '2h before', title: 'Oral Hygiene',  body: 'Do not brush your teeth in the 2 hours before. Do not use mouthwash, spray or any oral product on the day.' },
-      { icon: '🚭', badge: '2h before', title: 'No Smoking',    body: 'Do not smoke in the 2 hours before the exam. Cigarettes directly interfere with gas measurement.' },
-      { icon: '🌸', title: 'No Perfume', body: 'Do not wear perfume or strongly scented deodorant on the day, as they may interfere with the halimeter reading.' },
-      { icon: '💧', title: 'Hydration',  body: 'Drinking water normally is allowed and recommended for sialometry.' },
-    ],
-    faqs: [
-      { pergunta: 'What is halimetry?', resposta: 'It’s an exam that objectively measures, in parts per billion, the volatile sulfur compounds present in exhaled breath, the main cause of bad breath.' },
-      { pergunta: 'What is sialometry?', resposta: 'It’s the measurement of salivary flow at rest and stimulated, used to identify dry mouth (xerostomia) as a possible cause or aggravating factor of halitosis.' },
-      { pergunta: 'Do halimetry and sialometry hurt?', resposta: 'No. They are simple, quick and painless exams, performed with a specific device called a halimeter.' },
-      { pergunta: 'How long do the exams take?', resposta: 'Halimetry and sialometry together take about 30 minutes.' },
-      { pergunta: 'Does halitosis always originate in the mouth?', resposta: 'No. Halitosis can have a digestive (reflux, SIBO), nasopharyngeal or systemic origin. That’s why the NU.V.E.M protocol investigates every possible cause together.' },
-    ],
-    espRel: ['halitose'],
   },
   'avaliacao-pelvica': {
     indicacoes: [
@@ -528,7 +468,7 @@ const DETAIL_ES: Record<string, ExameDetailData> = {
   'testes-respiratorios': {
     indicacoes: [
       'Sospecha de SIBO (sobrecrecimiento bacteriano del intestino delgado)',
-      'Sospecha de IMO (sobrecrecimiento de metanógenos) o LIBO',
+      'Sospecha de IMO (sobrecrecimiento de metanógenos)',
       'Intolerancia a la lactosa o la fructosa',
       'Diagnóstico de infección por H. pylori',
       'Síndrome del intestino irritable para investigación etiológica',
@@ -550,36 +490,6 @@ const DETAIL_ES: Record<string, ExameDetailData> = {
       { pergunta: '¿Necesito alguna preparación antes del examen?', resposta: 'Sí. Se requiere un ayuno de 12 horas y una dieta específica el día anterior, sin alimentos fermentables. La guía completa de preparación está disponible en PDF para descargar.' },
     ],
     espRel: ['gastroenterologia', 'pediatria'],
-  },
-  'halimetria-sialometria': {
-    indicacoes: [
-      'Halitosis persistente sin causa oral identificada',
-      'Evaluación objetiva antes y después del tratamiento',
-      'Sospecha de halitosis de origen digestivo o sistémico',
-      'Cribado de xerostomía asociada',
-    ],
-    preparo: [
-      'No comer en las 3 horas anteriores',
-      'No cepillarse los dientes 2 horas antes',
-      'No usar enjuague bucal el día del examen',
-      'No fumar 2 horas antes',
-      'Se permite la hidratación normal',
-    ],
-    preparoCards: [
-      { icon: '🍽️', badge: '3h antes', title: 'Alimentación', body: 'No comer en las 3 horas anteriores al examen. Las comidas alteran la composición del aire exhalado.' },
-      { icon: '🦷', badge: '2h antes', title: 'Higiene Oral',  body: 'No cepillarse los dientes en las 2 horas anteriores. No usar enjuague, spray ni ningún producto bucal el día del examen.' },
-      { icon: '🚭', badge: '2h antes', title: 'Sin Fumar',     body: 'No fumar en las 2 horas anteriores al examen. El cigarrillo interfiere directamente en la medición de los gases.' },
-      { icon: '🌸', title: 'Sin Perfume', body: 'No usar perfume ni desodorante con fragancia fuerte el día del examen, ya que pueden interferir en la lectura del halímetro.' },
-      { icon: '💧', title: 'Hidratación',  body: 'Beber agua normalmente está permitido y es recomendable para la sialometría.' },
-    ],
-    faqs: [
-      { pergunta: '¿Qué es la halimetría?', resposta: 'Es un examen que mide objetivamente, en partes por billón, los compuestos sulfurados volátiles presentes en el aire exhalado, principales responsables del mal aliento.' },
-      { pergunta: '¿Qué es la sialometría?', resposta: 'Es la medición del flujo salival en reposo y estimulado, usada para identificar la boca seca (xerostomía) como posible causa o factor agravante de la halitosis.' },
-      { pergunta: '¿Los exámenes de halimetría y sialometría duelen?', resposta: 'No. Son exámenes simples, rápidos e indoloros, realizados con un equipo específico llamado halímetro.' },
-      { pergunta: '¿Cuánto duran los exámenes?', resposta: 'La halimetría y la sialometría juntas duran cerca de 30 minutos.' },
-      { pergunta: '¿La halitosis siempre tiene origen en la boca?', resposta: 'No. La halitosis puede tener origen digestivo (reflujo, SIBO), nasofaríngeo o sistémico. Por eso el protocolo de NU.V.E.M investiga todas las causas posibles en conjunto.' },
-    ],
-    espRel: ['halitose'],
   },
   'avaliacao-pelvica': {
     indicacoes: [

@@ -44,8 +44,6 @@ https://www.nuvemmedicina.com.br/exames/phmetria-impedanciometria?utm_source=ins
 
 https://www.nuvemmedicina.com.br/exames/testes-respiratorios?utm_source=instagram&utm_medium=social&utm_campaign=stories&utm_content=testes-respiratorios
 
-https://www.nuvemmedicina.com.br/exames/halimetria-sialometria?utm_source=instagram&utm_medium=social&utm_campaign=stories&utm_content=halimetria-sialometria
-
 https://www.nuvemmedicina.com.br/exames/avaliacao-pelvica?utm_source=instagram&utm_medium=social&utm_campaign=stories&utm_content=avaliacao-pelvica
 ```
 

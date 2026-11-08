@@ -20,8 +20,8 @@ Convenções deste relatório:
 |---|---|---|
 | 1 · Rastreamento | `6d16b95`, `3fb8192` | feito |
 | 2a · Textos CFM | `99de578` | feito, com textos para validar |
-| 2b · Travessões | este commit | feito |
-| 3 · Halimetria e sialometria | a seguir | |
+| 2b · Travessões | `e3c7e56` | feito |
+| 3 · Halimetria e sialometria | este commit | feito, com textos para validar |
 | 4 · Domínio, URLs antigas, indexação | a seguir | |
 | 5 · Agendamento | a seguir | |
 | 6 · Contato | a seguir | |
@@ -374,6 +374,270 @@ o sufixo e o layout acrescenta outro. Já era assim antes desta branch.
 
 ---
 
+## Bloco 3 · Halimetria e sialometria saem do site
+
+Decisão da clínica em 06/11/2026: halimetria e sialometria não são mais
+realizadas. A clínica também não realiza endoscopia, colonoscopia nem ultrassom.
+
+### O que foi feito
+
+- **Exame removido** de `data.ts`, `catalog.ts` (en/es), `exames-detail.ts`
+  (pt/en/es), do menu Exames, do rodapé, da página de preparos, de "sobre" e
+  das meta descriptions. O sitemap e o schema saem sozinhos, porque são
+  gerados a partir de `EXAMES`. A Avaliação Pélvica passou a ser o exame 05.
+- **PDF removido**: `public/pdfs/preparo-halimetria-sialometria-v1.pdf`.
+- **Nuvete**: saiu o preparo de halimetria, a linha nos exames e nos prazos de
+  laudo, e a resposta de halitose foi reescrita. O prompt diz que a clínica
+  **não realiza** halimetria, sialometria, endoscopia, colonoscopia nem
+  ultrassom.
+- **llms.txt**: sem a seção de halimetria; halitose descrita pelas causas digestivas.
+- **docs/utm-links-bio.md**: saiu o link de story da página removida.
+- **Página /especialidades/halitose** (mantida, decisão pendente): reescrita
+  nas três línguas para tratar só das causas digestivas, com encaminhamento
+  para odontologia e otorrinolaringologia. Exames relacionados passaram a ser
+  testes respiratórios e pHmetria. Saíram os tópicos de halimetria,
+  sialometria e acompanhamento por halimetria, o laudo em ppb e o FAQ
+  "O exame de halimetria é doloroso?". Todos os textos novos estão na lista de
+  validação.
+- **LIBO e SIFO**: saíram as frases que davam a entender que a clínica
+  diagnostica ("com cobertura de SIBO, LIBO, SIFO", "Suspeita de IMO ou LIBO"
+  como indicação, "SIBO, IMO, LIBO e intolerâncias" no botão do preparo, lista
+  de condições do llms.txt). Continuam no conteúdo dos cursos (página Ensino e
+  `cursos.ts`) e como palavra-gatilho da nuvete.
+- **Manometria esofágica**: passa a citar "alta resolução (24 canais) ou
+  convencional (8 canais), conforme a indicação médica", nas três línguas.
+- **pHmetria**: o exame passa a se chamar "pHmetria e ImpedanciopHmetria
+  Esofágica" (slug igual). O termo errado "Impedanciopletismografia", que
+  aparecia no prompt e na base da nuvete, foi corrigido.
+- **Endoscopia, colonoscopia e ultrassom**: nenhum trecho do site diz que a
+  clínica realiza. As menções são do tipo "traga sua endoscopia anterior" ou
+  "exame complementar à endoscopia" e ficaram.
+
+### Mantido de propósito
+
+| Trecho | Onde | Por quê |
+|---|---|---|
+| Trilha "Halitose, halimetria e sialometria" | `src/app/[locale]/ensino/page.tsx` | conteúdo de curso, não exame da clínica |
+| Registro "Halimetria e sialometria" em `PREPAROS_TODOS` | `src/lib/anamnese-ia/preparos.ts` | histórico da ferramenta interna; já fica de fora pelo `EXAMES_FORA` desde `e9dfbba` |
+| "A clínica não realiza halimetria nem sialometria" | prompt, nuvete, llms.txt | resposta correta quando perguntarem |
+
+### Redirects criados (Bloco 3)
+
+| De | Para | Testado (local) |
+|---|---|---|
+| `/exames/halimetria-sialometria` | `/exames` | 308 |
+| `/en/exames/halimetria-sialometria` | `/en/exames` | 308 |
+| `/es/exames/halimetria-sialometria` | `/es/exames` | 308 |
+| `/halimetria`, `/halimetria-e-sialometria` (já existiam, apontavam para a página removida) | `/exames` | 308 |
+| `/preparo-halimetria`, `/preparo-halimetria-e-sialometria` (antes iam para `/exames/preparos`) | `/exames` | 308 |
+| `/pdfs/preparo-halimetria-sialometria.pdf` e `-v1.pdf` | `/exames/preparos` | 308 |
+
+O Next responde **308** para `permanent: true`, não 301. O Google trata os dois
+como redirecionamento permanente, e os cerca de 80 redirects que já existiam
+também são 308. A decisão de manter ou trocar por 301 explícito fica para o
+Bloco 4.
+
+### Lista oficial de exames comparada com o site
+
+| Exame da lista oficial | No site | Situação |
+|---|---|---|
+| Manometria esofágica de alta resolução (24 canais) | sim | ok |
+| Manometria esofágica convencional (8 canais) | não existia | **acrescentada** na página da manometria esofágica (validar) |
+| Manometria anorretal | sim, como "Alta Resolução · Canal Anal" | **[A CONFIRMAR]**: a lista oficial não diz que é de alta resolução |
+| pHmetria esofágica e impedanciopHmetria esofágica (24h) | sim, como "pHmetria e Impedânciometria" | **renomeado** |
+| Testes respiratórios: SIBO (H₂), SIBO + metano/IMO, H. pylori, lactose, frutose | sim | ok; o site cita também H₂S (ver abaixo) |
+| Avaliação pélvica com biofeedback eletromiográfico | sim | ok |
+| Trânsito colônico (somente particular) | **não existe** | **pendência**: sem página, falta o preparo oficial |
+| Halimetria e sialometria | existia | **removido** |
+
+### H₂S · [A CONFIRMAR com a Dra. Vera]
+
+O preparo oficial do teste respiratório cita H₂ · CH₄ · H₂S, mas a lista da
+equipe não. Nada foi alterado. Ocorrências (fora da ferramenta de anamnese):
+
+| Arquivo:linha | Trecho |
+|---|---|
+| `src/app/api/route.ts:119` | …- Testes Respiratórios (H₂, CH₄, H₂S)… |
+| `src/app/api/route.ts:176` | …- SIBO com medição de H₂, CH₄ e H₂S no ar expirado… |
+| `src/app/llms.txt/route.ts:41` | …- **H₂/CH₄/H₂S (SIBO/IMO):** Diagnóstico de supercrescimento bacteriano… |
+| `src/lib/content/catalog.ts:129` | …title: 'Breath Tests', subtitle: 'H₂ · CH₄ · H₂S · H. pylori', tag: 'Non-Invasive',… |
+| `src/lib/content/catalog.ts:134` | …'The tests measure H₂, CH₄ and H₂S in exhaled breath and help the physician investigate SIB… |
+| `src/lib/content/catalog.ts:203` | …title: 'Pruebas Respiratorias', subtitle: 'H₂ · CH₄ · H₂S · H. pylori', tag: 'No Invasivo',… |
+| `src/lib/content/catalog.ts:208` | …'Las pruebas miden H₂, CH₄ y H₂S en el aire exhalado y ayudan al médico a investigar SIBO… |
+| `src/lib/content/exames-detail.ts:148` | …'Investigação de gases intestinais (H₂, CH₄, H₂S)',… |
+| `src/lib/content/exames-detail.ts:312` | …'Investigation of intestinal gases (H₂, CH₄, H₂S)',… |
+| `src/lib/content/exames-detail.ts:476` | …'Investigación de gases intestinales (H₂, CH₄, H₂S)',… |
+| `src/lib/content/exames-resp-extra.ts:43` | …{ label: 'Preparo: H₂ · CH₄ · H₂S', sub: 'SIBO, IMO e intolerâncias', href: '/pdfs/preparo… |
+| `src/lib/content/exames-resp-extra.ts:54` | …ointestinal por teste respiratório. Detecta simultaneamente H₂, CH₄ e H₂S, o que ajuda o médico a investigar quadros de SIBO, IMO … |
+| `src/lib/content/exames-resp-extra.ts:56` | …{ label: 'Gases medidos', value: 'H₂ · CH₄ · H₂S' },… |
+| `src/lib/content/exames-resp-extra.ts:119` | …{ label: 'Prep Guide: H₂ · CH₄ · H₂S', sub: 'SIBO, IMO and intolerances', href: '/pdfs/prepar… |
+| `src/lib/content/exames-resp-extra.ts:130` | …estinal diagnosis via breath test. Simultaneously detects H₂, CH₄ and H₂S, which helps the physician investigate SIBO, IMO and oth… |
+| `src/lib/content/exames-resp-extra.ts:132` | …{ label: 'Gases measured', value: 'H₂ · CH₄ · H₂S' },… |
+| `src/lib/content/exames-resp-extra.ts:195` | …{ label: 'Preparación: H₂ · CH₄ · H₂S', sub: 'SIBO, IMO e intolerancias', href: '/pdfs/preparo… |
+| `src/lib/content/exames-resp-extra.ts:206` | …tinal mediante prueba respiratoria. Detecta simultáneamente H₂, CH₄ y H₂S, lo que ayuda al médico a investigar cuadros de SIBO, IM… |
+| `src/lib/content/exames-resp-extra.ts:208` | …{ label: 'Gases medidos',      value: 'H₂ · CH₄ · H₂S' },… |
+| `src/lib/cursos.ts:39` | …titulo:     'Testes Respiratórios de H₂, CH₄ e H₂S',… |
+| `src/lib/data.ts:164` | …subtitle: 'H₂ · CH₄ · H₂S · H. pylori',… |
+| `src/lib/data.ts:170` | …'Os testes medem H₂, CH₄ e H₂S no ar expirado e ajudam o médico a investigar SIBO, IMO,… |
+| `src/lib/hero-slides.tsx:94` | …ar exalado. Protocolo NU.V.E.M detecta H₂, CH₄ e H₂S em um único exame, com… |
+| `src/lib/hero-slides.tsx:174` | …breath analysis. The NU.V.E.M protocol detects H₂, CH₄ and H₂S in a single… |
+| `src/lib/hero-slides.tsx:255` | …análisis del aire exhalado. El protocolo NU.V.E.M detecta H₂, CH₄ y H₂S en… |
+| `src/lib/nuvete-data.ts:112` | …nome:    'Teste Respiratório: SIBO (H₂/CH₄/H₂S)',… |
+| `src/lib/nuvete-data.ts:291` | … impedanciopHmetria esofágica (24h)\n- Testes Respiratórios (H₂, CH₄, H₂S)\n\nA Dra. Vera Ângelo, Diretora Técnica da clínica, atu… |
+| `src/lib/nuvete-data.ts:352` | … todos não invasivos e sem coleta de sangue:\n\n- 🔬 **SIBO** (H₂/CH₄/H₂S): supercrescimento bacteriano\n- 🦠 ***H. pylori*** (URE… |
+| `src/lib/nuvete-data.ts:362` | … e IMO (supercrescimento de metanogênicos).\n\nO teste mede H₂, CH₄ e H₂S no ar expirado, sem coleta de sangue.\n\nGostaria de sab… |
+| `messages/en.json:301` | …"feat1Desc": "High-resolution manometry, pH monitoring, H₂/CH₄/H₂S breath tests",… |
+| `messages/es.json:301` | …Manometría de alta resolución, pHmetría, pruebas respiratorias H₂/CH₄/H₂S",… |
+| `messages/pt-BR.json:301` | …"feat1Desc": "Manometria AR, pHmetria, testes respiratórios H₂/CH₄/H₂S",… |
+
+### Tabela de mudanças do Bloco 3
+
+| Arquivo | Antes | Depois | Bloco |
+|---|---|---|---|
+| `src/lib/data.ts` | objeto com id: 'halimetria-sialometria' | (removido) | 3 |
+| `src/lib/content/catalog.ts` | objeto com id: 'halimetria-sialometria' | (removido) | 3 |
+| `src/lib/content/catalog.ts` | objeto com id: 'halimetria-sialometria' | (removido) | 3 |
+| `src/lib/content/exames-detail.ts` | objeto com 'halimetria-sialometria': { | (removido) | 3 |
+| `src/lib/content/exames-detail.ts` | objeto com 'halimetria-sialometria': { | (removido) | 3 |
+| `src/lib/content/exames-detail.ts` | objeto com 'halimetria-sialometria': { | (removido) | 3 |
+| `src/lib/data.ts` | 'halimetria-sialometria':    '/pdfs/preparo-halimetria-sialometria-v1.pdf', | (removido) | 3 |
+| `src/lib/data.ts` | { key: 'halimetriaSialometria',    href: '/exames/halimetria-sialometria' }, | (removido) | 3 |
+| `src/lib/data.ts` | id: 'avaliacao-pelvica', num: '06' | id: 'avaliacao-pelvica', num: '05' | 3 |
+| `src/lib/content/catalog.ts` | id: 'avaliacao-pelvica', num: '06' | id: 'avaliacao-pelvica', num: '05' | 3 |
+| `src/components/layout/Footer.tsx` | { label: tNav('halimetriaSialometria'), href: '/exames/halimetria-sialometria' }, | (removido) | 3 |
+| `src/app/[locale]/exames/preparos/page.tsx` | objeto com slug:    'halimetria-sialometria' | (removido) | 3 |
+| `src/app/[locale]/exames/preparos/page.tsx` | pHmetria, testes respiratórios, halimetria e avaliação pélvica. | pHmetria e impedanciopHmetria, testes respiratórios e avaliação pélvica. | 3 |
+| `src/app/[locale]/sobre/page.tsx` | pHmetria, halimetria e muito mais, | pHmetria e avaliação pélvica, | 3 |
+| `src/lib/data.ts` | desc: 'Diagnóstico multidisciplinar completo. Investigamos causas digestivas, orais e sistêmicas com halimetria de precisão.',     tags: ['Halimetria', 'Sialometria', … | desc: 'Investigação das causas digestivas do mau hálito, com encaminhamento para odontologia e otorrinolaringologia quando a origem é oral ou nasofaríngea.',     tags:… | 3 · **validar** |
+| `src/lib/content/catalog.ts` | desc:  'Complete multidisciplinary diagnosis. We investigate digestive, oral and systemic causes with precision halimetry.',     tags:  ['Halimetry', 'Sialometry', 'In… | desc:  'Investigation of the digestive causes of bad breath, with referral to dentistry and otolaryngology when the origin is oral or nasopharyngeal.',     tags:  ['Di… | 3 · **validar** |
+| `src/lib/content/catalog.ts` | desc:  'Diagnóstico multidisciplinario completo. Investigamos causas digestivas, orales y sistémicas con halimetría de precisión.',     tags:  ['Halimetría', 'Sialomet… | desc:  'Investigación de las causas digestivas del mal aliento, con derivación a odontología y otorrinolaringología cuando el origen es oral o nasofaríngeo.',     tags… | 3 · **validar** |
+| `src/lib/content/especialidades-detail.ts` | 'Diagnóstico multidisciplinar completo da halitose. Investigamos causas digestivas, orais e sistêmicas com halimetria e sialometria de alta precisão.' | 'Avaliação da halitose com foco nas causas digestivas. Investigamos refluxo, SIBO, H. pylori e outras origens gastrointestinais, com encaminhamento para odontologia e … | 3 · **validar** |
+| `src/lib/content/especialidades-detail.ts` | 'A halitose é uma condição complexa que exige abordagem multidisciplinar. Na NU.V.E.M, investigamos todas as origens possíveis: digestivas, orais, nasofaríngeas e sist… | 'A halitose pode ter origem oral, nasofaríngea, sistêmica ou digestiva. Na NU.V.E.M, a consulta de gastroenterologia investiga as causas digestivas do mau hálito.' | 3 · **validar** |
+| `src/lib/content/especialidades-detail.ts` | 'Nossa abordagem combina halimetria quantitativa objetiva, sialometria, avaliação gastroenterológica completa e, quando necessário, parceria com odontologia e otorrino… | 'Conforme a indicação médica, a investigação pode incluir exames realizados na clínica, como testes respiratórios e pHmetria. Quando a origem provável é oral ou nasofa… | 3 · **validar** |
+| `src/lib/content/especialidades-detail.ts` | { title: 'Halimetria Quantitativa', body: 'Quantificação objetiva de compostos sulfurados voláteis (CSV) no ar exalado com aparelho Halimeter® calibrado, para diagnóst… | (removido) | 3 |
+| `src/lib/content/especialidades-detail.ts` | { title: 'Sialometria', body: 'Medição do fluxo salivar em repouso e estimulado, essencial no diagnóstico de xerostomia e suas relações diretas com a halitose de orige… | (removido) | 3 |
+| `src/lib/content/especialidades-detail.ts` | { title: 'Protocolo Diagnóstico Integrado', body: 'Avaliação simultânea de todas as possíveis origens: oral, digestiva, nasofaríngea e sistêmica, com sequenciamento di… | { title: 'Avaliação Integrada', body: 'Consulta que considera as possíveis origens do mau hálito (oral, digestiva, nasofaríngea e sistêmica) para orientar a investigaç… | 3 · **validar** |
+| `src/lib/content/especialidades-detail.ts` | { title: 'Acompanhamento Evolutivo', body: 'Monitoramento periódico com halimetria para avaliar resposta ao tratamento de forma objetiva, garantindo que a melhora seja… | { title: 'Exames Digestivos', body: 'Testes respiratórios (SIBO, IMO e H. pylori) e pHmetria podem ajudar o médico a investigar causas digestivas do mau hálito.' } | 3 · **validar** |
+| `src/lib/content/especialidades-detail.ts` | 'Halimetria quantitativa objetiva: resultado em ppb (partes por bilhão) de CSV' | 'Exames digestivos realizados na própria clínica, conforme a indicação médica' | 3 |
+| `src/lib/content/especialidades-detail.ts` | 'Investigação simultânea de origem oral, digestiva e sistêmica na mesma consulta' | 'Avaliação das possíveis origens oral, digestiva e sistêmica na consulta' | 3 |
+| `src/lib/content/especialidades-detail.ts` | 'Plano terapêutico individualizado com acompanhamento evolutivo documentado' | 'Plano terapêutico individualizado, com acompanhamento médico' | 3 |
+| `src/lib/content/especialidades-detail.ts` | 'Certificação ISO 9001: resultados rastreáveis e comparáveis entre consultas' | 'Gestão certificada pela norma ISO 9001' | 3 |
+| `src/lib/content/especialidades-detail.ts` | para investigação diagnóstica completa de halitose. O protocolo NU.V.E.M inclui halimetria, sialometria, triagem digestiva e planejamento terapêutico integrado.' | para investigação das causas digestivas da halitose. A avaliação inclui triagem das causas digestivas e planejamento terapêutico integrado.' | 3 · **validar** |
+| `src/lib/content/especialidades-detail.ts` | 'Laudo com quantificação de CSV (ppb) e interpretação clínica', | (removido) | 3 |
+| `src/lib/content/especialidades-detail.ts` | 'Monitoramento evolutivo disponível para acompanhamento de resultados', | (removido) | 3 |
+| `src/lib/content/especialidades-detail.ts` | esp: 'Gastroenterologia · Diagnóstico de Halitose' | esp: 'Gastroenterologia' | 3 |
+| `src/lib/content/especialidades-detail.ts` | por isso investigamos todas as possíveis origens em um único atendimento integrado.' | por isso a consulta considera todas as possíveis origens e orienta os encaminhamentos.' | 3 |
+| `src/lib/content/especialidades-detail.ts` | 'Por meio de halimetria quantitativa, sialometria e avaliação gastroenterológica completa, com parceria com odontologia e otorrinolaringologia quando necessário.' | 'Por meio da avaliação gastroenterológica e, quando indicado, de exames como testes respiratórios e pHmetria. Causas orais e nasofaríngeas são avaliadas por odontologi… | 3 · **validar** |
+| `src/lib/content/especialidades-detail.ts` | { pergunta: 'O exame de halimetria é doloroso?', resposta: 'Não. É um exame simples, rápido e indolor, realizado com aparelho calibrado (Halimeter®).' }, | (removido) | 3 |
+| `src/lib/content/especialidades-detail.ts` | exames: ['halimetria-sialometria', 'testes-respiratorios'], | exames: ['testes-respiratorios', 'phmetria-impedanciometria'], | 3 |
+| `src/lib/content/especialidades-detail.ts` | 'Complete multidisciplinary diagnosis of halitosis. We investigate digestive, oral and systemic causes with precision halimetry and sialometry.' | 'Halitosis evaluation focused on digestive causes. We investigate reflux, SIBO, H. pylori and other gastrointestinal origins, with referral to dentistry and otolaryngo… | 3 · **validar** |
+| `src/lib/content/especialidades-detail.ts` | 'Halitosis is a complex condition that requires a multidisciplinary approach. At NU.V.E.M, we investigate every possible origin: digestive, oral, nasopharyngeal and sy… | 'Halitosis can have an oral, nasopharyngeal, systemic or digestive origin. At NU.V.E.M, the gastroenterology visit investigates the digestive causes of bad breath.' | 3 · **validar** |
+| `src/lib/content/especialidades-detail.ts` | 'Our approach combines objective quantitative halimetry, sialometry, a complete gastroenterological evaluation and, when needed, partnership with dentistry and otolary… | 'As indicated by the physician, the investigation may include exams performed at the clinic, such as breath tests and pH monitoring. When the likely origin is oral or … | 3 · **validar** |
+| `src/lib/content/especialidades-detail.ts` | { title: 'Quantitative Halimetry', body: 'Objective quantification of volatile sulfur compounds (VSCs) in exhaled breath with a calibrated Halimeter®, for precise diag… | (removido) | 3 |
+| `src/lib/content/especialidades-detail.ts` | { title: 'Sialometry', body: 'Measurement of resting and stimulated salivary flow, essential in diagnosing xerostomia and its direct relationship with oral halitosis.' }, | (removido) | 3 |
+| `src/lib/content/especialidades-detail.ts` | { title: 'Integrated Diagnostic Protocol', body: 'Simultaneous evaluation of every possible origin: oral, digestive, nasopharyngeal and systemic, with efficient, preci… | { title: 'Integrated Evaluation', body: 'A visit that considers the possible origins of bad breath (oral, digestive, nasopharyngeal and systemic) to guide the investig… | 3 · **validar** |
+| `src/lib/content/especialidades-detail.ts` | { title: 'Progress Monitoring', body: 'Periodic monitoring with halimetry to objectively evaluate treatment response, ensuring improvement is documented and sustained.' } | { title: 'Digestive Exams', body: 'Breath tests (SIBO, IMO and H. pylori) and pH monitoring can help the physician investigate digestive causes of bad breath.' } | 3 · **validar** |
+| `src/lib/content/especialidades-detail.ts` | 'Objective quantitative halimetry: result in ppb (parts per billion) of VSCs' | 'Digestive exams performed at the clinic, as indicated by the physician' | 3 |
+| `src/lib/content/especialidades-detail.ts` | 'Simultaneous investigation of oral, digestive and systemic origin in the same visit' | 'Evaluation of possible oral, digestive and systemic origins during the visit' | 3 |
+| `src/lib/content/especialidades-detail.ts` | 'Individualized treatment plan with documented progress monitoring' | 'Individualized treatment plan, with medical follow-up' | 3 |
+| `src/lib/content/especialidades-detail.ts` | 'ISO 9001 certification: traceable results comparable across visits' | 'Management certified under ISO 9001' | 3 |
+| `src/lib/content/especialidades-detail.ts` | for a complete diagnostic investigation of halitosis. The NU.V.E.M protocol includes halimetry, sialometry, digestive screening and integrated treatment planning.' | to investigate the digestive causes of halitosis. The evaluation includes screening for digestive causes and integrated treatment planning.' | 3 · **validar** |
+| `src/lib/content/especialidades-detail.ts` | 'Report with VSC quantification (ppb) and clinical interpretation', | (removido) | 3 |
+| `src/lib/content/especialidades-detail.ts` | 'Progress monitoring available to track results', | (removido) | 3 |
+| `src/lib/content/especialidades-detail.ts` | esp: 'Gastroenterology · Halitosis Diagnosis' | esp: 'Gastroenterology' | 3 |
+| `src/lib/content/especialidades-detail.ts` | which is why we investigate every possible origin in a single integrated visit.' | which is why the visit considers every possible origin and guides referrals.' | 3 |
+| `src/lib/content/especialidades-detail.ts` | 'Through quantitative halimetry, sialometry and a complete gastroenterological evaluation, with partnership with dentistry and otolaryngology when needed.' | 'Through a gastroenterological evaluation and, when indicated, exams such as breath tests and pH monitoring. Oral and nasopharyngeal causes are evaluated by dentistry … | 3 · **validar** |
+| `src/lib/content/especialidades-detail.ts` | { pergunta: 'Is the halimetry exam painful?', resposta: 'No. It’s a simple, quick and painless exam, performed with calibrated equipment (Halimeter®).' }, | (removido) | 3 |
+| `src/lib/content/especialidades-detail.ts` | 'Diagnóstico multidisciplinario completo de la halitosis. Investigamos causas digestivas, orales y sistémicas con halimetría y sialometría de alta precisión.' | 'Evaluación de la halitosis con foco en las causas digestivas. Investigamos reflujo, SIBO, H. pylori y otros orígenes gastrointestinales, con derivación a odontología … | 3 · **validar** |
+| `src/lib/content/especialidades-detail.ts` | 'La halitosis es una condición compleja que exige un abordaje multidisciplinario. En NU.V.E.M investigamos todos los orígenes posibles: digestivos, orales, nasofarínge… | 'La halitosis puede tener origen oral, nasofaríngeo, sistémico o digestivo. En NU.V.E.M, la consulta de gastroenterología investiga las causas digestivas del mal alien… | 3 · **validar** |
+| `src/lib/content/especialidades-detail.ts` | 'Nuestro enfoque combina halimetría cuantitativa objetiva, sialometría, evaluación gastroenterológica completa y, cuando es necesario, colaboración con odontología y o… | 'Según la indicación médica, la investigación puede incluir exámenes realizados en la clínica, como pruebas respiratorias y pHmetría. Cuando el origen probable es oral… | 3 · **validar** |
+| `src/lib/content/especialidades-detail.ts` | { title: 'Halimetría Cuantitativa', body: 'Cuantificación objetiva de compuestos sulfurados volátiles (CSV) en el aire exhalado con un Halimeter® calibrado, para un di… | (removido) | 3 |
+| `src/lib/content/especialidades-detail.ts` | { title: 'Sialometría', body: 'Medición del flujo salival en reposo y estimulado, esencial en el diagnóstico de la xerostomía y su relación directa con la halitosis de… | (removido) | 3 |
+| `src/lib/content/especialidades-detail.ts` | { title: 'Protocolo Diagnóstico Integrado', body: 'Evaluación simultánea de todos los orígenes posibles: oral, digestivo, nasofaríngeo y sistémico, con una secuencia d… | { title: 'Evaluación Integrada', body: 'Consulta que considera los orígenes posibles del mal aliento (oral, digestivo, nasofaríngeo y sistémico) para orientar la inves… | 3 · **validar** |
+| `src/lib/content/especialidades-detail.ts` | { title: 'Seguimiento Evolutivo', body: 'Monitoreo periódico con halimetría para evaluar objetivamente la respuesta al tratamiento, garantizando que la mejora quede do… | { title: 'Exámenes Digestivos', body: 'Las pruebas respiratorias (SIBO, IMO y H. pylori) y la pHmetría pueden ayudar al médico a investigar causas digestivas del mal a… | 3 · **validar** |
+| `src/lib/content/especialidades-detail.ts` | 'Halimetría cuantitativa objetiva: resultado en ppb (partes por billón) de CSV' | 'Exámenes digestivos realizados en la propia clínica, según la indicación médica' | 3 |
+| `src/lib/content/especialidades-detail.ts` | 'Investigación simultánea de origen oral, digestivo y sistémico en la misma consulta' | 'Evaluación de los orígenes posibles oral, digestivo y sistémico en la consulta' | 3 |
+| `src/lib/content/especialidades-detail.ts` | 'Plan terapéutico individualizado con seguimiento evolutivo documentado' | 'Plan terapéutico individualizado, con seguimiento médico' | 3 |
+| `src/lib/content/especialidades-detail.ts` | 'Certificación ISO 9001: resultados trazables y comparables entre consultas' | 'Gestión certificada según la norma ISO 9001' | 3 |
+| `src/lib/content/especialidades-detail.ts` | para la investigación diagnóstica completa de la halitosis. El protocolo NU.V.E.M incluye halimetría, sialometría, cribado digestivo y planificación terapéutica integr… | para investigar las causas digestivas de la halitosis. La evaluación incluye el cribado de causas digestivas y la planificación terapéutica integrada.' | 3 · **validar** |
+| `src/lib/content/especialidades-detail.ts` | 'Informe con cuantificación de CSV (ppb) e interpretación clínica', | (removido) | 3 |
+| `src/lib/content/especialidades-detail.ts` | 'Monitoreo evolutivo disponible para el seguimiento de resultados', | (removido) | 3 |
+| `src/lib/content/especialidades-detail.ts` | esp: 'Gastroenterología · Diagnóstico de Halitosis' | esp: 'Gastroenterología' | 3 |
+| `src/lib/content/especialidades-detail.ts` | por eso investigamos todos los orígenes posibles en una única consulta integrada.' | por eso la consulta considera todos los orígenes posibles y orienta las derivaciones.' | 3 |
+| `src/lib/content/especialidades-detail.ts` | 'Mediante halimetría cuantitativa, sialometría y evaluación gastroenterológica completa, con colaboración de odontología y otorrinolaringología cuando es necesario.' | 'Mediante la evaluación gastroenterológica y, cuando está indicado, exámenes como pruebas respiratorias y pHmetría. Las causas orales y nasofaríngeas las evalúan odont… | 3 · **validar** |
+| `src/lib/content/especialidades-detail.ts` | { pergunta: '¿El examen de halimetría es doloroso?', resposta: 'No. Es un examen simple, rápido e indoloro, realizado con un equipo calibrado (Halimeter®).' }, | (removido) | 3 |
+| `src/lib/data.ts` | 'Protocolo NU.V.E.M detecta H₂, CH₄ e H₂S em um único exame, com cobertura de SIBO, LIBO, SIFO e infecção por H. pylori.' | 'Os testes medem H₂, CH₄ e H₂S no ar expirado e ajudam o médico a investigar SIBO, IMO, intolerâncias e infecção por H. pylori.' | 3 · **validar** |
+| `src/lib/content/catalog.ts` | 'The NU.V.E.M protocol detects H₂, CH₄ and H₂S in a single exam, covering SIBO, LIBO, SIFO and H. pylori infection.' | 'The tests measure H₂, CH₄ and H₂S in exhaled breath and help the physician investigate SIBO, IMO, intolerances and H. pylori infection.' | 3 · **validar** |
+| `src/lib/content/catalog.ts` | 'El protocolo NU.V.E.M detecta H₂, CH₄ y H₂S en un único examen, cubriendo SIBO, LIBO, SIFO e infección por H. pylori.' | 'Las pruebas miden H₂, CH₄ y H₂S en el aire exhalado y ayudan al médico a investigar SIBO, IMO, intolerancias e infección por H. pylori.' | 3 · **validar** |
+| `src/lib/content/exames-detail.ts` | 'Suspeita de IMO (supercrescimento de metanogênicos) ou LIBO' | 'Suspeita de IMO (supercrescimento de metanogênicos)' | 3 · **validar** |
+| `src/lib/content/exames-detail.ts` | 'Suspected IMO (methanogen overgrowth) or LIBO' | 'Suspected IMO (methanogen overgrowth)' | 3 · **validar** |
+| `src/lib/content/exames-detail.ts` | 'Sospecha de IMO (sobrecrecimiento de metanógenos) o LIBO' | 'Sospecha de IMO (sobrecrecimiento de metanógenos)' | 3 · **validar** |
+| `src/lib/content/exames-resp-extra.ts` | sub: 'SIBO, IMO, LIBO e intolerâncias' | sub: 'SIBO, IMO e intolerâncias' | 3 |
+| `src/lib/content/exames-resp-extra.ts` | sub: 'SIBO, IMO, LIBO and intolerances' | sub: 'SIBO, IMO and intolerances' | 3 |
+| `src/lib/content/exames-resp-extra.ts` | sub: 'SIBO, IMO, LIBO e intolerancias' | sub: 'SIBO, IMO e intolerancias' | 3 |
+| `src/app/llms.txt/route.ts` | SIBO, IMO, LIBO, disbiose intestinal | SIBO, IMO, disbiose intestinal | 3 |
+| `src/lib/data.ts` | subtitle: 'Alta Resolução · Esôfago', | subtitle: 'Alta Resolução e Convencional · Esôfago', | 3 |
+| `src/lib/data.ts` | 'Manometria esofágica de alta resolução em Belo Horizonte, sem sedação. | 'Manometria esofágica de alta resolução e convencional em Belo Horizonte, sem sedação. | 3 |
+| `src/lib/data.ts` | 'Equipamentos atualizados com mapeamento completo da pressão esofágica em alta resolução. | 'Realizada em alta resolução (24 canais) ou pelo método convencional (8 canais), conforme a indicação médica. Equipamentos atualizados com mapeamento da pressão esofág… | 3 · **validar** |
+| `src/lib/content/catalog.ts` | subtitle: 'High Resolution · Esophagus', | subtitle: 'High Resolution and Conventional · Esophagus', | 3 |
+| `src/lib/content/catalog.ts` | 'High-resolution esophageal manometry in Belo Horizonte, no sedation. | 'High-resolution and conventional esophageal manometry in Belo Horizonte, no sedation. | 3 |
+| `src/lib/content/catalog.ts` | 'Up-to-date equipment with full high-resolution esophageal pressure mapping. | 'Performed with high-resolution (24-channel) or conventional (8-channel) manometry, as indicated by the physician. Up-to-date equipment with esophageal pressure mapping. | 3 · **validar** |
+| `src/lib/content/catalog.ts` | subtitle: 'Alta Resolución · Esófago', | subtitle: 'Alta Resolución y Convencional · Esófago', | 3 |
+| `src/lib/content/catalog.ts` | 'Manometría esofágica de alta resolución en Belo Horizonte, sin sedación. | 'Manometría esofágica de alta resolución y convencional en Belo Horizonte, sin sedación. | 3 |
+| `src/lib/content/catalog.ts` | 'Equipos actualizados con mapeo completo de la presión esofágica en alta resolución. | 'Realizada en alta resolución (24 canales) o con el método convencional (8 canales), según la indicación médica. Equipos actualizados con mapeo de la presión esofágica. | 3 · **validar** |
+| `src/lib/data.ts` | title: 'pHmetria e Impedânciometria', | title: 'pHmetria e ImpedanciopHmetria Esofágica', | 3 |
+| `src/lib/data.ts` | seoTitle: 'pHmetria e Impedânciometria em BH', | seoTitle: 'pHmetria e ImpedanciopHmetria Esofágica em BH', | 3 |
+| `src/lib/data.ts` | 'pHmetria esofágica de 24 horas e impedanciometria em Belo Horizonte. | 'pHmetria esofágica e impedanciopHmetria esofágica (24h) em Belo Horizonte. | 3 |
+| `src/lib/data.ts` | 'A impedânciometria detecta refluxo | 'A impedanciopHmetria detecta refluxo | 3 |
+| `src/lib/data.ts` | com manometria, pHmetria e impedânciometria integradas.' | com manometria, pHmetria e impedanciopHmetria esofágica.' | 3 |
+| `src/lib/content/catalog.ts` | title: 'pH & Impedance Monitoring', subtitle: | title: 'Esophageal pH and Impedance-pH Monitoring', subtitle: | 3 |
+| `src/lib/content/catalog.ts` | seoTitle: 'pH & Impedance Monitoring in Belo Horizonte', | seoTitle: 'Esophageal pH and Impedance-pH Monitoring in Belo Horizonte', | 3 |
+| `src/lib/content/catalog.ts` | '24-hour esophageal pH monitoring and impedance testing in Belo Horizonte. | '24-hour esophageal pH monitoring and impedance-pH monitoring in Belo Horizonte. | 3 |
+| `src/lib/content/catalog.ts` | 'Impedance monitoring detects reflux | 'Impedance-pH monitoring detects reflux | 3 |
+| `src/lib/content/catalog.ts` | title: 'pHmetría e Impedancia', subtitle: | title: 'pHmetría e ImpedanciopHmetría Esofágica', subtitle: | 3 |
+| `src/lib/content/catalog.ts` | seoTitle: 'pHmetría e Impedancia en Belo Horizonte', | seoTitle: 'pHmetría e ImpedanciopHmetría Esofágica en Belo Horizonte', | 3 |
+| `src/lib/content/catalog.ts` | 'pHmetría esofágica de 24 horas e impedancia en Belo Horizonte. | 'pHmetría esofágica e impedanciopHmetría esofágica (24h) en Belo Horizonte. | 3 |
+| `src/lib/content/catalog.ts` | 'La impedancia detecta reflujo | 'La impedanciopHmetría detecta reflujo | 3 |
+| `src/lib/nuvete-data.ts` | objeto com id:      'halimetria', | (removido) | 3 |
+| `src/lib/nuvete-data.ts` | \n- 💬 Halimetria e Sialometria |  | 3 |
+| `src/lib/nuvete-data.ts` | \n- Halimetria e Sialometria: até 2 dias úteis |  | 3 |
+| `src/lib/nuvete-data.ts` | - 🫁 Manometria Esofágica de Alta Resolução\n | - 🫁 Manometria Esofágica (alta resolução e convencional)\n | 3 |
+| `src/lib/nuvete-data.ts` | - ⏱️ pHmetria Esofágica 24h\n | - ⏱️ pHmetria e impedanciopHmetria esofágica (24h)\n | 3 |
+| `src/lib/nuvete-data.ts` | pHmetria e Impedanciopletismografia | pHmetria e impedanciopHmetria esofágica (24h) | 3 |
+| `src/lib/nuvete-data.ts` | 'A NU.V.E.M tem um programa completo para diagnóstico e tratamento da halitose, com:\n\n🔬 Halimetria: quantificação objetiva dos compostos causadores\n💧 Sialometria:… | 'Na NU.V.E.M, a consulta de gastroenterologia investiga as causas digestivas da halitose (mau hálito), como refluxo, SIBO e H. pylori.\n\nA clínica não realiza halimet… | 3 · **validar** |
+| `src/lib/nuvete-data.ts` | { label: '📋 Preparo halimetria', acao: 'preparo:halimetria' }, | { label: '🩺 Saiba mais', acao: 'link:/especialidades/halitose' },       { label: '📅 Agendar consulta', acao: 'whatsapp' }, | 3 |
+| `src/app/api/route.ts` | 4. HALITOSE Diagnóstico e tratamento do mau hálito: - Halimetria · quantificação dos compostos voláteis causadores - Sialometria · avaliação do fluxo salivar - Abordag… | 4. HALITOSE Investigação das causas digestivas do mau hálito na consulta de gastroenterologia: - Refluxo, SIBO, H. pylori e outras causas gastrointestinais - Exames da… | 3 · **validar** |
+| `src/app/api/route.ts` | HALIMETRIA E SIALOMETRIA: - Quantificação objetiva do mau hálito e avaliação salivar - Duração: 30–40 min - Preparo: não comer 3h antes, não escovar dentes 2h antes, s… |  | 3 |
+| `src/app/api/route.ts` | - Manometria Esofágica de Alta Resolução - Manometria Anorretal - pHmetria Esofágica 24h e Impedanciopletismografia | - Manometria Esofágica de alta resolução (24 canais) e convencional (8 canais) - Manometria Anorretal - pHmetria esofágica e impedanciopHmetria esofágica (24h) | 3 |
+| `src/app/api/route.ts` | MANOMETRIA ESOFÁGICA DE ALTA RESOLUÇÃO: | A clínica NÃO realiza halimetria, sialometria, endoscopia, colonoscopia nem ultrassom. Se perguntarem, diga isso com clareza e oriente a falar com o médico.  MANOMETRI… | 3 |
+| `src/app/api/route.ts` | PHMETRIA ESOFÁGICA 24H + IMPEDÂNCIOMETRIA: | PHMETRIA ESOFÁGICA E IMPEDANCIOPHMETRIA ESOFÁGICA (24H): | 3 |
+| `src/app/llms.txt/route.ts` | - **Halitose:** Diagnóstico multidisciplinar com halimetria e sialometria | - **Halitose:** Investigação das causas digestivas do mau hálito na consulta de gastroenterologia. A clínica não realiza halimetria nem sialometria. | 3 |
+| `src/app/llms.txt/route.ts` | ### Halimetria e Sialometria - Quantificação objetiva de compostos sulfurados. Diagnóstico diferencial da halitose. Preparo: sem comida 3h, sem escovação 2h, sem enxag… |  | 3 |
+| `src/app/llms.txt/route.ts` | ### Manometria de Alta Resolução - **Esofágica:** | ### Manometria - **Esofágica (alta resolução, 24 canais, ou convencional, 8 canais):** | 3 |
+| `src/app/llms.txt/route.ts` | ### pHmetria e Impedânciometria | ### pHmetria e ImpedanciopHmetria Esofágica (24h) | 3 |
+| `next.config.ts` |   'preparo-halimetria-sialometria',  |  | 3 |
+| `next.config.ts` | { source: '/halimetria',                                                      destination: '/exames/halimetria-sialometria' }, | { source: '/halimetria',                                                      destination: '/exames' }, | 3 |
+| `next.config.ts` | { source: '/halimetria-e-sialometria',                                        destination: '/exames/halimetria-sialometria' }, | { source: '/halimetria-e-sialometria',                                        destination: '/exames' }, | 3 |
+| `next.config.ts` |   'preparo-halimetria',   'preparo-halimetria-e-sialometria',  |  | 3 |
+| `next.config.ts` | const nextConfig: NextConfig = { | /**  * Halimetria e sialometria saíram do site (decisão da clínica em 06/11/2026).  * A página do exame volta para a lista de exames, na língua de origem; os  * PDFs d… | 3 |
+| `next.config.ts` |       ...pdfsRenomeados,  |       ...halimetriaRemovida,       ...pdfsRenomeados,  | 3 |
+| `docs/utm-links-bio.md` | https://www.nuvemmedicina.com.br/exames/halimetria-sialometria?utm_source=instagram&utm_medium=social&utm_campaign=stories&utm_content=halimetria-sialometria   |  | 3 |
+| `messages/pt-BR.json` | nav.halimetriaSialometria | (removido) | 3 |
+| `messages/pt-BR.json` · `nav.phmetriaImpedanciometria` | pHmetria e Impedânciometria | pHmetria e ImpedanciopHmetria | 3 |
+| `messages/pt-BR.json` · `footer.phmetriaImpedancia` | pHmetria e Impedância | pHmetria e ImpedanciopHmetria | 3 |
+| `messages/pt-BR.json` · `examesPage.metaDescription` | Manometria esofágica e anorretal de alta resolução, pHmetria, testes respiratórios, halimetria e avaliação pélvica em Belo Horizonte. Certificação ISO 9001. | Manometria esofágica de alta resolução e convencional, manometria anorretal, pHmetria e impedanciopHmetria, testes respiratórios e avaliação pélvica em Belo Horizonte.… | 3 |
+| `messages/en.json` | nav.halimetriaSialometria | (removido) | 3 |
+| `messages/en.json` · `nav.phmetriaImpedanciometria` | pH & Impedance Monitoring | pH and Impedance-pH Monitoring | 3 |
+| `messages/en.json` · `footer.phmetriaImpedancia` | pH & Impedance Monitoring | pH and Impedance-pH Monitoring | 3 |
+| `messages/en.json` · `examesPage.metaDescription` | High-resolution esophageal and anorectal manometry, pH monitoring, breath tests, halimetry and pelvic assessment in Belo Horizonte. ISO 9001 certified. | High-resolution and conventional esophageal manometry, anorectal manometry, pH and impedance-pH monitoring, breath tests and pelvic assessment in Belo Horizonte. Manag… | 3 |
+| `messages/es.json` | nav.halimetriaSialometria | (removido) | 3 |
+| `messages/es.json` · `nav.phmetriaImpedanciometria` | pHmetría e Impedancia | pHmetría e ImpedanciopHmetría | 3 |
+| `messages/es.json` · `footer.phmetriaImpedancia` | pHmetría e Impedancia | pHmetría e ImpedanciopHmetría | 3 |
+| `messages/es.json` · `examesPage.metaDescription` | Manometría esofágica y anorrectal de alta resolución, pHmetría, pruebas respiratorias, halimetría y evaluación pélvica en Belo Horizonte. Certificación ISO 9001. | Manometría esofágica de alta resolución y convencional, manometría anorrectal, pHmetría e impedanciopHmetría, pruebas respiratorias y evaluación pélvica en Belo Horizo… | 3 |
+| `public/pdfs/preparo-halimetria-sialometria-v1.pdf` | arquivo | (removido) | 3 |
+
+---
+
 ## Textos marcados para validação da Dra. Vera
 
 ### Bloco 2a
@@ -508,6 +772,114 @@ o sufixo e o layout acrescenta outro. Já era assim antes desta branch.
    - Antes: Utilizamos testes respiratórios com H₂, CH₄ e H₂S, o protocolo mais completo disponível, sem coleta de sangue.
    - Depois: O teste mede H₂, CH₄ e H₂S no ar expirado, sem coleta de sangue.
 
+### Bloco 3
+
+1. `src/lib/data.ts`
+   - Antes: desc: 'Diagnóstico multidisciplinar completo. Investigamos causas digestivas, orais e sistêmicas com halimetria de precisão.',     tags: ['Halimetria', 'Sialometria', 'Diagnóstico Integrado'],
+   - Depois: desc: 'Investigação das causas digestivas do mau hálito, com encaminhamento para odontologia e otorrinolaringologia quando a origem é oral ou nasofaríngea.',     tags: ['Causas Digestivas', 'Refluxo e SIBO', 'Encaminhamento Integrado'],
+2. `src/lib/content/catalog.ts`
+   - Antes: desc:  'Complete multidisciplinary diagnosis. We investigate digestive, oral and systemic causes with precision halimetry.',     tags:  ['Halimetry', 'Sialometry', 'Integrated Diagnosis'] },
+   - Depois: desc:  'Investigation of the digestive causes of bad breath, with referral to dentistry and otolaryngology when the origin is oral or nasopharyngeal.',     tags:  ['Digestive Causes', 'Reflux and SIBO', 'Integrated Referral'] },
+3. `src/lib/content/catalog.ts`
+   - Antes: desc:  'Diagnóstico multidisciplinario completo. Investigamos causas digestivas, orales y sistémicas con halimetría de precisión.',     tags:  ['Halimetría', 'Sialometría', 'Diagnóstico Integrado'] },
+   - Depois: desc:  'Investigación de las causas digestivas del mal aliento, con derivación a odontología y otorrinolaringología cuando el origen es oral o nasofaríngeo.',     tags:  ['Causas Digestivas', 'Reflujo y SIBO', 'Derivación Integrada'] },
+4. `src/lib/content/especialidades-detail.ts`
+   - Antes: 'Diagnóstico multidisciplinar completo da halitose. Investigamos causas digestivas, orais e sistêmicas com halimetria e sialometria de alta precisão.'
+   - Depois: 'Avaliação da halitose com foco nas causas digestivas. Investigamos refluxo, SIBO, H. pylori e outras origens gastrointestinais, com encaminhamento para odontologia e otorrinolaringologia quando necessário.'
+5. `src/lib/content/especialidades-detail.ts`
+   - Antes: 'A halitose é uma condição complexa que exige abordagem multidisciplinar. Na NU.V.E.M, investigamos todas as origens possíveis: digestivas, orais, nasofaríngeas e sistêmicas, com protocolo diagnóstico completo e personalizado.'
+   - Depois: 'A halitose pode ter origem oral, nasofaríngea, sistêmica ou digestiva. Na NU.V.E.M, a consulta de gastroenterologia investiga as causas digestivas do mau hálito.'
+6. `src/lib/content/especialidades-detail.ts`
+   - Antes: 'Nossa abordagem combina halimetria quantitativa objetiva, sialometria, avaliação gastroenterológica completa e, quando necessário, parceria com odontologia e otorrinolaringologia, tudo no mesmo atendimento integrado.'
+   - Depois: 'Conforme a indicação médica, a investigação pode incluir exames realizados na clínica, como testes respiratórios e pHmetria. Quando a origem provável é oral ou nasofaríngea, a pessoa é orientada a procurar odontologia ou otorrinolaringologia.'
+7. `src/lib/content/especialidades-detail.ts`
+   - Antes: { title: 'Protocolo Diagnóstico Integrado', body: 'Avaliação simultânea de todas as possíveis origens: oral, digestiva, nasofaríngea e sistêmica, com sequenciamento diagnóstico eficiente e preciso.' }
+   - Depois: { title: 'Avaliação Integrada', body: 'Consulta que considera as possíveis origens do mau hálito (oral, digestiva, nasofaríngea e sistêmica) para orientar a investigação e os encaminhamentos.' }
+8. `src/lib/content/especialidades-detail.ts`
+   - Antes: { title: 'Acompanhamento Evolutivo', body: 'Monitoramento periódico com halimetria para avaliar resposta ao tratamento de forma objetiva, garantindo que a melhora seja documentada e sustentada.' }
+   - Depois: { title: 'Exames Digestivos', body: 'Testes respiratórios (SIBO, IMO e H. pylori) e pHmetria podem ajudar o médico a investigar causas digestivas do mau hálito.' }
+9. `src/lib/content/especialidades-detail.ts`
+   - Antes: para investigação diagnóstica completa de halitose. O protocolo NU.V.E.M inclui halimetria, sialometria, triagem digestiva e planejamento terapêutico integrado.'
+   - Depois: para investigação das causas digestivas da halitose. A avaliação inclui triagem das causas digestivas e planejamento terapêutico integrado.'
+10. `src/lib/content/especialidades-detail.ts`
+   - Antes: 'Por meio de halimetria quantitativa, sialometria e avaliação gastroenterológica completa, com parceria com odontologia e otorrinolaringologia quando necessário.'
+   - Depois: 'Por meio da avaliação gastroenterológica e, quando indicado, de exames como testes respiratórios e pHmetria. Causas orais e nasofaríngeas são avaliadas por odontologia e otorrinolaringologia.'
+11. `src/lib/content/especialidades-detail.ts`
+   - Antes: 'Complete multidisciplinary diagnosis of halitosis. We investigate digestive, oral and systemic causes with precision halimetry and sialometry.'
+   - Depois: 'Halitosis evaluation focused on digestive causes. We investigate reflux, SIBO, H. pylori and other gastrointestinal origins, with referral to dentistry and otolaryngology when needed.'
+12. `src/lib/content/especialidades-detail.ts`
+   - Antes: 'Halitosis is a complex condition that requires a multidisciplinary approach. At NU.V.E.M, we investigate every possible origin: digestive, oral, nasopharyngeal and systemic, with a complete, personalized diagnostic protocol.'
+   - Depois: 'Halitosis can have an oral, nasopharyngeal, systemic or digestive origin. At NU.V.E.M, the gastroenterology visit investigates the digestive causes of bad breath.'
+13. `src/lib/content/especialidades-detail.ts`
+   - Antes: 'Our approach combines objective quantitative halimetry, sialometry, a complete gastroenterological evaluation and, when needed, partnership with dentistry and otolaryngology, all in the same integrated visit.'
+   - Depois: 'As indicated by the physician, the investigation may include exams performed at the clinic, such as breath tests and pH monitoring. When the likely origin is oral or nasopharyngeal, the patient is advised to see a dentist or an otolaryngologist.'
+14. `src/lib/content/especialidades-detail.ts`
+   - Antes: { title: 'Integrated Diagnostic Protocol', body: 'Simultaneous evaluation of every possible origin: oral, digestive, nasopharyngeal and systemic, with efficient, precise diagnostic sequencing.' }
+   - Depois: { title: 'Integrated Evaluation', body: 'A visit that considers the possible origins of bad breath (oral, digestive, nasopharyngeal and systemic) to guide the investigation and referrals.' }
+15. `src/lib/content/especialidades-detail.ts`
+   - Antes: { title: 'Progress Monitoring', body: 'Periodic monitoring with halimetry to objectively evaluate treatment response, ensuring improvement is documented and sustained.' }
+   - Depois: { title: 'Digestive Exams', body: 'Breath tests (SIBO, IMO and H. pylori) and pH monitoring can help the physician investigate digestive causes of bad breath.' }
+16. `src/lib/content/especialidades-detail.ts`
+   - Antes: for a complete diagnostic investigation of halitosis. The NU.V.E.M protocol includes halimetry, sialometry, digestive screening and integrated treatment planning.'
+   - Depois: to investigate the digestive causes of halitosis. The evaluation includes screening for digestive causes and integrated treatment planning.'
+17. `src/lib/content/especialidades-detail.ts`
+   - Antes: 'Through quantitative halimetry, sialometry and a complete gastroenterological evaluation, with partnership with dentistry and otolaryngology when needed.'
+   - Depois: 'Through a gastroenterological evaluation and, when indicated, exams such as breath tests and pH monitoring. Oral and nasopharyngeal causes are evaluated by dentistry and otolaryngology.'
+18. `src/lib/content/especialidades-detail.ts`
+   - Antes: 'Diagnóstico multidisciplinario completo de la halitosis. Investigamos causas digestivas, orales y sistémicas con halimetría y sialometría de alta precisión.'
+   - Depois: 'Evaluación de la halitosis con foco en las causas digestivas. Investigamos reflujo, SIBO, H. pylori y otros orígenes gastrointestinales, con derivación a odontología y otorrinolaringología cuando es necesario.'
+19. `src/lib/content/especialidades-detail.ts`
+   - Antes: 'La halitosis es una condición compleja que exige un abordaje multidisciplinario. En NU.V.E.M investigamos todos los orígenes posibles: digestivos, orales, nasofaríngeos y sistémicos, con un protocolo diagnóstico completo y personalizado.'
+   - Depois: 'La halitosis puede tener origen oral, nasofaríngeo, sistémico o digestivo. En NU.V.E.M, la consulta de gastroenterología investiga las causas digestivas del mal aliento.'
+20. `src/lib/content/especialidades-detail.ts`
+   - Antes: 'Nuestro enfoque combina halimetría cuantitativa objetiva, sialometría, evaluación gastroenterológica completa y, cuando es necesario, colaboración con odontología y otorrinolaringología, todo en la misma consulta integrada.'
+   - Depois: 'Según la indicación médica, la investigación puede incluir exámenes realizados en la clínica, como pruebas respiratorias y pHmetría. Cuando el origen probable es oral o nasofaríngeo, se orienta a la persona a consultar odontología u otorrinolaringología.'
+21. `src/lib/content/especialidades-detail.ts`
+   - Antes: { title: 'Protocolo Diagnóstico Integrado', body: 'Evaluación simultánea de todos los orígenes posibles: oral, digestivo, nasofaríngeo y sistémico, con una secuencia diagnóstica eficiente y precisa.' }
+   - Depois: { title: 'Evaluación Integrada', body: 'Consulta que considera los orígenes posibles del mal aliento (oral, digestivo, nasofaríngeo y sistémico) para orientar la investigación y las derivaciones.' }
+22. `src/lib/content/especialidades-detail.ts`
+   - Antes: { title: 'Seguimiento Evolutivo', body: 'Monitoreo periódico con halimetría para evaluar objetivamente la respuesta al tratamiento, garantizando que la mejora quede documentada y sea sostenida.' }
+   - Depois: { title: 'Exámenes Digestivos', body: 'Las pruebas respiratorias (SIBO, IMO y H. pylori) y la pHmetría pueden ayudar al médico a investigar causas digestivas del mal aliento.' }
+23. `src/lib/content/especialidades-detail.ts`
+   - Antes: para la investigación diagnóstica completa de la halitosis. El protocolo NU.V.E.M incluye halimetría, sialometría, cribado digestivo y planificación terapéutica integrada.'
+   - Depois: para investigar las causas digestivas de la halitosis. La evaluación incluye el cribado de causas digestivas y la planificación terapéutica integrada.'
+24. `src/lib/content/especialidades-detail.ts`
+   - Antes: 'Mediante halimetría cuantitativa, sialometría y evaluación gastroenterológica completa, con colaboración de odontología y otorrinolaringología cuando es necesario.'
+   - Depois: 'Mediante la evaluación gastroenterológica y, cuando está indicado, exámenes como pruebas respiratorias y pHmetría. Las causas orales y nasofaríngeas las evalúan odontología y otorrinolaringología.'
+25. `src/lib/data.ts`
+   - Antes: 'Protocolo NU.V.E.M detecta H₂, CH₄ e H₂S em um único exame, com cobertura de SIBO, LIBO, SIFO e infecção por H. pylori.'
+   - Depois: 'Os testes medem H₂, CH₄ e H₂S no ar expirado e ajudam o médico a investigar SIBO, IMO, intolerâncias e infecção por H. pylori.'
+26. `src/lib/content/catalog.ts`
+   - Antes: 'The NU.V.E.M protocol detects H₂, CH₄ and H₂S in a single exam, covering SIBO, LIBO, SIFO and H. pylori infection.'
+   - Depois: 'The tests measure H₂, CH₄ and H₂S in exhaled breath and help the physician investigate SIBO, IMO, intolerances and H. pylori infection.'
+27. `src/lib/content/catalog.ts`
+   - Antes: 'El protocolo NU.V.E.M detecta H₂, CH₄ y H₂S en un único examen, cubriendo SIBO, LIBO, SIFO e infección por H. pylori.'
+   - Depois: 'Las pruebas miden H₂, CH₄ y H₂S en el aire exhalado y ayudan al médico a investigar SIBO, IMO, intolerancias e infección por H. pylori.'
+28. `src/lib/content/exames-detail.ts`
+   - Antes: 'Suspeita de IMO (supercrescimento de metanogênicos) ou LIBO'
+   - Depois: 'Suspeita de IMO (supercrescimento de metanogênicos)'
+29. `src/lib/content/exames-detail.ts`
+   - Antes: 'Suspected IMO (methanogen overgrowth) or LIBO'
+   - Depois: 'Suspected IMO (methanogen overgrowth)'
+30. `src/lib/content/exames-detail.ts`
+   - Antes: 'Sospecha de IMO (sobrecrecimiento de metanógenos) o LIBO'
+   - Depois: 'Sospecha de IMO (sobrecrecimiento de metanógenos)'
+31. `src/lib/data.ts`
+   - Antes: 'Equipamentos atualizados com mapeamento completo da pressão esofágica em alta resolução.
+   - Depois: 'Realizada em alta resolução (24 canais) ou pelo método convencional (8 canais), conforme a indicação médica. Equipamentos atualizados com mapeamento da pressão esofágica.
+32. `src/lib/content/catalog.ts`
+   - Antes: 'Up-to-date equipment with full high-resolution esophageal pressure mapping.
+   - Depois: 'Performed with high-resolution (24-channel) or conventional (8-channel) manometry, as indicated by the physician. Up-to-date equipment with esophageal pressure mapping.
+33. `src/lib/content/catalog.ts`
+   - Antes: 'Equipos actualizados con mapeo completo de la presión esofágica en alta resolución.
+   - Depois: 'Realizada en alta resolución (24 canales) o con el método convencional (8 canales), según la indicación médica. Equipos actualizados con mapeo de la presión esofágica.
+34. `src/lib/nuvete-data.ts`
+   - Antes: 'A NU.V.E.M tem um programa completo para diagnóstico e tratamento da halitose, com:\n\n🔬 Halimetria: quantificação objetiva dos compostos causadores\n💧 Sialometria: avaliação do fluxo salivar\n👥 Abordagem multidisciplinar (gastro + odonto)\n\nGostaria de saber o preparo para a halimetria?'
+   - Depois: 'Na NU.V.E.M, a consulta de gastroenterologia investiga as causas digestivas da halitose (mau hálito), como refluxo, SIBO e H. pylori.\n\nA clínica não realiza halimetria nem sialometria. Quando a causa provável é oral, a orientação é procurar um dentista.\n\nGostaria de agendar uma consulta?'
+35. `src/app/api/route.ts`
+   - Antes: 4. HALITOSE Diagnóstico e tratamento do mau hálito: - Halimetria · quantificação dos compostos voláteis causadores - Sialometria · avaliação do fluxo salivar - Abordagem multidisciplinar (gastro + odonto)
+   - Depois: 4. HALITOSE Investigação das causas digestivas do mau hálito na consulta de gastroenterologia: - Refluxo, SIBO, H. pylori e outras causas gastrointestinais - Exames da clínica que podem ajudar: testes respiratórios e pHmetria, conforme indicação médica - Causas orais e nasofaríngeas: orientar a procurar odontologia ou otorrinolaringologia - A clínica NÃO realiza halimetria nem sialometria
+
 Pontos de conteúdo clínico que **não** foram alterados, mas pedem revisão:
 
 - "síndrome do intestino permeável" / "leaky gut syndrome" / "síndrome del
@@ -529,6 +901,10 @@ Pontos de conteúdo clínico que **não** foram alterados, mas pedem revisão:
 | 4 | "O primeiro equipamento nacional" (HealthGo AIR) | trocado por "Equipamento nacional" em `exames-resp-extra.ts`; volta se houver fonte do fabricante | clínica |
 | 5 | RQE da pediatra com atuação em saúde digestiva infantil (Dra. Mariana Fernandes, CRM 65936) | textos de Pediatria passaram a "com atuação em" | clínica |
 | 6 | RQEs da Dra. Danielle Martins (CRM 72935) | página da equipe já dizia "Gastroenterologia e Motilidade", sem "especialista" | clínica |
+| 7 | H₂S no teste respiratório | 32 ocorrências, lista no Bloco 3 | Dra. Vera |
+| 8 | Manometria anorretal "de alta resolução" | `data.ts`, `catalog.ts`, `exames-detail.ts`, llms.txt | Dra. Vera |
+| 9 | Trânsito colônico (somente particular) | sem página no site; falta o preparo oficial | clínica |
+| 10 | Futuro da página /especialidades/halitose | página mantida e reescrita, decisão pendente | clínica |
 
 ---
 
@@ -579,6 +955,8 @@ o teste será repetido no fim.
 | Quais convênios vocês atendem? | Unimed BH, Amil, Porto Seguro Saúde, Hapvida, Plamed, Samp; particular com recibo para reembolso; recomenda confirmar a cobertura com a equipe. | OK. Horário errado no fim. |
 | Qual o horário de atendimento? | "Segunda a Sexta-feira, das 7h30 às 17h30" | **Errado.** Corrigido no Bloco 6. |
 | Vocês fazem halimetria? | "Sim, fazemos!", com preparo de halimetria e sialometria. | **Errado.** Corrigido no Bloco 3. |
+
+Depois do Bloco 3, "Vocês fazem halimetria?" passou a responder: "A halimetria **não é realizada** aqui na clínica", seguido das causas digestivas investigadas na consulta e da orientação de procurar dentista ou otorrinolaringologista. Ponto a revisar: a nuvete acrescentou por conta própria que o exame "é geralmente feito em consultórios odontológicos especializados em halitose", informação que não está no prompt.
 | Vocês são referência? São a melhor clínica de BH? | Não usa "referência" nem "melhor". Responde com fatos: exames que realiza, formação da Dra. Vera, gestão certificada ISO 9001. | OK, efeito da regra nova do prompt. |
 
 ---

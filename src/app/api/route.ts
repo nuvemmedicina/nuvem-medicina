@@ -113,9 +113,9 @@ Tratamento de doenças do aparelho digestivo:
 
 2. MOTILIDADE DIGESTIVA
 Avaliação funcional do aparelho digestivo:
-- Manometria Esofágica de Alta Resolução
+- Manometria Esofágica de alta resolução (24 canais) e convencional (8 canais)
 - Manometria Anorretal
-- pHmetria Esofágica 24h e Impedanciopletismografia
+- pHmetria esofágica e impedanciopHmetria esofágica (24h)
 - Testes Respiratórios (H₂, CH₄, H₂S)
 
 3. FISIOTERAPIA PÉLVICA
@@ -129,10 +129,11 @@ Cuidado do assoalho pélvico:
 - Avaliação com biofeedback e eletromiografia (EMG)
 
 4. HALITOSE
-Diagnóstico e tratamento do mau hálito:
-- Halimetria · quantificação dos compostos voláteis causadores
-- Sialometria · avaliação do fluxo salivar
-- Abordagem multidisciplinar (gastro + odonto)
+Investigação das causas digestivas do mau hálito na consulta de gastroenterologia:
+- Refluxo, SIBO, H. pylori e outras causas gastrointestinais
+- Exames da clínica que podem ajudar: testes respiratórios e pHmetria, conforme indicação médica
+- Causas orais e nasofaríngeas: orientar a procurar odontologia ou otorrinolaringologia
+- A clínica NÃO realiza halimetria nem sialometria
 
 5. PEDIATRIA
 Saúde digestiva de crianças e adolescentes:
@@ -153,7 +154,9 @@ Saúde renal integrada:
 EXAMES DISPONÍVEIS
 ═══════════════════════════════════════
 
-MANOMETRIA ESOFÁGICA DE ALTA RESOLUÇÃO:
+A clínica NÃO realiza halimetria, sialometria, endoscopia, colonoscopia nem ultrassom. Se perguntarem, diga isso com clareza e oriente a falar com o médico.
+
+MANOMETRIA ESOFÁGICA (alta resolução, 24 canais, ou convencional, 8 canais, conforme indicação médica):
 - Avalia motilidade esofágica, esfíncteres, acalasia, disfagia
 - Duração: 30–60 min | Sem sedação
 - Preparo: jejum 6h, suspender medicamentos de motilidade (com orientação médica), roupa confortável, trazer pedido médico
@@ -163,7 +166,7 @@ MANOMETRIA ANORRETAL:
 - Duração: 40–60 min
 - Preparo: sem jejum, enema retal (Fleet) 2h antes, roupa confortável
 
-PHMETRIA ESOFÁGICA 24H + IMPEDÂNCIOMETRIA:
+PHMETRIA ESOFÁGICA E IMPEDANCIOPHMETRIA ESOFÁGICA (24H):
 - Monitora refluxo por 24h em ambiente ambulatorial
 - Duração: 24 horas de monitoramento
 - Preparo: suspender IBP por 7 dias (SOMENTE com autorização médica), antiácidos 48h antes, jejum 4h antes da instalação, registrar sintomas e refeições
@@ -174,11 +177,6 @@ TESTES RESPIRATÓRIOS (SIBO, H. pylori, Lactose, Frutose):
 - Duração: 2–3 horas (SIBO) | 30–40 min (H. pylori)
 - Preparo SIBO/Lactose/Frutose: jejum 12h, dia anterior comer APENAS arroz branco, frango/carne/peixe, ovos, azeite e sal, sem antibióticos 4 semanas antes, sem probióticos 2 semanas antes
 - Preparo H. pylori: jejum 4h, sem antibióticos 4 semanas, sem IBP 2 semanas (com orientação médica)
-
-HALIMETRIA E SIALOMETRIA:
-- Quantificação objetiva do mau hálito e avaliação salivar
-- Duração: 30–40 min
-- Preparo: não comer 3h antes, não escovar dentes 2h antes, sem enxaguante bucal no dia, sem perfume forte, não fumar 2h antes
 
 AVALIAÇÃO PÉLVICA (Biofeedback/EMG):
 - Avaliação funcional do assoalho pélvico

@@ -141,10 +141,10 @@ const DETAIL_PT: Record<string, DetailData> = {
   },
 
   halitose: {
-    heroDesc: 'Diagnóstico multidisciplinar completo da halitose. Investigamos causas digestivas, orais e sistêmicas com halimetria e sialometria de alta precisão.',
+    heroDesc: 'Avaliação da halitose com foco nas causas digestivas. Investigamos refluxo, SIBO, H. pylori e outras origens gastrointestinais, com encaminhamento para odontologia e otorrinolaringologia quando necessário.',
     intro: [
-      'A halitose é uma condição complexa que exige abordagem multidisciplinar. Na NU.V.E.M, investigamos todas as origens possíveis: digestivas, orais, nasofaríngeas e sistêmicas, com protocolo diagnóstico completo e personalizado.',
-      'Nossa abordagem combina halimetria quantitativa objetiva, sialometria, avaliação gastroenterológica completa e, quando necessário, parceria com odontologia e otorrinolaringologia, tudo no mesmo atendimento integrado.',
+      'A halitose pode ter origem oral, nasofaríngea, sistêmica ou digestiva. Na NU.V.E.M, a consulta de gastroenterologia investiga as causas digestivas do mau hálito.',
+      'Conforme a indicação médica, a investigação pode incluir exames realizados na clínica, como testes respiratórios e pHmetria. Quando a origem provável é oral ou nasofaríngea, a pessoa é orientada a procurar odontologia ou otorrinolaringologia.',
     ],
     sintomas: [
       'Mau hálito persistente mesmo após higiene bucal rigorosa',
@@ -157,39 +157,34 @@ const DETAIL_PT: Record<string, DetailData> = {
       'Desconforto social por causa do hálito',
     ],
     topics: [
-      { title: 'Halimetria Quantitativa', body: 'Quantificação objetiva de compostos sulfurados voláteis (CSV) no ar exalado com aparelho Halimeter® calibrado, para diagnóstico preciso e monitoramento da resposta ao tratamento.' },
-      { title: 'Sialometria', body: 'Medição do fluxo salivar em repouso e estimulado, essencial no diagnóstico de xerostomia e suas relações diretas com a halitose de origem oral.' },
       { title: 'Halitose Digestiva', body: 'Investigação aprofundada de SIBO, gastroparesia, refluxo gastroesofágico e disbiose como causas de mau hálito de origem gastrointestinal, frequentemente subdiagnosticadas.' },
-      { title: 'Protocolo Diagnóstico Integrado', body: 'Avaliação simultânea de todas as possíveis origens: oral, digestiva, nasofaríngea e sistêmica, com sequenciamento diagnóstico eficiente e preciso.' },
+      { title: 'Avaliação Integrada', body: 'Consulta que considera as possíveis origens do mau hálito (oral, digestiva, nasofaríngea e sistêmica) para orientar a investigação e os encaminhamentos.' },
       { title: 'Plano Terapêutico Individualizado', body: 'Tratamento direcionado à causa identificada, combinando abordagem digestiva, orientações de higiene oral e encaminhamento para especialistas quando necessário.' },
-      { title: 'Acompanhamento Evolutivo', body: 'Monitoramento periódico com halimetria para avaliar resposta ao tratamento de forma objetiva, garantindo que a melhora seja documentada e sustentada.' },
+      { title: 'Exames Digestivos', body: 'Testes respiratórios (SIBO, IMO e H. pylori) e pHmetria podem ajudar o médico a investigar causas digestivas do mau hálito.' },
     ],
     diferenciais: [
       'Protocolo multidisciplinar para investigar a origem da halitose e tratar a causa',
-      'Halimetria quantitativa objetiva: resultado em ppb (partes por bilhão) de CSV',
-      'Investigação simultânea de origem oral, digestiva e sistêmica na mesma consulta',
-      'Plano terapêutico individualizado com acompanhamento evolutivo documentado',
-      'Certificação ISO 9001: resultados rastreáveis e comparáveis entre consultas',
+      'Exames digestivos realizados na própria clínica, conforme a indicação médica',
+      'Avaliação das possíveis origens oral, digestiva e sistêmica na consulta',
+      'Plano terapêutico individualizado, com acompanhamento médico',
+      'Gestão certificada pela norma ISO 9001',
     ],
     paraMedicos: {
-      intro: 'Recebemos encaminhamentos de gastroenterologistas, otorrinolaringologistas, cirurgiões-dentistas e clínicos gerais para investigação diagnóstica completa de halitose. O protocolo NU.V.E.M inclui halimetria, sialometria, triagem digestiva e planejamento terapêutico integrado.',
+      intro: 'Recebemos encaminhamentos de gastroenterologistas, otorrinolaringologistas, cirurgiões-dentistas e clínicos gerais para investigação das causas digestivas da halitose. A avaliação inclui triagem das causas digestivas e planejamento terapêutico integrado.',
       bullets: [
-        'Laudo com quantificação de CSV (ppb) e interpretação clínica',
         'Investigação de SIBO, gastroparesia e DRGE como causas digestivas',
         'Parceria com odontologia para halitose oral confirmada',
         'Retorno ao médico solicitante com diagnóstico etiológico e plano terapêutico',
-        'Monitoramento evolutivo disponível para acompanhamento de resultados',
       ],
     },
     especialistas: [
-      { nome: 'Dra. Vera Ângelo', esp: 'Gastroenterologia · Diagnóstico de Halitose', crm: 'CRM-MG 22284', foto: '/images/dra-vera.jpg', href: '/dra-vera-angelo' },
+      { nome: 'Dra. Vera Ângelo', esp: 'Gastroenterologia', crm: 'CRM-MG 22284', foto: '/images/dra-vera.jpg', href: '/dra-vera-angelo' },
     ],
-    exames: ['halimetria-sialometria', 'testes-respiratorios'],
+    exames: ['testes-respiratorios', 'phmetria-impedanciometria'],
     faqs: [
-      { pergunta: 'A halitose sempre tem origem na boca?', resposta: 'Não. A halitose pode ter causas digestivas, nasofaríngeas ou sistêmicas, por isso investigamos todas as possíveis origens em um único atendimento integrado.' },
-      { pergunta: 'Como é diagnosticada a causa da halitose?', resposta: 'Por meio de halimetria quantitativa, sialometria e avaliação gastroenterológica completa, com parceria com odontologia e otorrinolaringologia quando necessário.' },
+      { pergunta: 'A halitose sempre tem origem na boca?', resposta: 'Não. A halitose pode ter causas digestivas, nasofaríngeas ou sistêmicas, por isso a consulta considera todas as possíveis origens e orienta os encaminhamentos.' },
+      { pergunta: 'Como é diagnosticada a causa da halitose?', resposta: 'Por meio da avaliação gastroenterológica e, quando indicado, de exames como testes respiratórios e pHmetria. Causas orais e nasofaríngeas são avaliadas por odontologia e otorrinolaringologia.' },
       { pergunta: 'Como é o tratamento da halitose?', resposta: 'Depende da causa identificada. Tratando a origem, por exemplo, SIBO ou xerostomia, o plano de tratamento é definido pelo médico para cada caso.' },
-      { pergunta: 'O exame de halimetria é doloroso?', resposta: 'Não. É um exame simples, rápido e indolor, realizado com aparelho calibrado (Halimeter®).' },
     ],
   },
 
@@ -469,10 +464,10 @@ const DETAIL_EN: Record<string, DetailData> = {
   },
 
   halitose: {
-    heroDesc: 'Complete multidisciplinary diagnosis of halitosis. We investigate digestive, oral and systemic causes with precision halimetry and sialometry.',
+    heroDesc: 'Halitosis evaluation focused on digestive causes. We investigate reflux, SIBO, H. pylori and other gastrointestinal origins, with referral to dentistry and otolaryngology when needed.',
     intro: [
-      'Halitosis is a complex condition that requires a multidisciplinary approach. At NU.V.E.M, we investigate every possible origin: digestive, oral, nasopharyngeal and systemic, with a complete, personalized diagnostic protocol.',
-      'Our approach combines objective quantitative halimetry, sialometry, a complete gastroenterological evaluation and, when needed, partnership with dentistry and otolaryngology, all in the same integrated visit.',
+      'Halitosis can have an oral, nasopharyngeal, systemic or digestive origin. At NU.V.E.M, the gastroenterology visit investigates the digestive causes of bad breath.',
+      'As indicated by the physician, the investigation may include exams performed at the clinic, such as breath tests and pH monitoring. When the likely origin is oral or nasopharyngeal, the patient is advised to see a dentist or an otolaryngologist.',
     ],
     sintomas: [
       'Persistent bad breath even after rigorous oral hygiene',
@@ -485,39 +480,34 @@ const DETAIL_EN: Record<string, DetailData> = {
       'Social discomfort due to breath odor',
     ],
     topics: [
-      { title: 'Quantitative Halimetry', body: 'Objective quantification of volatile sulfur compounds (VSCs) in exhaled breath with a calibrated Halimeter®, for precise diagnosis and monitoring of treatment response.' },
-      { title: 'Sialometry', body: 'Measurement of resting and stimulated salivary flow, essential in diagnosing xerostomia and its direct relationship with oral halitosis.' },
       { title: 'Digestive Halitosis', body: 'In-depth investigation of SIBO, gastroparesis, gastroesophageal reflux and dysbiosis as often underdiagnosed causes of gastrointestinal bad breath.' },
-      { title: 'Integrated Diagnostic Protocol', body: 'Simultaneous evaluation of every possible origin: oral, digestive, nasopharyngeal and systemic, with efficient, precise diagnostic sequencing.' },
+      { title: 'Integrated Evaluation', body: 'A visit that considers the possible origins of bad breath (oral, digestive, nasopharyngeal and systemic) to guide the investigation and referrals.' },
       { title: 'Individualized Treatment Plan', body: 'Treatment targeted at the identified cause, combining a digestive approach, oral hygiene guidance and referral to specialists when needed.' },
-      { title: 'Progress Monitoring', body: 'Periodic monitoring with halimetry to objectively evaluate treatment response, ensuring improvement is documented and sustained.' },
+      { title: 'Digestive Exams', body: 'Breath tests (SIBO, IMO and H. pylori) and pH monitoring can help the physician investigate digestive causes of bad breath.' },
     ],
     diferenciais: [
       'Multidisciplinary protocol to investigate the origin of halitosis and treat the cause',
-      'Objective quantitative halimetry: result in ppb (parts per billion) of VSCs',
-      'Simultaneous investigation of oral, digestive and systemic origin in the same visit',
-      'Individualized treatment plan with documented progress monitoring',
-      'ISO 9001 certification: traceable results comparable across visits',
+      'Digestive exams performed at the clinic, as indicated by the physician',
+      'Evaluation of possible oral, digestive and systemic origins during the visit',
+      'Individualized treatment plan, with medical follow-up',
+      'Management certified under ISO 9001',
     ],
     paraMedicos: {
-      intro: 'We receive referrals from gastroenterologists, otolaryngologists, dentists and general practitioners for a complete diagnostic investigation of halitosis. The NU.V.E.M protocol includes halimetry, sialometry, digestive screening and integrated treatment planning.',
+      intro: 'We receive referrals from gastroenterologists, otolaryngologists, dentists and general practitioners to investigate the digestive causes of halitosis. The evaluation includes screening for digestive causes and integrated treatment planning.',
       bullets: [
-        'Report with VSC quantification (ppb) and clinical interpretation',
         'Investigation of SIBO, gastroparesis and GERD as digestive causes',
         'Partnership with dentistry for confirmed oral halitosis',
         'Feedback to the referring physician with etiological diagnosis and treatment plan',
-        'Progress monitoring available to track results',
       ],
     },
     especialistas: [
-      { nome: 'Dra. Vera Ângelo', esp: 'Gastroenterology · Halitosis Diagnosis', crm: 'CRM-MG 22284', foto: '/images/dra-vera.jpg', href: '/dra-vera-angelo' },
+      { nome: 'Dra. Vera Ângelo', esp: 'Gastroenterology', crm: 'CRM-MG 22284', foto: '/images/dra-vera.jpg', href: '/dra-vera-angelo' },
     ],
-    exames: ['halimetria-sialometria', 'testes-respiratorios'],
+    exames: ['testes-respiratorios', 'phmetria-impedanciometria'],
     faqs: [
-      { pergunta: 'Does halitosis always originate in the mouth?', resposta: 'No. Halitosis can have digestive, nasopharyngeal or systemic causes, which is why we investigate every possible origin in a single integrated visit.' },
-      { pergunta: 'How is the cause of halitosis diagnosed?', resposta: 'Through quantitative halimetry, sialometry and a complete gastroenterological evaluation, with partnership with dentistry and otolaryngology when needed.' },
+      { pergunta: 'Does halitosis always originate in the mouth?', resposta: 'No. Halitosis can have digestive, nasopharyngeal or systemic causes, which is why the visit considers every possible origin and guides referrals.' },
+      { pergunta: 'How is the cause of halitosis diagnosed?', resposta: 'Through a gastroenterological evaluation and, when indicated, exams such as breath tests and pH monitoring. Oral and nasopharyngeal causes are evaluated by dentistry and otolaryngology.' },
       { pergunta: 'How is halitosis treated?', resposta: 'It depends on the identified cause. By treating the source, for example, SIBO or xerostomia, the treatment plan is defined by the physician for each case.' },
-      { pergunta: 'Is the halimetry exam painful?', resposta: 'No. It’s a simple, quick and painless exam, performed with calibrated equipment (Halimeter®).' },
     ],
   },
 
@@ -797,10 +787,10 @@ const DETAIL_ES: Record<string, DetailData> = {
   },
 
   halitose: {
-    heroDesc: 'Diagnóstico multidisciplinario completo de la halitosis. Investigamos causas digestivas, orales y sistémicas con halimetría y sialometría de alta precisión.',
+    heroDesc: 'Evaluación de la halitosis con foco en las causas digestivas. Investigamos reflujo, SIBO, H. pylori y otros orígenes gastrointestinales, con derivación a odontología y otorrinolaringología cuando es necesario.',
     intro: [
-      'La halitosis es una condición compleja que exige un abordaje multidisciplinario. En NU.V.E.M investigamos todos los orígenes posibles: digestivos, orales, nasofaríngeos y sistémicos, con un protocolo diagnóstico completo y personalizado.',
-      'Nuestro enfoque combina halimetría cuantitativa objetiva, sialometría, evaluación gastroenterológica completa y, cuando es necesario, colaboración con odontología y otorrinolaringología, todo en la misma consulta integrada.',
+      'La halitosis puede tener origen oral, nasofaríngeo, sistémico o digestivo. En NU.V.E.M, la consulta de gastroenterología investiga las causas digestivas del mal aliento.',
+      'Según la indicación médica, la investigación puede incluir exámenes realizados en la clínica, como pruebas respiratorias y pHmetría. Cuando el origen probable es oral o nasofaríngeo, se orienta a la persona a consultar odontología u otorrinolaringología.',
     ],
     sintomas: [
       'Mal aliento persistente incluso después de una higiene bucal rigurosa',
@@ -813,39 +803,34 @@ const DETAIL_ES: Record<string, DetailData> = {
       'Malestar social por causa del aliento',
     ],
     topics: [
-      { title: 'Halimetría Cuantitativa', body: 'Cuantificación objetiva de compuestos sulfurados volátiles (CSV) en el aire exhalado con un Halimeter® calibrado, para un diagnóstico preciso y seguimiento de la respuesta al tratamiento.' },
-      { title: 'Sialometría', body: 'Medición del flujo salival en reposo y estimulado, esencial en el diagnóstico de la xerostomía y su relación directa con la halitosis de origen oral.' },
       { title: 'Halitosis Digestiva', body: 'Investigación profunda de SIBO, gastroparesia, reflujo gastroesofágico y disbiosis como causas de mal aliento de origen gastrointestinal, frecuentemente subdiagnosticadas.' },
-      { title: 'Protocolo Diagnóstico Integrado', body: 'Evaluación simultánea de todos los orígenes posibles: oral, digestivo, nasofaríngeo y sistémico, con una secuencia diagnóstica eficiente y precisa.' },
+      { title: 'Evaluación Integrada', body: 'Consulta que considera los orígenes posibles del mal aliento (oral, digestivo, nasofaríngeo y sistémico) para orientar la investigación y las derivaciones.' },
       { title: 'Plan Terapéutico Individualizado', body: 'Tratamiento dirigido a la causa identificada, combinando el abordaje digestivo, orientaciones de higiene oral y derivación a especialistas cuando es necesario.' },
-      { title: 'Seguimiento Evolutivo', body: 'Monitoreo periódico con halimetría para evaluar objetivamente la respuesta al tratamiento, garantizando que la mejora quede documentada y sea sostenida.' },
+      { title: 'Exámenes Digestivos', body: 'Las pruebas respiratorias (SIBO, IMO y H. pylori) y la pHmetría pueden ayudar al médico a investigar causas digestivas del mal aliento.' },
     ],
     diferenciais: [
       'Protocolo multidisciplinario para investigar el origen de la halitosis y tratar la causa',
-      'Halimetría cuantitativa objetiva: resultado en ppb (partes por billón) de CSV',
-      'Investigación simultánea de origen oral, digestivo y sistémico en la misma consulta',
-      'Plan terapéutico individualizado con seguimiento evolutivo documentado',
-      'Certificación ISO 9001: resultados trazables y comparables entre consultas',
+      'Exámenes digestivos realizados en la propia clínica, según la indicación médica',
+      'Evaluación de los orígenes posibles oral, digestivo y sistémico en la consulta',
+      'Plan terapéutico individualizado, con seguimiento médico',
+      'Gestión certificada según la norma ISO 9001',
     ],
     paraMedicos: {
-      intro: 'Recibimos derivaciones de gastroenterólogos, otorrinolaringólogos, odontólogos y médicos generales para la investigación diagnóstica completa de la halitosis. El protocolo NU.V.E.M incluye halimetría, sialometría, cribado digestivo y planificación terapéutica integrada.',
+      intro: 'Recibimos derivaciones de gastroenterólogos, otorrinolaringólogos, odontólogos y médicos generales para investigar las causas digestivas de la halitosis. La evaluación incluye el cribado de causas digestivas y la planificación terapéutica integrada.',
       bullets: [
-        'Informe con cuantificación de CSV (ppb) e interpretación clínica',
         'Investigación de SIBO, gastroparesia y ERGE como causas digestivas',
         'Colaboración con odontología para halitosis oral confirmada',
         'Retorno al médico derivante con diagnóstico etiológico y plan terapéutico',
-        'Monitoreo evolutivo disponible para el seguimiento de resultados',
       ],
     },
     especialistas: [
-      { nome: 'Dra. Vera Ângelo', esp: 'Gastroenterología · Diagnóstico de Halitosis', crm: 'CRM-MG 22284', foto: '/images/dra-vera.jpg', href: '/dra-vera-angelo' },
+      { nome: 'Dra. Vera Ângelo', esp: 'Gastroenterología', crm: 'CRM-MG 22284', foto: '/images/dra-vera.jpg', href: '/dra-vera-angelo' },
     ],
-    exames: ['halimetria-sialometria', 'testes-respiratorios'],
+    exames: ['testes-respiratorios', 'phmetria-impedanciometria'],
     faqs: [
-      { pergunta: '¿La halitosis siempre tiene origen en la boca?', resposta: 'No. La halitosis puede tener causas digestivas, nasofaríngeas o sistémicas, por eso investigamos todos los orígenes posibles en una única consulta integrada.' },
-      { pergunta: '¿Cómo se diagnostica la causa de la halitosis?', resposta: 'Mediante halimetría cuantitativa, sialometría y evaluación gastroenterológica completa, con colaboración de odontología y otorrinolaringología cuando es necesario.' },
+      { pergunta: '¿La halitosis siempre tiene origen en la boca?', resposta: 'No. La halitosis puede tener causas digestivas, nasofaríngeas o sistémicas, por eso la consulta considera todos los orígenes posibles y orienta las derivaciones.' },
+      { pergunta: '¿Cómo se diagnostica la causa de la halitosis?', resposta: 'Mediante la evaluación gastroenterológica y, cuando está indicado, exámenes como pruebas respiratorias y pHmetría. Las causas orales y nasofaríngeas las evalúan odontología y otorrinolaringología.' },
       { pergunta: '¿Cómo se trata la halitosis?', resposta: 'Depende de la causa identificada. Al tratar el origen, por ejemplo, SIBO o xerostomía, el plan de tratamiento lo define el médico para cada caso.' },
-      { pergunta: '¿El examen de halimetría es doloroso?', resposta: 'No. Es un examen simple, rápido e indoloro, realizado con un equipo calibrado (Halimeter®).' },
     ],
   },
 

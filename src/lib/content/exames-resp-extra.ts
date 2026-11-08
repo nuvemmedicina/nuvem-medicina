@@ -40,7 +40,7 @@ export interface RespExtra {
 
 const RESP_EXTRA_PT: RespExtra = {
   pdfs: [
-    { label: 'Preparo: H₂ · CH₄ · H₂S', sub: 'SIBO, IMO, LIBO e intolerâncias', href: '/pdfs/preparo-teste-respiratorio-sibo-imo-v1.pdf' },
+    { label: 'Preparo: H₂ · CH₄ · H₂S', sub: 'SIBO, IMO e intolerâncias', href: '/pdfs/preparo-teste-respiratorio-sibo-imo-v1.pdf' },
     { label: 'Preparo: H. pylori',      sub: 'Diagnóstico e controle de erradicação', href: '/pdfs/preparo-teste-respiratorio-hpylori-v1.pdf' },
   ],
   videos: [
@@ -116,7 +116,7 @@ const RESP_EXTRA_PT: RespExtra = {
 
 const RESP_EXTRA_EN: RespExtra = {
   pdfs: [
-    { label: 'Prep Guide: H₂ · CH₄ · H₂S', sub: 'SIBO, IMO, LIBO and intolerances', href: '/pdfs/preparo-teste-respiratorio-sibo-imo-v1.pdf' },
+    { label: 'Prep Guide: H₂ · CH₄ · H₂S', sub: 'SIBO, IMO and intolerances', href: '/pdfs/preparo-teste-respiratorio-sibo-imo-v1.pdf' },
     { label: 'Prep Guide: H. pylori',      sub: 'Diagnosis and eradication control', href: '/pdfs/preparo-teste-respiratorio-hpylori-v1.pdf' },
   ],
   videos: [
@@ -192,7 +192,7 @@ const RESP_EXTRA_EN: RespExtra = {
 
 const RESP_EXTRA_ES: RespExtra = {
   pdfs: [
-    { label: 'Preparación: H₂ · CH₄ · H₂S', sub: 'SIBO, IMO, LIBO e intolerancias', href: '/pdfs/preparo-teste-respiratorio-sibo-imo-v1.pdf' },
+    { label: 'Preparación: H₂ · CH₄ · H₂S', sub: 'SIBO, IMO e intolerancias', href: '/pdfs/preparo-teste-respiratorio-sibo-imo-v1.pdf' },
     { label: 'Preparación: H. pylori',      sub: 'Diagnóstico y control de erradicación', href: '/pdfs/preparo-teste-respiratorio-hpylori-v1.pdf' },
   ],
   videos: [

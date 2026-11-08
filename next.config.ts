@@ -18,7 +18,6 @@ const pdfsRenomeados = [
   'preparo-phmetria-impedanciometria',
   'preparo-teste-respiratorio-sibo-imo',
   'preparo-teste-respiratorio-hpylori',
-  'preparo-halimetria-sialometria',
   'preparo-avaliacao-pelvica',
 ].map(nome => ({
   source:      `/pdfs/${nome}.pdf`,
@@ -71,8 +70,8 @@ const examesAntigos = [
   { source: '/manometria-esofagica',                                            destination: '/exames/manometria-esofagica' },
   { source: '/manometria-anorretal',                                            destination: '/exames/manometria-anorretal' },
   { source: '/para-que-serve-e-como-funciona-o-exame-de-manometria-anorretal',   destination: '/exames/manometria-anorretal' },
-  { source: '/halimetria',                                                      destination: '/exames/halimetria-sialometria' },
-  { source: '/halimetria-e-sialometria',                                        destination: '/exames/halimetria-sialometria' },
+  { source: '/halimetria',                                                      destination: '/exames' },
+  { source: '/halimetria-e-sialometria',                                        destination: '/exames' },
   { source: '/ph-impedanciometria-esofagica',                                   destination: '/exames/phmetria-impedanciometria' },
   { source: '/phimpedanciometria-esofagica',                                    destination: '/exames/phmetria-impedanciometria' },
   { source: '/phmetria-esofagicas',                                             destination: '/exames/phmetria-impedanciometria' },
@@ -100,8 +99,6 @@ const especialidadesAntigas = [
 // deixar 404, para quem chegou buscando "preparo" ter onde continuar.
 const preparosAntigos = [
   'preparo-colonoscopia',
-  'preparo-halimetria',
-  'preparo-halimetria-e-sialometria',
   'preparo-impedancio-phmetria',
   'preparo-impedanciophmetria-esofagica',
   'preparo-manometria-anorretal',
@@ -121,6 +118,21 @@ const preparosAntigos = [
   destination: '/exames/preparos',
   permanent:   true,
 }))
+
+/**
+ * Halimetria e sialometria saíram do site (decisão da clínica em 06/11/2026).
+ * A página do exame volta para a lista de exames, na língua de origem; os
+ * PDFs de preparo voltam para o hub de preparos.
+ */
+const halimetriaRemovida = [
+  { source: '/exames/halimetria-sialometria',    destination: '/exames' },
+  { source: '/en/exames/halimetria-sialometria', destination: '/en/exames' },
+  { source: '/es/exames/halimetria-sialometria', destination: '/es/exames' },
+  { source: '/preparo-halimetria',               destination: '/exames' },
+  { source: '/preparo-halimetria-e-sialometria', destination: '/exames' },
+  { source: '/pdfs/preparo-halimetria-sialometria.pdf',    destination: '/exames/preparos' },
+  { source: '/pdfs/preparo-halimetria-sialometria-v1.pdf', destination: '/exames/preparos' },
+].map(r => ({ ...r, permanent: true }))
 
 const nextConfig: NextConfig = {
   async redirects() {
@@ -148,6 +160,7 @@ const nextConfig: NextConfig = {
       { source: '/eleve-sua-carreira-na-saude-conheca-a-excelencia-dos-cursos-da-nuvem-ensino', destination: '/ensino', permanent: true },
       { source: '/youtube',                       destination: 'https://www.youtube.com/@NuvemMedicina', permanent: true },
 
+      ...halimetriaRemovida,
       ...pdfsRenomeados,
       ...blogAntigos,
       ...blogRevisados,

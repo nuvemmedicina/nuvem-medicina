@@ -48,7 +48,7 @@ export default function SobrePage() {
               <p className="reveal reveal-d3">
                 Localizada no coração do bairro Santa Efigênia, a clínica realiza
                 exames diagnósticos: manometria de alta resolução, testes respiratórios
-                para SIBO e <em><strong>H. pylori</strong></em>, pHmetria, halimetria e muito mais, sob gestão certificada
+                para SIBO e <em><strong>H. pylori</strong></em>, pHmetria e avaliação pélvica, sob gestão certificada
                 pela norma ISO 9001.
               </p>
               <p className="reveal reveal-d4">

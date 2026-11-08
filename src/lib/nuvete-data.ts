@@ -124,20 +124,6 @@ export const PREPAROS_EXAMES: PreparoExame[] = [
     aviso: 'A dieta do dia anterior é essencial para a precisão do resultado. Não pulá-la.',
   },
   {
-    id:      'halimetria',
-    nome:    'Halimetria e Sialometria',
-    emoji:   '💬',
-    duracao: '30–40 min',
-    itens: [
-      'Não comer nas 3 horas anteriores ao exame',
-      'Não escovar dentes nas 2 horas anteriores',
-      'Não usar enxaguante bucal ou spray bucal no dia',
-      'Não usar perfume forte ou desodorante no dia',
-      'Não fumar 2 horas antes',
-      'Água é permitida normalmente',
-    ],
-  },
-  {
     id:      'pelvico',
     nome:    'Avaliação Pélvica (Biofeedback/EMG)',
     emoji:   '🧘',
@@ -302,7 +288,7 @@ export const NUVETE_RESPOSTAS: NuveteResposta[] = [
   },
   {
     gatilhos: ['motilidade', 'motilidade digestiva', 'funcional'],
-    resposta: '🔹 **Motilidade Digestiva**\n\nAvaliação dos movimentos e da função do aparelho digestivo com exames de alta precisão:\n\n- Manometria Esofágica de Alta Resolução\n- Manometria Anorretal\n- pHmetria e Impedanciopletismografia\n- Testes Respiratórios (H₂, CH₄, H₂S)\n\nA Dra. Vera Ângelo, Diretora Técnica da clínica, atua nessa área.',
+    resposta: '🔹 **Motilidade Digestiva**\n\nAvaliação dos movimentos e da função do aparelho digestivo com exames de alta precisão:\n\n- Manometria Esofágica de Alta Resolução\n- Manometria Anorretal\n- pHmetria e impedanciopHmetria esofágica (24h)\n- Testes Respiratórios (H₂, CH₄, H₂S)\n\nA Dra. Vera Ângelo, Diretora Técnica da clínica, atua nessa área.',
     botoes: [
       { label: '🩺 Saiba mais', acao: 'link:/especialidades/motilidade-digestiva' },
       { label: '📅 Agendar exame', acao: 'whatsapp' },
@@ -312,7 +298,7 @@ export const NUVETE_RESPOSTAS: NuveteResposta[] = [
   // ── Exames ───────────────────────────────────────────────────────────────────
   {
     gatilhos: ['exames', 'que exames', 'quais exames', 'exame disponível', 'exame disponivel'],
-    resposta: '🔬 **Exames disponíveis na NU.V.E.M:**\n\n- 🫁 Manometria Esofágica de Alta Resolução\n- 🩺 Manometria Anorretal\n- ⏱️ pHmetria Esofágica 24h\n- 💨 Testes Respiratórios (Lactose, Frutose, SIBO, *H. pylori*)\n- 💬 Halimetria e Sialometria\n- 🧘 Avaliação Pélvica (Biofeedback/EMG)\n\nQuer saber o preparo para algum exame?',
+    resposta: '🔬 **Exames disponíveis na NU.V.E.M:**\n\n- 🫁 Manometria Esofágica (alta resolução e convencional)\n- 🩺 Manometria Anorretal\n- ⏱️ pHmetria e impedanciopHmetria esofágica (24h)\n- 💨 Testes Respiratórios (Lactose, Frutose, SIBO, *H. pylori*)\n- 🧘 Avaliação Pélvica (Biofeedback/EMG)\n\nQuer saber o preparo para algum exame?',
     botoes: [
       { label: '🔬 Ver todos os exames', acao: 'link:/exames' },
       { label: '📋 Ver preparos', acao: 'link:/exames/preparos' },
@@ -321,7 +307,7 @@ export const NUVETE_RESPOSTAS: NuveteResposta[] = [
   },
   {
     gatilhos: ['laudo', 'resultado', 'quando fica pronto', 'prazo'],
-    resposta: '📄 **Prazos dos laudos na NU.V.E.M:**\n\n- Manometria: até 3 dias úteis\n- pHmetria: alguns dias após a devolução do equipamento\n- Testes Respiratórios: até 3 dias úteis\n- Halimetria e Sialometria: até 2 dias úteis\n\nOs laudos seguem os processos da gestão certificada pela norma ISO 9001. Estruturados, detalhados e entregues no prazo. 💙',
+    resposta: '📄 **Prazos dos laudos na NU.V.E.M:**\n\n- Manometria: até 3 dias úteis\n- pHmetria: alguns dias após a devolução do equipamento\n- Testes Respiratórios: até 3 dias úteis\n\nOs laudos seguem os processos da gestão certificada pela norma ISO 9001. Estruturados, detalhados e entregues no prazo. 💙',
     botoes: [
       { label: '📅 Agendar exame', acao: 'whatsapp' },
     ],
@@ -404,9 +390,10 @@ export const NUVETE_RESPOSTAS: NuveteResposta[] = [
   },
   {
     gatilhos: ['halitose', 'mau hálito', 'mau halito', 'hálito'],
-    resposta: 'A NU.V.E.M tem um programa completo para diagnóstico e tratamento da halitose, com:\n\n🔬 Halimetria: quantificação objetiva dos compostos causadores\n💧 Sialometria: avaliação do fluxo salivar\n👥 Abordagem multidisciplinar (gastro + odonto)\n\nGostaria de saber o preparo para a halimetria?',
+    resposta: 'Na NU.V.E.M, a consulta de gastroenterologia investiga as causas digestivas da halitose (mau hálito), como refluxo, SIBO e H. pylori.\n\nA clínica não realiza halimetria nem sialometria. Quando a causa provável é oral, a orientação é procurar um dentista.\n\nGostaria de agendar uma consulta?',
     botoes: [
-      { label: '📋 Preparo halimetria', acao: 'preparo:halimetria' },
+      { label: '🩺 Saiba mais', acao: 'link:/especialidades/halitose' },
+      { label: '📅 Agendar consulta', acao: 'whatsapp' },
     ],
   },
   {
