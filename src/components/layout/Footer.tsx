@@ -3,6 +3,9 @@
 import { useTranslations } from 'next-intl'
 import { Instagram, Youtube, MessageCircle, Linkedin } from 'lucide-react'
 import { Link } from '@/i18n/navigation'
+// Política de privacidade e direitos do paciente só existem em português:
+// next/link sem prefixo de idioma, como o <a> que havia antes.
+import NextLink from 'next/link'
 import { LogoBranco }  from '@/components/icons/LogoBranco'
 import { IsoSeal }     from '@/components/icons/IsoSeal'
 import { CookiePreferencesLink } from '@/components/ui/CookiePreferencesLink'
@@ -137,13 +140,13 @@ export function Footer() {
               {CONTATO.endereco} – {CONTATO.bairro} · {CONTATO.cep}
             </a>
             <div className="flex items-center gap-4 justify-start">
-              <a href="/politica-de-privacidade" className="text-[0.72rem] text-white/35 hover:text-teal-light transition-colors">
+              <NextLink href="/politica-de-privacidade" className="text-[0.72rem] text-white/35 hover:text-teal-light transition-colors">
                 {t('privacyPolicy')}
-              </a>
+              </NextLink>
               <span className="text-white/25 text-[0.72rem]">·</span>
-              <a href="/direitos-do-paciente" className="text-[0.72rem] text-white/35 hover:text-teal-light transition-colors">
+              <NextLink href="/direitos-do-paciente" className="text-[0.72rem] text-white/35 hover:text-teal-light transition-colors">
                 {t('patientRights')}
-              </a>
+              </NextLink>
               <span className="text-white/25 text-[0.72rem]">·</span>
               <CookiePreferencesLink />
             </div>

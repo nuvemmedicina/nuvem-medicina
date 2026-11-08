@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
 import { Phone, MapPin, Clock, Mail, Instagram, Youtube } from 'lucide-react'
-import { Link } from '@/i18n/navigation'
 import { PageHero }       from '@/components/ui/PageHero'
 import { SectionWrapper } from '@/components/ui/SectionWrapper'
 import { AgendarForm }    from '@/app/[locale]/agendar/AgendarForm'

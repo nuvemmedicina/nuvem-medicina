@@ -21,15 +21,32 @@ Convenções deste relatório:
 | 1 · Rastreamento | `6d16b95`, `3fb8192` | feito |
 | 2a · Textos CFM | `99de578` | feito, com textos para validar |
 | 2b · Travessões | `e3c7e56` | feito |
-| 3 · Halimetria e sialometria | este commit | feito, com textos para validar |
+| 3 · Halimetria e sialometria | `6e27c1d` | feito, com textos para validar |
+| ESLint | este commit | configurado, lint passando |
 | 4 · Domínio, URLs antigas, indexação | a seguir | |
 | 5 · Agendamento | a seguir | |
 | 6 · Contato | a seguir | |
 
 Verificação: `npm run build` e `npm run type-check` passam a cada commit.
-`npm run lint` não roda: o Next 16 removeu o `next lint` e o projeto não tem
-configuração do ESLint. A configuração entra num commit à parte, depois do
-Bloco 3.
+Até o Bloco 3, `npm run lint` não rodava: o Next 16 removeu o `next lint` e o
+projeto não tinha configuração do ESLint. O commit do ESLint (depois do Bloco
+3) resolveu isso; a partir do Bloco 4, o lint também passa antes de cada commit.
+
+### Configuração do ESLint
+
+- ESLint 9 com `eslint-config-next` 16.2.4 (flat config em `eslint.config.mjs`);
+  o script `lint` passou de `next lint` para `eslint .`.
+- Ignorados: `.next`, `node_modules`, `.claude` (cópias de trabalho), `docs` e `public`.
+- Corrigidos para o lint passar: 20 links internos com `<a>` viraram `Link`
+  (rodapé, banner de cookies, página de avaliação, mesmos endereços), o
+  `require` do `tailwind.config.ts` ganhou exceção comentada, e saíram 5
+  imports sem uso.
+- Ficaram como **aviso** (não erro), com justificativa no arquivo: as regras
+  do React Compiler (`react-hooks/set-state-in-effect`, `refs`,
+  `immutability`, `preserve-manual-memoization`) e `no-explicit-any`.
+  Apontam código anterior (banner de consentimento, nuvete, anamnese, blog);
+  corrigir mexe em lógica e fica para uma tarefa própria.
+- Resultado: 0 erros, 27 avisos.
 
 ---
 

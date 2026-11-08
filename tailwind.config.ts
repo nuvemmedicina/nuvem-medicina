@@ -75,6 +75,7 @@ const config: Config = {
       },
     },
   },
+  // eslint-disable-next-line @typescript-eslint/no-require-imports -- forma documentada do plugin
   plugins: [require('@tailwindcss/typography')],
 }
 
