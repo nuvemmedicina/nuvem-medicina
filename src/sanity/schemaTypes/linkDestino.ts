@@ -16,7 +16,7 @@ const ROTAS_FIXAS = [
   { title: 'Álbum da Saúde',          value: '/album-da-saude' },
 ]
 
-// Listas geradas a partir de src/lib/data.ts — mesma solução usada no campo
+// Listas geradas a partir de src/lib/data.ts: mesma solução usada no campo
 // "Exame relacionado" dos artigos do blog (ver src/sanity/schemaTypes/post.ts).
 // Impede gravar uma rota para um exame ou especialidade que não existe.
 const EXAME_ROTAS = EXAMES.map(e => ({ title: `Exame · ${e.title}`, value: `/exames/${e.id}` }))

@@ -1,9 +1,14 @@
-export const metadata = { title: 'Studio · NU.V.E.M Medicina' }
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title:  'Studio · NU.V.E.M Medicina',
+  robots: { index: false, follow: false, googleBot: { index: false, follow: false } },
+}
 
 /**
  * Root layout independente do Studio (padrão "multiple root layouts" do
  * Next.js). Fora do segmento [locale] de propósito: é uma ferramenta interna,
- * sempre em português, sem GTM/consent — já bloqueada no robots.txt.
+ * sempre em português, sem GTM/consent: já bloqueada no robots.txt.
  */
 export default function StudioLayout({ children }: { children: React.ReactNode }) {
   return (

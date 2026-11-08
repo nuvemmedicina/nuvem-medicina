@@ -42,14 +42,14 @@ export type LinkBio = {
  *  1. Como retorno da página quando o documento ainda não existe no Sanity
  *     (site publicado antes da primeira edição no Studio, ou Sanity fora do ar).
  *  2. Como fonte para scripts/seed-link-bio.mjs, que grava esta mesma lista
- *     como o primeiro documento — assim o valor inicial só é escrito uma vez,
+ *     como o primeiro documento: assim o valor inicial só é escrito uma vez,
  *     aqui.
  *
  * Rótulos e a linha de posicionamento são propositalmente genéricos: texto
  * médico e de marketing é decisão da clínica, não do código.
  */
 export const DEFAULT_LINK_BIO: LinkBio = {
-  posicionamento: 'Texto provisório — atualizar no Studio.',
+  posicionamento: 'Texto provisório: atualizar no Studio.',
   chamadaPrincipal: {
     rotulo:  'Agendar consulta',
     destino: { tipo: 'interno', rotaInterna: '/agendar' },

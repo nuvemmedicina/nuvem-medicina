@@ -1,5 +1,5 @@
 /**
- * Anamnese da IA de atendimento (Dr.IAgenda) — estrutura do formulário.
+ * Anamnese da IA de atendimento (Dr.IAgenda): estrutura do formulário.
  *
  * O formulário original da Dr.IAgenda (cockpit.infradriagenda.com/anamnese-v2)
  * mistura dados da clínica com dados de cada médico. Aqui ele é dividido em:
@@ -38,7 +38,7 @@ export type Section = {
 export type Value  = string | string[]
 export type Values = Record<string, Value>
 
-// ─── Parte A — Clínica ────────────────────────────────────────────────────────
+// ─── Parte A · Clínica ────────────────────────────────────────────────────────
 export const SECOES_CLINICA: Section[] = [
   {
     id: 'identificacao',
@@ -161,7 +161,7 @@ export const SECOES_CLINICA: Section[] = [
   },
 ]
 
-// ─── Parte B — Médicos (um bloco por profissional) ─────────────────────────────
+// ─── Parte B · Médicos (um bloco por profissional) ─────────────────────────────
 export const CAMPOS_MEDICO: Section[] = [
   {
     id: 'identificacao',

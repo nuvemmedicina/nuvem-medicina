@@ -1,5 +1,5 @@
 /**
- * Preparos de exames em padrão único — fonte para o PDF da clínica (Dr.IAgenda),
+ * Preparos de exames em padrão único: fonte para o PDF da clínica (Dr.IAgenda),
  * a versão em Markdown para a IA do WhatsApp e o relatório de validação.
  *
  * REGRA: nada aqui é orientação nova. O texto foi reorganizado a partir dos

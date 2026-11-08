@@ -1,7 +1,7 @@
 import { defineType, defineField } from 'sanity'
 import { EXAMES, ESPECIALIDADES } from '../../lib/data'
 
-// Listas geradas a partir de src/lib/data.ts — fonte única de verdade.
+// Listas geradas a partir de src/lib/data.ts: fonte única de verdade.
 // Exames e especialidades ainda não são documentos no Sanity (são páginas
 // estáticas do site), então este é um campo de texto com opções, não uma
 // referência. A validação abaixo impede gravar qualquer valor fora desta
@@ -108,7 +108,7 @@ export const postType = defineType({
       name:       'exameRelacionado',
       title:      'Exame relacionado',
       type:       'string',
-      description: 'Exame que investiga o problema deste artigo. Define o destino da chamada ao final do texto. Se não houver exame relacionado, deixe em branco e preencha "Especialidade relacionada" — na falta dos dois, a chamada genérica de agendamento é exibida.',
+      description: 'Exame que investiga o problema deste artigo. Define o destino da chamada ao final do texto. Se não houver exame relacionado, deixe em branco e preencha "Especialidade relacionada". Na falta dos dois, a chamada genérica de agendamento é exibida.',
       options: { list: EXAME_OPTIONS },
       validation: Rule => Rule.custom(value => {
         if (!value) return true
@@ -177,7 +177,7 @@ export const postType = defineType({
               name:        'url',
               title:       'Link (DOI ou URL)',
               type:        'url',
-              description: 'Opcional — Ex: https://doi.org/10.1000/xyz123',
+              description: 'Opcional. Ex: https://doi.org/10.1000/xyz123',
             }),
           ],
           preview: {

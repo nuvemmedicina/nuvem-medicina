@@ -72,7 +72,7 @@ export function NuveteChat() {
         const aviso = p.aviso ? `\n\n⚠️ *${p.aviso}*` : ''
         addMsg({
           role: 'nuvete',
-          text: `${p.emoji} **Preparo — ${p.nome}**\nDuração aproximada: ${p.duracao}\n\n${lista}${aviso}\n\nQualquer dúvida sobre o preparo, estou aqui! 💙`,
+          text: `${p.emoji} **Preparo · ${p.nome}**\nDuração aproximada: ${p.duracao}\n\n${lista}${aviso}\n\nQualquer dúvida sobre o preparo, estou aqui! 💙`,
           botoes: [
             { label: '📅 Agendar este exame', acao: 'whatsapp' },
             { label: '❓ Outra dúvida', acao: 'topicos' },
@@ -91,7 +91,7 @@ export function NuveteChat() {
    * Marca que o paciente conversou com a Nuvete, uma vez por sessão.
    *
    * Fica aqui, e não dentro de sendToAI, porque vários tópicos respondem com
-   * texto pronto e retornam antes de chamar a IA — clicar nesses botões é
+   * texto pronto e retornam antes de chamar a IA: clicar nesses botões é
    * interação igual, e ficaria sem registro.
    *
    * O CONTEÚDO da conversa nunca é enviado: pacientes descrevem sintomas na
@@ -120,7 +120,7 @@ export function NuveteChat() {
     if (topico.id === 'agendar') {
       addMsg({
         role: 'nuvete',
-        text: `Fico feliz em te ajudar com o agendamento! 💙\n\n📱 **WhatsApp:** ${CONTATO.whatsapp}\n📞 **Telefone:** ${CONTATO.telefone}\n⏰ Segunda a Sexta, 7h30 às 17h30\n\nNossa equipe vai te atender com muito carinho!`,
+        text: `Fico feliz em te ajudar com o agendamento! 💙\n\n📱 **WhatsApp:** ${CONTATO.whatsapp}\n📞 **Telefone:** ${CONTATO.telefone}\n⏰ ${CONTATO.horario}\n\nNossa equipe vai te atender com muito carinho!`,
         botoes: [
           { label: '📱 Abrir WhatsApp agora', acao: 'whatsapp' },
           { label: '📋 Formulário online', acao: 'link:/agendar' },
@@ -142,7 +142,7 @@ export function NuveteChat() {
     if (topico.id === 'equipe') {
       addMsg({
         role: 'nuvete',
-        text: '👩‍⚕️ **Nossa equipe:**\n\n- **Dra. Vera Ângelo** — Gastroenterologista, Mestre e Doutora pela UFMG, fundadora da NU.V.E.M e referência em motilidade digestiva\n- **Dra. Eliane Basques Moura** — Cirurgiã Pediátrica, Diretora Técnica Substituta\n- Fisioterapeutas pélvicos, nefrologista, pediatra e especialistas em halitose\n\nGostaria de saber mais sobre alguma médica?',
+        text: '👩‍⚕️ **Nossa equipe:**\n\n- **Dra. Vera Ângelo**: Gastroenterologista, Mestre e Doutora pela UFMG, fundadora da NU.V.E.M, com atuação em motilidade digestiva\n- **Dra. Eliane Basques Moura**: Cirurgiã Pediátrica, Diretora Técnica Substituta\n- Fisioterapeutas pélvicos, nefrologista, pediatra e profissionais com atuação em halitose\n\nGostaria de saber mais sobre alguma médica?',
         botoes: [
           { label: '👩‍⚕️ Dra. Vera Ângelo', acao: 'link:/dra-vera-angelo' },
           { label: '👩‍⚕️ Dra. Eliane', acao: 'link:/dra-eliane-basques' },
@@ -273,7 +273,7 @@ export function NuveteChat() {
           </div>
 
           <div className="px-4 py-1.5 border-t border-teal/8 shrink-0">
-            <p className="text-[0.6rem] text-steel/35 text-center">Assistente virtual — não realiza diagnósticos médicos</p>
+            <p className="text-[0.6rem] text-steel/35 text-center">Assistente virtual: não realiza diagnósticos médicos</p>
           </div>
 
           <div className="px-3 pb-3 shrink-0">

@@ -6,8 +6,8 @@ interface Props {
 }
 
 /**
- * Logo completa BRANCA — para fundos escuros (navbar, footer, hero).
- * viewBox: 446.56 × 267.14 — aspect ratio ~1.67:1
+ * Logo completa BRANCA: para fundos escuros (navbar, footer, hero).
+ * viewBox: 446.56 × 267.14, aspect ratio ~1.67:1
  */
 export function LogoBranco({ className, 'aria-hidden': ariaHidden }: Props) {
   return (

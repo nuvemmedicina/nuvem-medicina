@@ -60,7 +60,7 @@ const TRANSLATIONS_PROJECTION = `"translations": *[
 ] { "language": coalesce(language, "pt-BR"), "slug": slug.current }`
 
 /**
- * `language` é opcional e por padrão filtra pt-BR — todo chamador existente
+ * `language` é opcional e por padrão filtra pt-BR: todo chamador existente
  * (sitemap, Nuvete, llms.txt) continua vendo só os artigos em português sem
  * precisar passar nada. `coalesce(language, "pt-BR")` cobre os posts
  * publicados antes do campo existir, que não têm valor gravado.

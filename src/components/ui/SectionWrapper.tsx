@@ -6,7 +6,7 @@ interface SectionWrapperProps {
   id?:        string
   dark?:      boolean  // bg-cloud (cinza quase branco)
   mist?:      boolean  // teal-light suave
-  grid?:      boolean  // habilita sobreposição de grid — use apenas em blocos-chave
+  grid?:      boolean  // habilita sobreposição de grid, use apenas em blocos-chave
 }
 
 export function SectionWrapper({ children, className, id, dark, mist, grid }: SectionWrapperProps) {
@@ -22,7 +22,7 @@ export function SectionWrapper({ children, className, id, dark, mist, grid }: Se
       )}
       style={mist ? { background: 'rgba(203,228,230,0.15)' } : undefined}
     >
-      {/* Grid overlay — apenas quando solicitado */}
+      {/* Grid overlay: apenas quando solicitado */}
       {grid && <div className="absolute inset-0 hero-grid-bg pointer-events-none opacity-60" />}
 
       <div className="relative z-10 max-w-[1240px] mx-auto px-8">

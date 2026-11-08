@@ -18,7 +18,7 @@ export const youtubeBlockType = defineType({
       name:        'title',
       title:       'Legenda do vídeo',
       type:        'string',
-      description: 'Opcional — aparece abaixo do player.',
+      description: 'Opcional: aparece abaixo do player.',
     }),
     defineField({
       name:        'formato',

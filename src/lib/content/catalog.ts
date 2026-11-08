@@ -1,6 +1,6 @@
 /**
  * Versões traduzidas (EN/ES) dos catálogos de ESPECIALIDADES, EXAMES e
- * DEPOIMENTOS definidos em src/lib/data.ts. Mantém apenas os campos de texto —
+ * DEPOIMENTOS definidos em src/lib/data.ts. Mantém apenas os campos de texto:
  * os campos estruturais (num, slug, id, icon, stars, initials) são os mesmos
  * de src/lib/data.ts e não precisam ser repetidos aqui.
  *
@@ -20,12 +20,12 @@ const ESPECIALIDADES_EN: Especialidade[] = [
     tags:  ['DGBI', 'SIBO / IMO', 'Motility'] },
   { num: '02', slug: 'fisioterapia-pelvica', icon: 'Globe',
     title: 'Pelvic Physical Therapy',
-    desc:  'Pelvic floor rehabilitation, functional digestive disorders and incontinence with specialized biofeedback.',
+    desc:  'Pelvic floor rehabilitation, disorders of gut-brain interaction (DGBI) and incontinence with biofeedback.',
     tags:  ['Pelvic Floor', 'Biofeedback', 'Rehabilitation'] },
   { num: '03', slug: 'halitose', icon: 'Shield',
     title: 'Halitosis',
-    desc:  'Complete multidisciplinary diagnosis. We investigate digestive, oral and systemic causes with precision halimetry.',
-    tags:  ['Halimetry', 'Sialometry', 'Integrated Diagnosis'] },
+    desc:  'Investigation of the digestive causes of bad breath, with referral to dentistry and otolaryngology when the origin is oral or nasopharyngeal.',
+    tags:  ['Digestive Causes', 'Reflux and SIBO', 'Integrated Referral'] },
   { num: '04', slug: 'pediatria', icon: 'Users',
     title: 'Pediatrics',
     desc:  'Comprehensive care for children’s digestive health, with a welcoming approach that involves the whole family from the earliest years.',
@@ -47,12 +47,12 @@ const ESPECIALIDADES_ES: Especialidade[] = [
     tags:  ['DGBI', 'SIBO / IMO', 'Motilidad'] },
   { num: '02', slug: 'fisioterapia-pelvica', icon: 'Globe',
     title: 'Fisioterapia Pélvica',
-    desc:  'Rehabilitación del piso pélvico, trastornos digestivos funcionales e incontinencia con biofeedback especializado.',
+    desc:  'Rehabilitación del piso pélvico, trastornos de la interacción cerebro-intestino (DGBI) e incontinencia con biofeedback.',
     tags:  ['Piso Pélvico', 'Biofeedback', 'Rehabilitación'] },
   { num: '03', slug: 'halitose', icon: 'Shield',
     title: 'Halitosis',
-    desc:  'Diagnóstico multidisciplinario completo. Investigamos causas digestivas, orales y sistémicas con halimetría de precisión.',
-    tags:  ['Halimetría', 'Sialometría', 'Diagnóstico Integrado'] },
+    desc:  'Investigación de las causas digestivas del mal aliento, con derivación a odontología y otorrinolaringología cuando el origen es oral o nasofaríngeo.',
+    tags:  ['Causas Digestivas', 'Reflujo y SIBO', 'Derivación Integrada'] },
   { num: '04', slug: 'pediatria', icon: 'Users',
     title: 'Pediatría',
     desc:  'Cuidado integral de la salud digestiva infantil con un enfoque cercano e integrado a la familia desde los primeros años.',
@@ -82,12 +82,12 @@ export function getEspecialidade(locale: AppLocale, slug: string): Especialidade
 const EXAMES_EN: Exame[] = [
   {
     id: 'manometria-esofagica', num: '01',
-    title: 'Esophageal Manometry', subtitle: 'High Resolution · Esophagus', tag: 'High Resolution',
+    title: 'Esophageal Manometry', subtitle: 'High Resolution and Conventional · Esophagus', tag: 'High Resolution',
     seoTitle: 'Esophageal Manometry in Belo Horizonte',
-    seoDescription: 'High-resolution esophageal manometry in Belo Horizonte, no sedation. Diagnosis of achalasia, dysphagia and reflux. ISO 9001 certified.',
+    seoDescription: 'High-resolution and conventional esophageal manometry in Belo Horizonte, no sedation. Diagnosis of achalasia, dysphagia and reflux. Management certified under ISO 9001.',
     desc: [
       'Precisely evaluates esophageal motility and lower esophageal sphincter function, essential for diagnosing achalasia, dysphagia and gastroesophageal reflux.',
-      'Latest-generation equipment with full high-resolution esophageal pressure mapping. Reports issued by ISO 9001 certified specialists.',
+      'Performed with high-resolution (24-channel) or conventional (8-channel) manometry, as indicated by the physician. Up-to-date equipment with esophageal pressure mapping. Reports issued at a clinic with management certified under ISO 9001.',
     ],
     info: [
       { icon: 'Clock',  text: 'Duration: 30-45 minutes' },
@@ -99,10 +99,10 @@ const EXAMES_EN: Exame[] = [
     id: 'manometria-anorretal', num: '02',
     title: 'Anorectal Manometry', subtitle: 'High Resolution · Anal Canal', tag: 'High Resolution',
     seoTitle: 'Anorectal Manometry in Belo Horizonte',
-    seoDescription: 'Anorectal manometry in Belo Horizonte for fecal incontinence, chronic constipation and pelvic floor assessment. ISO 9001 certified.',
+    seoDescription: 'Anorectal manometry in Belo Horizonte for fecal incontinence, chronic constipation and pelvic floor assessment. Management certified under ISO 9001.',
     desc: [
       'Evaluates the function of the anal canal and rectal sphincters, essential for diagnosing fecal incontinence, chronic constipation and pelvic floor disorders.',
-      'Complete protocol with integrated biofeedback. Latest-generation equipment with ISO 9001 certified reports.',
+      'Complete protocol with integrated biofeedback. Up-to-date equipment and reports issued at a clinic with management certified under ISO 9001.',
     ],
     info: [
       { icon: 'Clock',  text: 'Duration: 30-45 minutes' },
@@ -112,12 +112,12 @@ const EXAMES_EN: Exame[] = [
   },
   {
     id: 'phmetria-impedanciometria', num: '03',
-    title: 'pH & Impedance Monitoring', subtitle: '24h Monitoring', tag: '24h Monitoring',
-    seoTitle: 'pH & Impedance Monitoring in Belo Horizonte',
-    seoDescription: '24-hour esophageal pH monitoring and impedance testing in Belo Horizonte. Diagnosis of acid and non-acid reflux refractory to treatment.',
+    title: 'Esophageal pH and Impedance-pH Monitoring', subtitle: '24h Monitoring', tag: '24h Monitoring',
+    seoTitle: 'Esophageal pH and Impedance-pH Monitoring in Belo Horizonte',
+    seoDescription: '24-hour esophageal pH monitoring and impedance-pH monitoring in Belo Horizonte. Diagnosis of acid and non-acid reflux refractory to treatment.',
     desc: [
       'Ambulatory monitoring that records acid and non-acid reflux episodes over 24 hours, correlating symptoms with reflux events during normal daily activity.',
-      'Impedance monitoring detects reflux regardless of pH, essential in cases of reflux refractory to conventional treatment.',
+      'Impedance-pH monitoring detects reflux regardless of pH, essential in cases of reflux refractory to conventional treatment.',
     ],
     info: [
       { icon: 'Clock', text: '24-hour ambulatory monitoring' },
@@ -131,7 +131,7 @@ const EXAMES_EN: Exame[] = [
     seoDescription: 'Non-invasive breath tests in Belo Horizonte for SIBO, IMO, H. pylori and food intolerances. No sedation, results from a single exam.',
     desc: [
       'Diagnosis of SIBO, IMO, food intolerances and H. pylori through exhaled breath analysis. No blood draw, no discomfort, high diagnostic specificity.',
-      'The NU.V.E.M protocol detects H₂, CH₄ and H₂S in a single exam, covering SIBO, LIBO, SIFO and H. pylori infection.',
+      'The tests measure H₂, CH₄ and H₂S in exhaled breath and help the physician investigate SIBO, IMO, intolerances and H. pylori infection.',
     ],
     info: [
       { icon: 'Check', text: 'No blood draw · no sedation' },
@@ -139,20 +139,7 @@ const EXAMES_EN: Exame[] = [
     ],
   },
   {
-    id: 'halimetria-sialometria', num: '05',
-    title: 'Halimetry & Sialometry', subtitle: 'Halitosis Diagnosis', tag: 'Precision Diagnosis',
-    seoTitle: 'Halimetry: Halitosis Diagnosis in Belo Horizonte',
-    seoDescription: 'Halimetry and sialometry in Belo Horizonte for a precise diagnosis of halitosis. Exclusive NU.V.E.M multidisciplinary protocol.',
-    desc: [
-      'Halimetry objectively quantifies the volatile sulfur compounds that cause halitosis, with differential diagnosis between oral, digestive and systemic causes.',
-      'Sialometry evaluates salivary flow, essential in investigating xerostomia and its relationship with halitosis and systemic conditions.',
-    ],
-    info: [
-      { icon: 'Shield', text: 'Exclusive NU.V.E.M multidisciplinary protocol' },
-    ],
-  },
-  {
-    id: 'avaliacao-pelvica', num: '06',
+    id: 'avaliacao-pelvica', num: '05',
     title: 'Pelvic Floor Assessment', subtitle: 'Biofeedback & Electromyography', tag: 'Integrated Specialty',
     seoTitle: 'Pelvic Floor Assessment with Biofeedback in Belo Horizonte',
     seoDescription: 'Pelvic floor assessment with biofeedback and electromyography in Belo Horizonte. Integration between gastroenterology and pelvic physical therapy.',
@@ -169,12 +156,12 @@ const EXAMES_EN: Exame[] = [
 const EXAMES_ES: Exame[] = [
   {
     id: 'manometria-esofagica', num: '01',
-    title: 'Manometría Esofágica', subtitle: 'Alta Resolución · Esófago', tag: 'Alta Resolución',
+    title: 'Manometría Esofágica', subtitle: 'Alta Resolución y Convencional · Esófago', tag: 'Alta Resolución',
     seoTitle: 'Manometría Esofágica en Belo Horizonte',
-    seoDescription: 'Manometría esofágica de alta resolución en Belo Horizonte, sin sedación. Diagnóstico de acalasia, disfagia y reflujo. Certificación ISO 9001.',
+    seoDescription: 'Manometría esofágica de alta resolución y convencional en Belo Horizonte, sin sedación. Diagnóstico de acalasia, disfagia y reflujo. Certificación ISO 9001.',
     desc: [
       'Evalúa con precisión la motilidad del esófago y la función del esfínter esofágico inferior, esencial en el diagnóstico de acalasia, disfagia y reflujo gastroesofágico.',
-      'Equipos de última generación con mapeo completo de la presión esofágica en alta resolución. Informes emitidos por especialistas certificados ISO 9001.',
+      'Realizada en alta resolución (24 canales) o con el método convencional (8 canales), según la indicación médica. Equipos actualizados con mapeo de la presión esofágica. Informes emitidos en una clínica con gestión certificada según la norma ISO 9001.',
     ],
     info: [
       { icon: 'Clock',  text: 'Duración: 30-45 minutos' },
@@ -189,7 +176,7 @@ const EXAMES_ES: Exame[] = [
     seoDescription: 'Manometría anorrectal en Belo Horizonte para incontinencia fecal, estreñimiento crónico y evaluación del piso pélvico. Certificación ISO 9001.',
     desc: [
       'Evalúa la función de los esfínteres del canal anal y el recto, fundamental en el diagnóstico de incontinencia fecal, estreñimiento crónico y trastornos del piso pélvico.',
-      'Protocolo completo con biofeedback integrado. Equipos de última generación con informes certificados ISO 9001.',
+      'Protocolo completo con biofeedback integrado. Equipos actualizados e informes emitidos en una clínica con gestión certificada según la norma ISO 9001.',
     ],
     info: [
       { icon: 'Clock',  text: 'Duración: 30-45 minutos' },
@@ -199,12 +186,12 @@ const EXAMES_ES: Exame[] = [
   },
   {
     id: 'phmetria-impedanciometria', num: '03',
-    title: 'pHmetría e Impedancia', subtitle: 'Monitoreo de 24h', tag: 'Monitoreo de 24h',
-    seoTitle: 'pHmetría e Impedancia en Belo Horizonte',
-    seoDescription: 'pHmetría esofágica de 24 horas e impedancia en Belo Horizonte. Diagnóstico de reflujo ácido y no ácido refractario al tratamiento.',
+    title: 'pHmetría e ImpedanciopHmetría Esofágica', subtitle: 'Monitoreo de 24h', tag: 'Monitoreo de 24h',
+    seoTitle: 'pHmetría e ImpedanciopHmetría Esofágica en Belo Horizonte',
+    seoDescription: 'pHmetría esofágica e impedanciopHmetría esofágica (24h) en Belo Horizonte. Diagnóstico de reflujo ácido y no ácido refractario al tratamiento.',
     desc: [
       'Monitoreo ambulatorio que registra episodios de reflujo ácido y no ácido durante 24 horas, correlacionando síntomas con eventos de reflujo en actividad normal.',
-      'La impedancia detecta reflujo independientemente del pH, esencial en casos de reflujo refractario al tratamiento convencional.',
+      'La impedanciopHmetría detecta reflujo independientemente del pH, esencial en casos de reflujo refractario al tratamiento convencional.',
     ],
     info: [
       { icon: 'Clock', text: 'Monitoreo ambulatorio de 24 horas' },
@@ -218,7 +205,7 @@ const EXAMES_ES: Exame[] = [
     seoDescription: 'Pruebas respiratorias no invasivas en Belo Horizonte para SIBO, IMO, H. pylori e intolerancias alimentarias. Sin sedación, resultado en un único examen.',
     desc: [
       'Diagnóstico de SIBO, IMO, intolerancias alimentarias y H. pylori mediante análisis del aire exhalado. Sin extracción de sangre, sin molestias y con alta especificidad diagnóstica.',
-      'El protocolo NU.V.E.M detecta H₂, CH₄ y H₂S en un único examen, cubriendo SIBO, LIBO, SIFO e infección por H. pylori.',
+      'Las pruebas miden H₂, CH₄ y H₂S en el aire exhalado y ayudan al médico a investigar SIBO, IMO, intolerancias e infección por H. pylori.',
     ],
     info: [
       { icon: 'Check', text: 'Sin extracción de sangre · sin sedación' },
@@ -226,20 +213,7 @@ const EXAMES_ES: Exame[] = [
     ],
   },
   {
-    id: 'halimetria-sialometria', num: '05',
-    title: 'Halimetría y Sialometría', subtitle: 'Diagnóstico de Halitosis', tag: 'Diagnóstico Preciso',
-    seoTitle: 'Halimetría: Diagnóstico de Halitosis en Belo Horizonte',
-    seoDescription: 'Halimetría y sialometría en Belo Horizonte para el diagnóstico preciso de la halitosis. Protocolo multidisciplinario exclusivo NU.V.E.M.',
-    desc: [
-      'La halimetría cuantifica objetivamente los compuestos sulfurados volátiles causantes de la halitosis, con diagnóstico diferencial entre causas orales, digestivas y sistémicas.',
-      'La sialometría evalúa el flujo salival, esencial en la investigación de la xerostomía y su relación con la halitosis y enfermedades sistémicas.',
-    ],
-    info: [
-      { icon: 'Shield', text: 'Protocolo multidisciplinario exclusivo NU.V.E.M' },
-    ],
-  },
-  {
-    id: 'avaliacao-pelvica', num: '06',
+    id: 'avaliacao-pelvica', num: '05',
     title: 'Evaluación del Piso Pélvico', subtitle: 'Biofeedback y Electromiografía', tag: 'Especialidad Integrada',
     seoTitle: 'Evaluación del Piso Pélvico con Biofeedback en Belo Horizonte',
     seoDescription: 'Evaluación del piso pélvico con biofeedback y electromiografía en Belo Horizonte. Integración entre gastroenterología y fisioterapia pélvica.',
@@ -264,7 +238,7 @@ export function getExame(locale: AppLocale, id: string): Exame | undefined {
 }
 
 // ─── Depoimentos ───────────────────────────────────────────────────────────
-// name/stars/initials não mudam por idioma — só role/text (depoimentos reais
+// name/stars/initials não mudam por idioma: só role/text (depoimentos reais
 // de pacientes/alunos, traduzidos por IA; revisão da clínica recomendada
 // antes de publicar em produção).
 

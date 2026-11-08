@@ -48,7 +48,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: '/',                priority: 1.0,  changeFrequency: 'weekly'  as const },
     { path: '/especialidades',  priority: 0.9,  changeFrequency: 'monthly' as const },
     { path: '/exames',          priority: 0.9,  changeFrequency: 'monthly' as const },
-    { path: '/exames/preparos', priority: 0.85, changeFrequency: 'monthly' as const },
     { path: '/blog',            priority: 0.75, changeFrequency: 'weekly'  as const },
     { path: '/agendar',         priority: 0.95, changeFrequency: 'monthly' as const },
     { path: '/contato',         priority: 0.7,  changeFrequency: 'monthly' as const },
@@ -64,6 +63,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // ── Páginas ainda só em português (fase 2) ──────────────────────────────
   const ptOnlyPages: MetadataRoute.Sitemap = [
+    { url: `${BASE}/exames/preparos`,         priority: 0.85, changeFrequency: 'monthly' as const },
     { url: `${BASE}/sobre`,                   priority: 0.8,  changeFrequency: 'monthly' as const },
     { url: `${BASE}/equipe`,                  priority: 0.8,  changeFrequency: 'monthly' as const },
     { url: `${BASE}/dra-vera-angelo`,         priority: 0.75, changeFrequency: 'monthly' as const },

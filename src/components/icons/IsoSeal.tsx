@@ -3,14 +3,14 @@ import { cn }  from '@/lib/utils'
 
 interface Props {
   className?: string
-  size?:      number   // px — both width and height (square)
+  size?:      number   // px, both width and height (square)
   priority?:  boolean
 }
 
 /**
  * Selo ISO 9001 oficial com gradiente dourado.
  * Usa next/image para carregar o SVG de /public/images/iso-9001.svg
- * — o SVG contém gradientes complexos que exigem renderização externa.
+ * porque o SVG contém gradientes complexos que exigem renderização externa.
  */
 export function IsoSeal({ className, size = 200, priority = false }: Props) {
   return (

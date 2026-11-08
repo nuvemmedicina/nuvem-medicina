@@ -15,7 +15,7 @@ export async function generateMetadata({
     alternates:  localizedAlternates('/avaliacao', locale),
     title:       t('metaTitle'),
     description: t('metaDescription'),
-    robots:      { index: false }, // NPS page — don't index
+    robots:      { index: false }, // NPS page, don't index
   }
 }
 

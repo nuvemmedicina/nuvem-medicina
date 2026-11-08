@@ -5,7 +5,7 @@ export function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-white">
 
-      {/* Light grid background — the "tech" checkered look */}
+      {/* Light grid background: the "tech" checkered look */}
       <div className="absolute inset-0 hero-grid-bg pointer-events-none" />
 
       {/* Soft mist orb top-right */}
@@ -34,7 +34,7 @@ export function HeroSection() {
         <IsoSeal size={280} />
       </div>
 
-      {/* Content — carrossel de slides */}
+      {/* Content: carrossel de slides */}
       <div className="relative z-10 w-full max-w-[1240px] mx-auto px-8 pt-[120px] pb-20">
         <HeroCarousel />
       </div>
