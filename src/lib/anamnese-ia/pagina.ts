@@ -11,7 +11,7 @@
  * Nada aqui é apagado: novas versões e decisões entram no fim das listas.
  */
 import type { DocFotos } from './foto'
-import { fotoAprovada } from './foto'
+import { fotoAprovada, usaFoto } from './foto'
 
 export type ConteudoPagina = {
   nome: string
@@ -59,7 +59,7 @@ export type Etapa = keyof typeof ETAPAS
 
 /** Foto que entra na página: o envio atual ou null quando a página sai sem foto. */
 export function fotoDaPagina(fotos: DocFotos | null): string | null {
-  return fotos?.opcao === 'enviada' ? fotos.atual ?? null : null
+  return usaFoto(fotos?.opcao) ? fotos?.atual ?? null : null
 }
 
 export type Situacao = {
@@ -110,15 +110,16 @@ export function situacao(fotos: DocFotos | null, pagina: DocPagina | null, autor
   else if (aprovadaPelaClinica && texto && aprovadaPeloMedico) etapa = 'pagina-aprovada'
   else if (aprovadaPelaClinica && texto) etapa = 'aguardando-medico'
   else if (aprovadaPelaClinica) etapa = 'foto-aprovada'
-  else if (fotos?.opcao === 'enviada' && fotos.atual) etapa = 'foto-enviada'
+  else if (usaFoto(fotos?.opcao) && fotos?.atual) etapa = 'foto-enviada'
   else etapa = 'sem-foto'
 
   const detalhe =
     etapa === 'sem-foto'
       ? fotos?.opcao === 'clinica' ? 'Pediu que a clínica providencie a foto.'
       : semFoto ? 'Não quer foto no site. Falta a clínica confirmar.'
-      : 'Ainda não enviou foto.'
+      : fotos?.importacaoSite ? 'Ainda não respondeu sobre a foto atual do site.' : 'Ainda não enviou foto.'
     : etapa === 'foto-aprovada' && semFoto ? 'Página sem foto, confirmada pela clínica. Falta o texto.'
+    : etapa === 'foto-enviada' && fotos?.opcao === 'site' ? 'Aprovou a foto atual do site. Falta a clínica conferir.'
     : etapa === 'foto-aprovada' ? 'Falta o texto da página.'
     : etapa === 'aguardando-medico' && decisaoAtual?.tipo === 'ajustes' ? 'O médico pediu ajustes.'
     : ''

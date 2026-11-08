@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { upload } from '@vercel/blob/client'
 import { Camera, Check, ImageOff, Building2, Loader2, RefreshCw } from 'lucide-react'
-import { FOTO, tipoPeloConteudo, type EstadoFotoPublico, type OpcaoFoto, type TipoFoto } from '@/lib/anamnese-ia/foto'
+import { FOTO, tipoPeloConteudo, usaFoto, type EstadoFotoPublico, type OpcaoFoto, type TipoFoto } from '@/lib/anamnese-ia/foto'
 
 /**
  * Seção "Sua foto para o site" da anamnese do profissional.
@@ -91,6 +91,7 @@ export function FotoSecao({ escopo, codigo, children, podeEnviar = true, aoEnvia
       const d = await r.json()
       setEstado(d)
       if (d.opcao) setEscolha(d.opcao)
+      else if (d.fotoSite) setEscolha('site')
       setErroCarga(false)
     } catch { setErroCarga(true) }
   }, [codigo, escopo])
@@ -159,10 +160,28 @@ export function FotoSecao({ escopo, codigo, children, podeEnviar = true, aoEnvia
     } finally { setOcupado(null) }
   }
 
+  /** "Aprovo esta foto": usa a foto atual do site. Exige o aceite do termo. */
+  const aprovarSite = async () => {
+    if (!codigo || !podeEnviar) return
+    setErro(null)
+    setOcupado('Registrando…')
+    try {
+      const r = await fetch('/api/anamnese-ia/foto', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ escopo, c: codigo, acao: 'aprovar-site', ...(aoEnviar?.() ?? {}) }),
+      })
+      const d = await r.json().catch(() => ({}))
+      if (!r.ok) throw new Error(d.erro || 'Não foi possível registrar agora. Tente de novo.')
+      setEstado(e => ({ ...e, ...d }))
+      setTrocando(false)
+    } catch (e) { setErro(e instanceof Error ? e.message : 'Não foi possível registrar agora.') }
+    finally { setOcupado(null) }
+  }
+
   const salvarOpcao = async (opcao: OpcaoFoto) => {
     setEscolha(opcao)
     setErro(null)
-    if (opcao === 'enviada' || !codigo) return
+    if (opcao === 'enviada' || opcao === 'site' || !codigo) return
     setOcupado('Salvando…')
     try {
       const r = await fetch('/api/anamnese-ia/foto', {
@@ -176,12 +195,18 @@ export function FotoSecao({ escopo, codigo, children, podeEnviar = true, aoEnvia
     finally { setOcupado(null) }
   }
 
-  const srcServidor = (v: 'v45' | 'v11' = 'v45') => estado?.atual && codigo
-    ? `/api/anamnese-ia/foto/arquivo?escopo=${encodeURIComponent(escopo)}&c=${encodeURIComponent(codigo)}&id=${estado.atual.id}&v=${v}&r=${versao}`
+  const srcServidor = (id: string | undefined, v: 'v45' | 'v11') => id && codigo
+    ? `/api/anamnese-ia/foto/arquivo?escopo=${encodeURIComponent(escopo)}&c=${encodeURIComponent(codigo)}&id=${id}&v=${v}&r=${versao}`
     : ''
 
   const aprovada = !!estado?.aprovada
-  const temFoto = estado?.opcao === 'enviada' && !!estado.atual
+  const temFoto = usaFoto(estado?.opcao) && !!estado?.atual
+  const fotoSite = estado?.fotoSite ?? null
+  const opcoes = ([
+    ...(fotoSite ? [['site', 'Aprovo esta foto', Check] as const, ['enviada', 'Quero enviar outra', Camera] as const] : [['enviada', 'Vou enviar minha foto', Camera] as const]),
+    ['clinica', 'Prefiro que a clínica providencie uma foto', Building2] as const,
+    ['sem-foto', 'Não quero foto no site', ImageOff] as const,
+  ])
 
   return (
     <section id="m-foto" className="scroll-mt-24 rounded-2xl border border-teal/10 bg-white p-5 shadow-sm sm:p-7">
@@ -206,7 +231,8 @@ export function FotoSecao({ escopo, codigo, children, podeEnviar = true, aoEnvia
 
           {temFoto && !trocando && (
             <div className="mb-5">
-              <Molduras src={srcServidor('v45')} src11={srcServidor('v11')} legenda={`Foto enviada em ${dataHora(estado.atual!.em)}. Assim ela vai aparecer.${aprovada ? '' : ' A clínica ainda vai conferir.'}`} />
+              <Molduras src={srcServidor(estado.atual?.id, 'v45')} src11={srcServidor(estado.atual?.id, 'v11')}
+                legenda={`${estado.opcao === 'site' ? `Você aprovou a foto que usamos hoje no site em ${dataHora(estado.opcaoEm ?? estado.atual!.em)}.` : `Foto enviada em ${dataHora(estado.atual!.em)}.`} Assim ela vai aparecer.${aprovada ? '' : ' A clínica ainda vai conferir.'}`} />
               {!aprovada && (
                 <button type="button" onClick={() => setTrocando(true)} className="mt-3 inline-flex items-center gap-1.5 rounded-lg border border-teal/20 px-3 py-1.5 text-[0.8rem] text-teal hover:bg-teal/5">
                   <RefreshCw className="h-3.5 w-3.5" /> Trocar a foto
@@ -217,13 +243,16 @@ export function FotoSecao({ escopo, codigo, children, podeEnviar = true, aoEnvia
 
           {!aprovada && (!temFoto || trocando) && (
             <>
+              {fotoSite && (
+                <div className="mb-5">
+                  <h4 className="mb-3 text-[0.95rem] font-semibold text-steel">Esta é a foto que usamos hoje no site</h4>
+                  <Molduras src={srcServidor(fotoSite.id, 'v45')} src11={srcServidor(fotoSite.id, 'v11')} legenda="Veja como ela fica no formato do site e do Instagram." />
+                </div>
+              )}
+
               <fieldset className="mb-5 space-y-2" disabled={!!ocupado}>
                 <legend className="sr-only">Como prefere?</legend>
-                {([
-                  ['enviada', 'Vou enviar minha foto', Camera],
-                  ['clinica', 'Prefiro que a clínica providencie uma foto', Building2],
-                  ['sem-foto', 'Não quero foto no site', ImageOff],
-                ] as const).map(([v, rotulo, Icone]) => (
+                {opcoes.map(([v, rotulo, Icone]) => (
                   <label key={v} className={`flex cursor-pointer items-center gap-2.5 rounded-xl border px-3 py-2.5 text-[0.88rem] transition ${escolha === v ? 'border-teal bg-teal/5 text-teal' : 'border-teal/15 bg-white text-steel/75'}`}>
                     <input type="radio" name="opcao-foto" className="h-4 w-4 accent-[#00465F]" checked={escolha === v} onChange={() => salvarOpcao(v)} />
                     <Icone className="h-4 w-4 shrink-0" /> {rotulo}
@@ -236,6 +265,19 @@ export function FotoSecao({ escopo, codigo, children, podeEnviar = true, aoEnvia
               )}
               {escolha === 'sem-foto' && estado.opcao === 'sem-foto' && (
                 <p className="mb-2 rounded-xl bg-mist/40 p-3.5 text-[0.85rem] text-steel/75">Tudo bem. Sua página sai sem foto, só com as suas iniciais.</p>
+              )}
+
+              {escolha === 'site' && fotoSite && (
+                <>
+                  {children}
+                  <div className="flex flex-wrap items-center gap-3">
+                    <button type="button" onClick={aprovarSite} disabled={!!ocupado || !podeEnviar}
+                      className="inline-flex items-center gap-2 rounded-xl bg-teal px-5 py-3 text-[0.92rem] font-semibold text-white hover:bg-teal/90 disabled:opacity-50">
+                      {ocupado ? <Loader2 className="h-4 w-4 animate-spin" /> : <Check className="h-4 w-4" />} {ocupado ?? 'Confirmar: aprovo esta foto'}
+                    </button>
+                    {trocando && <button type="button" onClick={() => setTrocando(false)} className="text-[0.82rem] text-steel/60 hover:underline">Cancelar</button>}
+                  </div>
+                </>
               )}
 
               {escolha === 'enviada' && (

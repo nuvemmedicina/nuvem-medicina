@@ -3,18 +3,23 @@ import { autorizar } from '@/lib/anamnese-ia/acesso'
 import { del } from '@vercel/blob'
 import { sanity, idAleatorio, ipParcial } from '@/lib/anamnese-ia/servidor'
 import { docFotosId, estadoPublico, fotoAprovada, type DocFotos, type EnvioFoto, type OpcaoFoto } from '@/lib/anamnese-ia/foto'
-import { processarFoto, blobConfigurado, ErroFoto } from '@/lib/anamnese-ia/foto-servidor'
+import { processarFoto, blobConfigurado, garantirFotoDoSite, ErroFoto } from '@/lib/anamnese-ia/foto-servidor'
 import { TERMO, textoTermo } from '@/lib/anamnese-ia/termo-imagem'
 import { registrar, sha256 } from '@/lib/anamnese-ia/autorizacao'
 
 /**
  * Foto do profissional (documento privado anamnese-ia.fotos.<escopo>).
  *
- * GET  ?escopo=&c=                         estado da foto
+ * GET  ?escopo=&c=   estado da foto. Na primeira abertura, importa para o
+ *                    histórico (envio 0) a foto que o site já usa.
  * POST { escopo, c, acao: 'processar', pathname, aceite, termoVersao, nomeCompleto, registro }
- *      processa um envio; exige o aceite do termo e cria o registro da autorização
- * POST { escopo, c, acao: 'opcao', opcao }          "clínica providencia" ou "sem foto"
+ *      processa um envio novo
+ * POST { escopo, c, acao: 'aprovar-site', aceite, termoVersao, nomeCompleto, registro }
+ *      "Aprovo esta foto": usa a foto atual do site
+ * POST { escopo, c, acao: 'opcao', opcao }   "clínica providencia" ou "sem foto"
  *
+ * "processar" e "aprovar-site" exigem o aceite do termo e criam o registro
+ * da autorização; sem o aceite, nada é registrado.
  * Cada envio fica no histórico (envios[]); trocar a foto só muda "atual".
  * Depois que a clínica aprova, o profissional não troca mais por aqui.
  */
@@ -29,15 +34,27 @@ export async function GET(req: NextRequest) {
   if (erro) return NextResponse.json({ erro }, { status: 403 })
   const client = sanity()
   if (!client) return NextResponse.json({ erro: 'Servidor sem configuração' }, { status: 503 })
-  const doc = await client.getDocument<DocFotos>(docFotosId(escopo!))
-  return NextResponse.json({ ...estadoPublico(doc ?? null), envioConfigurado: blobConfigurado() })
+  const doc = await garantirFotoDoSite(client, escopo!)
+  return NextResponse.json({ ...estadoPublico(doc), envioConfigurado: blobConfigurado() })
 }
 
+type Corpo = {
+  escopo?: unknown; c?: unknown; acao?: unknown; pathname?: unknown; opcao?: unknown
+  aceite?: unknown; termoVersao?: unknown; nomeCompleto?: unknown; registro?: unknown
+}
+
+/** Confere o aceite do termo. Devolve os dados ou null. */
+function aceiteDoTermo(body: Corpo) {
+  const nomeCompleto = typeof body.nomeCompleto === 'string' ? body.nomeCompleto.trim().slice(0, 160) : ''
+  const registro = typeof body.registro === 'string' ? body.registro.trim().slice(0, 160) : ''
+  if (body.aceite !== true || body.termoVersao !== TERMO.versao || !nomeCompleto || !registro) return null
+  return { nomeCompleto, registro }
+}
+
+const SEM_ACEITE = 'Para continuar, preencha seu nome completo e o registro e marque a autorização de uso de imagem.'
+
 export async function POST(req: NextRequest) {
-  let body: {
-    escopo?: unknown; c?: unknown; acao?: unknown; pathname?: unknown; opcao?: unknown
-    aceite?: unknown; termoVersao?: unknown; nomeCompleto?: unknown; registro?: unknown
-  }
+  let body: Corpo
   try { body = await req.json() } catch { return NextResponse.json({ erro: 'JSON inválido' }, { status: 400 }) }
   const erro = autorizar(body.escopo, body.c)
   if (erro) return NextResponse.json({ erro }, { status: 403 })
@@ -49,6 +66,7 @@ export async function POST(req: NextRequest) {
   const doc = (await client.getDocument<DocFotos>(id)) ?? null
   if (fotoAprovada(doc)) return NextResponse.json({ erro: 'Sua foto já foi aprovada pela clínica. Para trocar, fale com a equipe.' }, { status: 409 })
   const agora = new Date().toISOString()
+  const responder = async () => NextResponse.json(estadoPublico((await client.getDocument<DocFotos>(id)) ?? null))
 
   if (body.acao === 'opcao') {
     const opcao = body.opcao as OpcaoFoto
@@ -57,8 +75,21 @@ export async function POST(req: NextRequest) {
       .createIfNotExists({ _id: id, _type: 'anamneseIaFotos', escopo })
       .patch(id, p => p.set({ opcao, opcaoEm: agora }))
       .commit({ visibility: 'sync' })
-    const novo = await client.getDocument<DocFotos>(id)
-    return NextResponse.json(estadoPublico(novo ?? null))
+    return responder()
+  }
+
+  if (body.acao === 'aprovar-site') {
+    const fotoSite = doc?.envios?.find(e => e.id === doc.importacaoSite?.fotoId)
+    if (!doc || !fotoSite) return NextResponse.json({ erro: 'Não encontramos a foto atual do site. Envie uma foto nova.' }, { status: 409 })
+    const termo = aceiteDoTermo(body)
+    if (!termo) return NextResponse.json({ erro: SEM_ACEITE }, { status: 400 })
+    await registrar(client, {
+      tipo: 'aceite', escopo, ...termo,
+      termoVersao: TERMO.versao, termoSha256: sha256(textoTermo(termo)),
+      fotoId: fotoSite.id, ipParcial: ipParcial(req), registradoPor: 'profissional',
+    })
+    await client.patch(id).set({ atual: fotoSite.id, opcao: 'site', opcaoEm: agora }).commit({ visibility: 'sync' })
+    return responder()
   }
 
   if (body.acao !== 'processar') return NextResponse.json({ erro: 'Ação inválida' }, { status: 400 })
@@ -69,28 +100,27 @@ export async function POST(req: NextRequest) {
   }
 
   // Termo de autorização: sem o aceite da versão atual, a foto não é aceita
-  const nomeCompleto = typeof body.nomeCompleto === 'string' ? body.nomeCompleto.trim().slice(0, 160) : ''
-  const registro = typeof body.registro === 'string' ? body.registro.trim().slice(0, 160) : ''
-  if (body.aceite !== true || body.termoVersao !== TERMO.versao || !nomeCompleto || !registro) {
+  const termo = aceiteDoTermo(body)
+  if (!termo) {
     await del(pathname).catch(() => {})
-    return NextResponse.json({ erro: 'Para enviar a foto, preencha seu nome completo e o registro e marque a autorização de uso de imagem.' }, { status: 400 })
+    return NextResponse.json({ erro: SEM_ACEITE }, { status: 400 })
   }
 
   const fotoId = `f-${agora.slice(0, 10).replace(/-/g, '')}-${idAleatorio(6)}`
   try {
     const r = await processarFoto(pathname, `anamnese-ia/fotos/${escopo}/${fotoId}`)
     const aceite = await registrar(client, {
-      tipo: 'aceite', escopo, nomeCompleto, registro,
-      termoVersao: TERMO.versao, termoSha256: sha256(textoTermo({ nomeCompleto, registro })),
+      tipo: 'aceite', escopo, ...termo,
+      termoVersao: TERMO.versao, termoSha256: sha256(textoTermo(termo)),
       fotoId, ipParcial: ipParcial(req), registradoPor: 'profissional',
     })
-    const envio: EnvioFoto = { _key: fotoId, id: fotoId, em: agora, ...r, autorizacaoId: aceite._id }
+    const numero = (doc?.envios ?? []).filter(e => e.origem !== 'site').length + 1
+    const envio: EnvioFoto = { _key: fotoId, id: fotoId, numero, origem: 'envio', em: agora, ...r, autorizacaoId: aceite._id }
     await client.transaction()
       .createIfNotExists({ _id: id, _type: 'anamneseIaFotos', escopo })
       .patch(id, p => p.setIfMissing({ envios: [] }).append('envios', [envio]).set({ atual: fotoId, opcao: 'enviada', opcaoEm: agora }))
       .commit({ visibility: 'sync' })
-    const novo = await client.getDocument<DocFotos>(id)
-    return NextResponse.json(estadoPublico(novo ?? null))
+    return responder()
   } catch (e) {
     if (e instanceof ErroFoto) return NextResponse.json({ erro: e.message }, { status: 422 })
     console.error('[/api/anamnese-ia/foto POST]', e)
