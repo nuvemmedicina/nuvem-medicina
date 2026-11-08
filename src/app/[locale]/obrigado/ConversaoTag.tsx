@@ -17,7 +17,8 @@ import { pushEvent } from '@/lib/gtm'
  *
  * RELAÇÃO COM O `envio_agendamento`
  * O formulário emite `envio_agendamento` com o serviço de interesse; é o evento
- * de leitura, e o que responde qual exame gera agendamento. Este aqui existe
+ * de leitura, e o que responde que tipo de atendimento (consulta, exame,
+ * fisioterapia, ensino) gera agendamento. Este aqui existe
  * para a otimização de lances do Ads. São o mesmo agendamento medido em dois
  * pontos: marque apenas UM como evento principal no GA4 e importe apenas UM
  * para o Ads, senão cada agendamento conta em dobro.

@@ -8,17 +8,21 @@ import { CONTATO }   from '@/lib/data'
 import { getEspecialidades, getExames } from '@/lib/content/catalog'
 import type { AppLocale } from '@/i18n/routing'
 import { formatWhatsAppMessage } from '@/lib/utils'
-import { pushEvent, origemPagina } from '@/lib/gtm'
+import { pushEvent, origemPagina, tipoAtendimentoDaEspecialidade, type TipoAtendimento } from '@/lib/gtm'
+
+type OpcaoServico = { label: string; tipo: TipoAtendimento }
 
 export function AgendarForm() {
   const router              = useRouter()
   const locale               = useLocale() as AppLocale
   const t                    = useTranslations('agendarForm')
-  const SERVICOS = [
-    { group: t('grupoConsultas'), options: getEspecialidades(locale).map(e => e.title) },
-    { group: t('grupoExames'),    options: getExames(locale).map(e => e.title) },
-    { group: t('grupoEnsino'),    options: [t('ensinoOpt1'), t('ensinoOpt2'), t('ensinoOpt3')] },
+  const SERVICOS: { group: string; options: OpcaoServico[] }[] = [
+    { group: t('grupoConsultas'), options: getEspecialidades(locale).map(e => ({ label: e.title, tipo: tipoAtendimentoDaEspecialidade(e.slug) })) },
+    { group: t('grupoExames'),    options: getExames(locale).map(e => ({ label: e.title, tipo: 'exame' as const })) },
+    { group: t('grupoEnsino'),    options: [t('ensinoOpt1'), t('ensinoOpt2'), t('ensinoOpt3')].map(label => ({ label, tipo: 'ensino' as const })) },
   ]
+  // Nome exibido -> tipo genérico. O nome vai só na mensagem do WhatsApp.
+  const tipoPorServico = new Map(SERVICOS.flatMap(g => g.options.map(o => [o.label, o.tipo] as const)))
   const [form, setForm]     = useState({ nome: '', telefone: '', email: '', servico: '', mensagem: '' })
   const [sent, setSent]     = useState(false)
   const [errors, setErrors] = useState<Record<string, boolean>>({})
@@ -44,11 +48,14 @@ export function AgendarForm() {
     // WhatsApp nunca abria e a conversão era registrada assim mesmo.
     const janela = window.open(`${CONTATO.whatsappUrl}?text=${msg}`, '_blank')
 
-    // Só o serviço de interesse acompanha o evento. Nome, telefone, e-mail e
-    // a mensagem livre NÃO entram no dataLayer — ver src/lib/gtm.ts.
+    // Só o TIPO do atendimento acompanha o evento (consulta, exame,
+    // fisioterapia ou ensino), nunca o nome do exame ou da especialidade.
+    // Nome, telefone, e-mail e a mensagem livre também NÃO entram no
+    // dataLayer. Ver src/lib/gtm.ts. O nome do parâmetro continua
+    // `servico_interesse` para a variável que já existe no GTM seguir valendo.
     pushEvent({
       event:             'envio_agendamento',
-      servico_interesse: form.servico || 'nao_informado',
+      servico_interesse: tipoPorServico.get(form.servico) ?? 'nao_informado',
       origem_pagina:     origemPagina(),
       // Permite medir quantos envios perdem o WhatsApp por bloqueio de pop-up.
       whatsapp_abriu:    Boolean(janela),
@@ -115,7 +122,7 @@ export function AgendarForm() {
           <option value="">{t('selecione')}</option>
           {SERVICOS.map(grp => (
             <optgroup key={grp.group} label={grp.group}>
-              {grp.options.map(opt => <option key={opt} value={opt}>{opt}</option>)}
+              {grp.options.map(opt => <option key={opt.label} value={opt.label}>{opt.label}</option>)}
             </optgroup>
           ))}
         </select>
