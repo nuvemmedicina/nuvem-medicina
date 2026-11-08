@@ -329,5 +329,8 @@
       "whatsapp": "Chat on WhatsApp",
       "whatsappMsg": "Hello! I'd like to book an appointment at NU.V.E.M Medicina."
     }
+  },
+  "contatoPadrao": {
+    "horario": "Monday to Thursday, 7 a.m. to 5:30 p.m. · Friday, 7 a.m. to 4:30 p.m."
   }
 }

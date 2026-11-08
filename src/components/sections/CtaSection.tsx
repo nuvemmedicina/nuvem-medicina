@@ -4,6 +4,7 @@ import { CONTATO } from '@/lib/data'
 
 export async function CtaSection() {
   const t = await getTranslations('home.cta')
+  const tc = await getTranslations('contatoPadrao')
   const waMsg = encodeURIComponent(t('whatsappMsg'))
   return (
     <section
@@ -56,7 +57,7 @@ export async function CtaSection() {
           <div className="flex flex-wrap gap-8 justify-center">
             {[
               { Icon: MapPin, text: `${CONTATO.endereco} · ${CONTATO.bairro}` },
-              { Icon: Clock,  text: CONTATO.horario },
+              { Icon: Clock,  text: tc('horario') },
             ].map(({ Icon, text }) => (
               <div key={text} className="flex items-center gap-2.5 text-[0.9rem] text-steel/55">
                 <Icon className="w-4 h-4 text-teal shrink-0" />

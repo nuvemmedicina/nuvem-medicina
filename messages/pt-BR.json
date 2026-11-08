@@ -329,5 +329,8 @@
       "whatsapp": "Falar no WhatsApp",
       "whatsappMsg": "Olá! Gostaria de agendar uma consulta na NU.V.E.M Medicina."
     }
+  },
+  "contatoPadrao": {
+    "horario": "Segunda a quinta, das 7h às 17h30 · Sexta, das 7h às 16h30"
   }
 }

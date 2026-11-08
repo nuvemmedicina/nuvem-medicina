@@ -25,8 +25,8 @@ Convenções deste relatório:
 | ESLint | `9937033` | configurado, lint passando |
 | Ajuste da nuvete | `e1bb073` | feito |
 | 4 · Domínio, URLs antigas, indexação | `98888ae` | feito |
-| 5 · Agendamento | este commit | documentado, sem mudança de campo |
-| 6 · Contato | a seguir | |
+| 5 · Agendamento | `05350b4` | documentado, sem mudança de campo |
+| 6 · Contato | este commit | feito |
 
 Verificação: `npm run build` e `npm run type-check` passam a cada commit.
 Até o Bloco 3, `npm run lint` não rodava: o Next 16 removeu o `next lint` e o
@@ -854,6 +854,49 @@ O formulário não pede outro dado de saúde além do serviço e da mensagem liv
 
 ---
 
+## Bloco 6 · Contato padrão
+
+### Levantamento
+
+| Dado | Padrão | O que estava no código |
+|---|---|---|
+| WhatsApp | (31) 99726-1029 | igual em todo o código (`CONTATO.whatsapp`, `wa.me/553197261029`) |
+| Telefone | (31) 2537-3131 | igual em todo o código (`CONTATO.telefone`, `tel:3125373131`) |
+| Endereço | Rua Ceará, 600, Sala 101, Santa Efigênia, Belo Horizonte, MG | igual em todo o código, com CEP 30150-310 |
+| Site | www.nuvemmedicina.com.br | o prompt da nuvete dizia "nuvemmedicina.com.br" sem www: corrigido |
+| Horário | segunda a quinta das 7h às 17h30, sexta das 7h às 16h30 | **divergente** em 3 lugares: prompt da nuvete ("Seg a Sex, 7h30 às 17h30"), resposta pronta do `NuveteChat` ("Segunda a Sexta, 7h30 às 17h30") e `llms.txt` ("Segunda a Sexta, 7h30–17h30"). `CONTATO.horario` e o schema estavam certos |
+| (31) 7229-1029 | número errado | **não aparece no código**. Aparece só no Sanity, num link de WhatsApp (`wa.me/553172291029`) do post `disturbios-da-interacao-cerebro-intestino-dici` (ver artigos do Sanity a revisar) |
+
+### O que mudou
+
+- O horário passa a vir de uma fonte só: `CONTATO.horario` em português e a
+  chave `contatoPadrao.horario` em `messages/*.json`. As páginas de contato,
+  agendamento e a chamada da home em en e es mostravam o horário em português;
+  agora mostram na língua da página. Conferido no servidor local nas três línguas.
+- Prompt da nuvete: horário correto, sábado e domingo fechado (como já dizia a
+  base de respostas), site com www.
+- `NuveteChat` usa `CONTATO.horario` em vez de um texto fixo.
+
+| Arquivo | Antes | Depois | Bloco |
+|---|---|---|---|
+| `src/lib/data.ts` | horario:     'Segunda a Quinta · 7h às 17h30 · Sexta até 16h30', | horario:     'Segunda a quinta, das 7h às 17h30 · Sexta, das 7h às 16h30', | 6 |
+| `src/app/api/route.ts` | ⏰ Seg a Sex, 7h30 às 17h30" | ⏰ Segunda a quinta, das 7h às 17h30 · Sexta, das 7h às 16h30" | 6 |
+| `src/app/api/route.ts` | - Site: nuvemmedicina.com.br | - Horário: segunda a quinta, das 7h às 17h30; sexta, das 7h às 16h30; sábado e domingo fechado - Site: www.nuvemmedicina.com.br | 6 |
+| `src/components/nuvete/NuveteChat.tsx` | ⏰ Segunda a Sexta, 7h30 às 17h30 | ⏰ ${CONTATO.horario} | 6 |
+| `src/app/llms.txt/route.ts` | - **Horário:** Segunda a Sexta, 7h30–17h30 | - **Horário:** Segunda a quinta, das 7h às 17h30 · Sexta, das 7h às 16h30 | 6 |
+| `src/app/[locale]/agendar/page.tsx` | values: [CONTATO.horario] | values: [tc('horario')] | 6 |
+| `src/app/[locale]/agendar/page.tsx` |   const t = await getTranslations('agendarPage')  |   const t = await getTranslations('agendarPage')   const tc = await getTranslations('contatoPadrao')  | 6 |
+| `src/app/[locale]/contato/page.tsx` | { text: CONTATO.horario, href: null }, | { text: tc('horario'), href: null }, | 6 |
+| `src/app/[locale]/contato/page.tsx` |   const t = await getTranslations('contatoPage')  |   const t = await getTranslations('contatoPage')   const tc = await getTranslations('contatoPadrao')  | 6 |
+| `src/components/sections/CtaSection.tsx` | { Icon: Clock,  text: CONTATO.horario }, | { Icon: Clock,  text: tc('horario') }, | 6 |
+| `src/components/sections/CtaSection.tsx` |   const t = await getTranslations('home.cta')  |   const t = await getTranslations('home.cta')   const tc = await getTranslations('contatoPadrao')  | 6 |
+| `messages/pt-BR.json` | (nova chave) | contatoPadrao.horario: Segunda a quinta, das 7h às 17h30 · Sexta, das 7h às 16h30 | 6 |
+| `messages/en.json` | (nova chave) | contatoPadrao.horario: Monday to Thursday, 7 a.m. to 5:30 p.m. · Friday, 7 a.m. to 4:30 p.m. | 6 |
+| `messages/es.json` | (nova chave) | contatoPadrao.horario: Lunes a jueves, de 7:00 a 17:30 · Viernes, de 7:00 a 16:30 | 6 |
+| `src/app/api/route.ts` | "certificada ISO 9001"; "Certificação ISO 9001 em Belo Horizonte" | "com gestão certificada pela norma ISO 9001"; regras de repetir a formação da equipe sem reformular e de não dizer que a ISO garante qualidade | 6 |
+
+---
+
 ## Textos marcados para validação da Dra. Vera
 
 ### Bloco 2a
@@ -1349,6 +1392,119 @@ Avaliação: as três respostas dizem que o exame não é feito na clínica e ma
 
 ---
 
+### Teste final (depois do Bloco 6, servidor local)
+
+- **Como é o preparo para o teste respiratório de SIBO?**
+
+  > Ótima pergunta! 😊 Vou explicar com carinho o preparo para o teste respiratório de SIBO:
+  > ---
+  > ## 🌿 Preparo para o Teste Respiratório de SIBO
+  > ### 📅 Na semana anterior ao exame:
+  > - **Sem antibióticos** nas **4 semanas** anteriores ao teste
+  > - **Sem probióticos** nas **2 semanas** anteriores ao teste
+  > ---
+  > ### 🍽️ No dia anterior ao exame:
+  > Você deve comer **apenas** estes alimentos:
+  > - Arroz branco
+  > - Frango, carne ou peixe
+  > - Ovos
+  > - Azeite e sal
+  > > ⚠️ Nada além disso! Sem temperos extras, sem frutas, sem pão, sem leite.
+  > ---
+  > ### ⏰ No dia do exame:
+  > - Chegar em **jejum de 12 horas**
+  > - O exame dura entre **2 e 3 horas**
+  > - É não invasivo, sem coleta de sangue 💙
+  > ---
+  > ### ℹ️ Sobre o exame:
+  > O teste respiratório de SIBO mede **H₂, CH₄ e H₂S** no ar expirado, o que auxilia o médico na investigação do supercrescimento bacteriano. Temos um artigo sobre isso 📖: [Teste Respiratório: o que a ciência revela sobre SIBO, IMO e intolerâncias alimentares](https://www.nuvemmedicina.com.br/blog/teste-respiratorio-sibo-imo-intolerancias)
+  > ---
+  > Ficou com dúvida ou quer agendar? Entre em contato com a gente:
+  > 📱 WhatsApp: (31) 99726-1029
+  > 📞 Telefone: (31) 2537-3131
+  > ⏰ Segunda a quinta, das 7h às 17h30 · Sexta, das 7h às 16h30
+
+- **Quais convênios vocês atendem?**
+
+  > Olá! 😊 Fico feliz em te ajudar!
+  > A NU.V.E.M Medicina atende pelos seguintes convênios:
+  > - 💙 **Unimed BH**
+  > - 💙 **Amil**
+  > - 💙 **Porto Seguro Saúde**
+  > - 💙 **Hapvida**
+  > - 💙 **Plamed**
+  > - 💙 **Samp**
+  > Além disso, também atendemos **particular**, com emissão de recibo para reembolso junto ao seu plano, caso ele não esteja na lista.
+  > Se quiser confirmar a cobertura do seu plano para algum procedimento específico ou agendar uma consulta, nossa equipe pode te ajudar:
+  > 📱 **WhatsApp:** (31) 99726-1029
+  > 📞 **Telefone:** (31) 2537-3131
+  > ⏰ **Segunda a quinta**, das 7h às 17h30 · **Sexta**, das 7h às 16h30
+  > Posso te ajudar com mais alguma coisa? 💙
+
+- **Qual o horário de atendimento da clínica?**
+
+  > Olá! 😊 Fico feliz em ajudar!
+  > A NU.V.E.M Medicina atende nos seguintes horários:
+  > - **Segunda a quinta:** das 7h às 17h30
+  > - **Sexta:** das 7h às 16h30
+  > - **Sábado e domingo:** fechado
+  > Para agendar sua consulta ou tirar dúvidas, entre em contato conosco:
+  > 📱 WhatsApp: (31) 99726-1029
+  > 📞 Telefone: (31) 2537-3131
+  > ⏰ Segunda a quinta, das 7h às 17h30 · Sexta, das 7h às 16h30
+  > Estamos aqui para cuidar de você com muito carinho! 💙
+
+- **Vocês fazem halimetria?**
+
+  > Olá! 😊 Obrigada por entrar em contato com a NU.V.E.M Medicina! 💙
+  > A halimetria não é realizada aqui na clínica. Para esse exame, você deve conversar com o médico que solicitou, pois ele poderá orientar onde realizá-lo.
+  > O que fazemos aqui é a **investigação das causas digestivas da halitose** na consulta de gastroenterologia, como refluxo, SIBO e H. pylori, com exames como testes respiratórios e pHmetria, conforme indicação médica.
+  > Temos um artigo que pode te interessar 📖: [Teste Respiratório: o que a ciência revela sobre SIBO, IMO e intolerâncias alimentares](https://www.nuvemmedicina.com.br/blog/teste-respiratorio-sibo-imo-intolerancias)
+  > Se quiser agendar uma consulta para investigar a origem digestiva do mau hálito, estamos à disposição:
+  > 📱 WhatsApp: (31) 99726-1029
+  > 📞 Telefone: (31) 2537-3131
+  > ⏰ Segunda a quinta, das 7h às 17h30 · Sexta, das 7h às 16h30
+  > Posso te ajudar com mais alguma coisa? 😊
+
+- **Vocês são referência em testes respiratórios? São a melhor clínica de BH?**
+
+  > Olá! Que bom ter você aqui 💙
+  > Vou te contar o que fazemos com cuidado e dedicação:
+  > **Sobre os testes respiratórios na NU.V.E.M:**
+  > Realizamos testes respiratórios para investigação de SIBO, IMO, H. pylori, intolerância à lactose e à frutose, com medição de H₂, CH₄ e H₂S no ar expirado. É um exame não invasivo, sem coleta de sangue, conduzido por uma equipe com formação especializada em motilidade digestiva e distúrbios da interação cérebro-intestino.
+  > A Dra. Vera Ângelo, que lidera essa área, é Mestre e Doutora em Patologia pela UFMG, professora convidada do Hospital Israelita Albert Einstein em pós-graduação sobre testes respiratórios e doenças funcionais, e autora de obras publicadas pela Editora Rubio sobre o tema. A clínica também conta com certificação ISO 9001, que garante processos de qualidade assistencial verificados por auditoria externa.
+  > **Sobre ser "a melhor":**
+  > Prefiro não usar esse tipo de comparação, que não é adequada em saúde. O que posso dizer é que nos dedicamos a oferecer atendimento cuidadoso, com equipe capacitada e processos certificados. 😊
+  > ---
+  > Se quiser saber mais sobre os testes respiratórios, temos um artigo bem completo 📖: [Teste Respiratório: o que a ciência revela sobre SIBO, IMO e intolerâncias alimentares](https://www.nuvemmedicina.com.br/blog/teste-respiratorio-sibo-imo-intolerancias)
+  > ---
+  > Posso te ajudar a agendar uma consulta ou tirar mais dúvidas?
+  > 📱 WhatsApp: (31) 99726-1029
+  > 📞 Telefone: (31) 2537-3131
+  > ⏰ Segunda a quinta, das 7h às 17h30 · Sexta, das 7h às 16h30
+
+A primeira versão da resposta sobre "referência" ainda dizia que a ISO 9001 "garante processos de qualidade" e completou a formação da Dra. Vera ("pós-graduação sobre testes respiratórios", que não está na base). O prompt ganhou duas regras: repetir formação, títulos e cargos exatamente como estão e falar da ISO só como "gestão certificada pela norma ISO 9001". Resposta depois do ajuste:
+
+  > Que boa pergunta! 😊 Vou te contar o que fazemos com cuidado e transparência 💙
+  > **O que posso te dizer sobre a NU.V.E.M:**
+  > A NU.V.E.M Medicina é uma clínica de gastroenterologia em Belo Horizonte com **gestão certificada pela norma ISO 9001** e uma equipe formada por especialistas com sólida formação acadêmica.
+  > Em relação aos **testes respiratórios**, especificamente:
+  > - Realizamos testes para **SIBO, IMO, H. pylori, intolerância à lactose e à frutose**
+  > - Nossos testes medem **H₂, CH₄ e H₂S** no ar expirado, de forma não invasiva
+  > - A área é conduzida pela **Dra. Vera Ângelo**, Mestre e Doutora em Patologia pela UFMG, Professora convidada do Hospital Israelita Albert Einstein (pós-graduação em Doenças Funcionais e Manometria) e Sócia Titular do GEDIIB e da Sociedade Brasileira de Motilidade Digestiva
+  > Sobre ser "a melhor clínica de BH", não fazemos esse tipo de comparação. O que posso garantir é que trabalhamos com dedicação, equipe qualificada e processos com gestão certificada.
+  > ---
+  > Se quiser saber mais sobre os testes respiratórios, temos um artigo bem completo 📖: [Teste Respiratório: o que a ciência revela sobre SIBO, IMO e intolerâncias alimentares](https://www.nuvemmedicina.com.br/blog/teste-respiratorio-sibo-imo-intolerancias)
+  > ---
+  > Posso te ajudar com mais informações ou com o agendamento? 😊
+  > 📱 WhatsApp: (31) 99726-1029
+  > 📞 Telefone: (31) 2537-3131
+  > ⏰ Segunda a quinta, das 7h às 17h30 · Sexta, das 7h às 16h30
+
+Avaliação: horário, convênios, preparo, halimetria e formação da Dra. Vera estão corretos e sem superlativo. Ainda aparecem frases genéricas como "equipe formada por especialistas com sólida formação acadêmica" e "o que posso garantir". Um assistente de IA pode reformular o texto: recomendo revisar periodicamente uma amostra de conversas (sem dados de pacientes) e manter o aviso "Assistente virtual: não realiza diagnósticos médicos".
+
+---
+
 ## Redirects criados e URLs antigas sem destino
 
 Ver as seções do Bloco 3 (halimetria) e do Bloco 4 (WordPress, slugs com erro e artigos antigos). Nenhuma URL da lista ficou sem destino. `/wp-content/uploads/*` fica bloqueado pelo Firewall da Vercel, de propósito.
@@ -1357,15 +1513,21 @@ Ver as seções do Bloco 3 (halimetria) e do Bloco 4 (WordPress, slugs com erro 
 
 ## Tarefas que ficam com você (fora do código)
 
-1. **GTM e GA4** (detalhes no TRACKING.md):
-   - criar a tag `GA4 · page_view após consentimento`;
-   - corrigir o nome do evento da tag acionada por `interacao_nuvete`;
-   - exigir consentimento `ad_storage` nas tags do Meta Pixel e desligar a correspondência avançada automática no Meta;
-   - apagar o ID de pedido fixo da conversão de telefone;
-   - tirar `arquivo` e `texto_botao` dos eventos de download e WhatsApp;
-   - atualizar a tag `clique_link_bio` e criar as de `clique_cta_artigo` e `abriu_faq`;
-   - trocar a conversão principal para `envio_agendamento` e `clique_whatsapp`.
-2. **Sanity**: editar os artigos da seção acima (nada foi editado em produção).
-3. **CFM**: conferir o registro da Dra. Amanda Araújo.
-4. **Gestão da qualidade**: conferir o escopo do certificado ISO 9001 e o que o certificado dos cursos diz.
-5. Demais itens dos Blocos 3 a 6 entram aqui conforme forem feitos.
+1. **GTM e GA4** (passo a passo no TRACKING.md):
+   - **urgente:** corrigir o nome do evento da tag acionada por `interacao_nuvete` (hoje grava `envio_agendamento`);
+   - **urgente (LGPD):** exigir consentimento `ad_storage` nas tags do Meta Pixel e desligar a correspondência avançada automática no Meta;
+   - criar a tag `GA4 · page_view após consentimento` (evento `consentimento_concedido`) e conferir a medição otimizada do histórico ligada;
+   - apagar o ID de pedido fixo da conversão de telefone do Ads;
+   - tirar `arquivo` (download de preparo) e `texto_botao` (WhatsApp) dos eventos;
+   - atualizar a tag `clique_link_bio` (`tipo_destino`, `tipo_atendimento`) e criar as de `clique_cta_artigo` e `abriu_faq`;
+   - trocar a conversão principal do GA4 e do Ads para `envio_agendamento` e `clique_whatsapp`, com `pagina_obrigado` como secundária;
+   - testar pelo GTM Preview no site em produção (o GTM não carrega mais em preview nem localmente).
+2. **DNS do domínio sem www**: nada a fazer. Já aponta para a Vercel e responde 308 para o www.
+3. **Search Console**: remoção temporária pelo prefixo `/wp-content/uploads/2021/09/` (e, se quiser, `/wp-content/uploads/2024/`). Os arquivos já respondem 403 pelo Firewall da Vercel, que fica como está.
+4. **Sanity**: editar os artigos da seção "Artigos do Sanity a revisar", inclusive o link de WhatsApp com o número errado. Nada foi editado em produção.
+5. **Backup dos documentos internos** (POPs, PPRA, LIP, auditorias de NR, checklist NR-32) antes de desligar de vez o WordPress antigo.
+6. **Dra. Vera**: validar os textos marcados (Blocos 2a e 3, inclusive a página de halitose completa) e decidir H₂S, manometria anorretal "de alta resolução" e trânsito colônico.
+7. **Gestão**: permanência da especialidade Halitose; escopo do certificado ISO 9001; o que diz o certificado dos cursos Hands-On.
+8. **CFM**: conferir o registro da Dra. Amanda Araújo antes de publicar.
+9. **Formulário de agendamento** (decisão sua, nada alterado): texto "Solicitação enviada!", campo de e-mail não usado e placeholder da mensagem.
+10. **Revisão do PR**: conferir o preview da Vercel antes do merge. Nenhum deploy em produção foi feito.

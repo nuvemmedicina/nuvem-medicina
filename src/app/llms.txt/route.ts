@@ -88,7 +88,7 @@ const RODAPE = `## Informações para Agendamento
 
 - **WhatsApp:** https://wa.me/553197261029
 - **Telefone:** (31) 2537-3131
-- **Horário:** Segunda a Sexta, 7h30–17h30
+- **Horário:** Segunda a quinta, das 7h às 17h30 · Sexta, das 7h às 16h30
 - **Convênios aceitos:** Unimed BH, Amil e outros
 - **Particular:** aceito com emissão de recibo para reembolso
 

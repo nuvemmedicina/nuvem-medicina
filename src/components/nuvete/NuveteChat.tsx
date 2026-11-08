@@ -120,7 +120,7 @@ export function NuveteChat() {
     if (topico.id === 'agendar') {
       addMsg({
         role: 'nuvete',
-        text: `Fico feliz em te ajudar com o agendamento! 💙\n\n📱 **WhatsApp:** ${CONTATO.whatsapp}\n📞 **Telefone:** ${CONTATO.telefone}\n⏰ Segunda a Sexta, 7h30 às 17h30\n\nNossa equipe vai te atender com muito carinho!`,
+        text: `Fico feliz em te ajudar com o agendamento! 💙\n\n📱 **WhatsApp:** ${CONTATO.whatsapp}\n📞 **Telefone:** ${CONTATO.telefone}\n⏰ ${CONTATO.horario}\n\nNossa equipe vai te atender com muito carinho!`,
         botoes: [
           { label: '📱 Abrir WhatsApp agora', acao: 'whatsapp' },
           { label: '📋 Formulário online', acao: 'link:/agendar' },
