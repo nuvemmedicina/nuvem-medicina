@@ -22,8 +22,9 @@ Convenções deste relatório:
 | 2a · Textos CFM | `99de578` | feito, com textos para validar |
 | 2b · Travessões | `e3c7e56` | feito |
 | 3 · Halimetria e sialometria | `6e27c1d` | feito, com textos para validar |
-| ESLint | este commit | configurado, lint passando |
-| 4 · Domínio, URLs antigas, indexação | a seguir | |
+| ESLint | `9937033` | configurado, lint passando |
+| Ajuste da nuvete | `e1bb073` | feito |
+| 4 · Domínio, URLs antigas, indexação | este commit | feito |
 | 5 · Agendamento | a seguir | |
 | 6 · Contato | a seguir | |
 
@@ -655,6 +656,148 @@ equipe não. Nada foi alterado. Ocorrências (fora da ferramenta de anamnese):
 
 ---
 
+## Bloco 4 · Domínio, URLs antigas e indexação
+
+### Já estava certo (sem mudança)
+
+- `metadataBase` e `SITE_URL` apontam para `https://www.nuvemmedicina.com.br`.
+- Canonical e hreflang (pt-BR, en, es, x-default) em todas as páginas traduzidas, pelo `localizedAlternates`; páginas só em português têm canonical próprio.
+- O domínio sem www já responde 308 para o www na Vercel, mantendo o caminho (item 4.2 saiu do escopo).
+- URLs com barra no final redirecionam (308) para a versão sem barra.
+- `/obrigado` e as páginas da anamnese já tinham noindex; o sitemap já não listava páginas internas.
+- 79 redirects permanentes existentes cobriam a maior parte da tabela de URLs do WordPress.
+
+### O que mudou
+
+| Arquivo | Mudança |
+|---|---|
+| `src/middleware.ts` | `/en/exames/preparos` e `/es/exames/preparos` voltam para `/exames/preparos` (a página só existe em português e já tinha canonical pt). `/biosseguranca-procedimento-operacional-padrao` responde **410** com `X-Robots-Tag: noindex`. |
+| `src/app/sitemap.ts` | `/exames/preparos` sai do grupo traduzido (sem entradas en/es nem hreflang) e entra no grupo só em português. |
+| `src/app/studio/layout.tsx` | `robots: noindex, nofollow` no Studio. |
+| `next.config.ts` · `headers` | `X-Robots-Tag: noindex, nofollow` em `/api/*`, `/studio` e `/studio/*` também em produção (antes só nos previews). |
+| `next.config.ts` · `redirects` | 6 redirects avulsos, 28 de slugs com erro, 39 de artigos antigos sem par (detalhes abaixo). Todos 308. |
+
+O redirect de `/en/exames/preparos` usa **307**, o mesmo das outras páginas só em português no middleware, pensado para quando a página for traduzida. Os redirects do `next.config.ts` são todos 308.
+
+### /wp-content: bloqueado pelo Firewall, de propósito
+
+`/wp-content/uploads/...` (inclusive `2021/09`, `2024` e os PDFs de `2026`) responde **403** com `X-Vercel-Mitigated: deny`: o Firewall da Vercel barra a requisição antes de ela chegar ao site. O Google trata 403 como 404 e retira os arquivos do índice. A regra fica como está, porque também protege o site de robôs que procuram o WordPress antigo. Por isso **não** foram criados o 410 para `2021/09` e `2024` nem o redirect de `2026`: seria código que nunca roda. Para acelerar a retirada, use a remoção temporária do Search Console pelo prefixo `/wp-content/uploads/2021/09/`.
+
+### Redirects avulsos criados
+
+| De | Para |
+|---|---|
+| `/eleve-sua-carreira-na-saude-nuvem-ensino` | `/ensino` |
+| `/category/dra-vera-angelo` | `/dra-vera-angelo` (antes ia para `/blog` pela regra geral) |
+| `/category/nuvem-ensino` | `/ensino` (antes ia para `/blog`) |
+| `/profissionais-parceiros` | `/equipe` (antes `/sobre`) |
+| `/preparos-for-exames` | `/exames/preparos` |
+| `/avaliacao-nuvem-medicina` | `/avaliacao` |
+
+Já existiam e continuam: `/equipe/dra-vera` → `/dra-vera-angelo` e `/youtube` → canal `youtube.com/@NuvemMedicina`.
+
+### Slugs com erro de digitação
+
+Não existem no Sanity nem em link interno: vêm de links externos. Os 25 da lista do Search Console e `/exames/testes-respiratorios-sibo-e-h-pylori-em-bh` → `/exames/testes-respiratorios` foram criados. As duas variantes com "relação" entram também na forma codificada (`rela%C3%A7%C3%A3o`), total de 28 regras. Nenhum slug publicado mudou.
+
+### Artigos antigos na raiz (lista do Search Console)
+
+| Slug antigo (raiz) | Destino | Critério | Motivo |
+|---|---|---|---|
+| `/flatulencia-um-tabu-social-nuvem-medicina` | `/blog/inchaco-e-distensao-abdominal-abordagem-atualizada-roma-v` | artigo de tema parecido | gases e distensão abdominal: artigo de inchaço e distensão (Roma V) |
+| `/existe-relacao-entre-uso-de-inibidores-de-bomba-de-protons-ibps-e-demencia` | `/blog/existe-relacao-entre-uso-de-inibidores-de-bomba-de-protons-ibps-e-demencia` | mesmo slug no Sanity (já existia) | mesmo slug no Sanity; redirect já existia |
+| `/disfagia-secundaria-a-clozapina-uma-relacao-negligenciada` | `/exames/manometria-esofagica` | página de exame | sem artigo sobre disfagia; a manometria esofágica investiga disfagia |
+| `/intolerancia-a-sacarose-e-sintomas-inexplicaveis-do-trato-gastrointestinal` | `/blog/teste-respiratorio-sibo-imo-intolerancias` | artigo de tema parecido | intolerância a carboidratos: artigo de teste respiratório e intolerâncias |
+| `/disfagia-globus-tosse-cronica-laringofaringea` | `/exames/phmetria-impedanciometria` | página de exame | sem artigo; refluxo laringofaríngeo é investigado com impedanciopHmetria |
+| `/impacto-do-uso-de-probioticos-nas-prostatites` | `/blog` | /blog (último caso) | tema urológico, sem artigo, exame ou especialidade próximos |
+| `/voce-ja-ouviu-falar-sobre-os-dilemas-da-vida-celiaca` | `/blog/vida-celiaca-em-casa-com-gluten-como-sobreviver-e-viver-bem-dividindo-a-cozinha` | artigo de tema parecido | vida com doença celíaca: artigo Vida celíaca em casa |
+| `/dez-equivocos-no-diagnostico-das-intolerancias-a-carboidratos-2` | `/blog/teste-respiratorio-sibo-imo-intolerancias` | artigo de tema parecido | diagnóstico das intolerâncias a carboidratos: artigo de teste respiratório |
+| `/candidiase-de-repeticao-qual-a-relacao-com-o-intestino` | `/blog/candidiase-de-repeticao-qual-a-relacao-com-o-intestino` | mesmo slug no Sanity (já existia) | mesmo slug no Sanity; redirect já existia |
+| `/reacao-adversa-aos-salicilatos-alimentares` | `/blog/intolerancia-a-histamina-fique-atento-a-esta-condicao-patologica` | artigo de tema parecido | intolerância a substância química dos alimentos: artigo de intolerância à histamina |
+| `/intolerancia-a-lactose-e-supercrescimento-bacteriano-do-intestino-delgado` | `/blog/intolerancia-a-lactose-e-supercrescimento-bacteriano-do-intestino-delgado` | mesmo slug no Sanity (já existia) | mesmo slug no Sanity; redirect já existia |
+| `/supercrescimento-fungico-intestinal-uma-condicao-patologica-pouco-conhecida` | `/blog/sibo-supercrescimento-bacteriano-no-intestino-delgado-guia-completo` | artigo de tema parecido | supercrescimento intestinal (SIFO): guia completo de SIBO |
+| `/cepa-probiotica-para-saude-gastrointestinal` | `/blog/a-suplementacao-de-probioticos-para-o-tratamento-de-h-pylori-visando-minimizar-os-efeitos` | artigo de tema parecido | probióticos na saúde digestiva: único artigo sobre probióticos |
+| `/incoordenacao-abdomino-anal-nas-desordens-da-evacuacao` | `/blog/incoordenacao-abdomino-anal-nas-desordens-da-evacuacao` | mesmo slug no Sanity (já existia) | mesmo slug no Sanity; redirect já existia |
+| `/efetividade-da-osteopatia-na-constipacao-refrataria-por-ptose-do-colon-transverso` | `/blog/efetividade-da-osteopatia-na-constipacao-refrataria-por-ptose-do-colon-transverso` | mesmo slug no Sanity (já existia) | mesmo slug no Sanity; redirect já existia |
+| `/transtorno-alimentar-restritivo-evitativo-tare` | `/blog` | /blog (último caso) | transtorno alimentar com componente de saúde mental; redirect para Pediatria sugeriria que a clínica trata o transtorno |
+| `/disbiose-doencas-inflamatorias-intestinais` | `/especialidades/gastroenterologia` | página de especialidade | sem artigo; a Gastroenterologia trata doenças inflamatórias intestinais |
+| `/sindrome-de-hiperemese-por-canabinoides` | `/blog/sindrome-de-hiperemese-por-canabinoides-como-diferenciar-do-vomito-ciclico` | mesmo slug no Sanity (já existia) | mesmo artigo revisado; redirect já existia |
+| `/leaky-gut-syndrome-o-que-sabemos-sobre-ela` | `/especialidades/gastroenterologia` | página de especialidade | sem artigo; tema de gastroenterologia |
+| `/mulungu-e-sua-atividade-antimicrobiana-na-cavidade-oral` | `/blog` | /blog (último caso) | cavidade oral; a página de halitose está pendente, por isso não foi usada |
+| `/intolerancia-a-histamina-fique-atento-a-esta-condicao-patologica` | `/blog/intolerancia-a-histamina-fique-atento-a-esta-condicao-patologica` | mesmo slug no Sanity (já existia) | mesmo slug no Sanity; redirect já existia |
+| `/sindrome-do-intestino-irritavel-e-a-relacao-com-a-saude-e-a-autoestima-da-mulher` | `/blog/o-que-e-dgbi-disturbio-interacao-intestino-cerebro` | artigo de tema parecido | síndrome do intestino irritável é um DGBI: artigo O que é DGBI |
+| `/como-o-uso-de-probioticos-pode-auxiliar-na-prevencao-de-vaginose-bacteriana-recorrente` | `/blog` | /blog (último caso) | tema ginecológico, sem artigo, exame ou especialidade próximos |
+| `/title-regurgitacao-infantil` | `/especialidades/pediatria` | página de especialidade | sem artigo; a Pediatria trata refluxo infantil |
+| `/alergia-alfa-gal-e-anafilaxia-tardia-a-carne-vermelha-que-sindrome-e-essa` | `/blog` | /blog (último caso) | alergia alimentar, sem artigo, exame ou especialidade próximos |
+| `/como-os-probioticos-topicos-podem-auxiliar-no-tratamento-dermatologico` | `/blog` | /blog (último caso) | tema dermatológico, sem artigo, exame ou especialidade próximos |
+| `/gastroparesia-por-canabinoides-o-que-se-sabe` | `/blog/sindrome-de-hiperemese-por-canabinoides-como-diferenciar-do-vomito-ciclico` | artigo de tema parecido | efeito digestivo dos canabinoides: artigo de hiperêmese por canabinoides |
+| `/treinamento-vesical-bexiga-hiperativa` | `/especialidades/fisioterapia-pelvica` | página de especialidade | sem artigo; a Fisioterapia Pélvica trata incontinência urinária |
+| `/diarreia-do-viajante-no-pos-pandemia` | `/especialidades/gastroenterologia` | página de especialidade | sem artigo; tema de gastroenterologia |
+| `/atualizacao-do-manejo-da-doenca-do-refluxo-gastroesofagico-refrataria` | `/exames/phmetria-impedanciometria` | página de exame | o artigo de refluxo do Sanity é sobre osteopatia; o refluxo refratário é investigado com impedanciopHmetria |
+| `/sindrome-latex-fruta-como-diagnosticar-e-tratar` | `/blog` | /blog (último caso) | alergia, sem artigo, exame ou especialidade próximos |
+| `/existe-vantagem-de-probiotico-multicepas-x-cepa-unica` | `/blog/a-suplementacao-de-probioticos-para-o-tratamento-de-h-pylori-visando-minimizar-os-efeitos` | artigo de tema parecido | escolha de probióticos: único artigo sobre probióticos |
+| `/roma-atualizacao-sobre-inchaco-e-distensao-abdominal` | `/blog/inchaco-e-distensao-abdominal-abordagem-atualizada-roma-v` | mesmo slug no Sanity (já existia) | mesmo artigo revisado; redirect já existia |
+| `/o-que-e-incontinencia-fecal` | `/blog/o-que-e-incontinencia-fecal` | mesmo slug no Sanity (já existia) | mesmo slug no Sanity; redirect já existia |
+| `/gluten-e-risco-de-neoplasias-gastrointestinais` | `/blog/vida-celiaca-em-casa-com-gluten-como-sobreviver-e-viver-bem-dividindo-a-cozinha` | artigo de tema parecido | glúten e doença celíaca: artigo Vida celíaca em casa |
+| `/deficiencia-de-taurina-como-fator-de-envelhecimento` | `/blog/microbioma-intestinal-e-longevidade` | artigo de tema parecido | envelhecimento: artigo Microbioma intestinal e longevidade |
+| `/microbioma-intestinal-e-longevidade` | `/blog/microbioma-intestinal-e-longevidade` | mesmo slug no Sanity (já existia) | mesmo slug no Sanity; redirect já existia |
+| `/h-pylori-novas-perspectivas-com-lgg-podcast` | `/blog/a-suplementacao-de-probioticos-para-o-tratamento-de-h-pylori-visando-minimizar-os-efeitos` | artigo de tema parecido | H. pylori e probiótico (LGG): artigo de probióticos no tratamento do H. pylori |
+| `/uso-prolongado-de-inibidores-de-bomba-de-protons-mitos-e-verdades` | `/blog/existe-relacao-entre-uso-de-inibidores-de-bomba-de-protons-ibps-e-demencia` | artigo de tema parecido | uso prolongado de IBP: artigo IBP e demência |
+| `/o-uso-de-probioticos-na-dor-abdominal-funcional-pode-ser-benefico` | `/blog/o-que-e-dgbi-disturbio-interacao-intestino-cerebro` | artigo de tema parecido | dor abdominal funcional é um DGBI: artigo O que é DGBI |
+| `/e-possivel-atuar-na-microbiota-de-pacientes-com-dermatite-atopica` | `/blog` | /blog (último caso) | tema dermatológico, sem artigo, exame ou especialidade próximos |
+| `/transtorno-comportamental-disbiose-intestinal` | `/blog/o-que-e-dgbi-disturbio-interacao-intestino-cerebro` | artigo de tema parecido | eixo intestino-cérebro: artigo O que é DGBI |
+| `/efeitos-das-preferencias-alimentares-na-composicao-de-microbiota` | `/blog/microbioma-intestinal-e-longevidade` | artigo de tema parecido | microbiota intestinal: artigo Microbioma intestinal e longevidade |
+| `/impacto-dos-probioticos-no-tratamento-e-na-prevencao-de-doencas-comuns-na-infancia` | `/especialidades/pediatria` | página de especialidade | sem artigo; saúde digestiva infantil |
+| `/roupa-intima-inteligente-microbiota` | `/blog` | /blog (último caso) | tema sem artigo, exame ou especialidade próximos |
+| `/influencia-da-microbiota-nas-escolhas-alimentares` | `/blog/microbioma-intestinal-e-longevidade` | artigo de tema parecido | microbiota intestinal: artigo Microbioma intestinal e longevidade |
+| `/doenca-celiaca-e-a-dieta-sem-gluten` | `/blog/vida-celiaca-em-casa-com-gluten-como-sobreviver-e-viver-bem-dividindo-a-cozinha` | artigo de tema parecido | dieta sem glúten: artigo Vida celíaca em casa |
+| `/risco-de-obesidade-e-disbiose-podcast` | `/blog/microbioma-intestinal-e-longevidade` | artigo de tema parecido | disbiose e microbiota: artigo Microbioma intestinal e longevidade |
+| `/brain-fog-disbiose-e-probioticos-o-que-ha-de` | `/blog/o-que-e-dgbi-disturbio-interacao-intestino-cerebro` | artigo de tema parecido | eixo intestino-cérebro: artigo O que é DGBI; slug truncado no Search Console, o redirect cobre o começo e o resto |
+
+URL que não ganhou destino: nenhuma. Os 8 que foram para `/blog` não têm artigo, exame nem especialidade de tema próximo.
+
+### Amostra testada com curl (servidor local, 08/11/2026)
+
+Primeiro salto e destino final, seguindo a cadeia.
+
+| URL | Primeiro salto | Final | Saltos |
+|---|---|---|---|
+| `/teste-respiratorio-de-hidrogenio-e-metano/` | 308 → `/teste-respiratorio-de-hidrogenio-e-metano` | 200 `/exames/testes-respiratorios` | 2 |
+| `/preparo-manometria-anorretal/` | 308 → `/preparo-manometria-anorretal` | 200 `/exames/preparos` | 2 |
+| `/halimetria-e-sialometria/` | 308 → `/halimetria-e-sialometria` | 200 `/exames` | 2 |
+| `/ph-impedanciometria-esofagica/` | 308 → `/ph-impedanciometria-esofagica` | 200 `/exames/phmetria-impedanciometria` | 2 |
+| `/agende-sua-consulta/` | 308 → `/agende-sua-consulta` | 200 `/agendar` | 2 |
+| `/category/dra-vera-angelo/` | 308 → `/category/dra-vera-angelo` | 200 `/dra-vera-angelo` | 2 |
+| `/category/nuvem-ensino/` | 308 → `/category/nuvem-ensino` | 200 `/ensino` | 2 |
+| `/category/outra-categoria/` | 308 → `/category/outra-categoria` | 200 `/blog` | 2 |
+| `/profissionais-parceiros/` | 308 → `/profissionais-parceiros` | 200 `/equipe` | 2 |
+| `/eleve-sua-carreira-na-saude-nuvem-ensino/` | 308 → `/eleve-sua-carreira-na-saude-nuvem-ensino` | 200 `/ensino` | 2 |
+| `/equipe/dra-vera` | 308 → `/dra-vera-angelo` | 200 `/dra-vera-angelo` | 1 |
+| `/preparos-for-exames` | 308 → `/exames/preparos` | 200 `/exames/preparos` | 1 |
+| `/avaliacao-nuvem-medicina/` | 308 → `/avaliacao-nuvem-medicina` | 200 `/avaliacao` | 2 |
+| `/2021/09/` | 308 → `/2021/09` | 200 `/blog` | 2 |
+| `/candidiase-de-repeticao-qual-a-relacao-com-o-intestino/` | 308 → `/candidiase-de-repeticao-qual-a-relacao-com-o-intestino` | 200 `/blog/candidiase-de-repeticao-qual-a-relacao-com-o-intestino` | 2 |
+| `/blog/candidiase-de-repetica-qual-a-relacao-com-o-intestino` | 308 → `/blog/candidiase-de-repeticao-qual-a-relacao-com-o-intestino` | 200 `/blog/candidiase-de-repeticao-qual-a-relacao-com-o-intestino` | 1 |
+| `/blog/candidiase-de-repeticao-qual-a-rela%C3%A7%C3%A3o-com-o-intestino` | 308 → `/blog/candidiase-de-repeticao-qual-a-relacao-com-o-intestino` | 200 `/blog/candidiase-de-repeticao-qual-a-relacao-com-o-intestino` | 1 |
+| `/blog/intolerancia-a-histamina-fique-atento-a-chegar-esta-condicao-patologica` | 308 → `/blog/intolerancia-a-histamina-fique-atento-a-esta-condicao-patologica` | 200 `/blog/intolerancia-a-histamina-fique-atento-a-esta-condicao-patologica` | 1 |
+| `/exames/testes-respiratorios-sibo-e-h-pylori-em-bh` | 308 → `/exames/testes-respiratorios` | 200 `/exames/testes-respiratorios` | 1 |
+| `/flatulencia-um-tabu-social-nuvem-medicina/` | 308 → `/flatulencia-um-tabu-social-nuvem-medicina` | 200 `/blog/inchaco-e-distensao-abdominal-abordagem-atualizada-roma-v` | 2 |
+| `/brain-fog-disbiose-e-probioticos-o-que-ha-de-novo` | 308 → `/blog/o-que-e-dgbi-disturbio-interacao-intestino-cerebro` | 200 `/blog/o-que-e-dgbi-disturbio-interacao-intestino-cerebro` | 1 |
+| `/transtorno-alimentar-restritivo-evitativo-tare/` | 308 → `/transtorno-alimentar-restritivo-evitativo-tare` | 200 `/blog` | 2 |
+| `/biosseguranca-procedimento-operacional-padrao/` | 308 → `/biosseguranca-procedimento-operacional-padrao` | 410 `/biosseguranca-procedimento-operacional-padrao` | 1 |
+| `/en/exames/preparos` | 307 → `/exames/preparos` | 200 `/exames/preparos` | 1 |
+| `/exames/halimetria-sialometria` | 308 → `/exames` | 200 `/exames` | 1 |
+
+| URL | Cabeçalho |
+|---|---|
+| `/api/avaliacao` | `X-Robots-Tag: noindex, nofollow` |
+| `/studio` | `X-Robots-Tag: noindex, nofollow` |
+| `/biosseguranca-procedimento-operacional-padrao` | `x-robots-tag: noindex` |
+
+Sitemap local: 87 URLs, todas com www, sem halimetria, sem páginas internas, `/exames/preparos` só em português.
+
+---
+
 ## Textos marcados para validação da Dra. Vera
 
 ### Bloco 2a
@@ -1152,7 +1295,7 @@ Avaliação: as três respostas dizem que o exame não é feito na clínica e ma
 
 ## Redirects criados e URLs antigas sem destino
 
-Preenchido no Bloco 4.
+Ver as seções do Bloco 3 (halimetria) e do Bloco 4 (WordPress, slugs com erro e artigos antigos). Nenhuma URL da lista ficou sem destino. `/wp-content/uploads/*` fica bloqueado pelo Firewall da Vercel, de propósito.
 
 ---
 

@@ -1,4 +1,9 @@
-export const metadata = { title: 'Studio · NU.V.E.M Medicina' }
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title:  'Studio · NU.V.E.M Medicina',
+  robots: { index: false, follow: false, googleBot: { index: false, follow: false } },
+}
 
 /**
  * Root layout independente do Studio (padrão "multiple root layouts" do
