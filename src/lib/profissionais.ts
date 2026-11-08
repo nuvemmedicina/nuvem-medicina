@@ -119,8 +119,6 @@ export type Profissional = {
   status: StatusPagina
   aprovacoes: { medico?: Aprovacao; clinica?: Aprovacao }
 
-  /** Instagram profissional (só aparece se aprovado junto com a página). */
-  instagram?: string
 }
 
 /**
@@ -192,7 +190,6 @@ export const PROFISSIONAIS: Profissional[] = [
     fase: 1,
     status: 'aguardando_medico',
     aprovacoes: {},
-    instagram: 'https://www.instagram.com/veraangelo/',
   },
 
   {
