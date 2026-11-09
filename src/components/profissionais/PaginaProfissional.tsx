@@ -208,6 +208,7 @@ export function PaginaProfissional({ p, foto, previa, versao }: Props) {
       {p.livros && p.livros.length > 0 && (
         <SectionWrapper className="!py-16 lg:!py-24">
           <TituloSecao rotulo="Publicações" antes="Livros " destaque="publicados" />
+          {/* Só as capas; o título vai no texto alternativo e no nome do link. */}
           <ul className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
             {p.livros.map(livro => (
               <li key={livro.titulo}>
@@ -215,30 +216,32 @@ export function PaginaProfissional({ p, foto, previa, versao }: Props) {
                   href={livro.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group h-full flex flex-col bg-white border border-teal/10 rounded-2xl overflow-hidden hover:border-gold/60 hover:-translate-y-1 hover:shadow-md transition-all"
+                  aria-label={`${livro.titulo} (${livro.papel.toLowerCase()}, ${livro.editora}, ${livro.ano}). Abre o site da editora`}
+                  className="group block relative w-full aspect-[3/4] rounded-2xl overflow-hidden bg-mist border border-teal/10 hover:border-gold/60 hover:-translate-y-1 hover:shadow-md transition-all"
                 >
-                  <div className="relative w-full aspect-[3/4] bg-mist overflow-hidden">
-                    <Image
-                      src={livro.capa}
-                      alt={`Capa do livro ${livro.titulo}`}
-                      fill
-                      sizes="(min-width: 1024px) 280px, 50vw"
-                      className="object-cover group-hover:scale-[1.03] transition-transform duration-500"
-                    />
-                    <div className="absolute bottom-0 left-0 right-0 h-px bg-gold" aria-hidden />
-                  </div>
-                  <div className="p-4 flex-1 flex flex-col">
-                    <p className={`${rotuloPequeno} !text-[0.62rem] text-gold-dark mb-1.5`}>{livro.papel}</p>
-                    <h3 className="text-[0.85rem] font-semibold text-teal leading-snug flex-1">{livro.titulo}</h3>
-                    <p className="mt-3 pt-3 border-t border-teal/10 flex items-center justify-between gap-2 text-[0.72rem] text-steel/60">
-                      {livro.editora} · {livro.ano}
-                      <ExternalLink className="w-3.5 h-3.5 text-teal shrink-0" aria-label="Abre o site da editora" />
-                    </p>
-                  </div>
+                  <Image
+                    src={livro.capa}
+                    alt={`Capa do livro ${livro.titulo}`}
+                    fill
+                    sizes="(min-width: 1024px) 280px, 50vw"
+                    className="object-cover group-hover:scale-[1.03] transition-transform duration-500"
+                  />
                 </a>
               </li>
             ))}
           </ul>
+          {p.maisLivros && (
+            <div className="mt-8 flex justify-center">
+              <a
+                href={p.maisLivros.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-ghost justify-center text-center w-full sm:w-auto !px-5 sm:!px-8 !text-[0.95rem] sm:!text-base"
+              >
+                {p.maisLivros.texto} <ExternalLink className="w-4 h-4" aria-hidden />
+              </a>
+            </div>
+          )}
         </SectionWrapper>
       )}
 

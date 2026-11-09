@@ -57,7 +57,7 @@ A versão é um código de 10 caracteres calculado a partir de tudo o que aparec
 
 | Profissional | Endereço | Status | Versão do texto |
 |---|---|---|---|
-| Dra. Vera Ângelo | `/dra-vera-angelo` | **aprovada** (09/11/2026) | `2597ae4057` |
+| Dra. Vera Ângelo | `/dra-vera-angelo` | **aprovada** (09/11/2026) | `a560189139` |
 | Dra. Eliane Basques | `/dra-eliane-basques` | **aprovada** (09/11/2026) | `8fb5e24ec0` |
 | Dra. Raissa Dalat | `/dra-raissa-dalat` | **aprovada** (09/11/2026) | `1c1c5bcf6f` |
 | Dra. Anna Karoline Rocha | `/dra-anna-karoline` | **aprovada** (09/11/2026) | `22ade9e187` |
@@ -162,7 +162,7 @@ Os textos abaixo saem das mesmas funções que montam a página. Seções sem da
 
 ### Dra. Vera Ângelo · `/dra-vera-angelo`
 
-Status: **aprovada** em 09/11/2026 · versão do texto `2597ae4057` · foto: `/images/dra-vera.jpg`
+Status: **aprovada** em 09/11/2026 · versão do texto `a560189139` · foto: `/images/dra-vera.jpg`
 
 **1. Apresentação**
 
@@ -186,10 +186,12 @@ Status: **aprovada** em 09/11/2026 · versão do texto `2597ae4057` · foto: `/i
 
 **3b. Publicações · Livros publicados**
 
-- Organizadora: Doenças Funcionais na Gastrenterologia · Editora Rubio · 2025 (link para a editora)
-- Coorganizadora: Métodos Diagnósticos em Doenças Funcionais e Motilidade Digestiva · Editora Rubio · 2025 (link para a editora)
-- Organizadora: Perguntas e Respostas Comentadas de Gastrenterologia Clínica e Hepatologia · Editora Rubio · 2025 (link para a editora)
-- Autora: Testes Respiratórios em Gastrenterologia: Hidrogênio, Metano e Helicobacter pylori · Editora Rubio · 2024 (link para a editora)
+Só as capas, cada uma com link para a editora:
+- Organizadora: Doenças Funcionais na Gastrenterologia · Editora Rubio · 2025
+- Coorganizadora: Métodos Diagnósticos em Doenças Funcionais e Motilidade Digestiva · Editora Rubio · 2025
+- Organizadora: Perguntas e Respostas Comentadas de Gastrenterologia Clínica e Hepatologia · Editora Rubio · 2025
+- Autora: Testes Respiratórios em Gastrenterologia: Hidrogênio, Metano e Helicobacter pylori · Editora Rubio · 2024
+- Botão: "Ver todos os livros da Dra. Vera na Editora Rubio" (https://www.rubio.com.br/busca?q=vera+angelo)
 
 **4. Como pode ajudar**
 
@@ -988,3 +990,11 @@ Prints do portal do CFM enviados pela gestão:
 - **Conferido num build de produção local:**
   - as 8 páginas continuam no ar, com os registros novos na página, no `/equipe` e nos dados estruturados;
   - `/dra-camilla-mendes` continua com 404.
+
+## 16. Mapa no celular e livros só com capas (09/11/2026)
+
+- **Quadro do mapa:** no celular, o ícone do endereço (em cima) e o aviso (embaixo) eram cortados. Agora o quadro cresce com o conteúdo. Vale para todas as páginas.
+- **Livros da Dra. Vera:**
+  - aparecem só as capas, cada uma com link para a página do livro na Editora Rubio. Título, papel, editora e ano continuam no texto alternativo da imagem, para leitores de tela e para o Google;
+  - abaixo das capas entra o botão "Ver todos os livros da Dra. Vera na Editora Rubio", que leva a https://www.rubio.com.br/busca?q=vera+angelo. O link fica no campo `maisLivros` dos dados.
+- **Aprovação:** o botão entra no texto, então a versão da Dra. Vera mudou para `a560189139`. A aprovação foi registrada de novo nessa versão (mudança pedida pela gestão), para a página continuar no ar.
