@@ -19,7 +19,7 @@ export function MapaClinica() {
   const [carregado, setCarregado] = useState(false)
 
   return (
-    <div className="relative w-full h-full min-h-[280px] rounded-2xl overflow-hidden border border-gold/40 bg-mist">
+    <div className="relative w-full h-full min-h-[320px] rounded-2xl overflow-hidden border border-gold/40 bg-mist">
       {carregado ? (
         <iframe
           src={URL_EMBED}
@@ -29,8 +29,9 @@ export function MapaClinica() {
           referrerPolicy="no-referrer-when-downgrade"
         />
       ) : (
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 hero-grid-bg">
-          <span className="w-12 h-12 rounded-full bg-white border border-gold/50 flex items-center justify-center mb-4">
+        // Em fluxo normal (não absoluto): o quadro cresce com o conteúdo e nada é cortado no celular.
+        <div className="relative h-full min-h-[320px] flex flex-col items-center justify-center text-center px-5 py-8 hero-grid-bg">
+          <span className="shrink-0 w-12 h-12 rounded-full bg-white border border-gold/50 flex items-center justify-center mb-4">
             <MapPin className="w-5 h-5 text-teal" aria-hidden />
           </span>
           <p className="font-serif text-[1.4rem] text-teal leading-tight">{CONTATO.endereco}</p>
