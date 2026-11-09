@@ -1,3 +1,8 @@
+/**
+ * Página antiga da Dra. Vera Ângelo, mantida sem mudanças no mesmo endereço
+ * até a versão nova (PaginaProfissional) ser aprovada. Depois da aprovação,
+ * este arquivo pode ser apagado.
+ */
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -7,7 +12,7 @@ import { SectionWrapper } from '@/components/ui/SectionWrapper'
 import { CtaBanner }      from '@/components/ui/CtaBanner'
 import { IsoSeal }        from '@/components/icons/IsoSeal'
 
-export const metadata: Metadata = {
+export const metadataAntigaVera: Metadata = {
   alternates:  { canonical: '/dra-vera-angelo' },
   title:       'Dra. Vera Ângelo · Gastroenterologista',
   description: 'Dra. Vera Ângelo · Mestre e Doutora pela UFMG, gastroenterologista com atuação em motilidade digestiva, testes respiratórios e DGBI. Diretora Técnica da NU.V.E.M Medicina.',
@@ -28,7 +33,7 @@ const FORMACAO = [
     icon: GraduationCap,
     titulo: 'Doutorado em Patologia',
     inst:   'Universidade Federal de Minas Gerais (UFMG)',
-    detalhe: 'Doutora em Patologia pela maior universidade federal de Minas Gerais',
+    detalhe: 'Doutorado em Patologia pela Universidade Federal de Minas Gerais',
   },
   {
     icon: GraduationCap,
@@ -48,19 +53,16 @@ const FORMACAO = [
     inst:   'Hospital Felício Rocho · Belo Horizonte',
     detalhe: 'Residência em gastroenterologia no Hospital Felício Rocho, em Belo Horizonte',
   },
-  {
-    icon: Award,
-    titulo: 'Residência em Clínica Médica e Patologia Clínica',
-    inst:   'Hospital Sarah Kubitschek',
-    detalhe: 'Base sólida em medicina interna e diagnóstico laboratorial',
-  },
+  // [A CONFIRMAR] "Residência em Clínica Médica e Patologia Clínica · Hospital Sarah
+  // Kubitschek" saiu da página: no CFM o RQE 22736 é de Medicina do Trabalho.
+  // Volta só depois de confirmado com a Dra. Vera (RELATORIO-PAGINAS-PROFISSIONAIS.md).
 ]
 
 const EXPERIENCIA = [
   {
     cargo:  'Diretora e Responsável Técnica',
     local:  'NU.V.E.M Medicina e Ensino',
-    desc:   'Fundadora do ecossistema NU.V.E.M: clínica e centro de formação profissional em gastroenterologia e motilidade digestiva, certificado ISO 9001.',
+    desc:   'Fundadora do ecossistema NU.V.E.M: clínica e centro de formação profissional em gastroenterologia e motilidade digestiva, com gestão certificada pela norma ISO 9001.',
     destaque: true,
   },
   {
@@ -128,20 +130,15 @@ const LIVROS = [
   },
 ]
 
+// Temas informados pela própria Dra. Vera na anamnese (08/11/2026).
 const AREAS = [
-  'Gastroenterologia Clínica',
+  'SIBO e IMO',
+  'Testes Respiratórios',
   'Motilidade Digestiva',
-  'Testes Respiratórios (SIBO/IMO/H. pylori)',
-  'DGBI – Distúrbio da Interação Cérebro-Intestino',
-  'Manometria de Alta Resolução',
-  'pHmetria e Impedânciometria',
-  'Intolerâncias Alimentares',
-  'Disbiose e Microbiota Intestinal',
-  'Doença Inflamatória Intestinal',
-  'Ensino Médico Especializado',
+  'DGBI: Distúrbios da Interação Cérebro-Intestino',
 ]
 
-export default function DraVeraPage() {
+export function PaginaAntigaVera() {
   return (
     <>
       <PageHero
@@ -180,7 +177,7 @@ export default function DraVeraPage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-teal/50 shrink-0" />
-                  RQE 10411 · RQE 22736
+                  RQE 10411 (Gastroenterologia) · RQE 22736 (Medicina do Trabalho)
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-teal/50 shrink-0" />
@@ -216,9 +213,8 @@ export default function DraVeraPage() {
                 <p>
                   A Dra. Vera Ângelo é Mestre e Doutora em Patologia pela Universidade Federal de
                   Minas Gerais (UFMG) e Gastroenterologista com Título de Especialista pela
-                  Federação Brasileira de Gastroenterologia. Com formação sólida e trajetória
-                  dedicada ao DGBI – Distúrbio da Interação Cérebro-Intestino, atua em SIBO/IMO,
-                  testes respiratórios e motilidade digestiva.
+                  Federação Brasileira de Gastroenterologia. Atua em DGBI (distúrbios da interação
+                  cérebro-intestino), SIBO/IMO, testes respiratórios e motilidade digestiva.
                 </p>
                 <p>
                   Fundadora da NU.V.E.M Medicina, criou um ecossistema que integra
@@ -229,9 +225,8 @@ export default function DraVeraPage() {
                 </p>
                 <p>
                   Sócia Titular do GEDIIB e da Sociedade Brasileira de Motilidade Digestiva,
-                  a Dra. Vera participa da produção científica e da prática
-                  clínica, levando o conhecimento atualizado para o cuidado concreto e
-                  humanizado para cada paciente da NU.V.E.M.
+                  a Dra. Vera participa da produção científica da área e atende
+                  na NU.V.E.M em consulta e nos testes respiratórios para SIBO e IMO.
                 </p>
               </div>
             </div>

@@ -1,3 +1,8 @@
+/**
+ * Página antiga da Dra. Eliane Basques, mantida sem mudanças no mesmo endereço
+ * até a versão nova (PaginaProfissional) ser aprovada. Depois da aprovação,
+ * este arquivo pode ser apagado.
+ */
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -7,7 +12,7 @@ import { SectionWrapper } from '@/components/ui/SectionWrapper'
 import { CtaBanner }      from '@/components/ui/CtaBanner'
 import { IsoSeal }        from '@/components/icons/IsoSeal'
 
-export const metadata: Metadata = {
+export const metadataAntigaEliane: Metadata = {
   alternates:  { canonical: '/dra-eliane-basques' },
   title:       'Dra. Eliane Basques · Manometria Anorretal',
   description: 'Dra. Eliane Basques Moura · Cirurgiã Pediátrica com atuação em manometria anorretal. Sócia Fundadora e Diretora Técnica Substituta da NU.V.E.M Medicina.',
@@ -46,7 +51,7 @@ const FORMACAO = [
     icon: GraduationCap,
     titulo: 'Graduação em Medicina',
     inst:   'Universidade Federal de Minas Gerais (UFMG)',
-    detalhe: 'Formação médica na maior universidade federal de Minas Gerais.',
+    detalhe: 'Graduação em Medicina pela Universidade Federal de Minas Gerais.',
   },
 ]
 
@@ -89,7 +94,7 @@ const AREAS = [
   'Saúde Digestiva Pediátrica',
 ]
 
-export default function DraElianePage() {
+export function PaginaAntigaEliane() {
   return (
     <>
       <PageHero
@@ -159,7 +164,7 @@ export default function DraElianePage() {
               <div className="space-y-4 text-[0.97rem] font-light text-steel/60 leading-[1.85]">
                 <p>
                   A Dra. Eliane Basques Moura é cirurgiã pediátrica com atuação em manometria
-                  anorretal, com formação sólida pelo Hospital das Clínicas da UFMG e Título de
+                  anorretal, com formação pelo Hospital das Clínicas da UFMG e Título de
                   Especialista pela Sociedade Brasileira de Cirurgia Pediátrica.
                 </p>
                 <p>
