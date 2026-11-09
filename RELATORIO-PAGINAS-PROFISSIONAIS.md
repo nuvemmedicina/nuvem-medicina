@@ -806,7 +806,6 @@ Nenhum desses dados aparece na página enquanto estiver pendente.
 
 **Dr. Gabriel de Souza Fernandes Filho** (`/dr-gabriel-fernandes-filho`)
 
-- Convênios: a lista por profissional (08/11/2026) diz "somente particular" para o Dr. Gabriel, mas a regra geral da clínica faz pHmetria e manometria esofágica convencional pela Unimed (como na página da Dra. Amanda). A página segue a lista por profissional; confirmar.
 - Consulta: os dados de 06/11 diziam que ele só faz exames; a tabela validada de 08/11 inclui consulta particular. A página segue a tabela.
 - Lista "Quando procurar avaliação": rascunho para validação da Dra. Vera.
 
@@ -823,9 +822,7 @@ Nenhum desses dados aparece na página enquanto estiver pendente.
 
 - [A CONFIRMAR] especialidade do RQE 51470
 - [A CONFIRMAR] especialidade do RQE 51471
-- [A CONFIRMAR] bio
 - Convênios: a lista validada diz só "Unimed", sem os planos. Confirmar se são Unipart, Unimax e Uniplan.
-- **Bloqueia a publicação:** bio sem texto confirmado
 
 **Dra. Camilla Mendes** (`/dra-camilla-mendes`)
 
@@ -888,3 +885,22 @@ Nenhum desses dados aparece na página enquanto estiver pendente.
   - a prévia da Vercel, que só existe depois do PR;
   - a configuração do GTM;
   - a ligação com o #142, que depende do merge.
+
+## 10. Atualização de 09/11/2026
+
+**Página antiga da Dra. Vera (a que está no ar em `/dra-vera-angelo`), corrigida:**
+
+- Sem superlativos: saíram "formação sólida" e "a maior universidade federal de Minas Gerais".
+- Saiu "Residência em Clínica Médica e Patologia Clínica · Hospital Sarah Kubitschek": no CFM o RQE 22736 é de Medicina do Trabalho. Volta só se a Dra. Vera confirmar.
+- Os RQEs aparecem com a especialidade: RQE 10411 (Gastroenterologia) · RQE 22736 (Medicina do Trabalho).
+- "Áreas de atuação" segue o que ela informou na anamnese: SIBO e IMO, testes respiratórios, motilidade digestiva e DGBI. Saíram manometria, pHmetria, intolerâncias, disbiose, doença inflamatória intestinal e ensino, que ela não realiza na NU.V.E.M.
+- "Certificado ISO 9001" virou "com gestão certificada pela norma ISO 9001".
+- Último parágrafo sem "cuidado concreto e humanizado": diz o que ela faz na clínica (consulta e testes respiratórios para SIBO e IMO).
+
+**Página antiga da Dra. Eliane:** saíram "formação sólida" e "a maior universidade federal de Minas Gerais".
+
+**Dados das páginas novas:**
+
+- Dr. Gabriel: convênios "somente particular" confirmados pela gestão (sai a pendência).
+- Dra. Claudia: bio a partir do currículo enviado pela gestão. Continuam pendentes as especialidades dos RQEs 51470 e 51471.
+- Continua pendente: faixa etária da Dra. Amanda ("4 meses a 80 anos" no link; "a partir de 15 anos" no PDF).

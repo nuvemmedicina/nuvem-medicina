@@ -51,7 +51,7 @@ const FORMACAO = [
     icon: GraduationCap,
     titulo: 'Graduação em Medicina',
     inst:   'Universidade Federal de Minas Gerais (UFMG)',
-    detalhe: 'Formação médica na maior universidade federal de Minas Gerais.',
+    detalhe: 'Graduação em Medicina pela Universidade Federal de Minas Gerais.',
   },
 ]
 
@@ -164,7 +164,7 @@ export function PaginaAntigaEliane() {
               <div className="space-y-4 text-[0.97rem] font-light text-steel/60 leading-[1.85]">
                 <p>
                   A Dra. Eliane Basques Moura é cirurgiã pediátrica com atuação em manometria
-                  anorretal, com formação sólida pelo Hospital das Clínicas da UFMG e Título de
+                  anorretal, com formação pelo Hospital das Clínicas da UFMG e Título de
                   Especialista pela Sociedade Brasileira de Cirurgia Pediátrica.
                 </p>
                 <p>

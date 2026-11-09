@@ -336,7 +336,6 @@ export const PROFISSIONAIS: Profissional[] = [
     fazConsulta: true,
     foto: fotoSite('/images/dr-Gabriel-de-Souza-Fernandes-Filho.jpg', 1691),
     pendencias: [
-      'Convênios: a lista por profissional (08/11/2026) diz "somente particular" para o Dr. Gabriel, mas a regra geral da clínica faz pHmetria e manometria esofágica convencional pela Unimed (como na página da Dra. Amanda). A página segue a lista por profissional; confirmar.',
       'Consulta: os dados de 06/11 diziam que ele só faz exames; a tabela validada de 08/11 inclui consulta particular. A página segue a tabela.',
     ],
     fase: 1,
@@ -434,7 +433,8 @@ export const PROFISSIONAIS: Profissional[] = [
     },
     especialidadeExibida: 'Gastroenterologia',
     areasDeAtuacao: ['Gastroenterologia clínica'],
-    bio: pendente('bio'),
+    // Bio a partir do currículo enviado pela gestão em 09/11/2026.
+    bio: 'Mestre em Doenças Inflamatórias Intestinais pela Universidade Federal de São Paulo (Unifesp), com residência médica em Gastroenterologia e em Endoscopia Digestiva pela Unifesp. Título de Endoscopia pela Sociedade Brasileira de Endoscopia Digestiva (Sobed) e de Gastroenterologia pela Federação Brasileira de Gastroenterologia (FBG).',
     oQueFazNaNuvem: [
       { nome: 'Consulta', tipo: 'consulta', convenios: 'Particular ou Unimed' },
     ],
