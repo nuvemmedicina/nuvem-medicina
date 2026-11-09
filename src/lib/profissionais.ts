@@ -120,8 +120,10 @@ export type Profissional = {
 
   /** Livros publicados (seção "Publicações", logo depois da formação). */
   livros?: Livro[]
-  /** Link para a lista completa de livros na editora (aparece abaixo das capas). */
-  maisLivros?: { texto: string; href: string }
+  /** Links para ver mais livros (botões abaixo das capas; o primeiro em destaque). */
+  maisLivros?: { texto: string; href: string }[]
+  /** Redes profissionais (links na apresentação e sameAs no schema). */
+  redes?: { rede: 'Instagram' | 'LinkedIn'; href: string }[]
 
   // Atendimento
   faixaEtaria: Talvez<string>
@@ -178,14 +180,14 @@ export const PROFISSIONAIS: Profissional[] = [
       ],
     },
     especialidadeExibida: 'Gastroenterologia',
-    cargo: 'Sócia fundadora e Diretora Técnica',
+    cargo: 'Sócia fundadora e Diretora Técnica e Científica',
     areasDeAtuacao: [
       'SIBO e IMO',
       'Testes respiratórios',
       'Motilidade digestiva',
       'Distúrbios da interação cérebro-intestino (DGBI)',
     ],
-    bio: 'Sócia fundadora e diretora técnica da NU.V.E.M. Mestre e Doutora pela UFMG. Professora convidada do Hospital Israelita Albert Einstein. Autora de obras pela Editora Rubio.',
+    bio: 'Sócia fundadora e diretora técnica e científica da NU.V.E.M. Mestre e Doutora pela UFMG. Professora convidada do Hospital Israelita Albert Einstein. Autora de obras pela Editora Rubio.',
     oQueFazNaNuvem: [
       { nome: 'Consulta', tipo: 'consulta', convenios: `Particular, ${UNIMED} ou Amagis Saúde` },
       { nome: 'Teste respiratório para SIBO', tipo: 'exame', convenios: 'Somente particular', exameSlug: 'testes-respiratorios' },
@@ -200,10 +202,14 @@ export const PROFISSIONAIS: Profissional[] = [
       ],
     },
     // Livros que estavam na página antiga (mesmos títulos, capas e links).
-    maisLivros: {
-      texto: 'Ver todos os livros da Dra. Vera na Editora Rubio',
-      href: 'https://www.rubio.com.br/busca?q=vera+angelo',
-    },
+    maisLivros: [
+      { texto: 'Ver mais livros na NU.V.E.M Ensino', href: 'https://www.nuvemensino.com.br/livros' },
+      { texto: 'Ver os livros na Editora Rubio', href: 'https://www.rubio.com.br/busca?q=vera+angelo' },
+    ],
+    redes: [
+      { rede: 'Instagram', href: 'https://www.instagram.com/veraangelo/' },
+      { rede: 'LinkedIn', href: 'https://www.linkedin.com/in/vera-lucia-angelo-andrade-b545b02a/' },
+    ],
     livros: [
       {
         titulo: 'Doenças Funcionais na Gastrenterologia',
@@ -242,10 +248,11 @@ export const PROFISSIONAIS: Profissional[] = [
     // Texto aprovado em 09/11/2026 (versão com os livros, 2a689f0041) e lista
     // "Quando procurar avaliação" validada pela Dra. Vera no mesmo dia; a
     // aprovação foi registrada de novo na versão com a lista validada e, depois,
-    // na versão com o link para os outros livros (pedido da gestão, 09/11/2026).
+    // na versão com o link para os outros livros e, por fim, na versão com a bio
+    // "diretora técnica e científica" e as redes (pedidos da gestão, 09/11/2026).
     aprovacoes: {
-      medico:  { data: '2026-11-09', versao: 'a560189139', por: 'Dra. Vera Ângelo' },
-      clinica: { data: '2026-11-09', versao: 'a560189139', por: 'Ana Paula, gestão do site, em nome da clínica' },
+      medico:  { data: '2026-11-09', versao: '09b74dc745', por: 'Dra. Vera Ângelo' },
+      clinica: { data: '2026-11-09', versao: '09b74dc745', por: 'Ana Paula, gestão do site, em nome da clínica' },
     },
   },
 

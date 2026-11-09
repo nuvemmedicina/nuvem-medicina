@@ -228,6 +228,7 @@ export function profissionalSchema(p: Profissional, opcoes: { foto?: Foto | null
       },
     },
     ...(opcoes.comPagina && { url: `${BASE_URL}/${p.slug}` }),
+    ...(p.redes && p.redes.length > 0 && { sameAs: p.redes.map(r => r.href) }),
     ...(opcoes.foto && { image: `${BASE_URL}${opcoes.foto.src}` }),
   }
 }
