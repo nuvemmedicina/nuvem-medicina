@@ -58,13 +58,13 @@ A versão é um código de 10 caracteres calculado a partir de tudo o que aparec
 | Profissional | Endereço | Status | Versão do texto |
 |---|---|---|---|
 | Dra. Vera Ângelo | `/dra-vera-angelo` | **aprovada** (09/11/2026) | `2597ae4057` |
-| Dra. Eliane Basques | `/dra-eliane-basques` | aguardando_medico | `85c578a344` |
-| Dra. Raissa Dalat | `/dra-raissa-dalat` | aguardando_medico | `b7ffad55df` |
-| Dra. Anna Karoline Rocha | `/dra-anna-karoline` | aguardando_medico | `22ade9e187` |
-| Dr. Gabriel de Souza Fernandes Filho | `/dr-gabriel-fernandes-filho` | aguardando_medico | `8daf788a11` |
-| Dra. Amanda Araújo | `/dra-amanda-araujo` | aguardando_medico | `24ebb384d3` |
-| Dra. Danielle Martins | `/dra-danielle-martins` | rascunho (fase 2, sem rota em produção) | `49d9899a98` |
-| Dra. Claudia Utsch | `/dra-claudia-utsch` | rascunho (fase 2, sem rota em produção) | `7268ebc8f1` |
+| Dra. Eliane Basques | `/dra-eliane-basques` | **aprovada** (09/11/2026) | `85c578a344` |
+| Dra. Raissa Dalat | `/dra-raissa-dalat` | **aprovada** (09/11/2026) | `b7ffad55df` |
+| Dra. Anna Karoline Rocha | `/dra-anna-karoline` | **aprovada** (09/11/2026) | `22ade9e187` |
+| Dr. Gabriel de Souza Fernandes Filho | `/dr-gabriel-fernandes-filho` | **aprovada** (09/11/2026) | `8daf788a11` |
+| Dra. Amanda Araújo | `/dra-amanda-araujo` | **aprovada** (09/11/2026) | `24ebb384d3` |
+| Dra. Danielle Martins | `/dra-danielle-martins` | **aprovada** (09/11/2026) | `49d9899a98` |
+| Dra. Claudia Utsch | `/dra-claudia-utsch` | **aprovada** (09/11/2026) | `7268ebc8f1` |
 | Dra. Camilla Mendes | `/dra-camilla-mendes` | rascunho (fase 2, sem rota em produção) | `93c2662977` |
 
 ## 3. Como publicar uma página (hoje, com os campos à mão)
@@ -235,7 +235,7 @@ Status: **aprovada** em 09/11/2026 · versão do texto `2597ae4057` · foto: `/i
 
 ### Dra. Eliane Basques · `/dra-eliane-basques`
 
-Status: aguardando_medico · versão do texto `85c578a344` · foto: `/images/dra-eliane.jpg`
+Status: **aprovada** em 09/11/2026 · versão do texto `85c578a344` · foto: `/images/dra-eliane.jpg`
 
 **1. Apresentação**
 
@@ -301,7 +301,7 @@ Status: aguardando_medico · versão do texto `85c578a344` · foto: `/images/dra
 
 ### Dra. Raissa Dalat · `/dra-raissa-dalat`
 
-Status: aguardando_medico · versão do texto `b7ffad55df` · foto: `/images/raissa-dalat.jpg`
+Status: **aprovada** em 09/11/2026 · versão do texto `b7ffad55df` · foto: `/images/raissa-dalat.jpg`
 
 **1. Apresentação**
 
@@ -363,7 +363,7 @@ _(seção oculta: não realiza exames)_
 
 ### Dra. Anna Karoline Rocha · `/dra-anna-karoline`
 
-Status: aguardando_medico · versão do texto `22ade9e187` · foto: `/images/anna-karoline.jpg`
+Status: **aprovada** em 09/11/2026 · versão do texto `22ade9e187` · foto: `/images/anna-karoline.jpg`
 
 **1. Apresentação**
 
@@ -426,7 +426,7 @@ Status: aguardando_medico · versão do texto `22ade9e187` · foto: `/images/ann
 
 ### Dr. Gabriel de Souza Fernandes Filho · `/dr-gabriel-fernandes-filho`
 
-Status: aguardando_medico · versão do texto `8daf788a11` · foto: `/images/dr-Gabriel-de-Souza-Fernandes-Filho.jpg`
+Status: **aprovada** em 09/11/2026 · versão do texto `8daf788a11` · foto: `/images/dr-Gabriel-de-Souza-Fernandes-Filho.jpg`
 
 **1. Apresentação**
 
@@ -497,7 +497,7 @@ Status: aguardando_medico · versão do texto `8daf788a11` · foto: `/images/dr-
 
 ### Dra. Amanda Araújo · `/dra-amanda-araujo`
 
-Status: aguardando_medico · versão do texto `24ebb384d3` · foto: `/images/Amanda-Araujo.jpg`
+Status: **aprovada** em 09/11/2026 · versão do texto `24ebb384d3` · foto: `/images/Amanda-Araujo.jpg`
 
 **1. Apresentação**
 
@@ -563,7 +563,7 @@ Status: aguardando_medico · versão do texto `24ebb384d3` · foto: `/images/Ama
 
 ### Dra. Danielle Martins · `/dra-danielle-martins`
 
-Status: rascunho (fase 2, sem rota em produção) · versão do texto `49d9899a98` · foto: `/images/danielle-martins.jpg`
+Status: **aprovada** em 09/11/2026 · versão do texto `49d9899a98` · foto: `/images/danielle-martins.jpg`
 
 **1. Apresentação**
 
@@ -626,7 +626,7 @@ _(seção oculta: não realiza exames)_
 
 ### Dra. Claudia Utsch · `/dra-claudia-utsch`
 
-Status: rascunho (fase 2, sem rota em produção) · versão do texto `7268ebc8f1` · foto: `/images/claudia-utsch.jpg`
+Status: **aprovada** em 09/11/2026 · versão do texto `7268ebc8f1` · foto: `/images/claudia-utsch.jpg`
 
 **1. Apresentação**
 
@@ -943,3 +943,32 @@ Nenhum desses dados aparece na página enquanto estiver pendente.
 - Conferido num build de produção local:
   - `/dra-vera-angelo` mostra "Quando procurar avaliação" com os 3 itens e o aviso;
   - `/dra-eliane-basques` continua com a página antiga.
+
+## 14. Páginas publicadas (09/11/2026)
+
+A gestão do site informou que os profissionais aprovaram as páginas e pediu a publicação. As aprovações foram registradas em `src/lib/profissionais.ts` na versão atual de cada página:
+- profissional: o próprio nome, com a observação "informada pela gestão do site";
+- clínica: Ana Paula, gestão do site, em nome da clínica.
+
+| Página | Versão aprovada |
+|---|---|
+| Dra. Eliane Basques · `/dra-eliane-basques` (substitui a página antiga) | `85c578a344` |
+| Dra. Raissa Dalat · `/dra-raissa-dalat` | `b7ffad55df` |
+| Dra. Anna Karoline Rocha · `/dra-anna-karoline` (fisioterapeuta) | `22ade9e187` |
+| Dr. Gabriel de Souza Fernandes Filho · `/dr-gabriel-fernandes-filho` | `8daf788a11` |
+| Dra. Amanda Araújo · `/dra-amanda-araujo` | `24ebb384d3` |
+| Dra. Danielle Martins · `/dra-danielle-martins` (era fase 2) | `49d9899a98` |
+| Dra. Claudia Utsch · `/dra-claudia-utsch` (era fase 2) | `7268ebc8f1` |
+
+- **Dra. Camilla Mendes continua fora do ar.** Faltam o UF do CRM e a bio, e as duas pendências bloqueiam a publicação.
+- **Dados pendentes não aparecem nas páginas:**
+  - faixa etária da Dra. Anna e da Dra. Amanda;
+  - especialidade dos RQEs da Dra. Eliane, da Dra. Raissa e da Dra. Claudia;
+  - planos Unimed da Dra. Claudia.
+  Quando forem confirmados, o texto muda e a aprovação precisa ser registrada de novo.
+- **Para revisar com a gestão (CFM):** na página da Dra. Danielle aparecem a "Consulta de nutrologia" e "pós-graduada em Nutrologia" na bio, sem RQE de Nutrologia. A página não a chama de especialista em Nutrologia.
+- **Com isso, saem de uso:** `src/components/profissionais/antigas/` (páginas antigas da Vera e da Eliane), já que as duas têm páginas novas aprovadas.
+- **Conferido num build de produção local:**
+  - as 8 páginas respondem 200, sem faixa de rascunho e sem noindex;
+  - `/dra-camilla-mendes` dá 404;
+  - o sitemap e o `/equipe` apontam para as 8.

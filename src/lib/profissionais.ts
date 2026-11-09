@@ -277,8 +277,12 @@ export const PROFISSIONAIS: Profissional[] = [
     foto: fotoSite('/images/dra-eliane.jpg', 900),
     pendencias: [],
     fase: 1,
-    status: 'aguardando_medico',
-    aprovacoes: {},
+    status: 'aprovada',
+    // Aprovação do profissional informada pela gestão do site em 09/11/2026.
+    aprovacoes: {
+      medico:  { data: '2026-11-09', versao: '85c578a344', por: 'Dra. Eliane Basques' },
+      clinica: { data: '2026-11-09', versao: '85c578a344', por: 'Ana Paula, gestão do site, em nome da clínica' },
+    },
   },
 
   {
@@ -306,8 +310,12 @@ export const PROFISSIONAIS: Profissional[] = [
       'Bio: manter "doenças funcionais do aparelho digestivo" só se for o nome oficial do curso (confirmar com a médica). No resto do site usamos DGBI.',
     ],
     fase: 1,
-    status: 'aguardando_medico',
-    aprovacoes: {},
+    status: 'aprovada',
+    // Aprovação do profissional informada pela gestão do site em 09/11/2026.
+    aprovacoes: {
+      medico:  { data: '2026-11-09', versao: 'b7ffad55df', por: 'Dra. Raissa Dalat' },
+      clinica: { data: '2026-11-09', versao: 'b7ffad55df', por: 'Ana Paula, gestão do site, em nome da clínica' },
+    },
   },
 
   {
@@ -342,8 +350,12 @@ export const PROFISSIONAIS: Profissional[] = [
       'Tratamento "Dra." para fisioterapeuta: confirmar com a gestão. A página sempre diz "fisioterapeuta" e nunca "médica".',
     ],
     fase: 1,
-    status: 'aguardando_medico',
-    aprovacoes: {},
+    status: 'aprovada',
+    // Aprovação do profissional informada pela gestão do site em 09/11/2026.
+    aprovacoes: {
+      medico:  { data: '2026-11-09', versao: '22ade9e187', por: 'Dra. Anna Karoline Rocha' },
+      clinica: { data: '2026-11-09', versao: '22ade9e187', por: 'Ana Paula, gestão do site, em nome da clínica' },
+    },
   },
 
   {
@@ -387,8 +399,12 @@ export const PROFISSIONAIS: Profissional[] = [
       'Consulta: os dados de 06/11 diziam que ele só faz exames; a tabela validada de 08/11 inclui consulta particular. A página segue a tabela.',
     ],
     fase: 1,
-    status: 'aguardando_medico',
-    aprovacoes: {},
+    status: 'aprovada',
+    // Aprovação do profissional informada pela gestão do site em 09/11/2026.
+    aprovacoes: {
+      medico:  { data: '2026-11-09', versao: '8daf788a11', por: 'Dr. Gabriel de Souza Fernandes Filho' },
+      clinica: { data: '2026-11-09', versao: '8daf788a11', por: 'Ana Paula, gestão do site, em nome da clínica' },
+    },
   },
 
   {
@@ -428,8 +444,12 @@ export const PROFISSIONAIS: Profissional[] = [
     foto: fotoSite('/images/Amanda-Araujo.jpg', 1691),
     pendencias: [],
     fase: 1,
-    status: 'aguardando_medico',
-    aprovacoes: {},
+    status: 'aprovada',
+    // Aprovação do profissional informada pela gestão do site em 09/11/2026.
+    aprovacoes: {
+      medico:  { data: '2026-11-09', versao: '24ebb384d3', por: 'Dra. Amanda Araújo' },
+      clinica: { data: '2026-11-09', versao: '24ebb384d3', por: 'Ana Paula, gestão do site, em nome da clínica' },
+    },
   },
 
   // ─── Fase 2: só rascunho (sem rota em produção) ────────────────────────────
@@ -462,8 +482,12 @@ export const PROFISSIONAIS: Profissional[] = [
       'Sem RQE de Nutrologia no CFM: "Nutrologia" não aparece como especialidade. Revisar com a médica e a gestão a "Consulta de nutrologia" e o trecho "pós-graduada em Nutrologia" da bio.',
     ],
     fase: 2,
-    status: 'rascunho',
-    aprovacoes: {},
+    status: 'aprovada',
+    // Aprovação do profissional informada pela gestão do site em 09/11/2026.
+    aprovacoes: {
+      medico:  { data: '2026-11-09', versao: '49d9899a98', por: 'Dra. Danielle Martins' },
+      clinica: { data: '2026-11-09', versao: '49d9899a98', por: 'Ana Paula, gestão do site, em nome da clínica' },
+    },
   },
 
   {
@@ -494,8 +518,12 @@ export const PROFISSIONAIS: Profissional[] = [
       'Convênios: a lista validada diz só "Unimed", sem os planos. Confirmar se são Unipart, Unimax e Uniplan.',
     ],
     fase: 2,
-    status: 'rascunho',
-    aprovacoes: {},
+    status: 'aprovada',
+    // Aprovação do profissional informada pela gestão do site em 09/11/2026.
+    aprovacoes: {
+      medico:  { data: '2026-11-09', versao: '7268ebc8f1', por: 'Dra. Claudia Utsch' },
+      clinica: { data: '2026-11-09', versao: '7268ebc8f1', por: 'Ana Paula, gestão do site, em nome da clínica' },
+    },
   },
 
   {
