@@ -10,7 +10,8 @@ import { Breadcrumb }     from '@/components/ui/Breadcrumb'
 import { SectionWrapper } from '@/components/ui/SectionWrapper'
 import { CtaBanner }      from '@/components/ui/CtaBanner'
 import { IsoSeal }        from '@/components/icons/IsoSeal'
-import { EXAM_PDFS, CONVENIOS_DESTAQUE, EXAMES as EXAMES_PT } from '@/lib/data'
+import { EXAM_PDFS, EXAMES as EXAMES_PT } from '@/lib/data'
+import { convenioDoExame } from '@/lib/convenios'
 import { getExames, getEspecialidades } from '@/lib/content/catalog'
 import { getExameDetail, type PreparoCard } from '@/lib/content/exames-detail'
 import { getRespExtra } from '@/lib/content/exames-resp-extra'
@@ -462,7 +463,7 @@ export default async function ExameSlugPage({ params }: Props) {
             <div className="bg-white border border-teal/10 rounded-2xl p-6 shadow-sm">
               <h3 className="text-[0.75rem] font-bold uppercase tracking-[.1em] text-steel/40 mb-3">{t('conveniosAceitos')}</h3>
               <p className="text-[0.88rem] text-steel/65 leading-relaxed mb-4">
-                {t('conveniosDesc', { convenios: CONVENIOS_DESTAQUE.join(', ') })}
+                {convenioDoExame(slug, locale)} {t('conveniosDesc')}
               </p>
               <Link
                 href="/convenios-medicos"

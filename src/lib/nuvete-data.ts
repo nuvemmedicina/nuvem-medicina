@@ -331,9 +331,9 @@ export const NUVETE_RESPOSTAS: NuveteResposta[] = [
   },
   {
     gatilhos: ['convenio', 'convênio', 'plano', 'saúde', 'unimed', 'amil'],
-    resposta: 'Trabalhamos com os principais convênios: Unimed BH, Amil e outros.\n\nTambém aceitamos particular com emissão de recibo para reembolso.\n\nQuer que eu consulte um plano específico?',
+    resposta: 'Os convênios dependem do profissional e do exame. Todos os profissionais também atendem particular, com recibo para reembolso.\n\nPela Unimed (Unipart, Unimax, Uniplan), os exames feitos por convênio são pHmetria esofágica, manometria esofágica convencional e manometria anorretal. Os demais exames são particulares.\n\nA lista por profissional está na página de convênios. Se tiver dúvida sobre o seu plano, a recepção confirma pelo WhatsApp.',
     botoes: [
-      { label: '💳 Ver convênios completo', acao: 'link:/convenios-medicos' },
+      { label: '💳 Ver convênios por profissional', acao: 'link:/convenios-medicos' },
     ],
   },
   {
@@ -421,7 +421,7 @@ export const NUVETE_FAQ = [
   },
   {
     pergunta: 'A clínica aceita planos de saúde?',
-    resposta: 'Sim! Trabalhamos com Unimed BH, Amil e outros. Também atendemos particular com recibo para reembolso.',
+    resposta: 'Depende do profissional e do exame. Todos os profissionais também atendem particular, com recibo para reembolso. A lista por profissional está na página de convênios.',
   },
   {
     pergunta: 'Preciso de encaminhamento médico para os exames?',
