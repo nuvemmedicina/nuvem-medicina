@@ -17,7 +17,7 @@ Branch `feat/paginas-profissionais`, a partir da `main` (com o PR #140). PR sem 
   - pHmetria esofágica: particular ou Unimed (Unipart, Unimax, Uniplan).
 - **Dr. Gabriel:**
   - Passa a ter consulta, somente particular.
-  - Exames: manometria esofágica de alta resolução e convencional, pHmetria e impedanciopHmetria, todos somente particular, como na lista por profissional. Há uma divergência com a regra geral da Unimed; ver pendências.
+  - Exames: manometria esofágica de alta resolução e convencional, pHmetria e impedanciopHmetria, todos somente particular, como na lista por profissional. Confirmado pela gestão em 09/11/2026.
 - **Dra. Raissa e Dra. Anna Karoline:** somente particular, confirmado.
 - **Dra. Anna Karoline:**
   - O nome passa a ser "Anna Karoline Rocha".
@@ -57,14 +57,14 @@ A versão é um código de 10 caracteres calculado a partir de tudo o que aparec
 
 | Profissional | Endereço | Status | Versão do texto |
 |---|---|---|---|
-| Dra. Vera Ângelo | `/dra-vera-angelo` | aguardando_medico | `5abd3459c2` |
+| Dra. Vera Ângelo | `/dra-vera-angelo` | **aprovada** (09/11/2026) | `2a689f0041` |
 | Dra. Eliane Basques | `/dra-eliane-basques` | aguardando_medico | `2379904101` |
 | Dra. Raissa Dalat | `/dra-raissa-dalat` | aguardando_medico | `b7ffad55df` |
 | Dra. Anna Karoline Rocha | `/dra-anna-karoline` | aguardando_medico | `1592b28da5` |
 | Dr. Gabriel de Souza Fernandes Filho | `/dr-gabriel-fernandes-filho` | aguardando_medico | `90dad462b9` |
 | Dra. Amanda Araújo | `/dra-amanda-araujo` | aguardando_medico | `8a6f097431` |
 | Dra. Danielle Martins | `/dra-danielle-martins` | rascunho (fase 2, sem rota em produção) | `49d9899a98` |
-| Dra. Claudia Utsch | `/dra-claudia-utsch` | rascunho (fase 2, sem rota em produção) | `9cab494611` |
+| Dra. Claudia Utsch | `/dra-claudia-utsch` | rascunho (fase 2, sem rota em produção) | `7268ebc8f1` |
 | Dra. Camilla Mendes | `/dra-camilla-mendes` | rascunho (fase 2, sem rota em produção) | `93c2662977` |
 
 ## 3. Como publicar uma página (hoje, com os campos à mão)
@@ -162,7 +162,7 @@ Os textos abaixo saem das mesmas funções que montam a página. Seções sem da
 
 ### Dra. Vera Ângelo · `/dra-vera-angelo`
 
-Status: aguardando_medico · versão do texto `5abd3459c2` · foto: `/images/dra-vera.jpg`
+Status: **aprovada** em 09/11/2026 · versão do texto `2a689f0041` · foto: `/images/dra-vera.jpg`
 
 **1. Apresentação**
 
@@ -183,6 +183,13 @@ Status: aguardando_medico · versão do texto `5abd3459c2` · foto: `/images/dra
 **3. Formação**
 
 > Sócia fundadora e diretora técnica da NU.V.E.M. Mestre e Doutora pela UFMG. Professora convidada do Hospital Israelita Albert Einstein. Autora de obras pela Editora Rubio.
+
+**3b. Publicações · Livros publicados**
+
+- Organizadora: Doenças Funcionais na Gastrenterologia · Editora Rubio · 2025 (link para a editora)
+- Coorganizadora: Métodos Diagnósticos em Doenças Funcionais e Motilidade Digestiva · Editora Rubio · 2025 (link para a editora)
+- Organizadora: Perguntas e Respostas Comentadas de Gastrenterologia Clínica e Hepatologia · Editora Rubio · 2025 (link para a editora)
+- Autora: Testes Respiratórios em Gastrenterologia: Hidrogênio, Metano e Helicobacter pylori · Editora Rubio · 2024 (link para a editora)
 
 **4. Como pode ajudar**
 
@@ -619,7 +626,7 @@ _(seção oculta: não realiza exames)_
 
 ### Dra. Claudia Utsch · `/dra-claudia-utsch`
 
-Status: rascunho (fase 2, sem rota em produção) · versão do texto `9cab494611` · foto: `/images/claudia-utsch.jpg`
+Status: rascunho (fase 2, sem rota em produção) · versão do texto `7268ebc8f1` · foto: `/images/claudia-utsch.jpg`
 
 **1. Apresentação**
 
@@ -636,7 +643,7 @@ Status: rascunho (fase 2, sem rota em produção) · versão do texto `9cab49461
 
 **3. Formação**
 
-_(seção oculta: bio pendente)_
+> Mestre em Doenças Inflamatórias Intestinais pela Universidade Federal de São Paulo (Unifesp), com residência médica em Gastroenterologia e em Endoscopia Digestiva pela Unifesp. Título de Endoscopia pela Sociedade Brasileira de Endoscopia Digestiva (Sobed) e de Gastroenterologia pela Federação Brasileira de Gastroenterologia (FBG).
 
 **4. Como pode ajudar**
 
@@ -904,3 +911,29 @@ Nenhum desses dados aparece na página enquanto estiver pendente.
 - Dr. Gabriel: convênios "somente particular" confirmados pela gestão (sai a pendência).
 - Dra. Claudia: bio a partir do currículo enviado pela gestão. Continuam pendentes as especialidades dos RQEs 51470 e 51471.
 - Continua pendente: faixa etária da Dra. Amanda ("4 meses a 80 anos" no link; "a partir de 15 anos" no PDF).
+
+## 11. Atualização de 09/11/2026: livros e agendamento
+
+- **Página nova da Dra. Vera:** entra a seção "Publicações · Livros publicados", logo depois da formação, com os 4 livros da página antiga (mesmos títulos, capas e links para a Editora Rubio). O selo "Novo" da página antiga não foi levado.
+  - Os livros ficam no campo `livros` de `src/lib/profissionais.ts`, e qualquer profissional pode ter a seção.
+  - A versão do texto da Dra. Vera passou a ser `2a689f0041`. Se a aprovação já tiver sido dada sobre a versão anterior, ela precisa ser registrada de novo com esta versão.
+- **Bloco de agendamento** (vale para todas as páginas):
+  - à esquerda, os botões "Agendar pelo WhatsApp" e "Ligar", com o horário da clínica em duas linhas e o endereço com CEP;
+  - à direita, o mapa;
+  - quando o profissional tem dia de atendimento próprio (ex.: Dra. Eliane, às quintas), esse dia aparece embaixo do horário.
+- **Mapa:** é o Google Maps, mas só carrega quando a pessoa clica em "Mostrar mapa". Antes disso aparecem o endereço e o link "Abrir no Google Maps".
+  - O mapa incorporado grava cookies do Google, e o banner de cookies do site só cobre análise e anúncios. Carregar só no clique evita cookie sem consentimento (LGPD).
+  - O clique em "Abrir no Google Maps" continua contando como `clique_mapa` no GTM.
+
+## 12. Página da Dra. Vera aprovada (09/11/2026)
+
+- Aprovação registrada em `src/lib/profissionais.ts`, na versão `2a689f0041` (a versão com os livros):
+  - médica: Dra. Vera Ângelo;
+  - clínica: Ana Paula, gestão do site, em nome da clínica.
+- Com o merge, a página nova substitui a antiga em `/dra-vera-angelo`, no mesmo endereço. Ela continua no sitemap e o cartão do `/equipe` passa a mostrar "Na NU.V.E.M". A foto é a atual do site (`/images/dra-vera.jpg`), que fazia parte da versão aprovada.
+- A lista "Quando procurar avaliação" continua como rascunho e não aparece em produção. Para publicá-la, a Dra. Vera precisa validar a lista. Isso muda a versão do texto, e a aprovação tem de ser registrada de novo.
+- Depois do merge, `src/components/profissionais/antigas/PaginaAntigaVera.tsx` deixa de ser usada. Ela só volta ao ar se o texto mudar sem uma nova aprovação.
+- Verificado num build de produção local:
+  - `/dra-vera-angelo` sem a faixa de rascunho, com os livros e o mapa;
+  - `/dra-eliane-basques` com a página antiga;
+  - as demais páginas dão 404.
