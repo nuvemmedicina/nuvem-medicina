@@ -1667,3 +1667,17 @@ Ver as seções do Bloco 3 (halimetria) e do Bloco 4 (WordPress, slugs com erro 
 9. **Formulário de agendamento**: ajustes aplicados. Conferir no preview e lembrar que o título da página `/obrigado` no GA4 mudou.
 10. **Revisão mensal da nuvete**: ler os logs `nuvete_regra_cfm` na Vercel e configurar um Log Drain ou retenção estendida, porque os logs somem rápido.
 11. **Revisão do PR**: conferir o preview da Vercel antes do merge. Nenhum deploy em produção foi feito.
+
+---
+
+## Convênios (09/11/2026)
+
+A página `/convenios-medicos` listava Unimed BH, Amil, Porto Seguro Saúde, Hapvida, Plamed e Samp, lista que não bate com a lista oficial da clínica para a Dr.IAgenda (versão de 09/11/2026, `docs/anamnese-ia/respostas/documentos-finais/anexos/03-lista-e-regras-de-convenio.md`). Porto Seguro, Hapvida, Plamed e Samp não constam nela.
+
+- Nova fonte única em `src/lib/convenios.ts`: convênios por profissional, exames por convênio, regras e o que levar.
+- `/convenios-medicos` mostra a tabela por profissional, os três exames feitos pela Unimed (Unipart, Unimax, Uniplan), as regras e os documentos. Saiu "os principais planos de saúde da região".
+- Páginas de exame (pt, en, es): o quadro de convênios passa a dizer o que vale para cada exame (pHmetria esofágica, manometria esofágica convencional e manometria anorretal pela Unimed ou particular; os demais, somente particular), no lugar de "Atendemos Unimed BH, Amil e outros".
+- Nuvete (prompt e respostas prontas) e `llms.txt` usam a mesma fonte.
+- Fora do site, de propósito: Nutrologia da Dra. Danielle (aguarda confirmação do RQE) e trânsito colônico (sem página e sem preparo oficial).
+
+Testado no servidor local: página de convênios, páginas de exame nas três línguas e três perguntas à nuvete ("Vocês aceitam Hapvida?": não está na lista, oferece particular; "A Dra. Vera atende Unimed?": Unipart, Unimax, Uniplan e Amagis; "Posso fazer teste respiratório pela Unimed?": somente particular, com a lista dos três exames por convênio).

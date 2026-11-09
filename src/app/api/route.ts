@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getAllPosts }               from '@/lib/sanity/queries'
 import { SITE_URL }                  from '@/lib/site'
+import { convenioParaPrompt }        from '@/lib/convenios'
 import { aplicarRegraCfm }           from '@/lib/nuvete-cfm'
 
 async function buildBlogSection(): Promise<string> {
@@ -219,8 +220,7 @@ AVALIAÇÃO PÉLVICA (Biofeedback/EMG):
 ═══════════════════════════════════════
 CONVÊNIOS
 ═══════════════════════════════════════
-Unimed BH, Amil, Porto Seguro Saúde, Hapvida, Plamed, Samp.
-Também atendemos particular com emissão de recibo para reembolso.
+${convenioParaPrompt()}
 
 ═══════════════════════════════════════
 NU.V.E.M ENSINO

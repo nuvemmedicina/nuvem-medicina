@@ -89,7 +89,7 @@ const RODAPE = `## Informações para Agendamento
 - **WhatsApp:** https://wa.me/553197261029
 - **Telefone:** (31) 2537-3131
 - **Horário:** Segunda a quinta, das 7h às 17h30 · Sexta, das 7h às 16h30
-- **Convênios aceitos:** Unimed BH, Amil e outros
+- **Convênios:** dependem do profissional e do exame; lista por profissional em https://www.nuvemmedicina.com.br/convenios-medicos. Exames por convênio, pela Unimed (Unipart, Unimax, Uniplan): pHmetria esofágica, manometria esofágica convencional e manometria anorretal; os demais exames são particulares.
 - **Particular:** aceito com emissão de recibo para reembolso
 
 ## Aviso Legal
