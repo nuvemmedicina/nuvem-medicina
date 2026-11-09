@@ -22,8 +22,9 @@
  *
  * Dados: arquivos da clínica, versão de 06/11/2026, atualizados pelos anexos
  * validados de 08/11/2026 (tabela de preços e procedimentos; lista e regras
- * de convênio). Registros conferidos no portal do CFM em 08/11/2026: Vera,
- * Gabriel, Danielle e Amanda.
+ * de convênio). Registros conferidos no portal do CFM em 08/11/2026 (Vera,
+ * Gabriel, Danielle e Amanda) e em 09/11/2026 (Eliane, Raissa, Claudia e
+ * Camilla).
  */
 
 // ─── Pendências ──────────────────────────────────────────────────────────────
@@ -249,7 +250,10 @@ export const PROFISSIONAIS: Profissional[] = [
     profissao: 'medica',
     registro: {
       conselho: 'CRM', uf: 'MG', numero: '27601',
-      rqes: [{ numero: '9324', especialidade: pendente('especialidade do RQE 9324 (conferir no portal do CFM)') }],
+      rqes: [
+        { numero: '9324', especialidade: 'Cirurgia Pediátrica' },
+        { numero: '70957', especialidade: 'Cirurgia Geral' },
+      ],
     },
     especialidadeExibida: 'Cirurgia Pediátrica',
     cargo: 'Cofundadora e Diretora Técnica Substituta',
@@ -278,10 +282,12 @@ export const PROFISSIONAIS: Profissional[] = [
     pendencias: [],
     fase: 1,
     status: 'aprovada',
-    // Aprovação do profissional informada pela gestão do site em 09/11/2026.
+    // Aprovação do profissional informada pela gestão do site em 09/11/2026
+    // (versão 85c578a344); registrada de novo na versão com os RQEs conferidos no
+    // CFM em 09/11/2026.
     aprovacoes: {
-      medico:  { data: '2026-11-09', versao: '85c578a344', por: 'Dra. Eliane Basques' },
-      clinica: { data: '2026-11-09', versao: '85c578a344', por: 'Ana Paula, gestão do site, em nome da clínica' },
+      medico:  { data: '2026-11-09', versao: '8fb5e24ec0', por: 'Dra. Eliane Basques' },
+      clinica: { data: '2026-11-09', versao: '8fb5e24ec0', por: 'Ana Paula, gestão do site, em nome da clínica' },
     },
   },
 
@@ -293,7 +299,7 @@ export const PROFISSIONAIS: Profissional[] = [
     profissao: 'medica',
     registro: {
       conselho: 'CRM', uf: 'MG', numero: '78824',
-      rqes: [{ numero: '61983', especialidade: pendente('especialidade do RQE 61983 (conferir no portal do CFM)') }],
+      rqes: [{ numero: '61983', especialidade: 'Cirurgia Pediátrica' }],
     },
     especialidadeExibida: 'Cirurgia Pediátrica',
     areasDeAtuacao: ['Cirurgia pediátrica geral', 'Coloproctologia infantil'],
@@ -311,10 +317,12 @@ export const PROFISSIONAIS: Profissional[] = [
     ],
     fase: 1,
     status: 'aprovada',
-    // Aprovação do profissional informada pela gestão do site em 09/11/2026.
+    // Aprovação do profissional informada pela gestão do site em 09/11/2026
+    // (versão b7ffad55df); registrada de novo na versão com os RQEs conferidos no
+    // CFM em 09/11/2026.
     aprovacoes: {
-      medico:  { data: '2026-11-09', versao: 'b7ffad55df', por: 'Dra. Raissa Dalat' },
-      clinica: { data: '2026-11-09', versao: 'b7ffad55df', por: 'Ana Paula, gestão do site, em nome da clínica' },
+      medico:  { data: '2026-11-09', versao: '1c1c5bcf6f', por: 'Dra. Raissa Dalat' },
+      clinica: { data: '2026-11-09', versao: '1c1c5bcf6f', por: 'Ana Paula, gestão do site, em nome da clínica' },
     },
   },
 
@@ -478,9 +486,7 @@ export const PROFISSIONAIS: Profissional[] = [
     teleconsulta: { oferece: true, detalhe: 'no atendimento particular' },
     fazConsulta: true,
     foto: fotoSite('/images/danielle-martins.jpg', 900),
-    pendencias: [
-      'Sem RQE de Nutrologia no CFM: "Nutrologia" não aparece como especialidade. Revisar com a médica e a gestão a "Consulta de nutrologia" e o trecho "pós-graduada em Nutrologia" da bio.',
-    ],
+    pendencias: [],
     fase: 2,
     status: 'aprovada',
     // Aprovação do profissional informada pela gestão do site em 09/11/2026.
@@ -499,8 +505,8 @@ export const PROFISSIONAIS: Profissional[] = [
     registro: {
       conselho: 'CRM', uf: 'MG', numero: '47651',
       rqes: [
-        { numero: '51470', especialidade: pendente('especialidade do RQE 51470') },
-        { numero: '51471', especialidade: pendente('especialidade do RQE 51471') },
+        { numero: '51470', especialidade: 'Gastroenterologia' },
+        { numero: '51471', especialidade: 'Endoscopia' },
       ],
     },
     especialidadeExibida: 'Gastroenterologia',
@@ -510,7 +516,7 @@ export const PROFISSIONAIS: Profissional[] = [
     oQueFazNaNuvem: [
       { nome: 'Consulta', tipo: 'consulta', convenios: 'Particular ou Unimed' },
     ],
-    faixaEtaria: '15 a 95 anos',
+    faixaEtaria: '14 a 65 anos',
     teleconsulta: { oferece: false },
     fazConsulta: true,
     foto: fotoSite('/images/claudia-utsch.jpg', 900),
@@ -519,10 +525,12 @@ export const PROFISSIONAIS: Profissional[] = [
     ],
     fase: 2,
     status: 'aprovada',
-    // Aprovação do profissional informada pela gestão do site em 09/11/2026.
+    // Aprovação do profissional informada pela gestão do site em 09/11/2026
+    // (versão 7268ebc8f1); registrada de novo na versão com os RQEs conferidos no
+    // CFM em 09/11/2026.
     aprovacoes: {
-      medico:  { data: '2026-11-09', versao: '7268ebc8f1', por: 'Dra. Claudia Utsch' },
-      clinica: { data: '2026-11-09', versao: '7268ebc8f1', por: 'Ana Paula, gestão do site, em nome da clínica' },
+      medico:  { data: '2026-11-09', versao: '4e1fec1076', por: 'Dra. Claudia Utsch' },
+      clinica: { data: '2026-11-09', versao: '4e1fec1076', por: 'Ana Paula, gestão do site, em nome da clínica' },
     },
   },
 
@@ -532,7 +540,13 @@ export const PROFISSIONAIS: Profissional[] = [
     nome: 'Camilla Mendes',
     tratamento: 'Dra.',
     profissao: 'medica',
-    registro: { conselho: 'CRM', uf: pendente('UF do CRM 61518'), numero: '61518', rqes: [] },
+    registro: {
+      conselho: 'CRM', uf: 'MG', numero: '61518',
+      rqes: [
+        { numero: '48369', especialidade: 'Clínica Médica' },
+        { numero: '69179', especialidade: 'Hepatologia, área de atuação' },
+      ],
+    },
     especialidadeExibida: 'Clínica Médica',
     areasDeAtuacao: ['Clínica médica'],
     bio: pendente('bio'),
@@ -543,9 +557,7 @@ export const PROFISSIONAIS: Profissional[] = [
     teleconsulta: { oferece: false },
     fazConsulta: true,
     foto: fotoSite('/images/camilla-mendes.jpg', 900),
-    pendencias: [
-      'Sem RQE: a página diz "médica com atuação em clínica médica", nunca "especialista".',
-    ],
+    pendencias: [],
     fase: 2,
     status: 'rascunho',
     aprovacoes: {},

@@ -58,14 +58,14 @@ A versão é um código de 10 caracteres calculado a partir de tudo o que aparec
 | Profissional | Endereço | Status | Versão do texto |
 |---|---|---|---|
 | Dra. Vera Ângelo | `/dra-vera-angelo` | **aprovada** (09/11/2026) | `2597ae4057` |
-| Dra. Eliane Basques | `/dra-eliane-basques` | **aprovada** (09/11/2026) | `85c578a344` |
-| Dra. Raissa Dalat | `/dra-raissa-dalat` | **aprovada** (09/11/2026) | `b7ffad55df` |
+| Dra. Eliane Basques | `/dra-eliane-basques` | **aprovada** (09/11/2026) | `8fb5e24ec0` |
+| Dra. Raissa Dalat | `/dra-raissa-dalat` | **aprovada** (09/11/2026) | `1c1c5bcf6f` |
 | Dra. Anna Karoline Rocha | `/dra-anna-karoline` | **aprovada** (09/11/2026) | `22ade9e187` |
 | Dr. Gabriel de Souza Fernandes Filho | `/dr-gabriel-fernandes-filho` | **aprovada** (09/11/2026) | `8daf788a11` |
 | Dra. Amanda Araújo | `/dra-amanda-araujo` | **aprovada** (09/11/2026) | `24ebb384d3` |
 | Dra. Danielle Martins | `/dra-danielle-martins` | **aprovada** (09/11/2026) | `49d9899a98` |
-| Dra. Claudia Utsch | `/dra-claudia-utsch` | **aprovada** (09/11/2026) | `7268ebc8f1` |
-| Dra. Camilla Mendes | `/dra-camilla-mendes` | rascunho (fase 2, sem rota em produção) | `93c2662977` |
+| Dra. Claudia Utsch | `/dra-claudia-utsch` | **aprovada** (09/11/2026) | `4e1fec1076` |
+| Dra. Camilla Mendes | `/dra-camilla-mendes` | rascunho (fase 2, sem rota em produção) | `66665c702a` |
 
 ## 3. Como publicar uma página (hoje, com os campos à mão)
 
@@ -235,14 +235,14 @@ Status: **aprovada** em 09/11/2026 · versão do texto `2597ae4057` · foto: `/i
 
 ### Dra. Eliane Basques · `/dra-eliane-basques`
 
-Status: **aprovada** em 09/11/2026 · versão do texto `85c578a344` · foto: `/images/dra-eliane.jpg`
+Status: **aprovada** em 09/11/2026 · versão do texto `8fb5e24ec0` · foto: `/images/dra-eliane.jpg`
 
 **1. Apresentação**
 
-- Rótulo: Médica com atuação em cirurgia pediátrica
+- Rótulo: Cirurgia Pediátrica
 - Nome: Dra. Eliane Basques
-- Registro: CRM-MG 27601 · RQE 9324
-- Linha de apresentação: Cofundadora e Diretora Técnica Substituta da NU.V.E.M.
+- Registro: CRM-MG 27601 · RQE 9324 (Cirurgia Pediátrica) · RQE 70957 (Cirurgia Geral)
+- Linha de apresentação: Médica especialista em Cirurgia Pediátrica. Cofundadora e Diretora Técnica Substituta da NU.V.E.M.
 - Botões: "Agendar pelo WhatsApp" (mensagem: "Olá! Gostaria de agendar com a Dra. Eliane Basques na NU.V.E.M.") e "Ver exames"
 
 **2. O que faz na NU.V.E.M**
@@ -301,13 +301,14 @@ Status: **aprovada** em 09/11/2026 · versão do texto `85c578a344` · foto: `/i
 
 ### Dra. Raissa Dalat · `/dra-raissa-dalat`
 
-Status: **aprovada** em 09/11/2026 · versão do texto `b7ffad55df` · foto: `/images/raissa-dalat.jpg`
+Status: **aprovada** em 09/11/2026 · versão do texto `1c1c5bcf6f` · foto: `/images/raissa-dalat.jpg`
 
 **1. Apresentação**
 
-- Rótulo: Médica com atuação em cirurgia pediátrica
+- Rótulo: Cirurgia Pediátrica
 - Nome: Dra. Raissa Dalat
-- Registro: CRM-MG 78824 · RQE 61983
+- Registro: CRM-MG 78824 · RQE 61983 (Cirurgia Pediátrica)
+- Linha de apresentação: Médica especialista em Cirurgia Pediátrica.
 - Botões: "Agendar pelo WhatsApp" (mensagem: "Olá! Gostaria de agendar com a Dra. Raissa Dalat na NU.V.E.M.")
 
 **2. O que faz na NU.V.E.M**
@@ -626,19 +627,20 @@ _(seção oculta: não realiza exames)_
 
 ### Dra. Claudia Utsch · `/dra-claudia-utsch`
 
-Status: **aprovada** em 09/11/2026 · versão do texto `7268ebc8f1` · foto: `/images/claudia-utsch.jpg`
+Status: **aprovada** em 09/11/2026 · versão do texto `4e1fec1076` · foto: `/images/claudia-utsch.jpg`
 
 **1. Apresentação**
 
-- Rótulo: Médica com atuação em gastroenterologia
+- Rótulo: Gastroenterologia
 - Nome: Dra. Claudia Utsch
-- Registro: CRM-MG 47651 · RQE 51470 · RQE 51471
+- Registro: CRM-MG 47651 · RQE 51470 (Gastroenterologia) · RQE 51471 (Endoscopia)
+- Linha de apresentação: Médica especialista em Gastroenterologia.
 - Botões: "Agendar pelo WhatsApp" (mensagem: "Olá! Gostaria de agendar com a Dra. Claudia Utsch na NU.V.E.M.")
 
 **2. O que faz na NU.V.E.M**
 
 - Consulta · Particular ou Unimed
-- Faixa etária: 15 a 95 anos
+- Faixa etária: 14 a 65 anos
 - Teleconsulta: Não. O atendimento é presencial na NU.V.E.M.
 
 **3. Formação**
@@ -670,7 +672,7 @@ _(seção oculta: não realiza exames)_
 - *Faz teleconsulta?*
   Não. O atendimento é presencial na NU.V.E.M.
 - *Qual idade atende?*
-  15 a 95 anos.
+  14 a 65 anos.
 - *O que levar?*
   Leve no dia do atendimento:
   - Pedido médico (obrigatório para exames)
@@ -686,13 +688,14 @@ _(seção oculta: não realiza exames)_
 
 ### Dra. Camilla Mendes · `/dra-camilla-mendes`
 
-Status: rascunho (fase 2, sem rota em produção) · versão do texto `93c2662977` · foto: `/images/camilla-mendes.jpg`
+Status: rascunho (fase 2, sem rota em produção) · versão do texto `66665c702a` · foto: `/images/camilla-mendes.jpg`
 
 **1. Apresentação**
 
-- Rótulo: Médica com atuação em clínica médica
+- Rótulo: Clínica Médica
 - Nome: Dra. Camilla Mendes
-- Registro: CRM 61518
+- Registro: CRM-MG 61518 · RQE 48369 (Clínica Médica) · RQE 69179 (Hepatologia, área de atuação)
+- Linha de apresentação: Médica especialista em Clínica Médica.
 - Botões: "Agendar pelo WhatsApp" (mensagem: "Olá! Gostaria de agendar com a Dra. Camilla Mendes na NU.V.E.M.")
 
 **2. O que faz na NU.V.E.M**
@@ -796,11 +799,10 @@ Nenhum desses dados aparece na página enquanto estiver pendente.
 
 **Dra. Eliane Basques** (`/dra-eliane-basques`)
 
-- [A CONFIRMAR] especialidade do RQE 9324 (conferir no portal do CFM)
+- Nenhuma.
 
 **Dra. Raissa Dalat** (`/dra-raissa-dalat`)
 
-- [A CONFIRMAR] especialidade do RQE 61983 (conferir no portal do CFM)
 - Bio: manter "doenças funcionais do aparelho digestivo" só se for o nome oficial do curso (confirmar com a médica). No resto do site usamos DGBI.
 
 **Dra. Anna Karoline Rocha** (`/dra-anna-karoline`)
@@ -818,20 +820,16 @@ Nenhum desses dados aparece na página enquanto estiver pendente.
 
 **Dra. Danielle Martins** (`/dra-danielle-martins`)
 
-- Sem RQE de Nutrologia no CFM: "Nutrologia" não aparece como especialidade. Revisar com a médica e a gestão a "Consulta de nutrologia" e o trecho "pós-graduada em Nutrologia" da bio.
+- Nenhuma.
 
 **Dra. Claudia Utsch** (`/dra-claudia-utsch`)
 
-- [A CONFIRMAR] especialidade do RQE 51470
-- [A CONFIRMAR] especialidade do RQE 51471
 - Convênios: a lista validada diz só "Unimed", sem os planos. Confirmar se são Unipart, Unimax e Uniplan.
 
 **Dra. Camilla Mendes** (`/dra-camilla-mendes`)
 
-- [A CONFIRMAR] UF do CRM 61518
 - [A CONFIRMAR] bio
-- Sem RQE: a página diz "médica com atuação em clínica médica", nunca "especialista".
-- **Bloqueia a publicação:** CRM sem UF confirmada; bio sem texto confirmado
+- **Bloqueia a publicação:** bio sem texto confirmado
 
 **Dra. Adrianna Buzatti Viana** (só no /equipe, sem página)
 
@@ -972,3 +970,21 @@ A gestão do site informou que os profissionais aprovaram as páginas e pediu a 
   - as 8 páginas respondem 200, sem faixa de rascunho e sem noindex;
   - `/dra-camilla-mendes` dá 404;
   - o sitemap e o `/equipe` apontam para as 8.
+
+## 15. Registros conferidos no CFM e ajustes (09/11/2026)
+
+Prints do portal do CFM enviados pela gestão:
+
+| Profissional | Registro na página | Efeito |
+|---|---|---|
+| Dra. Eliane Basques | CRM-MG 27601 · RQE 9324 (Cirurgia Pediátrica) · RQE 70957 (Cirurgia Geral) | o RQE 70957 é novo; passa a "Médica especialista em Cirurgia Pediátrica" |
+| Dra. Raissa Dalat | CRM-MG 78824 · RQE 61983 (Cirurgia Pediátrica) | passa a "Médica especialista em Cirurgia Pediátrica" |
+| Dra. Claudia Utsch | CRM-MG 47651 · RQE 51470 (Gastroenterologia) · RQE 51471 (Endoscopia) | passa a "Médica especialista em Gastroenterologia" |
+| Dra. Camilla Mendes | CRM-MG 61518 · RQE 48369 (Clínica Médica) · RQE 69179 (Hepatologia, área de atuação) | UF confirmado; passa a "Médica especialista em Clínica Médica"; continua fora do ar até chegar a bio |
+
+- **Faixa etária da Dra. Claudia:** passou de 15 a 95 anos para 14 a 65 anos. A da Dra. Camilla não mudou (18 a 65 anos).
+- **Dra. Danielle:** a gestão manteve a "Consulta de nutrologia" e a menção à pós-graduação em Nutrologia, e a pendência foi retirada.
+- **Aprovações:** as mudanças de registro e de faixa alteram o texto. Por isso as aprovações da Eliane, da Raissa e da Claudia foram registradas de novo nas versões novas (`8fb5e24ec0`, `1c1c5bcf6f` e `4e1fec1076`), com a mesma data e as mesmas pessoas. Sem isso, as três páginas sairiam do ar no próximo deploy.
+- **Conferido num build de produção local:**
+  - as 8 páginas continuam no ar, com os registros novos na página, no `/equipe` e nos dados estruturados;
+  - `/dra-camilla-mendes` continua com 404.
