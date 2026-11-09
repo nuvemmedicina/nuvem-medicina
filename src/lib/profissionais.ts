@@ -76,6 +76,18 @@ export type Foto = {
 /** Registro de aprovação: data (AAAA-MM-DD) e versão do texto aprovada. */
 export type Aprovacao = { data: string; versao: string; por: string }
 
+/** Livro publicado (autoria, organização ou coorganização). */
+export type Livro = {
+  titulo: string
+  papel: 'Autora' | 'Autor' | 'Organizadora' | 'Organizador' | 'Coorganizadora' | 'Coorganizador'
+  editora: string
+  ano: string
+  /** Capa em public/images. */
+  capa: string
+  /** Página do livro na editora. */
+  href: string
+}
+
 export type ItemQuandoProcurar = {
   texto: string
   /** Exame de onde saiu (texto "para que serve" de /exames/[slug]). */
@@ -104,6 +116,9 @@ export type Profissional = {
     /** Só aparece em produção depois de validada pela Dra. Vera. */
     validacao: 'rascunho' | { por: string; data: string }
   }
+
+  /** Livros publicados (seção "Publicações", logo depois da formação). */
+  livros?: Livro[]
 
   // Atendimento
   faixaEtaria: Talvez<string>
@@ -181,6 +196,33 @@ export const PROFISSIONAIS: Profissional[] = [
         { texto: 'Intestino irritável em investigação', fonte: 'testes-respiratorios' },
       ],
     },
+    // Livros que estavam na página antiga (mesmos títulos, capas e links).
+    livros: [
+      {
+        titulo: 'Doenças Funcionais na Gastrenterologia',
+        papel: 'Organizadora', editora: 'Editora Rubio', ano: '2025',
+        capa: '/images/livro-doencas-funcionais-gastroenterologia.jpg',
+        href: 'https://rubio.com.br/livro/a61637/9786588340783/doencas-funcionais-na-gatroenterologia.html',
+      },
+      {
+        titulo: 'Métodos Diagnósticos em Doenças Funcionais e Motilidade Digestiva',
+        papel: 'Coorganizadora', editora: 'Editora Rubio', ano: '2025',
+        capa: '/images/livro-metodos-diagnosticos-motilidade.jpg',
+        href: 'https://rubio.com.br/livro/c58906/9786588340844/metodos-diagnosticos-em-doencas-funcionais-e-motilidade-digestiva-do-nucleo-de-fisiologia-gastrintes.html',
+      },
+      {
+        titulo: 'Perguntas e Respostas Comentadas de Gastrenterologia Clínica e Hepatologia',
+        papel: 'Organizadora', editora: 'Editora Rubio', ano: '2025',
+        capa: '/images/livro-gastrenterologia-clinica-hepatologia.jpg',
+        href: 'https://rubio.com.br/livro/a62313/9786588340998/perguntas-e-respostas-comentadas-de-gastrenterologia-clinica-e-hepatologia.html',
+      },
+      {
+        titulo: 'Testes Respiratórios em Gastrenterologia: Hidrogênio, Metano e Helicobacter pylori',
+        papel: 'Autora', editora: 'Editora Rubio', ano: '2024',
+        capa: '/images/livro-testes-respiratorios-gastrenterologia.jpg',
+        href: 'https://rubio.com.br/livro/a62312/9786588340974/testes-respiratorios-em-gastrenterologia-hidrogenio-metano-e-helicobacter-pylori.html',
+      },
+    ],
     faixaEtaria: '12 a 99 anos',
     teleconsulta: { oferece: true, detalhe: 'no atendimento particular' },
     fazConsulta: true,
