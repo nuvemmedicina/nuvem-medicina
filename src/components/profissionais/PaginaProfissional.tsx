@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { MessageCircle, ArrowDown, ArrowRight, Phone, MapPin, Clock, FileText, ExternalLink, Instagram, Linkedin } from 'lucide-react'
+import { MessageCircle, ArrowDown, ArrowRight, Phone, MapPin, Clock, ExternalLink, Instagram, Linkedin } from 'lucide-react'
 import { MapaClinica } from './MapaClinica'
 import { SectionWrapper } from '@/components/ui/SectionWrapper'
 import { CONTATO, EXAMES } from '@/lib/data'
@@ -310,18 +310,18 @@ export function PaginaProfissional({ p, foto, previa, versao }: Props) {
           <TituloSecao rotulo="Exames" antes="Exames " destaque="relacionados" />
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {cartoesExames.map(e => (
-              <div key={e.id} className="rounded-2xl bg-white border border-teal/10 p-6 flex flex-col">
+              // O cartão inteiro leva à página do exame (que já traz o preparo).
+              <Link
+                key={e.id}
+                href={`/exames/${e.id}`}
+                className="group rounded-2xl bg-white border border-teal/10 p-6 flex flex-col hover:border-gold/60 hover:-translate-y-1 hover:shadow-md transition-all"
+              >
                 <h3 className="text-[1.05rem] font-semibold text-teal">{e.title}</h3>
-                <p className="mt-1 text-[0.85rem] text-steel/65">{e.subtitle}</p>
-                <div className="mt-5 pt-4 border-t border-gold/30 flex flex-wrap gap-x-5 gap-y-2 text-[0.85rem] font-medium">
-                  <Link href={`/exames/${e.id}`} className="inline-flex items-center gap-1 text-teal hover:text-teal-mid">
-                    Sobre o exame <ArrowRight className="w-3.5 h-3.5" aria-hidden />
-                  </Link>
-                  <Link href={`/exames/preparos#${e.id}`} className="inline-flex items-center gap-1 text-teal hover:text-teal-mid">
-                    <FileText className="w-3.5 h-3.5" aria-hidden /> Preparo
-                  </Link>
-                </div>
-              </div>
+                <p className="mt-1 text-[0.85rem] text-steel/65 flex-1">{e.subtitle}</p>
+                <span className="mt-5 pt-4 border-t border-gold/30 inline-flex items-center gap-1.5 text-[0.85rem] font-medium text-teal group-hover:gap-2.5 transition-all">
+                  Ver o exame <ArrowRight className="w-3.5 h-3.5" aria-hidden />
+                </span>
+              </Link>
             ))}
             {(p.servicosSemPagina ?? []).map(nome => (
               <div key={nome} className="rounded-2xl bg-white border border-teal/10 p-6">
