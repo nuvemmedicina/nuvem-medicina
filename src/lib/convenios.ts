@@ -36,6 +36,15 @@ export const CONVENIOS_POR_PROFISSIONAL: ConvenioProfissional[] = [
   { nome: 'Dra. Luiza Auarek',                    area: 'Nefrologia',                              convenios: 'Consulte a recepção' },
 ]
 
+const SOMENTE_PARTICULAR_TEXTO = 'Somente particular'
+
+/**
+ * Lista publicada na página /convenios-medicos: sem quem atende somente
+ * particular (decisão da clínica em 09/11/2026). A nuvete continua recebendo
+ * a lista completa, para responder que esses profissionais atendem particular.
+ */
+export const CONVENIOS_NA_PAGINA = CONVENIOS_POR_PROFISSIONAL.filter(p => p.convenios !== SOMENTE_PARTICULAR_TEXTO)
+
 /** Exames que podem ser feitos por convênio. Os demais são somente particulares. */
 export const EXAMES_POR_CONVENIO = [
   'pHmetria esofágica',

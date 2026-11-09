@@ -4,7 +4,7 @@ import { PageHero }       from '@/components/ui/PageHero'
 import { SectionWrapper } from '@/components/ui/SectionWrapper'
 import { CtaBanner }      from '@/components/ui/CtaBanner'
 import {
-  CONVENIOS_POR_PROFISSIONAL,
+  CONVENIOS_NA_PAGINA,
   EXAMES_POR_CONVENIO,
   REGRAS_CONVENIO,
   DOCUMENTOS_LEVAR,
@@ -34,10 +34,11 @@ export default function ConveniosPage() {
           <div>
             <h2 className="font-serif font-light text-steel text-[1.7rem] leading-snug mb-2">Consultas por profissional</h2>
             <p className="text-[0.92rem] text-steel/60 mb-5">
-              Se o seu plano não estiver na lista do profissional, a consulta pode ser feita de forma particular.
+              Profissionais que atendem por convênio. Os demais atendem somente particular. Se o seu plano
+              não estiver na lista do profissional, a consulta pode ser feita de forma particular.
             </p>
             <ul className="divide-y divide-teal/10 border border-teal/10 rounded-2xl bg-white shadow-sm">
-              {CONVENIOS_POR_PROFISSIONAL.map(p => (
+              {CONVENIOS_NA_PAGINA.map(p => (
                 <li key={p.nome} className="grid gap-1 sm:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] sm:gap-6 p-4 sm:p-5">
                   <div>
                     <p className="text-[0.95rem] font-semibold text-steel">{p.nome}</p>
