@@ -120,6 +120,8 @@ export type Profissional = {
 
   /** Livros publicados (seção "Publicações", logo depois da formação). */
   livros?: Livro[]
+  /** Link para a lista completa de livros na editora (aparece abaixo das capas). */
+  maisLivros?: { texto: string; href: string }
 
   // Atendimento
   faixaEtaria: Talvez<string>
@@ -198,6 +200,10 @@ export const PROFISSIONAIS: Profissional[] = [
       ],
     },
     // Livros que estavam na página antiga (mesmos títulos, capas e links).
+    maisLivros: {
+      texto: 'Ver todos os livros da Dra. Vera na Editora Rubio',
+      href: 'https://www.rubio.com.br/busca?q=vera+angelo',
+    },
     livros: [
       {
         titulo: 'Doenças Funcionais na Gastrenterologia',
@@ -235,10 +241,11 @@ export const PROFISSIONAIS: Profissional[] = [
     status: 'aprovada',
     // Texto aprovado em 09/11/2026 (versão com os livros, 2a689f0041) e lista
     // "Quando procurar avaliação" validada pela Dra. Vera no mesmo dia; a
-    // aprovação foi registrada de novo na versão com a lista validada.
+    // aprovação foi registrada de novo na versão com a lista validada e, depois,
+    // na versão com o link para os outros livros (pedido da gestão, 09/11/2026).
     aprovacoes: {
-      medico:  { data: '2026-11-09', versao: '2597ae4057', por: 'Dra. Vera Ângelo' },
-      clinica: { data: '2026-11-09', versao: '2597ae4057', por: 'Ana Paula, gestão do site, em nome da clínica' },
+      medico:  { data: '2026-11-09', versao: 'a560189139', por: 'Dra. Vera Ângelo' },
+      clinica: { data: '2026-11-09', versao: 'a560189139', por: 'Ana Paula, gestão do site, em nome da clínica' },
     },
   },
 
