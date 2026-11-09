@@ -57,7 +57,7 @@ A versão é um código de 10 caracteres calculado a partir de tudo o que aparec
 
 | Profissional | Endereço | Status | Versão do texto |
 |---|---|---|---|
-| Dra. Vera Ângelo | `/dra-vera-angelo` | aguardando_medico | `2a689f0041` |
+| Dra. Vera Ângelo | `/dra-vera-angelo` | **aprovada** (09/11/2026) | `2a689f0041` |
 | Dra. Eliane Basques | `/dra-eliane-basques` | aguardando_medico | `2379904101` |
 | Dra. Raissa Dalat | `/dra-raissa-dalat` | aguardando_medico | `b7ffad55df` |
 | Dra. Anna Karoline Rocha | `/dra-anna-karoline` | aguardando_medico | `1592b28da5` |
@@ -162,7 +162,7 @@ Os textos abaixo saem das mesmas funções que montam a página. Seções sem da
 
 ### Dra. Vera Ângelo · `/dra-vera-angelo`
 
-Status: aguardando_medico · versão do texto `2a689f0041` · foto: `/images/dra-vera.jpg`
+Status: **aprovada** em 09/11/2026 · versão do texto `2a689f0041` · foto: `/images/dra-vera.jpg`
 
 **1. Apresentação**
 
@@ -924,3 +924,16 @@ Nenhum desses dados aparece na página enquanto estiver pendente.
 - **Mapa:** é o Google Maps, mas só carrega quando a pessoa clica em "Mostrar mapa". Antes disso aparecem o endereço e o link "Abrir no Google Maps".
   - O mapa incorporado grava cookies do Google, e o banner de cookies do site só cobre análise e anúncios. Carregar só no clique evita cookie sem consentimento (LGPD).
   - O clique em "Abrir no Google Maps" continua contando como `clique_mapa` no GTM.
+
+## 12. Página da Dra. Vera aprovada (09/11/2026)
+
+- Aprovação registrada em `src/lib/profissionais.ts`, na versão `2a689f0041` (a versão com os livros):
+  - médica: Dra. Vera Ângelo;
+  - clínica: Ana Paula, gestão do site, em nome da clínica.
+- Com o merge, a página nova substitui a antiga em `/dra-vera-angelo`, no mesmo endereço. Ela continua no sitemap e o cartão do `/equipe` passa a mostrar "Na NU.V.E.M". A foto é a atual do site (`/images/dra-vera.jpg`), que fazia parte da versão aprovada.
+- A lista "Quando procurar avaliação" continua como rascunho e não aparece em produção. Para publicá-la, a Dra. Vera precisa validar a lista. Isso muda a versão do texto, e a aprovação tem de ser registrada de novo.
+- Depois do merge, `src/components/profissionais/antigas/PaginaAntigaVera.tsx` deixa de ser usada. Ela só volta ao ar se o texto mudar sem uma nova aprovação.
+- Verificado num build de produção local:
+  - `/dra-vera-angelo` sem a faixa de rascunho, com os livros e o mapa;
+  - `/dra-eliane-basques` com a página antiga;
+  - as demais páginas dão 404.

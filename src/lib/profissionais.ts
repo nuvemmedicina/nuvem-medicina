@@ -231,8 +231,12 @@ export const PROFISSIONAIS: Profissional[] = [
       'A página antiga e o blog citam "Patologia Clínica"; no CFM o RQE 22736 é de Medicina do Trabalho. Confirmar a menção do blog e o item "Residência em Clínica Médica e Patologia Clínica" da página antiga.',
     ],
     fase: 1,
-    status: 'aguardando_medico',
-    aprovacoes: {},
+    status: 'aprovada',
+    // Texto aprovado em 09/11/2026 (versão com os livros), informado pela gestão do site.
+    aprovacoes: {
+      medico:  { data: '2026-11-09', versao: '2a689f0041', por: 'Dra. Vera Ângelo' },
+      clinica: { data: '2026-11-09', versao: '2a689f0041', por: 'Ana Paula, gestão do site, em nome da clínica' },
+    },
   },
 
   {
