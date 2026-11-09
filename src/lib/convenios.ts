@@ -27,7 +27,7 @@ export const CONVENIOS_POR_PROFISSIONAL: ConvenioProfissional[] = [
   { nome: 'Dra. Claudia Utsch',                   area: 'Gastroenterologia',                       convenios: 'Unimed' },
   { nome: 'Dra. Camilla Mendes',                  area: 'Clínica Médica',                          convenios: UNIMED_PLANOS },
   { nome: 'Dra. Mariana Fernandes',               area: 'Pediatria',                               convenios: 'Unimed (Unimed Seguros, Unipart e Unimax)' },
-  { nome: 'Dra. Amanda Araújo',                   area: 'Gastroenterologia e Motilidade Digestiva', convenios: `pHmetria esofágica: ${UNIMED_PLANOS} ou particular. Manometria esofágica de alta resolução e impedanciopHmetria: somente particular` },
+  { nome: 'Dra. Amanda Araújo',                   area: 'Gastroenterologia e Motilidade Digestiva', convenios: `pHmetria esofágica: ${UNIMED_PLANOS} ou particular` },
   { nome: 'Dra. Eliane Basques',                  area: 'Cirurgia Pediátrica',                     convenios: `Manometria anorretal: ${UNIMED_PLANOS} ou particular` },
   { nome: 'Dr. Gabriel de Souza Fernandes Filho', area: 'Gastroenterologia',                       convenios: 'Somente particular' },
   { nome: 'Dra. Raissa Dalat',                    area: 'Cirurgia Pediátrica',                     convenios: 'Somente particular' },
@@ -36,14 +36,15 @@ export const CONVENIOS_POR_PROFISSIONAL: ConvenioProfissional[] = [
   { nome: 'Dra. Luiza Auarek',                    area: 'Nefrologia',                              convenios: 'Consulte a recepção' },
 ]
 
-const SOMENTE_PARTICULAR_TEXTO = 'Somente particular'
-
 /**
- * Lista publicada na página /convenios-medicos: sem quem atende somente
- * particular (decisão da clínica em 09/11/2026). A nuvete continua recebendo
- * a lista completa, para responder que esses profissionais atendem particular.
+ * Fora da tabela da página /convenios-medicos (decisão da clínica em
+ * 09/11/2026): quem atende somente particular e quem tem convênio a confirmar
+ * com a recepção. A nuvete continua recebendo a lista completa, para responder
+ * sobre esses profissionais.
  */
-export const CONVENIOS_NA_PAGINA = CONVENIOS_POR_PROFISSIONAL.filter(p => p.convenios !== SOMENTE_PARTICULAR_TEXTO)
+const FORA_DA_PAGINA = new Set(['Somente particular', 'Consulte a recepção'])
+
+export const CONVENIOS_NA_PAGINA = CONVENIOS_POR_PROFISSIONAL.filter(p => !FORA_DA_PAGINA.has(p.convenios))
 
 /** Exames que podem ser feitos por convênio. Os demais são somente particulares. */
 export const EXAMES_POR_CONVENIO = [
