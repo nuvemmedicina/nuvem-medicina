@@ -65,7 +65,7 @@ A versão é um código de 10 caracteres calculado a partir de tudo o que aparec
 | Dra. Amanda Araújo | `/dra-amanda-araujo` | **aprovada** (09/11/2026) | `24ebb384d3` |
 | Dra. Danielle Martins | `/dra-danielle-martins` | **aprovada** (09/11/2026) | `49d9899a98` |
 | Dra. Claudia Utsch | `/dra-claudia-utsch` | **aprovada** (09/11/2026) | `d25e45946b` |
-| Dra. Camilla Mendes | `/dra-camilla-mendes` | rascunho (fase 2, sem rota em produção) | `66665c702a` |
+| Dra. Camilla Mendes | `/dra-camilla-mendes` | rascunho (fase 2, sem rota em produção) | `6514edc377` |
 
 ## 3. Como publicar uma página (hoje, com os campos à mão)
 
@@ -688,7 +688,7 @@ _(seção oculta: não realiza exames)_
 
 ### Dra. Camilla Mendes · `/dra-camilla-mendes`
 
-Status: rascunho (fase 2, sem rota em produção) · versão do texto `66665c702a` · foto: `/images/camilla-mendes.jpg`
+Status: rascunho (fase 2, sem rota em produção) · versão do texto `6514edc377` · foto: `/images/camilla-mendes.jpg`
 
 **1. Apresentação**
 
@@ -701,7 +701,7 @@ Status: rascunho (fase 2, sem rota em produção) · versão do texto `66665c702
 **2. O que faz na NU.V.E.M**
 
 - Consulta de clínica médica · Particular ou Unimed (Unipart, Unimax, Uniplan)
-- Faixa etária: 18 a 65 anos
+- Faixa etária: 14 a 65 anos
 - Teleconsulta: Não. O atendimento é presencial na NU.V.E.M.
 
 **3. Formação**
@@ -733,7 +733,7 @@ _(seção oculta: não realiza exames)_
 - *Faz teleconsulta?*
   Não. O atendimento é presencial na NU.V.E.M.
 - *Qual idade atende?*
-  18 a 65 anos.
+  14 a 65 anos.
 - *O que levar?*
   Leve no dia do atendimento:
   - Pedido médico (obrigatório para exames)
@@ -983,6 +983,7 @@ Prints do portal do CFM enviados pela gestão:
 | Dra. Camilla Mendes | CRM-MG 61518 · RQE 48369 (Clínica Médica) · RQE 69179 (Hepatologia, área de atuação) | UF confirmado; passa a "Médica especialista em Clínica Médica"; continua fora do ar até chegar a bio |
 
 - **Faixa etária da Dra. Claudia:** passou de 15 a 95 anos para 14 a 95 anos.
+- **Faixa etária da Dra. Camilla:** passou de 18 a 65 anos para 14 a 65 anos. A página dela continua fora do ar até chegar a bio.
 - **Dra. Danielle:** a gestão manteve a "Consulta de nutrologia" e a menção à pós-graduação em Nutrologia, e a pendência foi retirada.
 - **Aprovações:** as mudanças de registro e de faixa alteram o texto. Por isso as aprovações da Eliane, da Raissa e da Claudia foram registradas de novo nas versões novas (`8fb5e24ec0`, `1c1c5bcf6f` e `d25e45946b`), com a mesma data e as mesmas pessoas. Sem isso, as três páginas sairiam do ar no próximo deploy.
 - **Conferido num build de produção local:**

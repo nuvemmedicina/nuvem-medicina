@@ -553,7 +553,7 @@ export const PROFISSIONAIS: Profissional[] = [
     oQueFazNaNuvem: [
       { nome: 'Consulta de clínica médica', tipo: 'consulta', convenios: `Particular ou ${UNIMED}` },
     ],
-    faixaEtaria: '18 a 65 anos',
+    faixaEtaria: '14 a 65 anos',
     teleconsulta: { oferece: false },
     fazConsulta: true,
     foto: fotoSite('/images/camilla-mendes.jpg', 900),
