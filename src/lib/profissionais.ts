@@ -516,7 +516,7 @@ export const PROFISSIONAIS: Profissional[] = [
     oQueFazNaNuvem: [
       { nome: 'Consulta', tipo: 'consulta', convenios: 'Particular ou Unimed' },
     ],
-    faixaEtaria: '14 a 95 anos',
+    faixaEtaria: '14 a 65 anos',
     teleconsulta: { oferece: false },
     fazConsulta: true,
     foto: fotoSite('/images/claudia-utsch.jpg', 900),
@@ -529,8 +529,8 @@ export const PROFISSIONAIS: Profissional[] = [
     // (versão 7268ebc8f1); registrada de novo na versão com os RQEs conferidos no
     // CFM em 09/11/2026.
     aprovacoes: {
-      medico:  { data: '2026-11-09', versao: 'd25e45946b', por: 'Dra. Claudia Utsch' },
-      clinica: { data: '2026-11-09', versao: 'd25e45946b', por: 'Ana Paula, gestão do site, em nome da clínica' },
+      medico:  { data: '2026-11-09', versao: '4e1fec1076', por: 'Dra. Claudia Utsch' },
+      clinica: { data: '2026-11-09', versao: '4e1fec1076', por: 'Ana Paula, gestão do site, em nome da clínica' },
     },
   },
 
@@ -553,7 +553,7 @@ export const PROFISSIONAIS: Profissional[] = [
     oQueFazNaNuvem: [
       { nome: 'Consulta de clínica médica', tipo: 'consulta', convenios: `Particular ou ${UNIMED}` },
     ],
-    faixaEtaria: '14 a 65 anos',
+    faixaEtaria: '18 a 65 anos',
     teleconsulta: { oferece: false },
     fazConsulta: true,
     foto: fotoSite('/images/camilla-mendes.jpg', 900),
