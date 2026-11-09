@@ -57,12 +57,12 @@ A versão é um código de 10 caracteres calculado a partir de tudo o que aparec
 
 | Profissional | Endereço | Status | Versão do texto |
 |---|---|---|---|
-| Dra. Vera Ângelo | `/dra-vera-angelo` | **aprovada** (09/11/2026) | `2a689f0041` |
-| Dra. Eliane Basques | `/dra-eliane-basques` | aguardando_medico | `2379904101` |
+| Dra. Vera Ângelo | `/dra-vera-angelo` | **aprovada** (09/11/2026) | `2597ae4057` |
+| Dra. Eliane Basques | `/dra-eliane-basques` | aguardando_medico | `85c578a344` |
 | Dra. Raissa Dalat | `/dra-raissa-dalat` | aguardando_medico | `b7ffad55df` |
-| Dra. Anna Karoline Rocha | `/dra-anna-karoline` | aguardando_medico | `1592b28da5` |
-| Dr. Gabriel de Souza Fernandes Filho | `/dr-gabriel-fernandes-filho` | aguardando_medico | `90dad462b9` |
-| Dra. Amanda Araújo | `/dra-amanda-araujo` | aguardando_medico | `8a6f097431` |
+| Dra. Anna Karoline Rocha | `/dra-anna-karoline` | aguardando_medico | `22ade9e187` |
+| Dr. Gabriel de Souza Fernandes Filho | `/dr-gabriel-fernandes-filho` | aguardando_medico | `8daf788a11` |
+| Dra. Amanda Araújo | `/dra-amanda-araujo` | aguardando_medico | `24ebb384d3` |
 | Dra. Danielle Martins | `/dra-danielle-martins` | rascunho (fase 2, sem rota em produção) | `49d9899a98` |
 | Dra. Claudia Utsch | `/dra-claudia-utsch` | rascunho (fase 2, sem rota em produção) | `7268ebc8f1` |
 | Dra. Camilla Mendes | `/dra-camilla-mendes` | rascunho (fase 2, sem rota em produção) | `93c2662977` |
@@ -162,7 +162,7 @@ Os textos abaixo saem das mesmas funções que montam a página. Seções sem da
 
 ### Dra. Vera Ângelo · `/dra-vera-angelo`
 
-Status: **aprovada** em 09/11/2026 · versão do texto `2a689f0041` · foto: `/images/dra-vera.jpg`
+Status: **aprovada** em 09/11/2026 · versão do texto `2597ae4057` · foto: `/images/dra-vera.jpg`
 
 **1. Apresentação**
 
@@ -235,7 +235,7 @@ Status: **aprovada** em 09/11/2026 · versão do texto `2a689f0041` · foto: `/i
 
 ### Dra. Eliane Basques · `/dra-eliane-basques`
 
-Status: aguardando_medico · versão do texto `2379904101` · foto: `/images/dra-eliane.jpg`
+Status: aguardando_medico · versão do texto `85c578a344` · foto: `/images/dra-eliane.jpg`
 
 **1. Apresentação**
 
@@ -363,7 +363,7 @@ _(seção oculta: não realiza exames)_
 
 ### Dra. Anna Karoline Rocha · `/dra-anna-karoline`
 
-Status: aguardando_medico · versão do texto `1592b28da5` · foto: `/images/anna-karoline.jpg`
+Status: aguardando_medico · versão do texto `22ade9e187` · foto: `/images/anna-karoline.jpg`
 
 **1. Apresentação**
 
@@ -426,7 +426,7 @@ Status: aguardando_medico · versão do texto `1592b28da5` · foto: `/images/ann
 
 ### Dr. Gabriel de Souza Fernandes Filho · `/dr-gabriel-fernandes-filho`
 
-Status: aguardando_medico · versão do texto `90dad462b9` · foto: `/images/dr-Gabriel-de-Souza-Fernandes-Filho.jpg`
+Status: aguardando_medico · versão do texto `8daf788a11` · foto: `/images/dr-Gabriel-de-Souza-Fernandes-Filho.jpg`
 
 **1. Apresentação**
 
@@ -497,7 +497,7 @@ Status: aguardando_medico · versão do texto `90dad462b9` · foto: `/images/dr-
 
 ### Dra. Amanda Araújo · `/dra-amanda-araujo`
 
-Status: aguardando_medico · versão do texto `8a6f097431` · foto: `/images/Amanda-Araujo.jpg`
+Status: aguardando_medico · versão do texto `24ebb384d3` · foto: `/images/Amanda-Araujo.jpg`
 
 **1. Apresentação**
 
@@ -744,47 +744,47 @@ _(seção oculta: não realiza exames)_
 
 ---
 
-## 7. Listas "Quando procurar avaliação" · para validação da Dra. Vera
+## 7. Listas "Quando procurar avaliação" · validadas pela Dra. Vera em 09/11/2026
 
 As listas foram montadas só a partir das indicações ("para que serve") das páginas de exame que já estão no site, em linguagem do paciente, sem promessa nem orientação individual. Cada página traz o aviso: "Lista informativa, feita a partir das indicações dos exames. A indicação de cada exame é sempre do médico que acompanha o paciente." A Dra. Raissa, a Dra. Danielle, a Dra. Claudia e a Dra. Camilla não têm lista, porque não realizam exames.
 
 **Dra. Vera Ângelo** (fonte: Testes Respiratórios)
 
-- [ ] Gases e inchaço na barriga que se repetem  _(de: Testes Respiratórios)_
-- [ ] Suspeita de SIBO ou IMO levantada pelo médico  _(de: Testes Respiratórios)_
-- [ ] Intestino irritável em investigação  _(de: Testes Respiratórios)_
+- [x] Gases e inchaço na barriga que se repetem  _(de: Testes Respiratórios)_
+- [x] Suspeita de SIBO ou IMO levantada pelo médico  _(de: Testes Respiratórios)_
+- [x] Intestino irritável em investigação  _(de: Testes Respiratórios)_
 
 **Dra. Eliane Basques** (fonte: Manometria Anorretal)
 
-- [ ] Perda involuntária de fezes  _(de: Manometria Anorretal)_
-- [ ] Prisão de ventre que continua mesmo com o tratamento  _(de: Manometria Anorretal)_
-- [ ] Alterações do assoalho pélvico  _(de: Manometria Anorretal)_
-- [ ] Suspeita de doença de Hirschsprung  _(de: Manometria Anorretal)_
-- [ ] Avaliação antes ou depois de cirurgia anorretal  _(de: Manometria Anorretal)_
+- [x] Perda involuntária de fezes  _(de: Manometria Anorretal)_
+- [x] Prisão de ventre que continua mesmo com o tratamento  _(de: Manometria Anorretal)_
+- [x] Alterações do assoalho pélvico  _(de: Manometria Anorretal)_
+- [x] Suspeita de doença de Hirschsprung  _(de: Manometria Anorretal)_
+- [x] Avaliação antes ou depois de cirurgia anorretal  _(de: Manometria Anorretal)_
 
 **Dra. Anna Karoline Rocha** (fonte: Avaliação Pélvica)
 
-- [ ] Perda involuntária de urina ou de fezes  _(de: Avaliação Pélvica)_
-- [ ] Alterações do assoalho pélvico  _(de: Avaliação Pélvica)_
-- [ ] Dificuldade para evacuar ligada ao assoalho pélvico  _(de: Avaliação Pélvica)_
-- [ ] Dor pélvica que se prolonga  _(de: Avaliação Pélvica)_
-- [ ] Preparo ou recuperação de cirurgia pélvica  _(de: Avaliação Pélvica)_
+- [x] Perda involuntária de urina ou de fezes  _(de: Avaliação Pélvica)_
+- [x] Alterações do assoalho pélvico  _(de: Avaliação Pélvica)_
+- [x] Dificuldade para evacuar ligada ao assoalho pélvico  _(de: Avaliação Pélvica)_
+- [x] Dor pélvica que se prolonga  _(de: Avaliação Pélvica)_
+- [x] Preparo ou recuperação de cirurgia pélvica  _(de: Avaliação Pélvica)_
 
 **Dr. Gabriel de Souza Fernandes Filho** (fonte: Manometria Esofágica, pHmetria e ImpedanciopHmetria Esofágica)
 
-- [ ] Dificuldade para engolir  _(de: Manometria Esofágica)_
-- [ ] Refluxo que continua mesmo com o tratamento  _(de: Manometria Esofágica)_
-- [ ] Dor no peito quando o coração já foi avaliado  _(de: Manometria Esofágica)_
-- [ ] Tosse ou rouquidão que o médico relaciona ao refluxo  _(de: pHmetria e ImpedanciopHmetria Esofágica)_
-- [ ] Avaliação antes ou depois de cirurgia para refluxo  _(de: pHmetria e ImpedanciopHmetria Esofágica)_
+- [x] Dificuldade para engolir  _(de: Manometria Esofágica)_
+- [x] Refluxo que continua mesmo com o tratamento  _(de: Manometria Esofágica)_
+- [x] Dor no peito quando o coração já foi avaliado  _(de: Manometria Esofágica)_
+- [x] Tosse ou rouquidão que o médico relaciona ao refluxo  _(de: pHmetria e ImpedanciopHmetria Esofágica)_
+- [x] Avaliação antes ou depois de cirurgia para refluxo  _(de: pHmetria e ImpedanciopHmetria Esofágica)_
 
 **Dra. Amanda Araújo** (fonte: Manometria Esofágica, pHmetria e ImpedanciopHmetria Esofágica)
 
-- [ ] Dificuldade para engolir  _(de: Manometria Esofágica)_
-- [ ] Suspeita de acalasia  _(de: Manometria Esofágica)_
-- [ ] Refluxo que continua mesmo com o tratamento  _(de: Manometria Esofágica)_
-- [ ] Dor no peito quando o coração já foi avaliado  _(de: Manometria Esofágica)_
-- [ ] Tosse ou rouquidão que o médico relaciona ao refluxo  _(de: pHmetria e ImpedanciopHmetria Esofágica)_
+- [x] Dificuldade para engolir  _(de: Manometria Esofágica)_
+- [x] Suspeita de acalasia  _(de: Manometria Esofágica)_
+- [x] Refluxo que continua mesmo com o tratamento  _(de: Manometria Esofágica)_
+- [x] Dor no peito quando o coração já foi avaliado  _(de: Manometria Esofágica)_
+- [x] Tosse ou rouquidão que o médico relaciona ao refluxo  _(de: pHmetria e ImpedanciopHmetria Esofágica)_
 
 ## 8. Pendências [A CONFIRMAR] por profissional
 
@@ -793,12 +793,10 @@ Nenhum desses dados aparece na página enquanto estiver pendente.
 **Dra. Vera Ângelo** (`/dra-vera-angelo`)
 
 - A página antiga e o blog citam "Patologia Clínica"; no CFM o RQE 22736 é de Medicina do Trabalho. Confirmar a menção do blog e o item "Residência em Clínica Médica e Patologia Clínica" da página antiga.
-- Lista "Quando procurar avaliação": rascunho para validação da Dra. Vera.
 
 **Dra. Eliane Basques** (`/dra-eliane-basques`)
 
 - [A CONFIRMAR] especialidade do RQE 9324 (conferir no portal do CFM)
-- Lista "Quando procurar avaliação": rascunho para validação da Dra. Vera.
 
 **Dra. Raissa Dalat** (`/dra-raissa-dalat`)
 
@@ -809,17 +807,14 @@ Nenhum desses dados aparece na página enquanto estiver pendente.
 
 - [A CONFIRMAR] faixa etária: os dados de 06/11 dizem "12 a 90 anos" e a anamnese dela diz "15 a 90 anos"
 - Tratamento "Dra." para fisioterapeuta: confirmar com a gestão. A página sempre diz "fisioterapeuta" e nunca "médica".
-- Lista "Quando procurar avaliação": rascunho para validação da Dra. Vera.
 
 **Dr. Gabriel de Souza Fernandes Filho** (`/dr-gabriel-fernandes-filho`)
 
 - Consulta: os dados de 06/11 diziam que ele só faz exames; a tabela validada de 08/11 inclui consulta particular. A página segue a tabela.
-- Lista "Quando procurar avaliação": rascunho para validação da Dra. Vera.
 
 **Dra. Amanda Araújo** (`/dra-amanda-araujo`)
 
 - [A CONFIRMAR] faixa etária: "4 meses a 80 anos"
-- Lista "Quando procurar avaliação": rascunho para validação da Dra. Vera.
 
 **Dra. Danielle Martins** (`/dra-danielle-martins`)
 
@@ -937,3 +932,14 @@ Nenhum desses dados aparece na página enquanto estiver pendente.
   - `/dra-vera-angelo` sem a faixa de rascunho, com os livros e o mapa;
   - `/dra-eliane-basques` com a página antiga;
   - as demais páginas dão 404.
+
+## 13. Listas "Quando procurar avaliação" validadas (09/11/2026)
+
+- A Dra. Vera validou as 5 listas: a dela e as da Dra. Eliane, da Dra. Anna Karoline, do Dr. Gabriel e da Dra. Amanda. Em `src/lib/profissionais.ts`, cada lista passou de `validacao: 'rascunho'` para `{ por: 'Dra. Vera Ângelo', data: '2026-11-09' }`.
+- **Dra. Vera:** a lista passa a aparecer na página publicada, sem o selo de rascunho.
+  - Como a validação faz parte do texto, a versão mudou de `2a689f0041` para `2597ae4057`.
+  - A aprovação foi registrada de novo nessa versão, com a mesma médica, a mesma clínica e a mesma data. Sem isso, a página voltaria para a antiga no próximo deploy.
+- **Demais profissionais:** a lista já sai validada e entra no ar junto com a página quando ela for aprovada. Isso mudou a versão do texto de Eliane, Anna Karoline, Gabriel e Amanda. Use as versões da tabela da seção 2 ao registrar as aprovações.
+- Conferido num build de produção local:
+  - `/dra-vera-angelo` mostra "Quando procurar avaliação" com os 3 itens e o aviso;
+  - `/dra-eliane-basques` continua com a página antiga.

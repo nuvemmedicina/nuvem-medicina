@@ -189,7 +189,7 @@ export const PROFISSIONAIS: Profissional[] = [
       { nome: 'Teste respiratório para SIBO + IMO (metano)', tipo: 'exame', convenios: 'Somente particular', exameSlug: 'testes-respiratorios' },
     ],
     quandoProcurar: {
-      validacao: 'rascunho',
+      validacao: { por: 'Dra. Vera Ângelo', data: '2026-11-09' },
       itens: [
         { texto: 'Gases e inchaço na barriga que se repetem', fonte: 'testes-respiratorios' },
         { texto: 'Suspeita de SIBO ou IMO levantada pelo médico', fonte: 'testes-respiratorios' },
@@ -232,10 +232,12 @@ export const PROFISSIONAIS: Profissional[] = [
     ],
     fase: 1,
     status: 'aprovada',
-    // Texto aprovado em 09/11/2026 (versão com os livros), informado pela gestão do site.
+    // Texto aprovado em 09/11/2026 (versão com os livros, 2a689f0041) e lista
+    // "Quando procurar avaliação" validada pela Dra. Vera no mesmo dia; a
+    // aprovação foi registrada de novo na versão com a lista validada.
     aprovacoes: {
-      medico:  { data: '2026-11-09', versao: '2a689f0041', por: 'Dra. Vera Ângelo' },
-      clinica: { data: '2026-11-09', versao: '2a689f0041', por: 'Ana Paula, gestão do site, em nome da clínica' },
+      medico:  { data: '2026-11-09', versao: '2597ae4057', por: 'Dra. Vera Ângelo' },
+      clinica: { data: '2026-11-09', versao: '2597ae4057', por: 'Ana Paula, gestão do site, em nome da clínica' },
     },
   },
 
@@ -259,7 +261,7 @@ export const PROFISSIONAIS: Profissional[] = [
     ],
     servicosSemPagina: ['Trânsito colônico'],
     quandoProcurar: {
-      validacao: 'rascunho',
+      validacao: { por: 'Dra. Vera Ângelo', data: '2026-11-09' },
       itens: [
         { texto: 'Perda involuntária de fezes', fonte: 'manometria-anorretal' },
         { texto: 'Prisão de ventre que continua mesmo com o tratamento', fonte: 'manometria-anorretal' },
@@ -323,7 +325,7 @@ export const PROFISSIONAIS: Profissional[] = [
       { nome: 'Reabilitação do assoalho pélvico', tipo: 'reabilitacao', convenios: 'Somente particular' },
     ],
     quandoProcurar: {
-      validacao: 'rascunho',
+      validacao: { por: 'Dra. Vera Ângelo', data: '2026-11-09' },
       itens: [
         { texto: 'Perda involuntária de urina ou de fezes', fonte: 'avaliacao-pelvica' },
         { texto: 'Alterações do assoalho pélvico', fonte: 'avaliacao-pelvica' },
@@ -368,7 +370,7 @@ export const PROFISSIONAIS: Profissional[] = [
       { nome: 'ImpedanciopHmetria esofágica', tipo: 'exame', convenios: 'Somente particular', exameSlug: 'phmetria-impedanciometria' },
     ],
     quandoProcurar: {
-      validacao: 'rascunho',
+      validacao: { por: 'Dra. Vera Ângelo', data: '2026-11-09' },
       itens: [
         { texto: 'Dificuldade para engolir', fonte: 'manometria-esofagica' },
         { texto: 'Refluxo que continua mesmo com o tratamento', fonte: 'manometria-esofagica' },
@@ -411,7 +413,7 @@ export const PROFISSIONAIS: Profissional[] = [
       { nome: 'ImpedanciopHmetria esofágica', tipo: 'exame', convenios: 'Somente particular', exameSlug: 'phmetria-impedanciometria' },
     ],
     quandoProcurar: {
-      validacao: 'rascunho',
+      validacao: { por: 'Dra. Vera Ângelo', data: '2026-11-09' },
       itens: [
         { texto: 'Dificuldade para engolir', fonte: 'manometria-esofagica' },
         { texto: 'Suspeita de acalasia', fonte: 'manometria-esofagica' },
