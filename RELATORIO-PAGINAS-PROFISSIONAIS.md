@@ -57,7 +57,7 @@ A versão é um código de 10 caracteres calculado a partir de tudo o que aparec
 
 | Profissional | Endereço | Status | Versão do texto |
 |---|---|---|---|
-| Dra. Vera Ângelo | `/dra-vera-angelo` | **aprovada** (09/11/2026) | `a560189139` |
+| Dra. Vera Ângelo | `/dra-vera-angelo` | **aprovada** (09/11/2026) | `09b74dc745` |
 | Dra. Eliane Basques | `/dra-eliane-basques` | **aprovada** (09/11/2026) | `8fb5e24ec0` |
 | Dra. Raissa Dalat | `/dra-raissa-dalat` | **aprovada** (09/11/2026) | `1c1c5bcf6f` |
 | Dra. Anna Karoline Rocha | `/dra-anna-karoline` | **aprovada** (09/11/2026) | `22ade9e187` |
@@ -162,15 +162,17 @@ Os textos abaixo saem das mesmas funções que montam a página. Seções sem da
 
 ### Dra. Vera Ângelo · `/dra-vera-angelo`
 
-Status: **aprovada** em 09/11/2026 · versão do texto `a560189139` · foto: `/images/dra-vera.jpg`
+Status: **aprovada** em 09/11/2026 · versão do texto `09b74dc745` · foto: `/images/dra-vera.jpg`
 
 **1. Apresentação**
 
 - Rótulo: Gastroenterologia
 - Nome: Dra. Vera Ângelo
 - Registro: CRM-MG 22284 · RQE 10411 (Gastroenterologia) · RQE 22736 (Medicina do Trabalho)
-- Linha de apresentação: Médica especialista em Gastroenterologia. Sócia fundadora e Diretora Técnica da NU.V.E.M.
+- Linha de apresentação: Médica especialista em Gastroenterologia. Sócia fundadora e Diretora Técnica e Científica da NU.V.E.M.
 - Botões: "Agendar pelo WhatsApp" (mensagem: "Olá! Gostaria de agendar com a Dra. Vera Ângelo na NU.V.E.M.") e "Ver exames"
+
+- Redes: Instagram (https://www.instagram.com/veraangelo/) · LinkedIn (https://www.linkedin.com/in/vera-lucia-angelo-andrade-b545b02a/)
 
 **2. O que faz na NU.V.E.M**
 
@@ -182,7 +184,7 @@ Status: **aprovada** em 09/11/2026 · versão do texto `a560189139` · foto: `/i
 
 **3. Formação**
 
-> Sócia fundadora e diretora técnica da NU.V.E.M. Mestre e Doutora pela UFMG. Professora convidada do Hospital Israelita Albert Einstein. Autora de obras pela Editora Rubio.
+> Sócia fundadora e diretora técnica e científica da NU.V.E.M. Mestre e Doutora pela UFMG. Professora convidada do Hospital Israelita Albert Einstein. Autora de obras pela Editora Rubio.
 
 **3b. Publicações · Livros publicados**
 
@@ -191,7 +193,8 @@ Só as capas, cada uma com link para a editora:
 - Coorganizadora: Métodos Diagnósticos em Doenças Funcionais e Motilidade Digestiva · Editora Rubio · 2025
 - Organizadora: Perguntas e Respostas Comentadas de Gastrenterologia Clínica e Hepatologia · Editora Rubio · 2025
 - Autora: Testes Respiratórios em Gastrenterologia: Hidrogênio, Metano e Helicobacter pylori · Editora Rubio · 2024
-- Botão: "Ver todos os livros da Dra. Vera na Editora Rubio" (https://www.rubio.com.br/busca?q=vera+angelo)
+- Botão: "Ver mais livros na NU.V.E.M Ensino" (https://www.nuvemensino.com.br/livros)
+- Botão: "Ver os livros na Editora Rubio" (https://www.rubio.com.br/busca?q=vera+angelo)
 
 **4. Como pode ajudar**
 
@@ -246,6 +249,7 @@ Status: **aprovada** em 09/11/2026 · versão do texto `8fb5e24ec0` · foto: `/i
 - Registro: CRM-MG 27601 · RQE 9324 (Cirurgia Pediátrica) · RQE 70957 (Cirurgia Geral)
 - Linha de apresentação: Médica especialista em Cirurgia Pediátrica. Cofundadora e Diretora Técnica Substituta da NU.V.E.M.
 - Botões: "Agendar pelo WhatsApp" (mensagem: "Olá! Gostaria de agendar com a Dra. Eliane Basques na NU.V.E.M.") e "Ver exames"
+
 
 **2. O que faz na NU.V.E.M**
 
@@ -313,6 +317,7 @@ Status: **aprovada** em 09/11/2026 · versão do texto `1c1c5bcf6f` · foto: `/i
 - Linha de apresentação: Médica especialista em Cirurgia Pediátrica.
 - Botões: "Agendar pelo WhatsApp" (mensagem: "Olá! Gostaria de agendar com a Dra. Raissa Dalat na NU.V.E.M.")
 
+
 **2. O que faz na NU.V.E.M**
 
 - Consulta de cirurgia pediátrica geral · Somente particular
@@ -376,6 +381,7 @@ Status: **aprovada** em 09/11/2026 · versão do texto `22ade9e187` · foto: `/i
 - Linha de apresentação: Fisioterapeuta com atuação em fisioterapia pélvica.
 - Botões: "Agendar pelo WhatsApp" (mensagem: "Olá! Gostaria de agendar com a Dra. Anna Karoline Rocha na NU.V.E.M.") e "Ver exames"
 
+
 **2. O que faz na NU.V.E.M**
 
 - Avaliação pélvica com biofeedback eletromiográfico · Somente particular
@@ -438,6 +444,7 @@ Status: **aprovada** em 09/11/2026 · versão do texto `8daf788a11` · foto: `/i
 - Registro: CRM-MG 81843 · RQE 54179 (Clínica Médica) · RQE 61806 (Gastroenterologia)
 - Linha de apresentação: Médico especialista em Gastroenterologia.
 - Botões: "Agendar pelo WhatsApp" (mensagem: "Olá! Gostaria de agendar com o Dr. Gabriel de Souza Fernandes Filho na NU.V.E.M.") e "Ver exames"
+
 
 **2. O que faz na NU.V.E.M**
 
@@ -510,6 +517,7 @@ Status: **aprovada** em 09/11/2026 · versão do texto `24ebb384d3` · foto: `/i
 - Linha de apresentação: Médica especialista em Gastroenterologia.
 - Botões: "Agendar pelo WhatsApp" (mensagem: "Olá! Gostaria de agendar com a Dra. Amanda Araújo na NU.V.E.M.") e "Ver exames"
 
+
 **2. O que faz na NU.V.E.M**
 
 - Manometria esofágica de alta resolução · Somente particular
@@ -576,6 +584,7 @@ Status: **aprovada** em 09/11/2026 · versão do texto `49d9899a98` · foto: `/i
 - Linha de apresentação: Médica especialista em Gastroenterologia.
 - Botões: "Agendar pelo WhatsApp" (mensagem: "Olá! Gostaria de agendar com a Dra. Danielle Martins na NU.V.E.M.")
 
+
 **2. O que faz na NU.V.E.M**
 
 - Consulta de gastroenterologia · Particular ou convênios: Agros, Allianz, Amagis, Amil, AMMP, Assefaz, Saúde Caixa, Care Plus, Cemig, Cenibra, Copass, Correios (Postal), Desban, Fundação Libertas, Fundaffemg, Fusex, Omint, Petrobras, Proasa e Vale
@@ -639,6 +648,7 @@ Status: **aprovada** em 09/11/2026 · versão do texto `4e1fec1076` · foto: `/i
 - Linha de apresentação: Médica especialista em Gastroenterologia.
 - Botões: "Agendar pelo WhatsApp" (mensagem: "Olá! Gostaria de agendar com a Dra. Claudia Utsch na NU.V.E.M.")
 
+
 **2. O que faz na NU.V.E.M**
 
 - Consulta · Particular ou Unimed
@@ -699,6 +709,7 @@ Status: rascunho (fase 2, sem rota em produção) · versão do texto `66665c702
 - Registro: CRM-MG 61518 · RQE 48369 (Clínica Médica) · RQE 69179 (Hepatologia, área de atuação)
 - Linha de apresentação: Médica especialista em Clínica Médica.
 - Botões: "Agendar pelo WhatsApp" (mensagem: "Olá! Gostaria de agendar com a Dra. Camilla Mendes na NU.V.E.M.")
+
 
 **2. O que faz na NU.V.E.M**
 
@@ -998,3 +1009,14 @@ Prints do portal do CFM enviados pela gestão:
   - aparecem só as capas, cada uma com link para a página do livro na Editora Rubio. Título, papel, editora e ano continuam no texto alternativo da imagem, para leitores de tela e para o Google;
   - abaixo das capas entra o botão "Ver todos os livros da Dra. Vera na Editora Rubio", que leva a https://www.rubio.com.br/busca?q=vera+angelo. O link fica no campo `maisLivros` dos dados.
 - **Aprovação:** o botão entra no texto, então a versão da Dra. Vera mudou para `a560189139`. A aprovação foi registrada de novo nessa versão (mudança pedida pela gestão), para a página continuar no ar.
+
+## 17. Dra. Vera: bio, livros e redes (09/11/2026)
+
+- **Bio:** "Sócia fundadora e diretora técnica e científica da NU.V.E.M. Mestre e Doutora pela UFMG. Professora convidada do Hospital Israelita Albert Einstein. Autora de obras pela Editora Rubio."
+- **Cargo:** para combinar com a bio, também mudou na apresentação e no cartão do `/equipe`. Agora é "Sócia fundadora e Diretora Técnica e Científica".
+- **Mais livros:** abaixo das capas há dois botões:
+  - "Ver mais livros na NU.V.E.M Ensino" (https://www.nuvemensino.com.br/livros), em destaque;
+  - "Ver os livros na Editora Rubio" (busca da editora).
+  O campo `maisLivros` agora aceita uma lista de links.
+- **Redes:** links para o Instagram e o LinkedIn na apresentação, logo abaixo dos botões. Eles também entram no schema da Dra. Vera como `sameAs`. Os links ficam no novo campo `redes` dos dados.
+- **Aprovação:** registrada de novo na versão `09b74dc745` (pedido da gestão), para a página continuar no ar.

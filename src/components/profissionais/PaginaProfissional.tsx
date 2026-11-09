@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { MessageCircle, ArrowDown, ArrowRight, Phone, MapPin, Clock, FileText, ExternalLink } from 'lucide-react'
+import { MessageCircle, ArrowDown, ArrowRight, Phone, MapPin, Clock, FileText, ExternalLink, Instagram, Linkedin } from 'lucide-react'
 import { MapaClinica } from './MapaClinica'
 import { SectionWrapper } from '@/components/ui/SectionWrapper'
 import { CONTATO, EXAMES } from '@/lib/data'
@@ -160,6 +160,27 @@ export function PaginaProfissional({ p, foto, previa, versao }: Props) {
                 </a>
               )}
             </div>
+
+            {p.redes && p.redes.length > 0 && (
+              <ul className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2" aria-label="Redes profissionais">
+                {p.redes.map(r => {
+                  const Icone = r.rede === 'Instagram' ? Instagram : Linkedin
+                  return (
+                    <li key={r.href}>
+                      <a
+                        href={r.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-[0.85rem] font-medium text-teal hover:text-gold-dark transition-colors"
+                      >
+                        <Icone className="w-4 h-4" aria-hidden />
+                        {r.rede}
+                      </a>
+                    </li>
+                  )
+                })}
+              </ul>
+            )}
           </div>
 
           <div className="hidden lg:block">
@@ -230,16 +251,19 @@ export function PaginaProfissional({ p, foto, previa, versao }: Props) {
               </li>
             ))}
           </ul>
-          {p.maisLivros && (
-            <div className="mt-8 flex justify-center">
-              <a
-                href={p.maisLivros.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-ghost justify-center text-center w-full sm:w-auto !px-5 sm:!px-8 !text-[0.95rem] sm:!text-base"
-              >
-                {p.maisLivros.texto} <ExternalLink className="w-4 h-4" aria-hidden />
-              </a>
+          {p.maisLivros && p.maisLivros.length > 0 && (
+            <div className="mt-8 flex flex-col sm:flex-row justify-center gap-3">
+              {p.maisLivros.map((link, i) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${i === 0 ? 'btn-teal' : 'btn-ghost'} justify-center text-center w-full sm:w-auto !px-5 sm:!px-8 !text-[0.95rem] sm:!text-base`}
+                >
+                  {link.texto} <ExternalLink className="w-4 h-4" aria-hidden />
+                </a>
+              ))}
             </div>
           )}
         </SectionWrapper>
