@@ -1036,3 +1036,17 @@ Prints do portal do CFM enviados pela gestão:
 - **"Quando procurar avaliação":** a lista da Dra. Vera continua só com os itens dos testes respiratórios, que foram os validados. Itens de pHmetria (refluxo, tosse ou rouquidão) só entram depois de nova validação dela.
 - **Aprovação:** registrada de novo na versão `40c210f2f2`, em 10/11/2026 (pedido da gestão).
 - **Exames relacionados (PR #152):** desde 09/11, o cartão inteiro de cada exame leva à página do exame ("Ver o exame"), sem o link separado para a página de preparos. A seção 6 já está ajustada.
+
+## 19. Registros conferidos no CFM: Dra. Mariana, Dra. Luiza e Dra. Adrianna (10/11/2026)
+
+As três aparecem só no `/equipe`, sem página individual. Prints do portal do CFM enviados pela gestão:
+
+| Profissional | Registro no `/equipe` | Rótulo |
+|---|---|---|
+| Dra. Mariana Fernandes | CRM-MG 65936 · RQE 41542 (Medicina de Família e Comunidade) · RQE 54139 (Pediatria) | Pediatria (tem RQE) |
+| Dra. Luiza Auarek | CRM-MG 81521 · RQE 54226 (Clínica Médica) · RQE 62607 (Nefrologia) | Nefrologia (tem RQE) |
+| Dra. Adrianna Buzatti Viana | CRM-MG 71689 · RQE 44101 (Cirurgia Geral) · RQE 59942 (Cirurgia Pediátrica) | Cirurgia Pediátrica (tem RQE) |
+
+- O registro da Dra. Camilla já estava conferido desde a seção 15.
+- **Dra. Mariana:** com o UF e os RQEs, a página individual dela pode ser montada a partir da anamnese. Faltam a autorização da gestão e a bio aprovada.
+- Nenhuma página aprovada mudou de versão.
