@@ -567,7 +567,7 @@ export const PROFISSIONAIS: Profissional[] = [
       ],
     },
     especialidadeExibida: 'Clínica Médica',
-    areasDeAtuacao: ['Clínica médica'],
+    areasDeAtuacao: ['Clínica médica', 'Hepatologia'],
     bio: pendente('bio'),
     oQueFazNaNuvem: [
       { nome: 'Consulta de clínica médica', tipo: 'consulta', convenios: `Particular ou ${UNIMED}` },
@@ -578,8 +578,123 @@ export const PROFISSIONAIS: Profissional[] = [
     foto: fotoSite('/images/camilla-mendes.jpg', 900),
     pendencias: [],
     fase: 2,
-    status: 'rascunho',
-    aprovacoes: {},
+    status: 'aprovada',
+    // Publicação autorizada pela gestão em 10/11/2026; a bio e a validação da médica
+    // serão pedidas no envio da página.
+    aprovacoes: {
+      medico:  { data: '2026-11-10', versao: '623d412ddf', por: 'Dra. Camilla Mendes, pendente de validação da médica (autorizado pela gestão)' },
+      clinica: { data: '2026-11-10', versao: '623d412ddf', por: 'Ana Paula, gestão do site, em nome da clínica' },
+    },
+  },
+
+  // ─── Publicadas em 10/11/2026 por decisão da gestão ────────────────────────
+  // Dados que faltam ficam pendentes e não aparecem; serão pedidos às
+  // profissionais junto com o envio das páginas.
+
+  {
+    slug: 'dra-mariana-fernandes',
+    slugAnamnese: 'mariana-fernandes',
+    nome: 'Mariana Fernandes',
+    tratamento: 'Dra.',
+    profissao: 'medica',
+    registro: {
+      conselho: 'CRM', uf: 'MG', numero: '65936',
+      rqes: [
+        { numero: '41542', especialidade: 'Medicina de Família e Comunidade' },
+        { numero: '54139', especialidade: 'Pediatria' },
+      ],
+    },
+    especialidadeExibida: 'Pediatria',
+    areasDeAtuacao: ['Pediatria', 'Puericultura', 'Mudança de hábitos na infância'],
+    // Bio aprovada pela gestão em 10/11/2026, a partir da anamnese dela.
+    bio: 'Médica pela UFMG, com títulos de especialista em Pediatria e em Medicina de Família e Comunidade. Experiência em consultório, atenção primária à saúde e urgências pediátricas.',
+    oQueFazNaNuvem: [
+      { nome: 'Consulta pediátrica', tipo: 'consulta', convenios: 'Particular ou Unimed (Unimed Seguros, Unipart e Unimax)' },
+      { nome: 'Consulta de mudança de hábitos na infância', tipo: 'consulta', convenios: 'Particular ou Unimed (Unimed Seguros, Unipart e Unimax)' },
+    ],
+    faixaEtaria: '0 a 18 anos',
+    teleconsulta: { oferece: false },
+    fazConsulta: true,
+    diasDeAtendimento: 'Terças e quintas, das 13h às 18h, e sextas, das 8h às 12h',
+    foto: fotoSite('/images/mariana-fernandes.jpg', 900),
+    pendencias: [
+      'Agendamento: pela anamnese, agenda, valores e convênio da Dra. Mariana passam pela secretária particular dela; a página usa o WhatsApp da clínica. Confirmar com a gestão.',
+    ],
+    fase: 2,
+    status: 'aprovada',
+    // Aprovação da página (com a bio) informada pela gestão em 10/11/2026.
+    aprovacoes: {
+      medico:  { data: '2026-11-10', versao: '93cd7cbe2a', por: 'Dra. Mariana Fernandes' },
+      clinica: { data: '2026-11-10', versao: '93cd7cbe2a', por: 'Ana Paula, gestão do site, em nome da clínica' },
+    },
+  },
+
+  {
+    slug: 'dra-adrianna-buzatti-viana',
+    slugAnamnese: 'adrianna-buzatti-viana',
+    nome: 'Adrianna Buzatti Viana',
+    tratamento: 'Dra.',
+    profissao: 'medica',
+    registro: {
+      conselho: 'CRM', uf: 'MG', numero: '71689',
+      rqes: [
+        { numero: '44101', especialidade: 'Cirurgia Geral' },
+        { numero: '59942', especialidade: 'Cirurgia Pediátrica' },
+      ],
+    },
+    especialidadeExibida: 'Cirurgia Pediátrica',
+    areasDeAtuacao: ['Cirurgia pediátrica'],
+    bio: pendente('bio'),
+    oQueFazNaNuvem: [],
+    faixaEtaria: pendente('faixa etária'),
+    teleconsulta: pendente('teleconsulta'),
+    fazConsulta: true,
+    foto: fotoSite('/images/adrianna-buzatti-viana.jpg', 900),
+    pendencias: [
+      'O que faz na NU.V.E.M (consultas, exames ou procedimentos), convênios e dias de atendimento: pedir à médica.',
+    ],
+    fase: 2,
+    status: 'aprovada',
+    // Publicação autorizada pela gestão em 10/11/2026, com os dados que faltam
+    // pendentes; serão pedidos à médica no envio da página.
+    aprovacoes: {
+      medico:  { data: '2026-11-10', versao: '197e28c756', por: 'Dra. Adrianna Buzatti Viana, pendente de validação da médica (autorizado pela gestão)' },
+      clinica: { data: '2026-11-10', versao: '197e28c756', por: 'Ana Paula, gestão do site, em nome da clínica' },
+    },
+  },
+
+  {
+    slug: 'dra-luiza-auarek',
+    slugAnamnese: 'luiza-auarek',
+    nome: 'Luiza Auarek',
+    tratamento: 'Dra.',
+    profissao: 'medica',
+    registro: {
+      conselho: 'CRM', uf: 'MG', numero: '81521',
+      rqes: [
+        { numero: '54226', especialidade: 'Clínica Médica' },
+        { numero: '62607', especialidade: 'Nefrologia' },
+      ],
+    },
+    especialidadeExibida: 'Nefrologia',
+    areasDeAtuacao: ['Nefrologia'],
+    bio: pendente('bio'),
+    oQueFazNaNuvem: [],
+    faixaEtaria: pendente('faixa etária'),
+    teleconsulta: pendente('teleconsulta'),
+    fazConsulta: true,
+    foto: fotoSite('/images/luiza-auarek.jpg', 900),
+    pendencias: [
+      'O que faz na NU.V.E.M (consultas, exames ou procedimentos), convênios e dias de atendimento: pedir à médica.',
+    ],
+    fase: 2,
+    status: 'aprovada',
+    // Publicação autorizada pela gestão em 10/11/2026, com os dados que faltam
+    // pendentes; serão pedidos à médica no envio da página.
+    aprovacoes: {
+      medico:  { data: '2026-11-10', versao: '033dc8dc5b', por: 'Dra. Luiza Auarek, pendente de validação da médica (autorizado pela gestão)' },
+      clinica: { data: '2026-11-10', versao: '033dc8dc5b', por: 'Ana Paula, gestão do site, em nome da clínica' },
+    },
   },
 ]
 
@@ -587,23 +702,7 @@ export const PROFISSIONAIS: Profissional[] = [
  * Aparecem em /equipe como hoje, sem página individual. Só ganham página com
  * aprovação da gestão.
  */
-export const EQUIPE_SEM_PAGINA: MembroSemPagina[] = [
-  {
-    slugAnamnese: 'adrianna-buzatti-viana', nome: 'Adrianna Buzatti Viana', tratamento: 'Dra.', profissao: 'medica',
-    registro: { conselho: 'CRM', uf: 'MG', numero: '71689', rqes: [{ numero: '44101', especialidade: 'Cirurgia Geral' }, { numero: '59942', especialidade: 'Cirurgia Pediátrica' }] },
-    especialidadeExibida: 'Cirurgia Pediátrica', foto: fotoSite('/images/adrianna-buzatti-viana.jpg', 900),
-  },
-  {
-    slugAnamnese: 'luiza-auarek', nome: 'Luiza Auarek', tratamento: 'Dra.', profissao: 'medica',
-    registro: { conselho: 'CRM', uf: 'MG', numero: '81521', rqes: [{ numero: '54226', especialidade: 'Clínica Médica' }, { numero: '62607', especialidade: 'Nefrologia' }] },
-    especialidadeExibida: 'Nefrologia', foto: fotoSite('/images/luiza-auarek.jpg', 900),
-  },
-  {
-    slugAnamnese: 'mariana-fernandes', nome: 'Mariana Fernandes', tratamento: 'Dra.', profissao: 'medica',
-    registro: { conselho: 'CRM', uf: 'MG', numero: '65936', rqes: [{ numero: '41542', especialidade: 'Medicina de Família e Comunidade' }, { numero: '54139', especialidade: 'Pediatria' }] },
-    especialidadeExibida: 'Pediatria', foto: fotoSite('/images/mariana-fernandes.jpg', 900),
-  },
-]
+export const EQUIPE_SEM_PAGINA: MembroSemPagina[] = []
 
 /** Ordem dos cartões em /equipe (sócias primeiro, depois ordem alfabética). */
 export const ORDEM_EQUIPE = [

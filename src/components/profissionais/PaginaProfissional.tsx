@@ -193,6 +193,11 @@ export function PaginaProfissional({ p, foto, previa, versao }: Props) {
       {/* 2 · O que faz na NU.V.E.M */}
       <SectionWrapper id="atendimento" className="!py-16 lg:!py-24">
         <TituloSecao rotulo="Atendimento" antes="O que faz na " destaque="NU.V.E.M" />
+        {p.oQueFazNaNuvem.length === 0 && (
+          <p className="max-w-2xl text-[0.98rem] text-steel/80 leading-relaxed">
+            Os atendimentos, a faixa etária e os convênios são informados pela equipe, pelo WhatsApp ou telefone.
+          </p>
+        )}
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {p.oQueFazNaNuvem.map(s => (
             <div key={s.nome} className="rounded-2xl bg-mist/40 border border-teal/10 p-6">

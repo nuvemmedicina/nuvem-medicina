@@ -158,7 +158,7 @@ export function passosDoAtendimento(p: Profissional): { titulo: string; texto: s
   return [
     { titulo: 'Agendamento', texto: 'Pelo WhatsApp ou pelo telefone da clínica.' },
     { titulo: 'Preparo', texto: exames ? 'A clínica envia as orientações de preparo do exame.' : 'A clínica envia as orientações para o dia do atendimento.' },
-    { titulo: exames && p.fazConsulta ? 'Exame ou consulta' : exames ? 'Exame' : 'Consulta', texto: 'Atendimento na NU.V.E.M, na Rua Ceará, 600, em Belo Horizonte.' },
+    { titulo: exames && p.fazConsulta ? 'Exame ou consulta' : exames ? 'Exame' : p.oQueFazNaNuvem.length > 0 ? 'Consulta' : 'Atendimento', texto: 'Atendimento na NU.V.E.M, na Rua Ceará, 600, em Belo Horizonte.' },
     exames
       ? { titulo: 'Laudo', texto: 'Enviado para o médico que pediu o exame, com rastreabilidade pela gestão certificada na norma ISO 9001.' }
       : { titulo: 'Registro', texto: 'Atendimento registrado em prontuário, com rastreabilidade pela gestão certificada na norma ISO 9001.' },
@@ -185,11 +185,11 @@ export function pendenciasDe(p: Profissional | MembroSemPagina): string[] {
 
 /**
  * Pendências que impedem a publicação: sem elas a página ficaria incompleta
- * perante o CFM (CRM sem UF) ou sem conteúdo (bio).
+ * perante o CFM (CRM sem UF). Bio pendente não bloqueia (decisão da gestão,
+ * 10/11/2026): a seção "Formação" só não aparece.
  */
 export function pendenciasQueBloqueiam(p: Profissional): string[] {
   const motivos: string[] = []
   if (p.registro.conselho === 'CRM' && ehPendente(p.registro.uf)) motivos.push('CRM sem UF confirmada')
-  if (ehPendente(p.bio)) motivos.push('bio sem texto confirmado')
   return motivos
 }

@@ -65,7 +65,10 @@ A versão é um código de 10 caracteres calculado a partir de tudo o que aparec
 | Dra. Amanda Araújo | `/dra-amanda-araujo` | **aprovada** (09/11/2026) | `24ebb384d3` |
 | Dra. Danielle Martins | `/dra-danielle-martins` | **aprovada** (09/11/2026) | `49d9899a98` |
 | Dra. Claudia Utsch | `/dra-claudia-utsch` | **aprovada** (09/11/2026) | `4e1fec1076` |
-| Dra. Camilla Mendes | `/dra-camilla-mendes` | rascunho (fase 2, sem rota em produção) | `66665c702a` |
+| Dra. Camilla Mendes | `/dra-camilla-mendes` | **aprovada** (10/11/2026) | `623d412ddf` |
+| Dra. Mariana Fernandes | `/dra-mariana-fernandes` | **aprovada** (10/11/2026) | `93cd7cbe2a` |
+| Dra. Adrianna Buzatti Viana | `/dra-adrianna-buzatti-viana` | **aprovada** (10/11/2026) | `197e28c756` |
+| Dra. Luiza Auarek | `/dra-luiza-auarek` | **aprovada** (10/11/2026) | `033dc8dc5b` |
 
 ## 3. Como publicar uma página (hoje, com os campos à mão)
 
@@ -1050,3 +1053,222 @@ As três aparecem só no `/equipe`, sem página individual. Prints do portal do 
 - O registro da Dra. Camilla já estava conferido desde a seção 15.
 - **Dra. Mariana:** com o UF e os RQEs, a página individual dela pode ser montada a partir da anamnese. Faltam a autorização da gestão e a bio aprovada.
 - Nenhuma página aprovada mudou de versão.
+
+## 20. Páginas da Dra. Camilla, da Dra. Mariana, da Dra. Adrianna e da Dra. Luiza (10/11/2026)
+
+A gestão autorizou a publicação das 4. As informações que faltam ficam pendentes e não aparecem nas páginas. Elas serão pedidas às profissionais quando as páginas forem enviadas.
+
+- **Dra. Mariana:** bio aprovada pela gestão. Dados da anamnese dela e dos anexos de 08/11.
+- **Dra. Camilla:** a Hepatologia entrou em "Atua em" (é área de atuação com RQE). A bio ainda não chegou, e a seção "Formação" fica oculta.
+- **Dra. Adrianna e Dra. Luiza:** a página tem registro, especialidade, foto, agendamento e as respostas padrão. No lugar dos atendimentos aparece "Os atendimentos, a faixa etária e os convênios são informados pela equipe, pelo WhatsApp ou telefone."
+- **Mudança na regra:** a bio pendente não impede mais a publicação (decisão da gestão). Só o CRM sem UF continua impedindo.
+- **Aprovações:**
+  - clínica: Ana Paula, gestão do site;
+  - Dra. Mariana: aprovação informada pela gestão;
+  - Camilla, Adrianna e Luiza: registradas como "pendente de validação da médica (autorizado pela gestão)".
+- **Ponto para a gestão:** pela anamnese, agenda, valores e convênio da Dra. Mariana passam pela secretária particular dela. A página usa o WhatsApp da clínica.
+- **Conferido num build de produção local:**
+  - as 12 páginas respondem 200, sem faixa de rascunho;
+  - o sitemap e o `/equipe` apontam para as 12.
+
+### Texto das 4 páginas (para enviar às profissionais)
+
+### Dra. Camilla Mendes · `/dra-camilla-mendes`
+
+Versão do texto `623d412ddf` · foto: `/images/camilla-mendes.jpg`
+
+**Apresentação**
+
+- Rótulo: Clínica Médica
+- Registro: CRM-MG 61518 · RQE 48369 (Clínica Médica) · RQE 69179 (Hepatologia, área de atuação)
+- Linha de apresentação: Médica especialista em Clínica Médica.
+- Mensagem do WhatsApp: "Olá! Gostaria de agendar com a Dra. Camilla Mendes na NU.V.E.M."
+
+**O que faz na NU.V.E.M**
+
+- Consulta de clínica médica · Particular ou Unimed (Unipart, Unimax, Uniplan)
+- Faixa etária: 18 a 65 anos
+- Teleconsulta: Não. O atendimento é presencial na NU.V.E.M.
+
+**Formação**
+
+_(seção oculta: bio pendente)_
+
+**Como pode ajudar**
+
+- Atua em: Clínica médica · Hepatologia
+
+**Perguntas frequentes**
+
+- *Precisa de pedido médico?*
+  Para a consulta, a equipe confirma essa informação no agendamento, pelo WhatsApp ou telefone.
+- *Atende convênio?*
+  - Consulta de clínica médica: Particular ou Unimed (Unipart, Unimax, Uniplan).
+  Se o plano não estiver na lista, o atendimento pode ser particular, com recibo para reembolso.
+- *Faz teleconsulta?*
+  Não. O atendimento é presencial na NU.V.E.M.
+- *Qual idade atende?*
+  18 a 65 anos.
+- *O que levar?*
+  Leve no dia do atendimento:
+  - Pedido médico (obrigatório para exames)
+  - Guia ou número de autorização (exames por convênio)
+  - Documento com foto
+  - Carteirinha do convênio
+  - Exames anteriores
+  - Lista de medicamentos em uso
+
+**Pendências (pedir à profissional no envio):**
+
+- [A CONFIRMAR] bio
+
+### Dra. Mariana Fernandes · `/dra-mariana-fernandes`
+
+Versão do texto `93cd7cbe2a` · foto: `/images/mariana-fernandes.jpg`
+
+**Apresentação**
+
+- Rótulo: Pediatria
+- Registro: CRM-MG 65936 · RQE 41542 (Medicina de Família e Comunidade) · RQE 54139 (Pediatria)
+- Linha de apresentação: Médica especialista em Pediatria.
+- Mensagem do WhatsApp: "Olá! Gostaria de agendar com a Dra. Mariana Fernandes na NU.V.E.M."
+
+**O que faz na NU.V.E.M**
+
+- Consulta pediátrica · Particular ou Unimed (Unimed Seguros, Unipart e Unimax)
+- Consulta de mudança de hábitos na infância · Particular ou Unimed (Unimed Seguros, Unipart e Unimax)
+- Faixa etária: 0 a 18 anos
+- Teleconsulta: Não. O atendimento é presencial na NU.V.E.M.
+- Dias de atendimento: Terças e quintas, das 13h às 18h, e sextas, das 8h às 12h
+
+**Formação**
+
+> Médica pela UFMG, com títulos de especialista em Pediatria e em Medicina de Família e Comunidade. Experiência em consultório, atenção primária à saúde e urgências pediátricas.
+
+**Como pode ajudar**
+
+- Atua em: Pediatria · Puericultura · Mudança de hábitos na infância
+
+**Perguntas frequentes**
+
+- *Precisa de pedido médico?*
+  Para a consulta, a equipe confirma essa informação no agendamento, pelo WhatsApp ou telefone.
+- *Atende convênio?*
+  - Consulta pediátrica: Particular ou Unimed (Unimed Seguros, Unipart e Unimax).
+  - Consulta de mudança de hábitos na infância: Particular ou Unimed (Unimed Seguros, Unipart e Unimax).
+  Se o plano não estiver na lista, o atendimento pode ser particular, com recibo para reembolso.
+- *Faz teleconsulta?*
+  Não. O atendimento é presencial na NU.V.E.M.
+- *Qual idade atende?*
+  0 a 18 anos.
+- *O que levar?*
+  Leve no dia do atendimento:
+  - Pedido médico (obrigatório para exames)
+  - Guia ou número de autorização (exames por convênio)
+  - Documento com foto
+  - Carteirinha do convênio
+  - Exames anteriores
+  - Lista de medicamentos em uso
+
+**Pendências (pedir à profissional no envio):**
+
+- Agendamento: pela anamnese, agenda, valores e convênio da Dra. Mariana passam pela secretária particular dela; a página usa o WhatsApp da clínica. Confirmar com a gestão.
+
+### Dra. Adrianna Buzatti Viana · `/dra-adrianna-buzatti-viana`
+
+Versão do texto `197e28c756` · foto: `/images/adrianna-buzatti-viana.jpg`
+
+**Apresentação**
+
+- Rótulo: Cirurgia Pediátrica
+- Registro: CRM-MG 71689 · RQE 44101 (Cirurgia Geral) · RQE 59942 (Cirurgia Pediátrica)
+- Linha de apresentação: Médica especialista em Cirurgia Pediátrica.
+- Mensagem do WhatsApp: "Olá! Gostaria de agendar com a Dra. Adrianna Buzatti Viana na NU.V.E.M."
+
+**O que faz na NU.V.E.M**
+
+- "Os atendimentos, a faixa etária e os convênios são informados pela equipe, pelo WhatsApp ou telefone."
+
+**Formação**
+
+_(seção oculta: bio pendente)_
+
+**Como pode ajudar**
+
+- Atua em: Cirurgia pediátrica
+
+**Perguntas frequentes**
+
+- *Precisa de pedido médico?*
+  Para a consulta, a equipe confirma essa informação no agendamento, pelo WhatsApp ou telefone.
+- *Atende convênio?*
+  A equipe confirma essa informação no agendamento, pelo WhatsApp ou telefone.
+- *Faz teleconsulta?*
+  A equipe confirma essa informação no agendamento, pelo WhatsApp ou telefone.
+- *Qual idade atende?*
+  A equipe confirma essa informação no agendamento, pelo WhatsApp ou telefone.
+- *O que levar?*
+  Leve no dia do atendimento:
+  - Pedido médico (obrigatório para exames)
+  - Guia ou número de autorização (exames por convênio)
+  - Documento com foto
+  - Carteirinha do convênio
+  - Exames anteriores
+  - Lista de medicamentos em uso
+
+**Pendências (pedir à profissional no envio):**
+
+- [A CONFIRMAR] bio
+- [A CONFIRMAR] faixa etária
+- [A CONFIRMAR] teleconsulta
+- O que faz na NU.V.E.M (consultas, exames ou procedimentos), convênios e dias de atendimento: pedir à médica.
+
+### Dra. Luiza Auarek · `/dra-luiza-auarek`
+
+Versão do texto `033dc8dc5b` · foto: `/images/luiza-auarek.jpg`
+
+**Apresentação**
+
+- Rótulo: Nefrologia
+- Registro: CRM-MG 81521 · RQE 54226 (Clínica Médica) · RQE 62607 (Nefrologia)
+- Linha de apresentação: Médica especialista em Nefrologia.
+- Mensagem do WhatsApp: "Olá! Gostaria de agendar com a Dra. Luiza Auarek na NU.V.E.M."
+
+**O que faz na NU.V.E.M**
+
+- "Os atendimentos, a faixa etária e os convênios são informados pela equipe, pelo WhatsApp ou telefone."
+
+**Formação**
+
+_(seção oculta: bio pendente)_
+
+**Como pode ajudar**
+
+- Atua em: Nefrologia
+
+**Perguntas frequentes**
+
+- *Precisa de pedido médico?*
+  Para a consulta, a equipe confirma essa informação no agendamento, pelo WhatsApp ou telefone.
+- *Atende convênio?*
+  A equipe confirma essa informação no agendamento, pelo WhatsApp ou telefone.
+- *Faz teleconsulta?*
+  A equipe confirma essa informação no agendamento, pelo WhatsApp ou telefone.
+- *Qual idade atende?*
+  A equipe confirma essa informação no agendamento, pelo WhatsApp ou telefone.
+- *O que levar?*
+  Leve no dia do atendimento:
+  - Pedido médico (obrigatório para exames)
+  - Guia ou número de autorização (exames por convênio)
+  - Documento com foto
+  - Carteirinha do convênio
+  - Exames anteriores
+  - Lista de medicamentos em uso
+
+**Pendências (pedir à profissional no envio):**
+
+- [A CONFIRMAR] bio
+- [A CONFIRMAR] faixa etária
+- [A CONFIRMAR] teleconsulta
+- O que faz na NU.V.E.M (consultas, exames ou procedimentos), convênios e dias de atendimento: pedir à médica.
+
