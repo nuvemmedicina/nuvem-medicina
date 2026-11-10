@@ -24,7 +24,8 @@
  * validados de 08/11/2026 (tabela de preços e procedimentos; lista e regras
  * de convênio). Registros conferidos no portal do CFM em 08/11/2026 (Vera,
  * Gabriel, Danielle e Amanda), em 09/11/2026 (Eliane, Raissa, Claudia e
- * Camilla) e em 10/11/2026 (Mariana e Luiza).
+ * Camilla) e em 10/11/2026 (Mariana, Luiza e
+ * Adrianna).
  */
 
 // ─── Pendências ──────────────────────────────────────────────────────────────
@@ -585,7 +586,7 @@ export const PROFISSIONAIS: Profissional[] = [
 export const EQUIPE_SEM_PAGINA: MembroSemPagina[] = [
   {
     slugAnamnese: 'adrianna-buzatti-viana', nome: 'Adrianna Buzatti Viana', tratamento: 'Dra.', profissao: 'medica',
-    registro: { conselho: 'CRM', uf: 'MG', numero: '71689', rqes: [{ numero: '44101', especialidade: pendente('especialidade') }, { numero: '59942', especialidade: pendente('especialidade') }] },
+    registro: { conselho: 'CRM', uf: 'MG', numero: '71689', rqes: [{ numero: '44101', especialidade: 'Cirurgia Geral' }, { numero: '59942', especialidade: 'Cirurgia Pediátrica' }] },
     especialidadeExibida: 'Cirurgia Pediátrica', foto: fotoSite('/images/adrianna-buzatti-viana.jpg', 900),
   },
   {

@@ -1021,14 +1021,15 @@ Prints do portal do CFM enviados pela gestão:
 - **Redes:** links para o Instagram e o LinkedIn na apresentação, logo abaixo dos botões. Eles também entram no schema da Dra. Vera como `sameAs`. Os links ficam no novo campo `redes` dos dados.
 - **Aprovação:** registrada de novo na versão `09b74dc745` (pedido da gestão), para a página continuar no ar.
 
-## 19. Registros conferidos no CFM: Dra. Mariana e Dra. Luiza (10/11/2026)
+## 19. Registros conferidos no CFM: Dra. Mariana, Dra. Luiza e Dra. Adrianna (10/11/2026)
 
-As duas aparecem só no `/equipe`, sem página individual. Prints do portal do CFM enviados pela gestão:
+As três aparecem só no `/equipe`, sem página individual. Prints do portal do CFM enviados pela gestão:
 
 | Profissional | Registro no `/equipe` | Rótulo |
 |---|---|---|
 | Dra. Mariana Fernandes | CRM-MG 65936 · RQE 41542 (Medicina de Família e Comunidade) · RQE 54139 (Pediatria) | Pediatria (tem RQE) |
 | Dra. Luiza Auarek | CRM-MG 81521 · RQE 54226 (Clínica Médica) · RQE 62607 (Nefrologia) | Nefrologia (tem RQE) |
+| Dra. Adrianna Buzatti Viana | CRM-MG 71689 · RQE 44101 (Cirurgia Geral) · RQE 59942 (Cirurgia Pediátrica) | Cirurgia Pediátrica (tem RQE) |
 
 - O registro da Dra. Camilla já estava conferido desde a seção 15.
 - **Dra. Mariana:** com o UF e os RQEs, a página individual dela pode ser montada a partir da anamnese. Faltam a autorização da gestão e a bio aprovada.
