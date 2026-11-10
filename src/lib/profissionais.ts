@@ -192,6 +192,8 @@ export const PROFISSIONAIS: Profissional[] = [
       { nome: 'Consulta', tipo: 'consulta', convenios: `Particular, ${UNIMED} ou Amagis Saúde` },
       { nome: 'Teste respiratório para SIBO', tipo: 'exame', convenios: 'Somente particular', exameSlug: 'testes-respiratorios' },
       { nome: 'Teste respiratório para SIBO + IMO (metano)', tipo: 'exame', convenios: 'Somente particular', exameSlug: 'testes-respiratorios' },
+      { nome: 'pHmetria esofágica', tipo: 'exame', convenios: `Particular ou ${UNIMED}`, exameSlug: 'phmetria-impedanciometria' },
+      { nome: 'ImpedanciopHmetria esofágica', tipo: 'exame', convenios: 'Somente particular', exameSlug: 'phmetria-impedanciometria' },
     ],
     quandoProcurar: {
       validacao: { por: 'Dra. Vera Ângelo', data: '2026-11-09' },
@@ -236,7 +238,7 @@ export const PROFISSIONAIS: Profissional[] = [
         href: 'https://rubio.com.br/livro/a62312/9786588340974/testes-respiratorios-em-gastrenterologia-hidrogenio-metano-e-helicobacter-pylori.html',
       },
     ],
-    faixaEtaria: '12 a 99 anos',
+    faixaEtaria: 'Crianças e adultos',
     teleconsulta: { oferece: true, detalhe: 'no atendimento particular' },
     fazConsulta: true,
     foto: fotoSite('/images/dra-vera.jpg', 900),
@@ -249,10 +251,12 @@ export const PROFISSIONAIS: Profissional[] = [
     // "Quando procurar avaliação" validada pela Dra. Vera no mesmo dia; a
     // aprovação foi registrada de novo na versão com a lista validada e, depois,
     // na versão com o link para os outros livros e, por fim, na versão com a bio
-    // "diretora técnica e científica" e as redes (pedidos da gestão, 09/11/2026).
+    // "diretora técnica e científica" e as redes (pedidos da gestão, 09/11/2026);
+    // depois, com pHmetria, impedanciopHmetria e faixa "Crianças e adultos"
+    // (pedido da gestão, 10/11/2026).
     aprovacoes: {
-      medico:  { data: '2026-11-09', versao: '09b74dc745', por: 'Dra. Vera Ângelo' },
-      clinica: { data: '2026-11-09', versao: '09b74dc745', por: 'Ana Paula, gestão do site, em nome da clínica' },
+      medico:  { data: '2026-11-10', versao: '40c210f2f2', por: 'Dra. Vera Ângelo' },
+      clinica: { data: '2026-11-10', versao: '40c210f2f2', por: 'Ana Paula, gestão do site, em nome da clínica' },
     },
   },
 
