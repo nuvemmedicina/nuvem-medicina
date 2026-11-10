@@ -23,8 +23,8 @@
  * Dados: arquivos da clínica, versão de 06/11/2026, atualizados pelos anexos
  * validados de 08/11/2026 (tabela de preços e procedimentos; lista e regras
  * de convênio). Registros conferidos no portal do CFM em 08/11/2026 (Vera,
- * Gabriel, Danielle e Amanda) e em 09/11/2026 (Eliane, Raissa, Claudia e
- * Camilla).
+ * Gabriel, Danielle e Amanda), em 09/11/2026 (Eliane, Raissa, Claudia e
+ * Camilla) e em 10/11/2026 (Mariana e Luiza).
  */
 
 // ─── Pendências ──────────────────────────────────────────────────────────────
@@ -590,12 +590,12 @@ export const EQUIPE_SEM_PAGINA: MembroSemPagina[] = [
   },
   {
     slugAnamnese: 'luiza-auarek', nome: 'Luiza Auarek', tratamento: 'Dra.', profissao: 'medica',
-    registro: { conselho: 'CRM', uf: pendente('UF'), numero: '81521', rqes: [{ numero: '62607', especialidade: pendente('especialidade') }, { numero: '54226', especialidade: pendente('especialidade') }] },
+    registro: { conselho: 'CRM', uf: 'MG', numero: '81521', rqes: [{ numero: '54226', especialidade: 'Clínica Médica' }, { numero: '62607', especialidade: 'Nefrologia' }] },
     especialidadeExibida: 'Nefrologia', foto: fotoSite('/images/luiza-auarek.jpg', 900),
   },
   {
     slugAnamnese: 'mariana-fernandes', nome: 'Mariana Fernandes', tratamento: 'Dra.', profissao: 'medica',
-    registro: { conselho: 'CRM', uf: pendente('UF'), numero: '65936', rqes: [] },
+    registro: { conselho: 'CRM', uf: 'MG', numero: '65936', rqes: [{ numero: '41542', especialidade: 'Medicina de Família e Comunidade' }, { numero: '54139', especialidade: 'Pediatria' }] },
     especialidadeExibida: 'Pediatria', foto: fotoSite('/images/mariana-fernandes.jpg', 900),
   },
 ]
