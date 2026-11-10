@@ -57,7 +57,7 @@ A versão é um código de 10 caracteres calculado a partir de tudo o que aparec
 
 | Profissional | Endereço | Status | Versão do texto |
 |---|---|---|---|
-| Dra. Vera Ângelo | `/dra-vera-angelo` | **aprovada** (09/11/2026) | `09b74dc745` |
+| Dra. Vera Ângelo | `/dra-vera-angelo` | **aprovada** (10/11/2026) | `40c210f2f2` |
 | Dra. Eliane Basques | `/dra-eliane-basques` | **aprovada** (09/11/2026) | `8fb5e24ec0` |
 | Dra. Raissa Dalat | `/dra-raissa-dalat` | **aprovada** (09/11/2026) | `1c1c5bcf6f` |
 | Dra. Anna Karoline Rocha | `/dra-anna-karoline` | **aprovada** (09/11/2026) | `22ade9e187` |
@@ -162,7 +162,7 @@ Os textos abaixo saem das mesmas funções que montam a página. Seções sem da
 
 ### Dra. Vera Ângelo · `/dra-vera-angelo`
 
-Status: **aprovada** em 09/11/2026 · versão do texto `09b74dc745` · foto: `/images/dra-vera.jpg`
+Status: **aprovada** em 10/11/2026 · versão do texto `40c210f2f2` · foto: `/images/dra-vera.jpg`
 
 **1. Apresentação**
 
@@ -179,7 +179,9 @@ Status: **aprovada** em 09/11/2026 · versão do texto `09b74dc745` · foto: `/i
 - Consulta · Particular, Unimed (Unipart, Unimax, Uniplan) ou Amagis Saúde
 - Teste respiratório para SIBO · Somente particular
 - Teste respiratório para SIBO + IMO (metano) · Somente particular
-- Faixa etária: 12 a 99 anos
+- pHmetria esofágica · Particular ou Unimed (Unipart, Unimax, Uniplan)
+- ImpedanciopHmetria esofágica · Somente particular
+- Faixa etária: Crianças e adultos
 - Teleconsulta: Sim, no atendimento particular
 
 **3. Formação**
@@ -203,7 +205,8 @@ Só as capas, cada uma com link para a editora:
 
 **5. Exames relacionados**
 
-- Testes Respiratórios · links "Sobre o exame" (`/exames/testes-respiratorios`) e "Preparo" (`/exames/preparos#testes-respiratorios`)
+- Testes Respiratórios · cartão "Ver o exame" (`/exames/testes-respiratorios`)
+- pHmetria e ImpedanciopHmetria Esofágica · cartão "Ver o exame" (`/exames/phmetria-impedanciometria`)
 
 **6. Como é o atendimento**
 
@@ -220,11 +223,13 @@ Só as capas, cada uma com link para a editora:
   - Consulta: Particular, Unimed (Unipart, Unimax, Uniplan) ou Amagis Saúde.
   - Teste respiratório para SIBO: Somente particular.
   - Teste respiratório para SIBO + IMO (metano): Somente particular.
+  - pHmetria esofágica: Particular ou Unimed (Unipart, Unimax, Uniplan).
+  - ImpedanciopHmetria esofágica: Somente particular.
   Se o plano não estiver na lista, o atendimento pode ser particular, com recibo para reembolso.
 - *Faz teleconsulta?*
   Sim, no atendimento particular.
 - *Qual idade atende?*
-  12 a 99 anos.
+  Crianças e adultos.
 - *O que levar?*
   Leve no dia do atendimento:
   - Pedido médico (obrigatório para exames)
@@ -270,7 +275,7 @@ Status: **aprovada** em 09/11/2026 · versão do texto `8fb5e24ec0` · foto: `/i
 
 **5. Exames relacionados**
 
-- Manometria Anorretal · links "Sobre o exame" (`/exames/manometria-anorretal`) e "Preparo" (`/exames/preparos#manometria-anorretal`)
+- Manometria Anorretal · cartão "Ver o exame" (`/exames/manometria-anorretal`)
 - Trânsito colônico · sem link: "Informações e preparo pelo WhatsApp ou telefone."
 
 **6. Como é o atendimento**
@@ -399,7 +404,7 @@ Status: **aprovada** em 09/11/2026 · versão do texto `22ade9e187` · foto: `/i
 
 **5. Exames relacionados**
 
-- Avaliação Pélvica · links "Sobre o exame" (`/exames/avaliacao-pelvica`) e "Preparo" (`/exames/preparos#avaliacao-pelvica`)
+- Avaliação Pélvica · cartão "Ver o exame" (`/exames/avaliacao-pelvica`)
 
 **6. Como é o atendimento**
 
@@ -467,8 +472,8 @@ Status: **aprovada** em 09/11/2026 · versão do texto `8daf788a11` · foto: `/i
 
 **5. Exames relacionados**
 
-- Manometria Esofágica · links "Sobre o exame" (`/exames/manometria-esofagica`) e "Preparo" (`/exames/preparos#manometria-esofagica`)
-- pHmetria e ImpedanciopHmetria Esofágica · links "Sobre o exame" (`/exames/phmetria-impedanciometria`) e "Preparo" (`/exames/preparos#phmetria-impedanciometria`)
+- Manometria Esofágica · cartão "Ver o exame" (`/exames/manometria-esofagica`)
+- pHmetria e ImpedanciopHmetria Esofágica · cartão "Ver o exame" (`/exames/phmetria-impedanciometria`)
 
 **6. Como é o atendimento**
 
@@ -536,8 +541,8 @@ Status: **aprovada** em 09/11/2026 · versão do texto `24ebb384d3` · foto: `/i
 
 **5. Exames relacionados**
 
-- Manometria Esofágica · links "Sobre o exame" (`/exames/manometria-esofagica`) e "Preparo" (`/exames/preparos#manometria-esofagica`)
-- pHmetria e ImpedanciopHmetria Esofágica · links "Sobre o exame" (`/exames/phmetria-impedanciometria`) e "Preparo" (`/exames/preparos#phmetria-impedanciometria`)
+- Manometria Esofágica · cartão "Ver o exame" (`/exames/manometria-esofagica`)
+- pHmetria e ImpedanciopHmetria Esofágica · cartão "Ver o exame" (`/exames/phmetria-impedanciometria`)
 
 **6. Como é o atendimento**
 
@@ -1020,3 +1025,14 @@ Prints do portal do CFM enviados pela gestão:
   O campo `maisLivros` agora aceita uma lista de links.
 - **Redes:** links para o Instagram e o LinkedIn na apresentação, logo abaixo dos botões. Eles também entram no schema da Dra. Vera como `sameAs`. Os links ficam no novo campo `redes` dos dados.
 - **Aprovação:** registrada de novo na versão `09b74dc745` (pedido da gestão), para a página continuar no ar.
+
+## 18. Dra. Vera: pHmetria, impedanciopHmetria e faixa etária (10/11/2026)
+
+- **Novos exames em "O que faz na NU.V.E.M":**
+  - pHmetria esofágica: particular ou Unimed (Unipart, Unimax, Uniplan);
+  - impedanciopHmetria esofágica: somente particular.
+  Os convênios seguem a regra geral da clínica para exames (anexo de 08/11 e `src/lib/convenios.ts`). Em "Exames relacionados" entrou o cartão de pHmetria e impedanciopHmetria.
+- **Faixa etária:** passou de "12 a 99 anos" para "Crianças e adultos".
+- **"Quando procurar avaliação":** a lista da Dra. Vera continua só com os itens dos testes respiratórios, que foram os validados. Itens de pHmetria (refluxo, tosse ou rouquidão) só entram depois de nova validação dela.
+- **Aprovação:** registrada de novo na versão `40c210f2f2`, em 10/11/2026 (pedido da gestão).
+- **Exames relacionados (PR #152):** desde 09/11, o cartão inteiro de cada exame leva à página do exame ("Ver o exame"), sem o link separado para a página de preparos. A seção 6 já está ajustada.
