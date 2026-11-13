@@ -541,24 +541,22 @@ export const PROFISSIONAIS: Profissional[] = [
     // Bio a partir do currículo enviado pela gestão em 09/11/2026.
     bio: 'Mestre em Doenças Inflamatórias Intestinais pela Universidade Federal de São Paulo (Unifesp), com residência médica em Gastroenterologia e em Endoscopia Digestiva pela Unifesp. Título de Endoscopia pela Sociedade Brasileira de Endoscopia Digestiva (Sobed) e de Gastroenterologia pela Federação Brasileira de Gastroenterologia (FBG).',
     oQueFazNaNuvem: [
-      { nome: 'Consulta', tipo: 'consulta', convenios: 'Particular ou Unimed' },
+      { nome: 'Consulta', tipo: 'consulta', convenios: `Particular ou ${UNIMED}` },
     ],
     faixaEtaria: '15 a 95 anos',
     teleconsulta: { oferece: false },
     fazConsulta: true,
     diasDeAtendimento: 'Segundas-feiras pares, das 13h20 às 16h40',
     foto: fotoSite('/images/claudia-utsch.jpg', 900),
-    pendencias: [
-      'Convênios: a lista validada diz só "Unimed", sem os planos. Confirmar se são Unipart, Unimax e Uniplan.',
-    ],
+    pendencias: [],
     fase: 2,
     status: 'aprovada',
     // Aprovação do profissional informada pela gestão do site em 09/11/2026
     // (versão 7268ebc8f1); registrada de novo na versão com os RQEs conferidos no
     // CFM em 09/11/2026.
     aprovacoes: {
-      medico:  { data: '2026-11-13', versao: '8127279724', por: 'Dra. Claudia Utsch' },
-      clinica: { data: '2026-11-13', versao: '8127279724', por: 'Ana Paula, gestão do site, em nome da clínica' },
+      medico:  { data: '2026-11-13', versao: 'af69b97d90', por: 'Dra. Claudia Utsch' },
+      clinica: { data: '2026-11-13', versao: 'af69b97d90', por: 'Ana Paula, gestão do site, em nome da clínica' },
     },
   },
 
