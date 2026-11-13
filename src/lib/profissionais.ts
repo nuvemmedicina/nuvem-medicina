@@ -193,6 +193,9 @@ export const PROFISSIONAIS: Profissional[] = [
       { nome: 'Consulta', tipo: 'consulta', convenios: `Particular, ${UNIMED} ou Amagis Saúde` },
       { nome: 'Teste respiratório para SIBO', tipo: 'exame', convenios: 'Somente particular', exameSlug: 'testes-respiratorios' },
       { nome: 'Teste respiratório para SIBO + IMO (metano)', tipo: 'exame', convenios: 'Somente particular', exameSlug: 'testes-respiratorios' },
+      { nome: 'Teste respiratório para intolerância à lactose', tipo: 'exame', convenios: 'Somente particular', exameSlug: 'testes-respiratorios' },
+      { nome: 'Teste respiratório para intolerância à frutose', tipo: 'exame', convenios: 'Somente particular', exameSlug: 'testes-respiratorios' },
+      { nome: 'Teste respiratório para H. pylori', tipo: 'exame', convenios: 'Somente particular', exameSlug: 'testes-respiratorios' },
       { nome: 'pHmetria esofágica', tipo: 'exame', convenios: `Particular ou ${UNIMED}`, exameSlug: 'phmetria-impedanciometria' },
       { nome: 'ImpedanciopHmetria esofágica', tipo: 'exame', convenios: 'Somente particular', exameSlug: 'phmetria-impedanciometria' },
     ],
@@ -256,8 +259,8 @@ export const PROFISSIONAIS: Profissional[] = [
     // depois, com pHmetria, impedanciopHmetria e faixa "Crianças e adultos"
     // (pedido da gestão, 10/11/2026).
     aprovacoes: {
-      medico:  { data: '2026-11-10', versao: '40c210f2f2', por: 'Dra. Vera Ângelo' },
-      clinica: { data: '2026-11-10', versao: '40c210f2f2', por: 'Ana Paula, gestão do site, em nome da clínica' },
+      medico:  { data: '2026-11-13', versao: '88cff3e3e0', por: 'Dra. Vera Ângelo' },
+      clinica: { data: '2026-11-13', versao: '88cff3e3e0', por: 'Ana Paula, gestão do site, em nome da clínica' },
     },
   },
 
@@ -296,7 +299,7 @@ export const PROFISSIONAIS: Profissional[] = [
     faixaEtaria: '1 a 80 anos',
     teleconsulta: { oferece: false },
     fazConsulta: false,
-    diasDeAtendimento: 'Somente às quintas-feiras',
+    diasDeAtendimento: 'Quintas-feiras (toda semana) e sextas-feiras (de 15 em 15 dias)',
     foto: fotoSite('/images/dra-eliane.jpg', 900),
     pendencias: [],
     fase: 1,
@@ -305,8 +308,8 @@ export const PROFISSIONAIS: Profissional[] = [
     // (versão 85c578a344); registrada de novo na versão com os RQEs conferidos no
     // CFM em 09/11/2026.
     aprovacoes: {
-      medico:  { data: '2026-11-09', versao: '8fb5e24ec0', por: 'Dra. Eliane Basques' },
-      clinica: { data: '2026-11-09', versao: '8fb5e24ec0', por: 'Ana Paula, gestão do site, em nome da clínica' },
+      medico:  { data: '2026-11-13', versao: 'b911da47c4', por: 'Dra. Eliane Basques' },
+      clinica: { data: '2026-11-13', versao: 'b911da47c4', por: 'Ana Paula, gestão do site, em nome da clínica' },
     },
   },
 
@@ -369,7 +372,7 @@ export const PROFISSIONAIS: Profissional[] = [
         { texto: 'Preparo ou recuperação de cirurgia pélvica', fonte: 'avaliacao-pelvica' },
       ],
     },
-    faixaEtaria: pendente('faixa etária: os dados de 06/11 dizem "12 a 90 anos" e a anamnese dela diz "15 a 90 anos"'),
+    faixaEtaria: '15 a 90 anos',
     teleconsulta: { oferece: true, detalhe: 'no atendimento particular' },
     fazConsulta: true,
     foto: fotoSite('/images/anna-karoline.jpg', 900),
@@ -380,8 +383,8 @@ export const PROFISSIONAIS: Profissional[] = [
     status: 'aprovada',
     // Aprovação do profissional informada pela gestão do site em 09/11/2026.
     aprovacoes: {
-      medico:  { data: '2026-11-09', versao: '22ade9e187', por: 'Dra. Anna Karoline Rocha' },
-      clinica: { data: '2026-11-09', versao: '22ade9e187', por: 'Ana Paula, gestão do site, em nome da clínica' },
+      medico:  { data: '2026-11-13', versao: 'becdd3bae4', por: 'Dra. Anna Karoline Rocha' },
+      clinica: { data: '2026-11-13', versao: 'becdd3bae4', por: 'Ana Paula, gestão do site, em nome da clínica' },
     },
   },
 
@@ -421,6 +424,8 @@ export const PROFISSIONAIS: Profissional[] = [
     faixaEtaria: 'A partir de 15 anos',
     teleconsulta: { oferece: false },
     fazConsulta: true,
+    // Consultas ainda sem horário fixo (resposta dele em 12/11/2026).
+    diasDeAtendimento: 'Exames às terças-feiras, das 8h às 10h',
     foto: fotoSite('/images/dr-Gabriel-de-Souza-Fernandes-Filho.jpg', 1691),
     pendencias: [
       'Consulta: os dados de 06/11 diziam que ele só faz exames; a tabela validada de 08/11 inclui consulta particular. A página segue a tabela.',
@@ -429,8 +434,8 @@ export const PROFISSIONAIS: Profissional[] = [
     status: 'aprovada',
     // Aprovação do profissional informada pela gestão do site em 09/11/2026.
     aprovacoes: {
-      medico:  { data: '2026-11-09', versao: '8daf788a11', por: 'Dr. Gabriel de Souza Fernandes Filho' },
-      clinica: { data: '2026-11-09', versao: '8daf788a11', por: 'Ana Paula, gestão do site, em nome da clínica' },
+      medico:  { data: '2026-11-13', versao: '127624ef42', por: 'Dr. Gabriel de Souza Fernandes Filho' },
+      clinica: { data: '2026-11-13', versao: '127624ef42', por: 'Ana Paula, gestão do site, em nome da clínica' },
     },
   },
 
@@ -452,6 +457,7 @@ export const PROFISSIONAIS: Profissional[] = [
     bio: 'Gastroenterologista com atuação em motilidade, disfagia, refluxo e acalasia.',
     oQueFazNaNuvem: [
       { nome: 'Manometria esofágica de alta resolução', tipo: 'exame', convenios: 'Somente particular', exameSlug: 'manometria-esofagica' },
+      { nome: 'Manometria esofágica convencional', tipo: 'exame', convenios: `Particular ou ${UNIMED}`, exameSlug: 'manometria-esofagica' },
       { nome: 'pHmetria esofágica', tipo: 'exame', convenios: `Particular ou ${UNIMED}`, exameSlug: 'phmetria-impedanciometria' },
       { nome: 'ImpedanciopHmetria esofágica', tipo: 'exame', convenios: 'Somente particular', exameSlug: 'phmetria-impedanciometria' },
     ],
@@ -465,17 +471,18 @@ export const PROFISSIONAIS: Profissional[] = [
         { texto: 'Tosse ou rouquidão que o médico relaciona ao refluxo', fonte: 'phmetria-impedanciometria' },
       ],
     },
-    faixaEtaria: pendente('faixa etária: "4 meses a 80 anos"'),
+    faixaEtaria: 'A partir de 15 anos',
     teleconsulta: { oferece: false },
     fazConsulta: false,
+    diasDeAtendimento: 'Exames de segunda a quinta-feira, das 8h às 12h',
     foto: fotoSite('/images/Amanda-Araujo.jpg', 1691),
     pendencias: [],
     fase: 1,
     status: 'aprovada',
     // Aprovação do profissional informada pela gestão do site em 09/11/2026.
     aprovacoes: {
-      medico:  { data: '2026-11-09', versao: '24ebb384d3', por: 'Dra. Amanda Araújo' },
-      clinica: { data: '2026-11-09', versao: '24ebb384d3', por: 'Ana Paula, gestão do site, em nome da clínica' },
+      medico:  { data: '2026-11-13', versao: '8d5279cb11', por: 'Dra. Amanda Araújo' },
+      clinica: { data: '2026-11-13', versao: '8d5279cb11', por: 'Ana Paula, gestão do site, em nome da clínica' },
     },
   },
 
@@ -535,9 +542,10 @@ export const PROFISSIONAIS: Profissional[] = [
     oQueFazNaNuvem: [
       { nome: 'Consulta', tipo: 'consulta', convenios: 'Particular ou Unimed' },
     ],
-    faixaEtaria: '14 a 65 anos',
+    faixaEtaria: '15 a 95 anos',
     teleconsulta: { oferece: false },
     fazConsulta: true,
+    diasDeAtendimento: 'Segundas-feiras pares, das 13h20 às 16h40',
     foto: fotoSite('/images/claudia-utsch.jpg', 900),
     pendencias: [
       'Convênios: a lista validada diz só "Unimed", sem os planos. Confirmar se são Unipart, Unimax e Uniplan.',
@@ -548,8 +556,8 @@ export const PROFISSIONAIS: Profissional[] = [
     // (versão 7268ebc8f1); registrada de novo na versão com os RQEs conferidos no
     // CFM em 09/11/2026.
     aprovacoes: {
-      medico:  { data: '2026-11-09', versao: '4e1fec1076', por: 'Dra. Claudia Utsch' },
-      clinica: { data: '2026-11-09', versao: '4e1fec1076', por: 'Ana Paula, gestão do site, em nome da clínica' },
+      medico:  { data: '2026-11-13', versao: '8127279724', por: 'Dra. Claudia Utsch' },
+      clinica: { data: '2026-11-13', versao: '8127279724', por: 'Ana Paula, gestão do site, em nome da clínica' },
     },
   },
 
@@ -571,19 +579,21 @@ export const PROFISSIONAIS: Profissional[] = [
     bio: pendente('bio'),
     oQueFazNaNuvem: [
       { nome: 'Consulta de clínica médica', tipo: 'consulta', convenios: `Particular ou ${UNIMED}` },
+      { nome: 'Consulta de hepatologia', tipo: 'consulta', convenios: 'Somente particular' },
     ],
     faixaEtaria: '18 a 65 anos',
     teleconsulta: { oferece: false },
     fazConsulta: true,
+    diasDeAtendimento: 'Terças-feiras, das 8h às 12h',
     foto: fotoSite('/images/camilla-mendes.jpg', 900),
     pendencias: [],
     fase: 2,
     status: 'aprovada',
-    // Publicação autorizada pela gestão em 10/11/2026; a bio e a validação da médica
-    // serão pedidas no envio da página.
+    // Publicação autorizada pela gestão em 10/11/2026. Página aprovada pela médica
+    // (resposta de 13/11/2026), com hepatologia somente particular e o horário.
     aprovacoes: {
-      medico:  { data: '2026-11-10', versao: '623d412ddf', por: 'Dra. Camilla Mendes, pendente de validação da médica (autorizado pela gestão)' },
-      clinica: { data: '2026-11-10', versao: '623d412ddf', por: 'Ana Paula, gestão do site, em nome da clínica' },
+      medico:  { data: '2026-11-13', versao: '3e81b7ab7f', por: 'Dra. Camilla Mendes' },
+      clinica: { data: '2026-11-13', versao: '3e81b7ab7f', por: 'Ana Paula, gestão do site, em nome da clínica' },
     },
   },
 
