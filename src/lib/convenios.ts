@@ -3,6 +3,7 @@
  * de exame, a nuvete e o llms.txt.
  *
  * Origem: lista oficial da clínica para a Dr.IAgenda, versão de 09/11/2026
+ * (Intercâmbio e planos Unimed não atendidos: confirmados pela gestão em 13/11/2026)
  * (docs/anamnese-ia/respostas/documentos-finais/anexos/03-lista-e-regras-de-convenio.md).
  * Ao mudar um convênio, mude aqui e no documento da anamnese.
  *
@@ -56,6 +57,7 @@ export const EXAMES_POR_CONVENIO = [
 export const REGRAS_CONVENIO = [
   'Todos os profissionais atendem particular, com recibo para reembolso. O recibo é emitido em até 2 dias úteis.',
   'Se o seu plano não estiver na lista do profissional, a consulta pode ser feita de forma particular.',
+  'Unimed: atendemos também o Intercâmbio (estadual e nacional). Não atendemos os planos Unifácil, Uniplênio e Unimed Rio.',
   `Exames por convênio: somente pHmetria esofágica, manometria esofágica convencional e manometria anorretal, pela ${UNIMED_PLANOS}. Os demais exames são particulares.`,
   'Teleconsulta: somente particular.',
   'Coparticipação e necessidade de autorização prévia seguem as regras do seu plano. Confirme com o seu convênio.',
