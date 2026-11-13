@@ -25,7 +25,7 @@ export type ConvenioProfissional = {
 export const CONVENIOS_POR_PROFISSIONAL: ConvenioProfissional[] = [
   { nome: 'Dra. Vera Ângelo',                     area: 'Gastroenterologia e Motilidade',          convenios: `${UNIMED_PLANOS} e Amagis Saúde` },
   { nome: 'Dra. Danielle Martins',                area: 'Gastroenterologia e Motilidade',          convenios: 'Agros, Allianz, Amagis, Amil, AMMP, Assefaz, Saúde Caixa, Care Plus, Cemig, Cenibra, Copass, Correios (Postal), Desban, Fundação Libertas, Fundaffemg, Fusex, Omint, Petrobras, Proasa e Vale' },
-  { nome: 'Dra. Claudia Utsch',                   area: 'Gastroenterologia',                       convenios: 'Unimed' },
+  { nome: 'Dra. Claudia Utsch',                   area: 'Gastroenterologia',                       convenios: UNIMED_PLANOS },
   { nome: 'Dra. Camilla Mendes',                  area: 'Clínica Médica',                          convenios: UNIMED_PLANOS },
   { nome: 'Dra. Mariana Fernandes',               area: 'Pediatria',                               convenios: 'Unimed (Unimed Seguros, Unipart e Unimax)' },
   { nome: 'Dra. Amanda Araújo',                   area: 'Gastroenterologia e Motilidade Digestiva', convenios: `pHmetria esofágica: ${UNIMED_PLANOS} ou particular` },
