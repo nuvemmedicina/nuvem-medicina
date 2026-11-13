@@ -15,6 +15,18 @@
 
 export const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID ?? ''
 
+/**
+ * Rotas internas sem medição nenhuma: a anamnese da IA e a aprovação das
+ * páginas dos médicos. Os links levam um código de acesso (?c=...) e as
+ * respostas são dados da equipe: nada disso pode ir ao GTM, ao GA4 ou ao
+ * Meta Pixel. O mesmo padrão é usado no script do GTM (GoogleTagManager.tsx).
+ */
+export const ROTA_SEM_MEDICAO = '^/(?:(?:en|es|pt-BR)/)?anamnese-ia(?:/|$)'
+
+export function rotaSemMedicao(pathname: string): boolean {
+  return new RegExp(ROTA_SEM_MEDICAO).test(pathname)
+}
+
 export type GTMEvent = {
   event: string
   [key: string]: unknown
@@ -27,6 +39,7 @@ export type GTMEvent = {
  */
 export function pushEvent(payload: GTMEvent): void {
   if (typeof window === 'undefined') return
+  if (rotaSemMedicao(window.location.pathname)) return
   window.dataLayer = window.dataLayer ?? []
   window.dataLayer.push(payload)
 }

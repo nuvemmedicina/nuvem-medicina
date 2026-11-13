@@ -11,6 +11,10 @@ import {
 } from '@/lib/anamnese-ia/schema'
 import { PREFILL_CLINICA, MEDICOS_SITE, prefillMedico } from '@/lib/anamnese-ia/prefill'
 import { useServidor, rotuloStatus, useHoje } from '@/components/anamnese-ia/useServidor'
+import { normalizarInstagram, erroInstagram } from '@/lib/anamnese-ia/formatos'
+import { FotoSecao } from '@/components/anamnese-ia/FotoSecao'
+import { TermoAutorizacao } from '@/components/anamnese-ia/TermoAutorizacao'
+import { TERMO, type DadosTermo } from '@/lib/anamnese-ia/termo-imagem'
 
 // ─── Tipos e armazenamento ────────────────────────────────────────────────────
 type Medico = { uid: string; slug?: string; values: Values }
@@ -101,7 +105,16 @@ function Campo({ f, value, onChange, escopo }: {
   const id  = `${escopo}-${f.id}`
   const vazio = f.required && !preenchido(value)
   const base = 'w-full rounded-xl border bg-white px-3.5 py-2.5 text-[0.92rem] text-steel outline-none transition focus:border-teal focus:ring-2 focus:ring-teal/15'
-  const borda = vazio ? 'border-gold/60' : 'border-teal/15'
+  const erro  = f.formato === 'instagram' ? erroInstagram(String(value ?? '')) : null
+  const borda = erro ? 'border-red-300' : vazio ? 'border-gold/60' : 'border-teal/15'
+  const aoSair = () => {
+    if (f.formato !== 'instagram') return
+    const n = normalizarInstagram(String(value ?? ''))
+    if (n !== String(value ?? '')) onChange(n)
+  }
+  const extras = f.formato === 'instagram'
+    ? { autoCapitalize: 'none', autoCorrect: 'off', spellCheck: false, placeholder: '@seuperfil', 'aria-invalid': !!erro, 'aria-describedby': erro ? `${id}-erro` : undefined }
+    : {}
 
   return (
     <div className="mb-5">
@@ -113,8 +126,9 @@ function Campo({ f, value, onChange, escopo }: {
 
       {f.type === 'text' && (
         <input id={id} type="text" className={`${base} ${borda}`} value={String(value ?? '')}
-          required={f.required} onChange={e => onChange(e.target.value)} />
+          required={f.required} onChange={e => onChange(e.target.value)} onBlur={aoSair} {...extras} />
       )}
+      {erro && <p id={`${id}-erro`} className="mt-1.5 text-[0.78rem] text-red-700">{erro}</p>}
       {f.type === 'textarea' && (
         <textarea id={id} rows={f.rows ?? 3} className={`${base} ${borda} leading-relaxed`} value={String(value ?? '')}
           required={f.required} onChange={e => onChange(e.target.value)} />
@@ -230,6 +244,25 @@ function Impressao({ clinica, medicos }: { clinica?: Values; medicos: Medico[] }
         </div>
       ))}
     </div>
+  )
+}
+
+// ─── Foto e termo de autorização (só no link do profissional) ─────────────────
+function FotoComTermo({ escopo, codigo, values }: { escopo: string; codigo: string | null; values: Values }) {
+  const [dados, setDados] = useState<DadosTermo>({ nomeCompleto: '', registro: '' })
+  const [editado, setEditado] = useState(false)
+  const [aceito, setAceito] = useState(false)
+  // Até a pessoa mexer, acompanha o nome e o registro da anamnese
+  const atuais = editado ? dados : {
+    nomeCompleto: String(values.nome ?? '').replace(/^(dra?\.?\s+)/i, ''),
+    registro: String(values.registro ?? ''),
+  }
+  const completo = !!atuais.nomeCompleto.trim() && !!atuais.registro.trim()
+  return (
+    <FotoSecao escopo={escopo} codigo={codigo} podeEnviar={aceito && completo}
+      aoEnviar={() => ({ aceite: aceito, termoVersao: TERMO.versao, ...atuais })}>
+      <TermoAutorizacao dados={atuais} onDados={d => { setEditado(true); setDados(d) }} aceito={aceito} onAceito={setAceito} />
+    </FotoSecao>
   )
 }
 
@@ -509,6 +542,10 @@ export function AnamneseForm({ modo, slug }: { modo: Modo; slug?: string }) {
             {modo === 'medico' && medicoUnico && CAMPOS_MEDICO.map((s, i) => (
               <SecaoCard key={s.id} s={s} numero={`${i + 1}.`} values={medicoUnico.values} escopo="m" onChange={(id, v) => setMedico(medicoUnico.uid, id, v)} />
             ))}
+
+            {modo === 'medico' && medicoUnico && (
+              <FotoComTermo escopo={escopo} codigo={servidorAtivo ? servidor.codigo : null} values={medicoUnico.values} />
+            )}
 
             {/* Finalizar */}
             <section className="rounded-2xl border border-teal/15 bg-teal p-5 text-white shadow-sm sm:p-7">

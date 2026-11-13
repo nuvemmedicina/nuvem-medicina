@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from 'next-sanity'
-import { escopoValido, codigoConfere, docId } from '@/lib/anamnese-ia/acesso'
+import { autorizar, docId } from '@/lib/anamnese-ia/acesso'
 import { mesclarValidacao } from '@/lib/anamnese-ia/mesclar'
+import { sanity } from '@/lib/anamnese-ia/servidor'
 
 /**
  * Salva e lê as respostas das páginas /anamnese-ia no Sanity (documentos
@@ -11,18 +11,6 @@ import { mesclarValidacao } from '@/lib/anamnese-ia/mesclar'
 export const dynamic = 'force-dynamic'
 
 const LIMITE = 300_000 // caracteres do JSON
-
-function sanity() {
-  const token = process.env.SANITY_WRITE_TOKEN
-  if (!token) return null
-  return createClient({ projectId: 'q8ibxbuz', dataset: 'production', apiVersion: '2024-01-01', useCdn: false, token })
-}
-
-function autorizar(escopo: unknown, codigo: unknown) {
-  if (typeof escopo !== 'string' || !escopoValido(escopo)) return 'Escopo inválido'
-  if (typeof codigo !== 'string' || !codigoConfere(escopo, codigo)) return 'Código de acesso inválido'
-  return null
-}
 
 type Doc = { escopo: string; dadosJson?: string; atualizadoEm?: string; finalizadoEm?: string }
 

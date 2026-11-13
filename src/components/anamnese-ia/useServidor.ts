@@ -121,7 +121,7 @@ export function rotuloStatus(s: StatusServidor, salvoEm: string | null) {
     case 'pendente':      return 'Alterações não salvas…'
     case 'salvo':         return hora ? `Salvo às ${hora}` : 'Conectado'
     case 'erro':          return 'Sem conexão: respostas guardadas neste navegador'
-    case 'acesso-negado': return 'Código de acesso inválido: respostas só neste navegador'
+    case 'acesso-negado': return 'Link antigo ou inválido: peça o link novo à clínica. Por enquanto, as respostas ficam só neste navegador'
   }
 }
 
