@@ -375,6 +375,7 @@ export const PROFISSIONAIS: Profissional[] = [
     faixaEtaria: '15 a 90 anos',
     teleconsulta: { oferece: true, detalhe: 'no atendimento particular' },
     fazConsulta: true,
+    diasDeAtendimento: 'Segunda, quarta e sexta, das 7h às 18h, e terça, das 7h às 12h',
     foto: fotoSite('/images/anna-karoline.jpg', 900),
     pendencias: [
       'Tratamento "Dra." para fisioterapeuta: confirmar com a gestão. A página sempre diz "fisioterapeuta" e nunca "médica".',
@@ -383,8 +384,8 @@ export const PROFISSIONAIS: Profissional[] = [
     status: 'aprovada',
     // Aprovação do profissional informada pela gestão do site em 09/11/2026.
     aprovacoes: {
-      medico:  { data: '2026-11-13', versao: 'becdd3bae4', por: 'Dra. Anna Karoline Rocha' },
-      clinica: { data: '2026-11-13', versao: 'becdd3bae4', por: 'Ana Paula, gestão do site, em nome da clínica' },
+      medico:  { data: '2026-11-13', versao: '4838463800', por: 'Dra. Anna Karoline Rocha' },
+      clinica: { data: '2026-11-13', versao: '4838463800', por: 'Ana Paula, gestão do site, em nome da clínica' },
     },
   },
 
